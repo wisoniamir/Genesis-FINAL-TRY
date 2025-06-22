@@ -1,0 +1,9 @@
+{
+  "module_id": "fsevents",
+  "original_path": "modules\\restored\\fsevents.py",
+  "preserved_path": "preservation_holding_area\\fsevents_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30718,
+  "checksum": "72bb04cf11e75a47ba21daf909bc2cf27b69c17ee9cfccbbd12941b37d2002ea"
+}

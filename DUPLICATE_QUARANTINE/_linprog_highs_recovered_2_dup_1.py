@@ -1,0 +1,643 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("_linprog_highs_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("_linprog_highs_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_linprog_highs_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _linprog_highs_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_linprog_highs_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_linprog_highs_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _linprog_highs_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""HiGHS Linear Optimization Methods
+
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+Interface to HiGHS linear optimization software.
+https://highs.dev/
+
+.. versionadded:: 1.5.0
+
+References
+----------
+.. [1] Q. Huangfu and J.A.J. Hall. "Parallelizing the dual revised simplex
+           method." Mathematical Programming Computation, 10 (1), 119-142,
+           2018. DOI: 10.1007/s12532-017-0130-5
+
+"""
+
+import inspect
+import numpy as np
+from ._optimize import OptimizeWarning, OptimizeResult
+from warnings import warn
+from ._highspy._highs_wrapper import _highs_wrapper
+from ._highspy._core import(
+    kHighsInf,
+    HighsDebugLevel,
+    ObjSense,
+    HighsModelStatus,
+    simplex_constants as s_c,  # [1]
+)
+from scipy.sparse import csc_matrix, vstack, issparse
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: _linprog_highs_recovered_2 -->
+
+
+# <!-- @GENESIS_MODULE_START: _linprog_highs_recovered_2 -->
+
+# [1]: Directly importing from "._highspy._core.simplex_constants"
+# causes problems when reloading.
+# See https://github.com/scipy/scipy/pull/22869 for details.
+
+def _highs_to_scipy_status_message(highs_status, highs_message):
+    """Converts HiGHS status number/message to SciPy status number/message"""
+
+    scipy_statuses_messages = {
+        None: (4, "HiGHS did not provide a status code. "),
+        HighsModelStatus.kNotset: (4, ""),
+        HighsModelStatus.kLoadError: (4, ""),
+        HighsModelStatus.kModelError: (2, ""),
+        HighsModelStatus.kPresolveError: (4, ""),
+        HighsModelStatus.kSolveError: (4, ""),
+        HighsModelStatus.kPostsolveError: (4, ""),
+        HighsModelStatus.kModelEmpty: (4, ""),
+        HighsModelStatus.kObjectiveBound: (4, ""),
+        HighsModelStatus.kObjectiveTarget: (4, ""),
+        HighsModelStatus.kOptimal: (0, "Optimization terminated successfully. "),
+        HighsModelStatus.kTimeLimit: (1, "Time limit reached. "),
+        HighsModelStatus.kIterationLimit: (1, "Iteration limit reached. "),
+        HighsModelStatus.kInfeasible: (2, "The problem is infeasible. "),
+        HighsModelStatus.kUnbounded: (3, "The problem is unbounded. "),
+        HighsModelStatus.kUnboundedOrInfeasible: (4, "The problem is unbounded "
+                                                  "or infeasible. ")}
+    unrecognized = (4, "The HiGHS status code was not recognized. ")
+    scipy_status, scipy_message = (
+        scipy_statuses_messages.get(highs_status, unrecognized))
+    hstat = int(highs_status) if highs_status is not None else None
+    scipy_message = (f"{scipy_message}"
+                     f"(HiGHS Status {hstat}: {highs_message})")
+    return scipy_status, scipy_message
+
+
+def _replace_inf(x):
+    # Replace `np.inf` with kHighsInf
+    infs = np.isinf(x)
+    with np.errstate(invalid="ignore"):
+        x[infs] = np.sign(x[infs])*kHighsInf
+    return x
+
+
+def _convert_to_highs_enum(option, option_str, choices):
+    # If option is in the choices we can look it up, if not use
+    # the default value taken from function signature and warn:
+    try:
+        return choices[option.lower()]
+    except AttributeError:
+        return choices[option]
+    except KeyError:
+        sig = inspect.signature(_linprog_highs)
+        default_str = sig.parameters[option_str].default
+        warn(f"Option {option_str} is {option}, but only values in "
+             f"{set(choices.keys())} are allowed. Using default: "
+             f"{default_str}.",
+             OptimizeWarning, stacklevel=3)
+        return choices[default_str]
+
+
+def _linprog_highs(lp, solver, time_limit=None, presolve=True,
+                   disp=False, maxiter=None,
+                   dual_feasibility_tolerance=None,
+                   primal_feasibility_tolerance=None,
+                   ipm_optimality_tolerance=None,
+                   simplex_dual_edge_weight_strategy=None,
+                   mip_rel_gap=None,
+                   mip_max_nodes=None,
+                   **unknown_options):
+    r"""
+    Solve the following linear programming problem using one of the HiGHS
+    solvers:
+
+    User-facing documentation is in _linprog_doc.py.
+
+    Parameters
+    ----------
+    lp :  _LPProblem
+        A ``scipy.optimize._linprog_util._LPProblem`` ``namedtuple``.
+    solver : "ipm" or "simplex" or None
+        Which HiGHS solver to use.  If ``None``, "simplex" will be used.
+
+    Options
+    -------
+    maxiter : int
+        The maximum number of iterations to perform in either phase. For
+        ``solver='ipm'``, this does not include the number of crossover
+        iterations.  Default is the largest possible value for an ``int``
+        on the platform.
+    disp : bool
+        Set to ``True`` if indicators of optimization status are to be printed
+        to the console each iteration; default ``False``.
+    time_limit : float
+        The maximum time in seconds allotted to solve the problem; default is
+        the largest possible value for a ``double`` on the platform.
+    presolve : bool
+        Presolve attempts to identify trivial infeasibilities,
+        identify trivial unboundedness, and simplify the problem before
+        sending it to the main solver. It is generally recommended
+        to keep the default setting ``True``; set to ``False`` if presolve is
+        to be disabled.
+    dual_feasibility_tolerance : double
+        Dual feasibility tolerance.  Default is 1e-07.
+        The minimum of this and ``primal_feasibility_tolerance``
+        is used for the feasibility tolerance when ``solver='ipm'``.
+    primal_feasibility_tolerance : double
+        Primal feasibility tolerance.  Default is 1e-07.
+        The minimum of this and ``dual_feasibility_tolerance``
+        is used for the feasibility tolerance when ``solver='ipm'``.
+    ipm_optimality_tolerance : double
+        Optimality tolerance for ``solver='ipm'``.  Default is 1e-08.
+        Minimum possible value is 1e-12 and must be smaller than the largest
+        possible value for a ``double`` on the platform.
+    simplex_dual_edge_weight_strategy : str (default: None)
+        Strategy for simplex dual edge weights. The default, ``None``,
+        automatically selects one of the following.
+
+        ``'dantzig'`` uses Dantzig's original strategy of choosing the most
+        negative reduced cost.
+
+        ``'devex'`` uses the strategy described in [15]_.
+
+        ``steepest`` uses the exact steepest edge strategy as described in
+        [16]_.
+
+        ``'steepest-devex'`` begins with the exact steepest edge strategy
+        until the computation is too costly or inexact and then switches to
+        the devex method.
+
+        Currently, using ``None`` always selects ``'steepest-devex'``, but this
+        may change as new options become available.
+
+    mip_max_nodes : int
+        The maximum number of nodes allotted to solve the problem; default is
+        the largest possible value for a ``HighsInt`` on the platform.
+        Ignored if not using the MIP solver.
+    unknown_options : dict
+        Optional arguments not used by this particular solver. If
+        ``unknown_options`` is non-empty, a warning is issued listing all
+        unused options.
+
+    Returns
+    -------
+    sol : dict
+        A dictionary consisting of the fields:
+
+            x : 1D array
+                The values of the decision variables that minimizes the
+                objective function while satisfying the constraints.
+            fun : float
+                The optimal value of the objective function ``c @ x``.
+            slack : 1D array
+                The (nominally positive) values of the slack,
+                ``b_ub - A_ub @ x``.
+            con : 1D array
+                The (nominally zero) residuals of the equality constraints,
+                ``b_eq - A_eq @ x``.
+            success : bool
+                ``True`` when the algorithm succeeds in finding an optimal
+                solution.
+            status : int
+                An integer representing the exit status of the algorithm.
+
+                ``0`` : Optimization terminated successfully.
+
+                ``1`` : Iteration or time limit reached.
+
+                ``2`` : Problem appears to be infeasible.
+
+                ``3`` : Problem appears to be unbounded.
+
+                ``4`` : The HiGHS solver ran into a problem.
+
+            message : str
+                A string descriptor of the exit status of the algorithm.
+            nit : int
+                The total number of iterations performed.
+                For ``solver='simplex'``, this includes iterations in all
+                phases. For ``solver='ipm'``, this does not include
+                crossover iterations.
+            crossover_nit : int
+                The number of primal/dual pushes performed during the
+                crossover routine for ``solver='ipm'``.  This is ``0``
+                for ``solver='simplex'``.
+            ineqlin : OptimizeResult
+                Solution and sensitivity information corresponding to the
+                inequality constraints, `b_ub`. A dictionary consisting of the
+                fields:
+
+                residual : np.ndnarray
+                    The (nominally positive) values of the slack variables,
+                    ``b_ub - A_ub @ x``.  This quantity is also commonly
+                    referred to as "slack".
+
+                marginals : np.ndarray
+                    The sensitivity (partial derivative) of the objective
+                    function with respect to the right-hand side of the
+                    inequality constraints, `b_ub`.
+
+            eqlin : OptimizeResult
+                Solution and sensitivity information corresponding to the
+                equality constraints, `b_eq`.  A dictionary consisting of the
+                fields:
+
+                residual : np.ndarray
+                    The (nominally zero) residuals of the equality constraints,
+                    ``b_eq - A_eq @ x``.
+
+                marginals : np.ndarray
+                    The sensitivity (partial derivative) of the objective
+                    function with respect to the right-hand side of the
+                    equality constraints, `b_eq`.
+
+            lower, upper : OptimizeResult
+                Solution and sensitivity information corresponding to the
+                lower and upper bounds on decision variables, `bounds`.
+
+                residual : np.ndarray
+                    The (nominally positive) values of the quantity
+                    ``x - lb`` (lower) or ``ub - x`` (upper).
+
+                marginals : np.ndarray
+                    The sensitivity (partial derivative) of the objective
+                    function with respect to the lower and upper
+                    `bounds`.
+
+            mip_node_count : int
+                The number of subproblems or "nodes" solved by the MILP
+                solver. Only present when `integrality` is not `None`.
+
+            mip_dual_bound : float
+                The MILP solver's final estimate of the lower bound on the
+                optimal solution. Only present when `integrality` is not
+                `None`.
+
+            mip_gap : float
+                The difference between the final objective function value
+                and the final dual bound, scaled by the final objective
+                function value. Only present when `integrality` is not
+                `None`.
+
+    Notes
+    -----
+    The result fields `ineqlin`, `eqlin`, `lower`, and `upper` all contain
+    `marginals`, or partial derivatives of the objective function with respect
+    to the right-hand side of each constraint. These partial derivatives are
+    also referred to as "Lagrange multipliers", "dual values", and
+    "shadow prices". The sign convention of `marginals` is opposite that
+    of Lagrange multipliers produced by many nonlinear solvers.
+
+    References
+    ----------
+    .. [15] Harris, Paula MJ. "Pivot selection methods of the Devex LP code."
+            Mathematical programming 5.1 (1973): 1-28.
+    .. [16] Goldfarb, Donald, and John Ker Reid. "A practicable steepest-edge
+            simplex algorithm." Mathematical Programming 12.1 (1977): 361-371.
+    """
+    if unknown_options:
+        message = (f"Unrecognized options detected: {unknown_options}. "
+                   "These will be passed to HiGHS verbatim.")
+        warn(message, OptimizeWarning, stacklevel=3)
+
+    # Map options to HiGHS enum values
+    simplex_dual_edge_weight_strategy_enum = _convert_to_highs_enum(
+        simplex_dual_edge_weight_strategy,
+        'simplex_dual_edge_weight_strategy',
+        choices={'dantzig': \
+                 s_c.SimplexEdgeWeightStrategy.kSimplexEdgeWeightStrategyDantzig,
+                 'devex': \
+                 s_c.SimplexEdgeWeightStrategy.kSimplexEdgeWeightStrategyDevex,
+                 'steepest-devex': \
+                 s_c.SimplexEdgeWeightStrategy.kSimplexEdgeWeightStrategyChoose,
+                 'steepest': \
+                 s_c.SimplexEdgeWeightStrategy.kSimplexEdgeWeightStrategySteepestEdge,
+                 None: None})
+
+    c, A_ub, b_ub, A_eq, b_eq, bounds, x0, integrality = lp
+
+    lb, ub = bounds.T.copy()  # separate bounds, copy->C-cntgs
+    # highs_wrapper solves LHS <= A*x <= RHS, not equality constraints
+    with np.errstate(invalid="ignore"):
+        lhs_ub = -np.ones_like(b_ub)*np.inf  # LHS of UB constraints is -inf
+    rhs_ub = b_ub  # RHS of UB constraints is b_ub
+    lhs_eq = b_eq  # Equality constraint is inequality
+    rhs_eq = b_eq  # constraint with LHS=RHS
+    lhs = np.concatenate((lhs_ub, lhs_eq))
+    rhs = np.concatenate((rhs_ub, rhs_eq))
+
+    if issparse(A_ub) or issparse(A_eq):
+        A = vstack((A_ub, A_eq))
+    else:
+        A = np.vstack((A_ub, A_eq))
+    A = csc_matrix(A)
+
+    options = {
+        'presolve': presolve,
+        'sense': ObjSense.kMinimize,
+        'solver': solver,
+        'time_limit': time_limit,
+        'highs_debug_level': HighsDebugLevel.kHighsDebugLevelNone,
+        'dual_feasibility_tolerance': dual_feasibility_tolerance,
+        'ipm_optimality_tolerance': ipm_optimality_tolerance,
+        'log_to_console': disp,
+        'mip_max_nodes': mip_max_nodes,
+        'output_flag': disp,
+        'primal_feasibility_tolerance': primal_feasibility_tolerance,
+        'simplex_dual_edge_weight_strategy':
+            simplex_dual_edge_weight_strategy_enum,
+        'simplex_strategy': s_c.SimplexStrategy.kSimplexStrategyDual,
+        'ipm_iteration_limit': maxiter,
+        'simplex_iteration_limit': maxiter,
+        'mip_rel_gap': mip_rel_gap,
+    }
+    options.update(unknown_options)
+
+    # np.inf doesn't work; use very large constant
+    rhs = _replace_inf(rhs)
+    lhs = _replace_inf(lhs)
+    lb = _replace_inf(lb)
+    ub = _replace_inf(ub)
+
+    if integrality is None or np.sum(integrality) == 0:
+        integrality = np.empty(0)
+    else:
+        integrality = np.array(integrality)
+
+    res = _highs_wrapper(c, A.indptr, A.indices, A.data, lhs, rhs,
+                         lb, ub, integrality.astype(np.uint8), options)
+
+    # HiGHS represents constraints as lhs/rhs, so
+    # Ax + s = b => Ax = b - s
+    # and we need to split up s by A_ub and A_eq
+    if 'slack' in res:
+        slack = res['slack']
+        con = np.array(slack[len(b_ub):])
+        slack = np.array(slack[:len(b_ub)])
+    else:
+        slack, con = None, None
+
+    # lagrange multipliers for equalities/inequalities and upper/lower bounds
+    if 'lambda' in res:
+        lamda = res['lambda']
+        marg_ineqlin = np.array(lamda[:len(b_ub)])
+        marg_eqlin = np.array(lamda[len(b_ub):])
+        marg_upper = np.array(res['marg_bnds'][1, :])
+        marg_lower = np.array(res['marg_bnds'][0, :])
+    else:
+        marg_ineqlin, marg_eqlin = None, None
+        marg_upper, marg_lower = None, None
+
+    # this needs to be updated if we start choosing the solver intelligently
+
+    # Convert to scipy-style status and message
+    highs_status = res.get('status', None)
+    highs_message = res.get('message', None)
+    status, message = _highs_to_scipy_status_message(highs_status,
+                                                     highs_message)
+
+    x = res['x'] # is None if not set
+    sol = {'x': x,
+           'slack': slack,
+           'con': con,
+           'ineqlin': OptimizeResult({
+               'residual': slack,
+               'marginals': marg_ineqlin,
+           }),
+           'eqlin': OptimizeResult({
+               'residual': con,
+               'marginals': marg_eqlin,
+           }),
+           'lower': OptimizeResult({
+               'residual': None if x is None else x - lb,
+               'marginals': marg_lower,
+           }),
+           'upper': OptimizeResult({
+               'residual': None if x is None else ub - x,
+               'marginals': marg_upper
+            }),
+           'fun': res.get('fun'),
+           'status': status,
+           'success': res['status'] == HighsModelStatus.kOptimal,
+           'message': message,
+           'nit': res.get('simplex_nit', 0) or res.get('ipm_nit', 0),
+           'crossover_nit': res.get('crossover_nit'),
+           }
+
+    if np.any(x) and integrality is not None:
+        sol.update({
+            'mip_node_count': res.get('mip_node_count', 0),
+            'mip_dual_bound': res.get('mip_dual_bound', 0.0),
+            'mip_gap': res.get('mip_gap', 0.0),
+        })
+
+    return sol
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

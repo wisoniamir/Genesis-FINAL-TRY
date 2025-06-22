@@ -1,0 +1,9 @@
+{
+  "module_id": "delayed_queue",
+  "original_path": "modules\\restored\\delayed_queue.py",
+  "preserved_path": "preservation_holding_area\\delayed_queue_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13966,
+  "checksum": "3318a9f4b90626f9e743c78533869f9709ba66c5eda7f2f2f5f962ce22c57c16"
+}

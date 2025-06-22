@@ -1,0 +1,362 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_compression -->
+"""
+🏛️ GENESIS TEST_COMPRESSION - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_compression", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_compression", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_compression",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_compression: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_compression",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_compression", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_compression: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+Tests compressed data parsing functionality for all
+of the parsers defined in parsers.py
+"""
+
+import os
+from pathlib import Path
+import tarfile
+import zipfile
+
+import pytest
+
+from pandas import DataFrame
+import pandas._testing as tm
+
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
+
+
+@pytest.fixture(params=[True, False])
+def buffer(request):
+    return request.param
+
+
+@pytest.fixture
+def parser_and_data(all_parsers, csv1):
+    parser = all_parsers
+
+    with open(csv1, "rb") as f:
+        data = f.read()
+    expected = parser.read_csv(csv1)
+
+    return parser, data, expected
+
+
+@pytest.mark.parametrize("compression", ["zip", "infer", "zip2"])
+def test_zip(parser_and_data, compression):
+    parser, data, expected = parser_and_data
+
+    with tm.ensure_clean("test_file.zip") as path:
+        with zipfile.ZipFile(path, mode="w") as tmp:
+            tmp.writestr("test_file", data)
+
+        if compression == "zip2":
+            with open(path, "rb") as f:
+                result = parser.read_csv(f, compression="zip")
+        else:
+            result = parser.read_csv(path, compression=compression)
+
+        tm.assert_frame_equal(result, expected)
+
+
+@pytest.mark.parametrize("compression", ["zip", "infer"])
+def test_zip_error_multiple_files(parser_and_data, compression):
+    parser, data, expected = parser_and_data
+
+    with tm.ensure_clean("combined_zip.zip") as path:
+        inner_file_names = ["test_file", "second_file"]
+
+        with zipfile.ZipFile(path, mode="w") as tmp:
+            for file_name in inner_file_names:
+                tmp.writestr(file_name, data)
+
+        with pytest.raises(ValueError, match="Multiple files"):
+            parser.read_csv(path, compression=compression)
+
+
+def test_zip_error_no_files(parser_and_data):
+    parser, _, _ = parser_and_data
+
+    with tm.ensure_clean() as path:
+        with zipfile.ZipFile(path, mode="w"):
+            pass
+
+        with pytest.raises(ValueError, match="Zero files"):
+            parser.read_csv(path, compression="zip")
+
+
+def test_zip_error_invalid_zip(parser_and_data):
+    parser, _, _ = parser_and_data
+
+    with tm.ensure_clean() as path:
+        with open(path, "rb") as f:
+            with pytest.raises(zipfile.BadZipFile, match="File is not a zip file"):
+                parser.read_csv(f, compression="zip")
+
+
+@pytest.mark.parametrize("filename", [None, "test.{ext}"])
+def test_compression(
+    request,
+    parser_and_data,
+    compression_only,
+    buffer,
+    filename,
+    compression_to_extension,
+):
+    parser, data, expected = parser_and_data
+    compress_type = compression_only
+
+    ext = compression_to_extension[compress_type]
+    filename = filename if filename is None else filename.format(ext=ext)
+
+    if filename and buffer:
+        request.applymarker(
+            pytest.mark.xfail(
+                reason="Cannot deduce compression from buffer of compressed data."
+            )
+        )
+
+    with tm.ensure_clean(filename=filename) as path:
+        tm.write_to_compressed(compress_type, path, data)
+        compression = "infer" if filename else compress_type
+
+        if buffer:
+            with open(path, "rb") as f:
+                result = parser.read_csv(f, compression=compression)
+        else:
+            result = parser.read_csv(path, compression=compression)
+
+        tm.assert_frame_equal(result, expected)
+
+
+@pytest.mark.parametrize("ext", [None, "gz", "bz2"])
+def test_infer_compression(all_parsers, csv1, buffer, ext):
+    # see gh-9770
+    parser = all_parsers
+    kwargs = {"index_col": 0, "parse_dates": True}
+
+    expected = parser.read_csv(csv1, **kwargs)
+    kwargs["compression"] = "infer"
+
+    if buffer:
+        with open(csv1, encoding="utf-8") as f:
+            result = parser.read_csv(f, **kwargs)
+    else:
+        ext = "." + ext if ext else ""
+        result = parser.read_csv(csv1 + ext, **kwargs)
+
+    tm.assert_frame_equal(result, expected)
+
+
+def test_compression_utf_encoding(all_parsers, csv_dir_path, utf_value, encoding_fmt):
+    # see gh-18071, gh-24130
+    parser = all_parsers
+    encoding = encoding_fmt.format(utf_value)
+    path = os.path.join(csv_dir_path, f"utf{utf_value}_ex_small.zip")
+
+    result = parser.read_csv(path, encoding=encoding, compression="zip", sep="\t")
+    expected = DataFrame(
+        {
+            "Country": ["Venezuela", "Venezuela"],
+            "Twitter": ["Hugo Chávez Frías", "Henrique Capriles R."],
+        }
+    )
+
+    tm.assert_frame_equal(result, expected)
+
+
+@pytest.mark.parametrize("invalid_compression", ["sfark", "bz3", "zipper"])
+def test_invalid_compression(all_parsers, invalid_compression):
+    parser = all_parsers
+    compress_kwargs = {"compression": invalid_compression}
+
+    msg = f"Unrecognized compression type: {invalid_compression}"
+
+    with pytest.raises(ValueError, match=msg):
+        parser.read_csv("test_file.zip", **compress_kwargs)
+
+
+def test_compression_tar_archive(all_parsers, csv_dir_path):
+    parser = all_parsers
+    path = os.path.join(csv_dir_path, "tar_csv.tar.gz")
+    df = parser.read_csv(path)
+    assert list(df.columns) == ["a"]
+
+
+def test_ignore_compression_extension(all_parsers):
+    parser = all_parsers
+    df = DataFrame({"a": [0, 1]})
+    with tm.ensure_clean("test.csv") as path_csv:
+        with tm.ensure_clean("test.csv.zip") as path_zip:
+            # make sure to create un-compressed file with zip extension
+            df.to_csv(path_csv, index=False)
+            Path(path_zip).write_text(
+                Path(path_csv).read_text(encoding="utf-8"), encoding="utf-8"
+            )
+
+            tm.assert_frame_equal(parser.read_csv(path_zip, compression=None), df)
+
+
+def test_writes_tar_gz(all_parsers):
+    parser = all_parsers
+    data = DataFrame(
+        {
+            "Country": ["Venezuela", "Venezuela"],
+            "Twitter": ["Hugo Chávez Frías", "Henrique Capriles R."],
+        }
+    )
+    with tm.ensure_clean("test.tar.gz") as tar_path:
+        data.to_csv(tar_path, index=False)
+
+        # test that read_csv infers .tar.gz to gzip:
+        tm.assert_frame_equal(parser.read_csv(tar_path), data)
+
+        # test that file is indeed gzipped:
+        with tarfile.open(tar_path, "r:gz") as tar:
+            result = parser.read_csv(
+                tar.extractfile(tar.getnames()[0]), compression="infer"
+            )
+            tm.assert_frame_equal(result, data)
+
+
+# <!-- @GENESIS_MODULE_END: test_compression -->

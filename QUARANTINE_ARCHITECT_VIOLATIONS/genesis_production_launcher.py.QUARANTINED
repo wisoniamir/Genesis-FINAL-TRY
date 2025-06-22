@@ -1,0 +1,98 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.202127+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        14
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        394,
+        396,
+        399
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        74,
+        82,
+        132,
+        169,
+        209
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        92,
+        147,
+        203,
+        229,
+        252
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        66,
+        512,
+        538,
+        717,
+        723
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        141,
+        272,
+        305,
+        328,
+        351
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        569
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_production_launcher.py",
+      "line_numbers": [
+        187,
+        566
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

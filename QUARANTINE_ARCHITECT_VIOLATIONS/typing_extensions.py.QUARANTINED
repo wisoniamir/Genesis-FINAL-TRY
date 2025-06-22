@@ -1,0 +1,112 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.046967+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        262,
+        315,
+        394,
+        592,
+        806
+      ],
+      "violation_count": 39
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        1020,
+        3568
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        545,
+        1551,
+        2721,
+        2755,
+        3980
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        4232
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        256,
+        311,
+        388,
+        401,
+        542
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        773
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "default =",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        1612,
+        3450,
+        3506,
+        3930
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        290,
+        305,
+        466,
+        483,
+        576
+      ],
+      "violation_count": 51
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\typing_extensions.py",
+      "line_numbers": [
+        172,
+        190,
+        230,
+        273,
+        280
+      ],
+      "violation_count": 109
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

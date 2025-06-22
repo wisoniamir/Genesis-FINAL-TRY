@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-06-16T04:59:21.490158",
+  "mutations": {
+    "mut-51239ff7-d975-49b1-9eb8-16432896d58b": {
+      "mutation_id": "mut-51239ff7-d975-49b1-9eb8-16432896d58b",
+      "strategy_id": "test-strategy-1750039161",
+      "mutation_type": "SL_CLUSTERING",
+      "justification": "",
+      "parameters": {},
+      "affected_symbols": [],
+      "timestamp": "2025-06-16T04:59:21.487542",
+      "applied": false
+    }
+  },
+  "applied_mutations": {},
+  "disabled_strategies": [],
+  "mutation_parameters": {
+    "test-strategy-1750039161": {}
+  }
+}

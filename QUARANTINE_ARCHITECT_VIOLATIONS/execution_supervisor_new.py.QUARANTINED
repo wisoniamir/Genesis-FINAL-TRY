@@ -1,0 +1,89 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.785701+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        363,
+        653,
+        673
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        624,
+        656,
+        680,
+        681
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        7,
+        28,
+        144,
+        206,
+        227
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        169,
+        221,
+        248,
+        281,
+        364
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        145,
+        152,
+        228,
+        260,
+        265
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        302,
+        338
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new.py",
+      "line_numbers": [
+        216,
+        571
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

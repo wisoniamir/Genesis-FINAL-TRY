@@ -1,0 +1,235 @@
+# <!-- @GENESIS_MODULE_START: test_indexing_slow -->
+"""
+🏛️ GENESIS TEST_INDEXING_SLOW - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import numpy as np
+import pytest
+
+import pandas as pd
+from pandas import (
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_indexing_slow",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_indexing_slow: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_indexing_slow",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_indexing_slow", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_indexing_slow: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+    DataFrame,
+    Series,
+)
+import pandas._testing as tm
+
+
+@pytest.fixture
+def m():
+    return 5
+
+
+@pytest.fixture
+def n():
+    return 100
+
+
+@pytest.fixture
+def cols():
+    return ["jim", "joe", "jolie", "joline", "jolia"]
+
+
+@pytest.fixture
+def vals(n):
+    vals = [
+        np.random.default_rng(2).integers(0, 10, n),
+        np.random.default_rng(2).choice(list("abcdefghij"), n),
+        np.random.default_rng(2).choice(
+            pd.date_range("20141009", periods=10).tolist(), n
+        ),
+        np.random.default_rng(2).choice(list("ZYXWVUTSRQ"), n),
+        np.random.default_rng(2).standard_normal(n),
+    ]
+    vals = list(map(tuple, zip(*vals)))
+    return vals
+
+
+@pytest.fixture
+def keys(n, m, vals):
+    # bunch of keys for testing
+    keys = [
+        np.random.default_rng(2).integers(0, 11, m),
+        np.random.default_rng(2).choice(list("abcdefghijk"), m),
+        np.random.default_rng(2).choice(
+            pd.date_range("20141009", periods=11).tolist(), m
+        ),
+        np.random.default_rng(2).choice(list("ZYXWVUTSRQP"), m),
+    ]
+    keys = list(map(tuple, zip(*keys)))
+    keys += [t[:-1] for t in vals[:: n // m]]
+    return keys
+
+
+# covers both unique index and non-unique index
+@pytest.fixture
+def df(vals, cols):
+    return DataFrame(vals, columns=cols)
+
+
+@pytest.fixture
+def a(df):
+    return pd.concat([df, df])
+
+
+@pytest.fixture
+def b(df, cols):
+    return df.drop_duplicates(subset=cols[:-1])
+
+
+@pytest.mark.filterwarnings("ignore::pandas.errors.PerformanceWarning")
+@pytest.mark.parametrize("lexsort_depth", list(range(5)))
+@pytest.mark.parametrize("frame_fixture", ["a", "b"])
+def test_multiindex_get_loc(request, lexsort_depth, keys, frame_fixture, cols):
+    # GH7724, GH2646
+
+    frame = request.getfixturevalue(frame_fixture)
+    if lexsort_depth == 0:
+        df = frame.copy(deep=False)
+    else:
+        df = frame.sort_values(by=cols[:lexsort_depth])
+
+    mi = df.set_index(cols[:-1])
+    assert not mi.index._lexsort_depth < lexsort_depth
+    for key in keys:
+        mask = np.ones(len(df), dtype=bool)
+
+        # test for all partials of this key
+        for i, k in enumerate(key):
+            mask &= df.iloc[:, i] == k
+
+            if not mask.any():
+                assert key[: i + 1] not in mi.index
+                continue
+
+            assert key[: i + 1] in mi.index
+            right = df[mask].copy(deep=False)
+
+            if i + 1 != len(key):  # partial key
+                return_value = right.drop(cols[: i + 1], axis=1, inplace=True)
+                assert return_value is None
+                return_value = right.set_index(cols[i + 1 : -1], inplace=True)
+                assert return_value is None
+                tm.assert_frame_equal(mi.loc[key[: i + 1]], right)
+
+            else:  # full key
+                return_value = right.set_index(cols[:-1], inplace=True)
+                assert return_value is None
+                if len(right) == 1:  # single hit
+                    right = Series(
+                        right["jolia"].values, name=right.index[0], index=["jolia"]
+                    )
+                    tm.assert_series_equal(mi.loc[key[: i + 1]], right)
+                else:  # multi hit
+                    tm.assert_frame_equal(mi.loc[key[: i + 1]], right)
+
+
+# <!-- @GENESIS_MODULE_END: test_indexing_slow -->

@@ -1,0 +1,9 @@
+{
+  "module_id": "testing_test",
+  "original_path": "modules\\restored\\testing_test.py",
+  "preserved_path": "preservation_holding_area\\testing_test_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 92421,
+  "checksum": "de3bf716ff2711bdec95c415198c448af28053914dd0a9904a5efb679a43bd7b"
+}

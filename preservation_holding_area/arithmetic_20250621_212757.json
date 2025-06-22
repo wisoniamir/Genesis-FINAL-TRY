@@ -1,0 +1,9 @@
+{
+  "module_id": "arithmetic",
+  "original_path": "modules\\restored\\arithmetic.py",
+  "preserved_path": "preservation_holding_area\\arithmetic_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19591,
+  "checksum": "20cc11f8a24a2a116a724721ed5884036db6294890be058fa03ccdfb3b3213f5"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "estimator",
+  "original_path": "modules\\restored\\estimator.py",
+  "preserved_path": "preservation_holding_area\\estimator_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 34698,
+  "checksum": "122d4810a3ce7c5c269f6211c7fbab4028cd766dbc9785c5d615d649e360ef7d"
+}

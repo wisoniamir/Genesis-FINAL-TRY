@@ -1,0 +1,70 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.686558+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+      "line_numbers": [
+        157
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+      "line_numbers": [
+        27,
+        136
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+      "line_numbers": [
+        30
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+      "line_numbers": [
+        57,
+        65,
+        108,
+        126,
+        130
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+      "line_numbers": [
+        53,
+        73,
+        79,
+        87,
+        104
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase_50_recovered_2.py",
+      "line_numbers": [
+        186
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

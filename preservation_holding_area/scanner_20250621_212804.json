@@ -1,0 +1,9 @@
+{
+  "module_id": "scanner",
+  "original_path": "modules\\restored\\scanner.py",
+  "preserved_path": "preservation_holding_area\\scanner_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19272,
+  "checksum": "e634d6e908328b06e1307f53bd7ad597cf720064923f183f1644beec25720562"
+}

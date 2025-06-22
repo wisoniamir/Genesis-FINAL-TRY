@@ -1,0 +1,9 @@
+{
+  "module_id": "http1connection_test",
+  "original_path": "modules\\restored\\http1connection_test.py",
+  "preserved_path": "preservation_holding_area\\http1connection_test_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19297,
+  "checksum": "7bc7f0562c18f5153a1af0ad7907b651dc2ea20807b57ca9cc0a9bea96c718e9"
+}

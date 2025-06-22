@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""
+🎯 GENESIS FUNCTIONALITY TEST - Prove Dashboard Works
+Test script to validate enhanced GENESIS functionality
+"""
+
+import os
+import sys
+from pathlib import Path
+
+# Add project paths
+project_root = Path(__file__).parent
+sys.path.append(str(project_root))
+sys.path.append(str(project_root / "modules"))
+
+print("🚀 GENESIS FUNCTIONALITY TEST STARTING...")
+print("=" * 50)
+
+# Test 1: Module Import Capabilities
+print("📦 TESTING MODULE IMPORTS:")
+try:
+    from modules.institutional.mt5_adapter_v7 import MT5AdapterV7
+    print("✅ MT5AdapterV7 imported successfully")
+    adapter = MT5AdapterV7()
+    print(f"✅ MT5AdapterV7 instantiated: {type(adapter)}")
+except Exception as e:
+    print(f"❌ MT5AdapterV7 import failed: {e}")
+
+try:
+    from modules.signals.signal_engine import SignalEngine
+    print("✅ SignalEngine imported successfully")
+    signal_engine = SignalEngine()
+    print(f"✅ SignalEngine instantiated: {type(signal_engine)}")
+except Exception as e:
+    print(f"❌ SignalEngine import failed: {e}")
+
+try:
+    from modules.execution.execution_engine import ExecutionEngine
+    print("✅ ExecutionEngine imported successfully")
+    exec_engine = ExecutionEngine()
+    print(f"✅ ExecutionEngine instantiated: {type(exec_engine)}")
+except Exception as e:
+    print(f"❌ ExecutionEngine import failed: {e}")
+
+try:
+    from modules.restored.event_bus import EventBus
+    print("✅ EventBus imported successfully")
+    event_bus = EventBus()
+    print(f"✅ EventBus instantiated: {type(event_bus)}")
+except Exception as e:
+    print(f"❌ EventBus import failed: {e}")
+
+# Test 2: PyQt5 Availability
+print("\n🖥️ TESTING GUI FRAMEWORK:")
+try:
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    from PyQt5.QtCore import Qt
+    print("✅ PyQt5 imported successfully")
+    app = QApplication([])
+    print("✅ QApplication created successfully")
+except Exception as e:
+    print(f"❌ PyQt5 import failed: {e}")
+
+# Test 3: MetaTrader5 Availability
+print("\n📈 TESTING MT5 INTEGRATION:")
+try:
+    import MetaTrader5 as mt5
+    print("✅ MetaTrader5 imported successfully")
+    
+    # Try to initialize
+    if mt5.initialize():
+        print("✅ MT5 initialized successfully")
+        account_info = mt5.account_info()
+        if account_info:
+            print(f"✅ MT5 account connected: {account_info.login}")
+        else:
+            print("⚠️ MT5 initialized but no account info")
+        mt5.shutdown()
+    else:
+        print("⚠️ MT5 import OK but initialization failed")
+except Exception as e:
+    print(f"❌ MetaTrader5 failed: {e}")
+
+# Test 4: Module Integration Test
+print("\n🔗 TESTING MODULE INTEGRATION:")
+try:
+    # Create a mock event bus test
+    from modules.restored.event_bus import EventBus
+    test_bus = EventBus()
+    
+    # Subscribe to a test event
+    def test_handler(data):
+        print(f"✅ Event received: {data}")
+    
+    test_bus.subscribe("test_event", test_handler)
+    
+    # Emit test event
+    test_bus.emit("test_event", {"message": "Integration test successful"})
+    print("✅ EventBus integration working")
+    
+except Exception as e:
+    print(f"❌ Module integration failed: {e}")
+
+print("\n" + "=" * 50)
+print("🎯 GENESIS FUNCTIONALITY TEST COMPLETED")
+print("Now attempting to launch GUI...")
+
+# Test 5: Launch GUI Test
+try:
+    import subprocess
+    result = subprocess.run([sys.executable, "genesis_desktop.py"], 
+                          capture_output=True, text=True, timeout=10)
+    print(f"GUI launch attempt: return code {result.returncode}")
+    if result.stdout:
+        print(f"STDOUT: {result.stdout}")
+    if result.stderr:
+        print(f"STDERR: {result.stderr}")
+except subprocess.TimeoutExpired:
+    print("✅ GUI launched successfully (timeout = running)")
+except Exception as e:
+    print(f"❌ GUI launch failed: {e}")

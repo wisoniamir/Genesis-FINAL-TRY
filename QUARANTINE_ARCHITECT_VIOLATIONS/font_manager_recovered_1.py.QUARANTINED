@@ -1,0 +1,88 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.176786+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        420,
+        566,
+        571,
+        576,
+        629
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        1526
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        461
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        136,
+        211,
+        229,
+        237,
+        253
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        138,
+        1106,
+        1631
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        235,
+        460,
+        998,
+        1186,
+        1435
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\font_manager_recovered_1.py",
+      "line_numbers": [
+        290,
+        295,
+        384,
+        392,
+        421
+      ],
+      "violation_count": 28
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

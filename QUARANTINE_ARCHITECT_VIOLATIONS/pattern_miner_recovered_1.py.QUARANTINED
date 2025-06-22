@@ -1,0 +1,95 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.915783+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        15,
+        108,
+        125,
+        262,
+        264
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        118,
+        134,
+        280,
+        345
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        437
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        116,
+        201,
+        273,
+        297,
+        316
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        75,
+        442
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        82,
+        473
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        90
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_miner_recovered_1.py",
+      "line_numbers": [
+        97,
+        100,
+        101,
+        102
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

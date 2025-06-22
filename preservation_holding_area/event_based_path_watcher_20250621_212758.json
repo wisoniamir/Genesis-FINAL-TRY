@@ -1,0 +1,9 @@
+{
+  "module_id": "event_based_path_watcher",
+  "original_path": "modules\\restored\\event_based_path_watcher.py",
+  "preserved_path": "preservation_holding_area\\event_based_path_watcher_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 42817,
+  "checksum": "ea12f878e4e6c44bb7da908b5e4ade634fbb47b65bea1c416e63d2ffcca70bf1"
+}

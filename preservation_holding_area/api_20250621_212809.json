@@ -1,0 +1,9 @@
+{
+  "module_id": "api",
+  "original_path": "modules\\restored\\api.py",
+  "preserved_path": "preservation_holding_area\\api_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 44802,
+  "checksum": "1fa3bbe47d772603400816a088890aff9e66a2a840981b37100e0808e0f7b38d"
+}

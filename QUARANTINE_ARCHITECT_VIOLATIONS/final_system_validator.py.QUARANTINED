@@ -1,0 +1,54 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\final_system_validator.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.079018+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\final_system_validator.py",
+      "line_numbers": [
+        227
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\final_system_validator.py",
+      "line_numbers": [
+        159,
+        196
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\final_system_validator.py",
+      "line_numbers": [
+        223
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\final_system_validator.py",
+      "line_numbers": [
+        250
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\final_system_validator.py",
+      "line_numbers": [
+        35,
+        260
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

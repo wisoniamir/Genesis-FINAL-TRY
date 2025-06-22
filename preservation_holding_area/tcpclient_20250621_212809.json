@@ -1,0 +1,9 @@
+{
+  "module_id": "tcpclient",
+  "original_path": "modules\\restored\\tcpclient.py",
+  "preserved_path": "preservation_holding_area\\tcpclient_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 28992,
+  "checksum": "0340c1804f2704980727df902024df1a99555a6b66018f8145f9c35c5d34540f"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "mt5_connection_bridge",
+  "original_path": "core\\connectors\\mt5_connection_bridge.py",
+  "preserved_path": "preservation_holding_area\\mt5_connection_bridge_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19075,
+  "checksum": "1d37eda6e234f1e72a8b33e53bcda820ae3544ab04732df4145fd15066a87b7b"
+}

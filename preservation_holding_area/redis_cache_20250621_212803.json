@@ -1,0 +1,9 @@
+{
+  "module_id": "redis_cache",
+  "original_path": "modules\\restored\\redis_cache.py",
+  "preserved_path": "preservation_holding_area\\redis_cache_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 12637,
+  "checksum": "e7391f41bfd665add85d0a648f4d353260795c10e5474a8508cbd95472637f87"
+}

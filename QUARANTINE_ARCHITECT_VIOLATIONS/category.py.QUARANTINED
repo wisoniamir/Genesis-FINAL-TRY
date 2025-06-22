@@ -1,0 +1,61 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\category.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.320724+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\category.py",
+      "line_numbers": [
+        385,
+        389,
+        393
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\category.py",
+      "line_numbers": [
+        268
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\category.py",
+      "line_numbers": [
+        326,
+        404,
+        503
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\category.py",
+      "line_numbers": [
+        248,
+        261,
+        267,
+        323
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\category.py",
+      "line_numbers": [
+        256,
+        420,
+        512
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

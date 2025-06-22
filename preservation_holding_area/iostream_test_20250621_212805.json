@@ -1,0 +1,9 @@
+{
+  "module_id": "iostream_test",
+  "original_path": "modules\\restored\\iostream_test.py",
+  "preserved_path": "preservation_holding_area\\iostream_test_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 155128,
+  "checksum": "f8ff959a04653dff86bcbb4568bdbe9e6926e07d9a346e2d4fa0f7c72905a814"
+}

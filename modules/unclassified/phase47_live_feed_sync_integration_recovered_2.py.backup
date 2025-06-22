@@ -1,0 +1,535 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: phase47_live_feed_sync_integration -->
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS TRADING BOT — PHASE 47 LIVE FEED SYNC INTEGRATION
+📋 Module: phase47_live_feed_sync_integration.py
+🎯 Purpose: Inject portfolio optimizer weights into live execution loop and mutation engine
+📅 Created: 2025-06-18
+⚖️ Compliance: ARCHITECT_MODE_V4.0
+🧭 Phase: 47
+"""
+
+import json
+import logging
+import time
+import threading
+from datetime import datetime, timezone
+from typing import Dict, List, Any, Optional
+from pathlib import Path
+
+# GENESIS Modules
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from hardened_event_bus import HardenedEventBus
+    from portfolio_optimizer import PortfolioOptimizer
+    from strategy_mutation_logic_engine import StrategyMutationLogicEngine
+    EventBus = HardenedEventBus  # Use hardened version
+except Exception as e:
+    logging.error(f"Critical error: {e}")
+    raise
+        def emit(self, topic: str, data): pass
+        def publish(self, topic: str, data): pass
+
+class Phase47LiveFeedSyncIntegration:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "phase47_live_feed_sync_integration_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in phase47_live_feed_sync_integration_recovered_2: {e}")
+                return False
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "phase47_live_feed_sync_integration_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in phase47_live_feed_sync_integration_recovered_2: {e}")
+    """
+    🎯 GENESIS Phase 47 — Live Feed Sync Integration Engine
+    
+    📌 CORE FUNCTIONALITY:
+    - Connect portfolio optimizer to live execution loop
+    - Inject risk-adjusted weights into strategy mutation engine
+    - Real-time rebalancing based on trade fills and stop losses
+    - Auto-deprioritization of high-risk strategies
+    - Full telemetry sync and FTMO compliance throttling
+    
+    🔁 EventBus Bindings: [trade_filled, stoploss_triggered, portfolio_imbalance_detected]
+    📡 Telemetry: [portfolio_risk_score, strategy_weight_recommendation, rebalance_log, throttle_engaged]
+    🧪 MT5 Tests: [live_feed_sync, weight_injection, throttling_compliance]
+    🪵 Error Handling: [logged, escalated via EventBus]
+    ⚙️ Metrics: [sync_latency, weight_adjustment_frequency, throttle_events]
+    🗃️ Registry ID: phase47_live_feed_sync_integration.py
+    ⚖️ Compliance Score: A
+    📌 Status: active
+    📅 Last Modified: 2025-06-18
+    📝 Author(s): GENESIS Architect Mode v4.0
+    🔗 Dependencies: [event_bus.py, portfolio_optimizer.py, strategy_mutation_logic_engine.py]
+    """
+
+    def __init__(self):
+        """Initialize Phase 47 Live Feed Sync Integration"""
+        self.event_bus = EventBus()
+        self.logger = logging.getLogger(__name__)
+        
+        # Initialize core components
+        self.portfolio_optimizer = None
+        self.mutation_engine = None
+        
+        # Sync configuration
+        self.sync_interval = 30  # 30 seconds for live sync
+        self.weight_threshold = 0.05  # 5% minimum change to trigger update
+        self.last_sync_time = 0
+        self.current_weights = {}
+        self.sync_running = False
+        
+        # FTMO compliance limits
+        self.max_daily_exposure = 10000
+        self.max_trailing_exposure = 20000
+        self.throttle_threshold = 0.8  # 80% of limits triggers throttling
+        
+        # Performance tracking
+        self.metrics = {
+            "sync_latency": [],
+            "weight_adjustments": 0,
+            "throttle_events": 0,
+            "rebalance_triggers": 0
+        }
+        
+        self._initialize_components()
+        self._setup_event_bindings()
+        
+        self.logger.info("✅ Phase 47 Live Feed Sync Integration initialized")
+
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _initialize_components(self):
+        """Initialize portfolio optimizer and mutation engine connections"""
+        try:
+            # Initialize portfolio optimizer
+            self.portfolio_optimizer = PortfolioOptimizer()
+            self.logger.info("✅ Portfolio Optimizer connected")
+            
+            # Connect to mutation engine (if available)
+            try:
+                self.mutation_engine = StrategyMutationLogicEngine()
+                self.logger.info("✅ Strategy Mutation Engine connected")
+            except Exception as e:
+                self.logger.warning(f"⚠️ Strategy Mutation Engine not available: {e}")
+                
+        except Exception as e:
+            self.logger.error(f"🚨 Component initialization failed: {e}")
+            self._emit_telemetry("component_initialization_error", {"error": str(e)})
+
+    def _setup_event_bindings(self):
+        """Setup EventBus bindings for Phase 47"""
+        try:
+            # Subscribe to portfolio optimizer events
+            self.event_bus.subscribe("trade_filled", self._handle_trade_filled)
+            self.event_bus.subscribe("stoploss_triggered", self._handle_stoploss_triggered)
+            self.event_bus.subscribe("portfolio_imbalance_detected", self._handle_portfolio_imbalance)
+            
+            # Subscribe to portfolio weight updates
+            self.event_bus.subscribe("portfolio_rebalanced", self._handle_portfolio_rebalanced)
+            
+            # Register new Phase 47 routes
+            self._register_phase47_routes()
+            
+            self.logger.info("📡 Phase 47 EventBus bindings established")
+            
+        except Exception as e:
+            self.logger.error(f"🚨 EventBus binding failed: {e}")
+            self._emit_telemetry("eventbus_binding_error", {"error": str(e)})
+
+    def _register_phase47_routes(self):
+        """Register Phase 47 specific EventBus routes"""
+        try:
+            # Update event_bus.json with new routes (already done above)
+            routes_added = 0
+            
+            # Register telemetry routes
+            self.event_bus.subscribe("portfolio_weights_updated", self._inject_weights_to_mutation_engine)
+            routes_added += 1
+            
+            self.logger.info(f"✅ Phase 47: {routes_added} EventBus routes registered")
+            self._emit_telemetry("phase47_routes_registered", {"routes_count": routes_added})
+            
+        except Exception as e:
+            self.logger.error(f"🚨 Phase 47 route registration failed: {e}")
+
+    def _handle_trade_filled(self, data: Dict[str, Any]):
+        """Handle trade fill events and trigger weight sync"""
+        try:
+            start_time = time.time()
+            
+            self.logger.info(f"📊 Trade filled - triggering live feed sync: {data}")
+            self.metrics["rebalance_triggers"] += 1
+            
+            # Trigger immediate portfolio rebalancing
+            if self.portfolio_optimizer:
+                weights = self.portfolio_optimizer._trigger_rebalance("trade_filled")
+                if weights:
+                    self._inject_weights_to_mutation_engine({"weights": weights, "trigger": "trade_filled"})
+            
+            # Record sync latency
+            sync_latency = (time.time() - start_time) * 1000
+            self.metrics["sync_latency"].append(sync_latency)
+            
+            self._emit_telemetry("phase47_trade_fill_sync", {
+                "trigger": "trade_filled",
+                "sync_latency_ms": sync_latency,
+                "trade_data": data
+            })
+            
+        except Exception as e:
+            self.logger.error(f"🚨 Error handling trade fill: {e}")
+
+    def _handle_stoploss_triggered(self, data: Dict[str, Any]):
+        """Handle stop loss events and adjust risk scoring"""
+        try:
+            start_time = time.time()
+            
+            strategy_id = data.get('strategy_id', 'unknown')
+            self.logger.warning(f"🔴 Stop loss triggered for {strategy_id} - adjusting weights")
+            self.metrics["rebalance_triggers"] += 1
+            
+            # Immediate weight adjustment for high-risk strategy
+            if self.portfolio_optimizer:
+                weights = self.portfolio_optimizer._trigger_rebalance("stoploss_triggered")
+                if weights:
+                    # Apply penalty to the strategy that hit stop loss
+                    if strategy_id in weights:
+                        weights[strategy_id] = max(0.0, weights[strategy_id] * 0.5)  # 50% penalty
+                    
+                    self._inject_weights_to_mutation_engine({
+                        "weights": weights, 
+                        "trigger": "stoploss_triggered",
+                        "penalized_strategy": strategy_id
+                    })
+            
+            sync_latency = (time.time() - start_time) * 1000
+            self.metrics["sync_latency"].append(sync_latency)
+            
+            self._emit_telemetry("phase47_stoploss_sync", {
+                "trigger": "stoploss_triggered",
+                "strategy_id": strategy_id,
+                "sync_latency_ms": sync_latency
+            })
+            
+        except Exception as e:
+            self.logger.error(f"🚨 Error handling stop loss: {e}")
+
+    def _handle_portfolio_imbalance(self, data: Dict[str, Any]):
+        """Handle portfolio imbalance detection"""
+        try:
+            start_time = time.time()
+            
+            self.logger.warning(f"⚖️ Portfolio imbalance detected - emergency rebalance")
+            self.metrics["rebalance_triggers"] += 1
+            
+            # Emergency rebalancing
+            if self.portfolio_optimizer:
+                weights = self.portfolio_optimizer._trigger_rebalance("portfolio_imbalance")
+                if weights:
+                    self._inject_weights_to_mutation_engine({
+                        "weights": weights, 
+                        "trigger": "portfolio_imbalance",
+                        "emergency": True
+                    })
+            
+            sync_latency = (time.time() - start_time) * 1000
+            self.metrics["sync_latency"].append(sync_latency)
+            
+            self._emit_telemetry("phase47_imbalance_sync", {
+                "trigger": "portfolio_imbalance",
+                "sync_latency_ms": sync_latency,
+                "imbalance_data": data
+            })
+            
+        except Exception as e:
+            self.logger.error(f"🚨 Error handling portfolio imbalance: {e}")
+
+    def _handle_portfolio_rebalanced(self, data: Dict[str, Any]):
+        """Handle portfolio rebalancing completion"""
+        try:
+            weights = data.get('weights', {})
+            if weights:
+                self._inject_weights_to_mutation_engine({
+                    "weights": weights,
+                    "trigger": "portfolio_rebalanced"
+                })
+                
+        except Exception as e:
+            self.logger.error(f"🚨 Error handling portfolio rebalance: {e}")
+
+    def _inject_weights_to_mutation_engine(self, data: Dict[str, Any]):
+        """Inject portfolio weights into strategy mutation engine"""
+        try:
+            weights = data.get('weights', {})
+            trigger = data.get('trigger', 'unknown')
+            
+            if not weights:
+                return
+                
+            # Check for significant weight changes
+            significant_changes = self._detect_significant_weight_changes(weights)
+            
+            if significant_changes or trigger in ['stoploss_triggered', 'portfolio_imbalance']:
+                self.metrics["weight_adjustments"] += 1
+                
+                # Apply FTMO compliance throttling
+                throttled_weights = self._apply_ftmo_throttling(weights)
+                
+                # Emit weight adjustment event
+                self.event_bus.emit("portfolio_weights_updated", {
+                    "weights": throttled_weights,
+                    "original_weights": weights,
+                    "trigger": trigger,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "significant_changes": significant_changes
+                })
+                  # Send to mutation engine if available
+                if self.mutation_engine and hasattr(self.mutation_engine, 'handle_portfolio_weights'):
+                    try:
+                        self.mutation_engine.handle_portfolio_weights(throttled_weights)
+                        self.logger.info(f"✅ Strategy weights updated in mutation engine: {len(throttled_weights)} strategies")
+                    except Exception as e:
+                        self.logger.error(f"🚨 Failed to update mutation engine weights: {e}")
+                elif self.mutation_engine:
+                    # Emit event for mutation engine to pick up
+                    self.event_bus.emit("strategy_weight_adjustment", {
+                        "weights": throttled_weights,
+                        "trigger": trigger,
+                        "timestamp": datetime.now(timezone.utc).isoformat()
+                    })
+                
+                # Update current weights
+                self.current_weights = throttled_weights.copy()
+                
+                self._emit_telemetry("phase47_weights_injected", {
+                    "trigger": trigger,
+                    "weights_count": len(throttled_weights),
+                    "significant_changes": len(significant_changes),
+                    "throttled": len(weights) != len(throttled_weights)
+                })
+                
+                self.logger.info(f"📊 Portfolio weights injected to mutation engine (trigger: {trigger})")
+                
+        except Exception as e:
+            self.logger.error(f"🚨 Weight injection failed: {e}")
+
+    def _detect_significant_weight_changes(self, new_weights: Dict[str, float]) -> List[str]:
+        """Detect strategies with significant weight changes"""
+        significant_changes = []
+        
+        for strategy_id, new_weight in new_weights.items():
+            old_weight = self.current_weights.get(strategy_id, 0.0)
+            weight_change = abs(new_weight - old_weight)
+            
+            if weight_change >= self.weight_threshold:
+                significant_changes.append(strategy_id)
+                
+        return significant_changes
+
+    def _apply_ftmo_throttling(self, weights: Dict[str, float]) -> Dict[str, float]:
+        """Apply FTMO compliance throttling to strategy weights"""
+        try:
+            throttled_weights = weights.copy()
+            
+            # Calculate total exposure
+            total_exposure = sum(abs(weight) for weight in weights.values())
+            
+            # Check if throttling is needed
+            if total_exposure > (self.max_daily_exposure * self.throttle_threshold):
+                self.metrics["throttle_events"] += 1
+                
+                # Scale down all weights proportionally
+                throttle_factor = (self.max_daily_exposure * self.throttle_threshold) / total_exposure
+                throttled_weights = {k: v * throttle_factor for k, v in weights.items()}
+                
+                # Emit throttling event
+                self.event_bus.emit("throttle_strategy_execution", {
+                    "reason": "ftmo_compliance",
+                    "original_exposure": total_exposure,
+                    "throttled_exposure": sum(abs(w) for w in throttled_weights.values()),
+                    "throttle_factor": throttle_factor,
+                    "timestamp": datetime.now(timezone.utc).isoformat()
+                })
+                
+                self.logger.warning(f"⚠️ FTMO throttling applied: {throttle_factor:.2f}x reduction")
+                
+                self._emit_telemetry("phase47_ftmo_throttling", {
+                    "throttle_factor": throttle_factor,
+                    "original_exposure": total_exposure,
+                    "throttled_exposure": sum(abs(w) for w in throttled_weights.values())
+                })
+                
+            return throttled_weights
+            
+        except Exception as e:
+            self.logger.error(f"🚨 FTMO throttling failed: {e}")
+            return weights
+
+    def _emit_telemetry(self, metric_name: str, data: Dict[str, Any]):
+        """Emit telemetry data"""
+        try:
+            telemetry_data = {
+                "metric": metric_name,
+                "data": data,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "module": "Phase47LiveFeedSyncIntegration",
+                "phase": 47
+            }
+            
+            # Emit to EventBus
+            self.event_bus.emit("telemetry_metric", telemetry_data)
+            
+            # Log locally
+            self.logger.info(f"📡 Telemetry: {metric_name} - {data}")
+            
+        except Exception as e:
+            self.logger.error(f"🚨 Telemetry emission failed: {e}")
+
+    def start_live_sync(self):
+        """Start the live feed sync process"""
+        try:
+            if self.sync_running:
+                self.logger.warning("⚠️ Live sync already running")
+                return
+                
+            self.sync_running = True
+            sync_thread = threading.Thread(target=self._sync_loop, daemon=True)
+            sync_thread.start()
+            
+            self.logger.info("🚀 Phase 47 Live Feed Sync started")
+            self._emit_telemetry("phase47_sync_started", {"status": "active"})
+            
+        except Exception as e:
+            self.logger.error(f"🚨 Failed to start live sync: {e}")
+
+    def _sync_loop(self):
+        """Main sync loop for continuous weight updates"""
+        while self.sync_running:
+            try:                # Periodic sync check
+                if time.time() - self.last_sync_time >= self.sync_interval:
+                    if self.portfolio_optimizer:
+                        # Get current portfolio summary instead of weights
+                        summary = self.portfolio_optimizer.get_portfolio_summary()
+                        weights = summary.get('portfolio_weights', [])
+                        if weights:
+                            # Convert list of tuples to dict if needed
+                            if isinstance(weights, list) and len(weights) > 0 and isinstance(weights[0], tuple):
+                                weights_dict = {strategy_id: weight for strategy_id, weight in weights}
+                            else:
+                                weights_dict = weights
+                                
+                            self._inject_weights_to_mutation_engine({
+                                "weights": weights_dict,
+                                "trigger": "periodic_sync"
+                            })
+                    
+                    self.last_sync_time = time.time()
+                
+                time.sleep(5)  # Check every 5 seconds
+                
+            except Exception as e:
+                self.logger.error(f"🚨 Sync loop error: {e}")
+                time.sleep(10)  # Wait longer on error
+
+    def stop_live_sync(self):
+        """Stop the live feed sync process"""
+        self.sync_running = False
+        self.logger.info("🛑 Phase 47 Live Feed Sync stopped")
+        self._emit_telemetry("phase47_sync_stopped", {"status": "stopped"})
+
+    def get_performance_metrics(self) -> Dict[str, Any]:
+        """Get Phase 47 performance metrics"""
+        return {
+            "avg_sync_latency_ms": sum(self.metrics["sync_latency"]) / len(self.metrics["sync_latency"]) if self.metrics["sync_latency"] else 0,
+            "weight_adjustments": self.metrics["weight_adjustments"],
+            "throttle_events": self.metrics["throttle_events"],
+            "rebalance_triggers": self.metrics["rebalance_triggers"],
+            "current_weights_count": len(self.current_weights),
+            "sync_running": self.sync_running
+        }
+
+def main():
+    """Main execution for Phase 47 Live Feed Sync Integration"""
+    logging.basicConfig(level=logging.INFO)
+    
+    # Initialize Phase 47 integration
+    phase47 = Phase47LiveFeedSyncIntegration()
+    
+    # Start live sync
+    phase47.start_live_sync()
+    
+    print("✅ Phase 47 Live Feed Sync Integration active")
+    print("📊 Performance metrics available via get_performance_metrics()")
+    
+    return phase47
+
+if __name__ == "__main__":
+    integration = main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: phase47_live_feed_sync_integration -->

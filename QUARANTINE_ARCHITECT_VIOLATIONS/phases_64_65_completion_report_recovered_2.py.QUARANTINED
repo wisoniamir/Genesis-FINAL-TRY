@@ -1,0 +1,25 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phases_64_65_completion_report_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.247261+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phases_64_65_completion_report_recovered_2.py",
+      "line_numbers": [
+        131
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phases_64_65_completion_report_recovered_2.py",
+      "line_numbers": [
+        13
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

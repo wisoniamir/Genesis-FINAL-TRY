@@ -1,0 +1,31 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_backtest_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.673365+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_backtest_engine.py",
+      "line_numbers": [
+        12,
+        23,
+        64,
+        66,
+        76
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_backtest_engine.py",
+      "line_numbers": [
+        69,
+        71,
+        78
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

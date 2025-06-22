@@ -1,0 +1,224 @@
+{
+  "registry_version": "v9.0.0-master-recovery",
+  "last_updated": "2025-06-19T12:08:21.059155+00:00",
+  "total_restored": 27,
+  "complexity_hierarchy_enforced": true,
+  "modules": {
+    "auto_execution_manager": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\auto_execution_manager.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "auto_execution_manager_fixed_restored": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\auto_execution_manager_fixed_restored.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "auto_execution_manager_recovered": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\auto_execution_manager_recovered.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "backtest_engine": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\backtest_engine.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "broker_discovery_engine": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\broker_discovery_engine.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "broker_discovery_engine_fixed_restored": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\broker_discovery_engine_fixed_restored.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "execution_loop_responder": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\execution_loop_responder.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": true
+    },
+    "execution_supervisor": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\execution_supervisor.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "execution_supervisor_new_restored": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\execution_supervisor_new_restored.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "execution_supervisor_recovered": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\execution_supervisor_recovered.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "indicator_scanner": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\indicator_scanner.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "live_alert_bridge": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\live_alert_bridge.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": true
+    },
+    "multi_agent_coordination_engine": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\multi_agent_coordination_engine.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "multi_agent_coordination_engine_fixed_restored": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\multi_agent_coordination_engine_fixed_restored.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "phase61_62_orchestrator": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\phase61_62_orchestrator.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": true
+    },
+    "phase63_deep_auto_patching_engine": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\phase63_deep_auto_patching_engine.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "smart_execution_reactor": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\smart_execution_reactor.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": true
+    },
+    "strategy_adaptive_context_synthesizer": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\strategy_adaptive_context_synthesizer.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": true
+    },
+    "strategy_adaptive_context_synthesizer_recovered": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\strategy_adaptive_context_synthesizer_recovered.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": true
+    },
+    "strategy_mutation_logic_engine": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\strategy_mutation_logic_engine.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "test_phase18_reactive_execution": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\test_phase18_reactive_execution.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "test_phase34_broker_discovery": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\test_phase34_broker_discovery.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": true,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "test_phase47_portfolio_optimizer_integration": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\test_phase47_portfolio_optimizer_integration.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "test_phase80": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\test_phase80.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    },
+    "trace_phase18_chain": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\trace_phase18_chain.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": false,
+      "real_data_only": true
+    },
+    "validate_phase45_integration": {
+      "path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\validate_phase45_integration.py",
+      "status": "RESTORED",
+      "eventbus_connected": true,
+      "mt5_integration": false,
+      "telemetry_enabled": true,
+      "real_data_only": false
+    }
+  }
+}

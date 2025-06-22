@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mutation_decision_visualizer_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.298652+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mutation_decision_visualizer_recovered_2.py",
+      "line_numbers": [
+        199,
+        292,
+        320,
+        393,
+        410
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mutation_decision_visualizer_recovered_2.py",
+      "line_numbers": [
+        203,
+        314,
+        387,
+        404,
+        425
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mutation_decision_visualizer_recovered_2.py",
+      "line_numbers": [
+        261
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mutation_decision_visualizer_recovered_2.py",
+      "line_numbers": [
+        275,
+        284,
+        302
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mutation_decision_visualizer_recovered_2.py",
+      "line_numbers": [
+        122,
+        174,
+        380
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

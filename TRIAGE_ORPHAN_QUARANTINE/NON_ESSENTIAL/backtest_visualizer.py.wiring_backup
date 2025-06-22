@@ -1,0 +1,80 @@
+# <!-- @GENESIS_MODULE_START: backtest_visualizer -->
+
+from event_bus import EventBus
+"""
+GENESIS Backtest Visualizer Module v1.0
+Visualization module for backtest results in the GENESIS AI TRADING BOT SYSTEM
+
+Dependencies: pandas, plotly, matplotlib
+Input: Backtest data from DashboardEngine
+Output: Visualization components for the Streamlit dashboard
+Telemetry: ENABLED
+Compliance: ENFORCED
+Real Data Enforcement: STRICT - No mock/fallback data permitted
+"""
+
+import os
+import json
+import logging
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class BacktestVisualizer:
+    """Visualization tools for backtest analysis"""
+    
+    def __init__(self):
+        """Initialize BacktestVisualizer"""
+        logger.info("🧪 BacktestVisualizer initialized")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def load_backself.event_bus.request('data:live_feed')(self):
+        """Load backtest data from JSONL files"""
+        backtests = []
+        feed_dir = "logs/dashboard/feed/"
+        
+        if os.path.exists(feed_dir):
+            files = sorted([f for f in os.listdir(feed_dir) if f.endswith('.jsonl')], reverse=True)
+            for file in files[:5]:  # Look at most recent 5 files
+                try:
+                    with open(os.path.join(feed_dir, file), 'r') as f:
+                        for line in f:
+                            event = json.loads(line)
+                            if event.get("type") == "backtest":
+                                backtests.append(event.get("data", {}))
+                except Exception as e:
+                    logger.error(f"Error loading backtest data: {str(e)}")
+        
+        return backtests
+    
+    def create_backtest_summary_df(self, backtests):
+        """Create backtest summary DataFrame"""
+        assert backtests is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: backtest_visualizer -->

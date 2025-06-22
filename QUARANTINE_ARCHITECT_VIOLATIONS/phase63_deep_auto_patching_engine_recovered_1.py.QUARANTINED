@@ -1,0 +1,67 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase63_deep_auto_patching_engine_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.201599+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase63_deep_auto_patching_engine_recovered_1.py",
+      "line_numbers": [
+        197
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase63_deep_auto_patching_engine_recovered_1.py",
+      "line_numbers": [
+        61,
+        71,
+        81,
+        116,
+        134
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase63_deep_auto_patching_engine_recovered_1.py",
+      "line_numbers": [
+        65,
+        75,
+        128,
+        183,
+        230
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase63_deep_auto_patching_engine_recovered_1.py",
+      "line_numbers": [
+        520,
+        526,
+        532,
+        540,
+        564
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase63_deep_auto_patching_engine_recovered_1.py",
+      "line_numbers": [
+        256,
+        278,
+        487,
+        500
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

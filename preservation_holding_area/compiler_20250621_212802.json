@@ -1,0 +1,9 @@
+{
+  "module_id": "compiler",
+  "original_path": "modules\\restored\\compiler.py",
+  "preserved_path": "preservation_holding_area\\compiler_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15947,
+  "checksum": "1761e1798fa684b83a282c2bbb69e136b3d9a0c02577ca3f8606adef80768bb3"
+}

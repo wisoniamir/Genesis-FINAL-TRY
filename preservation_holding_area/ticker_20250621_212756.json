@@ -1,0 +1,9 @@
+{
+  "module_id": "ticker",
+  "original_path": "modules\\restored\\ticker.py",
+  "preserved_path": "preservation_holding_area\\ticker_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 268763,
+  "checksum": "48c6458fde67a21546487e938c2cec3833098ef49b24352ed5e6801861ac433e"
+}

@@ -1,0 +1,62 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolate.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.047256+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolate.py",
+      "line_numbers": [
+        139,
+        383
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolate.py",
+      "line_numbers": [
+        129,
+        286
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolate.py",
+      "line_numbers": [
+        1643
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolate.py",
+      "line_numbers": [
+        274,
+        291,
+        302,
+        532,
+        592
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolate.py",
+      "line_numbers": [
+        139,
+        360,
+        369,
+        371,
+        401
+      ],
+      "violation_count": 33
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "target_python",
+  "original_path": "modules\\restored\\target_python.py",
+  "preserved_path": "preservation_holding_area\\target_python_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15666,
+  "checksum": "d8981c5ae7f11e4b13d221430bd27ea5112bda77f2a41baeaa0341f832ba4ccb"
+}

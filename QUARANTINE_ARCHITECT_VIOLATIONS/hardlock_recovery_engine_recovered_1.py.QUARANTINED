@@ -1,0 +1,48 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hardlock_recovery_engine_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.506444+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hardlock_recovery_engine_recovered_1.py",
+      "line_numbers": [
+        43,
+        86
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hardlock_recovery_engine_recovered_1.py",
+      "line_numbers": [
+        38,
+        81
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hardlock_recovery_engine_recovered_1.py",
+      "line_numbers": [
+        45,
+        88
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hardlock_recovery_engine_recovered_1.py",
+      "line_numbers": [
+        47,
+        72,
+        90
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

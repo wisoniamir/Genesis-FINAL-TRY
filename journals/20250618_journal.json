@@ -1,0 +1,49 @@
+{
+  "date": "20250618",
+  "trades": [
+    {
+      "trade_id": "TEST_TRADE_001",
+      "symbol": "EURUSD",
+      "action": "BUY",
+      "lot_size": 0.1,
+      "open_price": 1.085,
+      "close_price": 1.0875,
+      "open_time": "2025-06-18T10:00:00Z",
+      "close_time": "2025-06-18T11:30:00Z",
+      "profit": 25.0,
+      "strategy_id": "STRATEGY_MOMENTUM",
+      "signal_id": "SIG_MOM_001",
+      "processed_at": "2025-06-18T21:22:59.525278",
+      "duration_minutes": 90,
+      "pip_movement": 25.0,
+      "risk_reward_ratio": 2.5,
+      "outcome_score": 0.8383333333333334
+    },
+    {
+      "trade_id": "TEST_TRADE_001",
+      "symbol": "EURUSD",
+      "action": "BUY",
+      "lot_size": 0.1,
+      "open_price": 1.085,
+      "close_price": 1.0875,
+      "open_time": "2025-06-18T10:00:00Z",
+      "close_time": "2025-06-18T11:30:00Z",
+      "profit": 25.0,
+      "strategy_id": "STRATEGY_MOMENTUM",
+      "signal_id": "SIG_MOM_001",
+      "processed_at": "2025-06-18T21:28:52.466142",
+      "duration_minutes": 90,
+      "pip_movement": 25.0,
+      "risk_reward_ratio": 2.5,
+      "outcome_score": 0.8383333333333334
+    }
+  ],
+  "summary": {
+    "total_trades": 2,
+    "winning_trades": 2,
+    "losing_trades": 0,
+    "total_profit": 50.0,
+    "avg_score": 0.8383333333333334,
+    "win_rate": 1.0
+  }
+}

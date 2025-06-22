@@ -1,0 +1,38 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fitpack_py_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.650951+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fitpack_py_recovered_2.py",
+      "line_numbers": [
+        387
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fitpack_py_recovered_2.py",
+      "line_numbers": [
+        7
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fitpack_py_recovered_2.py",
+      "line_numbers": [
+        394,
+        464,
+        559,
+        657,
+        758
+      ],
+      "violation_count": 7
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

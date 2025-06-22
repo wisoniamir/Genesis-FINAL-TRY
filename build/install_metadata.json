@@ -1,0 +1,40 @@
+{
+  "package_info": {
+    "name": "GENESIS Trading Bot",
+    "version": "1.0.0",
+    "description": "Institutional-Grade Automated Trading System",
+    "architect_mode": "v5.0.0",
+    "build_timestamp": "2025-06-18T17:34:49.819653+00:00",
+    "builder_id": "14bacf8994a4c8c8"
+  },
+  "build_metrics": {
+    "build_start_time": "2025-06-18T17:34:49.819653+00:00",
+    "files_packaged": 700,
+    "total_package_size_mb": 2.046992301940918,
+    "compression_ratio": 0.18864613123854154,
+    "build_duration_ms": 0,
+    "tests_passed": 4,
+    "installer_ready": false
+  },
+  "installation": {
+    "package_path": "C:\\Users\\patra\\Genesis FINAL TRY\\dist\\genesis_v1_installer_14bacf8994a4c8c8.zip",
+    "package_size_mb": 2.046992301940918,
+    "files_included": 700,
+    "compression_ratio": 0.18864613123854154,
+    "tests_passed": 4,
+    "installer_ready": false
+  },
+  "system_requirements": {
+    "os": "Windows 10/11 (64-bit)",
+    "python": "3.8+",
+    "mt5": "MetaTrader 5 Terminal",
+    "ram": "4GB minimum",
+    "disk": "2.0MB for installation"
+  },
+  "security": {
+    "architect_mode": "v5.0.0",
+    "system_locked": true,
+    "fingerprint_verified": true,
+    "institutional_grade": true
+  }
+}

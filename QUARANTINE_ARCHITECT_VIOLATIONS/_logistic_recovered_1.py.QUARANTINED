@@ -1,0 +1,44 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_logistic_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.461999+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_logistic_recovered_1.py",
+      "line_numbers": [
+        183,
+        366,
+        367,
+        674,
+        733
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_logistic_recovered_1.py",
+      "line_numbers": [
+        1251,
+        1362,
+        1923
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_logistic_recovered_1.py",
+      "line_numbers": [
+        92,
+        322,
+        338,
+        346,
+        379
+      ],
+      "violation_count": 41
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

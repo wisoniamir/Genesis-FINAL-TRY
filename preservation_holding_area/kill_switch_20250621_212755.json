@@ -1,0 +1,9 @@
+{
+  "module_id": "kill_switch",
+  "original_path": "modules\\restored\\kill_switch.py",
+  "preserved_path": "preservation_holding_area\\kill_switch_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 31751,
+  "checksum": "9a03a028fc9d61001d564f8871bc47b077bba2661d60af12a14e67d0c9dbc433"
+}

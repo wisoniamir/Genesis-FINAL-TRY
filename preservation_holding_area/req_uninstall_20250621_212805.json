@@ -1,0 +1,9 @@
+{
+  "module_id": "req_uninstall",
+  "original_path": "modules\\restored\\req_uninstall.py",
+  "preserved_path": "preservation_holding_area\\req_uninstall_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 45965,
+  "checksum": "1dbde3f7c7be726bdf60ee0b4522eb5180e2b6b0c1d50fa6c306dde961e2ed5f"
+}

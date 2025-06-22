@@ -1,0 +1,9 @@
+{
+  "module_id": "twisted_test",
+  "original_path": "modules\\restored\\twisted_test.py",
+  "preserved_path": "preservation_holding_area\\twisted_test_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13429,
+  "checksum": "b522ea6e986379e6de5f761f68bf4820290e5350d3a3d993c7145732e630c9f3"
+}

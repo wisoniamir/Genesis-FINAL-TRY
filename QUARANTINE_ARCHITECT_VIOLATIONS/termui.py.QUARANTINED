@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\termui.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.586789+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\termui.py",
+      "line_numbers": [
+        55,
+        57,
+        117,
+        146,
+        147
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\termui.py",
+      "line_numbers": [
+        773
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\termui.py",
+      "line_numbers": [
+        138,
+        174,
+        231,
+        608,
+        614
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\termui.py",
+      "line_numbers": [
+        182,
+        416,
+        490,
+        494,
+        602
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\termui.py",
+      "line_numbers": [
+        179,
+        246,
+        276
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

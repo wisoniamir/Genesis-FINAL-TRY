@@ -1,0 +1,9 @@
+{
+  "module_id": "console",
+  "original_path": "modules\\restored\\console.py",
+  "preserved_path": "preservation_holding_area\\console_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 188107,
+  "checksum": "e841f4c8985bd07f6c5c18c5582f765ac976e21116ba6fe067a21dacccce8f78"
+}

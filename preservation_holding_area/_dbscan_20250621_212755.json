@@ -1,0 +1,9 @@
+{
+  "module_id": "_dbscan",
+  "original_path": "modules\\restored\\_dbscan.py",
+  "preserved_path": "preservation_holding_area\\_dbscan_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30169,
+  "checksum": "09f3a236a8df58f5994e49951140ba5157cea96800ab73308fc4e5825891a682"
+}

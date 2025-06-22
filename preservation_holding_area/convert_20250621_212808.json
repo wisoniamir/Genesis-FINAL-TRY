@@ -1,0 +1,9 @@
+{
+  "module_id": "convert",
+  "original_path": "modules\\restored\\convert.py",
+  "preserved_path": "preservation_holding_area\\convert_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 33019,
+  "checksum": "00ed12ec1e33dcf03fced231187c07ec5857a40d5bb7d2e0db9bc4f5ad050fdb"
+}

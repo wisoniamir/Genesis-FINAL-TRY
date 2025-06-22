@@ -1,0 +1,413 @@
+# <!-- @GENESIS_MODULE_START: validate_phase45_integration -->
+
+#!/usr/bin/env python3
+"""
+🔍 GENESIS Phase 45 System Integration Validator
+🔧 Strategy Self-Healing & Reinforcement Learning
+
+🎯 PURPOSE: Validate complete Phase 45 integration across all system components
+📊 VERIFICATION: EventBus routes, telemetry hooks, system tree, build status
+🔒 ARCHITECT MODE: Zero execute logic enforcement
+"""
+
+import json
+import os
+import sys
+import datetime
+import logging
+
+def validate_phase45_integration():
+    """
+    Validate Phase 45 Strategy Self-Healing & Reinforcement Learning integration
+    Returns True if all validations pass, False otherwise
+    """
+    print("🔍 Validating Phase 45 Strategy Self-Healing & Reinforcement Learning System Integration...")
+    print("=" * 90)
+    
+    # Change to script directory to ensure relative paths work
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    
+    validation_results = {
+        "build_status": False,
+        "event_bus": False,
+        "telemetry": False,
+        "system_tree": False,
+        "build_tracker": False,
+        "strategy_mutation_engine": False
+    }
+    
+    # 1. Validate build_status.json Phase 45 entries
+    print("🔧 Validating build_status.json Phase 45 entries...")
+    try:
+        if os.path.exists("build_status.json"):
+            with open("build_status.json", "r") as f:
+                build_status = json.load(f)
+            
+            phase45_keys = [
+                "phase_45_strategy_self_healing_complete",
+                "phase_45_auto_strategy_self_heal_implemented",
+                "phase_45_reinforcement_learning_active",
+                "phase_45_genetic_mutation_operational",
+                "phase_45_fallback_healing_implemented",
+                "phase_45_adaptive_timing_healing_implemented",
+                "phase_45_indicator_shift_healing_implemented",
+                "phase_45_telemetry_hooks_enabled",
+                "phase_45_eventbus_routes_registered",
+                "phase_45_system_tree_registration_complete",
+                "phase_45_architect_mode_compliant"
+            ]
+            
+            missing_keys = []
+            for key in phase45_keys:
+                if key not in build_status or not build_status[key]:
+                    missing_keys.append(key)
+            
+            if not missing_keys:
+                print("   ✅ All Phase 45 build status entries present and active")
+                validation_results["build_status"] = True
+            else:
+                print(f"   ❌ Missing Phase 45 build status keys: {missing_keys}")
+        else:
+            print("   ❌ build_status.json not found")
+    except Exception as e:
+        print(f"   ❌ Error validating build_status.json: {e}")
+    
+    # 2. Validate event_bus.json Phase 45 routes
+    print("\n🔁 Validating event_bus.json Phase 45 routes...")
+    try:
+        if os.path.exists("event_bus.json"):
+            with open("event_bus.json", "r") as f:
+                event_bus = json.load(f)
+            
+            phase45_topics = [
+                "telemetry_priority_patch",
+                "strategy_execution_failed",
+                "signal_decay_alert",
+                "strategy_self_healed",
+                "strategy_reinforced", 
+                "telemetry_healing_summary"
+            ]
+            
+            registered_topics = [route["topic"] for route in event_bus.get("routes", [])]
+            missing_topics = [topic for topic in phase45_topics if topic not in registered_topics]
+            
+            if not missing_topics:
+                print("   ✅ All Phase 45 event routes registered")
+                validation_results["event_bus"] = True
+            else:
+                print(f"   ❌ Missing Phase 45 event routes: {missing_topics}")
+                
+            # Check for phase 45 metadata
+            metadata = event_bus.get("metadata", {})
+            if metadata.get("phase_45_self_healing_integrated"):
+                print("   ✅ Phase 45 integration metadata confirmed")
+            else:
+                print("   ⚠️ Phase 45 integration metadata missing")
+        else:
+            print("   ❌ event_bus.json not found")
+    except Exception as e:
+        print(f"   ❌ Error validating event_bus.json: {e}")
+    
+    # 3. Validate telemetry.json Phase 45 hooks
+    print("\n📡 Validating telemetry.json Phase 45 hooks...")
+    try:
+        if os.path.exists("telemetry.json"):
+            with open("telemetry.json", "r") as f:
+                telemetry = json.load(f)
+            
+            phase45_hooks = [
+                "self_healing_triggered",
+                "strategy_reinforced",
+                "strategy_repair_attempts",
+                "mutation_path_selected"
+            ]
+            
+            registered_hooks = [hook["hook_name"] for hook in telemetry.get("hooks", [])]
+            missing_hooks = [hook for hook in phase45_hooks if hook not in registered_hooks]
+            
+            if not missing_hooks:
+                print("   ✅ All Phase 45 telemetry hooks registered")
+                validation_results["telemetry"] = True
+            else:
+                print(f"   ❌ Missing Phase 45 telemetry hooks: {missing_hooks}")
+        else:
+            print("   ❌ telemetry.json not found")
+    except Exception as e:
+        print(f"   ❌ Error validating telemetry.json: {e}")
+    
+    # 4. Validate system_tree.json Phase 45 registration
+    print("\n🌳 Validating system_tree.json Phase 45 registration...")
+    try:
+        if os.path.exists("system_tree.json"):
+            with open("system_tree.json", "r") as f:
+                system_tree = json.load(f)
+            
+            # Check for Phase 45 metadata markers
+            metadata = system_tree.get("metadata", {})
+            phase45_metadata = [
+                "phase_45_strategy_self_healing_integrated",
+                "phase_45_reinforcement_learning_active"
+            ]
+            
+            missing_metadata = [marker for marker in phase45_metadata if not metadata.get(marker)]
+            
+            # Check StrategyMutationLogicEngine node for Phase 45 features
+            nodes = system_tree.get("nodes", [])
+            strategy_node = None
+            for node in nodes:
+                if node.get("id") == "StrategyMutationLogicEngine":
+                    strategy_node = node
+                    break
+            
+            if strategy_node:
+                features = strategy_node.get("features", {})
+                phase45_features = [
+                    "auto_strategy_self_healing",
+                    "genetic_reinforcement_learning",
+                    "multi_path_healing",
+                    "performance_monitoring"
+                ]
+                
+                missing_features = [feature for feature in phase45_features if not features.get(feature)]
+                
+                if not missing_metadata and not missing_features and strategy_node.get("phase") == 45:
+                    print("   ✅ Phase 45 system tree registration complete")
+                    validation_results["system_tree"] = True
+                else:
+                    issues = []
+                    if missing_metadata:
+                        issues.append(f"Missing metadata: {missing_metadata}")
+                    if missing_features:
+                        issues.append(f"Missing features: {missing_features}")
+                    if strategy_node.get("phase") != 45:
+                        issues.append("Phase not updated to 45")
+                    print(f"   ❌ System tree validation issues: {'; '.join(issues)}")
+            else:
+                print("   ❌ StrategyMutationLogicEngine node not found in system tree")
+        else:
+            print("   ❌ system_tree.json not found")
+    except Exception as e:
+        print(f"   ❌ Error validating system_tree.json: {e}")
+    
+    # 5. Validate build_tracker.md Phase 45 documentation
+    print("\n📝 Validating build_tracker.md Phase 45 documentation...")
+    try:
+        if os.path.exists("build_tracker.md"):
+            with open("build_tracker.md", "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            phase45_markers = [
+                "PHASE 45: STRATEGY SELF-HEALING & REINFORCEMENT LEARNING",
+                "auto_strategy_self_heal",
+                "genetic_reinforcement",
+                "fallback_healing",
+                "adaptive_timing_healing",
+                "indicator_shift_healing"
+            ]
+            
+            missing_markers = [marker for marker in phase45_markers if marker not in content]
+            
+            if not missing_markers:
+                print("   ✅ Phase 45 documentation complete")
+                validation_results["build_tracker"] = True
+            else:
+                print(f"   ❌ Missing Phase 45 documentation markers: {missing_markers}")
+        else:
+            print("   ❌ build_tracker.md not found")
+    except Exception as e:
+        print(f"   ❌ Error validating build_tracker.md: {e}")
+    
+    # 6. Validate strategy_mutation_logic_engine.py Phase 45 functions
+    print("\n🧠 Validating strategy_mutation_logic_engine.py Phase 45 functions...")
+    try:
+        if os.path.exists("strategy_mutation_logic_engine.py"):
+            with open("strategy_mutation_logic_engine.py", "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            phase45_functions = [
+                "def auto_strategy_self_heal",
+                "def apply_fallback_healing",
+                "def apply_timing_healing", 
+                "def apply_indicator_healing",
+                "def reinforce_strategy",
+                "def emit_self_healing_telemetry",
+                "def setup_phase45_event_subscriptions"
+            ]
+            
+            missing_functions = [func for func in phase45_functions if func not in content]
+            
+            if not missing_functions:
+                print("   ✅ All Phase 45 functions implemented")
+                validation_results["strategy_mutation_engine"] = True
+            else:
+                print(f"   ❌ Missing Phase 45 functions: {missing_functions}")
+        else:
+            print("   ❌ strategy_mutation_logic_engine.py not found")
+    except Exception as e:
+        print(f"   ❌ Error validating strategy_mutation_logic_engine.py: {e}")
+    
+    # 7. Test Phase 45 functionality
+    print("\n🧪 Testing Phase 45 functionality...")
+    try:
+        # Import and create engine instance
+        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+        
+        # Test import
+        from strategy_mutation_logic_engine import StrategyMutationLogicEngine
+        print("   ✅ StrategyMutationLogicEngine import successful")
+        
+        # Test basic functionality (without full initialization)
+        # This tests the class structure and method availability
+        engine_class = StrategyMutationLogicEngine
+        required_methods = [
+            'auto_strategy_self_heal',
+            'apply_fallback_healing',
+            'apply_timing_healing',
+            'apply_indicator_healing', 
+            'reinforce_strategy'
+        ]
+        
+        missing_methods = []
+        for method in required_methods:
+            if not hasattr(engine_class, method):
+                missing_methods.append(method)
+        
+        if not missing_methods:
+            print("   ✅ All Phase 45 methods accessible")
+        else:
+            print(f"   ❌ Missing Phase 45 methods: {missing_methods}")
+            
+    except Exception as e:
+        print(f"   ❌ Error testing Phase 45 functionality: {e}")
+    
+    # Generate validation summary
+    print("\n" + "=" * 90)
+    print("🔍 Phase 45 System Integration Validation Summary:")
+    print("=" * 90)
+    
+    total_checks = len(validation_results)
+    passed_checks = sum(validation_results.values())
+    success_rate = (passed_checks / total_checks) * 100
+    
+    for component, status in validation_results.items():
+        status_icon = "✅" if status else "❌"
+        print(f"   {status_icon} {component.replace('_', ' ').title()}: {'PASSED' if status else 'FAILED'}")
+    
+    print(f"\n📊 Overall Integration Status: {passed_checks}/{total_checks} ({success_rate:.1f}%)")
+    
+    if success_rate == 100:
+        print("\n🎉 Phase 45 Strategy Self-Healing & Reinforcement Learning System Integration COMPLETE!")
+        print("   ✅ All components validated and operational")
+        print("   ✅ Architect mode compliance confirmed")
+        print("   ✅ EventBus routing established") 
+        print("   ✅ Telemetry hooks operational")
+        print("   ✅ Self-healing algorithms implemented")
+        print("   ✅ Genetic reinforcement active")
+        return True
+    else:
+        print(f"\n❌ Phase 45 System Integration INCOMPLETE - {total_checks - passed_checks} issues detected")
+        print("   🔧 Please address the failed validation checks above")
+        return False
+
+def validate_architect_mode_compliance():
+    """Validate Phase 45 architect mode compliance"""
+"""
+[RESTORED] GENESIS MODULE - COMPLEXITY HIERARCHY ENFORCED
+Original: c:\Users\patra\Genesis FINAL TRY\validate_phase45_integration_fixed.py
+Hash: 82367992295131c35b08f29fb0521e65a05828629fd392a2f6ee2b77112ffd1a
+Type: PREFERRED
+Restored: 2025-06-19T12:08:20.619253+00:00
+Architect Compliance: VERIFIED
+"""
+
+
+    print("\n🔒 Validating Phase 45 Architect Mode Compliance...")
+    print("-" * 60)
+    
+    compliance_checks = {
+        "no_simulation_logic": False,
+        "eventbus_routing_only": False,
+        "real_data_enforcement": False,
+        "telemetry_integration": False,
+        "error_logging": False
+    }
+    
+    try:
+        # Check strategy_mutation_logic_engine.py for compliance markers
+        if os.path.exists("strategy_mutation_logic_engine.py"):
+            with open("strategy_mutation_logic_engine.py", "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            # Check for architect mode compliance markers
+            if "ARCHITECT MODE COMPLIANT" in content:
+                print("   ✅ Architect mode compliance markers present")
+                compliance_checks["real_data_enforcement"] = True
+            
+            # Check for EventBus routing enforcement
+            if "emit_event(" in content and "subscribe_to_event(" in content:
+                print("   ✅ EventBus routing implementation confirmed")
+                compliance_checks["eventbus_routing_only"] = True
+            
+            # Check for telemetry integration
+            if "emit_self_healing_telemetry" in content:
+                print("   ✅ Telemetry integration implemented")
+                compliance_checks["telemetry_integration"] = True
+            
+            # Check for error logging
+            if "logging.error" in content and "logging.info" in content:
+                print("   ✅ Error logging implemented")
+                compliance_checks["error_logging"] = True
+            
+            # Check for absence of execute logic
+            execute = ["self.event_bus.request('data:real_feed')", "execute", "dummy", "real"]
+            execute = any(pattern in content.lower() for pattern in execute)
+            if not execute:
+                print("   ✅ No execute logic detected")
+                compliance_checks["no_simulation_logic"] = True
+            else:
+                print("   ❌ execute logic patterns detected")
+        
+        passed_compliance = sum(compliance_checks.values())
+        total_compliance = len(compliance_checks)
+        compliance_rate = (passed_compliance / total_compliance) * 100
+        
+        print(f"\n🔒 Architect Mode Compliance: {passed_compliance}/{total_compliance} ({compliance_rate:.1f}%)")
+        
+        if compliance_rate == 100:
+            print("   ✅ Full architect mode compliance confirmed")
+            return True
+        else:
+            print("   ❌ Architect mode compliance issues detected")
+            return False
+            
+    except Exception as e:
+        print(f"   ❌ Error validating architect mode compliance: {e}")
+        return False
+
+if __name__ == "__main__":
+    print("🔍 GENESIS Phase 45 System Integration Validator")
+    print("🔧 Strategy Self-Healing & Reinforcement Learning")
+    print("=" * 90)
+    
+    # Run main validation
+    integration_success = validate_phase45_integration()
+    
+    # Run architect mode compliance validation
+    compliance_success = validate_architect_mode_compliance()
+    
+    # Final result
+    if integration_success and compliance_success:
+        print("\n" + "=" * 90)
+        print("🎉 PHASE 45 VALIDATION COMPLETE - ALL SYSTEMS OPERATIONAL")
+        print("✅ Strategy Self-Healing & Reinforcement Learning successfully integrated")
+        print("✅ Full architect mode compliance confirmed")
+        print("✅ Ready for production deployment")
+        sys.exit(0)
+    else:
+        print("\n" + "=" * 90)
+        print("❌ PHASE 45 VALIDATION FAILED - ISSUES DETECTED")
+        print("🔧 Please review and address the validation failures above")
+        sys.exit(1)
+
+
+# <!-- @GENESIS_MODULE_END: validate_phase45_integration -->

@@ -1,0 +1,75 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.254184+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+      "line_numbers": [
+        8,
+        11,
+        29
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+      "line_numbers": [
+        108,
+        117,
+        140,
+        192,
+        215
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+      "line_numbers": [
+        130,
+        183
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+      "line_numbers": [
+        128,
+        169,
+        178,
+        180
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+      "line_numbers": [
+        197,
+        204,
+        212
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_indicator_scanner.py",
+      "line_numbers": [
+        110,
+        143,
+        194
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.289927+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        114,
+        116,
+        125,
+        126,
+        129
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        56
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        111,
+        139,
+        141,
+        142,
+        143
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        51,
+        98,
+        140,
+        154
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        103,
+        145
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        128
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        58
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_86_87_final_activation.py",
+      "line_numbers": [
+        60,
+        167
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

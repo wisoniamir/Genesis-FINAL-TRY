@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""
+PHASE 16 PATCH VALIDATION TEST
+============================
+Quick validation test to ensure the SmartExecutionMonitor loop breaker patch is working
+"""
+import os
+import sys
+import json
+import time
+from datetime import datetime
+
+def test_phase16_patch():
+    """Test the PHASE 16 PATCH loop breaker functionality"""
+    print("🔍 PHASE 16 PATCH VALIDATION TEST")
+    print("=" * 50)
+    
+    # Test 1: Import and initialize SmartExecutionMonitor
+    try:
+        from smart_execution_monitor import SmartExecutionMonitor
+        monitor = SmartExecutionMonitor()
+        print("✅ SmartExecutionMonitor imported and initialized successfully")
+    except Exception as e:
+        print(f"❌ Failed to initialize SmartExecutionMonitor: {e}")
+        return False
+    
+    # Test 2: Verify PHASE 16 PATCH attributes exist
+    try:
+        assert hasattr(monitor, 'MAX_KILL_SWITCH_CYCLES'), "MAX_KILL_SWITCH_CYCLES not found"
+        assert hasattr(monitor, 'kill_switch_count'), "kill_switch_count not found"
+        assert hasattr(monitor, 'on_feedback_ack'), "on_feedback_ack method not found"
+        print(f"✅ PHASE 16 PATCH attributes verified:")
+        print(f"   - MAX_KILL_SWITCH_CYCLES: {monitor.MAX_KILL_SWITCH_CYCLES}")
+        print(f"   - kill_switch_count: {monitor.kill_switch_count}")
+        print(f"   - on_feedback_ack method: {callable(monitor.on_feedback_ack)}")
+    except AssertionError as e:
+        print(f"❌ PATCH attribute missing: {e}")
+        return False
+    except Exception as e:
+        print(f"❌ Error checking PATCH attributes: {e}")
+        return False
+    
+    # Test 3: Simulate loop protection logic
+    try:
+        # Simulate multiple kill switch triggers
+        original_count = monitor.kill_switch_count
+        
+        # Test the loop protection by simulating high count
+        monitor.kill_switch_count = 4  # Just below limit
+        print(f"✅ Simulated kill_switch_count = 4 (below limit of {monitor.MAX_KILL_SWITCH_CYCLES})")
+        
+        # Test feedback acknowledgment reset
+        mock_event = {
+            "data": {
+                "topic": "RecalibrationSuccessful"
+            }
+        }
+        monitor.on_feedback_ack(mock_event)
+        
+        if monitor.kill_switch_count == 0:
+            print("✅ Loop counter reset functionality verified")
+        else:
+            print(f"❌ Loop counter reset failed: expected 0, got {monitor.kill_switch_count}")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Error testing loop protection: {e}")
+        return False
+    
+    print("\n🎉 PHASE 16 PATCH VALIDATION COMPLETE!")
+    print("✅ All tests passed - Loop breaker functionality is operational")
+    return True
+
+if __name__ == "__main__":
+    success = test_phase16_patch()
+    if success:
+        print("\n📊 RESULT: PHASE 16 PATCH VALIDATION SUCCESSFUL")
+        sys.exit(0)
+    else:
+        print("\n❌ RESULT: PHASE 16 PATCH VALIDATION FAILED")
+        sys.exit(1)

@@ -1,0 +1,9 @@
+{
+  "module_id": "backend_gtk3",
+  "original_path": "modules\\restored\\backend_gtk3.py",
+  "preserved_path": "preservation_holding_area\\backend_gtk3_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 71810,
+  "checksum": "721947c2acde27a54a381e3b5c7d255a2356362b0590b6adeac4527fe1a73207"
+}

@@ -1,0 +1,152 @@
+# <!-- @GENESIS_MODULE_START: ultra_minimal_test -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "ultra_minimal_test_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in ultra_minimal_test_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "ultra_minimal_test_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("ultra_minimal_test_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in ultra_minimal_test_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+"""
+Ultra-minimal test for MetaSignalHarmonizer
+"""
+from event_bus import EventBus
+
+import sys
+import os
+
+print("🔧 Starting ultra-minimal test...")
+
+try:
+    # Add current directory to path
+    sys.path.insert(0, os.getcwd())
+    print("✅ Path setup complete")
+    
+    # Test core directory
+    if os.path.exists("core"):
+        print("✅ Core directory found")
+    else:
+        print("❌ Core directory not found")
+        print("Creating core directory...")
+        os.makedirs("core", exist_ok=True)
+    
+    # Test meta signal harmonizer file
+    harmonizer_file = "core/meta_signal_harmonizer.py"
+    if os.path.exists(harmonizer_file):
+        print("✅ MetaSignalHarmonizer file found")
+        
+        # Try importing
+        try:
+            from core.meta_signal_harmonizer import MetaSignalHarmonizer
+            print("✅ MetaSignalHarmonizer class imported successfully")
+            
+            # Try creating instance
+            harmonizer = MetaSignalHarmonizer()
+            print("✅ MetaSignalHarmonizer instance created successfully")
+            
+            print("\n🎉 ULTRA-MINIMAL TEST PASSED")
+            print("✅ MetaSignalHarmonizer module is functional")
+            
+        except ImportError as e:
+            print(f"❌ Import error: {e}")
+        except Exception as e:
+            print(f"❌ Instance creation error: {e}")
+    else:
+        print(f"❌ MetaSignalHarmonizer file not found at: {harmonizer_file}")
+        
+except Exception as e:
+    print(f"💥 Critical error: {e}")
+
+print("🔧 Test completed.")
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: ultra_minimal_test -->

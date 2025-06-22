@@ -1,0 +1,9 @@
+{
+  "module_id": "pyopenssl",
+  "original_path": "modules\\restored\\pyopenssl.py",
+  "preserved_path": "preservation_holding_area\\pyopenssl_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 41750,
+  "checksum": "eb3652be6da6dcb31a77898062020f445b32dcf6596b80f7a935ee97c89aeb37"
+}

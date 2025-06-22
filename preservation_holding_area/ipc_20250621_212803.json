@@ -1,0 +1,9 @@
+{
+  "module_id": "ipc",
+  "original_path": "modules\\restored\\ipc.py",
+  "preserved_path": "preservation_holding_area\\ipc_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 36116,
+  "checksum": "99e1455e15db867964f2389996a2ba6346f3dc6dc2d1c451f447363ee12bb278"
+}

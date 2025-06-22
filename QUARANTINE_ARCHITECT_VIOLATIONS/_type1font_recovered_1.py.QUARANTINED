@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_type1font_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:47.475816+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_type1font_recovered_1.py",
+      "line_numbers": [
+        241,
+        277
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_type1font_recovered_1.py",
+      "line_numbers": [
+        141,
+        248,
+        265,
+        509,
+        533
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_type1font_recovered_1.py",
+      "line_numbers": [
+        210,
+        253,
+        304,
+        311,
+        315
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_type1font_recovered_1.py",
+      "line_numbers": [
+        150,
+        173,
+        232,
+        236,
+        240
+      ],
+      "violation_count": 13
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

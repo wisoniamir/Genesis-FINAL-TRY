@@ -1,0 +1,69 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.263947+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+      "line_numbers": [
+        413
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+      "line_numbers": [
+        130
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+      "line_numbers": [
+        64,
+        189,
+        275,
+        277,
+        296
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+      "line_numbers": [
+        206,
+        288,
+        326,
+        357,
+        384
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+      "line_numbers": [
+        301
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_alert_bridge.py",
+      "line_numbers": [
+        315
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

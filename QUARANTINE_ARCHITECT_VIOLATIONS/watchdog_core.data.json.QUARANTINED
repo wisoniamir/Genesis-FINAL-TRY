@@ -1,0 +1,16 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\.mypy_cache\\3.13\\core\\watchdog_core.data.json",
+  "quarantine_timestamp": "2025-06-21T04:33:15.832648+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.mypy_cache\\3.13\\core\\watchdog_core.data.json",
+      "line_numbers": [
+        1
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

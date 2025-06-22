@@ -1,0 +1,9 @@
+{
+  "module_id": "ImageStat",
+  "original_path": "modules\\restored\\ImageStat.py",
+  "preserved_path": "preservation_holding_area\\ImageStat_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16683,
+  "checksum": "53bff0f5a39a84bf8aae42c6143260eda82f571ae88deb2ac21cd1871dc45e08"
+}

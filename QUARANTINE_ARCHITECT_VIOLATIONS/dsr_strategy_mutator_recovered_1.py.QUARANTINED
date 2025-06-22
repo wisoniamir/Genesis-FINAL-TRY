@@ -1,0 +1,52 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\dsr_strategy_mutator_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.143489+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\dsr_strategy_mutator_recovered_1.py",
+      "line_numbers": [
+        158,
+        231,
+        251,
+        283
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\dsr_strategy_mutator_recovered_1.py",
+      "line_numbers": [
+        187,
+        245,
+        277,
+        366
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\dsr_strategy_mutator_recovered_1.py",
+      "line_numbers": [
+        164,
+        274,
+        427
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\dsr_strategy_mutator_recovered_1.py",
+      "line_numbers": [
+        79,
+        150
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "predictor",
+  "original_path": "modules\\restored\\predictor.py",
+  "preserved_path": "preservation_holding_area\\predictor_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16420,
+  "checksum": "600409df3204c4cf234d277d34f01329b3eb9a2a50db392b59c6d3de50851c48"
+}

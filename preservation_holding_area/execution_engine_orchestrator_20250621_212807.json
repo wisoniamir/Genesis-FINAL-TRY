@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_engine_orchestrator",
+  "original_path": "modules\\execution\\orchestrator\\execution_engine_orchestrator.py",
+  "preserved_path": "preservation_holding_area\\execution_engine_orchestrator_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 39299,
+  "checksum": "136e1a5307f247657e0cc825286cd22760f82a84d6ee61d2c4998f37d9b1c5ae"
+}

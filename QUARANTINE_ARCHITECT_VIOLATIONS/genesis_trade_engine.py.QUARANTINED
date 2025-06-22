@@ -1,0 +1,120 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.610381+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        224,
+        264,
+        481
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        310,
+        331
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        480
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        28,
+        143,
+        153,
+        174,
+        190
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        180,
+        216,
+        329,
+        380,
+        409
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        203,
+        209,
+        338,
+        485
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        290,
+        377,
+        433,
+        465
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        218,
+        382,
+        498
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        158,
+        159,
+        160
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_trade_engine.py",
+      "line_numbers": [
+        163,
+        164,
+        165
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

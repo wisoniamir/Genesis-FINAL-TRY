@@ -1,0 +1,149 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.420148+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        58
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        63
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        10,
+        64
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        66
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        62
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        81,
+        89,
+        187
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        84,
+        122,
+        203
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        250
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        45
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "log_metric(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        46
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        59,
+        73,
+        280
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        47
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        48
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        43
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_duplicate_resolution_engine.py",
+      "line_numbers": [
+        44
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

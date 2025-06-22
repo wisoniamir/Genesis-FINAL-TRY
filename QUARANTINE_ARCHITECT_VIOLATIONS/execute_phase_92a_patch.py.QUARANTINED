@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execute_phase_92a_patch.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.695378+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execute_phase_92a_patch.py",
+      "line_numbers": [
+        53,
+        160,
+        210,
+        258,
+        260
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execute_phase_92a_patch.py",
+      "line_numbers": [
+        82,
+        201,
+        232,
+        298,
+        325
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execute_phase_92a_patch.py",
+      "line_numbers": [
+        229,
+        234,
+        278,
+        281,
+        335
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execute_phase_92a_patch.py",
+      "line_numbers": [
+        42,
+        641
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

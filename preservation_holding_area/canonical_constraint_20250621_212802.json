@@ -1,0 +1,9 @@
+{
+  "module_id": "canonical_constraint",
+  "original_path": "modules\\restored\\canonical_constraint.py",
+  "preserved_path": "preservation_holding_area\\canonical_constraint_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24346,
+  "checksum": "c3a0affd291294263398f78f44f1ba5321dbbca4e173949a8a573e8243703641"
+}

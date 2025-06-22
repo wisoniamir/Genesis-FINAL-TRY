@@ -1,0 +1,105 @@
+# <!-- @GENESIS_MODULE_START: debug_smart_monitor -->
+
+from datetime import datetime\nfrom event_bus import EventBus
+"""
+Minimal Smart Monitor Test - Debug Version
+Identifies exactly where the hang occurs
+"""
+
+import time
+import datetime
+from smart_execution_monitor import SmartExecutionMonitor
+from event_bus import emit_event
+
+def debug_test():
+    print("Step 1: Creating monitor...")
+    monitor = SmartExecutionMonitor()
+    print("Step 2: Monitor created successfully")
+    
+    print("Step 3: Emitting test event...")
+    emit_event("LiveTradeExecuted", {
+        "trade_id": "TEST_001",
+        "symbol": "EURUSD",
+        "pnl": -100.0
+    }, "DebugTest")
+    print("Step 4: Event emitted")
+    
+    print("Step 5: Waiting 2 seconds...")
+    time.sleep(2)
+    print("Step 6: Test completed successfully!")
+    
+    return True
+
+if __name__ == "__main__":
+    print("Starting debug test...")
+    success = debug_test()
+    print(f"Debug test result: {success}")
+
+
+# <!-- @GENESIS_MODULE_END: debug_smart_monitor -->
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

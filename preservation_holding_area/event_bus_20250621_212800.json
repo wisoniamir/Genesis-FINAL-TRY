@@ -1,0 +1,9 @@
+{
+  "module_id": "event_bus",
+  "original_path": "modules\\restored\\event_bus.py",
+  "preserved_path": "preservation_holding_area\\event_bus_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21749,
+  "checksum": "c8395a9703077b8a339555f70840f4abb7c3005c06a414cfb05219d54a88d7bb"
+}

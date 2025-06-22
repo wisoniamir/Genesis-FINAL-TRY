@@ -1,0 +1,89 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.543826+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        214,
+        219,
+        224
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        30,
+        56,
+        57,
+        58,
+        64
+      ],
+      "violation_count": 55
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        211,
+        216,
+        221,
+        227,
+        235
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        230,
+        254,
+        449
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        304
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        288,
+        289,
+        290,
+        291
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_recovered_2.py",
+      "line_numbers": [
+        294,
+        295,
+        296,
+        297,
+        298
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

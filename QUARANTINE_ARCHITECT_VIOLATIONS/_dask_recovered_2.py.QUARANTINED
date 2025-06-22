@@ -1,0 +1,53 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dask_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.912774+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dask_recovered_2.py",
+      "line_numbers": [
+        101,
+        140,
+        292
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dask_recovered_2.py",
+      "line_numbers": [
+        16,
+        35,
+        44,
+        74,
+        97
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dask_recovered_2.py",
+      "line_numbers": [
+        100
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dask_recovered_2.py",
+      "line_numbers": [
+        111,
+        171,
+        197,
+        216,
+        318
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

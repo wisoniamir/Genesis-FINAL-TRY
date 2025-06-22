@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linesearch.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.313341+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linesearch.py",
+      "line_numbers": [
+        24,
+        210
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linesearch.py",
+      "line_numbers": [
+        482,
+        505,
+        507,
+        526,
+        528
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linesearch.py",
+      "line_numbers": [
+        488,
+        519
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linesearch.py",
+      "line_numbers": [
+        28,
+        506,
+        527
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linesearch.py",
+      "line_numbers": [
+        164,
+        309,
+        319,
+        396,
+        426
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

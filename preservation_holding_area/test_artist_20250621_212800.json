@@ -1,0 +1,9 @@
+{
+  "module_id": "test_artist",
+  "original_path": "modules\\unclassified\\test_artist.py",
+  "preserved_path": "preservation_holding_area\\test_artist_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 68427,
+  "checksum": "2af85be54663d418a4c6d9f15073d1ae3cd44c58cb741b3dfdd0f2a4181fdffb"
+}

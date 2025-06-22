@@ -1,0 +1,47 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\minimize_trustregion_constr.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.910491+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\minimize_trustregion_constr.py",
+      "line_numbers": [
+        233
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\minimize_trustregion_constr.py",
+      "line_numbers": [
+        446,
+        491
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\minimize_trustregion_constr.py",
+      "line_numbers": [
+        75
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\minimize_trustregion_constr.py",
+      "line_numbers": [
+        328,
+        341,
+        385,
+        395
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

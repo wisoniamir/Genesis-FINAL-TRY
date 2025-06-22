@@ -1,0 +1,188 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+  "quarantine_timestamp": "2025-06-21T04:33:26.920800+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        1183,
+        4594,
+        5311,
+        10408,
+        10426
+      ],
+      "violation_count": 869
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        860,
+        1697,
+        2440,
+        2629,
+        2678
+      ],
+      "violation_count": 575
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        23119,
+        68365,
+        72896,
+        72898,
+        121383
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        162,
+        163,
+        164,
+        165,
+        174
+      ],
+      "violation_count": 173092
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        197618
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "\"sample\"",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        40728,
+        46095,
+        97149,
+        97289,
+        101281
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        117,
+        285,
+        818,
+        824,
+        2065
+      ],
+      "violation_count": 26
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        905,
+        1428,
+        3767,
+        32731
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "violation_count": 738
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "log_metric(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        48121,
+        48125,
+        74592,
+        74595
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        24,
+        25,
+        104,
+        105,
+        145
+      ],
+      "violation_count": 800
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        48121,
+        48125,
+        74592,
+        74595
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        48121,
+        48125,
+        74592,
+        74595
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        48121,
+        48125
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\system_tree.json",
+      "line_numbers": [
+        48121,
+        48125
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

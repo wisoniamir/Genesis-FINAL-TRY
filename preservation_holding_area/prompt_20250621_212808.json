@@ -1,0 +1,9 @@
+{
+  "module_id": "prompt",
+  "original_path": "modules\\restored\\prompt.py",
+  "preserved_path": "preservation_holding_area\\prompt_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 53430,
+  "checksum": "1a088bf9597765c586c0a5183661639a84db83b50b65462d32c9b2b82a243015"
+}

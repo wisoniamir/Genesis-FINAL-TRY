@@ -1,0 +1,85 @@
+from event_bus import EventBus
+#!/usr/bin/env python3
+"""
+🔁 GENESIS PHASE 92B - Backtest Engine Test Runner
+Test the backtest engine with real MT5 data - standalone version
+"""
+
+import json
+import logging
+import sys
+import os
+from datetime import datetime, timezone
+
+# Add current directory to path
+sys.path.insert(0, os.getcwd())
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger('BacktestTest')
+
+def test_backtest_engine():
+    """Test backtest engine with real MT5 data"""
+    try:
+        logger.info("🚀 Starting Phase 92B Backtest Engine Test")
+        
+        # Test MT5 import
+        try:
+            import MetaTrader5 as mt5
+            logger.info("✅ MetaTrader5 import successful")
+        except Exception as e:
+            logger.error(f"❌ MetaTrader5 import failed: {e}")
+            return False
+        
+        # Test basic functionality without event_bus dependency
+        logger.info("🔧 Testing backtest engine core functionality...")
+        
+        # Create a simple backtest implementation
+        from backtest_engine_simple import SimpleBacktestEngine
+        
+        engine = SimpleBacktestEngine()
+        logger.info("✅ Simple backtest engine created")
+        
+        # Run a test backtest
+        symbol = "EURUSD"
+        logger.info(f"📊 Running backtest for {symbol}")
+        
+        results = engine.run_simple_backtest(symbol)
+        
+        if results and "error" not in results:
+            logger.info(f"✅ Backtest completed successfully!")
+            logger.info(f"   Symbol: {results.get('symbol', 'N/A')}")
+            logger.info(f"   Total Trades: {results.get('total_trades', 0)}")
+            logger.info(f"   Total PnL: ${results.get('total_pnl', 0):.2f}")
+            logger.info(f"   Win Rate: {results.get('win_rate', 0):.1%}")
+            
+            # Store results
+            with open("test_backtest_results.json", 'w') as f:
+                json.dump(results, f, indent=2, default=str)
+            
+            return True
+        else:
+            logger.error(f"❌ Backtest failed: {results.get('error', 'Unknown error')}")
+            return False
+            
+    except Exception as e:
+        logger.error(f"❌ Backtest test failed: {e}")
+        return False
+
+def main():
+    """Run backtest engine test"""
+    success = test_backtest_engine()
+    
+    if success:
+        print("\n🎉 PHASE 92B BACKTEST ENGINE TEST: ✅ PASSED")
+        print("✅ Real MT5 data integration working")
+        print("✅ Backtest calculations functioning")
+        print("✅ Results output generated")
+    else:
+        print("\n❌ PHASE 92B BACKTEST ENGINE TEST: ❌ FAILED")
+        print("❌ Check logs for details")
+    
+    return success
+
+if __name__ == "__main__":
+    main()

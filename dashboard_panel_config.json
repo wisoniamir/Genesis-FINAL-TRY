@@ -1,0 +1,52 @@
+{
+  "macro_analysis_panel": {
+    "data_source": "macro_recalibrate_engine",
+    "update_frequency": 300,
+    "chart_type": "line_chart",
+    "metrics": [
+      "volatility",
+      "trend_strength",
+      "correlation_score"
+    ],
+    "module_path": "modules/macro/macro_recalibrate_engine.py",
+    "module_status": "ACTIVE",
+    "last_sync": "2025-06-22T17:54:07.459677"
+  },
+  "alpha_sweep_panel": {
+    "data_source": "alpha_sweep_engine",
+    "update_frequency": 60,
+    "chart_type": "heatmap",
+    "metrics": [
+      "alpha_score",
+      "momentum",
+      "confluence_level"
+    ],
+    "module_path": "modules/signals/alpha_sweep_engine.py",
+    "module_status": "ACTIVE",
+    "last_sync": "2025-06-22T17:54:07.459677"
+  },
+  "sniper_checklist_panel": {
+    "data_source": "sniper_checklist_addon",
+    "update_frequency": 15,
+    "chart_type": "gauge",
+    "metrics": [
+      "sniper_score",
+      "entry_validated"
+    ],
+    "module_path": "modules/execution/sniper_checklist_addon.py",
+    "module_status": "ACTIVE",
+    "last_sync": "2025-06-22T17:54:07.459677"
+  },
+  "kill_switch_panel": {
+    "data_source": "kill_switch_audit_engine",
+    "update_frequency": 5,
+    "chart_type": "alert_panel",
+    "metrics": [
+      "overall_risk_score",
+      "kill_switch_triggered"
+    ],
+    "module_path": "modules/risk/kill_switch_audit_engine.py",
+    "module_status": "ACTIVE",
+    "last_sync": "2025-06-22T17:54:07.459677"
+  }
+}

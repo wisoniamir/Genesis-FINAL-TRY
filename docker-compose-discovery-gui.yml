@@ -1,0 +1,160 @@
+version: '3.8'
+
+services:
+  genesis-discovery-gui:
+    build:
+      context: .
+      dockerfile: Dockerfile.discovery-gui
+    container_name: genesis_discovery_dashboard
+    
+    # X11 forwarding for GUI
+    environment:
+      - DISPLAY=${DISPLAY}
+      - GENESIS_MODE=production
+      - DISCOVERY_ENABLED=true
+      - MT5_DISCOVERY_MODE=true
+      - EVENT_BUS_DISCOVERY=true
+      
+    volumes:
+      # X11 socket for GUI display
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      
+      # GENESIS data persistence
+      - genesis_data:/genesis/data
+      - genesis_logs:/genesis/logs
+      - genesis_backup:/genesis/backup
+      
+      # Configuration persistence
+      - genesis_config:/genesis/config
+      
+    ports:
+      # Dashboard ports
+      - "8501:8501"  # Streamlit fallback
+      - "8502:8502"  # Secondary dashboard
+      - "8503:8503"  # Telemetry interface
+      
+    networks:
+      - genesis_network
+      
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "/genesis/validate_discovery.py"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+      
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+          
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+          # Optional: Separate MT5 connector service
+  genesis-mt5-connector:
+    build:
+      context: .
+      dockerfile: Dockerfile.discovery-gui
+    container_name: genesis_mt5_connector
+    command: >
+      python -c "
+      import sys; sys.path.insert(0, '/genesis');
+      from connectors.mt5_enhanced import MT5EnhancedConnector;
+      connector = MT5EnhancedConnector();
+      connector.run_discovery_mode()
+      "
+    
+    environment:
+      - GENESIS_MODE=production
+      - MT5_CONNECTOR_MODE=true
+      
+    volumes:
+      - genesis_data:/genesis/data
+      - genesis_logs:/genesis/logs
+      
+    networks:
+      - genesis_network
+      
+    restart: unless-stopped
+    
+    depends_on:
+      - genesis-discovery-gui
+        # Optional: Event Bus coordinator
+  genesis-event-coordinator:
+    build:
+      context: .
+      dockerfile: Dockerfile.discovery-gui
+    container_name: genesis_event_coordinator
+    command: >
+      python -c "
+      import sys; sys.path.insert(0, '/genesis');
+      from modules.hardened_event_bus import EventBusCoordinator;
+      coordinator = EventBusCoordinator();
+      coordinator.run_discovery_coordination()
+      "
+    
+    environment:
+      - GENESIS_MODE=production
+      - EVENT_BUS_COORDINATOR=true
+      
+    volumes:
+      - genesis_data:/genesis/data
+      - genesis_logs:/genesis/logs
+      
+    networks:
+      - genesis_network
+      
+    restart: unless-stopped
+    
+    depends_on:
+      - genesis-discovery-gui
+
+# Networks
+networks:
+  genesis_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# Volumes for data persistence
+volumes:
+  genesis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data
+      
+  genesis_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/logs
+      
+  genesis_backup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/backup
+      
+  genesis_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/config

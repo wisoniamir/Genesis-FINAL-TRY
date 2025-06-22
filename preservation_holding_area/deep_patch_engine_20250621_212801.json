@@ -1,0 +1,9 @@
+{
+  "module_id": "deep_patch_engine",
+  "original_path": "core\\deep_patch_engine.py",
+  "preserved_path": "preservation_holding_area\\deep_patch_engine_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13033,
+  "checksum": "5c893ee144cba540e910587d6378322366a3fad03548903d5ac61765575832ae"
+}

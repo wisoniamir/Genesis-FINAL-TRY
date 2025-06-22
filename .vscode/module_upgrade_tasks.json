@@ -1,0 +1,62 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🧠 Run Module Upgrade Scan",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "genesis_module_upgrade_scan.py"
+            ],
+            "group": "build",
+            "isBackground": false,
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "⚙️ Run Dashboard Panel Configurator",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "dashboard_panel_configurator.py"
+            ],
+            "group": "build",
+            "isBackground": false,
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "🚀 Launch GENESIS Desktop with GUI",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "genesis_desktop.py"
+            ],
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        }
+    ]
+}

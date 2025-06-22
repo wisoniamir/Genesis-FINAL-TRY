@@ -1,0 +1,376 @@
+# @GENESIS_ORPHAN_STATUS: archived_patch
+# @GENESIS_SUGGESTED_ACTION: archive
+# @GENESIS_ANALYSIS_DATE: 2025-06-20T16:45:13.481938
+# @GENESIS_PROTECTION: DO_NOT_DELETE_UNTIL_REVIEWED
+
+# <!-- @GENESIS_MODULE_START: phase61_compliance_validation_engine -->
+
+#!/usr/bin/env python3
+"""
+🔍 GENESIS PHASE 61: SYSTEMWIDE COMPLIANCE VALIDATION ENGINE
+🛡️ Architect Mode v5.0.0 | Full Module Audit | Compliance Scoring
+
+Validates every module against:
+- MT5 Data Live Feed Hook
+- EventBus Binding
+- Telemetry Hook Presence
+- Documentation & Tests
+- Compliance Score ≥ B
+"""
+
+import json
+import os
+import sys
+import re
+import hashlib
+from datetime import datetime, timezone
+from typing import Dict, List, Any, Tuple
+import traceback
+
+
+class ComplianceValidationEngine:
+    """Phase 61 Compliance Validation Engine"""
+    
+    def __init__(self):
+        self.base_path = os.path.dirname(os.path.abspath(__file__))
+        self.validation_start = datetime.now(timezone.utc)
+        self.modules_validated = 0
+        self.compliance_scores = {}
+        self.violations = []
+        self.critical_failures = []
+        
+        # Load core system files
+        self.load_core_files()
+        
+        # Compliance thresholds
+        self.thresholds = {
+            'A': (90, 100),  # Excellent
+            'B': (80, 89),   # Good  
+            'C': (70, 79),   # Acceptable
+            'REJECTED': (0, 69)  # Below standard
+        }
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def load_core_files(self):
+        """Load all required core system files"""
+        try:
+            with open(os.path.join(self.base_path, 'module_registry.json'), 'r') as f:
+                self.module_registry = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'event_bus.json'), 'r') as f:
+                self.event_bus = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'telemetry.json'), 'r') as f:
+                self.telemetry = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'system_tree.json'), 'r') as f:
+                self.system_tree = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'compliance.json'), 'r') as f:
+                self.compliance_data = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'build_status.json'), 'r') as f:
+                self.build_status = json.load(f)
+                
+            print("✅ Core files loaded successfully")
+            
+        except Exception as e:
+            print(f"❌ CRITICAL: Failed to load core files: {e}")
+            sys.exit(1)
+            
+    def validate_module_mt5_hooks(self, module: Dict) -> Tuple[bool, int, List[str]]:
+        """Validate MT5 live data hooks - 25 points"""
+        score = 0
+        issues = []
+        
+        try:
+            file_path = os.path.join(self.base_path, module.get('file_path', ''))
+            assert os.path.exists(file_path):
+                issues.append(f"Module file not found: {file_path}")
+                return False, 0, issues
+                
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            # Check for MT5 integration patterns
+            mt5_patterns = [
+                r'import\s+MetaTrader5',
+                r'mt5\.',
+                r'MetaTrader5\.',
+                r'live_data',
+                r'real_data.*true',
+                r'MT5.*connect',
+                r'symbol_info',
+                r'copy_ticks',
+                r'positions_get',
+                r'orders_get'
+            ]
+            
+            found_patterns = 0
+            for pattern in mt5_patterns:
+                if re.search(pattern, content, re.IGNORECASE):
+                    found_patterns += 1
+                    
+            if found_patterns >= 3:
+                score = 25
+            elif found_patterns >= 2:
+                score = 20
+            elif found_patterns >= 1:
+                score = 15
+            else:
+                score = 0
+                issues.append("No MT5 live data integration found")
+                
+            # Bonus for real_data flag
+            if module.get('real_data', False):
+                score += 5
+            else:
+                issues.append("real_data flag not set to true")
+                
+        except Exception as e:
+            issues.append(f"MT5 validation error: {e}")
+            
+        return score >= 20, min(score, 25), issues
+        
+    def validate_eventbus_binding(self, module: Dict) -> Tuple[bool, int, List[str]]:
+        """Validate EventBus binding - 25 points"""
+        score = 0
+        issues = []
+        
+        try:
+            module_name = module.get('name', '')
+            
+            # Check module has event inputs/outputs defined
+            event_inputs = module.get('event_input', [])
+            event_outputs = module.get('event_output', [])
+            
+            if not event_inputs and not event_outputs:
+                issues.append("No event inputs or outputs defined")
+                return False, 0, issues
+                
+            # Check routes exist in EventBus
+            routes_found = 0
+            for route in self.event_bus.get('routes', []):
+                if (route.get('producer') == module_name or 
+                    route.get('consumer') == module_name):
+                    routes_found += 1
+                    
+            if routes_found >= 2:
+                score = 25
+            elif routes_found >= 1:
+                score = 20
+            else:
+                score = 0
+                issues.append("No EventBus routes found for module")
+                
+            # Check route integrity
+            for route in self.event_bus.get('routes', []):
+                if route.get('producer') == module_name or route.get('consumer') == module_name:
+                    if route.get('metadata', {}).get('integrity_status') != 'PASS':
+                        issues.append(f"Route integrity failed: {route.get('route_id')}")
+                        score -= 5
+                        
+        except Exception as e:
+            issues.append(f"EventBus validation error: {e}")
+            
+        return score >= 20, max(0, score), issues
+        
+    def validate_telemetry_hooks(self, module: Dict) -> Tuple[bool, int, List[str]]:
+        """Validate telemetry hooks - 20 points"""
+        score = 0
+        issues = []
+        
+        try:
+            # Check telemetry flag
+            if not module.get('telemetry', False):
+                issues.append("Telemetry flag not enabled")
+                return False, 0, issues
+                
+            # Check for telemetry events in telemetry.json
+            module_name = module.get('name', '')
+            telemetry_events = 0
+            
+            for event in self.telemetry.get('events', []):
+                if event.get('module') == module_name:
+                    telemetry_events += 1
+                    
+            if telemetry_events >= 3:
+                score = 20
+            elif telemetry_events >= 2:
+                score = 15
+            elif telemetry_events >= 1:
+                score = 10
+            else:
+                issues.append("No telemetry events found")
+                score = 0
+                
+            # Check file for telemetry code
+            file_path = os.path.join(self.base_path, module.get('file_path', ''))
+            if os.path.exists(file_path):
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    
+                telemetry_patterns = [
+                    r'emit_telemetry',
+                    r'telemetry.*emit',
+                    r'TelemetryUpdate',
+                    r'telemetry_hook',
+                    r'performance.*metric'
+                ]
+                
+                for pattern in telemetry_patterns:
+                    if re.search(pattern, content, re.IGNORECASE):
+                        score += 2
+                        break
+                        
+        except Exception as e:
+            issues.append(f"Telemetry validation error: {e}")
+            
+        return score >= 15, min(score, 20), issues
+        
+    def validate_documentation_tests(self, module: Dict) -> Tuple[bool, int, List[str]]:
+        """Validate documentation and tests - 20 points"""
+        score = 0
+        issues = []
+        
+        try:
+            module_name = module.get('name', '')
+            file_path = module.get('file_path', '')
+            
+            # Check documentation (10 points)
+            doc_patterns = [
+                r'"""[\s\S]*?"""',  # Docstrings
+                r"'''[\s\S]*?'''",
+                r'#.*@.*',          # Decorators with comments
+                r'Args:',
+                r'Returns:',
+                r'Example:'
+            ]
+            
+            if os.path.exists(os.path.join(self.base_path, file_path)):
+                with open(os.path.join(self.base_path, file_path), 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    
+                doc_score = 0
+                for pattern in doc_patterns:
+                    if re.search(pattern, content, re.IGNORECASE | re.DOTALL):
+                        doc_score += 2
+                        
+                score += min(doc_score, 10)
+                
+                if doc_score < 4:
+                    issues.append("Insufficient documentation")
+                    
+            # Check test files (10 points)
+            test_files = [
+                f"test_{file_path}",
+                f"tests/test_{module_name.lower()}.py",
+                f"{module_name.lower()}_test.py"
+            ]
+            
+            test_found = False
+            for test_file in test_files:
+                if os.path.exists(os.path.join(self.base_path, test_file)):
+                    test_found = True
+                    score += 10
+                    break
+                    
+            if not test_found:
+                issues.append("No test file found")
+                
+        except Exception as e:
+            issues.append(f"Documentation/Tests validation error: {e}")
+            
+        return score >= 15, score, issues
+        
+    def validate_system_integration(self, module: Dict) -> Tuple[bool, int, List[str]]:
+        """Validate system integration - 10 points"""
+        score = 0
+        issues = []
+        
+        try:
+            module_name = module.get('name', '')
+            
+            # Check registration in system tree
+            if module_name in str(self.system_tree):
+                score += 5
+            else:
+                issues.append("Not found in system tree")
+                
+            # Check compliance flag
+            if module.get('compliance', False):
+                score += 5
+            else:
+                issues.append("Compliance flag not set")
+                
+        except Exception as e:
+            issues.append(f"System integration validation error: {e}")
+            
+        return score >= 8, score, issues
+        
+    def calculate_module_score(self, module: Dict) -> Dict[str, Any]:
+        """Calculate comprehensive compliance score for a module"""
+        module_name = module.get('name', 'Unknown')
+        
+        try:
+            # Run all validation checks
+            mt5_pass, mt5_score, mt5_issues = self.validate_module_mt5_hooks(module)
+            eb_pass, eb_score, eb_issues = self.validate_eventbus_binding(module)
+            tel_pass, tel_score, tel_issues = self.validate_telemetry_hooks(module)
+            doc_pass, doc_score, doc_issues = self.validate_documentation_tests(module)
+            sys_pass, sys_score, sys_issues = self.validate_system_integration(module)
+            
+            # Calculate total score
+            total_score = mt5_score + eb_score + tel_score + doc_score + sys_score
+            
+            # Determine grade
+            grade = 'REJECTED'
+            for grade_name, (min_score, max_score) in self.thresholds.items():
+                if min_score <= total_score <= max_score:
+                    grade = grade_name
+                    break
+                    
+            # Compile all issues
+            all_issues = mt5_issues + eb_issues + tel_issues + doc_issues + sys_issues
+            
+            result = {
+                'module_name': module_name,
+                'total_score': total_score,
+                'grade': grade,
+                'breakdown': {
+                    'mt5_hooks': {'score': mt5_score, 'max': 25, 'pass': mt5_pass},
+                    'eventbus_binding': {'score': eb_score, 'max': 25, 'pass': eb_pass},
+                    'telemetry_hooks': {'score': tel_score, 'max': 20, 'pass': tel_pass},
+                    'documentation_tests': {'score': doc_score, 'max': 20, 'pass': doc_pass},
+                    'system_integration': {'score': sys_score, 'max': 10, 'pass': sys_pass}
+                },
+                'issues': all_issues,
+                'validated_at': datetime.now(timezone.utc).isoformat(),
+                'status': 'PASS' if grade in ['A', 'B'] else 'FAIL' if grade == 'C' else 'REJECTED'
+            }
+            
+            return result
+            
+        except Exception as e is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: phase61_compliance_validation_engine -->

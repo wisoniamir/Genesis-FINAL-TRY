@@ -1,0 +1,9 @@
+{
+  "module_id": "dashboard_linkage_patch",
+  "original_path": "modules\\execution\\dashboard_linkage_patch.py",
+  "preserved_path": "preservation_holding_area\\dashboard_linkage_patch_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 31456,
+  "checksum": "b933d31632813babc7e30a06952e1e9fff691e58b54e3f9c95d7306cc9db0381"
+}

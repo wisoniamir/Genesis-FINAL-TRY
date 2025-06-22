@@ -1,0 +1,9 @@
+{
+  "module_id": "string",
+  "original_path": "modules\\restored\\string.py",
+  "preserved_path": "preservation_holding_area\\string_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 11699,
+  "checksum": "9595418b0c6aa440243449190fc93abb94030dc3b412959b516ba5f6da9d1830"
+}

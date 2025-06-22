@@ -1,0 +1,62 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\slider_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.978703+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\slider_recovered_2.py",
+      "line_numbers": [
+        453,
+        513,
+        559,
+        562,
+        807
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\slider_recovered_2.py",
+      "line_numbers": [
+        876
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\slider_recovered_2.py",
+      "line_numbers": [
+        868
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\slider_recovered_2.py",
+      "line_numbers": [
+        224,
+        719,
+        739,
+        823,
+        837
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\slider_recovered_2.py",
+      "line_numbers": [
+        199,
+        711,
+        860
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

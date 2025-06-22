@@ -1,0 +1,9 @@
+{
+  "module_id": "polling_path_watcher",
+  "original_path": "modules\\restored\\polling_path_watcher.py",
+  "preserved_path": "preservation_holding_area\\polling_path_watcher_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15485,
+  "checksum": "1304485117381edb53ca07bfa9cfc8cc9a52d4a5b9610beede1b1fffc6c0866f"
+}

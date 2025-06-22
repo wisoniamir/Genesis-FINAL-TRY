@@ -1,0 +1,381 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🌐 GENESIS HIGH ARCHITECTURE — COMPLIANCE ENGINE v1.0.0
+FTMO-compliant trade validation and kill switch logic.
+ARCHITECT MODE v7.0.0 COMPLIANT.
+"""
+
+import json
+import logging
+from datetime import datetime, timedelta
+from typing import Dict, Any, Optional, List
+from pathlib import Path
+import MetaTrader5 as mt5
+
+from core.event_bus import emit_event, subscribe_to_event
+from core.telemetry import emit_telemetry
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: compliance -->
+
+
+# <!-- @GENESIS_MODULE_START: compliance -->
+
+class ComplianceEngine:
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "compliance",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in compliance: {e}")
+    """FTMO-compliant trade validation and kill switch"""
+    
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        self.config = self._load_config()
+        self.violations = []
+        self.kill_switch_active = False
+        
+        # Subscribe to trade events
+        subscribe_to_event("trade_validated", self.validate_trade)
+        subscribe_to_event("trade_executed", self.check_trade_compliance)
+        subscribe_to_event("account_update", self.check_account_compliance)
+    
+    def _load_config(self) -> Dict[str, Any]:
+        """Load compliance configuration"""
+        with open("config.json", "r") as f:
+            config = json.load(f)
+            
+        # Validate FTMO rules
+        required = ["max_daily_loss", "max_trailing_dd", "max_trade_risk"]
+        for param in required:
+            if param not in config:
+                raise ValueError(f"Missing required FTMO rule: {param}")
+                
+        return config
+    
+    def validate_trade(self, data: Dict[str, Any]) -> bool:
+        """Validate a trade against FTMO rules"""
+        try:
+            # Check if kill switch is active
+            if self.kill_switch_active:
+                self._log_violation("Kill switch active - trade rejected")
+                return False
+            
+            # Calculate potential loss
+            potential_loss = self._calculate_potential_loss(data)
+            
+            # Check trade risk
+            if potential_loss > self.config["max_trade_risk"]:
+                self._log_violation(f"Trade risk {potential_loss} exceeds max {self.config['max_trade_risk']}")
+                return False
+            
+            # Check daily loss limit
+            daily_loss = self._calculate_daily_loss()
+            if (daily_loss + potential_loss) > self.config["max_daily_loss"]:
+                self._log_violation(f"Daily loss limit would be exceeded")
+                return False
+            
+            # Check trailing drawdown
+            trailing_dd = self._calculate_trailing_dd()
+            if (trailing_dd + potential_loss) > self.config["max_trailing_dd"]:
+                self._log_violation(f"Trailing drawdown limit would be exceeded")
+                return False
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Trade validation error: {e}")
+            return False
+    
+    def check_trade_compliance(self, data: Dict[str, Any]):
+        """Check compliance of executed trade"""
+        try:
+            # Validate trade parameters
+            if not all(k in data for k in ["ticket", "symbol", "volume"]):
+                self._log_violation("Invalid trade data")
+                return
+            
+            # Get trade details
+            trade = mt5.positions_get(ticket=data["ticket"])
+            if not trade:
+                self._log_violation(f"Trade {data['ticket']} not found")
+                return
+                
+            trade = trade[0]._asdict()
+            
+            # Check stop loss
+            if trade["sl"] == 0:
+                self._log_violation(f"Trade {trade['ticket']} has no stop loss")
+                self.trigger_kill_switch("NO_STOP_LOSS")
+                
+            # Check risk:reward
+            if "tp" in trade and trade["tp"] != 0:
+                rr = self._calculate_rr_ratio(trade)
+                if rr < self.config["min_rr_ratio"]:
+                    self._log_violation(f"Trade {trade['ticket']} has invalid R:R ratio")
+            
+        except Exception as e:
+            self.logger.error(f"Trade compliance check error: {e}")
+    
+    def check_account_compliance(self, data: Dict[str, Any]):
+        """Check overall account compliance"""
+        try:
+            # Get account info
+            account = mt5.account_info()
+            if account is None:
+                raise ValueError("Failed to get account info")
+                
+            account = account._asdict()
+            
+            # Check daily loss
+            daily_loss = self._calculate_daily_loss()
+            if daily_loss > self.config["max_daily_loss"]:
+                self._log_violation("Daily loss limit exceeded")
+                self.trigger_kill_switch("DAILY_LOSS_EXCEEDED")
+            
+            # Check trailing drawdown
+            trailing_dd = self._calculate_trailing_dd()
+            if trailing_dd > self.config["max_trailing_dd"]:
+                self._log_violation("Trailing drawdown limit exceeded")
+                self.trigger_kill_switch("TRAILING_DD_EXCEEDED")
+            
+            # Update kill switch status
+            self._update_kill_switch_status({
+                "daily_loss": daily_loss,
+                "trailing_dd": trailing_dd,
+                "balance": account["balance"],
+                "equity": account["equity"]
+            })
+            
+        except Exception as e:
+            self.logger.error(f"Account compliance check error: {e}")
+    
+    def trigger_kill_switch(self, reason: str):
+        """Activate the kill switch"""
+        try:
+            self.kill_switch_active = True
+            
+            # Close all positions
+            self._close_all_positions()
+            
+            # Update kill switch status
+            status = {
+                "active": True,
+                "reason": reason,
+                "timestamp": datetime.now().isoformat(),
+                "account_snapshot": self._get_account_snapshot()
+            }
+            
+            with open("kill_switch.json", "w") as f:
+                json.dump(status, f, indent=2)
+            
+            # Emit kill switch event
+            emit_event("kill_switch_activated", status)
+            
+            # Emit telemetry
+            emit_telemetry("compliance", "kill_switch_activated", status)
+            
+            self.logger.warning(f"🚨 Kill switch activated: {reason}")
+            
+        except Exception as e:
+            self.logger.error(f"Kill switch activation error: {e}")
+    
+    def _close_all_positions(self):
+        """Close all open positions"""
+        try:
+            positions = mt5.positions_get()
+            if positions:
+                for pos in positions:
+                    pos = pos._asdict()
+                    if not mt5.positions_close(pos["ticket"]):
+                        self.logger.error(f"Failed to close position {pos['ticket']}")
+                        
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Position closure error: {e}")
+            return False
+    
+    def _calculate_daily_loss(self) -> float:
+        """Calculate current day's losses"""
+        try:
+            today = datetime.now().date()
+            deals = mt5.history_deals_get(
+                datetime.combine(today, datetime.min.time()),
+                datetime.now()
+            )
+            
+            if deals:
+                return sum(d.profit for d in deals if d.profit < 0)
+            return 0
+            
+        except Exception as e:
+            self.logger.error(f"Daily loss calculation error: {e}")
+            return 0
+    
+    def _calculate_trailing_dd(self) -> float:
+        """Calculate trailing drawdown"""
+        try:
+            history = mt5.history_deals_get(
+                datetime.now() - timedelta(days=30),
+                datetime.now()
+            )
+            
+            if not history:
+                return 0
+                
+            balance = 0
+            peak = 0
+            dd = 0
+            
+            for deal in history:
+                balance += deal.profit
+                peak = max(peak, balance)
+                dd = min(dd, balance - peak)
+                
+            return abs(dd)
+            
+        except Exception as e:
+            self.logger.error(f"Trailing DD calculation error: {e}")
+            return 0
+    
+    def _log_violation(self, message: str):
+        """Log a compliance violation"""
+        violation = {
+            "message": message,
+            "timestamp": datetime.now().isoformat(),
+            "account_snapshot": self._get_account_snapshot()
+        }
+        
+        self.violations.append(violation)
+        
+        # Update violation log
+        with open("compliance.json", "r") as f:
+            compliance_log = json.load(f)
+            
+        compliance_log["violations"].append(violation)
+        
+        with open("compliance.json", "w") as f:
+            json.dump(compliance_log, f, indent=2)
+        
+        # Emit telemetry
+        emit_telemetry("compliance", "violation_detected", violation)
+        
+        self.logger.warning(f"⚠️ Compliance violation: {message}")
+    
+    def _get_account_snapshot(self) -> Dict[str, Any]:
+        """Get current account snapshot"""
+        try:
+            account = mt5.account_info()
+            if account:
+                return {
+                    "balance": account.balance,
+                    "equity": account.equity,
+                    "margin": account.margin,
+                    "free_margin": account.margin_free,
+                    "timestamp": datetime.now().isoformat()
+                }
+            return {}
+        except Exception as e:
+            self.logger.error(f"Account snapshot error: {e}")
+            return {}
+    
+    def _update_kill_switch_status(self, data: Dict[str, Any]):
+        """Update kill switch status"""
+        try:
+            with open("kill_switch.json", "w") as f:
+                json.dump({
+                    "active": self.kill_switch_active,
+                    "last_check": datetime.now().isoformat(),
+                    "data": data
+                }, f, indent=2)
+        except Exception as e:
+            self.logger.error(f"Kill switch status update error: {e}")
+
+    def _calculate_potential_loss(self, trade_data: Dict[str, Any]) -> float:
+        """Calculate potential loss for a trade"""
+        try:
+            volume = float(trade_data.get("volume", 0))
+            entry = float(trade_data.get("entry", 0))
+            sl = float(trade_data.get("sl", 0))
+            
+            if volume <= 0 or entry <= 0 or sl <= 0:
+                return 0
+                
+            pip_value = self._get_symbol_pip_value(trade_data["symbol"])
+            pips_to_sl = abs(entry - sl) / pip_value
+            
+            return volume * pips_to_sl * pip_value
+            
+        except Exception as e:
+            self.logger.error(f"Potential loss calculation error: {e}")
+            return 0
+    
+    def _calculate_rr_ratio(self, trade: Dict[str, Any]) -> float:
+        """Calculate risk:reward ratio"""
+        try:
+            entry = float(trade["price_open"])
+            sl = float(trade["sl"])
+            tp = float(trade["tp"])
+            
+            if sl == 0 or tp == 0:
+                return 0
+                
+            risk = abs(entry - sl)
+            reward = abs(tp - entry)
+            
+            return reward / risk if risk > 0 else 0
+            
+        except Exception as e:
+            self.logger.error(f"R:R calculation error: {e}")
+            return 0
+    
+    def _get_symbol_pip_value(self, symbol: str) -> float:
+        """Get pip value for a symbol"""
+        try:
+            symbol_info = mt5.symbol_info(symbol)
+            if symbol_info:
+                return 10 ** -symbol_info.digits
+            return 0.0001  # Default to 4 decimals
+            
+        except Exception as e:
+            self.logger.error(f"Pip value calculation error: {e}")
+            return 0.0001
+
+# Create global instance
+compliance_engine = ComplianceEngine()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))

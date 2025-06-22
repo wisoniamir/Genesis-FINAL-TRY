@@ -1,0 +1,9 @@
+{
+  "module_id": "sas7bdat",
+  "original_path": "modules\\restored\\sas7bdat.py",
+  "preserved_path": "preservation_holding_area\\sas7bdat_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 44563,
+  "checksum": "b421d8da9e4aae302d1810f7ee5b4428a94df9c1a336271eaece7b74c570aee2"
+}

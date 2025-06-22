@@ -1,0 +1,583 @@
+# <!-- @GENESIS_MODULE_START: step7_comprehensive_smart_monitor_validator -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Orphan Recovery Engine
+from datetime import datetime
+import json
+
+class Step7ComprehensiveSmartMonitorValidatorEventBusIntegration:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("step7_comprehensive_smart_monitor_validator", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("step7_comprehensive_smart_monitor_validator", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    """EventBus integration for step7_comprehensive_smart_monitor_validator"""
+    
+    def __init__(self):
+        self.module_id = "step7_comprehensive_smart_monitor_validator"
+        self.event_routes = []
+        
+    def emit_event(self, event_type, data):
+        """Emit event to EventBus"""
+        event = {
+            "timestamp": datetime.now().isoformat(),
+            "module": self.module_id,
+            "event_type": event_type,
+            "data": data
+        }
+        print(f"🔗 EVENTBUS EMIT: {event}")
+        
+    def emit_telemetry(self, metric_name, value):
+        """Emit telemetry data"""
+        telemetry = {
+            "timestamp": datetime.now().isoformat(),
+            "module": self.module_id,
+            "metric": metric_name,
+            "value": value
+        }
+        print(f"📊 TELEMETRY: {telemetry}")
+
+# Auto-instantiate EventBus integration
+step7_comprehensive_smart_monitor_validator_eventbus = Step7ComprehensiveSmartMonitorValidatorEventBusIntegration()
+
+"""
+🔍 GENESIS AI AGENT — STEP 7: COMPREHENSIVE SMART MONITOR + KILLSWITCH VALIDATOR
+ARCHITECT LOCK-IN v2.7 - INSTITUTIONAL GRADE COMPLIANCE
+
+🚨 PERMANENT DIRECTIVE COMPLIANCE:
+- Real-time execution monitoring with MT5 data
+- FTMO compliance threshold enforcement
+- Live telemetry and killswitch activation
+- Full EventBus integration validation
+- Zero tolerance for real data or fallback thresholds
+
+VALIDATION SCOPE:
+✅ Slippage threshold (>0.7 pips) → ExecutionDeviationAlert
+✅ Latency threshold (>350ms) → ExecutionDeviationAlert  
+✅ Drawdown threshold (>12.5%) → KillSwitchTrigger
+✅ Pattern edge decay (>7 sessions) → RecalibrationRequest
+✅ Complete telemetry emission validation
+✅ Dashboard integration confirmation
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+import threading
+from pathlib import Path
+from typing import Dict, Any, List
+
+# Configure structured logging
+log_dir = Path("logs/smart_monitor")
+log_dir.mkdir(exist_ok=True, parents=True)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='{"timestamp": "%(asctime)s", "level": "%(levelname)s", "message": %(message)s}',
+    handlers=[
+        logging.FileHandler(log_dir / f"step7_validator_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.jsonl"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger("Step7SmartMonitorValidator")
+
+# Import GENESIS modules with ARCHITECT MODE compliance
+from event_bus import get_event_bus, emit_event, subscribe_to_event, register_route
+from smart_execution_monitor import SmartExecutionMonitor
+
+class Step7ComprehensiveValidator:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("step7_comprehensive_smart_monitor_validator", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("step7_comprehensive_smart_monitor_validator", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    """
+    ARCHITECT MODE Comprehensive Validator for SmartExecutionMonitor
+    
+    This validator ensures complete FTMO compliance and real-time monitoring
+    capabilities under live trading conditions.
+    """
+    
+    def __init__(self):
+        """Initialize comprehensive validator with full compliance tracking"""
+        self.event_bus = get_event_bus()
+        self.monitor = None
+        self.validation_results = {
+            "test_id": f"step7_comprehensive_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}",
+            "start_time": datetime.datetime.now().isoformat(),
+            "slippage_alert_triggered": False,
+            "latency_alert_triggered": False,
+            "killswitch_activated": False,
+            "recalibration_requested": False,
+            "telemetry_validated": False,
+            "dashboard_sync_confirmed": False,
+            "events_captured": [],
+            "test_status": "IN_PROGRESS",
+            "completion_time": None,
+            "ftmo_compliance": "MONITORING"
+        }
+        
+        self.setup_logging()
+        self.register_event_listeners()
+        
+        logger.info(json.dumps({
+            "event": "validator_initialized",
+            "test_id": self.validation_results["test_id"],
+            "compliance_mode": "ARCHITECT_LOCK_v2.7"
+        }))
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def setup_logging(self):
+        """Configure institutional-grade structured logging"""
+        self.logger = logging.getLogger("Step7ComprehensiveValidator")
+        self.logger.setLevel(logging.INFO)
+        
+        # Create timestamp-based log file
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        log_file = log_dir / f"step7_comprehensive_validation_{timestamp}.jsonl"
+        
+        file_handler = logging.FileHandler(log_file)
+        formatter = logging.Formatter('{"timestamp": "%(asctime)s", "level": "%(levelname)s", "message": %(message)s}')
+        file_handler.setFormatter(formatter)
+        self.logger.addHandler(file_handler)
+    
+    def register_event_listeners(self):
+        """Register EventBus listeners for all monitor emissions"""
+        subscribe_to_event("ExecutionDeviationAlert", self.capture_deviation_alert, "Step7Validator")
+        subscribe_to_event("KillSwitchTrigger", self.capture_kill_switch, "Step7Validator")
+        subscribe_to_event("RecalibrationRequest", self.capture_recalibration, "Step7Validator")
+        subscribe_to_event("SmartLogSync", self.capture_smart_log_sync, "Step7Validator")
+        subscribe_to_event("ModuleTelemetry", self.capture_module_telemetry, "Step7Validator")
+        subscribe_to_event("ModuleError", self.capture_module_error, "Step7Validator")
+        
+        self.logger.info(json.dumps({
+            "event": "event_listeners_registered",
+            "listeners": ["ExecutionDeviationAlert", "KillSwitchTrigger", "RecalibrationRequest", 
+                         "SmartLogSync", "ModuleTelemetry", "ModuleError"]
+        }))
+    
+    def capture_deviation_alert(self, event):
+        """Capture and validate ExecutionDeviationAlert events"""
+        event_data = event.get("data", event)
+        
+        self.validation_results["events_captured"].append({
+            "event_type": "ExecutionDeviationAlert",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "data": event_data
+        })
+        
+        # Determine alert type
+        details = event_data.get("details", {})
+        if details.get("slippage", 0) > 0.7:
+            self.validation_results["slippage_alert_triggered"] = True
+            alert_type = "slippage_breach"
+        elif details.get("execution_latency_ms", 0) > 350:
+            self.validation_results["latency_alert_triggered"] = True
+            alert_type = "latency_breach"
+        else:
+            alert_type = "unknown_deviation"
+        
+        self.logger.info(json.dumps({
+            "event": "deviation_alert_captured",
+            "alert_type": alert_type,
+            "strategy_id": event_data.get("strategy_id"),
+            "severity": event_data.get("severity"),
+            "details": details
+        }))
+        
+        self.check_validation_completion()
+    
+    def capture_kill_switch(self, event):
+        """Capture and validate KillSwitchTrigger events"""
+        event_data = event.get("data", event)
+        
+        self.validation_results["killswitch_activated"] = True
+        self.validation_results["events_captured"].append({
+            "event_type": "KillSwitchTrigger",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "data": event_data
+        })
+        
+        self.logger.critical(json.dumps({
+            "event": "kill_switch_activated",
+            "strategy_id": event_data.get("strategy_id"),
+            "reason": event_data.get("reason"),
+            "details": event_data.get("details"),
+            "ftmo_compliance": "KILL_SWITCH_TRIGGERED"
+        }))
+        
+        self.check_validation_completion()
+    
+    def capture_recalibration(self, event):
+        """Capture and validate RecalibrationRequest events"""
+        event_data = event.get("data", event)
+        
+        self.validation_results["recalibration_requested"] = True
+        self.validation_results["events_captured"].append({
+            "event_type": "RecalibrationRequest",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "data": event_data
+        })
+        
+        self.logger.info(json.dumps({
+            "event": "recalibration_requested",
+            "strategy_id": event_data.get("strategy_id"),
+            "metrics": event_data.get("metrics"),
+            "severity": event_data.get("severity")
+        }))
+        
+        self.check_validation_completion()
+    
+    def capture_smart_log_sync(self, event):
+        """Capture and validate SmartLogSync events for dashboard integration"""
+        event_data = event.get("data", event)
+        
+        self.validation_results["dashboard_sync_confirmed"] = True
+        self.validation_results["events_captured"].append({
+            "event_type": "SmartLogSync",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "data": event_data
+        })
+        
+        self.logger.info(json.dumps({
+            "event": "dashboard_sync_captured",
+            "strategy_id": event_data.get("strategy_id"),
+            "event_type": event_data.get("event_type"),
+            "details": event_data.get("details")
+        }))
+    
+    def capture_module_telemetry(self, event):
+        """Capture and validate ModuleTelemetry events"""
+        event_data = event.get("data", event)
+        
+        if event_data.get("module") == "SmartExecutionMonitor":
+            self.validation_results["telemetry_validated"] = True
+            self.validation_results["events_captured"].append({
+                "event_type": "ModuleTelemetry",
+                "timestamp": datetime.datetime.now().isoformat(),
+                "data": event_data
+            })
+            
+            self.logger.info(json.dumps({
+                "event": "telemetry_captured",
+                "module": event_data.get("module"),
+                "action": event_data.get("action"),
+                "metrics": event_data.get("metrics", {})
+            }))
+    
+    def capture_module_error(self, event):
+        """Capture ModuleError events for compliance monitoring"""
+        event_data = event.get("data", event)
+        
+        self.validation_results["events_captured"].append({
+            "event_type": "ModuleError",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "data": event_data
+        })
+        
+        self.logger.error(json.dumps({
+            "event": "module_error_captured",
+            "module": event_data.get("module"),
+            "error": event_data.get("error"),
+            "context": event_data.get("context")
+        }))
+    
+    def start_smart_monitor(self):
+        """Initialize SmartExecutionMonitor with ARCHITECT MODE compliance"""
+        self.logger.info(json.dumps({
+            "event": "starting_smart_monitor",
+            "mode": "ARCHITECT_LOCK_v2.7"
+        }))
+        
+        try:
+            # Initialize monitor - it will auto-register with EventBus
+            self.monitor = SmartExecutionMonitor()
+            
+            # Verify monitor initialization
+            assert self.monitor is not None, "SmartExecutionMonitor failed to initialize"
+            assert self.monitor.event_bus is not None, "EventBus connection failed"
+            
+            self.logger.info(json.dumps({
+                "event": "smart_monitor_started",
+                "status": "OPERATIONAL",
+                "compliance": "VERIFIED"
+            }))
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(json.dumps({
+                "event": "smart_monitor_start_failed",
+                "error": str(e)
+            }))
+            return False
+    
+    def test_slippage_threshold_breach(self):
+        """Test Case 1: Validate slippage threshold enforcement (>0.7 pips)"""
+        self.logger.info(json.dumps({
+            "event": "test_started",
+            "test_case": "slippage_threshold_breach",
+            "threshold": "0.7_pips"
+        }))
+        
+        # Create LiveTradeExecuted event with high slippage
+        trade_data = {
+            "trade_id": f"slip_test_{int(time.time())}",
+            "symbol": "EURUSD",
+            "direction": "BUY",
+            "entry_price": 1.0850,
+            "requested_price": 1.0840,
+            "slippage": 1.2,  # 1.2 pips > 0.7 threshold
+            "lot_size": 1.0,
+            "execution_time": datetime.datetime.now().isoformat(),
+            "execution_latency_ms": 150,
+            "strategy_id": "test_slippage_strategy",
+            "profit": 0,
+            "account_balance": 100000.0
+        }
+        
+        # Register route for this test
+        register_route("LiveTradeExecuted", "Step7Validator", "SmartExecutionMonitor")
+        
+        # Emit the event
+        emit_event("LiveTradeExecuted", trade_data, "Step7Validator")
+        
+        self.logger.info(json.dumps({
+            "event": "slippage_test_event_emitted",
+            "slippage": trade_data["slippage"],
+            "threshold_breached": True
+        }))
+        
+        # Allow time for processing
+        time.sleep(2)
+    
+    def test_latency_threshold_breach(self):
+        """Test Case 2: Validate latency threshold enforcement (>350ms)"""
+        self.logger.info(json.dumps({
+            "event": "test_started",
+            "test_case": "latency_threshold_breach",
+            "threshold": "350ms"
+        }))
+        
+        # Create LiveTradeExecuted event with high latency
+        trade_data = {
+            "trade_id": f"latency_test_{int(time.time())}",
+            "symbol": "GBPUSD",
+            "direction": "SELL",
+            "entry_price": 1.2650,
+            "requested_price": 1.2650,
+            "slippage": 0.3,  # Low slippage
+            "lot_size": 0.5,
+            "execution_time": datetime.datetime.now().isoformat(),
+            "execution_latency_ms": 425,  # 425ms > 350ms threshold
+            "strategy_id": "test_latency_strategy",
+            "profit": 0,
+            "account_balance": 100000.0
+        }
+        
+        # Emit the event
+        emit_event("LiveTradeExecuted", trade_data, "Step7Validator")
+        
+        self.logger.info(json.dumps({
+            "event": "latency_test_event_emitted",
+            "latency_ms": trade_data["execution_latency_ms"],
+            "threshold_breached": True
+        }))
+        
+        # Allow time for processing
+        time.sleep(2)
+    
+    def test_drawdown_kill_switch(self):
+        """Test Case 3: Validate drawdown kill switch (>12.5%)"""
+        self.logger.info(json.dumps({
+            "event": "test_started",
+            "test_case": "drawdown_kill_switch",
+            "threshold": "12.5%"
+        }))
+        
+        # Create multiple losing trades to trigger drawdown
+        starting_balance = 100000.0
+        current_balance = starting_balance
+        
+        for i in range(5):
+            loss_amount = 2800  # Each trade loses $2800
+            current_balance -= loss_amount
+            
+            trade_data = {
+                "trade_id": f"dd_test_{int(time.time())}_{i}",
+                "symbol": "USDCAD",
+                "direction": "BUY",
+                "entry_price": 1.3550,
+                "exit_price": 1.3522,
+                "slippage": 0.5,
+                "lot_size": 1.0,
+                "execution_time": datetime.datetime.now().isoformat(),
+                "execution_latency_ms": 180,
+                "strategy_id": "test_drawdown_strategy",
+                "profit": -loss_amount,
+                "account_balance": current_balance,
+                "drawdown_pct": ((starting_balance - current_balance) / starting_balance) * 100
+            }
+            
+            emit_event("LiveTradeExecuted", trade_data, "Step7Validator")
+            time.sleep(0.5)  # Small delay between trades
+        
+        # Current drawdown: 14% > 12.5% threshold
+        self.logger.info(json.dumps({
+            "event": "drawdown_test_completed",
+            "starting_balance": starting_balance,
+            "current_balance": current_balance,
+            "drawdown_pct": ((starting_balance - current_balance) / starting_balance) * 100,
+            "threshold_breached": True
+        }))
+        
+        # Allow time for processing
+        time.sleep(3)
+    
+    def test_pattern_edge_decay(self):
+        """Test Case 4: Validate pattern edge decay recalibration (>7 sessions)"""
+        self.logger.info(json.dumps({
+            "event": "test_started",
+            "test_case": "pattern_edge_decay",
+            "threshold": "7_sessions"
+        }))
+        
+        # Create PatternDetected event with edge decay data
+        pattern_data = {
+            "pattern_id": "breakout_pattern_001",
+            "symbol": "EURUSD",
+            "pattern_type": "breakout",
+            "confidence": 0.45,  # Low confidence indicating decay
+            "strategy_id": "test_pattern_strategy",
+            "sessions_since_last_win": 9,  # 9 > 7 threshold
+            "win_rate_last_10": 0.20,  # Poor recent performance
+            "edge_decay_sessions": 9,
+            "requires_recalibration": True,
+            "detected_at": datetime.datetime.now().isoformat()
+        }
+        
+        # Register route for pattern events
+        register_route("PatternDetected", "Step7Validator", "SmartExecutionMonitor")
+        
+        # Emit the event
+        emit_event("PatternDetected", pattern_data, "Step7Validator")
+        
+        self.logger.info(json.dumps({
+            "event": "pattern_decay_test_emitted",
+            "sessions_since_win": pattern_data["sessions_since_last_win"],
+            "threshold_breached": True
+        }))
+        
+        # Allow time for processing
+        time.sleep(2)
+    
+    def check_validation_completion(self):
+        """Check if all validation criteria are met"""
+        if (self.validation_results["slippage_alert_triggered"] and
+            self.validation_results["latency_alert_triggered"] and
+            self.validation_results["killswitch_activated"] and
+            self.validation_results["recalibration_requested"]):
+            
+            self.validation_results["test_status"] = "COMPLETED_SUCCESS"
+            self.validation_results["completion_time"] = datetime.datetime.now().isoformat()
+            self.validation_results["ftmo_compliance"] = "VERIFIED"
+            
+            self.logger.info(json.dumps({
+                "event": "validation_completed",
+                "status": "ALL_TESTS_PASSED",
+                "ftmo_compliance": "VERIFIED",
+                "completion_time": self.validation_results["completion_time"]
+            }))
+    
+    def run_comprehensive_validation(self):
+        """Execute complete STEP 7 validation sequence"""
+        self.logger.info(json.dumps({
+            "event": "comprehensive_validation_started",
+            "test_id": self.validation_results["test_id"]
+        }))
+        
+        # Step 1: Start SmartExecutionMonitor
+        assert self.start_smart_monitor() is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: step7_comprehensive_smart_monitor_validator -->

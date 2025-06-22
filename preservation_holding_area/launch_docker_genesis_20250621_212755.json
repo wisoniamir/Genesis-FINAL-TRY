@@ -1,0 +1,9 @@
+{
+  "module_id": "launch_docker_genesis",
+  "original_path": "modules\\restored\\launch_docker_genesis.py",
+  "preserved_path": "preservation_holding_area\\launch_docker_genesis_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 27183,
+  "checksum": "c1a11d9d26f769aae22ae224538ad8d91298ffa9ec17e76ed7fb02c34a910a3e"
+}

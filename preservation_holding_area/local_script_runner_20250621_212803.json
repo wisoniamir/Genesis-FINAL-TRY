@@ -1,0 +1,9 @@
+{
+  "module_id": "local_script_runner",
+  "original_path": "modules\\restored\\local_script_runner.py",
+  "preserved_path": "preservation_holding_area\\local_script_runner_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18419,
+  "checksum": "3cb286921c41b521fcc72f0957d5c11e487e1831e6059fa2a334913bfdb8bffb"
+}

@@ -1,0 +1,88 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.669114+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        177
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        1,
+        51,
+        55,
+        66,
+        86
+      ],
+      "violation_count": 49
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        84,
+        159,
+        205,
+        234,
+        295
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        93,
+        198,
+        230,
+        289,
+        326
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        238,
+        258
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        209,
+        215,
+        221,
+        227,
+        248
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_phase13.py",
+      "line_numbers": [
+        76,
+        344
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "auth_test",
+  "original_path": "modules\\restored\\auth_test.py",
+  "preserved_path": "preservation_holding_area\\auth_test_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 154655,
+  "checksum": "2f26cab2c8badce4bbd3e2a750ab7ad959717a62916a064e4e4e5dc029e2ea2d"
+}

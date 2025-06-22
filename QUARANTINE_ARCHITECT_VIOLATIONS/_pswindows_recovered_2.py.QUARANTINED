@@ -1,0 +1,76 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.538323+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+      "line_numbers": [
+        542,
+        572
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+      "line_numbers": [
+        801
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+      "line_numbers": [
+        411,
+        888,
+        890
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+      "line_numbers": [
+        37,
+        520,
+        672,
+        690,
+        753
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+      "line_numbers": [
+        334,
+        488,
+        902,
+        949,
+        1033
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_pswindows_recovered_2.py",
+      "line_numbers": [
+        52,
+        236,
+        437,
+        535,
+        624
+      ],
+      "violation_count": 13
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

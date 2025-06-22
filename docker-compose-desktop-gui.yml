@@ -1,0 +1,93 @@
+# -*- @GENESIS_MODULE_START: docker_compose_desktop_gui -*-
+# 🐳 GENESIS DESKTOP GUI - Docker Compose Configuration
+# ARCHITECT MODE v7.0.0 - CONTAINERIZED GUI ENFORCER
+
+version: '3.8'
+
+services:
+  genesis-desktop-gui:
+    build:
+      context: .
+      dockerfile: Dockerfile.desktop-gui
+    container_name: genesis_desktop_app
+    
+    # X11 Display forwarding for native GUI
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=/tmp/.docker.xauth
+      - QT_QUICK_BACKEND=software
+      
+    # Mount X11 socket and system directories
+    volumes:
+      # X11 forwarding
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+      
+      # GENESIS system mounts (as specified)
+      - ./genesis_core:/genesis/genesis_core:ro
+      - ./interface/dashboard:/genesis/interface/dashboard:ro
+      - ./config:/genesis/config:rw
+      - ./telemetry:/genesis/telemetry:rw
+      - ./logs:/genesis/logs:rw
+      - ./mt5_connector:/genesis/mt5_connector:rw
+      - ./modules:/genesis/modules:ro
+      - ./data:/genesis/data:rw
+      
+      # Core system files
+      - ./build_status.json:/genesis/build_status.json:rw
+      - ./build_tracker.md:/genesis/build_tracker.md:rw
+      - ./system_tree.json:/genesis/system_tree.json:rw
+      - ./module_registry.json:/genesis/module_registry.json:rw
+      - ./event_bus.json:/genesis/event_bus.json:rw
+      - ./dashboard.json:/genesis/dashboard.json:rw
+      - ./compliance.json:/genesis/compliance.json:rw
+      
+    # Network configuration
+    network_mode: host
+    
+    # Security and privileges
+    privileged: false
+    user: "${UID:-1000}:${GID:-1000}"
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import PyQt5; print('GUI OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+# Networks
+networks:
+  default:
+    name: genesis_network
+
+# Volumes for persistent data
+volumes:
+  genesis_logs:
+    driver: local
+  genesis_config:
+    driver: local
+  genesis_telemetry:
+    driver: local

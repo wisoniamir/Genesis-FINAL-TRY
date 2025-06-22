@@ -1,0 +1,87 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.231826+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        92,
+        97,
+        98,
+        99,
+        105
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        1,
+        43,
+        45,
+        59,
+        64
+      ],
+      "violation_count": 43
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        32,
+        75,
+        110,
+        137,
+        175
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        81,
+        127,
+        165,
+        193,
+        221
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        400
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        51,
+        416
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_macro_sync_recovered_1.py",
+      "line_numbers": [
+        272
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

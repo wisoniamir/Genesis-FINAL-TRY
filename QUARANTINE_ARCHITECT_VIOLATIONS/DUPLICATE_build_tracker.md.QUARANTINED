@@ -1,0 +1,70 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+  "quarantine_timestamp": "2025-06-21T04:33:06.481823+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+      "line_numbers": [
+        45,
+        586
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+      "line_numbers": [
+        43,
+        130,
+        182,
+        225,
+        335
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+      "line_numbers": [
+        466
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+      "line_numbers": [
+        58,
+        457,
+        484,
+        538
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+      "line_numbers": [
+        320,
+        447
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.md",
+      "line_numbers": [
+        586
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

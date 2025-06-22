@@ -1,0 +1,35 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\mock_violation_fixer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.499152+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\mock_violation_fixer.py",
+      "line_numbers": [
+        26
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\mock_violation_fixer.py",
+      "line_numbers": [
+        15
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\mock_violation_fixer.py",
+      "line_numbers": [
+        53,
+        62
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "pkg_resources",
+  "original_path": "modules\\restored\\pkg_resources.py",
+  "preserved_path": "preservation_holding_area\\pkg_resources_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 37011,
+  "checksum": "353083e96b2952ce604a43f4a20360fe566295c0a998cd59518bf78f4fb3b31d"
+}

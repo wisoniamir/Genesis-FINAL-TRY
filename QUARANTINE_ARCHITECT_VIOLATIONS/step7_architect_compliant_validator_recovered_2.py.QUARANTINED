@@ -1,0 +1,115 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.243811+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        297,
+        298,
+        306,
+        318,
+        322
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        56,
+        60,
+        164,
+        171,
+        184
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        94,
+        143,
+        211,
+        242,
+        272
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        107,
+        156,
+        234,
+        264,
+        308
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        80,
+        274,
+        282
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        103,
+        227,
+        230,
+        337,
+        353
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        69,
+        369
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        128,
+        129,
+        130
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_architect_compliant_validator_recovered_2.py",
+      "line_numbers": [
+        133,
+        134,
+        135
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

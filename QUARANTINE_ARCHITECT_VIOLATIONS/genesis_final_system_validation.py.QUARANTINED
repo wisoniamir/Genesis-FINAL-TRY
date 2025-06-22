@@ -1,0 +1,84 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.462483+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        40
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        156,
+        157
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        35,
+        71,
+        110,
+        170,
+        194
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        93,
+        132,
+        188,
+        251,
+        364
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        129,
+        185,
+        349,
+        383,
+        387
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        42
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_system_validation.py",
+      "line_numbers": [
+        44,
+        409
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "connectionpool",
+  "original_path": "modules\\restored\\connectionpool.py",
+  "preserved_path": "preservation_holding_area\\connectionpool_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 67254,
+  "checksum": "473f70b3803206436ac11473b0051bff38116dd6bf27e7315467da8b7ec82434"
+}

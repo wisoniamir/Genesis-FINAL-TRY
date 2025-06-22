@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🖥️ GENESIS X SERVER TEST
+Tests if PyQt5 GUI can connect to X server
+"""
+
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
+from PyQt5.QtCore import Qt
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: test_x_server -->
+
+
+# <!-- @GENESIS_MODULE_START: test_x_server -->
+
+class TestWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("GENESIS X Server Test")
+        self.setGeometry(100, 100, 400, 200)
+        
+        # Create central widget
+        central = QWidget()
+        self.setCentralWidget(central)
+        
+        # Create layout
+        layout = QVBoxLayout(central)
+          # Add labels
+        title_label = QLabel("🎯 GENESIS X Server Test")
+        title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        title_label.setStyleSheet("font-size: 18pt; font-weight: bold;")
+        
+        status_label = QLabel("✅ X Server Connection SUCCESSFUL")
+        status_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        status_label.setStyleSheet("font-size: 14pt; color: green;")
+        
+        info_label = QLabel("If you can see this window, your X Server is configured correctly.")
+        info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        info_label.setStyleSheet("font-size: 12pt;")
+        
+        # Add labels to layout
+        layout.addWidget(title_label)
+        layout.addWidget(status_label)
+        layout.addWidget(info_label)
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = TestWindow()
+    window.show()
+    sys.exit(app.exec_())
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

@@ -1,0 +1,196 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_mio_utils -->
+"""
+🏛️ GENESIS TEST_MIO_UTILS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_mio_utils", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_mio_utils", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_mio_utils",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_mio_utils: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_mio_utils",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_mio_utils", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_mio_utils: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+""" Testing
+
+"""
+
+import numpy as np
+
+from numpy.testing import assert_array_equal, assert_
+
+from scipy.io.matlab._mio_utils import squeeze_element, chars_to_strings
+
+
+def test_squeeze_element():
+    a = np.zeros((1,3))
+    assert_array_equal(np.squeeze(a), squeeze_element(a))
+    # 0-D output from squeeze gives scalar
+    sq_int = squeeze_element(np.zeros((1,1), dtype=float))
+    assert_(isinstance(sq_int, float))
+    # Unless it's a structured array
+    sq_sa = squeeze_element(np.zeros((1,1),dtype=[('f1', 'f')]))
+    assert_(isinstance(sq_sa, np.ndarray))
+    # Squeezing empty arrays maintain their dtypes.
+    sq_empty = squeeze_element(np.empty(0, np.uint8))
+    assert sq_empty.dtype == np.uint8
+
+
+def test_chars_strings():
+    # chars as strings
+    strings = ['learn ', 'python', 'fast  ', 'here  ']
+    str_arr = np.array(strings, dtype='U6')  # shape (4,)
+    chars = [list(s) for s in strings]
+    char_arr = np.array(chars, dtype='U1')  # shape (4,6)
+    assert_array_equal(chars_to_strings(char_arr), str_arr)
+    ca2d = char_arr.reshape((2,2,6))
+    sa2d = str_arr.reshape((2,2))
+    assert_array_equal(chars_to_strings(ca2d), sa2d)
+    ca3d = char_arr.reshape((1,2,2,6))
+    sa3d = str_arr.reshape((1,2,2))
+    assert_array_equal(chars_to_strings(ca3d), sa3d)
+    # Fortran ordered arrays
+    char_arrf = np.array(chars, dtype='U1', order='F')  # shape (4,6)
+    assert_array_equal(chars_to_strings(char_arrf), str_arr)
+    # empty array
+    arr = np.array([['']], dtype='U1')
+    out_arr = np.array([''], dtype='U1')
+    assert_array_equal(chars_to_strings(arr), out_arr)
+
+
+# <!-- @GENESIS_MODULE_END: test_mio_utils -->

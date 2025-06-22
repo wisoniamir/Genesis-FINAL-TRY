@@ -1,0 +1,88 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.849551+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        514,
+        755,
+        809,
+        875,
+        935
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        480,
+        862
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        799
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        795,
+        833,
+        972,
+        1055,
+        1056
+      ],
+      "violation_count": 31
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        408,
+        721
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        105,
+        118,
+        155,
+        188,
+        270
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_search.py",
+      "line_numbers": [
+        157,
+        191,
+        203,
+        327,
+        336
+      ],
+      "violation_count": 17
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

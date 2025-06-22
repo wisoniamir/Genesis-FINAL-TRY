@@ -1,0 +1,9 @@
+{
+  "module_id": "fake_renderer",
+  "original_path": "modules\\restored\\fake_renderer.py",
+  "preserved_path": "preservation_holding_area\\fake_renderer_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18961,
+  "checksum": "036ac0f442b1cc971c667f14cf96fba2fd2ad041f996f575a371b8a1fad561c9"
+}

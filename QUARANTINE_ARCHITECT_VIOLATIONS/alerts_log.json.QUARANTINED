@@ -1,0 +1,29 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\telemetry\\alerts_log.json",
+  "quarantine_timestamp": "2025-06-21T04:33:47.924042+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\telemetry\\alerts_log.json",
+      "line_numbers": [
+        40
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\telemetry\\alerts_log.json",
+      "line_numbers": [
+        5,
+        9,
+        17,
+        25,
+        40
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

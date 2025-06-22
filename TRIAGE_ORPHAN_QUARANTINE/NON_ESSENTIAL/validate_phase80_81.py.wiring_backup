@@ -1,0 +1,167 @@
+# <!-- @GENESIS_MODULE_START: validate_phase80_81 -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+PHASE 80-81 Final Validation Script
+Validates complete integration of Genesis GUI Launcher and MT5 Connection Bridge
+"""
+
+import json
+import os
+import sys
+from pathlib import Path
+
+def validate_system_files():
+    """Validate all required system files exist and are properly formatted"""
+    required_files = [
+        'system_tree.json',
+        'build_status.json', 
+        'module_registry.json',
+        'genesis_gui_launcher.py',
+        'mt5_connection_bridge.py',
+        'genesis_gui_launcher_documentation.md',
+        'mt5_connection_bridge_documentation.md',
+        'test_phase80_83_fixed.py',
+        'test_phase81.py',
+        'phase_80_81_completion_summary.md'
+    ]
+    
+    print("🔍 Validating System Files...")
+    for file in required_files:
+        if os.path.exists(file):
+            print(f"  ✅ {file}")
+        else:
+            print(f"  ❌ {file} - MISSING")
+            return False
+    return True
+
+def validate_system_tree():
+    """Validate system_tree.json contains both modules"""
+    print("\n🏗️ Validating System Tree...")
+    
+    try:
+        with open('system_tree.json', 'r') as f:
+            tree = json.load(f)
+        
+        # Check metadata
+        metadata = tree.get('metadata', {})
+        print(f"  📊 Total Nodes: {metadata.get('total_nodes', 'N/A')}")
+        print(f"  🔗 Total Connections: {metadata.get('total_connections', 'N/A')}")
+        print(f"  ✅ Phase 80 Complete: {metadata.get('phase_80_genesis_gui_launcher_complete', False)}")
+        print(f"  ✅ Phase 81 Complete: {metadata.get('phase_81_mt5_connection_bridge_complete', False)}")
+        
+        # Find modules in nodes
+        nodes = tree.get('nodes', [])
+        gui_found = False
+        mt5_found = False
+        
+        for node in nodes:
+            if node.get('id') == 'GenesisGUILauncher':
+                gui_found = True
+                print(f"  ✅ GenesisGUILauncher found - Status: {node.get('status', 'unknown')}")
+            elif node.get('id') == 'MT5ConnectionBridge':
+                mt5_found = True
+                print(f"  ✅ MT5ConnectionBridge found - Status: {node.get('status', 'unknown')}")
+        
+        if not gui_found:
+            print("  ❌ GenesisGUILauncher not found in system tree")
+        if not mt5_found:
+            print("  ❌ MT5ConnectionBridge not found in system tree")
+            
+        return gui_found and mt5_found
+        
+    except Exception as e:
+        print(f"  ❌ Error reading system_tree.json: {e}")
+        return False
+
+def validate_module_registry():
+    """Validate module_registry.json contains both modules"""
+    print("\n📋 Validating Module Registry...")
+    
+    try:
+        with open('module_registry.json', 'r') as f:
+            registry = json.load(f)
+        
+        modules = registry.get('modules', [])
+        gui_found = False
+        mt5_found = False
+        
+        for module in modules:
+            if module.get('name') == 'GenesisGUILauncher':
+                gui_found = True
+                print(f"  ✅ GenesisGUILauncher - Phase: {module.get('phase', 'N/A')}, Status: {module.get('status', 'unknown')}")
+                print(f"     Test Coverage: {module.get('test_coverage', 'N/A')}%")
+            elif module.get('name') == 'MT5ConnectionBridge':
+                mt5_found = True
+                print(f"  ✅ MT5ConnectionBridge - Phase: {module.get('phase', 'N/A')}, Status: {module.get('status', 'unknown')}")
+                print(f"     Test Coverage: {module.get('test_coverage', 'N/A')}%")
+        
+        if not gui_found:
+            print("  ❌ GenesisGUILauncher not found in module registry")
+        if not mt5_found:
+            print("  ❌ MT5ConnectionBridge not found in module registry")
+            
+        return gui_found and mt5_found
+        
+    except Exception as e:
+        print(f"  ❌ Error reading module_registry.json: {e}")
+        return False
+
+def validate_build_status():
+    """Validate build_status.json shows completion"""
+    print("\n🚀 Validating Build Status...")
+    
+    try:
+        with open('build_status.json', 'r') as f:
+            status = json.load(f)
+        
+        # Check architect mode
+        arch_status = status.get('architect_mode_status', {})
+        print(f"  🏛️ Architect Mode: {arch_status.get('architect_mode_v500_activation', False)}")
+        
+        # Check module registry status
+        mod_status = status.get('module_registry_status', {})
+        print(f"  📊 Total Modules: {mod_status.get('total_modules_registered', 'N/A')}")
+        print(f"  ✅ Phase 80 Complete: {mod_status.get('phase_80_genesis_gui_launcher_complete', False)}")
+        print(f"  ✅ Phase 81 Complete: {mod_status.get('phase_81_mt5_connection_bridge_complete', False)}")
+        
+        # Check system tree status
+        tree_status = status.get('system_tree_status', {})
+        print(f"  🏗️ System Nodes: {tree_status.get('total_nodes', 'N/A')}")
+        print(f"  🔗 Connections: {tree_status.get('total_connections', 'N/A')}")
+        
+        return True
+        
+    except Exception as e:
+        print(f"  ❌ Error reading build_status.json: {e}")
+        return False
+
+def main():
+    """Main validation function"""
+    print("🎯 PHASE 80-81 FINAL VALIDATION")
+    print("=" * 50)
+    
+    results = []
+    results.append(validate_system_files())
+    results.append(validate_system_tree())
+    results.append(validate_module_registry())
+    results.append(validate_build_status())
+    
+    print("\n📊 VALIDATION SUMMARY")
+    print("=" * 50)
+    
+    if all(results):
+        print("✅ ALL VALIDATIONS PASSED")
+        print("🎉 PHASE 80-81 SUCCESSFULLY COMPLETED")
+        print("🚀 System ready for production deployment")
+        return 0
+    else:
+        print("❌ VALIDATION FAILURES DETECTED")
+        print("🔧 Please review and fix issues above")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+
+# <!-- @GENESIS_MODULE_END: validate_phase80_81 -->

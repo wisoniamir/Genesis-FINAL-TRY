@@ -1,0 +1,50 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_49_performance_loop_hardening_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.266726+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_49_performance_loop_hardening_recovered_2.py",
+      "line_numbers": [
+        84,
+        101,
+        162,
+        168,
+        202
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_49_performance_loop_hardening_recovered_2.py",
+      "line_numbers": [
+        95,
+        106,
+        269
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_49_performance_loop_hardening_recovered_2.py",
+      "line_numbers": [
+        131,
+        182
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_49_performance_loop_hardening_recovered_2.py",
+      "line_numbers": [
+        384
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

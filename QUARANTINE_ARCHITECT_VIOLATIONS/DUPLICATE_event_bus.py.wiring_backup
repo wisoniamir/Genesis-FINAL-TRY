@@ -1,0 +1,28 @@
+# <!-- @GENESIS_MODULE_START: event_bus -->
+
+from datetime import datetime
+"""
+GENESIS EventBus - HARDENED WRAPPER
+=================================
+Compatibility wrapper for legacy imports
+ARCHITECT MODE: All calls route to HardenedEventBus
+"""
+
+# Import all functions from hardened EventBus
+from hardened_event_bus import (
+    get_event_bus,
+    emit_event,
+    subscribe_to_event,
+    register_route
+)
+
+# For legacy compatibility, map subscribe_to_event to subscribe
+subscribe = subscribe_to_event
+
+# Dummy unsubscribe for legacy compatibility
+def unsubscribe(event_type, callback):
+    """Legacy unsubscribe function - functionality moved to hardened EventBus"""
+    raise NotImplementedError("Real implementation required - no stubs allowed in production")
+
+
+# <!-- @GENESIS_MODULE_END: event_bus -->

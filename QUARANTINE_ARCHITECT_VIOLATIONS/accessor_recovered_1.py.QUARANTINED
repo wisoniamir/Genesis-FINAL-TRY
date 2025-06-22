@@ -1,0 +1,78 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.456346+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+      "line_numbers": [
+        394,
+        460,
+        496,
+        543,
+        748
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+      "line_numbers": [
+        186,
+        620,
+        2026,
+        2880
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+      "line_numbers": [
+        3515
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+      "line_numbers": [
+        456,
+        650,
+        3457
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+      "line_numbers": [
+        273,
+        307,
+        357,
+        1560,
+        1688
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\accessor_recovered_1.py",
+      "line_numbers": [
+        316,
+        329,
+        345,
+        386,
+        388
+      ],
+      "violation_count": 21
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

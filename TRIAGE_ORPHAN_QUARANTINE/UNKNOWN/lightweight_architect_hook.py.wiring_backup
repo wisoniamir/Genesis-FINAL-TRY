@@ -1,0 +1,27 @@
+# <!-- @GENESIS_MODULE_START: lightweight_architect_hook -->
+
+"""
+🔒 PURPOSE:
+Inject lightweight, prompt-triggered architect validation without performance impact.
+This enforces modular hygiene, fingerprint matching, and telemetry presence without background load.
+
+🎯 Inject into all new module files created by Copilot to ensure compliance from creation.
+"""
+
+# Performance-optimized validation hook (no Guardian dependencies)
+try:
+    from lightweight_validation_hook import quick_integrity_check, architect_compliance_check
+    
+    # Quick validation - minimal overhead
+    if not quick_integrity_check():
+        print("[⚠️] System integrity issues detected")
+    
+    # Optional: Full compliance check (only if needed)
+    # architect_compliance_check()
+    
+except ImportError:
+    print("[⚠️] Validation hook not available - proceeding without validation")
+except Exception as e:
+    print(f"[⚠️] Validation error: {e} - proceeding anyway")
+
+# <!-- @GENESIS_MODULE_END: lightweight_architect_hook -->

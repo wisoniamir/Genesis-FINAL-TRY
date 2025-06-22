@@ -1,0 +1,9 @@
+{
+  "module_id": "win32",
+  "original_path": "modules\\restored\\win32.py",
+  "preserved_path": "preservation_holding_area\\win32_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17899,
+  "checksum": "f70c73f231109b25c0fa903f852c740c3aaa59cecafc304d3a38cc4f609286b7"
+}

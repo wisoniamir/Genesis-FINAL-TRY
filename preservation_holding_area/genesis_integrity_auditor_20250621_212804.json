@@ -1,0 +1,9 @@
+{
+  "module_id": "genesis_integrity_auditor",
+  "original_path": "modules\\restored\\genesis_integrity_auditor.py",
+  "preserved_path": "preservation_holding_area\\genesis_integrity_auditor_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 48030,
+  "checksum": "4ad2ec829c3b8bcaea4ab0098948b370305b7c3e705f5db8bc222e58188c2367"
+}

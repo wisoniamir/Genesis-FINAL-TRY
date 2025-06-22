@@ -1,0 +1,65 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase11_focused_test_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.959845+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase11_focused_test_recovered_2.py",
+      "line_numbers": [
+        147,
+        149,
+        155,
+        160
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase11_focused_test_recovered_2.py",
+      "line_numbers": [
+        17,
+        49,
+        133,
+        212
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase11_focused_test_recovered_2.py",
+      "line_numbers": [
+        23,
+        109,
+        130
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase11_focused_test_recovered_2.py",
+      "line_numbers": [
+        60,
+        129
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase11_focused_test_recovered_2.py",
+      "line_numbers": [
+        54,
+        126,
+        162,
+        204,
+        206
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,90 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.477556+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        2,
+        80,
+        81,
+        83,
+        89
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        21
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        94,
+        102,
+        103,
+        105
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        16,
+        56
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        123
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        119,
+        139,
+        141
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        23
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_bulk_repair_recovered_2.py",
+      "line_numbers": [
+        25,
+        167
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

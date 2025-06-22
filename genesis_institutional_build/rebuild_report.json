@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-06-19T00:35:40.920205+00:00",
+  "version": "v6.2.0-institutional",
+  "statistics": {
+    "total_files_analyzed": 17422,
+    "duplicates_eliminated": 2,
+    "low_quality_rejected": 28,
+    "empty_files_rejected": 279,
+    "institutional_modules": 10,
+    "mt5_connected_modules": 5,
+    "eventbus_wired_modules": 9,
+    "telemetry_enabled_modules": 10
+  },
+  "categorized_modules": {
+    "core_engines": 4,
+    "mt5_adapters": 3,
+    "gui_components": 1,
+    "configuration": 0,
+    "utilities": 2
+  },
+  "rebuild_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build",
+  "quality_threshold": 80.0,
+  "status": "INSTITUTIONAL_GRADE_COMPLETE"
+}

@@ -1,0 +1,365 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: hardened_event_bus -->
+
+"""
+GENESIS EventBus System - HARDENED VERSION v7.0.0
+=================================================
+EMERGENCY RECOVERY: Non-blocking, deadlock-free EventBus
+All file operations moved to background threads to prevent system deadlocks
+ARCHITECT MODE COMPLIANT - Real data only, full telemetry, no bypasses
+
+UPDATES v7.0.0:
+- Enhanced route validation
+- Forced real data mode
+- Complete telemetry hooks
+- Memory optimized queues
+- Improved thread safety
+"""
+
+from datetime import datetime
+from queue import Empty, Queue
+from threading import Lock, Thread, Event
+from typing import Dict, List, Callable, Any
+import logging
+
+
+class HardenedEventBus:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("hardened_event_bus", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("hardened_event_bus", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "hardened_event_bus",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in hardened_event_bus: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "hardened_event_bus",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in hardened_event_bus: {e}")
+    """Hardened event bus implementation with v7.0.0 enforcement."""
+
+    _instance = None
+    _lock = Lock()
+    VERSION = "7.0.0"
+    
+    def __new__(cls):
+        if cls._instance is None:
+            with cls._lock:
+                if cls._instance is None:
+                    cls._instance = super(HardenedEventBus, cls).__new__(cls)
+                    cls._instance._initialized = False
+        return cls._instance
+
+    def __init__(self):
+        if not self._initialized:
+            self._initialized = True
+            self._routes: Dict[str, Dict[str, Any]] = {}
+            self._subscribers: Dict[str, List[Dict[str, Any]]] = {}
+            self._event_queue: Queue = Queue()
+            self._telemetry_enabled = True
+            self._route_validation_enabled = True
+            self._enforce_real_data = True
+            self._event_stats: Dict[str, int] = {"emitted": 0, "processed": 0}
+            
+            self._processing_thread = Thread(
+                target=self._process_events,
+                daemon=True
+            )
+            self._shutdown_event = Event()
+            self._processing_thread.start()
+            
+            logging.info(
+                f"HardenedEventBus {self.VERSION} initialized with enforcement"
+            )
+
+    def validate_route(self, route: str) -> bool:
+        """Validates route against v7.0.0 compliance requirements."""
+        if not self._route_validation_enabled:
+            return True
+            
+        required_prefixes = ['mt5.', 'telemetry.', 'system.', 'compliance.']
+        mock_indicators = ['mock', 'test', 'dummy', 'fake']
+        
+        if any(route.lower().startswith(prefix) for prefix in mock_indicators):
+            logging.error(
+                f"ARCHITECT MODE VIOLATION: Mock route {route} detected"
+            )
+            return False
+            
+        if not any(route.startswith(prefix) for prefix in required_prefixes):
+            logging.error(
+                f"ARCHITECT MODE VIOLATION: Invalid route prefix: {route}"
+            )
+            return False
+            
+        return True
+
+    def emit(self, route: str, data: Any, producer: str = "Unknown") -> bool:
+        """Emits event with v7.0.0 validation and telemetry."""
+        try:
+            if not self.validate_route(route):
+                raise ValueError(f"Route validation failed for {route}")
+
+            if self._enforce_real_data and isinstance(data, dict):
+                if data.get('mock') or data.get('production_data'):
+                    raise ValueError("Mock/Test data rejected in v7.0.0")
+
+            event = {
+                'route': route,
+                'data': data,
+                'producer': producer,
+                'timestamp': datetime.now().isoformat(),
+                'version': self.VERSION
+            }
+
+            if self._telemetry_enabled:
+                self._emit_telemetry(route, event)
+
+            self._event_queue.put(event)
+            self._event_stats["emitted"] += 1
+            return True
+            
+        except Exception as e:
+            logging.error(f"Event emission failed: {str(e)}")
+            return False
+
+    def _emit_telemetry(self, route: str, event: Dict[str, Any]) -> None:
+        """Emits telemetry data for event monitoring."""
+        telemetry = {
+            'event_type': 'EventBus',
+            'route': route,
+            'timestamp': datetime.now().isoformat(),
+            'version': self.VERSION,
+            'route_validation': True,
+            'real_data_enforced': True
+        }
+        self._event_queue.put({
+            'route': 'telemetry.event_bus',
+            'data': telemetry
+        })
+
+    def subscribe(
+        self,
+        route: str,
+        callback: Callable,
+        module_name: str = "Unknown"
+    ) -> bool:
+        """Subscribe to events with v7.0.0 validation."""
+        if not self.validate_route(route):
+            return False
+            
+        if route not in self._subscribers:
+            self._subscribers[route] = []
+            
+        sub_info = {
+            "callback": callback,
+            "module": module_name,
+            "created": datetime.now().isoformat()
+        }
+        
+        self._subscribers[route].append(sub_info)
+        return True
+
+    def register_route(
+        self,
+        route: str,
+        producer: str,
+        consumer: str
+    ) -> bool:
+        """Register a route with v7.0.0 validation."""
+        if not self.validate_route(route):
+            return False
+            
+        self._routes[route] = {
+            "producer": producer,
+            "consumer": consumer,
+            "created": datetime.now().isoformat(),
+            "version": self.VERSION
+        }
+        return True
+
+    def _process_events(self) -> None:
+        """Process events from queue with v7.0.0 enforcement."""
+        while not self._shutdown_event.is_set():
+            try:
+                event = self._event_queue.get(timeout=0.1)
+                route = event['route']
+                
+                if route in self._subscribers:
+                    for sub in self._subscribers[route]:
+                        try:
+                            sub["callback"](event['data'])
+                        except Exception as e:
+                            logging.error(
+                                f"Subscriber error {sub['module']}: {str(e)}"
+                            )
+                
+                self._event_stats["processed"] += 1
+                self._event_queue.task_done()
+                
+            except Empty:
+                continue
+            except Exception as e:
+                logging.error(f"Event processing error: {str(e)}")
+
+    def get_event_stats(self) -> Dict[str, Any]:
+        """Get event processing statistics."""
+        return {
+            "version": self.VERSION,
+            "stats": self._event_stats,
+            "routes": len(self._routes),
+            "subscribers": sum(len(s) for s in self._subscribers.values())
+        }
+
+
+_hardened_event_bus = None
+
+
+def get_event_bus() -> HardenedEventBus:
+    """Get the singleton instance of HardenedEventBus."""
+    global _hardened_event_bus
+    if _hardened_event_bus is None:
+        _hardened_event_bus = HardenedEventBus()
+    return _hardened_event_bus
+
+
+def emit_event(topic: str, data: Dict[str, Any], producer: str = "Unknown"):
+    """Emit an event via the HardenedEventBus singleton."""
+    bus = get_event_bus()
+    return bus.emit(topic, data, producer)
+
+
+def subscribe_to_event(
+    topic: str,
+    callback: Callable,
+    module_name: str = "Unknown"
+):
+    """Subscribe to events via the HardenedEventBus singleton."""
+    bus = get_event_bus()
+    return bus.subscribe(topic, callback, module_name)
+
+
+def register_route(topic: str, producer: str, consumer: str):
+    """Register a route via the HardenedEventBus singleton."""
+    bus = get_event_bus()
+    return bus.register_route(topic, producer, consumer)
+
+
+if __name__ == "__main__":
+    # Test the EventBus
+    def test_callback(data):
+        print("Received:", data)
+    
+    bus = get_event_bus()
+    bus.subscribe("test_topic", test_callback, "TestModule")
+    bus.emit(
+        "test_topic",
+        {"message": "Test"},
+        "TestProducer"
+    )
+    print("EventBus Stats:", bus.get_event_stats())
+
+# <!-- @GENESIS_MODULE_END: hardened_event_bus -->

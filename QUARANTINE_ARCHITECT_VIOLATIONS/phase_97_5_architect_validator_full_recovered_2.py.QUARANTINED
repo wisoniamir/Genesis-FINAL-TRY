@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_5_architect_validator_full_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.896000+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_5_architect_validator_full_recovered_2.py",
+      "line_numbers": [
+        17,
+        24,
+        31,
+        38,
+        45
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_5_architect_validator_full_recovered_2.py",
+      "line_numbers": [
+        107,
+        131,
+        164,
+        186,
+        206
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_5_architect_validator_full_recovered_2.py",
+      "line_numbers": [
+        94,
+        242
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_5_architect_validator_full_recovered_2.py",
+      "line_numbers": [
+        97,
+        104,
+        170,
+        245,
+        254
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

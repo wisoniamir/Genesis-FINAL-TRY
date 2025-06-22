@@ -1,0 +1,57 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fit.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.609726+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fit.py",
+      "line_numbers": [
+        363,
+        478,
+        807
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fit.py",
+      "line_numbers": [
+        168,
+        558,
+        602,
+        660,
+        669
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fit.py",
+      "line_numbers": [
+        26,
+        32,
+        65,
+        245,
+        571
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_fit.py",
+      "line_numbers": [
+        67,
+        207,
+        217,
+        234,
+        270
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

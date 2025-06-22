@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "created": "2025-06-18T17:45:41.286439+00:00",
+    "phase": 86,
+    "activation_id": "bafae494d3fa1c6c",
+    "purpose": "Backtest results and performance analysis"
+  },
+  "backtests": [],
+  "summary": {
+    "total_backtests": 0,
+    "average_win_rate": 0.0,
+    "best_strategy": null,
+    "last_backtest": null
+  }
+}

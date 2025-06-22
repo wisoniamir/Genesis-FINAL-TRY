@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.977195+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        48,
+        271,
+        279,
+        287,
+        302
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        1,
+        46,
+        100,
+        107,
+        114
+      ],
+      "violation_count": 46
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        79,
+        93,
+        128,
+        130,
+        138
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        88,
+        121,
+        134,
+        142,
+        145
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        272,
+        280,
+        288
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        71,
+        350
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_mutation_refinement_phase14_recovered_2.py",
+      "line_numbers": [
+        81,
+        82,
+        83,
+        84
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

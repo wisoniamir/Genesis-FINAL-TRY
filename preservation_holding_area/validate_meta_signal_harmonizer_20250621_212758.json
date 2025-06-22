@@ -1,0 +1,9 @@
+{
+  "module_id": "validate_meta_signal_harmonizer",
+  "original_path": "modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+  "preserved_path": "preservation_holding_area\\validate_meta_signal_harmonizer_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 11256,
+  "checksum": "02861d73052d8d5a06ae633b95fa150a14c90b3f45b4b0b5bcac2c7376bb1899"
+}

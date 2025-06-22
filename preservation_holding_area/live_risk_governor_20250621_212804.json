@@ -1,0 +1,9 @@
+{
+  "module_id": "live_risk_governor",
+  "original_path": "modules\\risk\\live\\live_risk_governor.py",
+  "preserved_path": "preservation_holding_area\\live_risk_governor_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 37254,
+  "checksum": "cb6afa6eeacda0d2209243e8ced49bc9b5b95836a0e928fcbdd2a714291ff5f8"
+}

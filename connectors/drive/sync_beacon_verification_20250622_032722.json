@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-06-22T03:27:22.244693",
+  "credentials_verified": true,
+  "genesis_integration": true,
+  "eventbus_verified": true,
+  "telemetry_verified": true,
+  "module_registry_verified": true,
+  "system_tree_verified": true,
+  "errors": [],
+  "credentials_info": {
+    "project_id": "affable-grin-463622-q0",
+    "client_email": "genesis-drive-bot@affable-grin-463622-q0.iam.gserviceaccount.com"
+  },
+  "google_api_availability": {
+    "google": false,
+    "google.oauth2": false,
+    "googleapiclient": false
+  },
+  "google_api_installed": false,
+  "genesis_integration_score": 4,
+  "verification_score": {
+    "score": 5,
+    "total": 5,
+    "percentage": 100
+  }
+}

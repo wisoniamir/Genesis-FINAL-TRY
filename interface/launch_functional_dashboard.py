@@ -1,0 +1,97 @@
+import logging
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🚀 GENESIS Functional Dashboard Launcher v2.0
+Quick launcher for the functional diagnostic dashboard with validation
+"""
+
+import sys
+import os
+import subprocess
+from pathlib import Path
+
+def check_dependencies():
+    """Check if required dependencies are installed"""
+    try:
+        import PyQt5
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: launch_functional_dashboard -->
+
+
+# <!-- @GENESIS_MODULE_START: launch_functional_dashboard -->
+        print("✅ PyQt5 available")
+        return True
+    except ImportError:
+        print("❌ PyQt5 not available")
+        print("Install with: pip install PyQt5")
+        return False
+
+def launch_dashboard():
+    """Launch the functional dashboard"""
+    if not check_dependencies():
+        return False
+    
+    # Get workspace path
+    workspace_path = os.getcwd()
+    
+    print("🔐 GENESIS AI AGENT -- ARCHITECT LOCK-IN v3.0")
+    print("📊 Launching GENESIS Functional Diagnostic Dashboard v2.0")
+    print(f"Workspace: {workspace_path}")
+    
+    # Check if dashboard exists
+    dashboard_path = Path(workspace_path) / "genesis_functional_diagnostic_dashboard.py"
+    if not dashboard_path.exists():
+        print(f"❌ Dashboard not found at: {dashboard_path}")
+        return False
+    
+    try:
+        # Launch the dashboard
+        subprocess.run([sys.executable, str(dashboard_path)], check=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Failed to launch dashboard: {e}")
+        return False
+    except KeyboardInterrupt:
+        print("\n🛑 Launch cancelled by user")
+        return False
+
+if __name__ == "__main__":
+    success = launch_dashboard()
+    if not success:
+        sys.exit(1)
+    
+    print("✅ Dashboard session completed")
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

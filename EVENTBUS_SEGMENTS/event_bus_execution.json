@@ -1,0 +1,300 @@
+{
+  "segment_type": "routes",
+  "category": "execution",
+  "routes": {
+    "execution_feedback": {
+      "topic": "execution.trade_feedback",
+      "source": "execution_engine",
+      "destination": [
+        "signal_processor",
+        "risk_engine",
+        "dashboard"
+      ],
+      "data_type": "real_execution_data",
+      "mock_forbidden": true
+    },
+    "execution_engine_execution_execution_engine_output": {
+      "topic": "execution.execution_engine_output",
+      "source": "execution_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "risk_engine",
+        "genesis_institutional_risk_engine",
+        "ftmo_limit_guard",
+        "dashboard_engine"
+      ],
+      "data_type": "real_execution_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "execution_supervisor_execution_execution_supervisor_output": {
+      "topic": "execution.execution_supervisor_output",
+      "source": "execution_supervisor",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "risk_engine",
+        "genesis_institutional_risk_engine",
+        "ftmo_limit_guard",
+        "dashboard_engine"
+      ],
+      "data_type": "real_execution_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "smart_execution_liveloop_execution_smart_execution_liveloop_output": {
+      "topic": "execution.smart_execution_liveloop_output",
+      "source": "smart_execution_liveloop",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "risk_engine",
+        "genesis_institutional_risk_engine",
+        "ftmo_limit_guard",
+        "dashboard_engine"
+      ],
+      "data_type": "real_execution_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "genesis_institutional_execution_middleware_execution_genesis_institutional_execution_middleware_output": {
+      "topic": "execution.genesis_institutional_execution_middleware_output",
+      "source": "genesis_institutional_execution_middleware",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "risk_engine",
+        "genesis_institutional_risk_engine",
+        "ftmo_limit_guard",
+        "dashboard_engine"
+      ],
+      "data_type": "real_execution_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "phase_102_kill_switch_execution_loop_killswitch_phase_102_kill_switch_execution_loop_output": {
+      "topic": "killswitch.phase_102_kill_switch_execution_loop_output",
+      "source": "phase_102_kill_switch_execution_loop",
+      "destination": [
+        "dashboard_engine"
+      ],
+      "data_type": "real_killswitch_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "execution_engine_status": {
+      "producer": "execution_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_engine"
+    },
+    "execution_engine_telemetry": {
+      "producer": "execution_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_engine"
+    },
+    "order_status": {
+      "producer": "genesis_institutional_execution_middleware",
+      "consumer": "risk_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "execution_result": {
+      "producer": "genesis_institutional_execution_middleware",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "execution_supervisor_status": {
+      "producer": "execution_supervisor",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_supervisor"
+    },
+    "execution_supervisor_telemetry": {
+      "producer": "execution_supervisor",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_supervisor"
+    },
+    "smart_execution_liveloop_status": {
+      "producer": "smart_execution_liveloop",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "smart_execution_liveloop"
+    },
+    "smart_execution_liveloop_telemetry": {
+      "producer": "smart_execution_liveloop",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "smart_execution_liveloop"
+    },
+    "genesis_institutional_execution_middleware_status": {
+      "producer": "genesis_institutional_execution_middleware",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "genesis_institutional_execution_middleware_telemetry": {
+      "producer": "genesis_institutional_execution_middleware",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "phase_102_kill_switch_execution_loop_status": {
+      "producer": "phase_102_kill_switch_execution_loop",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "phase_102_kill_switch_execution_loop"
+    },
+    "phase_102_kill_switch_execution_loop_telemetry": {
+      "producer": "phase_102_kill_switch_execution_loop",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "phase_102_kill_switch_execution_loop"
+    },
+    "dashboard_execution_control_panel_update": {
+      "producer": "execution_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_engine"
+    },
+    "telemetry_execution_control_panel_metrics": {
+      "producer": "execution_engine",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_engine"
+    },
+    "dashboard_execution_supervision_panel_update": {
+      "producer": "execution_supervisor",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_supervisor"
+    },
+    "telemetry_execution_supervision_panel_metrics": {
+      "producer": "execution_supervisor",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_supervisor"
+    },
+    "dashboard_live_execution_panel_update": {
+      "producer": "smart_execution_liveloop",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "smart_execution_liveloop"
+    },
+    "telemetry_live_execution_panel_metrics": {
+      "producer": "smart_execution_liveloop",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "smart_execution_liveloop"
+    },
+    "dashboard_institutional_execution_panel_update": {
+      "producer": "genesis_institutional_execution_middleware",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "telemetry_institutional_execution_panel_metrics": {
+      "producer": "genesis_institutional_execution_middleware",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "dashboard_emergency_execution_panel_update": {
+      "producer": "phase_102_kill_switch_execution_loop",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "phase_102_kill_switch_execution_loop"
+    },
+    "telemetry_emergency_execution_panel_metrics": {
+      "producer": "phase_102_kill_switch_execution_loop",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "phase_102_kill_switch_execution_loop"
+    },
+    "collect_telemetry_execution_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "execution_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_engine"
+    },
+    "collect_telemetry_execution_supervisor": {
+      "producer": "telemetry_collector",
+      "consumer": "execution_supervisor",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "execution_supervisor"
+    },
+    "collect_telemetry_smart_execution_liveloop": {
+      "producer": "telemetry_collector",
+      "consumer": "smart_execution_liveloop",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "smart_execution_liveloop"
+    },
+    "collect_telemetry_genesis_institutional_execution_middleware": {
+      "producer": "telemetry_collector",
+      "consumer": "genesis_institutional_execution_middleware",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.403947",
+      "module": "genesis_institutional_execution_middleware"
+    },
+    "collect_telemetry_phase_102_kill_switch_execution_loop": {
+      "producer": "telemetry_collector",
+      "consumer": "phase_102_kill_switch_execution_loop",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.405053",
+      "module": "phase_102_kill_switch_execution_loop"
+    }
+  },
+  "route_count": 6
+}

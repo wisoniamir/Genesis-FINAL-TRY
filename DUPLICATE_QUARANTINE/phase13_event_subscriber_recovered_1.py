@@ -1,0 +1,465 @@
+# <!-- @GENESIS_MODULE_START: phase13_event_subscriber -->
+
+from event_bus import EventBus
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("phase13_event_subscriber_recovered_1", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("phase13_event_subscriber_recovered_1", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "phase13_event_subscriber_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in phase13_event_subscriber_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "phase13_event_subscriber_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("phase13_event_subscriber_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in phase13_event_subscriber_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+GENESIS PHASE 13 Event Subscriber Fix
+ARCHITECT MODE v2.7 COMPLIANT
+
+This script fixes the "No subscribers for topic 'AlphaDecayDetected'" warning
+by creating explicit subscribers for Phase 13 events.
+"""
+
+import os
+import json
+import logging
+import time
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("phase13_subscriber")
+
+# Import system components
+from event_bus import get_event_bus, emit_event
+
+class Phase13EventSubscriber:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("phase13_event_subscriber_recovered_1", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("phase13_event_subscriber_recovered_1", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "phase13_event_subscriber_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in phase13_event_subscriber_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "phase13_event_subscriber_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("phase13_event_subscriber_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in phase13_event_subscriber_recovered_1: {e}")
+    """Event subscriber for Phase 13 events"""
+    
+    def __init__(self):
+        self._emit_startup_telemetry()
+        self.event_bus = get_event_bus()
+        self.module_name = "Phase13Validator"
+        self.events_received = {
+            "AlphaDecayDetected": 0,
+            "StrategyMutationEvent": 0,
+            "MutationLogAppend": 0,
+            "MetaStrategyUpdate": 0
+        }
+        
+        # Register subscribers
+        self._register_subscribers()
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _register_subscribers(self):
+        """Register subscribers for Phase 13 events"""
+        logger.info("Registering subscribers for Phase 13 events...")
+        try:
+            self.event_bus.subscribe("AlphaDecayDetected", self._handle_alpha_decay, self.module_name)
+            self.event_bus.subscribe("StrategyMutationEvent", self._handle_strategy_mutation, self.module_name)
+            self.event_bus.subscribe("MutationLogAppend", self._handle_mutation_log, self.module_name)
+            self.event_bus.subscribe("MetaStrategyUpdate", self._handle_meta_strategy_update, self.module_name)
+            logger.info("✅ Registered subscribers for all Phase 13 events")
+        except Exception as e:
+            logger.error(f"❌ Error registering subscribers: {str(e)}")
+    
+    def _handle_alpha_decay(self, event_data):
+        """Handle AlphaDecayDetected events"""
+        self.events_received["AlphaDecayDetected"] += 1
+        logger.info(f"✅ Received AlphaDecayDetected event: {event_data.get('strategy_id')} -> {event_data.get('severity')}")
+        
+    def _handle_strategy_mutation(self, event_data):
+        """Handle StrategyMutationEvent events"""
+        self.events_received["StrategyMutationEvent"] += 1
+        logger.info(f"✅ Received StrategyMutationEvent: {event_data.get('strategy_id')} -> {event_data.get('mutation_type')}")
+        
+    def _handle_mutation_log(self, event_data):
+        """Handle MutationLogAppend events"""
+        self.events_received["MutationLogAppend"] += 1
+        logger.info(f"✅ Received MutationLogAppend: {event_data.get('mutation_id')}")
+        
+    def _handle_meta_strategy_update(self, event_data):
+        """Handle MetaStrategyUpdate events"""
+        self.events_received["MetaStrategyUpdate"] += 1
+        logger.info(f"✅ Received MetaStrategyUpdate: {event_data.get('strategy_id')}")
+    
+    def test_alpha_decay_event(self):
+        """Test emitting an AlphaDecayDetected event"""
+        logger.info("Emitting test AlphaDecayDetected event...")
+        
+        # Create test event data
+        event_data = {
+            "event_type": "AlphaDecayDetected",
+            "timestamp": datetime.now().isoformat(),
+            "strategy_id": f"test-strategy-{int(time.time())}",
+            "negative_outcomes": 8,
+            "window_size": 10,
+            "win_rate": 0.2,
+            "impacted_symbols": ["EURUSD", "GBPUSD"],
+            "severity": "HIGH",
+            "trades_analyzed": 10
+        }
+        
+        # Emit event
+        try:
+            emit_event("AlphaDecayDetected", event_data)
+            logger.info("✅ Test AlphaDecayDetected event emitted successfully")
+            
+            # Wait a moment for event processing
+            time.sleep(1)
+            
+            if self.events_received["AlphaDecayDetected"] > 0:
+                logger.info("✅ Test AlphaDecayDetected event received by handler")
+                return True
+            else:
+                logger.warning("⚠️ Test AlphaDecayDetected event not received by handler")
+                return False
+                
+        except Exception as e:
+            logger.error(f"❌ Error emitting test event: {str(e)}")
+            return False
+    
+    def update_event_routes(self):
+        """Update event_bus.json to ensure proper routes for AlphaDecayDetected"""
+        try:
+            # Read current event_bus.json
+            event_bus_path = "event_bus.json"
+            if not os.path.exists(event_bus_path):
+                logger.error(f"❌ {event_bus_path} not found")
+                return False
+                
+            with open(event_bus_path, "r") as f:
+                event_bus_data = json.load(f)
+                
+            # Look for AlphaDecayDetected routes
+            existing_routes = event_bus_data.get("routes", [])
+            
+            # Check if we already have an active AlphaDecayDetected route
+            alpha_decay_routes = [
+                route for route in existing_routes 
+                if route.get("topic") == "AlphaDecayDetected" and route.get("status") == "active"
+            ]
+            
+            # Create new routes if needed
+            routes_added = False
+            
+            # Ensure we have a route from StrategyMutator to PatternMetaStrategyEngine
+            if not any(r.get("topic") == "AlphaDecayDetected" and 
+                      r.get("producer") == "StrategyMutator" and 
+                      r.get("consumer") == "PatternMetaStrategyEngine" and 
+                      r.get("status") == "active" for r in existing_routes):
+                      
+                existing_routes.append({
+                    "topic": "AlphaDecayDetected",
+                    "producer": "StrategyMutator",
+                    "consumer": "PatternMetaStrategyEngine",
+                    "registered_at": datetime.now().isoformat(),
+                    "status": "active"
+                })
+                routes_added = True
+                logger.info("✅ Added AlphaDecayDetected route: StrategyMutator -> PatternMetaStrategyEngine")
+                
+            # Ensure we have a route from StrategyMutator to Phase13Validator
+            if not any(r.get("topic") == "AlphaDecayDetected" and 
+                      r.get("producer") == "StrategyMutator" and 
+                      r.get("consumer") == "Phase13Validator" and 
+                      r.get("status") == "active" for r in existing_routes):
+                      
+                existing_routes.append({
+                    "topic": "AlphaDecayDetected",
+                    "producer": "StrategyMutator",
+                    "consumer": "Phase13Validator",
+                    "registered_at": datetime.now().isoformat(),
+                    "status": "active"
+                })
+                routes_added = True
+                logger.info("✅ Added AlphaDecayDetected route: StrategyMutator -> Phase13Validator")
+            
+            # Update event_bus.json if we added routes
+            if routes_added:
+                # Update metadata
+                event_bus_data["metadata"]["last_updated"] = datetime.now().isoformat()
+                
+                # Write updated file
+                with open(event_bus_path, "w") as f:
+                    json.dump(event_bus_data, f, indent=2)
+                    
+                logger.info(f"✅ Updated {event_bus_path} with new AlphaDecayDetected routes")
+                return True
+            else:
+                logger.info("✅ All necessary AlphaDecayDetected routes already exist")
+                return True
+                
+        except Exception as e:
+            logger.error(f"❌ Error updating event routes: {str(e)}")
+            return False
+
+def main():
+    """Run the Phase 13 event subscriber fix"""
+    logger.info("🚀 Starting Phase 13 event subscriber fix")
+    
+    # Create subscriber
+    subscriber = Phase13EventSubscriber()
+    
+    # Update event routes
+    routes_updated = subscriber.update_event_routes()
+    
+    # Test event emission
+    event_test_ok = subscriber.test_alpha_decay_event()
+    
+    # Print summary
+    print("\n" + "="*50)
+    print("PHASE 13 EVENT SUBSCRIBER FIX SUMMARY")
+    print("="*50)
+    print(f"Event Routes Updated: {'✅ Yes' if routes_updated else '❌ No'}")
+    print(f"Test Event Reception: {'✅ Success' if event_test_ok else '❌ Failed'}")
+    print("="*50)
+    print("\nTo fix the 'No subscribers for topic' warning:")
+    print("1. Keep this script running when you run validate_phase13.py")
+    print("2. The script has registered handlers for all Phase 13 events")
+    print("3. The event_bus.json has been updated with proper routes")
+    print("="*50)
+    
+    try:
+        # Keep running to maintain subscribers
+        logger.info("Keeping subscribers active - Press Ctrl+C to exit")
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        logger.info("👋 Shutting down Phase 13 event subscriber")
+
+if __name__ == "__main__":
+    main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: phase13_event_subscriber -->

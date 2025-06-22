@@ -1,0 +1,61 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_logic_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.663236+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        216,
+        221,
+        237,
+        239,
+        255
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        8
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        32,
+        39,
+        51,
+        54,
+        74
+      ],
+      "violation_count": 24
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        27
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        260,
+        275
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

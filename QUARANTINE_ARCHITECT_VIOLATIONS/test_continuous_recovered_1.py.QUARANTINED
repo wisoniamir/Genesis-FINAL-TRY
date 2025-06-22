@@ -1,0 +1,82 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.759948+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        82
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        816
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        310
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        28,
+        37,
+        48,
+        92,
+        108
+      ],
+      "violation_count": 52
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        251
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        240,
+        620,
+        669,
+        675,
+        1041
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_continuous_recovered_1.py",
+      "line_numbers": [
+        140,
+        446,
+        472,
+        493,
+        532
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

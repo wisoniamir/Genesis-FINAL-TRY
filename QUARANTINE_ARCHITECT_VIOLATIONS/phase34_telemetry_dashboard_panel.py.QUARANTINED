@@ -1,0 +1,87 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.242468+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        107,
+        123,
+        158,
+        187,
+        207
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        116,
+        151,
+        180,
+        200,
+        225
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        380
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        214,
+        261,
+        347,
+        351
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        118,
+        229,
+        365
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        98,
+        407
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\phase34_telemetry_dashboard_panel.py",
+      "line_numbers": [
+        109,
+        110,
+        111,
+        112
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

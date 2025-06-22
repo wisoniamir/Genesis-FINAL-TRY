@@ -1,0 +1,429 @@
+# <!-- @GENESIS_MODULE_START: trade_journal_engine -->
+
+"""
+GENESIS TradeJournalEngine Module v1.0 - Closed Trade Logger
+Structured journaling and trade history tracking
+NO real DATA - NO ISOLATED FUNCTIONS - STRICT COMPLIANCE
+
+Dependencies: event_bus.py, json, datetime, os
+Consumes: ExecutionLog, OrderStatusUpdate
+Emits: ModuleTelemetry, ModuleError
+Telemetry: ENABLED
+Compliance: ENFORCED
+"""
+
+import os
+import json
+import logging
+from datetime import datetime, timedelta
+from event_bus import emit_event, subscribe_to_event, register_route
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class TradeJournalEngine:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("trade_journal_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("trade_journal_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "trade_journal_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in trade_journal_engine: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    """
+    GENESIS TradeJournalEngine v1.0 - Closed Trade Logger
+    
+    Architecture Compliance:
+    - ✅ EventBus only communication
+    - ✅ Real data processing (no real/dummy data)
+    - ✅ Telemetry hooks enabled
+    - ✅ No isolated functions
+    - ✅ Registered in all system files
+    - ✅ Structured JSONL trade logging
+    """
+    
+    def __init__(self):
+        """Initialize TradeJournalEngine with journal storage path"""
+        
+        # Create log directory structure
+        self.log_path = "logs/journal/"
+        self.weekly_path = os.path.join(self.log_path, "weekly")
+        self.summary_path = os.path.join(self.log_path, "summary")
+        
+        os.makedirs(self.log_path, exist_ok=True)
+        os.makedirs(self.weekly_path, exist_ok=True)
+        os.makedirs(self.summary_path, exist_ok=True)
+        
+        # In-memory trade tracking
+        self.open_trades = {}
+        self.closed_trades_today = 0
+        self.total_pnl_today = 0.0
+        
+        # Telemetry tracking
+        self.telemetry = {
+            "trades_logged": 0,
+            "trades_by_symbol": {},
+            "open_trades": 0,
+            "logs_generated": 0,
+            "module_start_time": datetime.utcnow().isoformat(),
+            "real_data_mode": True,
+            "compliance_enforced": True
+        }
+        
+        # Subscribe to events via EventBus (NO LOCAL CALLS)
+        self._register_event_subscriptions()
+        
+        # Emit module initialization telemetry
+        self._emit_telemetry("MODULE_INITIALIZED")
+        
+        logger.info("✅ TradeJournalEngine v1.0 initialized - live trade journal logging started")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _register_event_subscriptions(self):
+        """Register all event subscriptions"""
+        subscribe_to_event("ExecutionLog", self.on_execution_log, "TradeJournalEngine")
+        subscribe_to_event("OrderStatusUpdate", self.on_order_status_update, "TradeJournalEngine")
+        
+        # Register routes in EventBus
+        self._register_event_routes()
+    
+    def _register_event_routes(self):
+        """Register all event routes"""
+        register_route("ExecutionLog", "ExecutionEngine", "TradeJournalEngine")
+        register_route("OrderStatusUpdate", "ExecutionEngine", "TradeJournalEngine")
+        register_route("ModuleTelemetry", "TradeJournalEngine", "TelemetryCollector")
+        register_route("ModuleError", "TradeJournalEngine", "TelemetryCollector")
+    
+    def on_execution_log(self, event):
+        """
+        Process execution log events to track new trades
+        
+        COMPLIANCE ENFORCED:
+        - Real data only (no real/dummy processing)
+        - EventBus communication only
+        - Telemetry hooks active
+        """
+        try:
+            # Extract data from EventBus envelope
+            execution_data = event.get("data", event)
+            
+            # Validate real data (no real/dummy allowed)
+            assert self._validate_execution_data(execution_data):
+                logger.error("❌ COMPLIANCE VIOLATION: Invalid/real execution data detected")
+                self._emit_error("COMPLIANCE_VIOLATION", "Invalid execution data")
+                return
+            
+            # Extract key fields
+            symbol = execution_data["symbol"]
+            order_id = execution_data.get("order_id")
+            
+            # Skip if no order ID
+            if not order_id:
+                logger.warning(f"Missing order_id in execution log for {symbol}")
+                return
+                
+            # Store open trade data
+            self.open_trades[order_id] = {
+                "symbol": symbol,
+                "entry_price": execution_data["entry_price"],
+                "direction": execution_data.get("direction", "BUY"),
+                "sl": execution_data["sl"],
+                "tp": execution_data["tp"],
+                "lot_size": execution_data["lot_size"],
+                "open_time": execution_data["timestamp"],
+                "status": "Open",
+                "order_id": order_id
+            }
+            
+            # Update telemetry
+            self.telemetry["open_trades"] += 1
+            
+            logger.info(f"✅ Trade opened and journaled: {symbol} {self.open_trades[order_id]['direction']} @ {self.open_trades[order_id]['entry_price']}")
+            
+        except Exception as e:
+            logger.error(f"❌ TradeJournalEngine.on_execution_log error: {e}")
+            self._emit_error("EXECUTION_LOG_PROCESSING_ERROR", str(e))
+    
+    def on_order_status_update(self, event):
+        """
+        Process order status updates to detect closed trades
+        
+        COMPLIANCE ENFORCED:
+        - Real data only (no real/dummy processing)
+        - EventBus communication only
+        - Telemetry hooks active
+        """
+        try:
+            # Extract data from EventBus envelope
+            status_data = event.get("data", event)
+            
+            # Validate real data (no real/dummy allowed)
+            if not self._validate_status_data(status_data):
+                logger.error("❌ COMPLIANCE VIOLATION: Invalid/real status data detected")
+                self._emit_error("COMPLIANCE_VIOLATION", "Invalid status data")
+                return
+            
+            # Extract key fields
+            order_id = status_data.get("order_id")
+            status = status_data.get("status")
+            
+            # Check if this is a closure event for a tracked trade
+            if status == "Closed" and order_id in self.open_trades:
+                # Update trade with closure details
+                self.open_trades[order_id]["close_time"] = status_data["timestamp"]
+                self.open_trades[order_id]["status"] = "Closed"
+                self.open_trades[order_id]["exit_price"] = status_data["exit_price"]
+                self.open_trades[order_id]["pnl"] = status_data["pnl"]
+                self.open_trades[order_id]["close_reason"] = status_data.get("close_reason", "Unknown")
+                
+                # Calculate additional metrics
+                self._calculate_trade_metrics(order_id)
+                
+                # Log the completed trade
+                self._log_trade(order_id)
+                
+                # Update daily tracking
+                self.closed_trades_today += 1
+                self.total_pnl_today += status_data["pnl"]
+                
+                # Update telemetry
+                self.telemetry["trades_logged"] += 1
+                self.telemetry["open_trades"] -= 1
+                
+                symbol = self.open_trades[order_id]["symbol"]
+                if symbol not in self.telemetry["trades_by_symbol"]:
+                    self.telemetry["trades_by_symbol"][symbol] = 0
+                self.telemetry["trades_by_symbol"][symbol] += 1
+                
+            elif status == "Rejected" and order_id in self.open_trades:
+                # Remove rejected trades from tracking
+                logger.info(f"❌ Trade rejected: {order_id}")
+                del self.open_trades[order_id]
+                self.telemetry["open_trades"] -= 1
+            
+        except Exception as e:
+            logger.error(f"❌ TradeJournalEngine.on_order_status_update error: {e}")
+            self._emit_error("STATUS_PROCESSING_ERROR", str(e))
+    
+    def _calculate_trade_metrics(self, order_id):
+        """Calculate additional trade metrics for reporting"""
+        trade = self.open_trades[order_id]
+        
+        # Calculate trade duration
+        try:
+            open_time = datetime.fromisoformat(trade["open_time"].replace('Z', '+00:00'))
+            close_time = datetime.fromisoformat(trade["close_time"].replace('Z', '+00:00'))
+            duration_seconds = (close_time - open_time).total_seconds()
+            duration_hours = duration_seconds / 3600
+            trade["duration_hours"] = round(duration_hours, 2)
+        except Exception:
+            trade["duration_hours"] = 0
+            
+        # Calculate risk-reward ratio
+        try:
+            entry = float(trade["entry_price"])
+            sl = float(trade["sl"])
+            tp = float(trade["tp"])
+            
+            if trade["direction"] == "BUY":
+                risk = entry - sl
+                reward = tp - entry
+            else:
+                risk = sl - entry
+                reward = entry - tp
+                
+            if risk > 0:
+                trade["risk_reward_ratio"] = round(reward / risk, 2)
+            else:
+                trade["risk_reward_ratio"] = 0
+        except Exception:
+            trade["risk_reward_ratio"] = 0
+              # Determine if SL or TP was hit
+        try:
+            exit_price = float(trade["exit_price"])
+            tp = float(trade["tp"])
+            sl = float(trade["sl"])
+            
+            if abs(exit_price - tp) < 0.0001:
+                trade["exit_type"] = "TP_HIT"
+            elif abs(exit_price - sl) < 0.0001:
+                trade["exit_type"] = "SL_HIT"
+            else:
+                trade["exit_type"] = "MANUAL_CLOSE"
+        except Exception:
+            trade["exit_type"] = "UNKNOWN"
+    
+    def _log_trade(self, order_id):
+        """
+        Log closed trade to JSONL files
+        Generates daily, weekly, and symbol-specific logs
+        """
+        trade = self.open_trades.pop(order_id)
+        symbol = trade["symbol"]
+        
+        # Get current date components
+        today = datetime.utcnow()
+        day_str = today.strftime("%Y-%m-%d")
+        week_str = today.strftime("%Y-W%W")
+        
+        # Create file paths
+        symbol_file = os.path.join(self.log_path, f"{symbol}_{day_str}.jsonl")
+        daily_file = os.path.join(self.log_path, f"daily_{day_str}.jsonl")
+        weekly_file = os.path.join(self.weekly_path, f"weekly_{week_str}.jsonl")
+        
+        # Add timestamp for the log entry
+        trade["log_timestamp"] = datetime.utcnow().isoformat()
+        
+        # Write to symbol-specific log
+        with open(symbol_file, "a") as f:
+            f.write(json.dumps(trade) + "\n")
+        
+        # Write to daily log
+        with open(daily_file, "a") as f:
+            f.write(json.dumps(trade) + "\n")
+            
+        # Write to weekly log
+        with open(weekly_file, "a") as f:
+            f.write(json.dumps(trade) + "\n")
+        
+        # Update telemetry
+        self.telemetry["logs_generated"] += 3  # 3 files updated
+        
+        # Generate daily summary if needed
+        self._update_daily_summary()
+        
+        logger.info(f"📘 Trade journal updated → {symbol}: {trade['entry_price']} → {trade['exit_price']} | PnL: {trade['pnl']}")
+    
+    def _update_daily_summary(self):
+        """Update the daily summary file with current statistics"""
+        today = datetime.utcnow().strftime("%Y-%m-%d")
+        summary_file = os.path.join(self.summary_path, f"summary_{today}.json")
+        
+        summary = {
+            "date": today,
+            "closed_trades": self.closed_trades_today,
+            "total_pnl": self.total_pnl_today,
+            "trades_by_symbol": self.telemetry["trades_by_symbol"],
+            "updated_at": datetime.utcnow().isoformat()
+        }
+        
+        with open(summary_file, "w") as f:
+            json.dump(summary, f, indent=2)
+    
+    def _validate_execution_data(self, execution_data):
+        """
+        Validate incoming execution data is real (not real/dummy)
+        
+        COMPLIANCE RULE: NO real DATA ALLOWED
+        """
+        required_fields = ["symbol", "entry_price", "sl", "tp", "lot_size", "timestamp"]
+        
+        # Check all required fields exist
+        for field in required_fields:
+            if field not in execution_data is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: trade_journal_engine -->

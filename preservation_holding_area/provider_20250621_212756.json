@@ -1,0 +1,9 @@
+{
+  "module_id": "provider",
+  "original_path": "modules\\restored\\provider.py",
+  "preserved_path": "preservation_holding_area\\provider_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 22650,
+  "checksum": "1a5136c2da48e55018c28516a3c4252ddafb20834e43920a8abcbf007b6679e6"
+}

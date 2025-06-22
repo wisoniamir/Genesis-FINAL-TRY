@@ -1,0 +1,84 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.569462+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        13,
+        243,
+        269,
+        319,
+        320
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        13,
+        319,
+        323
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        218,
+        319
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        191,
+        228,
+        273,
+        278
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        198,
+        254,
+        332
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        326,
+        329
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_initializer.py",
+      "line_numbers": [
+        195,
+        200
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

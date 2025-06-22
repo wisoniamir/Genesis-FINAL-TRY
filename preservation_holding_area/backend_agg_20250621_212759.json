@@ -1,0 +1,9 @@
+{
+  "module_id": "backend_agg",
+  "original_path": "modules\\restored\\backend_agg.py",
+  "preserved_path": "preservation_holding_area\\backend_agg_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 41603,
+  "checksum": "74f8ee63eb4c083b1b4dce016fcf9ac9cebcd417a92818837e7f9fb48d22c05e"
+}

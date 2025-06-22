@@ -1,0 +1,108 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.971467+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        55,
+        56,
+        60
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        46,
+        51,
+        52,
+        185,
+        187
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        52,
+        207,
+        395
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        46
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        53
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        90,
+        111,
+        154,
+        193,
+        226
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        144,
+        181,
+        210,
+        258,
+        281
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        85,
+        132
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\watchdog_core.py",
+      "line_numbers": [
+        135,
+        176,
+        215,
+        253
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

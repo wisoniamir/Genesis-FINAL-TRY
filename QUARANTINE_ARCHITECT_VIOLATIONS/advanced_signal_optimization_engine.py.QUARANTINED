@@ -1,0 +1,78 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.350759+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+      "line_numbers": [
+        42,
+        376,
+        377,
+        383,
+        389
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+      "line_numbers": [
+        146,
+        166,
+        175,
+        199,
+        215
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+      "line_numbers": [
+        165,
+        193,
+        214,
+        229,
+        273
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+      "line_numbers": [
+        240
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+      "line_numbers": [
+        105,
+        159,
+        167,
+        186,
+        195
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\advanced_signal_optimization_engine.py",
+      "line_numbers": [
+        114,
+        498
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

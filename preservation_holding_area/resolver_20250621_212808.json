@@ -1,0 +1,9 @@
+{
+  "module_id": "resolver",
+  "original_path": "modules\\restored\\resolver.py",
+  "preserved_path": "preservation_holding_area\\resolver_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24268,
+  "checksum": "c495c4c031e33221b1c413cd56fdd2f8a240ad32f8d4d041c745f64ffe4d4232"
+}

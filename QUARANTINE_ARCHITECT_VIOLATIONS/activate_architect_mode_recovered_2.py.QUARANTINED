@@ -1,0 +1,61 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_architect_mode_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.494049+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_architect_mode_recovered_2.py",
+      "line_numbers": [
+        182
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_architect_mode_recovered_2.py",
+      "line_numbers": [
+        27,
+        92,
+        187,
+        207
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_architect_mode_recovered_2.py",
+      "line_numbers": [
+        145,
+        202
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_architect_mode_recovered_2.py",
+      "line_numbers": [
+        101,
+        107,
+        113,
+        119,
+        125
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_architect_mode_recovered_2.py",
+      "line_numbers": [
+        64,
+        233
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

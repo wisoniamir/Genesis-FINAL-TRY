@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\advanced_pattern_miner_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.616187+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\advanced_pattern_miner_recovered_2.py",
+      "line_numbers": [
+        14,
+        34,
+        56,
+        160,
+        194
+      ],
+      "violation_count": 24
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\advanced_pattern_miner_recovered_2.py",
+      "line_numbers": [
+        169,
+        202,
+        229,
+        254,
+        271
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\advanced_pattern_miner_recovered_2.py",
+      "line_numbers": [
+        166,
+        371,
+        493,
+        558
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\advanced_pattern_miner_recovered_2.py",
+      "line_numbers": [
+        152,
+        656
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\advanced_pattern_miner_recovered_2.py",
+      "line_numbers": [
+        196,
+        197,
+        198
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

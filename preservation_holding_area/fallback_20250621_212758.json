@@ -1,0 +1,9 @@
+{
+  "module_id": "fallback",
+  "original_path": "modules\\restored\\fallback.py",
+  "preserved_path": "preservation_holding_area\\fallback_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 54771,
+  "checksum": "3889ffb9bb528517268666186d159428649c105b633aaeab97636307b1446af2"
+}

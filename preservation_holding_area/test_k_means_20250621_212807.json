@@ -1,0 +1,9 @@
+{
+  "module_id": "test_k_means",
+  "original_path": "modules\\unclassified\\test_k_means.py",
+  "preserved_path": "preservation_holding_area\\test_k_means_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 58111,
+  "checksum": "ad2c3efb68c311e9ad60f4be9da5579ccb8013d6d930094e91abeca68ae622fc"
+}

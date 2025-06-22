@@ -1,0 +1,93 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.559103+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        75,
+        226,
+        321,
+        477,
+        482
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        87,
+        100
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        498,
+        569,
+        594
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        470,
+        474,
+        479,
+        489,
+        493
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        476,
+        523,
+        1294,
+        1317,
+        1347
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        383,
+        677,
+        806,
+        874,
+        884
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\environment.py",
+      "line_numbers": [
+        443,
+        478,
+        511,
+        543,
+        859
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

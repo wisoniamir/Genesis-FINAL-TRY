@@ -1,0 +1,52 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\quiver_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.292163+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\quiver_recovered_2.py",
+      "line_numbers": [
+        236,
+        486,
+        894,
+        966,
+        1214
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\quiver_recovered_2.py",
+      "line_numbers": [
+        1081
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\quiver_recovered_2.py",
+      "line_numbers": [
+        565,
+        597
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\quiver_recovered_2.py",
+      "line_numbers": [
+        463,
+        476,
+        607,
+        670,
+        677
+      ],
+      "violation_count": 13
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

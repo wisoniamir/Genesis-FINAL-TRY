@@ -1,0 +1,9 @@
+{
+  "module_id": "varStore",
+  "original_path": "modules\\restored\\varStore.py",
+  "preserved_path": "preservation_holding_area\\varStore_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 50809,
+  "checksum": "d0527efd683f47fd42be3aafb506ffafaffca46112c63e73295dc6a1c8d6be3b"
+}

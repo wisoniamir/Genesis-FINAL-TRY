@@ -1,0 +1,9 @@
+{
+  "module_id": "_mean_shift",
+  "original_path": "modules\\restored\\_mean_shift.py",
+  "preserved_path": "preservation_holding_area\\_mean_shift_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 32099,
+  "checksum": "16576cef41696e937eaf3ab2682ba6f6da3b07f2687e8f513e5b7fa0a3788803"
+}

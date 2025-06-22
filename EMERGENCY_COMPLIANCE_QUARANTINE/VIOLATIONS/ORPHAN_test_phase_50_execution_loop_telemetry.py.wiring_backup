@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Test suite for Phase 50 Execution Loop Telemetry
+"""
+
+import unittest
+import json
+import os
+import sys
+from datetime import datetime, timedelta
+
+
+# <!-- @GENESIS_MODULE_END: ORPHAN_test_phase_50_execution_loop_telemetry -->
+
+
+# <!-- @GENESIS_MODULE_START: ORPHAN_test_phase_50_execution_loop_telemetry -->
+
+# Add parent directory to path to import modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+class TestPhase50ExecutionLoopTelemetry(unittest.TestCase):
+    """Test cases for Phase 50 Execution Loop Telemetry"""
+    
+    def setUp(self):
+        """Set up for tests"""
+        # Define file paths
+        self.loop_integrity_report_path = "loop_integrity_report.json"
+        self.mutation_drift_index_path = "mutation_drift_index.json"
+        self.execution_loop_config_path = "execution_loop_config.json"
+        self.telemetry_path = "telemetry.json"
+        self.event_bus_path = "event_bus.json"
+        
+        # Load files
+        try:
+            with open(self.loop_integrity_report_path, 'r') as f:
+                self.loop_report = json.load(f)
+            with open(self.mutation_drift_index_path, 'r') as f:
+                self.mutation_drift = json.load(f)
+            with open(self.execution_loop_config_path, 'r') as f:
+                self.loop_config = json.load(f)
+            with open(self.telemetry_path, 'r') as f:
+                self.telemetry = json.load(f)
+            with open(self.event_bus_path, 'r') as f:
+                self.event_bus = json.load(f)
+        except Exception as e:
+            self.fail(f"Failed to load test files: {str(e)}")
+    
+    def test_telemetry_integrity_status(self):
+        """Test that telemetry integrity status is PASS"""
+        self.assertEqual(self.loop_report.get('telemetry_integrity_status'), "PASS")
+        self.assertEqual(self.mutation_drift.get('integrity_status'), "PASS")
+        self.assertEqual(self.loop_config.get('telemetry_integrity_status'), "PASS")
+        self.assertEqual(self.telemetry.get('telemetry_integrity_status'), "PASS")
+    
+    def test_system_status(self):
+        """Test that system status is STABLE"""
+        self.assertEqual(self.loop_report.get('status'), "STABLE")
+    
+    def test_loop_latency(self):
+        """Test that loop latency is below warning threshold"""
+        self.assertLess(
+            self.loop_report.get('avg_latency'), 
+            self.telemetry['metrics']['loop_execution_latency_ms']['threshold_warning']
+        )
+    
+    def test_signal_dispatch_timing(self):
+        """Test that signal dispatch timing is below warning threshold"""
+        self.assertLess(
+            self.loop_report.get('signal_dispatch_timing_ms'), 
+            self.telemetry['metrics']['signal_dispatch_timing_accuracy']['threshold_warning']
+        )
+    
+    def test_mt5_poll_latency(self):
+        """Test that MT5 poll latency is below warning threshold"""
+        self.assertLess(
+            self.loop_report.get('mt5_poll_latency_ms'), 
+            self.telemetry['metrics']['mt5_data_poll_latency']['threshold_warning']
+        )
+    
+    def test_mutation_drift_index(self):
+        """Test that mutation drift index is below warning threshold"""
+        self.assertLess(
+            self.mutation_drift.get('mdi'), 
+            self.telemetry['metrics']['mutation_drift_index']['threshold_warning']
+        )
+    
+    def test_eventbus_routes(self):
+        """Test that required EventBus routes are present"""
+        route_topics = [route.get('topic') for route in self.event_bus.get('routes', [])]
+        self.assertIn('signal_timing_pulse', route_topics)
+        self.assertIn('telemetry_loop_monitor', route_topics)
+    
+    def test_mt5_pulse_interval(self):
+        """Test that MT5 pulse interval is set correctly"""
+        self.assertEqual(self.loop_config.get('mt5_pulse_interval_ms'), 50)
+    
+    def test_signal_dispatch_max_latency(self):
+        """Test that signal dispatch max latency is set correctly"""
+        self.assertEqual(
+            self.loop_config.get('signal_dispatch_max_latency_ms'),
+            self.telemetry['metrics']['signal_dispatch_timing_accuracy']['threshold_critical']
+        )
+    
+    def test_telemetry_metrics_exist(self):
+        """Test that all required telemetry metrics exist"""
+        required_metrics = [
+            'loop_execution_latency_ms',
+            'signal_dispatch_timing_accuracy',
+            'mt5_data_poll_latency',
+            'mutation_drift_index'
+        ]
+        
+        for metric in required_metrics:
+            self.assertIn(metric, self.telemetry.get('metrics', {}))
+    
+    def test_optimization_results(self):
+        """Test that optimization results are recorded"""
+        self.assertIn('optimization', self.loop_report)
+        self.assertIn('latency_reduction', self.loop_report['optimization'])
+        self.assertIn('drift_reduction', self.loop_report['optimization'])
+
+if __name__ == '__main__':
+    unittest.main()

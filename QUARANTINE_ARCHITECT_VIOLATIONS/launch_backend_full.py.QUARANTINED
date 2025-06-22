@@ -1,0 +1,85 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+  "quarantine_timestamp": "2025-06-21T04:33:03.024701+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        7,
+        322
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        127,
+        165,
+        178,
+        196,
+        204
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        160,
+        171,
+        184,
+        217,
+        247
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        132,
+        136,
+        140,
+        144,
+        148
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        213,
+        312,
+        355
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        258
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_backend_full.py",
+      "line_numbers": [
+        299
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,652 @@
+# <!-- @GENESIS_MODULE_START: test_phase42_context_synthesizer -->
+
+from datetime import datetime\n"""
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase42_context_synthesizer",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase42_context_synthesizer: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase42_context_synthesizer",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase42_context_synthesizer", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase42_context_synthesizer: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+GENESIS Test Suite - Phase 42 Strategy Adaptive Context Synthesizer Engine
+==========================================================================
+
+🧪 TEST MISSION: Validate context synthesis capabilities under real MT5 conditions
+📊 COVERAGE: Macro sync, market conditions, pattern clusters, execution feedback integration
+⚙️ VALIDATION: EventBus routing, telemetry emission, context profile generation
+🔁 ARCHITECT MODE: Full compliance testing with real data only
+
+Test Categories:
+- Context profile synthesis accuracy
+- Macro alignment score calculation  
+- Feedback pressure index validation
+- Strategy environment matching
+- Telemetry hook verification
+- EventBus routing integrity
+- Performance benchmarking
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+import threading
+from typing import Dict, Any, List
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from strategy_adaptive_context_synthesizer import StrategyAdaptiveContextSynthesizer, get_strategy_adaptive_context_synthesizer
+    from macro_sync_engine import MacroSyncEngine
+    from hardened_event_bus import get_event_bus, emit_event, subscribe_to_event
+except ImportError as e:
+    print(f"❌ Import error: {e}")
+    sys.exit(1)
+
+class TestStrategyAdaptiveContextSynthesizer:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase42_context_synthesizer",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase42_context_synthesizer: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase42_context_synthesizer",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase42_context_synthesizer", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase42_context_synthesizer: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase42_context_synthesizer",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase42_context_synthesizer: {e}")
+    """Test suite for Strategy Adaptive Context Synthesizer Engine"""
+    
+    def __init__(self):
+        self.test_name = "TestStrategyAdaptiveContextSynthesizer"
+        self.results = []
+        self.logger = logging.getLogger(self.test_name)
+        self.event_bus = get_event_bus()
+        
+        # Test data
+        self.test_macro_data = {
+            "interest_rate": 5.25,
+            "CPI": 3.1,
+            "NFP": 180000,
+            "DXY_strength": 104.5,
+            "risk_sentiment": 0.6
+        }
+        
+        self.test_execution_feedback = {
+            "drawdown_pressure": 0.05,
+            "TP_over_SL_ratio": 1.8,
+            "latency_delay": 45.0,
+            "win_rate": 0.68,
+            "trade_id": "TEST_001"
+        }
+        
+        self.test_market_conditions = {
+            "volatility_index": 1.2,
+            "volume_pressure": 0.8,
+            "trend_deviation": 0.3,
+            "market_regime": "trending",
+            "volatility_cluster_id": "MEDIUM"
+        }
+        
+        self.test_pattern_cluster = {
+            "head_shoulders": True,
+            "liquidity_runs": False,
+            "OB_sweeps": True,
+            "pattern_strength": 0.85,
+            "pattern_type": "reversal"
+        }
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def run_all_tests(self) -> Dict[str, Any]:
+        """Run complete test suite"""
+        print(f"🧪 Starting {self.test_name} test suite...")
+        start_time = time.time()
+        
+        # Test sequence
+        tests = [
+            self.test_module_initialization,
+            self.test_macro_sync_integration,
+            self.test_execution_feedback_processing,
+            self.test_market_conditions_processing,
+            self.test_pattern_cluster_processing,
+            self.test_context_synthesis_algorithm,
+            self.test_profile_hash_generation,
+            self.test_telemetry_emission,
+            self.test_eventbus_routing,
+            self.test_performance_requirements
+        ]
+        
+        for test in tests:
+            try:
+                result = test()
+                self.results.append(result)
+                status = "✅ PASS" if result["status"] == "PASS" else "❌ FAIL"
+                print(f"{status} {result['test_name']}: {result['message']}")
+                
+            except Exception as e:
+                self.results.append({
+                    "test_name": test.__name__,
+                    "status": "ERROR",
+                    "message": str(e),
+                    "timestamp": datetime.datetime.utcnow().isoformat()
+                })
+                print(f"💥 ERROR {test.__name__}: {e}")
+        
+        # Calculate summary
+        total_tests = len(self.results)
+        passed_tests = len([r for r in self.results if r["status"] == "PASS"])
+        
+        summary = {
+            "test_suite": self.test_name,
+            "total_tests": total_tests,
+            "passed": passed_tests,
+            "failed": total_tests - passed_tests,
+            "success_rate": (passed_tests / total_tests) * 100 if total_tests > 0 else 0,
+            "duration_seconds": time.time() - start_time,
+            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "results": self.results
+        }
+        
+        print(f"\n📊 Test Summary: {passed_tests}/{total_tests} passed ({summary['success_rate']:.1f}%)")
+        return summary
+        
+    def test_module_initialization(self) -> Dict[str, Any]:
+        """Test module initialization and basic setup"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Verify initialization
+            assert synthesizer.module_name == "StrategyAdaptiveContextSynthesizer"
+            assert synthesizer.version == "1.0.0"
+            assert synthesizer.status == "active"
+            assert hasattr(synthesizer, 'context_profile')
+            assert hasattr(synthesizer, 'telemetry_data')
+            
+            return {
+                "test_name": "test_module_initialization",
+                "status": "PASS",
+                "message": "Module initialized successfully with required attributes",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_module_initialization", 
+                "status": "FAIL",
+                "message": f"Initialization failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_macro_sync_integration(self) -> Dict[str, Any]:
+        """Test macro sync event processing"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Emit macro update event
+            macro_event = {
+                "macro_data": self.test_macro_data,
+                "sync_quality": 0.95,
+                "data_freshness": 0.98,
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+            emit_event("macro_update_event", macro_event)
+            time.sleep(0.1)  # Allow processing
+            
+            # Verify macro context updated
+            context = synthesizer.get_current_context_profile()
+            macro_context = context["context_profile"]["macro_sync"]
+            
+            assert "interest_rate" in macro_context
+            assert macro_context["interest_rate"] == 5.25
+            assert synthesizer.macro_alignment_score > 0
+            
+            return {
+                "test_name": "test_macro_sync_integration",
+                "status": "PASS", 
+                "message": f"Macro sync processed, alignment score: {synthesizer.macro_alignment_score:.3f}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_macro_sync_integration",
+                "status": "FAIL",
+                "message": f"Macro sync integration failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_execution_feedback_processing(self) -> Dict[str, Any]:
+        """Test execution feedback event processing"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Emit execution feedback event
+            feedback_event = {
+                "feedback_data": self.test_execution_feedback,
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+            emit_event("execution_feedback_received", feedback_event)
+            time.sleep(0.1)  # Allow processing
+            
+            # Verify feedback context updated
+            context = synthesizer.get_current_context_profile()
+            feedback_context = context["context_profile"]["execution_feedback"]
+            
+            assert "drawdown_pressure" in feedback_context
+            assert feedback_context["drawdown_pressure"] == 0.05
+            assert synthesizer.feedback_pressure_index >= 0
+            
+            return {
+                "test_name": "test_execution_feedback_processing",
+                "status": "PASS",
+                "message": f"Feedback processed, pressure index: {synthesizer.feedback_pressure_index:.3f}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_execution_feedback_processing",
+                "status": "FAIL", 
+                "message": f"Execution feedback processing failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_market_conditions_processing(self) -> Dict[str, Any]:
+        """Test market conditions event processing"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Emit signal context change event
+            context_event = {
+                "context_data": self.test_market_conditions,
+                "signal_type": "momentum_shift",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+            emit_event("signal_context_change", context_event)
+            time.sleep(0.1)  # Allow processing
+            
+            # Verify market conditions updated
+            context = synthesizer.get_current_context_profile()
+            market_context = context["context_profile"]["market_conditions"]
+            
+            assert "volatility_index" in market_context
+            assert market_context["volatility_index"] == 1.2
+            assert synthesizer.volatility_cluster_id == "MEDIUM"
+            
+            return {
+                "test_name": "test_market_conditions_processing",
+                "status": "PASS",
+                "message": f"Market conditions processed, volatility cluster: {synthesizer.volatility_cluster_id}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_market_conditions_processing",
+                "status": "FAIL",
+                "message": f"Market conditions processing failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_pattern_cluster_processing(self) -> Dict[str, Any]:
+        """Test pattern cluster event processing"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Emit pattern cluster event
+            pattern_event = {
+                "pattern_data": self.test_pattern_cluster,
+                "pattern_confidence": 0.85,
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+            emit_event("pattern_cluster_detected", pattern_event)
+            time.sleep(0.1)  # Allow processing
+            
+            # Verify pattern context updated
+            context = synthesizer.get_current_context_profile()
+            pattern_context = context["context_profile"]["pattern_clusters"]
+            
+            assert "head_shoulders" in pattern_context
+            assert pattern_context["head_shoulders"] == True
+            assert pattern_context["pattern_strength"] == 0.85
+            
+            return {
+                "test_name": "test_pattern_cluster_processing",
+                "status": "PASS",
+                "message": f"Pattern cluster processed, strength: {pattern_context['pattern_strength']}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_pattern_cluster_processing",
+                "status": "FAIL",
+                "message": f"Pattern cluster processing failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_context_synthesis_algorithm(self) -> Dict[str, Any]:
+        """Test core context synthesis algorithm"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Trigger synthesis with multiple context updates
+            synthesizer._synthesize_context_profile()
+            
+            # Verify synthesis results
+            context = synthesizer.get_current_context_profile()
+            
+            assert context["profile_hash"] is not None
+            assert len(context["profile_hash"]) == 16  # SHA256 truncated to 16 chars
+            assert context["strategy_environment_match"] >= 0
+            assert context["strategy_environment_match"] <= 1
+            
+            return {
+                "test_name": "test_context_synthesis_algorithm",
+                "status": "PASS",
+                "message": f"Synthesis complete, profile hash: {context['profile_hash']}, match score: {context['strategy_environment_match']:.3f}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_context_synthesis_algorithm",
+                "status": "FAIL",
+                "message": f"Context synthesis failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_profile_hash_generation(self) -> Dict[str, Any]:
+        """Test context profile hash generation consistency"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Generate multiple hashes with same data
+            hash1 = synthesizer.current_profile_hash
+            synthesizer._synthesize_context_profile()
+            hash2 = synthesizer.current_profile_hash
+            
+            # Hashes should be consistent for same data
+            assert hash1 == hash2
+            assert len(hash1) == 16
+            
+            return {
+                "test_name": "test_profile_hash_generation",
+                "status": "PASS",
+                "message": f"Hash generation consistent: {hash1}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_profile_hash_generation",
+                "status": "FAIL",
+                "message": f"Hash generation failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_telemetry_emission(self) -> Dict[str, Any]:
+        """Test telemetry data emission"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Get telemetry data
+            telemetry = synthesizer.get_telemetry_data()
+            
+            # Verify required telemetry fields
+            required_fields = [
+                "context_profile_hash",
+                "volatility_cluster_id", 
+                "macro_alignment_score",
+                "strategy_environment_match",
+                "feedback_pressure_index",
+                "synthesis_cycles"
+            ]
+            
+            for field in required_fields:
+                assert field in telemetry, f"Missing telemetry field: {field}"
+            
+            assert telemetry["synthesis_cycles"] > 0
+            
+            return {
+                "test_name": "test_telemetry_emission",
+                "status": "PASS",
+                "message": f"Telemetry complete, cycles: {telemetry['synthesis_cycles']}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_telemetry_emission",
+                "status": "FAIL",
+                "message": f"Telemetry emission failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_eventbus_routing(self) -> Dict[str, Any]:
+        """Test EventBus routing integrity"""
+        try:
+            # Test context profile emission
+            received_events = []
+            
+            def test_handler(event_data):
+                received_events.append(event_data)
+            
+            subscribe_to_event("context_profile_ready", test_handler)
+            
+            # Trigger event emission
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            synthesizer._emit_context_profile_ready()
+            
+            time.sleep(0.1)  # Allow event processing
+            
+            assert len(received_events) > 0
+            event_data = received_events[0]
+            assert "context_profile" in event_data
+            assert "profile_hash" in event_data
+            
+            return {
+                "test_name": "test_eventbus_routing",
+                "status": "PASS",
+                "message": f"EventBus routing verified, events received: {len(received_events)}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_eventbus_routing",
+                "status": "FAIL",
+                "message": f"EventBus routing failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_performance_requirements(self) -> Dict[str, Any]:
+        """Test performance requirements compliance"""
+        try:
+            synthesizer = get_strategy_adaptive_context_synthesizer()
+            
+            # Measure synthesis performance
+            start_time = time.perf_counter()
+            
+            # Run multiple synthesis cycles
+            for _ in range(10):
+                synthesizer._synthesize_context_profile()
+                
+            end_time = time.perf_counter()
+            avg_latency_ms = ((end_time - start_time) / 10) * 1000
+            
+            # Verify performance requirements
+            max_latency_ms = 200
+            assert avg_latency_ms < max_latency_ms, f"Latency {avg_latency_ms:.1f}ms exceeds {max_latency_ms}ms"
+            
+            return {
+                "test_name": "test_performance_requirements",
+                "status": "PASS",
+                "message": f"Performance verified, avg latency: {avg_latency_ms:.1f}ms",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_performance_requirements",
+                "status": "FAIL",
+                "message": f"Performance test failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+
+def main():
+    """Main test execution"""
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    print("🧪 GENESIS Phase 42 Strategy Adaptive Context Synthesizer Test Suite")
+    print("=" * 80)
+    
+    # Run test suite
+    test_suite = TestStrategyAdaptiveContextSynthesizer()
+    results = test_suite.run_all_tests()
+    
+    # Save results
+    results_file = f"test_results_phase42_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(results_file, 'w') as f:
+        json.dump(results, f, indent=2)
+    
+    print(f"\n📄 Results saved to: {results_file}")
+    
+    # Exit with appropriate code
+    if results["success_rate"] == 100.0:
+        print("🎉 All tests passed! Phase 42 modules are ARCHITECT MODE compliant.")
+        sys.exit(0)
+    else:
+        print(f"⚠️  {results['failed']} tests failed. Review and fix issues.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_phase42_context_synthesizer -->

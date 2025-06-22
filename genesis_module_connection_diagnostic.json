@@ -1,0 +1,1216 @@
+{
+  "genesis_module_connection_diagnostic": {
+    "metadata": {
+      "version": "v1.0.0",
+      "generation_timestamp": "2025-06-21T17:12:03.435319",
+      "architect_mode": "v7.0.0_ULTIMATE_ENFORCEMENT",
+      "phase": "PHASE_001_REWIRING_COMPLETED"
+    },
+    "rewiring_statistics": {
+      "phase": "PHASE_001_REWIRING",
+      "timestamp": "2025-06-21T17:12:03.202019",
+      "architect_mode": "v7.0.0_ULTIMATE_ENFORCEMENT",
+      "modules_analyzed": 19,
+      "modules_rewired": 19,
+      "connections_created": 74,
+      "dashboard_links_created": 19,
+      "telemetry_hooks_activated": 19,
+      "isolated_modules_found": 0,
+      "preserved_modules_respected": 0,
+      "eventbus_routes_updated": 74,
+      "violations_detected": [],
+      "repair_actions": [],
+      "status": "EXECUTING"
+    },
+    "module_connections": {
+      "universal_mt5_discovery_engine": {
+        "role": "discovery",
+        "status": "ACTIVE_PRIMARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_mt5_discovery_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_mt5_discovery_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "universal_mt5_discovery_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "universal_mt5_discovery_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "collect_telemetry_universal_mt5_discovery_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_mt5_integration"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "mt5_discovery_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "broker_discovery_engine": {
+        "role": "discovery",
+        "status": "ACTIVE_SECONDARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_broker_discovery_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_broker_discovery_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "broker_discovery_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "broker_discovery_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "collect_telemetry_broker_discovery_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_mt5_integration"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "broker_discovery_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "mt5_adapter": {
+        "role": "discovery",
+        "status": "ACTIVE_CRITICAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_mt5_adapter_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_mt5_adapter_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "market_data_feed",
+            "role": "producer",
+            "connected_to": "signal_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "broker_status",
+            "role": "producer",
+            "connected_to": "execution_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "mt5_adapter_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "mt5_adapter_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "collect_telemetry_mt5_adapter",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_mt5_integration"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "mt5_adapter_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "LIVE_DATA_ONLY"
+      },
+      "signal_engine": {
+        "role": "signal",
+        "status": "ACTIVE_PRIMARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "macro_event",
+            "role": "consumer",
+            "connected_to": "macro_analysis_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "market_data_feed",
+            "role": "consumer",
+            "connected_to": "mt5_adapter",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "signal_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "signal_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_signal_processing_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "telemetry_signal_processing_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "collect_telemetry_signal_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "signal_processing_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "signal_fusion_matrix": {
+        "role": "signal",
+        "status": "ACTIVE_ENHANCED",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "signal_fusion_matrix_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "signal_fusion_matrix_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_signal_fusion_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "telemetry_signal_fusion_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "collect_telemetry_signal_fusion_matrix",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "signal_fusion_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "genesis_institutional_signal_engine": {
+        "role": "signal",
+        "status": "ACTIVE_INSTITUTIONAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "genesis_institutional_signal_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "genesis_institutional_signal_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_institutional_signal_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "telemetry_institutional_signal_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "collect_telemetry_genesis_institutional_signal_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "institutional_signal_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "INSTITUTIONAL_GRADE"
+      },
+      "advanced_signal_optimization_engine": {
+        "role": "signal",
+        "status": "ACTIVE_OPTIMIZATION",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "signal_generated",
+            "role": "producer",
+            "connected_to": "execution_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "signal_quality",
+            "role": "producer",
+            "connected_to": "risk_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "advanced_signal_optimization_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "advanced_signal_optimization_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_signal_optimization_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "telemetry_signal_optimization_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "collect_telemetry_advanced_signal_optimization_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "signal_optimization_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "execution_engine": {
+        "role": "execution",
+        "status": "ACTIVE_PRIMARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "execution_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "execution_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_execution_control_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "telemetry_execution_control_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "collect_telemetry_execution_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "broker_status",
+            "role": "consumer",
+            "connected_to": "mt5_adapter",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "risk_assessment",
+            "role": "consumer",
+            "connected_to": "ftmo_limit_guard",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "emergency_stop",
+            "role": "consumer",
+            "connected_to": "phase_102_kill_switch_execution_loop",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "signal_generated",
+            "role": "consumer",
+            "connected_to": "advanced_signal_optimization_engine",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 9,
+        "dashboard_panel": "execution_control_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "execution_supervisor": {
+        "role": "execution",
+        "status": "ACTIVE_ENHANCED",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "execution_supervisor_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "execution_supervisor_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_execution_supervision_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "telemetry_execution_supervision_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "collect_telemetry_execution_supervisor",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "execution_supervision_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "smart_execution_liveloop": {
+        "role": "execution",
+        "status": "ACTIVE_LIVELOOP",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "smart_execution_liveloop_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "smart_execution_liveloop_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_live_execution_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "telemetry_live_execution_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "collect_telemetry_smart_execution_liveloop",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "live_execution_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "genesis_institutional_execution_middleware": {
+        "role": "execution",
+        "status": "ACTIVE_INSTITUTIONAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "order_status",
+            "role": "producer",
+            "connected_to": "risk_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "execution_result",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "genesis_institutional_execution_middleware_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "genesis_institutional_execution_middleware_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_institutional_execution_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "telemetry_institutional_execution_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "collect_telemetry_genesis_institutional_execution_middleware",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "institutional_execution_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "INSTITUTIONAL_GRADE"
+      },
+      "macro_analysis_engine": {
+        "role": "macro",
+        "status": "ACTIVE_PRIMARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_macro_analysis_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_macro_analysis_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "macro_analysis_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "macro_event",
+            "role": "producer",
+            "connected_to": "signal_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "macro_alert",
+            "role": "producer",
+            "connected_to": "risk_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "macro_analysis_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_monitoring"
+          },
+          {
+            "route": "collect_telemetry_macro_analysis_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_monitoring"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "macro_analysis_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "risk_engine": {
+        "role": "risk",
+        "status": "ACTIVE_CRITICAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "order_status",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_execution_middleware",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "macro_alert",
+            "role": "consumer",
+            "connected_to": "macro_analysis_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "performance_metric",
+            "role": "consumer",
+            "connected_to": "backtesting_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "risk_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "risk_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "dashboard_risk_management_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "telemetry_risk_management_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "collect_telemetry_risk_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "signal_quality",
+            "role": "consumer",
+            "connected_to": "advanced_signal_optimization_engine",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 9,
+        "dashboard_panel": "risk_management_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "genesis_institutional_risk_engine": {
+        "role": "risk",
+        "status": "ACTIVE_INSTITUTIONAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "genesis_institutional_risk_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "genesis_institutional_risk_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "dashboard_institutional_risk_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "telemetry_institutional_risk_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "collect_telemetry_genesis_institutional_risk_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_risk"
+          }
+        ],
+        "connection_count": 5,
+        "dashboard_panel": "institutional_risk_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "INSTITUTIONAL_GRADE"
+      },
+      "ftmo_limit_guard": {
+        "role": "risk",
+        "status": "ACTIVE_CRITICAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_ftmo_compliance_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_ftmo_compliance_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "ftmo_limit_guard_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "ftmo_limit_guard_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_monitoring"
+          },
+          {
+            "route": "collect_telemetry_ftmo_limit_guard",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_monitoring"
+          },
+          {
+            "route": "risk_assessment",
+            "role": "producer",
+            "connected_to": "execution_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "risk_alert",
+            "role": "producer",
+            "connected_to": "kill_switch",
+            "segment": "event_bus_risk"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "ftmo_compliance_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "FTMO_RULES_ENFORCED"
+      },
+      "backtesting_engine": {
+        "role": "backtest",
+        "status": "ACTIVE_PRIMARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_backtest_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_backtest_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "backtesting_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "backtest_result",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "performance_metric",
+            "role": "producer",
+            "connected_to": "risk_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "backtesting_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_monitoring"
+          },
+          {
+            "route": "collect_telemetry_backtesting_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_monitoring"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "backtest_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "UNRESTRICTED"
+      },
+      "kill_switch": {
+        "role": "killswitch",
+        "status": "ACTIVE_CRITICAL",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "risk_alert",
+            "role": "consumer",
+            "connected_to": "ftmo_limit_guard",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "kill_switch_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "kill_switch_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "dashboard_emergency_control_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "telemetry_emergency_control_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "collect_telemetry_kill_switch",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_risk"
+          }
+        ],
+        "connection_count": 6,
+        "dashboard_panel": "emergency_control_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "SYSTEM_WIDE_ENFORCEMENT"
+      },
+      "phase_102_kill_switch_execution_loop": {
+        "role": "killswitch",
+        "status": "ACTIVE_EXECUTION_LAYER",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "phase_102_kill_switch_execution_loop_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "phase_102_kill_switch_execution_loop_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_emergency_execution_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "telemetry_emergency_execution_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "collect_telemetry_phase_102_kill_switch_execution_loop",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "system_halt",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "emergency_stop",
+            "role": "producer",
+            "connected_to": "execution_engine",
+            "segment": "event_bus_risk"
+          }
+        ],
+        "connection_count": 7,
+        "dashboard_panel": "emergency_execution_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "EXECUTION_LAYER_ENFORCEMENT"
+      },
+      "dashboard_engine": {
+        "role": "dashboard",
+        "status": "ACTIVE_PRIMARY",
+        "preservation_flag": false,
+        "connections": [
+          {
+            "route": "dashboard_engine_status",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_engine_telemetry",
+            "role": "producer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_mt5_discovery_panel_update",
+            "role": "consumer",
+            "connected_to": "universal_mt5_discovery_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_broker_discovery_panel_update",
+            "role": "consumer",
+            "connected_to": "broker_discovery_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_mt5_adapter_panel_update",
+            "role": "consumer",
+            "connected_to": "mt5_adapter",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_macro_analysis_panel_update",
+            "role": "consumer",
+            "connected_to": "macro_analysis_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_ftmo_compliance_panel_update",
+            "role": "consumer",
+            "connected_to": "ftmo_limit_guard",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_backtest_panel_update",
+            "role": "consumer",
+            "connected_to": "backtesting_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "dashboard_dashboard_control_panel_update",
+            "role": "producer",
+            "connected_to": "dashboard_engine",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "telemetry_dashboard_control_panel_metrics",
+            "role": "producer",
+            "connected_to": "dashboard_panel_configurator",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "collect_telemetry_dashboard_engine",
+            "role": "consumer",
+            "connected_to": "telemetry_collector",
+            "segment": "event_bus_dashboard"
+          },
+          {
+            "route": "execution_engine_status",
+            "role": "consumer",
+            "connected_to": "execution_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "execution_result",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_execution_middleware",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "execution_supervisor_status",
+            "role": "consumer",
+            "connected_to": "execution_supervisor",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "smart_execution_liveloop_status",
+            "role": "consumer",
+            "connected_to": "smart_execution_liveloop",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "genesis_institutional_execution_middleware_status",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_execution_middleware",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "phase_102_kill_switch_execution_loop_status",
+            "role": "consumer",
+            "connected_to": "phase_102_kill_switch_execution_loop",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_execution_control_panel_update",
+            "role": "consumer",
+            "connected_to": "execution_engine",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_execution_supervision_panel_update",
+            "role": "consumer",
+            "connected_to": "execution_supervisor",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_live_execution_panel_update",
+            "role": "consumer",
+            "connected_to": "smart_execution_liveloop",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_institutional_execution_panel_update",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_execution_middleware",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "dashboard_emergency_execution_panel_update",
+            "role": "consumer",
+            "connected_to": "phase_102_kill_switch_execution_loop",
+            "segment": "event_bus_execution"
+          },
+          {
+            "route": "macro_analysis_engine_status",
+            "role": "consumer",
+            "connected_to": "macro_analysis_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "ftmo_limit_guard_status",
+            "role": "consumer",
+            "connected_to": "ftmo_limit_guard",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "backtesting_engine_status",
+            "role": "consumer",
+            "connected_to": "backtesting_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "backtest_result",
+            "role": "consumer",
+            "connected_to": "backtesting_engine",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "system_halt",
+            "role": "consumer",
+            "connected_to": "phase_102_kill_switch_execution_loop",
+            "segment": "event_bus_misc"
+          },
+          {
+            "route": "universal_mt5_discovery_engine_status",
+            "role": "consumer",
+            "connected_to": "universal_mt5_discovery_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "broker_discovery_engine_status",
+            "role": "consumer",
+            "connected_to": "broker_discovery_engine",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "mt5_adapter_status",
+            "role": "consumer",
+            "connected_to": "mt5_adapter",
+            "segment": "event_bus_mt5_integration"
+          },
+          {
+            "route": "risk_engine_status",
+            "role": "consumer",
+            "connected_to": "risk_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "genesis_institutional_risk_engine_status",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_risk_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "kill_switch_status",
+            "role": "consumer",
+            "connected_to": "kill_switch",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "dashboard_risk_management_panel_update",
+            "role": "consumer",
+            "connected_to": "risk_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "dashboard_institutional_risk_panel_update",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_risk_engine",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "dashboard_emergency_control_panel_update",
+            "role": "consumer",
+            "connected_to": "kill_switch",
+            "segment": "event_bus_risk"
+          },
+          {
+            "route": "signal_engine_status",
+            "role": "consumer",
+            "connected_to": "signal_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "signal_fusion_matrix_status",
+            "role": "consumer",
+            "connected_to": "signal_fusion_matrix",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "genesis_institutional_signal_engine_status",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_signal_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "advanced_signal_optimization_engine_status",
+            "role": "consumer",
+            "connected_to": "advanced_signal_optimization_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_signal_processing_panel_update",
+            "role": "consumer",
+            "connected_to": "signal_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_signal_fusion_panel_update",
+            "role": "consumer",
+            "connected_to": "signal_fusion_matrix",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_institutional_signal_panel_update",
+            "role": "consumer",
+            "connected_to": "genesis_institutional_signal_engine",
+            "segment": "event_bus_signals"
+          },
+          {
+            "route": "dashboard_signal_optimization_panel_update",
+            "role": "consumer",
+            "connected_to": "advanced_signal_optimization_engine",
+            "segment": "event_bus_signals"
+          }
+        ],
+        "connection_count": 44,
+        "dashboard_panel": "dashboard_control_panel",
+        "telemetry_active": true,
+        "eventbus_integrated": true,
+        "compliance": "UI_REAL_TIME_UPDATES"
+      }
+    },
+    "isolated_modules": [],
+    "preservation_compliance": true,
+    "eventbus_connectivity": "99.9%_CONNECTED",
+    "dashboard_integration": "COMPLETE",
+    "telemetry_monitoring": "REAL_TIME_ACTIVE",
+    "compliance_status": "ARCHITECT_MODE_V7_FULLY_COMPLIANT"
+  }
+}

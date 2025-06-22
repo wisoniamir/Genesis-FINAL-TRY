@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\merge_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.866248+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\merge_recovered_2.py",
+      "line_numbers": [
+        213,
+        722,
+        809,
+        819,
+        823
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\merge_recovered_2.py",
+      "line_numbers": [
+        285,
+        711,
+        712,
+        1061,
+        1071
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\merge_recovered_2.py",
+      "line_numbers": [
+        271
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\merge_recovered_2.py",
+      "line_numbers": [
+        256,
+        768,
+        772,
+        1016,
+        1292
+      ],
+      "violation_count": 36
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\merge_recovered_2.py",
+      "line_numbers": [
+        169,
+        270,
+        435,
+        909,
+        1051
+      ],
+      "violation_count": 60
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

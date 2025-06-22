@@ -1,0 +1,74 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+  "quarantine_timestamp": "2025-06-21T04:33:02.940129+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+      "line_numbers": [
+        298
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+      "line_numbers": [
+        19,
+        56,
+        297,
+        309,
+        338
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+      "line_numbers": [
+        66,
+        305,
+        334,
+        348,
+        360
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+      "line_numbers": [
+        339
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+      "line_numbers": [
+        42,
+        303,
+        329,
+        409,
+        437
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production.py",
+      "line_numbers": [
+        35,
+        59
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

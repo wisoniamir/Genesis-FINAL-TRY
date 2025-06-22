@@ -1,0 +1,118 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.621681+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        66,
+        137,
+        143,
+        146,
+        147
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        9,
+        19,
+        38,
+        54,
+        64
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        1,
+        60,
+        69,
+        127,
+        128
+      ],
+      "violation_count": 57
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        103,
+        116,
+        126,
+        169,
+        241
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        121,
+        131,
+        190,
+        278,
+        309
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        105,
+        180,
+        272
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        108,
+        149,
+        306,
+        334,
+        363
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        92,
+        426
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_architect_compliant_broker_discovery_recovered_2.py",
+      "line_numbers": [
+        171,
+        172,
+        173,
+        174
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

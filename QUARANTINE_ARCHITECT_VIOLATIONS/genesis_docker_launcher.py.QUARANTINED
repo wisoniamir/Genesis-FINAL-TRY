@@ -1,0 +1,70 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+  "quarantine_timestamp": "2025-06-21T04:33:02.866234+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+      "line_numbers": [
+        77
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+      "line_numbers": [
+        129,
+        258
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+      "line_numbers": [
+        61,
+        86,
+        211,
+        262,
+        283
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+      "line_numbers": [
+        80,
+        127,
+        256,
+        322
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+      "line_numbers": [
+        102,
+        296
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_docker_launcher.py",
+      "line_numbers": [
+        74
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

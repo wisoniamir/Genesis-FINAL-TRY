@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_supervisor",
+  "original_path": "modules\\execution\\execution_supervisor.py",
+  "preserved_path": "preservation_holding_area\\execution_supervisor_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30973,
+  "checksum": "78fb5f2510baca10915fb10e3fe1e75f265cc4482aeecb9e40f3a9cc024cc3ee"
+}

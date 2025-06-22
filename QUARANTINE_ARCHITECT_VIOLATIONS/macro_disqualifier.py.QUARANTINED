@@ -1,0 +1,61 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\macro_disqualifier.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.458378+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\macro_disqualifier.py",
+      "line_numbers": [
+        582,
+        589
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\macro_disqualifier.py",
+      "line_numbers": [
+        50
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\macro_disqualifier.py",
+      "line_numbers": [
+        306
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\macro_disqualifier.py",
+      "line_numbers": [
+        137,
+        267,
+        429,
+        441,
+        482
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\macro_disqualifier.py",
+      "line_numbers": [
+        281,
+        519,
+        536,
+        555,
+        571
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

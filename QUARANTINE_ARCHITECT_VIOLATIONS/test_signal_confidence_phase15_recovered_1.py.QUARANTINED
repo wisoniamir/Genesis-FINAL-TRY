@@ -1,0 +1,98 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.454291+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        317,
+        322
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        32
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        1,
+        40,
+        43,
+        59,
+        65
+      ],
+      "violation_count": 33
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        12,
+        61,
+        201
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        132,
+        228
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        300,
+        301
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        220
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        53,
+        362
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_signal_confidence_phase15_recovered_1.py",
+      "line_numbers": [
+        46
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

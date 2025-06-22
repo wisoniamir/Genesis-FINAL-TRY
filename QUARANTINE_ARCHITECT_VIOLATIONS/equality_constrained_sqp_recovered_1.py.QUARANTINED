@@ -1,0 +1,27 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\equality_constrained_sqp_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.589304+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\equality_constrained_sqp_recovered_1.py",
+      "line_numbers": [
+        80
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\equality_constrained_sqp_recovered_1.py",
+      "line_numbers": [
+        92,
+        207,
+        227
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

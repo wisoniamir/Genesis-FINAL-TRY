@@ -1,0 +1,65 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\contour.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.851297+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\contour.py",
+      "line_numbers": [
+        151,
+        723,
+        824,
+        952,
+        990
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\contour.py",
+      "line_numbers": [
+        50
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\contour.py",
+      "line_numbers": [
+        333,
+        986
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\contour.py",
+      "line_numbers": [
+        33,
+        45,
+        199,
+        276,
+        324
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\contour.py",
+      "line_numbers": [
+        167,
+        185,
+        207,
+        243,
+        387
+      ],
+      "violation_count": 32
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,75 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.086389+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+      "line_numbers": [
+        210,
+        774,
+        879,
+        992
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+      "line_numbers": [
+        975
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+      "line_numbers": [
+        243
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+      "line_numbers": [
+        197,
+        209,
+        290,
+        304,
+        770
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+      "line_numbers": [
+        301,
+        316,
+        814,
+        843
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\uiparser.py",
+      "line_numbers": [
+        68,
+        128,
+        225,
+        331,
+        340
+      ],
+      "violation_count": 20
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

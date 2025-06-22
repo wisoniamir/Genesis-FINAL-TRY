@@ -1,0 +1,495 @@
+# -*- coding: utf-8 -*-
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🚀 GENESIS LOCAL DEVELOPMENT SERVER
+Alternative to Docker - runs Flask API directly
+"""
+
+import os
+import sys
+import subprocess
+import threading
+import time
+import webbrowser
+from pathlib import Path
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: start-genesis-local -->
+
+
+# <!-- @GENESIS_MODULE_START: start-genesis-local -->
+
+def check_dependencies():
+    """Check if required packages are installed"""
+    required_packages = [
+        'flask',
+        'flask-socketio', 
+        'flask-cors',
+        'redis'
+    ]
+    
+    missing_packages = []
+    for package in required_packages:
+        try:
+            __import__(package.replace('-', '_'))
+        except ImportError:
+            missing_packages.append(package)
+    
+    if missing_packages:
+        print(f"❌ Missing packages: {', '.join(missing_packages)}")
+        print("Installing required packages...")
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install'] + missing_packages)
+        print("✅ Packages installed")
+
+def start_api_server():
+    """Start the Flask API server"""
+    try:
+        print("🚀 Starting GENESIS API Server...")
+        
+        # Set environment variables
+        os.environ['FLASK_APP'] = 'api/app.py'
+        os.environ['FLASK_ENV'] = 'development'
+        os.environ['ARCHITECT_MODE'] = 'true'
+        
+        # Start Flask server
+        subprocess.run([
+            sys.executable, '-m', 'flask', 'run',
+            '--host=0.0.0.0',
+            '--port=8000',
+            '--debug'
+        ])
+        
+    except Exception as e:
+        print(f"❌ API server error: {e}")
+
+def create_simple_frontend():
+    """Create a simple HTML frontend if React is not available"""
+    html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 GENESIS Dashboard v7.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #00ff88;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: #000;
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            text-shadow: 0 0 10px #00ff88;
+        }
+        
+        .status-bar {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .status {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid #00ff88;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card h3 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+        
+        .metric-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #00ff88, #00cc66);
+            border: none;
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: transform 0.2s;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .button.danger {
+            background: linear-gradient(45deg, #ff4444, #cc2222);
+            color: white;
+        }
+        
+        .log {
+            background: #000;
+            color: #00ff88;
+            padding: 1rem;
+            border-radius: 4px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            padding: 0.5rem 2rem;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 GENESIS TRADING PLATFORM v7.0</h1>
+        <div class="status-bar">
+            <div class="status" id="systemStatus">🔴 SYSTEM: OFFLINE</div>
+            <div class="status" id="apiStatus">🔴 API: DISCONNECTED</div>
+            <div class="status" id="mt5Status">🔴 MT5: DISCONNECTED</div>
+            <div class="status">🔐 ARCHITECT MODE: ACTIVE</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="grid">
+            <!-- System Control -->
+            <div class="card">
+                <h3>🔧 System Control</h3>
+                <button class="button" onclick="startSystem()">▶️ Start System</button>
+                <button class="button" onclick="stopSystem()">⏹️ Stop System</button>
+                <button class="button" onclick="reloadModules()">🔄 Reload Modules</button>
+                <button class="button danger" onclick="triggerKillSwitch()">🚨 Kill Switch</button>
+            </div>
+            
+            <!-- Module Status -->
+            <div class="card">
+                <h3>📊 Module Status</h3>
+                <div class="metric">
+                    <span>Strategy Engine:</span>
+                    <span class="metric-value" id="strategyStatus">🔴 OFFLINE</span>
+                </div>
+                <div class="metric">
+                    <span>Execution Manager:</span>
+                    <span class="metric-value" id="executionStatus">🔴 OFFLINE</span>
+                </div>
+                <div class="metric">
+                    <span>Kill Switch:</span>
+                    <span class="metric-value" id="killSwitchStatus">🔴 OFFLINE</span>
+                </div>
+                <div class="metric">
+                    <span>Telemetry:</span>
+                    <span class="metric-value" id="telemetryStatus">🔴 OFFLINE</span>
+                </div>
+            </div>
+            
+            <!-- Performance Metrics -->
+            <div class="card">
+                <h3>📈 Performance</h3>
+                <div class="metric">
+                    <span>CPU Usage:</span>
+                    <span class="metric-value" id="cpuUsage">0%</span>
+                </div>
+                <div class="metric">
+                    <span>Memory Usage:</span>
+                    <span class="metric-value" id="memoryUsage">0MB</span>
+                </div>
+                <div class="metric">
+                    <span>Active Strategies:</span>
+                    <span class="metric-value" id="activeStrategies">0</span>
+                </div>
+                <div class="metric">
+                    <span>Signals Generated:</span>
+                    <span class="metric-value" id="signalsGenerated">0</span>
+                </div>
+            </div>
+            
+            <!-- Trading Status -->
+            <div class="card">
+                <h3>💼 Trading Status</h3>
+                <div class="metric">
+                    <span>Open Positions:</span>
+                    <span class="metric-value" id="openPositions">0</span>
+                </div>
+                <div class="metric">
+                    <span>Daily P&L:</span>
+                    <span class="metric-value" id="dailyPnL">$0.00</span>
+                </div>
+                <div class="metric">
+                    <span>Drawdown:</span>
+                    <span class="metric-value" id="drawdown">0.00%</span>
+                </div>
+                <div class="metric">
+                    <span>Risk Level:</span>
+                    <span class="metric-value" id="riskLevel">LOW</span>
+                </div>
+            </div>
+            
+            <!-- Recent Signals -->
+            <div class="card">
+                <h3>📡 Recent Signals</h3>
+                <div id="signalsList">
+                    <div style="color: #666; font-style: italic;">No signals yet...</div>
+                </div>
+            </div>
+            
+            <!-- System Log -->
+            <div class="card">
+                <h3>📋 System Log</h3>
+                <div class="log" id="systemLog">
+[SYSTEM] GENESIS Dashboard initialized<br>
+[SYSTEM] Waiting for API connection...<br>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div>GENESIS Trading Platform • Architect Mode v7.0 • Zero Tolerance Compliance</div>
+        <div id="currentTime"></div>
+    </div>
+
+    <script>
+        let apiConnected = false;
+        let systemStatus = 'offline';
+        
+        // Update time
+        function updateTime() {
+            document.getElementById('currentTime').textContent = new Date().toLocaleString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        // Log function
+        function log(message) {
+            const logElement = document.getElementById('systemLog');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `[${timestamp}] ${message}<br>`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        // API functions
+        async function checkApiHealth() {
+            try {
+                const response = await fetch('/health');
+                if (response.ok) {
+                    if (!apiConnected) {
+                        apiConnected = true;
+                        document.getElementById('apiStatus').textContent = '🟢 API: CONNECTED';
+                        log('API connection established');
+                        loadSystemStatus();
+                    }
+                } else {
+                    throw new Error('API not responding');
+                }
+            } catch (error) {
+                if (apiConnected) {
+                    apiConnected = false;
+                    document.getElementById('apiStatus').textContent = '🔴 API: DISCONNECTED';
+                    log('API connection lost');
+                }
+            }
+        }
+        
+        async function loadSystemStatus() {
+            try {
+                const response = await fetch('/api/system/status');
+                const data = await response.json();
+                
+                document.getElementById('systemStatus').textContent = `🟢 SYSTEM: ${data.status?.toUpperCase() || 'UNKNOWN'}`;
+                
+                // Update MT5 status
+                if (data.mt5_connected) {
+                    document.getElementById('mt5Status').textContent = '🟢 MT5: CONNECTED';
+                } else {
+                    document.getElementById('mt5Status').textContent = '🔴 MT5: DISCONNECTED';
+                }
+                
+            } catch (error) {
+                log('Failed to load system status');
+            }
+        }
+        
+        async function startSystem() {
+            log('Starting system...');
+            // Add API call here
+        }
+        
+        async function stopSystem() {
+            log('Stopping system...');
+            // Add API call here
+        }
+        
+        async function reloadModules() {
+            log('Reloading modules...');
+            // Add API call here
+        }
+        
+        async function triggerKillSwitch() {
+            if (confirm('⚠️ This will immediately halt all trading operations. Continue?')) {
+                log('🚨 KILL SWITCH ACTIVATED');
+                document.getElementById('killSwitchStatus').innerHTML = '<span class="blink">🚨 ACTIVATED</span>';
+                // Add API call here
+            }
+        }
+        
+        // Start monitoring
+        setInterval(checkApiHealth, 5000);
+        checkApiHealth();
+        
+        log('GENESIS Dashboard ready');
+        log('Architect Mode v7.0 - Full Compliance Active');
+    </script>
+</body>
+</html>
+    """
+    
+    frontend_dir = Path("frontend_simple")
+    frontend_dir.mkdir(exist_ok=True)
+    
+    with open(frontend_dir / "index.html", "w") as f:
+        f.write(html_content)
+    
+    return frontend_dir / "index.html"
+
+def main():
+    """Main function to start GENESIS locally"""
+    print("🚀 GENESIS LOCAL DEVELOPMENT SERVER")
+    print("📊 Architect Mode v7.0 - Zero Tolerance Compliance")
+    print("🔐 Alternative to Docker deployment")
+    print("=" * 60)
+    
+    # Check dependencies
+    check_dependencies()
+    
+    # Create simple frontend
+    frontend_file = create_simple_frontend()
+    print(f"✅ Simple frontend created: {frontend_file}")
+    
+    # Start API server in background thread
+    api_thread = threading.Thread(target=start_api_server, daemon=True)
+    api_thread.start()
+    
+    # Wait a bit for server to start
+    time.sleep(3)
+    
+    # Open browser
+    print("🌐 Opening dashboard in browser...")
+    webbrowser.open(f"file://{frontend_file.absolute()}")
+    
+    print("")
+    print("🎉 GENESIS LOCAL SERVER STARTED!")
+    print("")
+    print("📊 Access Points:")
+    print("   Dashboard:    file:///" + str(frontend_file.absolute()).replace('\\', '/'))
+    print("   Backend API:  http://localhost:8000")
+    print("   Health Check: http://localhost:8000/health")
+    print("")
+    print("🔧 The API server is running in the background")
+    print("🚨 Press Ctrl+C to stop the server")
+    print("")
+    
+    try:
+        # Keep main thread alive
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n🛑 Shutting down GENESIS local server...")
+        print("✅ Server stopped")
+
+if __name__ == "__main__":
+    main()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

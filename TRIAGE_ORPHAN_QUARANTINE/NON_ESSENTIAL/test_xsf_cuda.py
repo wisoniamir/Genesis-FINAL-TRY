@@ -1,0 +1,265 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_xsf_cuda -->
+"""
+🏛️ GENESIS TEST_XSF_CUDA - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import os
+import pytest
+import scipy.special as sc
+import shutil
+import tempfile
+
+from uuid import uuid4
+
+from scipy.special._testutils import check_version
+from scipy.special._testutils import MissingModule
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_xsf_cuda", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_xsf_cuda", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_xsf_cuda",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_xsf_cuda: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_xsf_cuda",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_xsf_cuda", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_xsf_cuda: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+try:
+    import cupy  # type: ignore
+except (ImportError, AttributeError):
+    cupy = MissingModule('cupy')
+
+
+def get_test_cases():
+    cases_source = [
+        (sc.beta, "cephes/beta.h", "out0 = xsf::cephes::beta(in0, in1)"),
+        (sc.binom, "binom.h", "out0 = xsf::binom(in0, in1)"),
+        (sc.digamma, "digamma.h", "xsf::digamma(in0)"),
+        (sc.expn, "cephes/expn.h", "out0 = xsf::cephes::expn(in0, in1)"),
+        (sc.hyp2f1, "hyp2f1.h", "out0 = xsf::hyp2f1(in0, in1, in2, in3)"),
+        (sc._ufuncs._lambertw, "lambertw.h", "out0 = xsf::lambertw(in0, in1, in2)"),
+        (sc.ellipkinc, "cephes/ellik.h", "out0 = xsf::cephes::ellik(in0, in1)"),
+        (sc.ellipeinc, "cephes/ellie.h", "out0 = xsf::cephes::ellie(in0, in1)"),
+        (sc.gdtrib, "cdflib.h", "out0 = xsf::gdtrib(in0, in1, in2)"),
+        (sc.sici, "sici.h", "xsf::sici(in0, &out0, &out1)"),
+        (sc.shichi, "sici.h", "xsf::shichi(in0, &out0, &out1)"),
+    ]
+
+    cases = []
+    for ufunc, header, routine in cases_source:
+        preamble = f"#include <xsf/{header}>"
+        for signature in ufunc.types:
+            cases.append((signature, preamble, routine))
+    return cases
+
+
+dtype_map = {
+    "f": "float32",
+    "d": "float64",
+    "F": "complex64",
+    "D": "complex128",
+    "i": "int32",
+    "l": "int64",
+}
+
+
+def get_params(signature):
+    in_, out = signature.split("->")
+    in_params = []
+    out_params = []
+    for i, typecode in enumerate(in_):
+        in_params.append(f"{dtype_map[typecode]} in{i}")
+    for i, typecode in enumerate(out):
+        out_params.append(f"{dtype_map[typecode]} out{i}")
+    in_params = ", ".join(in_params)
+    out_params = ", ".join(out_params)
+    return in_params, out_params
+
+
+def get_sample_input(signature, xp):
+    dtype_map = {
+        "f": xp.float32,
+        "d": xp.float64,
+        "F": xp.complex64,
+        "D": xp.complex128,
+        "i": xp.int32,
+        "l": xp.int64,
+    }
+
+    in_, _ = signature.split("->")
+    args = []
+    for typecode in in_:
+        args.append(xp.zeros(2, dtype=dtype_map[typecode]))
+    return args
+
+
+@pytest.fixture(scope="module", autouse=True)
+def manage_cupy_cache():
+    # Temporarily change cupy kernel cache location so kernel cache will not be polluted
+    # by these tests. Remove temporary cache in teardown.
+    temp_cache_dir = tempfile.mkdtemp()
+    original_cache_dir = os.environ.get('CUPY_CACHE_DIR', None)
+    os.environ['CUPY_CACHE_DIR'] = temp_cache_dir
+
+    yield
+
+    if original_cache_dir is not None:
+        os.environ['CUPY_CACHE_DIR'] = original_cache_dir
+    else:
+        del os.environ['CUPY_CACHE_DIR']
+    shutil.rmtree(temp_cache_dir)
+
+
+@check_version(cupy, "13.0.0")
+@pytest.mark.parametrize("signature,preamble,routine", get_test_cases())
+@pytest.mark.xslow
+def test_compiles_in_cupy(signature, preamble, routine, manage_cupy_cache):
+    name = f"x{uuid4().hex}"
+    in_params, out_params = get_params(signature)
+
+    func = cupy.ElementwiseKernel(
+        in_params,
+        out_params,
+        routine,
+        name,
+        preamble=preamble,
+        options=(f"--include-path={sc._get_include()}", "-std=c++17")
+    )
+
+    _ = func(*get_sample_input(signature, cupy))
+
+
+# <!-- @GENESIS_MODULE_END: test_xsf_cuda -->

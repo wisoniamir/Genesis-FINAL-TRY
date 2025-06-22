@@ -1,0 +1,73 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.502258+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+      "line_numbers": [
+        202,
+        1514,
+        1871
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+      "line_numbers": [
+        878
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+      "line_numbers": [
+        2168,
+        2294,
+        2301
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+      "line_numbers": [
+        1918
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+      "line_numbers": [
+        94,
+        99,
+        358,
+        612,
+        932
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\style_render.py",
+      "line_numbers": [
+        362,
+        670,
+        889,
+        1360,
+        1381
+      ],
+      "violation_count": 26
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

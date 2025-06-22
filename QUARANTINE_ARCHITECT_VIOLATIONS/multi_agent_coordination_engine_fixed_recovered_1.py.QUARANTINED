@@ -1,0 +1,71 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_fixed_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.180556+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        39,
+        43,
+        157,
+        174,
+        211
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        167,
+        205,
+        224,
+        243,
+        262
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        215,
+        234,
+        253,
+        297
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        149,
+        199,
+        396,
+        417,
+        457
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        54,
+        159,
+        160,
+        161,
+        162
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

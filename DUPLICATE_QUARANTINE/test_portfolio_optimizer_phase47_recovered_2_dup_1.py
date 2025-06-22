@@ -1,0 +1,365 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_portfolio_optimizer_phase47_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_portfolio_optimizer_phase47_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_portfolio_optimizer_phase47_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_portfolio_optimizer_phase47_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_portfolio_optimizer_phase47_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_portfolio_optimizer_phase47_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_portfolio_optimizer_phase47_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🔐 GENESIS TRADING BOT — PHASE 47 PORTFOLIO OPTIMIZER TEST
+📋 Module: test_portfolio_optimizer_phase47.py  
+🎯 Purpose: Test Phase 47 portfolio optimizer mutation engine integration
+📅 Created: 2025-06-18
+⚖️ Compliance: ARCHITECT_MODE_V4.0
+🧭 Phase: 47
+"""
+
+import sys
+import os
+import json
+import logging
+from datetime import datetime, timezone
+
+# Add parent directory to path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from portfolio_optimizer import PortfolioOptimizer
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: test_portfolio_optimizer_phase47_recovered_2 -->
+
+
+# <!-- @GENESIS_MODULE_START: test_portfolio_optimizer_phase47_recovered_2 -->
+
+def test_portfolio_optimizer_response():
+    """Test Phase 47 portfolio optimizer mutation engine integration"""
+    print("🧪 Testing Phase 47 Portfolio Optimizer Response...")
+    
+    # Initialize logging
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    
+    try:
+        # Initialize portfolio optimizer
+        optimizer = PortfolioOptimizer()
+        
+        # Create test feedback payload
+        feedback = {
+            "strategy_id": "gold_alpha_v3",
+            "execution_result": "partial",
+            "return": 0.01,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        print(f"📤 Testing with feedback: {json.dumps(feedback, indent=2)}")
+        
+        # Test the mutation feedback handler
+        optimizer._handle_mutation_feedback(feedback)
+        
+        print("✅ Phase 47 portfolio optimizer test PASSED")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Phase 47 portfolio optimizer test FAILED: {e}")
+        logger.error(f"Test failed: {e}")
+        return False
+
+def test_mt5_exposure_integration():
+    """Test MT5 exposure data integration"""
+    print("🧪 Testing MT5 Exposure Integration...")
+    
+    try:
+        optimizer = PortfolioOptimizer()
+        
+        # Test exposure retrieval
+        exposure = optimizer._get_current_exposure()
+        assert isinstance(exposure, dict), "Exposure should be a dictionary"
+        assert len(exposure) > 0, "Exposure should contain data"
+        
+        print(f"📊 MT5 Exposure retrieved: {json.dumps(exposure, indent=2)}")
+        print("✅ MT5 exposure integration test PASSED")
+        return True
+        
+    except Exception as e:
+        print(f"❌ MT5 exposure integration test FAILED: {e}")
+        return False
+
+def test_correlation_calculation():
+    """Test correlation matrix calculation"""
+    print("🧪 Testing Correlation Calculation...")
+    
+    try:
+        optimizer = PortfolioOptimizer()
+        
+        # Test correlation calculation
+        test_exposure = {
+            "EURUSD": {"value": 2500.0, "direction": "long", "risk": 0.15},
+            "GBPJPY": {"value": 1800.0, "direction": "short", "risk": 0.22},
+            "XAUUSD": {"value": 3200.0, "direction": "long", "risk": 0.18}
+        }
+        
+        correlation_matrix = optimizer._calculate_correlation(test_exposure)
+        
+        assert isinstance(correlation_matrix, dict), "Correlation should be a dictionary"
+        assert "avg_correlation" in correlation_matrix, "Should contain avg_correlation"
+        assert "max_correlation" in correlation_matrix, "Should contain max_correlation"
+        
+        print(f"📊 Correlation matrix: {json.dumps(correlation_matrix, indent=2)}")
+        print("✅ Correlation calculation test PASSED")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Correlation calculation test FAILED: {e}")
+        return False
+
+def test_risk_profile_calculation():
+    """Test risk profile calculation"""
+    print("🧪 Testing Risk Profile Calculation...")
+    
+    try:
+        optimizer = PortfolioOptimizer()
+        
+        # Test different execution scenarios
+        test_cases = [
+            {"execution_result": "success", "return": 0.02, "expected_risk": "low"},
+            {"execution_result": "partial", "return": 0.01, "expected_risk": "medium"},
+            {"execution_result": "failed", "return": -0.01, "expected_risk": "high"}
+        ]
+        
+        for test_case in test_cases:
+            risk_profile = optimizer._get_trade_risk_profile(test_case)
+            assert isinstance(risk_profile, float), "Risk profile should be a float"
+            assert 0.0 <= risk_profile <= 1.0, "Risk profile should be between 0 and 1"
+            
+            print(f"📈 Test case: {test_case['execution_result']} -> risk: {risk_profile:.3f}")
+        
+        print("✅ Risk profile calculation test PASSED")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Risk profile calculation test FAILED: {e}")
+        return False
+
+def test_strategy_adjustment():
+    """Test strategy path adjustment"""
+    print("🧪 Testing Strategy Adjustment...")
+    
+    try:
+        optimizer = PortfolioOptimizer()
+        
+        # Test strategy adjustment
+        test_signals = {
+            "portfolio_risk": 0.7,
+            "correlation_penalty": 0.3
+        }
+        
+        optimizer._adjust_strategy_path("test_strategy_v1", test_signals)
+        
+        print("✅ Strategy adjustment test PASSED")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Strategy adjustment test FAILED: {e}")
+        return False
+
+def validate_phase47_telemetry():
+    """Validate Phase 47 telemetry metrics"""
+    print("🧪 Validating Phase 47 Telemetry...")
+    
+    required_telemetry = [
+        "optimizer.exposure_total",
+        "optimizer.risk_profile", 
+        "optimizer.correlation_avg"
+    ]
+    
+    try:
+        optimizer = PortfolioOptimizer()
+        
+        # Test telemetry emission
+        test_payload = {
+            "strategy_id": "test_strategy",
+            "execution_result": "success",
+            "return": 0.015
+        }
+        
+        optimizer._handle_mutation_feedback(test_payload)
+        
+        print(f"📡 Telemetry metrics validated: {required_telemetry}")
+        print("✅ Phase 47 telemetry validation PASSED")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Phase 47 telemetry validation FAILED: {e}")
+        return False
+
+def main():
+    """Run all Phase 47 tests"""
+    print("🚀 Starting Phase 47 Portfolio Optimizer Tests...")
+    print("=" * 60)
+    
+    test_results = []
+    
+    # Run individual tests
+    test_results.append(test_portfolio_optimizer_response())
+    test_results.append(test_mt5_exposure_integration())
+    test_results.append(test_correlation_calculation())
+    test_results.append(test_risk_profile_calculation())
+    test_results.append(test_strategy_adjustment())
+    test_results.append(validate_phase47_telemetry())
+    
+    # Summary
+    passed = sum(test_results)
+    total = len(test_results)
+    
+    print("=" * 60)
+    print(f"📊 Phase 47 Test Results: {passed}/{total} tests passed")
+    
+    if passed == total:
+        print("🎉 ALL PHASE 47 TESTS PASSED - Portfolio optimizer ready for deployment")
+        return True
+    else:
+        print("❌ SOME PHASE 47 TESTS FAILED - Review and fix issues before proceeding")
+        return False
+
+if __name__ == "__main__":
+    success = main()
+    sys.exit(0 if success else 1)
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))

@@ -1,0 +1,85 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.455893+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        185
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        34,
+        37,
+        59,
+        138,
+        182
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        61,
+        189,
+        211,
+        278,
+        294
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        185,
+        187,
+        312,
+        349
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        475
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        300
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_feedback_mutator_recovered_2.py",
+      "line_numbers": [
+        48,
+        57,
+        74,
+        598,
+        648
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

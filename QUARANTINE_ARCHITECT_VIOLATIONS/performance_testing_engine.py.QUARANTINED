@@ -1,0 +1,94 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.831114+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        205,
+        210,
+        219,
+        295,
+        300
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        169,
+        221,
+        357,
+        408
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        56,
+        64,
+        77,
+        149,
+        153
+      ],
+      "violation_count": 44
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        102,
+        160,
+        174,
+        243,
+        263
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        105,
+        177,
+        183,
+        252,
+        272
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        541,
+        618
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\performance_testing_engine.py",
+      "line_numbers": [
+        87,
+        145,
+        217,
+        306,
+        404
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

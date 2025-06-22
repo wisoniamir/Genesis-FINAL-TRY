@@ -1,0 +1,29 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\ORPHAN_INTEGRATION_REPORT.md",
+  "quarantine_timestamp": "2025-06-21T04:33:03.485675+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\ORPHAN_INTEGRATION_REPORT.md",
+      "line_numbers": [
+        24,
+        26,
+        27,
+        28,
+        43
+      ],
+      "violation_count": 47
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\ORPHAN_INTEGRATION_REPORT.md",
+      "line_numbers": [
+        17
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "database",
+  "original_path": "modules\\restored\\database.py",
+  "preserved_path": "preservation_holding_area\\database_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 93202,
+  "checksum": "4b22954f201124043e52d9ec6a1e5a215e0adf61a5064595dead8a75897a37b6"
+}

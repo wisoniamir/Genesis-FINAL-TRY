@@ -1,0 +1,9 @@
+{
+  "module_id": "httputil",
+  "original_path": "modules\\restored\\httputil.py",
+  "preserved_path": "preservation_holding_area\\httputil_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 106254,
+  "checksum": "b6e3d63a5ee284cc5e04db8b7939e311e7ccfc690508f4d6c61c2681072bda44"
+}

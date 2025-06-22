@@ -1,0 +1,9 @@
+{
+  "module_id": "pandas_compat",
+  "original_path": "modules\\restored\\pandas_compat.py",
+  "preserved_path": "preservation_holding_area\\pandas_compat_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 53353,
+  "checksum": "b45a7ba470fbc55e52868e8eb9205304d6b9e065db3cb0e246d7c63ca5bd6842"
+}

@@ -1,0 +1,25 @@
+"""
+🛡️ COPY-PASTE ARCHITECT VALIDATION HOOK
+Add this at the top of any new Python module for compliance checking
+"""
+
+# === LIGHTWEIGHT ARCHITECT VALIDATION ===
+# Copy this block to the top of new modules:
+
+try:
+    from lightweight_validation_hook import quick_integrity_check
+    if not quick_integrity_check():
+        print("[⚠️] System integrity issues detected")
+except:
+    pass  # Silent fail - don't break module if validation unavailable
+
+# === YOUR MODULE CODE BELOW ===
+
+"""
+USAGE:
+1. Copy the try/except block above
+2. Paste at the top of any new Python file
+3. No performance impact - only runs when file is executed
+4. Maintains Guardian-free optimization
+5. Provides basic integrity checking
+"""

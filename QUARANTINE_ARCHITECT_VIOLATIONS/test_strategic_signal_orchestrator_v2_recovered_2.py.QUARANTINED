@@ -1,0 +1,120 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.585220+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        79,
+        145,
+        149,
+        150,
+        555
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        21,
+        46,
+        66,
+        77,
+        174
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        1,
+        72,
+        74,
+        82,
+        135
+      ],
+      "violation_count": 90
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        117,
+        134,
+        173,
+        240,
+        272
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        122,
+        139,
+        189,
+        264,
+        320
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        128,
+        136,
+        248,
+        252,
+        476
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        130,
+        152,
+        315,
+        317,
+        369
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        106,
+        582
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_strategic_signal_orchestrator_v2_recovered_2.py",
+      "line_numbers": [
+        175,
+        176,
+        177,
+        178
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

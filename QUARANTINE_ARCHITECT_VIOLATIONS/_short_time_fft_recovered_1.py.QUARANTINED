@@ -1,0 +1,53 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_short_time_fft_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.952034+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_short_time_fft_recovered_1.py",
+      "line_numbers": [
+        375,
+        721,
+        1664,
+        1689,
+        1693
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_short_time_fft_recovered_1.py",
+      "line_numbers": [
+        988
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_short_time_fft_recovered_1.py",
+      "line_numbers": [
+        70,
+        254,
+        256,
+        258,
+        267
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_short_time_fft_recovered_1.py",
+      "line_numbers": [
+        1648,
+        1727,
+        1735
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

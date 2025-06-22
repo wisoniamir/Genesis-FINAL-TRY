@@ -1,0 +1,47 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_simple_launcher.py",
+  "quarantine_timestamp": "2025-06-21T04:33:02.950536+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_simple_launcher.py",
+      "line_numbers": [
+        61,
+        64
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_simple_launcher.py",
+      "line_numbers": [
+        21,
+        77,
+        184,
+        210
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_simple_launcher.py",
+      "line_numbers": [
+        216
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_simple_launcher.py",
+      "line_numbers": [
+        172
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

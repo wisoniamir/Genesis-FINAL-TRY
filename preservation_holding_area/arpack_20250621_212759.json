@@ -1,0 +1,9 @@
+{
+  "module_id": "arpack",
+  "original_path": "modules\\restored\\arpack.py",
+  "preserved_path": "preservation_holding_area\\arpack_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 119266,
+  "checksum": "e4ad71cc2745dcdfb2957efd602b8c07b0c008612e321784138b1f261c825178"
+}

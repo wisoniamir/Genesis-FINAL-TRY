@@ -1,0 +1,9 @@
+{
+  "module_id": "command_context",
+  "original_path": "modules\\restored\\command_context.py",
+  "preserved_path": "preservation_holding_area\\command_context_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 12113,
+  "checksum": "2f5e644d737ddceff45a97926757e949be1ec85f3c7b3b9668dfe50207d7941b"
+}

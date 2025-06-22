@@ -1,0 +1,9 @@
+{
+  "module_id": "ImageDraw",
+  "original_path": "modules\\restored\\ImageDraw.py",
+  "preserved_path": "preservation_holding_area\\ImageDraw_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 54838,
+  "checksum": "49e1fbef1fbe6c12e1884a892d625deb58140e909937a4b6198651cfff0107ae"
+}

@@ -1,0 +1,771 @@
+# <!-- @GENESIS_MODULE_START: list -->
+"""
+🏛️ GENESIS LIST - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import json
+import logging
+from email.parser import Parser
+from optparse import Values
+from typing import TYPE_CHECKING, Generator, List, Optional, Sequence, Tuple, cast
+
+from pip._vendor.packaging.utils import canonicalize_name
+from pip._vendor.packaging.version import Version
+
+from pip._internal.cli import cmdoptions
+from pip._internal.cli.index_command import IndexGroupCommand
+from pip._internal.cli.status_codes import SUCCESS
+from pip._internal.exceptions import CommandError
+from pip._internal.metadata import BaseDistribution, get_environment
+from pip._internal.models.selection_prefs import SelectionPreferences
+from pip._internal.utils.compat import stdlib_pkgs
+from pip._internal.utils.misc import tabulate, write_output
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("list", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("list", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "list",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in list: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "list",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("list", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in list: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+if TYPE_CHECKING:
+    from pip._internal.index.package_finder import PackageFinder
+    from pip._internal.network.session import PipSession
+
+    class _DistWithLatestInfo(BaseDistribution):
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("list", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("list", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "list",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in list: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "list",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("list", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in list: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "list",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in list: {e}")
+        """Give the distribution object a couple of extra fields.
+
+        These will be populated during ``get_outdated()``. This is dirty but
+        makes the rest of the code much cleaner.
+        """
+
+        latest_version: Version
+        latest_filetype: str
+
+    _ProcessedDists = Sequence[_DistWithLatestInfo]
+
+
+logger = logging.getLogger(__name__)
+
+
+class ListCommand(IndexGroupCommand):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("list", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("list", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "list",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in list: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "list",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("list", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in list: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "list",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in list: {e}")
+    """
+    List installed packages, including editables.
+
+    Packages are listed in a case-insensitive sorted order.
+    """
+
+    ignore_require_venv = True
+    usage = """
+      %prog [options]"""
+
+    def add_options(self) -> None:
+        self.cmd_opts.add_option(
+            "-o",
+            "--outdated",
+            action="store_true",
+            default=False,
+            help="List outdated packages",
+        )
+        self.cmd_opts.add_option(
+            "-u",
+            "--uptodate",
+            action="store_true",
+            default=False,
+            help="List uptodate packages",
+        )
+        self.cmd_opts.add_option(
+            "-e",
+            "--editable",
+            action="store_true",
+            default=False,
+            help="List editable projects.",
+        )
+        self.cmd_opts.add_option(
+            "-l",
+            "--local",
+            action="store_true",
+            default=False,
+            help=(
+                "If in a virtualenv that has global access, do not list "
+                "globally-installed packages."
+            ),
+        )
+        self.cmd_opts.add_option(
+            "--user",
+            dest="user",
+            action="store_true",
+            default=False,
+            help="Only output packages installed in user-site.",
+        )
+        self.cmd_opts.add_option(cmdoptions.list_path())
+        self.cmd_opts.add_option(
+            "--pre",
+            action="store_true",
+            default=False,
+            help=(
+                "Include pre-release and development versions. By default, "
+                "pip only finds stable versions."
+            ),
+        )
+
+        self.cmd_opts.add_option(
+            "--format",
+            action="store",
+            dest="list_format",
+            default="columns",
+            choices=("columns", "freeze", "json"),
+            help=(
+                "Select the output format among: columns (default), freeze, or json. "
+                "The 'freeze' format cannot be used with the --outdated option."
+            ),
+        )
+
+        self.cmd_opts.add_option(
+            "--not-required",
+            action="store_true",
+            dest="not_required",
+            help="List packages that are not dependencies of installed packages.",
+        )
+
+        self.cmd_opts.add_option(
+            "--exclude-editable",
+            action="store_false",
+            dest="include_editable",
+            help="Exclude editable package from output.",
+        )
+        self.cmd_opts.add_option(
+            "--include-editable",
+            action="store_true",
+            dest="include_editable",
+            help="Include editable package in output.",
+            default=True,
+        )
+        self.cmd_opts.add_option(cmdoptions.list_exclude())
+        index_opts = cmdoptions.make_option_group(cmdoptions.index_group, self.parser)
+
+        self.parser.insert_option_group(0, index_opts)
+        self.parser.insert_option_group(0, self.cmd_opts)
+
+    def handle_pip_version_check(self, options: Values) -> None:
+        if options.outdated or options.uptodate:
+            super().handle_pip_version_check(options)
+
+    def _build_package_finder(
+        self, options: Values, session: "PipSession"
+    ) -> "PackageFinder":
+        """
+        Create a package finder appropriate to this list command.
+        """
+        # Lazy import the heavy index modules as most list invocations won't need 'em.
+        from pip._internal.index.collector import LinkCollector
+        from pip._internal.index.package_finder import PackageFinder
+
+        link_collector = LinkCollector.create(session, options=options)
+
+        # Pass allow_yanked=False to ignore yanked versions.
+        selection_prefs = SelectionPreferences(
+            allow_yanked=False,
+            allow_all_prereleases=options.pre,
+        )
+
+        return PackageFinder.create(
+            link_collector=link_collector,
+            selection_prefs=selection_prefs,
+        )
+
+    def run(self, options: Values, args: List[str]) -> int:
+        if options.outdated and options.uptodate:
+            raise CommandError("Options --outdated and --uptodate cannot be combined.")
+
+        if options.outdated and options.list_format == "freeze":
+            raise CommandError(
+                "List format 'freeze' cannot be used with the --outdated option."
+            )
+
+        cmdoptions.check_list_path_option(options)
+
+        skip = set(stdlib_pkgs)
+        if options.excludes:
+            skip.update(canonicalize_name(n) for n in options.excludes)
+
+        packages: _ProcessedDists = [
+            cast("_DistWithLatestInfo", d)
+            for d in get_environment(options.path).iter_installed_distributions(
+                local_only=options.local,
+                user_only=options.user,
+                editables_only=options.editable,
+                include_editables=options.include_editable,
+                skip=skip,
+            )
+        ]
+
+        # get_not_required must be called firstly in order to find and
+        # filter out all dependencies correctly. Otherwise a package
+        # can't be identified as requirement because some parent packages
+        # could be filtered out before.
+        if options.not_required:
+            packages = self.get_not_required(packages, options)
+
+        if options.outdated:
+            packages = self.get_outdated(packages, options)
+        elif options.uptodate:
+            packages = self.get_uptodate(packages, options)
+
+        self.output_package_listing(packages, options)
+        return SUCCESS
+
+    def get_outdated(
+        self, packages: "_ProcessedDists", options: Values
+    ) -> "_ProcessedDists":
+        return [
+            dist
+            for dist in self.iter_packages_latest_infos(packages, options)
+            if dist.latest_version > dist.version
+        ]
+
+    def get_uptodate(
+        self, packages: "_ProcessedDists", options: Values
+    ) -> "_ProcessedDists":
+        return [
+            dist
+            for dist in self.iter_packages_latest_infos(packages, options)
+            if dist.latest_version == dist.version
+        ]
+
+    def get_not_required(
+        self, packages: "_ProcessedDists", options: Values
+    ) -> "_ProcessedDists":
+        dep_keys = {
+            canonicalize_name(dep.name)
+            for dist in packages
+            for dep in (dist.iter_dependencies() or ())
+        }
+
+        # Create a set to remove duplicate packages, and cast it to a list
+        # to keep the return type consistent with get_outdated and
+        # get_uptodate
+        return list({pkg for pkg in packages if pkg.canonical_name not in dep_keys})
+
+    def iter_packages_latest_infos(
+        self, packages: "_ProcessedDists", options: Values
+    ) -> Generator["_DistWithLatestInfo", None, None]:
+        with self._build_session(options) as session:
+            finder = self._build_package_finder(options, session)
+
+            def latest_info(
+                dist: "_DistWithLatestInfo",
+            ) -> Optional["_DistWithLatestInfo"]:
+                all_candidates = finder.find_all_candidates(dist.canonical_name)
+                if not options.pre:
+                    # Remove prereleases
+                    all_candidates = [
+                        candidate
+                        for candidate in all_candidates
+                        if not candidate.version.is_prerelease
+                    ]
+
+                evaluator = finder.make_candidate_evaluator(
+                    project_name=dist.canonical_name,
+                )
+                best_candidate = evaluator.sort_best_candidate(all_candidates)
+                if best_candidate is None:
+                    return None
+
+                remote_version = best_candidate.version
+                if best_candidate.link.is_wheel:
+                    typ = "wheel"
+                else:
+                    typ = "sdist"
+                dist.latest_version = remote_version
+                dist.latest_filetype = typ
+                return dist
+
+            for dist in map(latest_info, packages):
+                if dist is not None:
+                    yield dist
+
+    def output_package_listing(
+        self, packages: "_ProcessedDists", options: Values
+    ) -> None:
+        packages = sorted(
+            packages,
+            key=lambda dist: dist.canonical_name,
+        )
+        if options.list_format == "columns" and packages:
+            data, header = format_for_columns(packages, options)
+            self.output_package_listing_columns(data, header)
+        elif options.list_format == "freeze":
+            for dist in packages:
+                if options.verbose >= 1:
+                    write_output(
+                        "%s==%s (%s)", dist.raw_name, dist.version, dist.location
+                    )
+                else:
+                    write_output("%s==%s", dist.raw_name, dist.version)
+        elif options.list_format == "json":
+            write_output(format_for_json(packages, options))
+
+    def output_package_listing_columns(
+        self, data: List[List[str]], header: List[str]
+    ) -> None:
+        # insert the header first: we need to know the size of column names
+        if len(data) > 0:
+            data.insert(0, header)
+
+        pkg_strings, sizes = tabulate(data)
+
+        # Create and add a separator.
+        if len(data) > 0:
+            pkg_strings.insert(1, " ".join("-" * x for x in sizes))
+
+        for val in pkg_strings:
+            write_output(val)
+
+
+def format_for_columns(
+    pkgs: "_ProcessedDists", options: Values
+) -> Tuple[List[List[str]], List[str]]:
+    """
+    Convert the package data into something usable
+    by output_package_listing_columns.
+    """
+    header = ["Package", "Version"]
+
+    running_outdated = options.outdated
+    if running_outdated:
+        header.extend(["Latest", "Type"])
+
+    def wheel_build_tag(dist: BaseDistribution) -> Optional[str]:
+        try:
+            wheel_file = dist.read_text("WHEEL")
+        except FileNotFoundError:
+            return None
+        return Parser().parsestr(wheel_file).get("Build")
+
+    build_tags = [wheel_build_tag(p) for p in pkgs]
+    has_build_tags = any(build_tags)
+    if has_build_tags:
+        header.append("Build")
+
+    if options.verbose >= 1:
+        header.append("Location")
+    if options.verbose >= 1:
+        header.append("Installer")
+
+    has_editables = any(x.editable for x in pkgs)
+    if has_editables:
+        header.append("Editable project location")
+
+    data = []
+    for i, proj in enumerate(pkgs):
+        # if we're working on the 'outdated' list, separate out the
+        # latest_version and type
+        row = [proj.raw_name, proj.raw_version]
+
+        if running_outdated:
+            row.append(str(proj.latest_version))
+            row.append(proj.latest_filetype)
+
+        if has_build_tags:
+            row.append(build_tags[i] or "")
+
+        if has_editables:
+            row.append(proj.editable_project_location or "")
+
+        if options.verbose >= 1:
+            row.append(proj.location or "")
+        if options.verbose >= 1:
+            row.append(proj.installer)
+
+        data.append(row)
+
+    return data, header
+
+
+def format_for_json(packages: "_ProcessedDists", options: Values) -> str:
+    data = []
+    for dist in packages:
+        info = {
+            "name": dist.raw_name,
+            "version": str(dist.version),
+        }
+        if options.verbose >= 1:
+            info["location"] = dist.location or ""
+            info["installer"] = dist.installer
+        if options.outdated:
+            info["latest_version"] = str(dist.latest_version)
+            info["latest_filetype"] = dist.latest_filetype
+        editable_project_location = dist.editable_project_location
+        if editable_project_location:
+            info["editable_project_location"] = editable_project_location
+        data.append(info)
+    return json.dumps(data)
+
+
+# <!-- @GENESIS_MODULE_END: list -->

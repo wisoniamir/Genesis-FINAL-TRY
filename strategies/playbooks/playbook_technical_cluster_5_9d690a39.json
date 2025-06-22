@@ -1,0 +1,85 @@
+{
+  "playbook_id": "playbook_technical_cluster_5_9d690a39",
+  "pattern_id": "technical_cluster_5",
+  "pattern_category": "technical",
+  "pattern_description": "Bollinger squeeze + volume expansion",
+  "creation_timestamp": "2025-06-18T02:17:02.933975Z",
+  "created_by": "ExecutionPlaybookGenerator",
+  "architect_version": "v5.0.0",
+  "entry_conditions": {
+    "pattern_match": {
+      "bollinger_squeeze": true,
+      "volume_expansion": {
+        "threshold": 1.5
+      },
+      "trend_confirmation": "required"
+    },
+    "minimum_confidence": 0.5850000000000001,
+    "volume_confirmation": true,
+    "trend_alignment": true,
+    "macro_clearance": true
+  },
+  "risk_management": {
+    "stop_loss_method": "percentage",
+    "stop_loss_pct": 0.018,
+    "take_profit_method": "multiple",
+    "take_profit_pct": 0.045,
+    "position_size_pct": 0.01,
+    "max_risk_per_trade": 0.01,
+    "expected_rr_ratio": 2.5
+  },
+  "execution_parameters": {
+    "order_type": "market",
+    "slippage_tolerance_pips": 2,
+    "max_execution_delay_ms": 500,
+    "partial_fill_allowed": true,
+    "timeout_seconds": 30
+  },
+  "filters": {
+    "volatility_filter": {
+      "min_atr_multiple": 0.8,
+      "max_atr_multiple": 2.5,
+      "volatility_window": 14
+    },
+    "time_filter": {
+      "allowed_hours": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "avoid_news_minutes": 30,
+      "avoid_rollover_minutes": 15,
+      "weekend_trading": false
+    },
+    "drawdown_filter": true,
+    "correlation_filter": true,
+    "news_filter": true
+  },
+  "compliance_checks": [
+    "kill_switch_compliance",
+    "macro_sync_guard",
+    "liquidity_sweep_validator",
+    "drawdown_proximity_check",
+    "portfolio_exposure_check"
+  ],
+  "performance_metrics": {
+    "expected_success_rate": 0.73,
+    "pattern_confidence": 0.65,
+    "historical_occurrences": 28,
+    "recommendation_strength": 0.47,
+    "last_pattern_update": "2025-06-18T14:05:00Z"
+  },
+  "status": "active",
+  "validation_required": true,
+  "live_execution_enabled": false,
+  "last_modified": "2025-06-18T02:17:02.933994Z",
+  "module_id": "a7b8c9d0-e1f2-4567-8901-23456789abcd"
+}

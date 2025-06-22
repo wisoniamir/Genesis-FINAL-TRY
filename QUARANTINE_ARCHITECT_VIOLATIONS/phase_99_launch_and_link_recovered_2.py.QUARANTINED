@@ -1,0 +1,99 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.952520+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        367
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        10
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        268,
+        273
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        33,
+        101,
+        157,
+        177,
+        205
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        142,
+        172,
+        200,
+        251,
+        278
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        178,
+        185,
+        206,
+        257,
+        264
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        138,
+        342,
+        375,
+        390
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_99_launch_and_link_recovered_2.py",
+      "line_numbers": [
+        91,
+        147,
+        166,
+        191,
+        236
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

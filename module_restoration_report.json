@@ -1,0 +1,257 @@
+{
+  "restoration_timestamp": "2025-06-21T08:00:00Z",
+  "restored_count": 50,
+  "restored_modules": [
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_emergency_json_repair.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\DUPLICATE_emergency_json_repair.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_phase92a_system_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\DUPLICATE_phase92a_system_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\simple_auto_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\simple_auto_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\advanced_auto_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\advanced_auto_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_activation_v600.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_activation_v600.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_repair_enforcer_v7.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_repair_enforcer_v7.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_v600_hardlock.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v600_hardlock.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_v610_activator.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v610_activator.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_repair_simplified.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_repair_simplified.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\comprehensive_auto_repair_report.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\comprehensive_auto_repair_report.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\comprehensive_repair_monitor.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\comprehensive_repair_monitor.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_bulk_repair.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\emergency_bulk_repair.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_eventbus_deduplication.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\emergency_eventbus_deduplication.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_eventbus_migration.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\emergency_eventbus_migration.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_json_repair_v401.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\emergency_json_repair_v401.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_triage_orphan_eliminator.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\emergency_triage_orphan_eliminator.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\final_auto_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\final_auto_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase92a_system_repair_engine_fixed.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase92a_system_repair_engine_fixed.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_repair_clean.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_92a_repair_clean.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_system_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_92a_system_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\repair_engine_advanced_patches.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\repair_engine_advanced_patches.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\activate_architect_mode_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\activate_architect_mode.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\activate_architect_mode_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\activate_architect_mode.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\advanced_auto_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\advanced_auto_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\advanced_auto_repair_engine_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\advanced_auto_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\advanced_auto_repair_engine_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\advanced_auto_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_activation.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_activation.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_activation_v600.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_activation_v600.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_activation_v600_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_activation_v600.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_activation_v600_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_activation_v600.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_core_functions.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_core_functions.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_repair_enforcer_v7.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_repair_enforcer_v7.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_repair_enforcer_v7_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_repair_enforcer_v7.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_repair_enforcer_v7.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_standalone.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_standalone.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_ultimate_integration.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_ultimate_integration.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v3_compliance_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_compliance_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v3_emergency_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v600_hardlock.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v600_hardlock.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v600_hardlock_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v600_hardlock.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v600_hardlock_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v600_hardlock.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v610_activator.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v610_activator.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v610_activator_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v610_activator.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\architect_mode_v610_activator_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v610_activator.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\comprehensive_auto_repair_report.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\comprehensive_auto_repair_report.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\comprehensive_auto_repair_report_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\comprehensive_auto_repair_report.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\comprehensive_auto_repair_report_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\comprehensive_auto_repair_report.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\DUPLICATE_phase92a_system_repair_engine.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\DUPLICATE_phase92a_system_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\DUPLICATE_phase92a_system_repair_engine_recovered_1.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\DUPLICATE_phase92a_system_repair_engine.py",
+      "priority": 1
+    },
+    {
+      "source": "c:\\Users\\patra\\Genesis FINAL TRY\\MOCK_VIOLATIONS_QUARANTINE\\DUPLICATE_phase92a_system_repair_engine_recovered_2.py",
+      "target": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\DUPLICATE_phase92a_system_repair_engine.py",
+      "priority": 1
+    }
+  ],
+  "status": "EMERGENCY_RESTORATION_IN_PROGRESS"
+}

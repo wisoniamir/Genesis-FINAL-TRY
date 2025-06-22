@@ -1,0 +1,106 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.833922+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        438,
+        447
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        421,
+        437,
+        446
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        107,
+        116
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        171,
+        243
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        57,
+        102,
+        111,
+        249,
+        312
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        96,
+        105,
+        114,
+        271,
+        326
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        62,
+        179,
+        206,
+        255
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        220,
+        513
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_96_signal_wiring_autofix_recovered_2.py",
+      "line_numbers": [
+        284,
+        394
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

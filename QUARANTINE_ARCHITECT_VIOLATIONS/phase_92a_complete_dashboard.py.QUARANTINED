@@ -1,0 +1,103 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.764427+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        531
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        49
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        512
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        27,
+        44,
+        293,
+        345,
+        399
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        336,
+        384,
+        452,
+        486,
+        563
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        394
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        325,
+        331,
+        377,
+        380,
+        434
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        51
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_92a_complete_dashboard.py",
+      "line_numbers": [
+        53,
+        578,
+        581,
+        602
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

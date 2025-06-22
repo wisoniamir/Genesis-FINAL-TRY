@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_coordinate_descent_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.837860+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_coordinate_descent_recovered_1.py",
+      "line_numbers": [
+        265,
+        289,
+        326,
+        450,
+        468
+      ],
+      "violation_count": 44
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_coordinate_descent_recovered_1.py",
+      "line_numbers": [
+        1500,
+        1607
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_coordinate_descent_recovered_1.py",
+      "line_numbers": [
+        1480,
+        1481
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_coordinate_descent_recovered_1.py",
+      "line_numbers": [
+        595,
+        641,
+        655,
+        1065,
+        1119
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_coordinate_descent_recovered_1.py",
+      "line_numbers": [
+        82,
+        86,
+        151,
+        163,
+        165
+      ],
+      "violation_count": 29
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

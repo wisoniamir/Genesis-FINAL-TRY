@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.680771+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        57,
+        86,
+        88,
+        89,
+        97
+      ],
+      "violation_count": 40
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        1259
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        822
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        334,
+        344,
+        558,
+        767,
+        868
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        1322
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        503,
+        515,
+        595,
+        640,
+        760
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_column_transformer_recovered_1.py",
+      "line_numbers": [
+        466,
+        699,
+        737,
+        857,
+        884
+      ],
+      "violation_count": 15
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

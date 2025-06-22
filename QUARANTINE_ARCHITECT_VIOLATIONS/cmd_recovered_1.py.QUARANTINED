@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.487589+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        37,
+        162,
+        165,
+        251,
+        436
+      ],
+      "violation_count": 25
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        795
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        843
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        151,
+        558,
+        768,
+        780,
+        822
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        161
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        180,
+        212,
+        348,
+        442,
+        526
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\cmd_recovered_1.py",
+      "line_numbers": [
+        158,
+        174,
+        203,
+        290,
+        545
+      ],
+      "violation_count": 27
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

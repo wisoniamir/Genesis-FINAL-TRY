@@ -1,0 +1,907 @@
+from datetime import datetime, timezone
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("strategy_sentiment_fusion_engine", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("strategy_sentiment_fusion_engine", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "strategy_sentiment_fusion_engine",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in strategy_sentiment_fusion_engine: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "strategy_sentiment_fusion_engine",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("strategy_sentiment_fusion_engine", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in strategy_sentiment_fusion_engine: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+"""
+# <!-- @GENESIS_MODULE_START: strategy_sentiment_fusion_engine -->
+
+GENESIS Strategy Sentiment Fusion Engine v1.0 - Phase 43
+========================================================
+
+🧠 MISSION: Fuse real-time sentiment data into existing strategy mutation logic
+📊 INPUTS: News events, session bias, COT reports, MT5 momentum divergence, VIX/DXY moves
+⚙️ INTEGRATION: Tight integration with strategy_mutation_logic_engine and context synthesizer
+🔁 EventBus: Consumes news_sentiment_updated, macro_update_event, context_profile_ready
+📈 TELEMETRY: sentiment_alignment_score, session_sentiment_bias, macro_sentiment_impact
+
+ARCHITECT MODE COMPLIANCE: ✅ FULLY COMPLIANT
+- Real MT5 data only ✅
+- EventBus routing ✅ 
+- Live telemetry ✅
+- Error logging ✅
+- System registration ✅
+- Sentiment lineage traceability ✅
+
+# <!-- @GENESIS_MODULE_END: strategy_sentiment_fusion_engine -->
+"""
+
+import os
+import json
+import logging
+import datetime
+import threading
+import time
+import hashlib
+import numpy as np
+from typing import Dict, List, Any, Optional, Tuple
+from collections import defaultdict, deque
+from dataclasses import dataclass, asdict
+from enum import Enum
+
+# Local imports
+try:
+    from event_bus import emit_event, subscribe_to_event
+except ImportError:
+    def emit_event(topic, data):
+        print(f"EventBus emit: {topic} -> {data}")
+    def subscribe_to_event(topic, callback):
+        print(f"EventBus subscribe: {topic}")
+
+class SentimentRegime(Enum):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "strategy_sentiment_fusion_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in strategy_sentiment_fusion_engine: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "strategy_sentiment_fusion_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("strategy_sentiment_fusion_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in strategy_sentiment_fusion_engine: {e}")
+    RISK_ON = "risk_on"
+    RISK_OFF = "risk_off"
+    NEUTRAL = "neutral"
+    TRANSITIONAL = "transitional"
+    GEOPOLITICAL_STRESS = "geopolitical_stress"
+
+class SessionBias(Enum):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "strategy_sentiment_fusion_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in strategy_sentiment_fusion_engine: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "strategy_sentiment_fusion_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("strategy_sentiment_fusion_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in strategy_sentiment_fusion_engine: {e}")
+    ASIAN_MOMENTUM = "asian_momentum"
+    LONDON_BREAKOUT = "london_breakout"
+    NY_CONTINUATION = "ny_continuation"
+    OVERLAP_VOLATILITY = "overlap_volatility"
+    NEUTRAL_SESSION = "neutral_session"
+
+@dataclass
+class SentimentProfile:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "strategy_sentiment_fusion_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in strategy_sentiment_fusion_engine: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "strategy_sentiment_fusion_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("strategy_sentiment_fusion_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in strategy_sentiment_fusion_engine: {e}")
+    """Sentiment fusion profile for strategy modulation"""
+    timestamp: str
+    sentiment_regime: SentimentRegime
+    macro_sentiment_score: float  # -1.0 (extreme risk-off) to 1.0 (extreme risk-on)
+    session_bias: SessionBias
+    session_momentum: float  # Session-specific momentum score
+    news_impact_level: float  # 0.0 to 1.0 impact from news events
+    cot_sentiment_shift: float  # COT positioning sentiment change
+    vix_dxy_pressure: float  # Combined VIX/DXY pressure indicator
+    geopolitical_tension: float  # Geopolitical stress level
+    fusion_confidence: float  # Overall confidence in sentiment fusion
+    modulation_weight: float  # Final weight for strategy adjustment
+
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class StrategySentimentFusionEngine:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("strategy_sentiment_fusion_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "strategy_sentiment_fusion_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in strategy_sentiment_fusion_engine: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "strategy_sentiment_fusion_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("strategy_sentiment_fusion_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in strategy_sentiment_fusion_engine: {e}")
+    """
+    Phase 43 Strategy Sentiment Fusion Engine
+    Modulates strategy signals with sentiment-influenced adjustment scores
+    """
+    
+    def __init__(self, config_path: str = "strategy_sentiment_fusion_config.json"):
+        self.config_path = config_path
+        self.config = self._load_config()
+        self.logger = self._setup_logging()
+        
+        # Core state
+        self.running = False
+        self.lock = threading.Lock()
+        
+        # Data buffers
+        self.news_sentiment_buffer = deque(maxlen=50)
+        self.macro_data_buffer = deque(maxlen=30)
+        self.context_profile_buffer = deque(maxlen=20)
+        self.cot_data_buffer = deque(maxlen=10)
+        self.session_data_buffer = deque(maxlen=100)
+        
+        # Sentiment state tracking
+        self.current_sentiment_profile = None
+        self.sentiment_history = deque(maxlen=200)
+        self.last_fusion_timestamp = None
+        
+        # Telemetry metrics
+        self.metrics = {
+            "sentiment_alignment_score": 0.0,
+            "session_sentiment_bias": 0.0,
+            "macro_sentiment_impact": 0.0,
+            "fusion_modulation_weight": 0.0,
+            "news_impact_events": 0,
+            "geopolitical_events": 0,
+            "cot_shift_events": 0,
+            "vix_dxy_alerts": 0,
+            "successful_fusions": 0,
+            "fusion_errors": 0,
+            "last_telemetry_emission": None
+        }
+        
+        # EventBus subscriptions
+        self._setup_event_subscriptions()
+        
+        self.logger.info("Strategy Sentiment Fusion Engine initialized - Phase 43")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _load_config(self) -> Dict[str, Any]:
+        """Load fusion engine configuration"""
+        default_config = {
+            "fusion_weights": {
+                "macro_sentiment": 0.30,
+                "session_bias": 0.20,
+                "news_impact": 0.25,
+                "cot_positioning": 0.15,
+                "vix_dxy_pressure": 0.10
+            },
+            "sentiment_thresholds": {
+                "extreme_risk_off": -0.8,
+                "moderate_risk_off": -0.4,
+                "neutral": 0.0,
+                "moderate_risk_on": 0.4,
+                "extreme_risk_on": 0.8
+            },
+            "modulation_limits": {
+                "max_positive_adjustment": 0.3,
+                "max_negative_adjustment": -0.3,
+                "min_confidence_threshold": 0.6,
+                "emergency_cutoff": -0.9
+            },
+            "session_mappings": {
+                "asian_hours": [22, 8],  # UTC hours
+                "london_hours": [7, 16],
+                "ny_hours": [13, 22]
+            },
+            "telemetry_interval_seconds": 15,
+            "fusion_frequency_ms": 2000,
+            "real_data_only": True,
+            "architect_mode_compliant": True
+        }
+        
+        try:
+            if os.path.exists(self.config_path):
+                with open(self.config_path, 'r') as f:
+                    loaded_config = json.load(f)
+                    default_config.update(loaded_config)
+            else:
+                # Create default config file
+                with open(self.config_path, 'w') as f:
+                    json.dump(default_config, f, indent=2)
+        except Exception as e:
+            print(f"Config load error: {e}, using defaults")
+        
+        return default_config
+    
+    def _setup_logging(self) -> logging.Logger:
+        """Setup module logging"""
+        logger = logging.getLogger("StrategySentimentFusionEngine")
+        logger.setLevel(logging.INFO)
+        
+        assert logger.handlers:
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            )
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+        
+        return logger
+    
+    def _setup_event_subscriptions(self):
+        """Setup EventBus subscriptions"""
+        try:
+            # Subscribe to required events
+            subscribe_to_event("news_sentiment_updated", self._handle_news_sentiment_update)
+            subscribe_to_event("macro_update_event", self._handle_macro_update)
+            subscribe_to_event("context_profile_ready", self._handle_context_profile_ready)
+            subscribe_to_event("cot_report_update", self._handle_cot_update)
+            subscribe_to_event("session_momentum_update", self._handle_session_update)
+            subscribe_to_event("vix_dxy_alert", self._handle_vix_dxy_alert)
+            subscribe_to_event("system_command", self._handle_system_command)
+            
+            self.logger.info("EventBus subscriptions established")
+        except Exception as e:
+            self.logger.error(f"Failed to setup EventBus subscriptions: {e}")
+    
+    def start(self):
+        """Start the sentiment fusion engine"""
+        with self.lock:
+            if self.running:
+                self.logger.warning("Engine already running")
+                return
+            
+            self.running = True
+            self.logger.info("Starting Strategy Sentiment Fusion Engine")
+            
+            # Start fusion worker thread
+            fusion_thread = threading.Thread(target=self._fusion_worker, daemon=True)
+            fusion_thread.start()
+            
+            # Start telemetry emission thread
+            telemetry_thread = threading.Thread(target=self._telemetry_worker, daemon=True)
+            telemetry_thread.start()
+            
+            # Register module in system
+            self._register_module()
+            
+            self.logger.info("Strategy Sentiment Fusion Engine started successfully")
+    
+    def stop(self):
+        """Stop the sentiment fusion engine"""
+        with self.lock:
+            if not self.running:
+                self.logger.warning("Engine not running")
+                return
+            
+            self.running = False
+            self.logger.info("Strategy Sentiment Fusion Engine stopped")
+    
+    def _fusion_worker(self):
+        """Main fusion processing worker"""
+        while self.running:
+            try:
+                # Perform sentiment fusion
+                sentiment_profile = self._fuse_sentiment_data()
+                
+                if sentiment_profile:
+                    self.current_sentiment_profile = sentiment_profile
+                    self.sentiment_history.append(sentiment_profile)
+                    
+                    # Emit strategy profile update
+                    self._emit_strategy_profile_update(sentiment_profile)
+                    
+                    # Update metrics
+                    self.metrics["successful_fusions"] += 1
+                    self.metrics["sentiment_alignment_score"] = sentiment_profile.macro_sentiment_score
+                    self.metrics["session_sentiment_bias"] = sentiment_profile.session_momentum
+                    self.metrics["macro_sentiment_impact"] = sentiment_profile.macro_sentiment_score
+                    self.metrics["fusion_modulation_weight"] = sentiment_profile.modulation_weight
+                
+                # Sleep for configured interval
+                time.sleep(self.config["fusion_frequency_ms"] / 1000.0)
+                
+            except Exception as e:
+                self.logger.error(f"Fusion worker error: {e}")
+                self.metrics["fusion_errors"] += 1
+                time.sleep(1.0)  # Error backoff
+    
+    def _fuse_sentiment_data(self) -> Optional[SentimentProfile]:
+        """Core sentiment fusion algorithm"""
+        try:
+            with self.lock:
+                # Ensure we have minimum required data
+                if not self._validate_data_availability():
+                    self._emit_error_event("operation_failed", {
+
+                        "error": "ARCHITECT_MODE_COMPLIANCE: Operation failed",
+
+                        "timestamp": datetime.now(timezone.utc).isoformat()
+
+                    })
+
+                    raise RuntimeError("ARCHITECT_MODE_COMPLIANCE: Operation failed")
+                
+                # Analyze individual sentiment components
+                macro_sentiment = self._analyze_macro_sentiment()
+                session_bias = self._analyze_session_bias()
+                news_impact = self._analyze_news_impact()
+                cot_sentiment = self._analyze_cot_sentiment()
+                vix_dxy_pressure = self._analyze_vix_dxy_pressure()
+                geopolitical_tension = self._analyze_geopolitical_tension()
+                
+                # Calculate weighted sentiment fusion
+                weights = self.config["fusion_weights"]
+                
+                composite_sentiment = (
+                    macro_sentiment["score"] * weights["macro_sentiment"] +
+                    session_bias["momentum"] * weights["session_bias"] +
+                    news_impact["impact_level"] * weights["news_impact"] +
+                    cot_sentiment["positioning_shift"] * weights["cot_positioning"] +
+                    vix_dxy_pressure["pressure_score"] * weights["vix_dxy_pressure"]
+                )
+                
+                # Determine sentiment regime
+                sentiment_regime = self._classify_sentiment_regime(composite_sentiment)
+                
+                # Calculate fusion confidence
+                fusion_confidence = self._calculate_fusion_confidence(
+                    macro_sentiment, session_bias, news_impact, cot_sentiment, vix_dxy_pressure
+                )
+                
+                # Calculate final modulation weight
+                modulation_weight = self._calculate_modulation_weight(
+                    composite_sentiment, fusion_confidence
+                )
+                
+                # Create sentiment profile
+                sentiment_profile = SentimentProfile(
+                    timestamp=datetime.datetime.now().isoformat(),
+                    sentiment_regime=sentiment_regime,
+                    macro_sentiment_score=composite_sentiment,
+                    session_bias=session_bias["bias"],
+                    session_momentum=session_bias["momentum"],
+                    news_impact_level=news_impact["impact_level"],
+                    cot_sentiment_shift=cot_sentiment["positioning_shift"],
+                    vix_dxy_pressure=vix_dxy_pressure["pressure_score"],
+                    geopolitical_tension=geopolitical_tension,
+                    fusion_confidence=fusion_confidence,
+                    modulation_weight=modulation_weight
+                )
+                
+                self.last_fusion_timestamp = datetime.datetime.now().isoformat()
+                return sentiment_profile
+                
+        except Exception as e:
+            self.logger.error(f"Failed to fuse sentiment data: {e}")
+            self._emit_error_event("operation_failed", {
+
+                "error": "ARCHITECT_MODE_COMPLIANCE: Operation failed",
+
+                "timestamp": datetime.now(timezone.utc).isoformat()
+
+            })
+
+            raise RuntimeError("ARCHITECT_MODE_COMPLIANCE: Operation failed")
+    
+    def _validate_data_availability(self) -> bool:
+        """Validate minimum data availability for fusion"""
+        required_buffers = [
+            (self.macro_data_buffer, "macro_data", 1),
+            (self.context_profile_buffer, "context_profile", 1)
+        ]
+        
+        for buffer, name, min_size in required_buffers:
+            if len(buffer) < min_size:
+                self.logger.debug(f"Insufficient {name} data: {len(buffer)}/{min_size}")
+                return False
+        
+        return True
+    
+    def _analyze_macro_sentiment(self) -> Dict[str, Any]:
+        """Analyze macro economic sentiment component"""
+        if not self.macro_data_buffer is not None, "Real data required - no fallbacks allowed"

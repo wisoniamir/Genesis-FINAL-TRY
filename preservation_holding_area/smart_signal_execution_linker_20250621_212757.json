@@ -1,0 +1,9 @@
+{
+  "module_id": "smart_signal_execution_linker",
+  "original_path": "modules\\signal_processing\\smart_signal_execution_linker.py",
+  "preserved_path": "preservation_holding_area\\smart_signal_execution_linker_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25766,
+  "checksum": "44fdecc9399d042999871070c52d52e8f39850cb031d1b0131b100e13b5ec6b0"
+}

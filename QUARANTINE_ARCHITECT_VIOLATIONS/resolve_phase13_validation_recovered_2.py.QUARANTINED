@@ -1,0 +1,85 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.526987+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        404
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        228,
+        329,
+        340,
+        436
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        59,
+        259,
+        285,
+        326
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        65,
+        279,
+        318,
+        429
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        197,
+        214
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        275,
+        299,
+        301,
+        312,
+        314
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resolve_phase13_validation_recovered_2.py",
+      "line_numbers": [
+        51,
+        98
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

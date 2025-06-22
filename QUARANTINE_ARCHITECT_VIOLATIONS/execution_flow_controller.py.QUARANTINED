@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.461996+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        562
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        177,
+        197,
+        217,
+        242,
+        266
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        189,
+        209,
+        233,
+        259,
+        299
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        514,
+        687
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        392,
+        425,
+        544
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        205,
+        229,
+        293,
+        333,
+        364
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_flow_controller.py",
+      "line_numbers": [
+        75,
+        148
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

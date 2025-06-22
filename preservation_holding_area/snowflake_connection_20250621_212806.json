@@ -1,0 +1,9 @@
+{
+  "module_id": "snowflake_connection",
+  "original_path": "modules\\restored\\snowflake_connection.py",
+  "preserved_path": "preservation_holding_area\\snowflake_connection_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 34753,
+  "checksum": "b85023d492ed76a7648915b4ce01cd0fde0bb1c6f0f58fa835c6c82b4c04e579"
+}

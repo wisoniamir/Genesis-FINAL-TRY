@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-06-21T04:33:52.610558+00:00",
+  "enforced_standards": [
+    "event_driven",
+    "mt5_live_data",
+    "real_time_telemetry",
+    "compliance_checks",
+    "error_handling",
+    "module_documentation",
+    "module_tests",
+    "system_tree_structure",
+    "event_bus_structure",
+    "telemetry_hooks_connected",
+    "registered_in_system_tree",
+    "registered_in_module_registry",
+    "test_scaffolds_present",
+    "real_data_only",
+    "logged_errors_enabled",
+    "performance_metrics"
+  ],
+  "enforcement_active": true,
+  "compliance_level": "STRICT",
+  "missing_core_files": [],
+  "core_files_complete": true
+}

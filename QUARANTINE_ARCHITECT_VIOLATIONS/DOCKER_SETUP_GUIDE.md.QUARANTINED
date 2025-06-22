@@ -1,0 +1,16 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\DOCKER_SETUP_GUIDE.md",
+  "quarantine_timestamp": "2025-06-21T04:33:01.661213+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\DOCKER_SETUP_GUIDE.md",
+      "line_numbers": [
+        38
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

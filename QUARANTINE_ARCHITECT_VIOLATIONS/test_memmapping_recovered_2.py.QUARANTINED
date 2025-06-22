@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_memmapping_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.908199+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_memmapping_recovered_2.py",
+      "line_numbers": [
+        307,
+        365,
+        1018
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_memmapping_recovered_2.py",
+      "line_numbers": [
+        79,
+        170,
+        217,
+        262,
+        303
+      ],
+      "violation_count": 31
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_memmapping_recovered_2.py",
+      "line_numbers": [
+        310,
+        368,
+        752,
+        843,
+        856
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_memmapping_recovered_2.py",
+      "line_numbers": [
+        786,
+        964
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_memmapping_recovered_2.py",
+      "line_numbers": [
+        788,
+        838,
+        865,
+        967
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

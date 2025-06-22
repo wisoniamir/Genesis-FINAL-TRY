@@ -1,0 +1,40 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_orthogonal_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.311885+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_orthogonal_recovered_2.py",
+      "line_numbers": [
+        1604
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_orthogonal_recovered_2.py",
+      "line_numbers": [
+        1619,
+        2043,
+        2148
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_orthogonal_recovered_2.py",
+      "line_numbers": [
+        146,
+        203,
+        264,
+        273,
+        443
+      ],
+      "violation_count": 26
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

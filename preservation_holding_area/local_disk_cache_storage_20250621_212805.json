@@ -1,0 +1,9 @@
+{
+  "module_id": "local_disk_cache_storage",
+  "original_path": "modules\\restored\\local_disk_cache_storage.py",
+  "preserved_path": "preservation_holding_area\\local_disk_cache_storage_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26169,
+  "checksum": "4fc4706b1ac6d282d2f5998817167a6c47259a6b1ffe9112137ee71f60fad0b0"
+}

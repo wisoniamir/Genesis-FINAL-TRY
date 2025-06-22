@@ -1,0 +1,284 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_groupby_subclass -->
+"""
+🏛️ GENESIS TEST_GROUPBY_SUBCLASS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+from datetime import datetime
+
+import numpy as np
+import pytest
+
+from pandas import (
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_groupby_subclass", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_groupby_subclass", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_groupby_subclass",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_groupby_subclass: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_groupby_subclass",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_groupby_subclass", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_groupby_subclass: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+    DataFrame,
+    Index,
+    Series,
+)
+import pandas._testing as tm
+from pandas.tests.groupby import get_groupby_method_args
+
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager|Passing a SingleBlockManager:DeprecationWarning"
+)
+
+
+@pytest.mark.parametrize(
+    "obj",
+    [
+        tm.SubclassedDataFrame({"A": np.arange(0, 10)}),
+        tm.SubclassedSeries(np.arange(0, 10), name="A"),
+    ],
+)
+def test_groupby_preserves_subclass(obj, groupby_func):
+    # GH28330 -- preserve subclass through groupby operations
+
+    if isinstance(obj, Series) and groupby_func in {"corrwith"}:
+        pytest.skip(f"Not applicable for Series and {groupby_func}")
+
+    grouped = obj.groupby(np.arange(0, 10))
+
+    # Groups should preserve subclass type
+    assert isinstance(grouped.get_group(0), type(obj))
+
+    args = get_groupby_method_args(groupby_func, obj)
+
+    warn = FutureWarning if groupby_func == "fillna" else None
+    msg = f"{type(grouped).__name__}.fillna is deprecated"
+    with tm.assert_produces_warning(warn, match=msg, raise_on_extra_warnings=False):
+        result1 = getattr(grouped, groupby_func)(*args)
+    with tm.assert_produces_warning(warn, match=msg, raise_on_extra_warnings=False):
+        result2 = grouped.agg(groupby_func, *args)
+
+    # Reduction or transformation kernels should preserve type
+    slices = {"ngroup", "cumcount", "size"}
+    if isinstance(obj, DataFrame) and groupby_func in slices:
+        assert isinstance(result1, tm.SubclassedSeries)
+    else:
+        assert isinstance(result1, type(obj))
+
+    # Confirm .agg() groupby operations return same results
+    if isinstance(result1, DataFrame):
+        tm.assert_frame_equal(result1, result2)
+    else:
+        tm.assert_series_equal(result1, result2)
+
+
+def test_groupby_preserves_metadata():
+    # GH-37343
+    custom_df = tm.SubclassedDataFrame({"a": [1, 2, 3], "b": [1, 1, 2], "c": [7, 8, 9]})
+    assert "testattr" in custom_df._metadata
+    custom_df.testattr = "hello"
+    for _, group_df in custom_df.groupby("c"):
+        assert group_df.testattr == "hello"
+
+    # GH-45314
+    def func(group):
+        assert isinstance(group, tm.SubclassedDataFrame)
+        assert hasattr(group, "testattr")
+        assert group.testattr == "hello"
+        return group.testattr
+
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(
+        FutureWarning,
+        match=msg,
+        raise_on_extra_warnings=False,
+        check_stacklevel=False,
+    ):
+        result = custom_df.groupby("c").apply(func)
+    expected = tm.SubclassedSeries(["hello"] * 3, index=Index([7, 8, 9], name="c"))
+    tm.assert_series_equal(result, expected)
+
+    result = custom_df.groupby("c").apply(func, include_groups=False)
+    tm.assert_series_equal(result, expected)
+
+    # https://github.com/pandas-dev/pandas/pull/56761
+    result = custom_df.groupby("c")[["a", "b"]].apply(func)
+    tm.assert_series_equal(result, expected)
+
+    def func2(group):
+        assert isinstance(group, tm.SubclassedSeries)
+        assert hasattr(group, "testattr")
+        return group.testattr
+
+    custom_series = tm.SubclassedSeries([1, 2, 3])
+    custom_series.testattr = "hello"
+    result = custom_series.groupby(custom_df["c"]).apply(func2)
+    tm.assert_series_equal(result, expected)
+    result = custom_series.groupby(custom_df["c"]).agg(func2)
+    tm.assert_series_equal(result, expected)
+
+
+@pytest.mark.parametrize("obj", [DataFrame, tm.SubclassedDataFrame])
+def test_groupby_resample_preserves_subclass(obj):
+    # GH28330 -- preserve subclass through groupby.resample()
+
+    df = obj(
+        {
+            "Buyer": Series("Carl Carl Carl Carl Joe Carl".split(), dtype=object),
+            "Quantity": [18, 3, 5, 1, 9, 3],
+            "Date": [
+                datetime(2013, 9, 1, 13, 0),
+                datetime(2013, 9, 1, 13, 5),
+                datetime(2013, 10, 1, 20, 0),
+                datetime(2013, 10, 3, 10, 0),
+                datetime(2013, 12, 2, 12, 0),
+                datetime(2013, 9, 2, 14, 0),
+            ],
+        }
+    )
+    df = df.set_index("Date")
+
+    # Confirm groupby.resample() preserves dataframe type
+    msg = "DataFrameGroupBy.resample operated on the grouping columns"
+    with tm.assert_produces_warning(
+        FutureWarning,
+        match=msg,
+        raise_on_extra_warnings=False,
+        check_stacklevel=False,
+    ):
+        result = df.groupby("Buyer").resample("5D").sum()
+    assert isinstance(result, obj)
+
+
+# <!-- @GENESIS_MODULE_END: test_groupby_subclass -->

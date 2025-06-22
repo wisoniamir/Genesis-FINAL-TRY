@@ -1,0 +1,23 @@
+{
+  "version": "v6.2.0-institutional",
+  "architecture": "publish_subscribe",
+  "real_time_only": true,
+  "routes": {
+    "mt5_signals": [
+      "execution_engine",
+      "risk_manager"
+    ],
+    "trade_executions": [
+      "position_tracker",
+      "telemetry_collector"
+    ],
+    "system_alerts": [
+      "notification_engine",
+      "dashboard"
+    ],
+    "telemetry_data": [
+      "performance_monitor",
+      "compliance_tracker"
+    ]
+  }
+}

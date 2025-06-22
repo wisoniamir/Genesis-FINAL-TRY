@@ -1,0 +1,89 @@
+{
+  "genesis_metadata": {
+    "version": "v7.0.0-ultimate-enforcement",
+    "generation_timestamp": "2025-06-20T21:50:00.000000",
+    "architect_mode": "v7.0.0",
+    "dependency_management": "STRICT_ENFORCEMENT"
+  },
+  "core_dependencies": {
+    "python": {
+      "version": "3.11+",
+      "required": true,
+      "source": "official"
+    },
+    "metatrader5": {
+      "version": "latest",
+      "required": true,
+      "purpose": "live_trading_data",
+      "mock_alternative": "PROHIBITED"
+    },
+    "streamlit": {
+      "version": "latest", 
+      "required": true,
+      "purpose": "dashboard_frontend"
+    },
+    "pandas": {
+      "version": "latest",
+      "required": true,
+      "purpose": "data_processing"
+    },
+    "numpy": {
+      "version": "latest",
+      "required": true,
+      "purpose": "numerical_computing"
+    }
+  },
+  "eventbus_dependencies": {
+    "threading": {
+      "version": "built-in",
+      "required": true,
+      "purpose": "concurrent_processing"
+    },
+    "json": {
+      "version": "built-in", 
+      "required": true,
+      "purpose": "data_serialization"
+    },
+    "datetime": {
+      "version": "built-in",
+      "required": true,
+      "purpose": "timestamp_management"
+    },
+    "logging": {
+      "version": "built-in",
+      "required": true,
+      "purpose": "system_logging"
+    }
+  },
+  "genesis_internal_dependencies": {
+    "event_bus.py": {
+      "status": "CRITICAL",
+      "purpose": "system_communication",
+      "integration": "MANDATORY"
+    },
+    "hardened_event_bus.py": {
+      "status": "CRITICAL",
+      "purpose": "secure_communication", 
+      "integration": "MANDATORY"
+    },
+    "telemetry.py": {
+      "status": "CRITICAL",
+      "purpose": "system_monitoring",
+      "integration": "MANDATORY"
+    }
+  },
+  "prohibited_dependencies": {
+    "mock": "BANNED - violates real data requirement",
+    "faker": "BANNED - violates real data requirement", 
+    "unittest.mock": "BANNED - violates real data requirement",
+    "pytest-mock": "BANNED - violates real data requirement"
+  },
+  "dependency_validation": {
+    "real_data_only": true,
+    "no_simulation_libraries": true,
+    "no_mock_frameworks": true,
+    "security_scanning": true,
+    "vulnerability_checks": true
+  },
+  "last_updated": "2025-06-20T21:50:00.000000"
+}

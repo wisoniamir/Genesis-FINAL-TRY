@@ -1,0 +1,121 @@
+#!/usr/bin/env
+# GENESIS Institutional Dashboard - Docker Container v7.0.0
+# 🏛️ Enterprise-Grade Trading Dashboard with X11/Xming Support
+
+FROM python:3.11-slim
+
+# Set environment variables
+ENV DOCKER_MODE=true
+ENV DISPLAY=host.docker.internal:0.0
+ENV PYTHONUNBUFFERED=1
+ENV ARCHITECT_MODE=v7.0.0
+ENV GENESIS_DASHBOARD_MODE=institutional
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    # X11 and GUI dependencies
+    x11-apps \
+    xauth \
+    xvfb \
+    python3-pyqt5 \
+    libqt5widgets5 \
+    # MetaTrader5 dependencies
+    wine \
+    # System tools
+    gcc \
+    g++ \
+    make \
+    curl \
+    wget \
+    git \
+    # Cleanup
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /genesis
+
+# Copy requirements and install Python dependencies
+COPY requirements_docker.txt .
+RUN pip install --no-cache-dir -r requirements_docker.txt
+
+# Install specific packages for institutional dashboard
+RUN pip install --no-cache-dir \
+    streamlit==1.28.1 \
+    plotly==5.17.0 \
+    pandas==2.1.3 \
+    numpy==1.24.3 \
+    PyQt5==5.15.10 \
+    MetaTrader5==5.0.45 \
+    websocket-client==1.6.4 \
+    python-telegram-bot==20.7 \
+    scikit-learn==1.3.2 \
+    ta-lib==0.4.28 \
+    psutil==5.9.6
+
+# Copy GENESIS system files
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p /genesis/logs/dashboard \
+    && mkdir -p /genesis/data/market \
+    && mkdir -p /genesis/data/trades \
+    && mkdir -p /genesis/data/telemetry
+
+# Set permissions
+RUN chmod +x genesis_institutional_dashboard.py \
+    && chmod +x genesis_docker_launcher.py
+
+# Create startup script
+RUN echo '#!/bin/bash\n\
+\n\
+# GENESIS Institutional Dashboard Docker Startup v7.0.0\n\
+echo "🏛️ Starting GENESIS Institutional Dashboard in Docker..."\n\
+echo "🐳 Docker Mode: $DOCKER_MODE"\n\
+echo "🖥️ Display: $DISPLAY"\n\
+echo "🔐 Architect Mode: $ARCHITECT_MODE"\n\
+\n\
+# Initialize X11 forwarding\n\
+echo "🖥️ Initializing X11 forwarding..."\n\
+xauth add $DISPLAY . $(xxd -l 16 -p /dev/urandom)\n\
+\n\
+# Validate GENESIS system\n\
+echo "🔍 Validating GENESIS system..."\n\
+python3 -c "from genesis_institutional_dashboard import GenesisInstitutionalDashboard; print(\"✅ Dashboard module imported successfully\")"\n\
+\n\
+# Start telemetry collector\n\
+echo "📊 Starting telemetry collector..."\n\
+python3 -c "import json; import os; os.makedirs(\"logs/telemetry\", exist_ok=True)" &\n\
+\n\
+# Start EventBus\n\
+echo "🔗 Initializing EventBus..."\n\
+python3 -c "from event_bus import get_event_bus; bus = get_event_bus(); print(\"✅ EventBus initialized\")" &\n\
+\n\
+# Start MT5 connection manager\n\
+echo "📡 Starting MT5 connection manager..."\n\
+python3 core/genesis_real_mt5_connection.py &\n\
+\n\
+# Wait for system initialization\n\
+sleep 5\n\
+\n\
+# Start GENESIS Institutional Dashboard\n\
+echo "🚀 Launching GENESIS Institutional Dashboard..."\n\
+python3 genesis_institutional_dashboard.py\n\
+' > /genesis/start_dashboard.sh \
+    && chmod +x /genesis/start_dashboard.sh
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD python3 -c "import psutil; import sys; sys.exit(0 if any('genesis_institutional_dashboard' in p.name() for p in psutil.process_iter()) else 1)"
+
+# Expose ports for telemetry and monitoring
+EXPOSE 8501 8502 8503
+
+# Set default command
+CMD ["/genesis/start_dashboard.sh"]
+
+# Labels for documentation
+LABEL maintainer="GENESIS Team"
+LABEL version="v7.0.0"
+LABEL description="GENESIS Institutional Trading Dashboard with X11/Xming Support"
+LABEL architect_mode="v7.0.0"
+LABEL compliance="ARCHITECT_MODE_COMPLIANT"

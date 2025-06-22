@@ -1,0 +1,72 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.521331+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+      "line_numbers": [
+        35,
+        118,
+        133,
+        143,
+        158
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+      "line_numbers": [
+        128,
+        138,
+        153,
+        186,
+        251
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+      "line_numbers": [
+        230
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+      "line_numbers": [
+        110,
+        301
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+      "line_numbers": [
+        134
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\macro_sync_engine_recovered_2.py",
+      "line_numbers": [
+        120,
+        121,
+        124
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

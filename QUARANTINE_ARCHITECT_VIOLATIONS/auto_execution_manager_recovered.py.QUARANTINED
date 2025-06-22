@@ -1,0 +1,49 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+  "quarantine_timestamp": "2025-06-21T04:33:24.074925+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+      "line_numbers": [
+        180,
+        208,
+        222,
+        286
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+      "line_numbers": [
+        202,
+        240,
+        247
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+      "line_numbers": [
+        257,
+        289
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+      "line_numbers": [
+        226
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

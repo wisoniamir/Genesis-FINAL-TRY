@@ -1,0 +1,9 @@
+{
+  "module_id": "jsonschema",
+  "original_path": "modules\\restored\\jsonschema.py",
+  "preserved_path": "preservation_holding_area\\jsonschema_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 35430,
+  "checksum": "e1c012c8f5ee2097c099b6b0fc1e978e8d2a69352ac819254ef30ec156d439b5"
+}

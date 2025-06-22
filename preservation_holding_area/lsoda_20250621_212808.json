@@ -1,0 +1,9 @@
+{
+  "module_id": "lsoda",
+  "original_path": "modules\\restored\\lsoda.py",
+  "preserved_path": "preservation_holding_area\\lsoda_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26171,
+  "checksum": "65f7896e20e36e8c8f9bd0b6f0733dfbf2d4eefc25c45df4192ef91ff4adbc05"
+}

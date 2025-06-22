@@ -1,0 +1,9 @@
+{
+  "module_id": "cmd",
+  "original_path": "modules\\restored\\cmd.py",
+  "preserved_path": "preservation_holding_area\\cmd_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 96179,
+  "checksum": "26a6deece994d9d9583a2780d74d5738bc4184569d26a2c07db3c3c72bc770e2"
+}

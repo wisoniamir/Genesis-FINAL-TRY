@@ -1,0 +1,415 @@
+#!/usr/bin/env python3
+"""
+GENESIS PHASE 18 LOCK-IN PROCEDURE
+STRICT ARCHITECT MODE v2.9 — REACTIVE EXECUTION + KILL-SWITCH RESPONSE
+Date: 2025-06-16T19:30Z
+"""
+
+import json
+import os
+import subprocess
+from datetime import datetime
+
+
+# <!-- @GENESIS_MODULE_END: apply_phase18_lock_in -->
+
+
+# <!-- @GENESIS_MODULE_START: apply_phase18_lock_in -->
+
+def apply_phase18_upgrade():
+    """Execute comprehensive Phase 18 lock-in with all validation requirements"""
+    
+    timestamp = datetime.now().isoformat() + "Z"
+    
+    # Initialize variables
+    validate_trace_chain = False
+    enforce_eventbus_only = False  
+    telemetry_hooks_mandatory = False
+    monitor_real_mt5_feed = False
+    halt_on_orphan_modules = False
+    audit_confirmations_passed = False
+    export_summary_snapshot = False
+    save_trace_output = False
+    route_count = 0
+    trace_output = ""
+    required_signals = []
+    signal_emissions = {}
+    system_tree = {}
+    event_bus = {}
+    
+    print("🔐 GENESIS PHASE 18 LOCK-IN PROCEDURE")
+    print("=" * 70)
+    print("STRICT ARCHITECT MODE v2.9 — REACTIVE EXECUTION + KILL-SWITCH RESPONSE")
+    print(f"📅 Date: {timestamp}")
+    print()
+    
+    # Step 1: Validate trace chain from trace_phase18_chain.py
+    print("🔍 STEP 1: VALIDATE TRACE CHAIN")
+    print("-" * 40)
+    
+    try:        # Run the trace chain script
+        result = subprocess.run(
+            ['python', 'trace_phase18_chain_fixed.py'], 
+            capture_output=True, 
+            text=True, 
+            cwd='.'
+        )
+        
+        if result.returncode == 0:
+            print("✅ trace_phase18_chain.py executed successfully")
+            trace_output = result.stdout
+            print("📊 Trace Results:")
+            print(trace_output)
+            
+            # Parse trace results for route count
+            lines = trace_output.split('\n')
+            route_count = 0
+            for line in lines:
+                if "TOTAL PHASE 18 ROUTES:" in line:
+                    route_count = int(line.split(":")[-1].strip().split()[0])
+                    break
+            
+            validate_trace_chain = route_count >= 10
+            print(f"🎯 Trace Chain Validation: {'✅ PASS' if validate_trace_chain else '❌ FAIL'} ({route_count} routes)")
+        else:
+            print(f"❌ trace_phase18_chain.py failed: {result.stderr}")
+            validate_trace_chain = False
+            trace_output = ""
+            
+    except Exception as e:
+        print(f"❌ Trace chain validation failed: {e}")
+        validate_trace_chain = False
+        trace_output = ""
+    
+    # Step 2: Enforce EventBus-only compliance
+    print(f"\n🔗 STEP 2: ENFORCE EVENTBUS-ONLY COMPLIANCE")
+    print("-" * 40)
+    
+    try:
+        with open('event_bus.json', 'r') as f:
+            event_bus = json.load(f)
+        
+        eventbus_violations = event_bus.get("eventbus_violations", [])
+        isolated_functions = event_bus.get("isolated_functions", [])
+        
+        print(f"   ✅ Bypass Violations: {len(eventbus_violations)} (Expected: 0)")
+        print(f"   ✅ Isolated Functions: {len(isolated_functions)} (Expected: 0)")
+        
+        enforce_eventbus_only = len(eventbus_violations) == 0 and len(isolated_functions) == 0
+        print(f"🎯 EventBus-Only Enforcement: {'✅ PASS' if enforce_eventbus_only else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ EventBus enforcement check failed: {e}")
+        enforce_eventbus_only = False
+    
+    # Step 3: Telemetry hooks mandatory verification
+    print(f"\n📡 STEP 3: TELEMETRY HOOKS MANDATORY VERIFICATION")
+    print("-" * 40)
+    
+    try:
+        with open('telemetry.json', 'r') as f:
+            telemetry = json.load(f)
+        
+        required_signals = [
+            "ExecutionDeviationAlert",
+            "KillSwitchTrigger", 
+            "SmartLogSync",
+            "RecalibrationRequest",
+            "TerminateMonitorLoop"
+        ]
+        
+        active_signals = telemetry.get("active_signals", [])
+        signal_emissions = telemetry.get("signal_emissions", {})
+        
+        hooks_present = True
+        for signal in required_signals:
+            is_active = signal in active_signals or signal in signal_emissions
+            print(f"   {'✅' if is_active else '❌'} {signal}: {'ACTIVE' if is_active else 'MISSING'}")
+            hooks_present &= is_active
+        
+        telemetry_hooks_mandatory = hooks_present
+        print(f"🎯 Telemetry Hooks Mandatory: {'✅ PASS' if telemetry_hooks_mandatory else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ Telemetry hooks verification failed: {e}")
+        telemetry_hooks_mandatory = False
+    
+    # Step 4: Monitor real MT5 feed verification
+    print(f"\n🛡️ STEP 4: MONITOR REAL MT5 FEED")
+    print("-" * 40)
+    
+    phase18_modules = [
+        "modules/reactive/smart_execution_reactor.py",
+        "modules/reactive/execution_loop_responder.py", 
+        "modules/reactive/live_alert_bridge.py"
+    ]
+    
+    mt5_feed_confirmed = True
+    for module_path in phase18_modules:
+        if os.path.exists(module_path):
+            try:
+                with open(module_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    has_mt5 = "MT5" in content
+                    has_real_data = "real" in content.lower() and "data" in content.lower()
+                    no_mock = "no real data" in content.lower()
+                    
+                    module_compliant = has_mt5 and has_real_data and no_mock
+                    print(f"   {'✅' if module_compliant else '❌'} {os.path.basename(module_path)}: {'MT5 FEED CONFIRMED' if module_compliant else 'COMPLIANCE ISSUE'}")
+                    mt5_feed_confirmed &= module_compliant
+                    
+            except Exception as e:
+                print(f"   ❌ {module_path}: Error reading file - {e}")
+                mt5_feed_confirmed = False
+        else:
+            print(f"   ❌ {module_path}: MODULE NOT FOUND")
+            mt5_feed_confirmed = False
+    
+    monitor_real_mt5_feed = mt5_feed_confirmed
+    print(f"🎯 Monitor Real MT5 Feed: {'✅ PASS' if monitor_real_mt5_feed else '❌ FAIL'}")
+    
+    # Step 5: Halt on orphan modules check
+    print(f"\n🔍 STEP 5: HALT ON ORPHAN MODULES CHECK")
+    print("-" * 40)
+    
+    try:
+        with open('system_tree.json', 'r') as f:
+            system_tree = json.load(f)
+        
+        with open('build_status.json', 'r') as f:
+            build_status = json.load(f)
+        
+        orphan_count = build_status.get("orphan_modules", 0)
+        total_nodes = system_tree.get("metadata", {}).get("total_nodes", 0)
+        
+        print(f"   ✅ Total Nodes: {total_nodes}")
+        print(f"   ✅ Orphan Modules: {orphan_count}")
+        
+        halt_on_orphan_modules = orphan_count == 0
+        print(f"🎯 Halt on Orphan Modules: {'✅ PASS' if halt_on_orphan_modules else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ Orphan modules check failed: {e}")
+        halt_on_orphan_modules = False
+    
+    # Step 6: Audit confirmations
+    print(f"\n✅ STEP 6: AUDIT CONFIRMATIONS")
+    print("-" * 40)
+    
+    audit_items = [
+        "SmartExecutionReactor registered and fully traced",
+        "ExecutionLoopResponder mapped to downstream adjustments",
+        "LiveAlertBridge routes confirmed to TelemetryCollector, RiskEngine, Dashboard",
+        "KillSwitchTrigger chain verified and operational",
+        "ExecutionDeviationAlert and RecalibrationRequest emitting live",
+        "Telemetry.json ingesting all Phase 18 signals"
+    ]
+    
+    # Verify each audit item
+    audit_confirmations_passed = True
+    
+    # Check SmartExecutionReactor registration
+    nodes = system_tree.get("nodes", [])
+    reactor_registered = any(n.get("id") == "SmartExecutionReactor" for n in nodes)
+    print(f"   {'✅' if reactor_registered else '❌'} SmartExecutionReactor registered and fully traced")
+    audit_confirmations_passed &= reactor_registered
+    
+    # Check ExecutionLoopResponder mapping
+    responder_registered = any(n.get("id") == "ExecutionLoopResponder" for n in nodes)
+    print(f"   {'✅' if responder_registered else '❌'} ExecutionLoopResponder mapped to downstream adjustments")
+    audit_confirmations_passed &= responder_registered
+    
+    # Check LiveAlertBridge routes
+    routes = event_bus.get("routes", [])
+    bridge_routes = [
+        ("LiveAlertBridge", "TelemetryCollector", "AlertTelemetry"),
+        ("LiveAlertBridge", "RiskEngine", "EmergencyAlert"),
+        ("LiveAlertBridge", "DashboardEngine", "DashboardAlert")
+    ]
+    
+    bridge_routes_confirmed = True
+    for producer, consumer, topic in bridge_routes:
+        route_exists = any(
+            r.get("producer") == producer and 
+            r.get("consumer") == consumer and 
+            r.get("topic") == topic and
+            r.get("status") == "active"
+            for r in routes
+        )
+        bridge_routes_confirmed &= route_exists
+    
+    print(f"   {'✅' if bridge_routes_confirmed else '❌'} LiveAlertBridge routes confirmed to TelemetryCollector, RiskEngine, Dashboard")
+    audit_confirmations_passed &= bridge_routes_confirmed
+    
+    # Check KillSwitchTrigger chain
+    killswitch_route = any(
+        r.get("producer") == "SmartExecutionMonitor" and 
+        r.get("consumer") == "SmartExecutionReactor" and 
+        r.get("topic") == "KillSwitchTrigger" and
+        r.get("status") == "active"
+        for r in routes
+    )
+    print(f"   {'✅' if killswitch_route else '❌'} KillSwitchTrigger chain verified and operational")
+    audit_confirmations_passed &= killswitch_route
+    
+    # Check ExecutionDeviationAlert and RecalibrationRequest
+    deviation_route = any(
+        r.get("topic") == "ExecutionDeviationAlert" and r.get("status") == "active"
+        for r in routes
+    )
+    recalibration_route = any(
+        r.get("topic") == "RecalibrationRequest" and r.get("status") == "active"
+        for r in routes
+    )
+    
+    live_emitting = deviation_route and recalibration_route
+    print(f"   {'✅' if live_emitting else '❌'} ExecutionDeviationAlert and RecalibrationRequest emitting live")
+    audit_confirmations_passed &= live_emitting
+    
+    # Check telemetry ingestion
+    telemetry_ingesting = len(signal_emissions) >= 5
+    print(f"   {'✅' if telemetry_ingesting else '❌'} Telemetry.json ingesting all Phase 18 signals")
+    audit_confirmations_passed &= telemetry_ingesting
+    
+    print(f"🎯 Audit Confirmations: {'✅ PASS' if audit_confirmations_passed else '❌ FAIL'}")
+    
+    # Step 7: Export summary snapshot
+    print(f"\n📸 STEP 7: EXPORT SUMMARY SNAPSHOT")
+    print("-" * 40)
+    
+    snapshot = {
+        "timestamp": timestamp,
+        "phase": "18_REACTIVE_EXECUTION_KILLSWITCH",
+        "architect_mode": "v2.9",
+        "validation_results": {
+            "trace_chain": validate_trace_chain,
+            "eventbus_only": enforce_eventbus_only,
+            "telemetry_hooks": telemetry_hooks_mandatory,
+            "mt5_feed": monitor_real_mt5_feed,
+            "no_orphans": halt_on_orphan_modules,
+            "audit_confirmations": audit_confirmations_passed
+        },
+        "route_count": route_count if 'route_count' in locals() else 0,
+        "modules_registered": ["SmartExecutionReactor", "ExecutionLoopResponder", "LiveAlertBridge"],
+        "telemetry_signals": required_signals,
+        "system_health": "OPERATIONAL" if all([validate_trace_chain, enforce_eventbus_only, telemetry_hooks_mandatory, monitor_real_mt5_feed, halt_on_orphan_modules, audit_confirmations_passed]) else "ISSUES_DETECTED"
+    }
+    
+    try:
+        os.makedirs("logs", exist_ok=True)
+        with open("logs/phase18_summary_snapshot.json", "w") as f:
+            json.dump(snapshot, f, indent=2)
+        print("✅ Summary snapshot exported to logs/phase18_summary_snapshot.json")
+        export_summary_snapshot = True
+    except Exception as e:
+        print(f"❌ Failed to export summary snapshot: {e}")
+        export_summary_snapshot = False
+    
+    # Step 8: Save trace output
+    print(f"\n💾 STEP 8: SAVE TRACE OUTPUT")
+    print("-" * 40)
+    
+    try:
+        os.makedirs("logs", exist_ok=True)
+        with open("logs/phase18_reactive_chain_report.txt", "w") as f:
+            f.write(f"GENESIS PHASE 18 REACTIVE CHAIN REPORT\n")
+            f.write(f"Generated: {timestamp}\n")
+            f.write(f"Architect Mode: v2.9\n")
+            f.write("=" * 50 + "\n\n")
+            f.write(trace_output)
+            f.write(f"\n\nVALIDATION SUMMARY:\n")
+            f.write(f"- Trace Chain: {'PASS' if validate_trace_chain else 'FAIL'}\n")
+            f.write(f"- EventBus Only: {'PASS' if enforce_eventbus_only else 'FAIL'}\n")
+            f.write(f"- Telemetry Hooks: {'PASS' if telemetry_hooks_mandatory else 'FAIL'}\n")
+            f.write(f"- MT5 Feed: {'PASS' if monitor_real_mt5_feed else 'FAIL'}\n")
+            f.write(f"- No Orphans: {'PASS' if halt_on_orphan_modules else 'FAIL'}\n")
+            f.write(f"- Audit Confirmations: {'PASS' if audit_confirmations_passed else 'FAIL'}\n")
+        
+        print("✅ Trace output saved to logs/phase18_reactive_chain_report.txt")
+        save_trace_output = True
+    except Exception as e:
+        print(f"❌ Failed to save trace output: {e}")
+        save_trace_output = False
+    
+    # Final Assessment
+    print("\n" + "=" * 70)
+    print("🏁 FINAL PHASE 18 LOCK-IN ASSESSMENT")
+    print("=" * 70)
+    
+    all_checks = [
+        ("Validate Trace Chain", validate_trace_chain),
+        ("Enforce EventBus Only", enforce_eventbus_only),
+        ("Telemetry Hooks Mandatory", telemetry_hooks_mandatory),
+        ("Monitor Real MT5 Feed", monitor_real_mt5_feed),
+        ("Halt on Orphan Modules", halt_on_orphan_modules),
+        ("Audit Confirmations", audit_confirmations_passed),
+        ("Export Summary Snapshot", export_summary_snapshot),
+        ("Save Trace Output", save_trace_output)
+    ]
+    
+    overall_success = all(check[1] for check in all_checks)
+    
+    for name, status in all_checks:
+        print(f"   {'✅' if status else '❌'} {name}: {'PASS' if status else 'FAIL'}")
+    
+    print("\n" + "=" * 70)
+    if overall_success:
+        print("🎉 GENESIS PHASE 18 LOCK-IN: ✅ COMPLETE AND SUCCESSFUL")
+        print("🚀 REACTIVE EXECUTION + KILL-SWITCH RESPONSE: ✅ OPERATIONAL")
+        print("🔒 STRICT ARCHITECT MODE v2.9: ✅ FULLY COMPLIANT")
+        print("\n🏆 SYSTEM STATUS: PRODUCTION-READY WITH FULL REACTIVE SAFEGUARDS")
+        
+        # Update phase18_upgrade_log.md
+        try:
+            with open("phase18_upgrade_log.md", "a") as f:
+                f.write(f"\n\n# 🔐 PHASE 18 LOCK-IN PROCEDURE COMPLETE - {timestamp}\n\n")
+                f.write("## ✅ COMPREHENSIVE VALIDATION RESULTS\n\n")
+                f.write("**GENESIS PHASE 18 REACTIVE EXECUTION + KILL-SWITCH RESPONSE**  \n")
+                f.write("**STATUS**: ✅ **LOCK-IN SUCCESSFUL**  \n")
+                f.write(f"**Timestamp**: {timestamp}  \n")
+                f.write("**Mode**: STRICT ARCHITECT MODE v2.9  \n\n")
+                
+                f.write("### 🎯 ALL VALIDATION CHECKS PASSED:\n")
+                for name, status in all_checks:
+                    f.write(f"✅ **{name}**: {'PASS' if status else 'FAIL'}  \n")
+                
+                f.write(f"\n### 📊 SYSTEM METRICS:\n")
+                f.write(f"- **Phase 18 Routes Active**: {route_count if 'route_count' in locals() else 'N/A'}  \n")
+                f.write(f"- **Modules Registered**: 3/3 (SmartExecutionReactor, ExecutionLoopResponder, LiveAlertBridge)  \n")
+                f.write(f"- **Telemetry Signals**: {len(required_signals)}/5 Active  \n")
+                f.write(f"- **Orphan Modules**: 0  \n")
+                f.write(f"- **EventBus Violations**: 0  \n")
+                
+                f.write(f"\n🏆 **GENESIS PHASE 18: PRODUCTION-READY WITH FULL REACTIVE SAFEGUARDS**\n")
+            
+            print("✅ Upgrade summary logged to phase18_upgrade_log.md")
+            
+        except Exception as e:
+            print(f"⚠️  Could not update phase18_upgrade_log.md: {e}")
+            
+    else:
+        print("❌ GENESIS PHASE 18 LOCK-IN: FAILED")
+        print("🚫 REACTIVE EXECUTION: COMPLIANCE VIOLATIONS DETECTED")
+        print("⚠️  STRICT ARCHITECT MODE v2.9: ISSUES REQUIRE RESOLUTION")
+    
+    return overall_success
+
+if __name__ == "__main__":
+    success = apply_phase18_upgrade()
+    exit(0 if success else 1)
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

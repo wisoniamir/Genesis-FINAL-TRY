@@ -1,0 +1,123 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.512587+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        798,
+        802
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        70,
+        316,
+        352,
+        372,
+        375
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        183,
+        484,
+        764
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        798,
+        802
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        42,
+        65,
+        284,
+        318,
+        356
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        310,
+        350,
+        373,
+        416,
+        518
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        264,
+        315,
+        379,
+        642
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        452,
+        591,
+        632,
+        651,
+        672
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        73,
+        305,
+        509
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\ml_pattern_engine_v7_clean.py",
+      "line_numbers": [
+        72,
+        278
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "_pslinux",
+  "original_path": "modules\\restored\\_pslinux.py",
+  "preserved_path": "preservation_holding_area\\_pslinux_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 119272,
+  "checksum": "213ba93b4a609d90b90e61ab938f26b36915088ad692e82cdb71aa14e4c8f170"
+}

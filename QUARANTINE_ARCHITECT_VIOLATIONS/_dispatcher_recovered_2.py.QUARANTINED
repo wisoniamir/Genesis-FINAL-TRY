@@ -1,0 +1,32 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dispatcher_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.108180+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dispatcher_recovered_2.py",
+      "line_numbers": [
+        224,
+        363,
+        533,
+        699
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_dispatcher_recovered_2.py",
+      "line_numbers": [
+        80,
+        128,
+        131,
+        476,
+        644
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

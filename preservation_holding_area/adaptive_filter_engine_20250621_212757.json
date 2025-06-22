@@ -1,0 +1,9 @@
+{
+  "module_id": "adaptive_filter_engine",
+  "original_path": "modules\\signal_processing\\adaptive_filter_engine.py",
+  "preserved_path": "preservation_holding_area\\adaptive_filter_engine_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15081,
+  "checksum": "45c1cdda8fb62019288b00745eb426584374ea2f36c00382a1080db42b5d2f67"
+}

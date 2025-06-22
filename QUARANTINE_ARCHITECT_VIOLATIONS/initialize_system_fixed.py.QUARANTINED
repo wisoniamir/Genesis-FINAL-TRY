@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+  "quarantine_timestamp": "2025-06-21T04:33:03.004913+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        197
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        44
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        40
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        13,
+        53,
+        77,
+        99,
+        105
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        71,
+        93,
+        117,
+        121,
+        146
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        81,
+        100,
+        109,
+        156
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        87,
+        114,
+        169
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\initialize_system_fixed.py",
+      "line_numbers": [
+        137
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

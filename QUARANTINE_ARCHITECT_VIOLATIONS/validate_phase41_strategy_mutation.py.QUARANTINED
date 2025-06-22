@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\validate_phase41_strategy_mutation.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.589243+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\validate_phase41_strategy_mutation.py",
+      "line_numbers": [
+        129,
+        132,
+        134
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\validate_phase41_strategy_mutation.py",
+      "line_numbers": [
+        23,
+        52,
+        53,
+        54,
+        56
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\validate_phase41_strategy_mutation.py",
+      "line_numbers": [
+        59,
+        80,
+        101,
+        114
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\validate_phase41_strategy_mutation.py",
+      "line_numbers": [
+        76,
+        97,
+        111,
+        124
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\validate_phase41_strategy_mutation.py",
+      "line_numbers": [
+        34,
+        41,
+        48,
+        55,
+        73
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

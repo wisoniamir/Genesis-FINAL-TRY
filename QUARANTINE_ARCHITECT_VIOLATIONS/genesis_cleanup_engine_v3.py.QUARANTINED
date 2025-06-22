@@ -1,0 +1,78 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.745277+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+      "line_numbers": [
+        52,
+        77,
+        94,
+        108,
+        112
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+      "line_numbers": [
+        72,
+        107,
+        153,
+        184,
+        218
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+      "line_numbers": [
+        120
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+      "line_numbers": [
+        56,
+        90,
+        117,
+        177,
+        180
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+      "line_numbers": [
+        39,
+        75,
+        166,
+        173,
+        186
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\genesis_cleanup_engine_v3.py",
+      "line_numbers": [
+        44,
+        403
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

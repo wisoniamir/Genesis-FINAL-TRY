@@ -1,0 +1,40 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_openpyxl_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.225520+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_openpyxl_recovered_1.py",
+      "line_numbers": [
+        550
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_openpyxl_recovered_1.py",
+      "line_numbers": [
+        74,
+        82,
+        304
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_openpyxl_recovered_1.py",
+      "line_numbers": [
+        80,
+        177,
+        300,
+        469,
+        474
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

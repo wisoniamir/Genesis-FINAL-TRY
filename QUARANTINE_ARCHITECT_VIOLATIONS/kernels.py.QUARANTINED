@@ -1,0 +1,44 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kernels.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.047600+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kernels.py",
+      "line_numbers": [
+        75,
+        86,
+        2286
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kernels.py",
+      "line_numbers": [
+        123,
+        229,
+        302,
+        352,
+        360
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kernels.py",
+      "line_numbers": [
+        246,
+        306,
+        329,
+        356,
+        637
+      ],
+      "violation_count": 36
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

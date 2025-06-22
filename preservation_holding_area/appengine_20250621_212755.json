@@ -1,0 +1,9 @@
+{
+  "module_id": "appengine",
+  "original_path": "modules\\restored\\appengine.py",
+  "preserved_path": "preservation_holding_area\\appengine_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 32400,
+  "checksum": "7ee6a3bce95b220b347dd1ba32a535d5ce00e4114a76a82e707aa2d61b5a8527"
+}

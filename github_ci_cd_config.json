@@ -1,0 +1,49 @@
+{
+  "repository_url": "",
+  "main_branch": "main",
+  "workflow_directory": ".github/workflows",
+  "ci_enabled": true,
+  "cd_enabled": false,
+  "auto_merge_pull_requests": false,
+  "required_checks": [
+    "check_system_tree",
+    "check_event_bus",
+    "check_telemetry",
+    "validate_modules"
+  ],
+  "notification_on_failure": true,
+  "notification_on_success": false,
+  "run_interval_minutes": 60,
+  "github_api_token": "",
+  "workflows": {
+    "pull_request": {
+      "enabled": true,
+      "checks": [
+        "validate_architecture",
+        "check_compliance",
+        "run_tests"
+      ]
+    },
+    "push": {
+      "enabled": true,
+      "branches": ["main", "develop"],
+      "checks": [
+        "validate_architecture",
+        "check_compliance",
+        "run_tests",
+        "build_modules"
+      ]
+    },
+    "release": {
+      "enabled": false,
+      "branches": ["main"],
+      "checks": [
+        "validate_architecture",
+        "check_compliance",
+        "run_tests",
+        "build_modules",
+        "create_release"
+      ]
+    }
+  }
+}

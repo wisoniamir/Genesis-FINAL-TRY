@@ -1,0 +1,9 @@
+{
+  "module_id": "backend_macosx",
+  "original_path": "modules\\restored\\backend_macosx.py",
+  "preserved_path": "preservation_holding_area\\backend_macosx_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 38802,
+  "checksum": "4d8e4cfd46442516ba8b595a1deed9ef555504bb208cb1cce082bd47c707a980"
+}

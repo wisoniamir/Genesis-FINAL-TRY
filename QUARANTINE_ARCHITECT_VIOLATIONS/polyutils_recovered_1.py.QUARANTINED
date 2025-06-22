@@ -1,0 +1,60 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\polyutils_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.054283+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\polyutils_recovered_1.py",
+      "line_numbers": [
+        82,
+        707
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\polyutils_recovered_1.py",
+      "line_numbers": [
+        125,
+        721
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\polyutils_recovered_1.py",
+      "line_numbers": [
+        127
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\polyutils_recovered_1.py",
+      "line_numbers": [
+        139,
+        488,
+        728
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\polyutils_recovered_1.py",
+      "line_numbers": [
+        58,
+        136,
+        141,
+        193,
+        240
+      ],
+      "violation_count": 16
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

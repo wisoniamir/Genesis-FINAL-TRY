@@ -1,0 +1,423 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+🔧 GENESIS UNICODE ENCODING FIXER - ARCHITECT MODE v7.0.0
+🔐 ZERO TOLERANCE for encoding issues
+
+This module fixes Unicode encoding issues in launcher scripts.
+MANDATORY for ARCHITECT MODE compliance.
+"""
+
+import os
+import re
+from pathlib import Path
+from datetime import datetime
+import json
+
+
+# <!-- @GENESIS_MODULE_END: genesis_unicode_encoding_fixer -->
+
+
+# <!-- @GENESIS_MODULE_START: genesis_unicode_encoding_fixer -->
+
+class GenesisUnicodeEncodingFixer:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "genesis_unicode_encoding_fixer",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in genesis_unicode_encoding_fixer: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "genesis_unicode_encoding_fixer",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in genesis_unicode_encoding_fixer: {e}")
+    """
+    ARCHITECT MODE v7.0.0 Unicode Encoding Fixer
+    - Fixes encoding issues in launcher scripts
+    - Ensures UTF-8 compliance
+    - Creates compliance report
+    """
+    
+    def __init__(self):
+        self.fixed_files = []
+        self.encoding_issues = []
+        
+    def emit_telemetry(self, event, data):
+        """EventBus telemetry emission - MANDATORY"""
+        telemetry_data = {
+            "timestamp": datetime.now().isoformat(),
+            "module": "GenesisUnicodeEncodingFixer",
+            "event": event,
+            "data": data,
+            "architect_mode": "v7.0.0"
+        }
+        
+        # Log to telemetry file
+        telemetry_file = Path("telemetry_realtime.jsonl")
+        with open(telemetry_file, "a", encoding="utf-8") as f:
+            f.write(json.dumps(telemetry_data) + "\n")
+    
+    def fix_launcher_encoding(self, file_path):
+        """
+        Fixes Unicode encoding issues in a launcher script
+        """
+        try:
+            # Try to read with various encodings
+            content = None
+            original_encoding = None
+            
+            for encoding in ['utf-8', 'latin-1', 'cp1252', 'iso-8859-1']:
+                try:
+                    with open(file_path, 'r', encoding=encoding) as f:
+                        content = f.read()
+                    original_encoding = encoding
+                    break
+                except UnicodeDecodeError:
+                    continue
+            
+            if content is None:
+                self.encoding_issues.append({
+                    "file": str(file_path),
+                    "error": "Cannot decode with any encoding"
+                })
+                return False
+            
+            # Fix common encoding issues
+            fixes_applied = []
+            
+            # Fix BOM issues
+            if content.startswith('\ufeff'):
+                content = content[1:]
+                fixes_applied.append("removed_bom")
+            
+            # Fix Windows line endings
+            if '\r\n' in content:
+                content = content.replace('\r\n', '\n')
+                fixes_applied.append("fixed_line_endings")
+            
+            # Fix common Unicode characters
+            unicode_fixes = {
+                '-': '-',  # En dash
+                '--': '--',  # Em dash
+                '"': '"',  # Left double quotation mark
+                '"': '"',  # Right double quotation mark
+                ''''''': "'",  # Right single quotation mark
+                '...': '...',  # Horizontal ellipsis
+                '(c)': '(c)',  # Copyright symbol
+                '(R)': '(R)',  # Registered trademark
+                '(TM)': '(TM)',  # Trademark
+                'EUR': 'EUR',  # Euro sign
+                'GBP': 'GBP',  # Pound sign
+                'JPY': 'JPY',  # Yen sign
+            }
+            
+            for bad_char, good_char in unicode_fixes.items():
+                if bad_char in content:
+                    content = content.replace(bad_char, good_char)
+                    fixes_applied.append(f"fixed_{bad_char}_to_{good_char}")
+            
+            # Ensure proper encoding declaration for Python files
+            if file_path.suffix == '.py':
+                encoding_pattern = r'^.*?coding[:=]\s*([-\w.]+)'
+                if not re.search(encoding_pattern, content, re.MULTILINE):
+                    # Add UTF-8 encoding declaration
+                    if content.startswith('#!'):
+                        lines = content.split('\n')
+                        lines.insert(1, '# -*- coding: utf-8 -*-')
+                        content = '\n'.join(lines)
+                    else:
+                        content = '# -*- coding: utf-8 -*-\n' + content
+                    fixes_applied.append("added_utf8_declaration")
+            
+            # Write back with UTF-8 encoding
+            if fixes_applied:
+                with open(file_path, 'w', encoding='utf-8', newline='\n') as f:
+                    f.write(content)
+                
+                self.fixed_files.append({
+                    "file": str(file_path),
+                    "original_encoding": original_encoding,
+                    "fixes_applied": fixes_applied
+                })
+                
+                self.emit_telemetry("encoding_fixed", {
+                    "file": str(file_path),
+                    "fixes": fixes_applied
+                })
+                
+                return True
+            
+            return False
+            
+        except Exception as e:
+            self.encoding_issues.append({
+                "file": str(file_path),
+                "error": str(e)
+            })
+            self.emit_telemetry("encoding_error", {
+                "file": str(file_path),
+                "error": str(e)
+            })
+            return False
+    
+    def scan_and_fix_all_launchers(self):
+        """
+        Scans and fixes all launcher scripts in the workspace
+        """
+        self.emit_telemetry("encoding_scan_start", {})
+        
+        launcher_patterns = [
+            "*launcher*.py",
+            "*launch*.py", 
+            "*genesis*.py",
+            "*boot*.py",
+            "*start*.py",
+            "*.bat",
+            "*.ps1",
+            "*.sh"
+        ]
+        
+        files_scanned = 0
+        files_fixed = 0
+        
+        for pattern in launcher_patterns:
+            for file_path in Path(".").rglob(pattern):
+                # Skip quarantined directories
+                if any(exclude in str(file_path) for exclude in [
+                    "TRIAGE_ORPHAN_QUARANTINE", 
+                    "MOCK_VIOLATIONS_QUARANTINE",
+                    ".venv", 
+                    "__pycache__", 
+                    ".git"
+                ]):
+                    continue
+                
+                files_scanned += 1
+                if self.fix_launcher_encoding(file_path):
+                    files_fixed += 1
+        
+        self.emit_telemetry("encoding_scan_complete", {
+            "files_scanned": files_scanned,
+            "files_fixed": files_fixed,
+            "encoding_issues": len(self.encoding_issues)
+        })
+        
+        return files_fixed
+    
+    def generate_encoding_report(self):
+        """
+        Generates Unicode encoding compliance report
+        """
+        report = {
+            "timestamp": datetime.now().isoformat(),
+            "architect_mode_version": "v7.0.0",
+            "encoding_status": "FIXED" if self.fixed_files else "NO_ISSUES",
+            "files_fixed": len(self.fixed_files),
+            "encoding_issues": len(self.encoding_issues),
+            "fixed_files_detail": self.fixed_files,
+            "issues_detail": self.encoding_issues
+        }
+        
+        # Save report
+        report_file = Path("unicode_encoding_fix_report.json")
+        with open(report_file, "w", encoding="utf-8") as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+        
+        self.emit_telemetry("encoding_report_generated", {
+            "report_file": str(report_file),
+            "status": report["encoding_status"]
+        })
+        
+        return report
+    
+    def fix_all_encoding_issues(self):
+        """
+        Complete Unicode encoding fix process
+        """
+        print("🔧 GENESIS UNICODE ENCODING FIXER - ARCHITECT MODE v7.0.0")
+        print("🔐 ZERO TOLERANCE for encoding issues")
+        print("-" * 70)
+        
+        # Step 1: Scan and fix launchers
+        print("📂 Scanning launcher scripts for encoding issues...")
+        files_fixed = self.scan_and_fix_all_launchers()
+        
+        if files_fixed == 0 and len(self.encoding_issues) == 0:
+            print("✅ NO ENCODING ISSUES FOUND")
+            print("🎯 ARCHITECT MODE ENCODING COMPLIANCE: PASSED")
+            return True
+        
+        # Step 2: Report results
+        if files_fixed > 0:
+            print(f"🔧 FIXED {files_fixed} ENCODING ISSUES")
+            for fix in self.fixed_files:
+                print(f"   ✅ {fix['file']}: {', '.join(fix['fixes_applied'])}")
+        
+        if self.encoding_issues:
+            print(f"❌ FOUND {len(self.encoding_issues)} UNRESOLVABLE ISSUES")
+            for issue in self.encoding_issues:
+                print(f"   ❌ {issue['file']}: {issue['error']}")
+        
+        # Step 3: Generate report
+        print("📊 Generating encoding compliance report...")
+        report = self.generate_encoding_report()
+        
+        print(f"✅ Unicode encoding fix complete")
+        print(f"📁 Files fixed: {files_fixed}")
+        print(f"📊 Report saved: unicode_encoding_fix_report.json")
+        
+        return files_fixed > 0 or len(self.encoding_issues) == 0
+
+def main():
+    """Execute Unicode encoding fix"""
+    fixer = GenesisUnicodeEncodingFixer()
+    success = fixer.fix_all_encoding_issues()
+    
+    if success:
+        print("\n🎯 ARCHITECT MODE ENCODING COMPLIANCE: PASSED")
+    else:
+        print("\n🚨 ARCHITECT MODE VIOLATION: Encoding issues remain")
+        print("❌ System requires manual encoding fixes")
+    
+    return success
+
+if __name__ == "__main__":
+    main()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

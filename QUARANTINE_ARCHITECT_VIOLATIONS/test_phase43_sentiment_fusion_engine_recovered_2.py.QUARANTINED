@@ -1,0 +1,88 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.273150+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        102,
+        109,
+        116,
+        117,
+        156
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        1,
+        48,
+        59,
+        91,
+        92
+      ],
+      "violation_count": 25
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        34,
+        106,
+        123,
+        169,
+        215
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        113,
+        163,
+        209
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        130,
+        151,
+        189,
+        257
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        111
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase43_sentiment_fusion_engine_recovered_2.py",
+      "line_numbers": [
+        66,
+        267
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

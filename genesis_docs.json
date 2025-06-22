@@ -1,0 +1,31 @@
+{
+  "genesis_documentation": {
+    "version": "v6.4.0-consolidated",
+    "last_updated": "2025-06-20T13:00:00Z",
+    "total_documented_modules": 149,
+    "documentation_compliance": "MANDATORY"
+  },
+  "module_documentation": {
+    "status": "ACTIVE",
+    "format": "inline_docstrings",
+    "requirements": [
+      "Purpose statement",
+      "EventBus integration details",
+      "Real data usage confirmation",
+      "Telemetry emission points",
+      "MT5 integration details"
+    ]
+  },
+  "architecture_documentation": {
+    "system_tree_mapped": true,
+    "eventbus_routes_documented": true,
+    "telemetry_flows_documented": true,
+    "compliance_rules_documented": true
+  },
+  "compliance_documentation": {
+    "ftmo_compliance": "DOCUMENTED",
+    "real_data_policy": "DOCUMENTED",
+    "eventbus_requirements": "DOCUMENTED",
+    "telemetry_requirements": "DOCUMENTED"
+  }
+}

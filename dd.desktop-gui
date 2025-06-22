@@ -1,0 +1,171 @@
+# -*- @GENESIS_MODULE_START: dockerfile_comprehensive_desktop_gui -*-
+# 🐳 GENESIS COMPREHENSIVE DOCKERIZED DESKTOP GUI - Full Module Integration
+# ARCHITECT MODE v7.0.0 - CONTAINERIZED GUI ENFORCER WITH ALL MODULES
+# NO SIMPLIFICATION - COMPLETE INSTITUTIONAL TRADING PLATFORM
+
+FROM python:3.11-slim
+
+# Set comprehensive environment variables for GUI and trading
+ENV DISPLAY=:0.0
+ENV QT_X11_NO_MITSHM=1
+ENV DEBIAN_FRONTEND=noninteractive
+ENV GENESIS_MODE=production
+ENV GENESIS_DOCKER=true
+ENV MT5_WINE_MODE=true
+ENV WINE_PREFIX=/opt/wine
+ENV WINEPREFIX=/opt/wine
+
+# Install comprehensive system dependencies for PyQt5, X11, and Wine
+RUN apt-get update && apt-get install -y \
+    # X11 and GUI dependencies
+    xvfb \
+    x11-apps \
+    x11-utils \
+    x11-xserver-utils \
+    libx11-dev \
+    libxext-dev \
+    libxrender-dev \
+    libxtst6 \
+    libxrandr2 \
+    libasound2-dev \
+    libpulse-dev \
+    xauth \
+    x11vnc \
+    # Qt5 system dependencies - COMPLETE STACK
+    qt5-qmake \
+    qtbase5-dev \
+    qtbase5-dev-tools \
+    libqt5widgets5 \
+    libqt5gui5 \
+    libqt5core5a \
+    libqt5dbus5 \
+    libqt5network5 \
+    libqt5printsupport5 \
+    libqt5sql5 \
+    libqt5test5 \
+    libqt5xml5 \
+    libqt5opengl5-dev \
+    libqt5webkit5-dev \
+    libqt5xmlpatterns5-dev \
+    libqt5multimedia5 \
+    libqt5multimedia5-plugins \
+    qtmultimedia5-dev \    libqt5charts5-dev \
+    # Wine for MT5 compatibility (remove problematic packages)
+    wine \
+    wine64 \
+    # Python build tools - COMPREHENSIVE
+    python3-dev \
+    python3-pip \
+    python3-venv \
+    python3-setuptools \
+    python3-wheel \
+    build-essential \
+    pkg-config \
+    cmake \
+    make \
+    gcc \
+    g++ \
+    gfortran \
+    # Network and connectivity tools
+    curl \
+    wget \
+    net-tools \
+    iputils-ping \
+    netcat-openbsd \
+    telnet \
+    openssh-client \
+    # Database and data tools
+    sqlite3 \
+    libsqlite3-dev \
+    redis-tools \
+    # Mathematical and scientific libraries
+    libopenblas-dev \
+    liblapack-dev \    libfftw3-dev \
+    # Audio/Video processing
+    ffmpeg \
+    # Image processing
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    # Fonts and internationalization
+    fonts-dejavu-core \
+    fonts-liberation \
+    fontconfig \
+    locales \
+    # System monitoring tools
+    htop \
+    iotop \
+    lsof \
+    strace \
+    # Text editors and utilities
+    vim \
+    nano \
+    tree \
+    zip \
+    unzip \
+    # Cleanup
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /genesis
+
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install additional GUI-specific packages
+RUN pip install --no-cache-dir \
+    PyQt5==5.15.9 \
+    PyQt5-Qt5==5.15.2 \
+    PyQt5-sip==12.12.2 \
+    MetaTrader5>=5.0.45 \
+    psutil>=5.9.6 \
+    asyncio-mqtt>=0.13.0
+
+# Copy the entire GENESIS system
+COPY . /genesis/
+
+# Create required directories
+RUN mkdir -p /genesis/logs \
+    /genesis/config \
+    /genesis/telemetry \
+    /genesis/core \
+    /genesis/interface/dashboard \
+    /genesis/mt5_connector \
+    /genesis/data \
+    /genesis/modules
+
+# Set permissions
+RUN chmod +x /genesis/*.py
+RUN chmod +x /genesis/interface/dashboard/*.py 2>/dev/null || true
+RUN chmod +x /genesis/core/*.py 2>/dev/null || true
+
+# Create genesis system launcher
+RUN echo '#!/bin/bash\n\
+echo "🚀 GENESIS COMPREHENSIVE DESKTOP GUI CONTAINER STARTING..."\n\
+echo "🔧 Environment: DISPLAY=$DISPLAY"\n\
+echo "🔧 X11 Check: Testing X11 forwarding..."\n\
+xdpyinfo >/dev/null 2>&1 && echo "✅ X11 Connection OK" || echo "❌ X11 Connection Failed"\n\
+echo "🧠 Starting GENESIS Core Systems..."\n\
+cd /genesis\n\
+echo "📊 System Information:"\n\
+python3 -c "import sys; print(f\"Python: {sys.version}\")" \n\
+python3 -c "try: import PyQt5; print(\"✅ PyQt5 Available\"); except ImportError as e: print(f\"❌ PyQt5 Error: {e}\")" \n\
+python3 -c "try: import MetaTrader5; print(\"✅ MT5 Available\"); except ImportError as e: print(f\"❌ MT5 Error: {e}\")" \n\
+python3 -c "try: import pandas; print(\"✅ Pandas Available\"); except ImportError as e: print(f\"❌ Pandas Error: {e}\")" \n\
+python3 -c "try: import numpy; print(\"✅ NumPy Available\"); except ImportError as e: print(f\"❌ NumPy Error: {e}\")" \n\
+python3 -c "try: import matplotlib; print(\"✅ Matplotlib Available\"); except ImportError as e: print(f\"❌ Matplotlib Error: {e}\")" \n\
+echo "🔍 Discovering modules..."\n\
+find . -name "*.py" | head -20\n\
+echo "📁 Directory structure:"\n\
+tree -L 3 2>/dev/null || ls -la\n\
+echo "🖥️ Launching GENESIS Comprehensive Desktop GUI Application..."\n\
+python3 launch_desktop_app.py\n\
+' > /genesis/start_gui.sh && chmod +x /genesis/start_gui.sh
+
+# Expose the application
+EXPOSE 8080
+
+# Set the entrypoint
+ENTRYPOINT ["/genesis/start_gui.sh"]

@@ -1,0 +1,784 @@
+{
+  "compliance_metadata": {
+    "version": "v3.0_institutional",
+    "generation_timestamp": "2025-06-20T17:14:24.760196",
+    "architect_mode": true,
+    "institutional_compliance": true,
+    "target_directory": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419",
+    "ftmo_compliance_active": true
+  },
+  "ftmo_modules": {
+    "autonomous_order_executor.py": {
+      "module": "autonomous_order_executor",
+      "ftmo_features": [
+        "daily_loss",
+        "risk_per_trade"
+      ],
+      "kill_switches": [
+        "kill_switch(self, event: Dict[str, Any])"
+      ]
+    },
+    "auto_execution_manager_quarantined.py": {
+      "module": "auto_execution_manager_quarantined",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "compliance_enforcer.py": {
+      "module": "compliance_enforcer",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(self)",
+        "kill_switch()"
+      ]
+    },
+    "dashboard.py": {
+      "module": "dashboard",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(self, data)"
+      ]
+    },
+    "dashboard_linkage_patch.py": {
+      "module": "dashboard_linkage_patch",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": [
+        "emergency_stop(self, params: Dict)"
+      ]
+    },
+    "dashboard_widgets.py": {
+      "module": "dashboard_widgets",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "execution_dashboard.py": {
+      "module": "execution_dashboard",
+      "ftmo_features": [],
+      "kill_switches": [
+        "emergency_stop(self)"
+      ]
+    },
+    "execution_dispatcher.py": {
+      "module": "execution_dispatcher",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": [
+        "emergency_stop(self, event_data: Dict[str, Any])"
+      ]
+    },
+    "execution_engine_orchestrator.py": {
+      "module": "execution_engine_orchestrator",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": [
+        "kill_switch(self, reason: str, signal_data: Dict[str, Any])",
+        "kill_switch(f\"Risk limit breach: {risk_msg}\", signal_data)",
+        "kill_switch(\"Exposure limit exceeded\", {})",
+        "kill_switch(\"Drawdown limit exceeded\", {})"
+      ]
+    },
+    "execution_flow_controller.py": {
+      "module": "execution_flow_controller",
+      "ftmo_features": [],
+      "kill_switches": [
+        "emergency_stop(self, event_data)"
+      ]
+    },
+    "genesis_advanced_tkinter_ui.py": {
+      "module": "genesis_advanced_tkinter_ui",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": [
+        "kill_switch(self)",
+        "kill_switch(self, event_data)"
+      ]
+    },
+    "genesis_compliance_core.py": {
+      "module": "genesis_compliance_core",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "genesis_dashboard_ui_live_sync.py": {
+      "module": "genesis_dashboard_ui_live_sync",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": [
+        "kill_switch(self)"
+      ]
+    },
+    "genesis_production_dashboard.py": {
+      "module": "genesis_production_dashboard",
+      "ftmo_features": [],
+      "kill_switches": [
+        "emergency_stop(self)"
+      ]
+    },
+    "genesis_trade_engine.py": {
+      "module": "genesis_trade_engine",
+      "ftmo_features": [
+        "daily_loss",
+        "risk_per_trade"
+      ],
+      "kill_switches": [
+        "emergency_stop(\"FTMO daily loss limit breached\")",
+        "emergency_stop(\"FTMO max drawdown limit breached\")",
+        "emergency_stop(self, reason: str)",
+        "emergency_stop(self, event_data: Dict[str, Any])",
+        "emergency_stop(reason)"
+      ]
+    },
+    "kill_switch_compliance.py": {
+      "module": "kill_switch_compliance",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": [
+        "kill_switch(self, reason: str)"
+      ]
+    },
+    "mt5_bridge_test.py": {
+      "module": "mt5_bridge_test",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "mt5_connection_bridge.py": {
+      "module": "mt5_connection_bridge",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "mt5_connector_stub.py": {
+      "module": "mt5_connector_stub",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "mt5_sync_adapter.py": {
+      "module": "mt5_sync_adapter",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "phase_101_institutional_module_registry.py": {
+      "module": "phase_101_institutional_module_registry",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown",
+        "profit_target",
+        "risk_per_trade",
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "phase_101_institutional_module_registry_clean.py": {
+      "module": "phase_101_institutional_module_registry_clean",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown",
+        "profit_target",
+        "risk_per_trade",
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "phase_92a_complete_dashboard.py": {
+      "module": "phase_92a_complete_dashboard",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": [
+        "emergency_stop(self)"
+      ]
+    },
+    "phase_92a_live_dashboard.py": {
+      "module": "phase_92a_live_dashboard",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "telemetry_collector.py": {
+      "module": "telemetry_collector",
+      "ftmo_features": [
+        "max_drawdown",
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\architect_demo_phase57_58.py": {
+      "module": "architect_demo_phase57_58",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\backtest_explorer.py": {
+      "module": "backtest_explorer",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\demo_phase57_58.py": {
+      "module": "demo_phase57_58",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\step7_comprehensive_smart_monitor_validator.py": {
+      "module": "step7_comprehensive_smart_monitor_validator",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(self, event)",
+        "kill_switch(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\step7_deadlock_debugger.py": {
+      "module": "step7_deadlock_debugger",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(self, event)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\step7_smart_monitor_validator.py": {
+      "module": "step7_smart_monitor_validator",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(self, event)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_execution_selector.py": {
+      "module": "test_execution_selector",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_multi_account_splitter_integration.py": {
+      "module": "test_multi_account_splitter_integration",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_pattern_learning_engine_phase58.py": {
+      "module": "test_pattern_learning_engine_phase58",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase23_strategy_mutator.py": {
+      "module": "test_phase23_strategy_mutator",
+      "ftmo_features": [
+        "profit_target"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase31_execution_prioritization.py": {
+      "module": "test_phase31_execution_prioritization",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase45_strategy_self_healing.py": {
+      "module": "test_phase45_strategy_self_healing",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase81.py": {
+      "module": "test_phase81",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase82_83_comprehensive.py": {
+      "module": "test_phase82_83_comprehensive",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": [
+        "kill_switch({'data': {'reason': 'test'}})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase83.py": {
+      "module": "test_phase83",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown",
+        "margin_level"
+      ],
+      "kill_switches": [
+        "kill_switch(\"Test kill switch\")",
+        "kill_switch(\"Test order cancellation\")",
+        "kill_switch(\"Manual test reset\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_portfolio_optimizer.py": {
+      "module": "test_portfolio_optimizer",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_signal_execution_router.py": {
+      "module": "test_signal_execution_router",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smart_execution_liveloop.py": {
+      "module": "test_smart_execution_liveloop",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch()",
+        "kill_switch(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smart_execution_monitor.py": {
+      "module": "test_smart_execution_monitor",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smart_signal_execution_linker.py": {
+      "module": "test_smart_signal_execution_linker",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch({\n            'payload': {'status': 'TRIGGERED'}\n        })"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_trade_recommendation_engine.py": {
+      "module": "test_trade_recommendation_engine",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase46_portfolio_optimizer.py": {
+      "module": "validate_phase46_portfolio_optimizer",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\auto_execution_sync_engine.py": {
+      "module": "auto_execution_sync_engine",
+      "ftmo_features": [
+        "daily_loss",
+        "margin_level"
+      ],
+      "kill_switches": [
+        "kill_switch(self, event_data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_engine.py": {
+      "module": "broker_discovery_engine",
+      "ftmo_features": [
+        "profit_target"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_engine_fixed.py": {
+      "module": "broker_discovery_engine_fixed",
+      "ftmo_features": [
+        "profit_target"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_engine_fixed_restored.py": {
+      "module": "broker_discovery_engine_fixed_restored",
+      "ftmo_features": [
+        "profit_target"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execute_phase_92a_patch.py": {
+      "module": "execute_phase_92a_patch",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_envelope_engine.py": {
+      "module": "execution_envelope_engine",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_playbook_generator.py": {
+      "module": "execution_playbook_generator",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_prioritization_engine.py": {
+      "module": "execution_prioritization_engine",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor.py": {
+      "module": "execution_supervisor",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_new.py": {
+      "module": "execution_supervisor_new",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_new_restored.py": {
+      "module": "execution_supervisor_new_restored",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_recovered.py": {
+      "module": "execution_supervisor_recovered",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\live_risk_governor.py": {
+      "module": "live_risk_governor",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown",
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\mt5_order_executor.py": {
+      "module": "mt5_order_executor",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown",
+        "risk_per_trade",
+        "margin_level"
+      ],
+      "kill_switches": [
+        "emergency_stop(self, event_data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_feedback_loop_integrator.py": {
+      "module": "pattern_feedback_loop_integrator",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_learning_engine_phase58.py": {
+      "module": "pattern_learning_engine_phase58",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_88_live_trial_activation.py": {
+      "module": "phase_88_live_trial_activation",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_repair_clean.py": {
+      "module": "phase_92a_repair_clean",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": [
+        "kill_switch(self)",
+        "kill_switch(self, event_data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_system_repair_engine.py": {
+      "module": "phase_92a_system_repair_engine",
+      "ftmo_features": [
+        "margin_level"
+      ],
+      "kill_switches": [
+        "kill_switch(self)",
+        "kill_switch(self, event_data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\portfolio_optimizer.py": {
+      "module": "portfolio_optimizer",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT.py": {
+      "module": "RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT",
+      "ftmo_features": [
+        "daily_loss",
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\risk_engine.py": {
+      "module": "risk_engine",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": [
+        "kill_switch(\"Daily Drawdown Breach\", timestamp)",
+        "kill_switch(\"Trailing Drawdown Breach\", timestamp)",
+        "kill_switch(self, reason, timestamp)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\signal_execution_router.py": {
+      "module": "signal_execution_router",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": []
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_liveloop.py": {
+      "module": "smart_execution_liveloop",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": [
+        "kill_switch(self, event)",
+        "kill_switch(\"excessive_drawdown\", {\n                        \"current_drawdown_pct\": current_drawdown,\n                        \"threshold_pct\": self.SEL_CONFIG[\"max_drawdown_pct\"],\n                        \"peak_balance\": self.peak_balance,\n                        \"current_balance\": running_balance\n                    })",
+        "kill_switch()",
+        "kill_switch(self, reason, details)",
+        "kill_switch(self)",
+        "kill_switch(\"frequent_alerts\", {\n                \"alert_count\": recent_alert_count,\n                \"timeframe_minutes\": self.SEL_CONFIG[\"kill_switch_timeframe_min\"],\n                \"threshold\": self.SEL_CONFIG[\"kill_switch_alerts\"],\n                \"alert_types\": alert_types\n            })"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_monitor.py": {
+      "module": "smart_execution_monitor",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(strategy_id, deviation_details)",
+        "kill_switch(self, strategy_id, deviation_details)",
+        "kill_switch(strategy_id, deviation_details)",
+        "kill_switch(self, strategy_id, details)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_reactor.py": {
+      "module": "smart_execution_reactor",
+      "ftmo_features": [],
+      "kill_switches": [
+        "kill_switch(telemetry_data)",
+        "kill_switch(self, telemetry_data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\trade_recommendation_engine.py": {
+      "module": "trade_recommendation_engine",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "src\\genesis_fixed\\auto_execution_manager.py": {
+      "module": "auto_execution_manager",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "src\\genesis_fixed\\auto_execution_manager_fixed_restored.py": {
+      "module": "auto_execution_manager_fixed_restored",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "genesis_final_system\\adapters\\auto_execution_manager.py": {
+      "module": "auto_execution_manager",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "genesis_final_system\\adapters\\auto_execution_manager_fixed.py": {
+      "module": "auto_execution_manager_fixed",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "genesis_final_system\\adapters\\auto_execution_manager_fixed_restored.py": {
+      "module": "auto_execution_manager_fixed_restored",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "genesis_final_system\\adapters\\auto_execution_manager_recovered.py": {
+      "module": "auto_execution_manager_recovered",
+      "ftmo_features": [
+        "risk_per_trade"
+      ],
+      "kill_switches": []
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_execution_dashboard.py": {
+      "module": "ORPHAN_test_execution_dashboard",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_execution_dispatcher_phase39.py": {
+      "module": "ORPHAN_test_execution_dispatcher_phase39",
+      "ftmo_features": [
+        "daily_loss"
+      ],
+      "kill_switches": [
+        "emergency_stop(emergency_event)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase32_execution_flow_controller.py": {
+      "module": "ORPHAN_test_phase32_execution_flow_controller",
+      "ftmo_features": [],
+      "kill_switches": [
+        "emergency_stop(stop_event)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signal_loop_reinforcement_engine.py": {
+      "module": "ORPHAN_test_signal_loop_reinforcement_engine",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_strategy_mutation_logic_engine.py": {
+      "module": "ORPHAN_test_strategy_mutation_logic_engine",
+      "ftmo_features": [
+        "max_drawdown"
+      ],
+      "kill_switches": []
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_validate_phase32_execution_flow_controller.py": {
+      "module": "ORPHAN_validate_phase32_execution_flow_controller",
+      "ftmo_features": [],
+      "kill_switches": [
+        "circuit_breaker({})"
+      ]
+    }
+  },
+  "risk_management_features": {
+    "DRAWDOWN_PROTECTION": [
+      "dashboard_widgets.py",
+      "execution_engine_orchestrator.py",
+      "genesis_compliance_core.py",
+      "phase_101_institutional_module_registry.py",
+      "phase_101_institutional_module_registry_clean.py",
+      "telemetry_collector.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\architect_demo_phase57_58.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\backtest_explorer.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\demo_phase57_58.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_execution_selector.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_pattern_learning_engine_phase58.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase82_83_comprehensive.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase83.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_portfolio_optimizer.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_signal_execution_router.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smart_execution_monitor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_trade_recommendation_engine.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase46_portfolio_optimizer.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_envelope_engine.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_prioritization_engine.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_new.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_new_restored.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_recovered.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\live_risk_governor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\mt5_order_executor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_feedback_loop_integrator.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_learning_engine_phase58.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\portfolio_optimizer.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_liveloop.py",
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_execution_dashboard.py",
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signal_loop_reinforcement_engine.py",
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_strategy_mutation_logic_engine.py"
+    ],
+    "POSITION_SIZING": [],
+    "MARGIN_MONITORING": [
+      "genesis_advanced_tkinter_ui.py",
+      "genesis_dashboard_ui_live_sync.py",
+      "mt5_bridge_test.py",
+      "mt5_connection_bridge.py",
+      "mt5_connector_stub.py",
+      "mt5_sync_adapter.py",
+      "phase_101_institutional_module_registry.py",
+      "phase_101_institutional_module_registry_clean.py",
+      "phase_92a_complete_dashboard.py",
+      "phase_92a_live_dashboard.py",
+      "telemetry_collector.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase81.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase83.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\auto_execution_sync_engine.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execute_phase_92a_patch.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\live_risk_governor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\mt5_order_executor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_88_live_trial_activation.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_repair_clean.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_system_repair_engine.py"
+    ]
+  },
+  "kill_switch_infrastructure": {
+    "EMERGENCY_STOPS": [
+      "dashboard_linkage_patch.py",
+      "execution_dashboard.py",
+      "execution_dispatcher.py",
+      "execution_flow_controller.py",
+      "genesis_production_dashboard.py",
+      "genesis_trade_engine.py",
+      "phase_92a_complete_dashboard.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\mt5_order_executor.py",
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_execution_dispatcher_phase39.py",
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase32_execution_flow_controller.py"
+    ],
+    "CIRCUIT_BREAKERS": [
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_validate_phase32_execution_flow_controller.py"
+    ],
+    "SYSTEM_SHUTDOWNS": []
+  }
+}

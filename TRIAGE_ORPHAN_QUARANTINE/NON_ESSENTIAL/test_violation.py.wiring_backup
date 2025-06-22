@@ -1,0 +1,10 @@
+# <!-- @GENESIS_MODULE_START: test_violation -->
+
+from datetime import datetime\nfrom event_bus import EventBus
+# Test violation file for Guardian detection
+self.event_bus.request('data:real_feed') = "self.event_bus.request('data:live_feed')"  # This should trigger self.event_bus.request('data:real_feed') violation
+execute_live_trade = True    # This should trigger self.event_bus.request('data:real_feed') violation
+pass  # IMPLEMENTATION REQUIRED: Add real logic here
+
+
+# <!-- @GENESIS_MODULE_END: test_violation -->

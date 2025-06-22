@@ -1,0 +1,9 @@
+{
+  "module_id": "regression",
+  "original_path": "modules\\restored\\regression.py",
+  "preserved_path": "preservation_holding_area\\regression_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26321,
+  "checksum": "16c746ecd521b650b8a2ddc0152f42e00a544a15ed71e794cde75748d0b594fe"
+}

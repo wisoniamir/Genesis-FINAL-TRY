@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+# <!-- @GENESIS_MODULE_START: quick_launch_genesis -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+GENESIS Quick Launch - Phase 91C
+Simplified launcher for the GENESIS dashboard in live operational mode
+"""
+
+import os
+import sys
+import subprocess
+import time
+
+from hardened_event_bus import EventBus, Event
+
+def launch_genesis_dashboard():
+    """Quick launch the GENESIS dashboard"""
+    
+    print("🚀 GENESIS QUICK LAUNCHER - Phase 91C")
+    print("=" * 45)
+    print("🔒 Live Operational Mode")
+    print("🎛️ Control Panel: ARMED")
+    print("📡 Real-Time Data: ACTIVE")
+    print("=" * 45)
+    
+    # Check if dashboard file exists
+    if not os.path.exists('genesis_dashboard_ui.py'):
+        print("❌ Error: genesis_dashboard_ui.py not found!")
+        print("Make sure you're in the correct directory.")
+        return False
+    
+    print("✅ Dashboard file found")
+    print("🚀 Launching GENESIS Dashboard...")
+    print("   (Close the dashboard window to return to console)")
+    print()
+    
+    try:
+        # Launch the dashboard directly
+        result = subprocess.run([sys.executable, 'genesis_dashboard_ui.py'], 
+                              capture_output=False, 
+                              text=True)
+        
+        print("🔒 Dashboard session ended")
+        return True
+        
+    except KeyboardInterrupt:
+        print("\n⚠️ Launch interrupted by user")
+        return False
+    except Exception as e:
+        print(f"❌ Launch error: {e}")
+        return False
+
+if __name__ == "__main__":
+    success = launch_genesis_dashboard()
+    if success:
+        print("✅ Launch completed successfully")
+    else:
+        print("❌ Launch failed")
+    
+    input("\nPress Enter to exit...")
+
+
+# <!-- @GENESIS_MODULE_END: quick_launch_genesis -->
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

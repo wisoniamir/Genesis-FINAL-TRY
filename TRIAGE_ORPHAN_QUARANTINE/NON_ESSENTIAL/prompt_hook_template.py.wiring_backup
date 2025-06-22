@@ -1,0 +1,31 @@
+"""
+🛡️ GENESIS Performance-Optimized Prompt Hook Template
+Use this at the start of prompts for validation without performance impact
+"""
+
+# === LIGHTWEIGHT VALIDATION HOOK ===
+try:
+    from lightweight_validation_hook import quick_integrity_check
+    if not quick_integrity_check():
+        print("[⚠️] System integrity check failed - proceeding with caution")
+except Exception as e:
+    print(f"[⚠️] Validation hook failed: {e} - proceeding anyway")
+
+# === MAIN PROMPT LOGIC CONTINUES BELOW ===
+# (Your normal prompt logic here)
+
+"""
+USAGE INSTRUCTIONS:
+1. Copy the hook section above to the start of any prompt
+2. No performance impact - only checks file existence
+3. No background processes or file watchers
+4. Maintains current optimization settings
+5. Compatible with Guardian-free environment
+
+BENEFITS:
+✅ Zero performance overhead
+✅ No background processes
+✅ No file watching
+✅ Maintains VS Code optimization
+✅ Quick validation without complexity
+"""

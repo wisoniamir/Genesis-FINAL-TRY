@@ -1,0 +1,55 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\smart_execution_reactor_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.016462+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\smart_execution_reactor_recovered_2.py",
+      "line_numbers": [
+        60,
+        159,
+        223,
+        225,
+        243
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\smart_execution_reactor_recovered_2.py",
+      "line_numbers": [
+        167,
+        235,
+        262,
+        290,
+        333
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\smart_execution_reactor_recovered_2.py",
+      "line_numbers": [
+        298,
+        340,
+        375
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\smart_execution_reactor_recovered_2.py",
+      "line_numbers": [
+        321,
+        355,
+        390
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

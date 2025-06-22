@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\gridspec_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.461576+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\gridspec_recovered_1.py",
+      "line_numbers": [
+        82,
+        205,
+        272,
+        710,
+        769
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\gridspec_recovered_1.py",
+      "line_numbers": [
+        237,
+        567
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\gridspec_recovered_1.py",
+      "line_numbers": [
+        47,
+        50,
+        263,
+        265,
+        563
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\gridspec_recovered_1.py",
+      "line_numbers": [
+        224,
+        232,
+        244,
+        298,
+        387
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,164 @@
+{
+  "timestamp": "2025-06-21T07:48:18.934057",
+  "architect_mode_version": "v7.0.0",
+  "eventbus_status": "RESTORED",
+  "mt5_connection_validated": false,
+  "routes_restored": 5,
+  "routes_failed": 0,
+  "eventbus_violations": 17,
+  "mt5_connections": [],
+  "restored_routes": [
+    {
+      "route": "mt5_data_feed",
+      "status": "VALIDATED",
+      "topic": "market_data.real_time",
+      "real_data_only": true
+    },
+    {
+      "route": "trade_signals",
+      "status": "VALIDATED",
+      "topic": "signals.trade_recommendations",
+      "real_data_only": true
+    },
+    {
+      "route": "risk_monitoring",
+      "status": "VALIDATED",
+      "topic": "risk.real_time_monitoring",
+      "real_data_only": true
+    },
+    {
+      "route": "execution_feedback",
+      "status": "VALIDATED",
+      "topic": "execution.trade_feedback",
+      "real_data_only": true
+    },
+    {
+      "route": "dashboard_telemetry",
+      "status": "VALIDATED",
+      "topic": "telemetry.real_time",
+      "real_data_only": true
+    }
+  ],
+  "failed_routes": [],
+  "violations": [
+    {
+      "file": ".cleanup_backup\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line": 83,
+      "pattern": "skip_eventbus",
+      "match": "skip_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": ".cleanup_backup\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line": 54,
+      "pattern": "bypass_eventbus",
+      "match": "bypass_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": ".cleanup_backup\\phase_95_eventbus_validator_recovered_1.py",
+      "line": 325,
+      "pattern": "# skip.*eventbus",
+      "match": "# Skip comments and EventBus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": ".cleanup_backup\\phase_95_eventbus_validator_recovered_2.py",
+      "line": 325,
+      "pattern": "# skip.*eventbus",
+      "match": "# Skip comments and EventBus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": ".cleanup_backup\\test_phase55_56_ml_control_integration_recovered_1.py",
+      "line": 251,
+      "pattern": "test_event\\(",
+      "match": "test_event(",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": ".cleanup_backup\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line": 251,
+      "pattern": "test_event\\(",
+      "match": "test_event(",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "core\\genesis_eventbus_restorer.py",
+      "line": 216,
+      "pattern": "# bypass.*eventbus",
+      "match": "# bypass.*eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "core\\genesis_eventbus_restorer.py",
+      "line": 217,
+      "pattern": "# skip.*eventbus",
+      "match": "# skip.*eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "core\\genesis_eventbus_restorer.py",
+      "line": 218,
+      "pattern": "# disable.*eventbus",
+      "match": "# disable.*eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "core\\genesis_eventbus_restorer.py",
+      "line": 223,
+      "pattern": "bypass_eventbus",
+      "match": "bypass_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "core\\genesis_eventbus_restorer.py",
+      "line": 224,
+      "pattern": "skip_eventbus",
+      "match": "skip_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "core\\genesis_eventbus_restorer.py",
+      "line": 225,
+      "pattern": "disable_eventbus",
+      "match": "disable_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_1.py",
+      "line": 83,
+      "pattern": "skip_eventbus",
+      "match": "skip_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_2.py",
+      "line": 54,
+      "pattern": "bypass_eventbus",
+      "match": "bypass_eventbus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "modules\\unclassified\\phase_95_eventbus_validator.py",
+      "line": 325,
+      "pattern": "# skip.*eventbus",
+      "match": "# Skip comments and EventBus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line": 325,
+      "pattern": "# skip.*eventbus",
+      "match": "# Skip comments and EventBus",
+      "violation_type": "EVENTBUS_BYPASS"
+    },
+    {
+      "file": "modules\\unclassified\\phase_95_eventbus_validator_recovered_2.py",
+      "line": 325,
+      "pattern": "# skip.*eventbus",
+      "match": "# Skip comments and EventBus",
+      "violation_type": "EVENTBUS_BYPASS"
+    }
+  ]
+}

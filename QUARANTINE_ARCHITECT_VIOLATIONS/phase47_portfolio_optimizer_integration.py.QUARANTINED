@@ -1,0 +1,85 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.068197+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        152
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        26,
+        46,
+        93,
+        132,
+        161
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        122,
+        155,
+        176,
+        187,
+        199
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        97,
+        143,
+        148
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        378
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        114,
+        124,
+        212,
+        230,
+        248
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\phase47_portfolio_optimizer_integration.py",
+      "line_numbers": [
+        85,
+        398
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

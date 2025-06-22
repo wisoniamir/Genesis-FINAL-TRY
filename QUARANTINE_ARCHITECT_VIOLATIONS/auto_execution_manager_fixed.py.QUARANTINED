@@ -1,0 +1,48 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+  "quarantine_timestamp": "2025-06-21T04:33:24.064805+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+      "line_numbers": [
+        178,
+        207,
+        222,
+        286
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+      "line_numbers": [
+        201,
+        247
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+      "line_numbers": [
+        257,
+        289
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+      "line_numbers": [
+        226
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

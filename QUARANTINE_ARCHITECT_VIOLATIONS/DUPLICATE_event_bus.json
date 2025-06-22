@@ -1,0 +1,39 @@
+{
+  "version": "v6.3.0-final",
+  "architecture": "production_event_driven",
+  "real_time_only": true,
+  "routes": {
+    "mt5_signals": [
+      "execution_manager",
+      "risk_monitor",
+      "strategy_engine"
+    ],
+    "trade_executions": [
+      "position_tracker",
+      "telemetry_collector",
+      "dashboard"
+    ],
+    "system_alerts": [
+      "notification_service",
+      "compliance_monitor"
+    ],
+    "telemetry_data": [
+      "performance_monitor",
+      "health_checker"
+    ],
+    "strategy_decisions": [
+      "execution_manager",
+      "risk_calculator"
+    ],
+    "market_data": [
+      "indicator_scanner",
+      "pattern_detector",
+      "strategy_engine"
+    ]
+  },
+  "performance_monitoring": {
+    "latency_threshold_ms": 50,
+    "throughput_threshold": 10000,
+    "error_rate_threshold": 0.001
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.015974+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        11,
+        47
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        48
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        57,
+        63,
+        381
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        282,
+        500
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        59
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        69,
+        148,
+        223,
+        292,
+        427
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        173,
+        251,
+        300,
+        430,
+        713
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        154,
+        162,
+        170,
+        248,
+        335
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_activation_v600.py",
+      "line_numbers": [
+        128,
+        776
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

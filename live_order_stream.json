@@ -1,0 +1,76 @@
+{
+  "live_order_metadata": {
+    "version": "v1.0_phase4_execution",
+    "generation_timestamp": "2025-06-21T17:35:00.000000Z",
+    "architect_mode": true,
+    "zero_tolerance_enforcement": true,
+    "phase_4_execution_active": true,
+    "real_time_orders_enabled": true,
+    "mock_orders_forbidden": true
+  },
+  "active_order_streams": {
+    "mt5_execution_stream": {
+      "stream_id": "mt5_exec_001",
+      "status": "ACTIVE",
+      "connection_type": "MT5_DIRECT",
+      "order_types_supported": [
+        "MARKET",
+        "LIMIT", 
+        "STOP",
+        "STOP_LIMIT"
+      ],
+      "execution_latency_target_ms": 50,
+      "order_validation_enabled": true,
+      "risk_compliance_checks": true,
+      "ftmo_rules_enforced": true,
+      "real_time_telemetry": true
+    },
+    "risk_compliance_stream": {
+      "stream_id": "risk_comp_002",
+      "status": "ACTIVE",
+      "monitors": [
+        "daily_loss_limit",
+        "trailing_drawdown",
+        "position_size_limits",
+        "correlation_limits"
+      ],
+      "halt_threshold_pct": 80.0,
+      "emergency_stop_enabled": true
+    },
+    "kill_switch_monitor": {
+      "stream_id": "kill_switch_003",
+      "status": "ACTIVE",
+      "event_sources": [
+        "economic_calendar",
+        "volatility_monitor",
+        "news_feeds",
+        "system_alerts"
+      ],
+      "interruption_enabled": true,
+      "response_time_target_ms": 100
+    }
+  },
+  "current_orders": [],
+  "order_history": [],
+  "execution_statistics": {
+    "total_orders_today": 0,
+    "successful_executions": 0,
+    "failed_executions": 0,
+    "average_latency_ms": 0.0,
+    "risk_violations": 0,
+    "kill_switch_interruptions": 0
+  },
+  "real_time_metrics": {
+    "orders_per_minute": 0.0,
+    "execution_success_rate": 100.0,
+    "risk_compliance_score": 100.0,
+    "system_health_score": 100.0
+  },
+  "execution_compliance": {
+    "ftmo_rules_active": true,
+    "risk_guard_connected": true,
+    "kill_switch_armed": true,
+    "telemetry_logging": true,
+    "audit_trail_enabled": true
+  }
+}

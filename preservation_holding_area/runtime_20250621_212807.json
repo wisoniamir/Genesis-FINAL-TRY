@@ -1,0 +1,9 @@
+{
+  "module_id": "runtime",
+  "original_path": "modules\\restored\\runtime.py",
+  "preserved_path": "preservation_holding_area\\runtime_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 58971,
+  "checksum": "330ec311dc4cb06b7d14eb020142de1f9d75bc8dc865af58a4bf55d40e038418"
+}

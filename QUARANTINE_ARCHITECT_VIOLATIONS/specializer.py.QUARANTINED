@@ -1,0 +1,78 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.067942+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+      "line_numbers": [
+        30,
+        200,
+        212,
+        260,
+        285
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+      "line_numbers": [
+        651,
+        655
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+      "line_numbers": [
+        437
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+      "line_numbers": [
+        24,
+        27,
+        195,
+        207,
+        253
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+      "line_numbers": [
+        70,
+        185,
+        192,
+        204,
+        216
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\specializer.py",
+      "line_numbers": [
+        112,
+        123,
+        137,
+        265,
+        290
+      ],
+      "violation_count": 21
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

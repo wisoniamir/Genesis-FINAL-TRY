@@ -1,0 +1,9 @@
+{
+  "module_id": "watchmedo",
+  "original_path": "modules\\restored\\watchmedo.py",
+  "preserved_path": "preservation_holding_area\\watchmedo_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 42375,
+  "checksum": "8cdc9b0722fbc834658c67075d32d92a77c00ff2bba4d506a36a89221170ace3"
+}

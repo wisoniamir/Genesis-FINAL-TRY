@@ -1,0 +1,31 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\path_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.823633+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\path_recovered_1.py",
+      "line_numbers": [
+        324,
+        388,
+        485
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\path_recovered_1.py",
+      "line_numbers": [
+        159,
+        185,
+        335,
+        456,
+        464
+      ],
+      "violation_count": 13
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

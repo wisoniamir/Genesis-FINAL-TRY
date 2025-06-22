@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# <!-- @GENESIS_MODULE_START: run_architecture_mapper -->
+
+"""
+🚀 GENESIS ARCHITECTURE MAPPER LAUNCHER v8.0.0
+📊 Comprehensive Module Classification and System Upgrade Tool
+
+This script runs the Genesis High Architecture Mapper to:
+1. Scan and classify all modules in the system
+2. Identify modules requiring enhancement
+3. Apply institutional-grade upgrades to modules
+4. Enforce EventBus connectivity
+5. Generate comprehensive reports
+
+Usage: python run_architecture_mapper.py [--dry-run]
+
+Options:
+  --dry-run    Analyze and plan repairs but don't apply them
+"""
+
+import os
+import sys
+import logging
+import argparse
+import traceback
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - MAPPER LAUNCHER - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('architecture_mapper_run.log', mode='a'),
+        logging.StreamHandler()
+    ]
+)
+
+def main():
+    """Main entry point for the architecture mapper launcher"""
+    parser = argparse.ArgumentParser(description="Genesis High Architecture Mapper Launcher")
+    parser.add_argument("--dry-run", action="store_true", help="Analyze and plan repairs but don't apply them")
+    args = parser.parse_args()
+    
+    try:
+        logging.info("Starting Architecture Mapper Launcher...")
+        
+        # Import the mapper module
+        from genesis_high_architecture_mapper import GenesisHighArchitectureMapper
+        
+        # Create mapper instance
+        mapper = GenesisHighArchitectureMapper()
+        
+        # Run mapper phases
+        mapper.scan_modules()
+        mapper.classify_modules()
+        mapper.analyze_enhancements()
+        mapper.plan_repairs()
+        
+        # If not a dry run, apply repairs and update system files
+        if not args.dry_run:
+            mapper.apply_repairs()
+            mapper.update_system_files()
+            mapper._generate_final_report()
+            
+            logging.info("Architecture mapping completed successfully!")
+            print("\n" + "="*80)
+            print("✅ GENESIS HIGH ARCHITECTURE MAPPER COMPLETED SUCCESSFULLY")
+            print("="*80)
+            print(f"📊 Total Modules: {mapper.total_modules}")
+            print(f"🔍 Classified: {mapper.classified_modules}")
+            print(f"🔧 Enhanced: {mapper.enhanced_modules}")
+            print(f"📈 EventBus Integration: {sum(1 for m in mapper.modules.values() if m.eventbus_integrated)}")
+            print(f"📡 Telemetry Enabled: {sum(1 for m in mapper.modules.values() if m.telemetry_enabled)}")
+            print("="*80)
+            print("📝 Reports generated:")
+            print(f"  - ARCHITECTURE_MAPPING_REPORT_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.md")
+            print(f"  - Updated system_tree.json")
+            print(f"  - Updated module_registry.json")
+            print(f"  - Updated build_status.json")
+            print(f"  - Created dashboard_panel_summary.json")
+            print("="*80)
+        else:
+            # Dry run summary
+            print("\n" + "="*80)
+            print("🔍 GENESIS HIGH ARCHITECTURE MAPPER DRY RUN COMPLETED")
+            print("="*80)
+            print(f"📊 Total Modules: {mapper.total_modules}")
+            print(f"🔍 Classified: {mapper.classified_modules}")
+            print(f"🔧 Planned Enhancements: {len(mapper.repair_actions)}")
+            
+            # Group repairs by type
+            repair_types = {}
+            for repair in mapper.repair_actions:
+                if repair.violation_type not in repair_types:
+                    repair_types[repair.violation_type] = 0
+                repair_types[repair.violation_type] += 1
+            
+            print("\n📋 Planned Repair Types:")
+            for repair_type, count in repair_types.items():
+                print(f"  - {repair_type}: {count} actions")
+            
+            print("="*80)
+            print("ℹ️ No changes applied in dry run mode")
+            print("="*80)
+            
+        return 0
+        
+    except Exception as e:
+        logging.error(f"Architecture Mapper failed: {str(e)}")
+        traceback.print_exc()
+        print(f"\n❌ ERROR: {str(e)}")
+        return 1
+
+# <!-- @GENESIS_MODULE_END: run_architecture_mapper -->
+
+if __name__ == "__main__":
+    sys.exit(main())

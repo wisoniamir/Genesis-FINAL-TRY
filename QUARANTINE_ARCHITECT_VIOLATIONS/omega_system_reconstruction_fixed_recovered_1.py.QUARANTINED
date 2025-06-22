@@ -1,0 +1,35 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_system_reconstruction_fixed_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.456917+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_system_reconstruction_fixed_recovered_1.py",
+      "line_numbers": [
+        46
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_system_reconstruction_fixed_recovered_1.py",
+      "line_numbers": [
+        74
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\omega_system_reconstruction_fixed_recovered_1.py",
+      "line_numbers": [
+        71,
+        105
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

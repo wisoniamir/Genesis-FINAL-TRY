@@ -1,0 +1,9 @@
+{
+  "module_id": "macos",
+  "original_path": "modules\\restored\\macos.py",
+  "preserved_path": "preservation_holding_area\\macos_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17420,
+  "checksum": "587b5f4d7f7de48a181a84f0feab9c4e6ba7e3198cbd448a7c6505d8ce0ac72d"
+}

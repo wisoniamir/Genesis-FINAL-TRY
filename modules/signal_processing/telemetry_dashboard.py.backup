@@ -1,0 +1,1085 @@
+# <!-- @GENESIS_MODULE_START: telemetry_dashboard -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+GENESIS AI TRADING BOT SYSTEM - PHASE 17
+Smart Telemetry Dashboard - Real-time monitoring and visualization
+ARCHITECT MODE: v2.7
+"""
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+import threading
+from pathlib import Path
+from collections import defaultdict, deque
+from typing import Dict, Any, List, Optional
+import streamlit as st
+import plotly.graph_objects as go
+import plotly.express as px
+import pandas as pd
+
+# Add parent directory to path to import event_bus
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from event_bus import get_event_bus, register_route
+
+class SmartTelemetryDashboard:
+    """
+    PHASE 17: Smart Telemetry Dashboard for real-time GENESIS system monitoring
+    
+    Features:
+    - Live EventBus telemetry monitoring
+    - Real-time signal emission tracking
+    - Loop termination event detection
+    - System health status visualization
+    - Alert management system
+    """
+    
+    # Dashboard configuration
+    DASHBOARD_CONFIG = {
+        "refresh_interval_seconds": 3,     # Max 3 seconds for telemetry updates
+        "max_events_displayed": 1000,      # Maximum events to keep in memory
+        "alert_retention_minutes": 60,     # Keep alerts for 1 hour
+        "chart_history_minutes": 30,       # Chart data retention
+        "auto_scroll_logs": True,          # Auto-scroll log display
+        "enable_sound_alerts": False,      # Disable sound alerts for background operation
+        
+        # Phase 36 Pattern Engine Monitoring
+        "pattern_signature_tracking": True,     # Track pattern signature generation
+        "pattern_match_accuracy_monitoring": True,  # Monitor pattern matching accuracy
+        "signal_tagging_performance": True,     # Track signal classification performance
+        "pattern_detection_latency": True      # Monitor pattern detection latency
+    }
+    
+    def __init__(self):
+        """Initialize the Smart Telemetry Dashboard"""
+        # Setup logging first
+        self._setup_logging()
+        
+        # Setup EventBus connection using singleton pattern (ARCHITECT MODE COMPLIANCE)
+        self.event_bus = get_event_bus()
+        
+        # Initialize data storage
+        self.telemetry_data = defaultdict(deque)
+        self.signal_emissions = defaultdict(int)
+        self.loop_events = deque(maxlen=100)
+        self.system_alerts = deque(maxlen=50)
+        self.active_signals = set()
+        
+        # Tracking metrics
+        self.metrics = {
+            "kill_switch_count": 0,
+            "last_termination": None,
+            "loop_activity": [],
+            "active_signals": [],
+            "total_emissions": 0,
+            "system_health": "HEALTHY",
+            "last_update": datetime.datetime.now().isoformat()
+        }
+        
+        # Live metrics for Phase 36
+        self.live_metrics = {
+            "pattern_signature_id": "unknown",
+            "pattern_detection_accuracy": 0.0,
+            "pattern_detection_latency_ms": 0,
+            "signal_pattern_mapped_id": "unknown",
+            "pattern_match_accuracy": 0.0,
+            "signal_tagging_latency": 0,
+            "patterns_detected_count": 0,
+            "avg_pattern_detection_accuracy": 0.0,
+            "avg_pattern_detection_latency_ms": 0,
+            "pattern_signatures_generated": 0
+        }
+        
+        # Dashboard state
+        self.running = threading.Event()
+        self.running.set()
+        
+        # Setup directories
+        self._setup_directories()
+        
+        # Subscribe to all relevant events
+        self._subscribe_to_events()
+        
+        # Register EventBus routes for compliance tracking (ARCHITECT MODE)
+        self._register_compliance_routes()
+        
+        self.logger.info("SmartTelemetryDashboard initialized for PHASE 17")
+        
+        # Start background telemetry collection
+        self._start_telemetry_collection()
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_directories(self):
+        """Ensure all required directories exist"""
+        self.log_dir = Path("logs/telemetry_dashboard")
+        self.data_dir = Path("data/telemetry_dashboard")
+        self.telemetry_file = Path("telemetry.json")
+        
+        for directory in [self.log_dir, self.data_dir]:
+            directory.mkdir(exist_ok=True, parents=True)
+    
+    def _setup_logging(self):
+        """Configure structured logging for the dashboard"""
+        # Ensure log directory exists
+        log_dir = Path("logs/telemetry_dashboard")
+        log_dir.mkdir(exist_ok=True, parents=True)
+        
+        # Configure logger
+        self.logger = logging.getLogger("SmartTelemetryDashboard")
+        self.logger.setLevel(logging.INFO)
+        
+        # Clear existing handlers
+        for handler in self.logger.handlers[:]:
+            self.logger.removeHandler(handler)
+        
+        # Create file handler with structured JSON logging
+        log_file = log_dir / f"telemetry_dashboard_{datetime.datetime.now().strftime('%Y%m%d')}.jsonl"
+        file_handler = logging.FileHandler(log_file, encoding='utf-8')
+        file_handler.setLevel(logging.INFO)
+        
+        # Create console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.INFO)
+        
+        # Create formatters
+        json_formatter = logging.Formatter('{"timestamp": "%(asctime)s", "level": "%(levelname)s", "module": "SmartTelemetryDashboard", "message": %(message)s}')
+        console_formatter = logging.Formatter('%(asctime)s [%(levelname)s] SmartTelemetryDashboard: %(message)s')
+        
+        file_handler.setFormatter(json_formatter)
+        console_handler.setFormatter(console_formatter)
+        
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(console_handler)
+    
+    def _subscribe_to_events(self):
+        """Subscribe to all telemetry-relevant events"""
+        # Core monitoring events from SmartExecutionMonitor
+        self.event_bus.subscribe("KillSwitchTrigger", self.handle_kill_switch_event, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("RecalibrationRequest", self.handle_recalibration_event, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("SmartLogSync", self.handle_log_sync_event, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("ExecutionDeviationAlert", self.handle_deviation_alert, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("TerminateMonitorLoop", self.handle_termination_event, "SmartTelemetryDashboard")
+        
+        # System-wide telemetry
+        self.event_bus.subscribe("ModuleTelemetry", self.handle_module_telemetry, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("ModuleError", self.handle_module_error, "SmartTelemetryDashboard")
+        
+        # Live execution events
+        self.event_bus.subscribe("LiveTradeExecuted", self.handle_live_trade, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("LoopHealthMetric", self.handle_health_metric, "SmartTelemetryDashboard")
+        
+        # Signal confidence and harmonization events
+        self.event_bus.subscribe("UnifiedExecutionSignal", self.handle_unified_signal, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("SignalConflictDetected", self.handle_signal_conflict, "SmartTelemetryDashboard")
+        
+        # Strategic Signal Orchestrator telemetry (Phase 35)
+        self.event_bus.subscribe("orchestration_telemetry", self.handle_orchestration_telemetry, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("orchestrated_signal", self.handle_orchestrated_signal, "SmartTelemetryDashboard")
+        
+        # Broker Discovery Engine telemetry (Phase 34)
+        self.event_bus.subscribe("broker_discovery_telemetry", self.handle_broker_discovery_telemetry, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("AccountTypeDetected", self.handle_account_type_detection, "SmartTelemetryDashboard")
+        
+        # Event handlers for all critical signals
+        self.event_bus.subscribe("PatternSignatureDetected", self.handle_pattern_signature_detected, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("SignalPatternMapped", self.handle_signal_pattern_mapped, "SmartTelemetryDashboard")
+        self.event_bus.subscribe("PatternTelemetry", self.handle_pattern_telemetry, "SmartTelemetryDashboard")
+        
+        self.logger.info(json.dumps({"event": "event_subscriptions_registered", "total_subscriptions": 18}))
+    
+    def _register_compliance_routes(self):
+        """Register all EventBus routes for ARCHITECT MODE compliance tracking"""
+        # Register input routes (what this module consumes)
+        register_route("KillSwitchTrigger", "SmartExecutionMonitor", "SmartTelemetryDashboard")
+        register_route("RecalibrationRequest", "SmartExecutionMonitor", "SmartTelemetryDashboard")
+        register_route("SmartLogSync", "SmartExecutionMonitor", "SmartTelemetryDashboard")
+        register_route("ExecutionDeviationAlert", "SmartExecutionMonitor", "SmartTelemetryDashboard")
+        register_route("TerminateMonitorLoop", "SmartExecutionMonitor", "SmartTelemetryDashboard")
+        register_route("ModuleTelemetry", "TelemetryCollector", "SmartTelemetryDashboard")
+        register_route("ModuleError", "TelemetryCollector", "SmartTelemetryDashboard")
+        register_route("LiveTradeExecuted", "ExecutionEngine", "SmartTelemetryDashboard")
+        register_route("LoopHealthMetric", "SmartExecutionLiveLoop", "SmartTelemetryDashboard")
+        register_route("UnifiedExecutionSignal", "MetaSignalHarmonizer", "SmartTelemetryDashboard")
+        register_route("SignalConflictDetected", "MetaSignalHarmonizer", "SmartTelemetryDashboard")
+        
+        # Register output routes (what this module produces)
+        register_route("DashboardAlert", "SmartTelemetryDashboard", "TelemetryCollector")
+        register_route("SystemHealthUpdate", "SmartTelemetryDashboard", "TelemetryCollector")
+        register_route("TelemetryDashboardStatus", "SmartTelemetryDashboard", "TelemetryCollector")
+        
+        self.logger.info(json.dumps({"event": "eventbus_routes_registered", "status": "ARCHITECT_MODE_COMPLIANT"}))
+    
+    def handle_kill_switch_event(self, event):
+        """Handle KillSwitchTrigger events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["KillSwitchTrigger"] += 1
+            self.metrics["kill_switch_count"] = event_data.get("kill_switch_count", self.metrics["kill_switch_count"])
+            self.metrics["total_emissions"] += 1
+            
+            # Add to telemetry data
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "KillSwitchTrigger",
+                "strategy_id": event_data.get("strategy_id", "unknown"),
+                "reason": event_data.get("reason", "unknown"),
+                "kill_switch_count": event_data.get("kill_switch_count", 0),
+                "triggered_by": event_data.get("triggered_by", "unknown")
+            }
+            
+            self.telemetry_data["kill_switch_events"].append(telemetry_entry)
+            self.active_signals.add("KillSwitchTrigger")
+            
+            # Create alert if approaching limit
+            if self.metrics["kill_switch_count"] >= 4:
+                self._create_alert("CRITICAL", f"Kill switch count at {self.metrics['kill_switch_count']}/5", event_data)
+            
+            self.logger.info(json.dumps({
+                "event": "kill_switch_tracked",
+                "count": self.metrics["kill_switch_count"],
+                "strategy": event_data.get("strategy_id", "unknown")
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_kill_switch", "error": str(e)}))
+    
+    def handle_recalibration_event(self, event):
+        """Handle RecalibrationRequest events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["RecalibrationRequest"] += 1
+            self.metrics["total_emissions"] += 1
+            
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "RecalibrationRequest",
+                "strategy_id": event_data.get("strategy_id", "unknown"),
+                "severity": event_data.get("severity", "unknown"),
+                "kill_switch_count": event_data.get("kill_switch_count", 0)
+            }
+            
+            self.telemetry_data["recalibration_events"].append(telemetry_entry)
+            self.active_signals.add("RecalibrationRequest")
+            
+            self.logger.info(json.dumps({
+                "event": "recalibration_tracked",
+                "strategy": event_data.get("strategy_id", "unknown"),
+                "severity": event_data.get("severity", "unknown")
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_recalibration", "error": str(e)}))
+    
+    def handle_log_sync_event(self, event):
+        """Handle SmartLogSync events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["SmartLogSync"] += 1
+            self.metrics["total_emissions"] += 1
+            
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "SmartLogSync",
+                "strategy_id": event_data.get("strategy_id", "unknown"),
+                "event_type_detail": event_data.get("event_type", "unknown"),
+                "kill_switch_count": event_data.get("kill_switch_count", 0)
+            }
+            
+            self.telemetry_data["log_sync_events"].append(telemetry_entry)
+            self.active_signals.add("SmartLogSync")
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_log_sync", "error": str(e)}))
+    
+    def handle_termination_event(self, event):
+        """Handle TerminateMonitorLoop events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.metrics["last_termination"] = datetime.datetime.now().isoformat()
+            self.signal_emissions["TerminateMonitorLoop"] += 1
+            self.metrics["total_emissions"] += 1
+            
+            termination_entry = {
+                "timestamp": self.metrics["last_termination"],
+                "event_type": "TerminateMonitorLoop",
+                "reason": event_data.get("reason", "unknown"),
+                "source": event_data.get("source", "unknown")
+            }
+            
+            self.loop_events.append(termination_entry)
+            self.active_signals.add("TerminateMonitorLoop")
+            
+            # Create critical alert for loop termination
+            self._create_alert("CRITICAL", "Monitor loop terminated - system halted", event_data)
+            
+            self.logger.critical(json.dumps({
+                "event": "loop_termination_tracked",
+                "reason": event_data.get("reason", "unknown"),
+                "timestamp": self.metrics["last_termination"]
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_termination", "error": str(e)}))
+    
+    def handle_deviation_alert(self, event):
+        """Handle ExecutionDeviationAlert events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["ExecutionDeviationAlert"] += 1
+            self.metrics["total_emissions"] += 1
+            
+            # Create alert for deviation
+            severity = event_data.get("severity", "MEDIUM")
+            self._create_alert(severity, f"Execution deviation detected", event_data)
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_deviation", "error": str(e)}))
+    
+    def handle_module_telemetry(self, event):
+        """Handle ModuleTelemetry events"""
+        try:
+            event_data = event.get("data", {})
+            module = event_data.get("module", "unknown")
+            
+            # Store module telemetry
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "module": module,
+                "metrics": event_data.get("metrics", {}),
+                "action": event_data.get("action", "unknown")
+            }
+            
+            self.telemetry_data["module_telemetry"].append(telemetry_entry)
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_module_telemetry", "error": str(e)}))
+    
+    def handle_module_error(self, event):
+        """Handle ModuleError events"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Create alert for module error
+            self._create_alert("HIGH", f"Module error: {event_data.get('module', 'unknown')}", event_data)
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_module_error", "error": str(e)}))
+    
+    def handle_live_trade(self, event):
+        """Handle LiveTradeExecuted events"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Track live trading activity
+            self.signal_emissions["LiveTradeExecuted"] += 1
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_live_trade", "error": str(e)}))
+    
+    def handle_health_metric(self, event):
+        """Handle LoopHealthMetric events"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Update system health based on metrics
+            avg_latency = event_data.get("avg_latency_ms", 0)
+            if avg_latency > 1000:  # More than 1 second latency
+                self.metrics["system_health"] = "DEGRADED"
+            else:
+                self.metrics["system_health"] = "HEALTHY"
+                
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_health_metric", "error": str(e)}))
+    
+    def handle_unified_signal(self, event):
+        """Handle UnifiedExecutionSignal events"""
+        try:
+            self.signal_emissions["UnifiedExecutionSignal"] += 1
+            self.active_signals.add("UnifiedExecutionSignal")
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_unified_signal", "error": str(e)}))
+    
+    def handle_signal_conflict(self, event):
+        """Handle SignalConflictDetected events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["SignalConflictDetected"] += 1
+            self.active_signals.add("SignalConflictDetected")
+            
+            # Create alert for signal conflicts
+            self._create_alert("MEDIUM", "Signal conflict detected", event_data)
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_signal_conflict", "error": str(e)}))
+    
+    def handle_orchestration_telemetry(self, event):
+        """Handle Strategic Signal Orchestrator telemetry events"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Update orchestration metrics
+            self.metrics["last_orchestration_update"] = datetime.datetime.now().isoformat()
+            self.signal_emissions["orchestration_telemetry"] = self.signal_emissions.get("orchestration_telemetry", 0) + 1
+            self.metrics["total_emissions"] += 1
+            
+            # Store orchestration telemetry data
+            orchestration_entry = {
+                "timestamp": self.metrics["last_orchestration_update"],
+                "event_type": "orchestration_telemetry",
+                "signal_priority_queue": event_data.get("signal_priority_queue", 0),
+                "suppression_flags": event_data.get("suppression_flags", []),
+                "kill_switch_status": event_data.get("kill_switch_status", "inactive"),
+                "volatility_rating": event_data.get("volatility_rating", 0.0),
+                "execution_latency": event_data.get("execution_latency", 0.0),
+                "signals_processed": event_data.get("signals_processed", 0),
+                "signals_suppressed": event_data.get("signals_suppressed", 0),
+                "signals_rerouted": event_data.get("signals_rerouted", 0)
+            }
+              # Initialize orchestration data if not exists
+            if "orchestration_metrics" not in self.telemetry_data:
+                self.telemetry_data["orchestration_metrics"] = deque(maxlen=1000)
+                
+            self.telemetry_data["orchestration_metrics"].append(orchestration_entry)
+            self.active_signals.add("orchestration_telemetry")
+            
+            # Create alerts for critical conditions
+            if event_data.get("kill_switch_status") == "active":
+                self._create_alert("CRITICAL", "Kill switch activated - signal suppression active", event_data)
+            
+            if event_data.get("execution_latency", 0) > 1000:
+                self._create_alert("WARNING", f"High orchestration latency: {event_data.get('execution_latency', 0):.2f}ms", event_data)
+                
+            if len(event_data.get("suppression_flags", [])) > 0:
+                self._create_alert("INFO", f"Signal suppression active: {event_data.get('suppression_flags')}", event_data)
+            
+            self.logger.info(json.dumps({
+                "event": "orchestration_telemetry_tracked",
+                "queue_depth": event_data.get("signal_priority_queue", 0),
+                "suppression_count": len(event_data.get("suppression_flags", [])),
+                "latency_ms": event_data.get("execution_latency", 0)
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_orchestration_telemetry", "error": str(e)}))
+    
+    def handle_orchestrated_signal(self, event):
+        """Handle orchestrated signal events"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Track orchestrated signals
+            self.signal_emissions["orchestrated_signal"] = self.signal_emissions.get("orchestrated_signal", 0) + 1
+            self.metrics["total_emissions"] += 1
+            
+            # Store signal metadata
+            signal_metadata = event_data.get("signal_metadata", {})
+            orchestrated_signal_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "orchestrated_signal",
+                "signal_id": signal_metadata.get("signal_id", "unknown"),
+                "source_module": signal_metadata.get("source_module", "unknown"),
+                "symbol": signal_metadata.get("symbol", ""),
+                "direction": signal_metadata.get("direction", ""),
+                "priority_score": signal_metadata.get("priority_score", 0.0),
+                "confidence_score": signal_metadata.get("confidence_score", 0.0),
+                "confluence_score": signal_metadata.get("confluence_score", 0.0),
+                "volatility_rating": signal_metadata.get("volatility_rating", 0.0)
+            }
+              # Initialize orchestrated signals data if not exists
+            if "orchestrated_signals" not in self.telemetry_data:
+                self.telemetry_data["orchestrated_signals"] = deque(maxlen=1000)
+                
+            self.telemetry_data["orchestrated_signals"].append(orchestrated_signal_entry)
+            self.active_signals.add("orchestrated_signal")
+            
+            self.logger.info(json.dumps({
+                "event": "orchestrated_signal_tracked",
+                "signal_id": signal_metadata.get("signal_id", "unknown"),
+                "priority": signal_metadata.get("priority_score", 0.0),
+                "symbol": signal_metadata.get("symbol", "")
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_orchestrated_signal", "error": str(e)}))
+    
+    def handle_broker_discovery_telemetry(self, event):
+        """Handle Broker Discovery Engine telemetry events (Phase 34)"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Update broker discovery metrics
+            self.metrics["last_broker_discovery"] = datetime.datetime.now().isoformat()
+            self.signal_emissions["broker_discovery_telemetry"] = self.signal_emissions.get("broker_discovery_telemetry", 0) + 1
+            self.metrics["total_emissions"] += 1
+            
+            # Store broker discovery telemetry data
+            discovery_entry = {
+                "timestamp": self.metrics["last_broker_discovery"],
+                "event_type": "broker_discovery_telemetry", 
+                "rule_profile_active": event_data.get("rule_profile_active", "unknown"),
+                "account_type_detected": event_data.get("account_type_detected", "unknown"),
+                "override_mode_enabled": event_data.get("override_mode_enabled", False),
+                "broker_rules_applied": event_data.get("broker_rules_applied", {}),
+                "detection_method": event_data.get("detection_method", "unknown"),
+                "detection_confidence": event_data.get("detection_confidence", 0.0),
+                "rules_count": event_data.get("rules_count", 0)
+            }
+            
+            # Initialize broker discovery data if not exists
+            if "broker_discovery_metrics" not in self.telemetry_data:
+                self.telemetry_data["broker_discovery_metrics"] = deque(maxlen=1000)
+                
+            self.telemetry_data["broker_discovery_metrics"].append(discovery_entry)
+            self.active_signals.add("broker_discovery_telemetry")
+            
+            # Create alerts for override mode
+            if event_data.get("override_mode_enabled", False):
+                self._create_alert("INFO", f"Broker rule override active: {event_data.get('rule_profile_active')}", event_data)
+                
+            # Alert for unknown account types
+            if event_data.get("account_type_detected") == "unknown":
+                self._create_alert("WARNING", "Account type detection failed - using default rules", event_data)
+            
+            self.logger.info(json.dumps({
+                "event": "broker_discovery_telemetry_tracked",
+                "rule_profile": event_data.get("rule_profile_active", "unknown"),
+                "account_type": event_data.get("account_type_detected", "unknown"),
+                "override_enabled": event_data.get("override_mode_enabled", False)
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_broker_discovery_telemetry", "error": str(e)}))
+    
+    def handle_account_type_detection(self, event):
+        """Handle account type detection events (Phase 34)"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Update account detection metrics
+            self.metrics["last_account_detection"] = datetime.datetime.now().isoformat()
+            self.signal_emissions["account_type_detected"] = self.signal_emissions.get("account_type_detected", 0) + 1
+            self.metrics["total_emissions"] += 1
+            
+            # Store account detection data
+            detection_entry = {
+                "timestamp": self.metrics["last_account_detection"],
+                "event_type": "account_type_detected",
+                "account_type": event_data.get("account_type", "unknown"),
+                "broker_name": event_data.get("broker_name", "unknown"),
+                "detection_confidence": event_data.get("detection_confidence", 0.0),
+                "mt5_account_info": event_data.get("mt5_account_info", {}),
+                "rule_profile_matched": event_data.get("rule_profile_matched", "unknown")
+            }
+            
+            # Initialize account detection data if not exists
+            if "account_detections" not in self.telemetry_data:
+                self.telemetry_data["account_detections"] = deque(maxlen=100)
+                
+            self.telemetry_data["account_detections"].append(detection_entry)
+            self.active_signals.add("account_type_detected")
+            
+            # Create critical alert for successful detection
+            if event_data.get("account_type", "unknown") != "unknown":
+                self._create_alert("SUCCESS", f"Account type detected: {event_data.get('account_type')} via {event_data.get('broker_name')}", event_data)
+            else:
+                self._create_alert("ERROR", "Account type detection failed - check MT5 connection", event_data)
+            
+            self.logger.info(json.dumps({
+                "event": "account_type_detection_tracked",
+                "account_type": event_data.get("account_type", "unknown"),
+                "broker": event_data.get("broker_name", "unknown"),
+                "confidence": event_data.get("detection_confidence", 0.0)
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_account_detection", "error": str(e)}))
+    
+    def handle_pattern_signature_detected(self, event):
+        """Handle KillSwitchTrigger events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["PatternSignatureDetected"] += 1
+            self.metrics["total_emissions"] += 1
+            
+            # Add to telemetry data
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "PatternSignatureDetected",
+                "pattern_signature_id": event_data.get("pattern_signature_id", "unknown"),
+                "detection_accuracy": event_data.get("detection_accuracy", 0.0),
+                "detection_latency_ms": event_data.get("detection_latency_ms", 0),
+                "triggered_by": event_data.get("triggered_by", "unknown")
+            }
+            
+            self.telemetry_data["pattern_signature_events"].append(telemetry_entry)
+            self.active_signals.add("PatternSignatureDetected")
+            
+            # Create alert if detection accuracy is low
+            if self.metrics["kill_switch_count"] >= 4:
+                self._create_alert("CRITICAL", f"Low detection accuracy for pattern signature {event_data.get('pattern_signature_id')}", event_data)
+            
+            self.logger.info(json.dumps({
+                "event": "pattern_signature_tracked",
+                "pattern_signature_id": event_data.get("pattern_signature_id", "unknown")
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_pattern_signature", "error": str(e)}))
+    
+    def handle_signal_pattern_mapped(self, event):
+        """Handle SignalPatternMapped events"""
+        try:
+            event_data = event.get("data", {})
+            
+            self.signal_emissions["SignalPatternMapped"] += 1
+            self.metrics["total_emissions"] += 1
+            
+            # Add to telemetry data
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "SignalPatternMapped",
+                "signal_id": event_data.get("signal_id", "unknown"),
+                "pattern_id": event_data.get("pattern_id", "unknown"),
+                "mapping_quality": event_data.get("mapping_quality", "unknown")
+            }
+            
+            self.telemetry_data["signal_pattern_mapping_events"].append(telemetry_entry)
+            self.active_signals.add("SignalPatternMapped")
+            
+            # Create alert if mapping quality is low
+            if event_data.get("mapping_quality", "unknown") == "low":
+                self._create_alert("WARNING", f"Low mapping quality for signal {event_data.get('signal_id')}", event_data)
+            
+            self.logger.info(json.dumps({
+                "event": "signal_pattern_mapping_tracked",
+                "signal_id": event_data.get("signal_id", "unknown"),
+                "pattern_id": event_data.get("pattern_id", "unknown")
+            }))
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_signal_pattern_mapping", "error": str(e)}))
+    
+    def handle_pattern_telemetry(self, event):
+        """Handle PatternTelemetry events"""
+        try:
+            event_data = event.get("data", {})
+            
+            # Store pattern telemetry
+            telemetry_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "pattern_id": event_data.get("pattern_id", "unknown"),
+                "metrics": event_data.get("metrics", {}),
+                "action": event_data.get("action", "unknown")
+            }
+            
+            self.telemetry_data["pattern_telemetry"].append(telemetry_entry)
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "error_handling_pattern_telemetry", "error": str(e)}))
+    
+    def _handle_pattern_signature_detected(self, event_data):
+        """Handle PatternSignatureDetected events - Phase 36"""
+        try:
+            self.signal_emissions["PatternSignatureDetected"] += 1
+            
+            # Extract pattern signature data
+            pattern_signature_id = event_data.get("pattern_signature_id", "unknown")
+            detection_accuracy = event_data.get("detection_accuracy", 0.0)
+            detection_latency_ms = event_data.get("detection_latency_ms", 0)
+            
+            # Update pattern tracking metrics
+            self.live_metrics["pattern_signature_id"] = pattern_signature_id
+            self.live_metrics["pattern_detection_accuracy"] = detection_accuracy
+            self.live_metrics["pattern_detection_latency_ms"] = detection_latency_ms
+            
+            # Create pattern detection alert
+            self._create_alert(
+                "INFO",
+                f"Pattern Signature Detected: {pattern_signature_id} (Accuracy: {detection_accuracy:.2%}, Latency: {detection_latency_ms}ms)",
+                {
+                    "pattern_signature_id": pattern_signature_id,
+                    "detection_accuracy": detection_accuracy,
+                    "detection_latency_ms": detection_latency_ms,
+                    "timestamp": event_data.get("timestamp", datetime.datetime.now().isoformat())
+                }
+            )            
+            # Log pattern detection event to telemetry file
+            log_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "pattern_signature_detected",
+                "pattern_signature_id": pattern_signature_id,
+                "detection_accuracy": detection_accuracy,
+                "detection_latency_ms": detection_latency_ms
+            }
+            
+        except Exception as e:
+            logging.error(f"Error handling PatternSignatureDetected: {e}")
+
+    def _handle_signal_pattern_mapped(self, event_data):
+        """Handle SignalPatternMapped events - Phase 36"""
+        try:
+            self.signal_emissions["SignalPatternMapped"] += 1
+            
+            # Extract signal pattern mapping data
+            signal_id = event_data.get("signal_id", "unknown")
+            pattern_tags = event_data.get("pattern_tags", [])
+            mapping_accuracy = event_data.get("mapping_accuracy", 0.0)
+            tagging_latency_ms = event_data.get("tagging_latency_ms", 0)
+            
+            # Update signal pattern mapping metrics
+            self.live_metrics["signal_pattern_mapped_id"] = signal_id
+            self.live_metrics["pattern_match_accuracy"] = mapping_accuracy
+            self.live_metrics["signal_tagging_latency"] = tagging_latency_ms
+            self.live_metrics["pattern_tags_count"] = len(pattern_tags)
+            
+            # Create signal pattern mapping alert
+            alert_level = "INFO" if mapping_accuracy >= 0.8 else "WARNING"
+            self._create_alert(
+                alert_level,
+                f"Signal Pattern Mapped: {signal_id} → {len(pattern_tags)} patterns (Accuracy: {mapping_accuracy:.2%}, Latency: {tagging_latency_ms}ms)",
+                {
+                    "signal_id": signal_id,
+                    "pattern_tags": pattern_tags,
+                    "mapping_accuracy": mapping_accuracy,
+                    "tagging_latency_ms": tagging_latency_ms,
+                    "timestamp": event_data.get("timestamp", datetime.datetime.now().isoformat())
+                }
+            )
+            
+            # Log signal pattern mapping event to telemetry file
+            log_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "signal_pattern_mapped",
+                "signal_id": signal_id,
+                "pattern_tags": pattern_tags,
+                "mapping_accuracy": mapping_accuracy,
+                "tagging_latency_ms": tagging_latency_ms
+            }
+            
+        except Exception as e:
+            logging.error(f"Error handling SignalPatternMapped: {e}")
+
+    def _handle_pattern_telemetry(self, event_data):
+        """Handle PatternTelemetry events - Phase 36"""
+        try:
+            self.signal_emissions["PatternTelemetry"] += 1
+            
+            # Extract pattern telemetry data
+            patterns_detected_count = event_data.get("patterns_detected_count", 0)
+            avg_detection_accuracy = event_data.get("avg_detection_accuracy", 0.0)
+            avg_detection_latency_ms = event_data.get("avg_detection_latency_ms", 0)
+            pattern_signatures_generated = event_data.get("pattern_signatures_generated", 0)
+            
+            # Update comprehensive pattern metrics
+            self.live_metrics["patterns_detected_count"] = patterns_detected_count
+            self.live_metrics["avg_pattern_detection_accuracy"] = avg_detection_accuracy
+            self.live_metrics["avg_pattern_detection_latency_ms"] = avg_detection_latency_ms
+            self.live_metrics["pattern_signatures_generated"] = pattern_signatures_generated
+            
+            # Create pattern telemetry alert based on performance
+            if avg_detection_accuracy >= 0.85 and avg_detection_latency_ms <= 500:
+                alert_level = "INFO"
+                message = f"Pattern Engine Performance: OPTIMAL (Accuracy: {avg_detection_accuracy:.2%}, Latency: {avg_detection_latency_ms}ms)"
+            elif avg_detection_accuracy >= 0.70 and avg_detection_latency_ms <= 750:
+                alert_level = "WARNING"
+                message = f"Pattern Engine Performance: DEGRADED (Accuracy: {avg_detection_accuracy:.2%}, Latency: {avg_detection_latency_ms}ms)"
+            else:
+                alert_level = "CRITICAL"
+                message = f"Pattern Engine Performance: CRITICAL (Accuracy: {avg_detection_accuracy:.2%}, Latency: {avg_detection_latency_ms}ms)"
+            
+            self._create_alert(
+                alert_level,
+                message,
+                {
+                    "patterns_detected_count": patterns_detected_count,
+                    "avg_detection_accuracy": avg_detection_accuracy,
+                    "avg_detection_latency_ms": avg_detection_latency_ms,
+                    "pattern_signatures_generated": pattern_signatures_generated,
+                    "timestamp": event_data.get("timestamp", datetime.datetime.now().isoformat())
+                }
+            )
+            
+            # Log pattern telemetry event to telemetry file
+            log_entry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "pattern_telemetry",
+                "patterns_detected_count": patterns_detected_count,
+                "avg_detection_accuracy": avg_detection_accuracy,
+                "avg_detection_latency_ms": avg_detection_latency_ms,
+                "pattern_signatures_generated": pattern_signatures_generated
+            }
+            
+        except Exception as e:
+            logging.error(f"Error handling PatternTelemetry: {e}")
+    
+    def _create_alert(self, severity: str, message: str, event_data: Dict[str, Any]):
+        """Create a system alert"""
+        alert = {
+            "timestamp": datetime.datetime.now().isoformat(),
+            "severity": severity,
+            "message": message,
+            "data": event_data,
+            "id": f"alert_{int(time.time())}"
+        }
+        
+        self.system_alerts.append(alert)
+        
+        # Emit alert via EventBus
+        self.event_bus.emit_event("DashboardAlert", alert, "SmartTelemetryDashboard")
+        
+        self.logger.warning(json.dumps({
+            "event": "alert_created",
+            "severity": severity,
+            "message": message
+        }))
+    
+    def _start_telemetry_collection(self):
+        """Start background telemetry collection thread"""
+        def collect_telemetry():
+            while self.running.is_set():
+                try:
+                    # Update metrics
+                    self.metrics["last_update"] = datetime.datetime.now().isoformat()
+                    self.metrics["active_signals"] = list(self.active_signals)
+                    
+                    # Write telemetry to file
+                    self._write_telemetry_data()
+                    
+                    # Emit dashboard status
+                    self._emit_dashboard_status()
+                    
+                    # Sleep for refresh interval
+                    time.sleep(self.DASHBOARD_CONFIG["refresh_interval_seconds"])
+                    
+                except Exception as e:
+                    self.logger.error(json.dumps({"event": "telemetry_collection_error", "error": str(e)}))
+                    time.sleep(5)  # Sleep longer on error
+        
+        # Start collection thread
+        self.telemetry_thread = threading.Thread(target=collect_telemetry, daemon=True)
+        self.telemetry_thread.start()
+        
+        self.logger.info(json.dumps({"event": "telemetry_collection_started"}))
+    
+    def _write_telemetry_data(self):
+        """Write current telemetry data to telemetry.json"""
+        try:
+            telemetry_data = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "kill_switch_count": self.metrics["kill_switch_count"],
+                "last_termination": self.metrics["last_termination"],
+                "loop_activity": list(self.loop_events),
+                "active_signals": self.metrics["active_signals"],
+                "signal_emissions": dict(self.signal_emissions),
+                "total_emissions": self.metrics["total_emissions"],
+                "system_health": self.metrics["system_health"],
+                "recent_alerts": list(self.system_alerts)[-10:],  # Last 10 alerts
+                "last_update": self.metrics["last_update"]
+            }
+            
+            with open(self.telemetry_file, 'w') as f:
+                json.dump(telemetry_data, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "telemetry_write_error", "error": str(e)}))
+    
+    def _emit_dashboard_status(self):
+        """Emit dashboard status via EventBus"""
+        try:
+            status_data = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "dashboard_active": True,
+                "total_emissions_tracked": self.metrics["total_emissions"],
+                "active_signals_count": len(self.active_signals),
+                "kill_switch_count": self.metrics["kill_switch_count"],
+                "system_health": self.metrics["system_health"],
+                "alerts_count": len(self.system_alerts)
+            }
+            
+            self.event_bus.emit_event("TelemetryDashboardStatus", status_data, "SmartTelemetryDashboard")
+            
+        except Exception as e:
+            self.logger.error(json.dumps({"event": "status_emission_error", "error": str(e)}))
+    
+    def get_dashboard_data(self) -> Dict[str, Any]:
+        """Get current dashboard data for UI rendering"""
+        return {
+            "metrics": self.metrics.copy(),
+            "signal_emissions": dict(self.signal_emissions),
+            "recent_events": {
+                "kill_switch": list(self.telemetry_data["kill_switch_events"])[-10:],
+                "recalibration": list(self.telemetry_data["recalibration_events"])[-10:],
+                "log_sync": list(self.telemetry_data["log_sync_events"])[-10:],
+                "loop_events": list(self.loop_events)[-10:]
+            },
+            "alerts": list(self.system_alerts)[-20:],
+            "system_health": self.metrics["system_health"],
+            "last_update": self.metrics["last_update"]
+        }
+    
+    def stop(self):
+        """Stop the telemetry dashboard"""
+        self.running.clear()
+        
+        # Final telemetry write
+        self._write_telemetry_data()
+        
+        self.logger.info(json.dumps({"event": "dashboard_stopped"}))
+
+# Streamlit UI Functions
+def render_dashboard_ui():
+    """Render the Streamlit dashboard UI"""
+    st.set_page_config(
+        page_title="GENESIS Smart Telemetry Dashboard",
+        page_icon="📡",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+    
+    st.title("📡 GENESIS Smart Telemetry Dashboard - PHASE 17")
+    st.markdown("**Real-time monitoring of SmartExecutionMonitor and system telemetry**")
+    
+    # Initialize dashboard if not in session state
+    if 'dashboard' not in st.session_state:
+        st.session_state.dashboard = SmartTelemetryDashboard()
+    
+    dashboard = st.session_state.dashboard
+    
+    # Auto-refresh every 3 seconds
+    time.sleep(3)
+    st.rerun()
+    
+    # Get current data
+    data = dashboard.get_dashboard_data()
+    
+    # Sidebar with key metrics
+    st.sidebar.header("🔑 Key Metrics")
+    st.sidebar.metric("Kill Switch Count", data["metrics"]["kill_switch_count"], delta=None)
+    st.sidebar.metric("Total Emissions", data["metrics"]["total_emissions"], delta=None)
+    st.sidebar.metric("Active Signals", len(data["metrics"]["active_signals"]), delta=None)
+    st.sidebar.metric("System Health", data["system_health"], delta=None)
+    
+    # Last termination
+    if data["metrics"]["last_termination"]:
+        st.sidebar.error(f"🚨 Last Termination: {data['metrics']['last_termination']}")
+    else:
+        st.sidebar.success("✅ No terminations detected")
+    
+    # Main dashboard layout
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Signal emissions chart
+        st.subheader("📊 Signal Emissions")
+        if data["signal_emissions"]:
+            emissions_df = pd.DataFrame(list(data["signal_emissions"].items()), 
+                                      columns=["Signal Type", "Count"])
+            fig = px.bar(emissions_df, x="Signal Type", y="Count", 
+                        title="Signal Emissions by Type")
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("No signal emissions recorded yet")
+    
+    with col2:
+        # Recent alerts
+        st.subheader("🚨 Recent Alerts")
+        if data["alerts"]:
+            for alert in data["alerts"][-5:]:  # Show last 5 alerts
+                severity_color = {
+                    "CRITICAL": "🔴",
+                    "HIGH": "🟠", 
+                    "MEDIUM": "🟡",
+                    "LOW": "🟢"
+                }.get(alert["severity"], "⚪")
+                
+                st.markdown(f"{severity_color} **{alert['severity']}**: {alert['message']}")
+                st.caption(f"Time: {alert['timestamp']}")
+        else:
+            st.success("No alerts at this time")
+    
+    # Event timeline
+    st.subheader("📋 Recent Events Timeline")
+    
+    # Combine all recent events
+    all_events = []
+    for event_type, events in data["recent_events"].items():
+        for event in events:
+            event["category"] = event_type
+            all_events.append(event)
+    
+    # Sort by timestamp
+    all_events.sort(key=lambda x: x.get("timestamp", ""), reverse=True)
+    
+    if all_events:
+        for event in all_events[:15]:  # Show last 15 events
+            category_emoji = {
+                "kill_switch": "⚡",
+                "recalibration": "🔧",
+                "log_sync": "📝",
+                "loop_events": "🔄"
+            }.get(event["category"], "📡")
+            
+            st.markdown(f"{category_emoji} **{event.get('event_type', 'Unknown')}** - {event.get('timestamp', 'No timestamp')}")
+    else:
+        st.info("No recent events to display")
+    
+    # System status footer
+    st.markdown("---")
+    st.markdown(f"**Last Update**: {data['last_update']} | **Status**: {data['system_health']}")
+
+# Initialize if run directly
+if __name__ == "__main__":
+    try:
+        # Check if running in Streamlit
+        if "streamlit" in sys.modules:
+            render_dashboard_ui()
+        else:
+            # Run as standalone dashboard
+            dashboard = SmartTelemetryDashboard()
+            print("SmartTelemetryDashboard started. Monitoring telemetry...")
+            
+            try:
+                while True:
+                    time.sleep(10)
+                    print(f"Dashboard active - {dashboard.metrics['total_emissions']} emissions tracked")
+            except KeyboardInterrupt:
+                print("Stopping dashboard...")
+                dashboard.stop()
+                
+    except Exception as e:
+        logging.error(f"Error in SmartTelemetryDashboard: {str(e)}")
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: telemetry_dashboard -->

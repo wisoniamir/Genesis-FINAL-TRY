@@ -1,0 +1,74 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.389009+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+      "line_numbers": [
+        41
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+      "line_numbers": [
+        80,
+        136,
+        150,
+        176,
+        194
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+      "line_numbers": [
+        36,
+        94,
+        134,
+        148,
+        200
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+      "line_numbers": [
+        123,
+        169,
+        193,
+        222,
+        244
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+      "line_numbers": [
+        43
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\dashboard_linkage_patch.py",
+      "line_numbers": [
+        45,
+        621
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

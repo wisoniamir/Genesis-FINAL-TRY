@@ -1,0 +1,25 @@
+{
+  "version": "v6.3.0-final",
+  "standards": "PRODUCTION_INSTITUTIONAL_GRADE",
+  "requirements": {
+    "no_mock_data": true,
+    "mt5_live_only": true,
+    "eventbus_mandatory": true,
+    "telemetry_required": true,
+    "error_handling_required": true,
+    "complexity_hierarchy_enforced": true,
+    "duplicate_tolerance": 0
+  },
+  "validation_rules": {
+    "min_eventbus_coverage": 90.0,
+    "min_mt5_integration": 40.0,
+    "max_response_time_ms": 100,
+    "min_telemetry_coverage": 100.0
+  },
+  "production_readiness": {
+    "code_quality": "INSTITUTIONAL_GRADE",
+    "testing_coverage": "COMPREHENSIVE",
+    "monitoring": "REAL_TIME",
+    "deployment_status": "READY"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_INTEGRATED_MODULES\\CORE_UTILITIES\\integrated__a0.py",
+  "quarantine_timestamp": "2025-06-21T04:33:28.621279+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_INTEGRATED_MODULES\\CORE_UTILITIES\\integrated__a0.py",
+      "line_numbers": [
+        61
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_INTEGRATED_MODULES\\CORE_UTILITIES\\integrated__a0.py",
+      "line_numbers": [
+        56,
+        87,
+        124
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_INTEGRATED_MODULES\\CORE_UTILITIES\\integrated__a0.py",
+      "line_numbers": [
+        65,
+        96,
+        133
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_INTEGRATED_MODULES\\CORE_UTILITIES\\integrated__a0.py",
+      "line_numbers": [
+        63,
+        66,
+        109
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_INTEGRATED_MODULES\\CORE_UTILITIES\\integrated__a0.py",
+      "line_numbers": [
+        48,
+        79,
+        83,
+        90,
+        97
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

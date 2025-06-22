@@ -1,0 +1,73 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.321291+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+      "line_numbers": [
+        189,
+        190
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+      "line_numbers": [
+        40,
+        64,
+        65,
+        73,
+        77
+      ],
+      "violation_count": 26
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+      "line_numbers": [
+        81,
+        85,
+        125,
+        176
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+      "line_numbers": [
+        102,
+        145,
+        167,
+        181
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+      "line_numbers": [
+        59
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase9_safe_reinforcement.py",
+      "line_numbers": [
+        98,
+        138
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

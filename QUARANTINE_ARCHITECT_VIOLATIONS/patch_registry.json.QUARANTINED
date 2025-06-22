@@ -1,0 +1,42 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\patch_registry.json",
+  "quarantine_timestamp": "2025-06-21T04:33:25.148203+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\patch_registry.json",
+      "line_numbers": [
+        6235,
+        26710
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\patch_registry.json",
+      "line_numbers": [
+        5514,
+        5521,
+        15678,
+        25954
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\patch_registry.json",
+      "line_numbers": [
+        40,
+        719,
+        880,
+        887,
+        894
+      ],
+      "violation_count": 1534
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

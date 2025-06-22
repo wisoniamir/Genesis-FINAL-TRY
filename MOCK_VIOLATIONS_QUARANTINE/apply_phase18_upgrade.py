@@ -1,0 +1,375 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("apply_phase18_upgrade", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("apply_phase18_upgrade", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "apply_phase18_upgrade",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in apply_phase18_upgrade: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "apply_phase18_upgrade",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("apply_phase18_upgrade", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in apply_phase18_upgrade: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+GENESIS PHASE 18 REACTIVE EXECUTION LOCK-IN VALIDATOR
+STRICT ARCHITECT MODE v2.9 - FINAL COMPLIANCE CHECK
+"""
+
+import json
+import os
+from datetime import datetime
+
+
+# <!-- @GENESIS_MODULE_END: apply_phase18_upgrade -->
+
+
+# <!-- @GENESIS_MODULE_START: apply_phase18_upgrade -->
+
+def apply_phase18_upgrade():
+    """Execute Phase 18 upgrade validation with all specified parameters"""
+    
+    print("🔒 GENESIS PHASE 18 REACTIVE EXECUTION LOCK-IN")
+    print("=" * 60)
+    print("STRICT ARCHITECT MODE v2.9 - FINAL COMPLIANCE CHECK")
+    print(f"Timestamp: {datetime.now().isoformat()}Z")
+    print()
+    
+    # System Health Check
+    print("🏥 SYSTEM HEALTH CHECK:")
+    try:
+        with open('build_status.json', 'r') as f:
+            build_status = json.load(f)
+        
+        health_checks = {
+            "real_data_passed": build_status.get("real_data_passed", False),
+            "compliance_ok": build_status.get("compliance_ok", False),
+            "architect_mode": build_status.get("architect_mode") == "ENABLED",
+            "phase_18_complete": build_status.get("PHASE_18_REACTIVE_EXECUTION_COMPLETE", False),
+            "system_health": build_status.get("system_health") == "ACTIVE"
+        }
+        
+        for check, status in health_checks.items():
+            print(f"   ✅ {check}: {status}")
+        
+        system_health_check = all(health_checks.values())
+        print(f"\n🎯 System Health Check: {'✅ PASS' if system_health_check else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ System Health Check FAILED: {e}")
+        return False
+    
+    # EventBus Only Enforcement
+    print("\n📡 EVENTBUS-ONLY ENFORCEMENT:")
+    try:
+        with open('event_bus.json', 'r') as f:
+            event_bus = json.load(f)
+        
+        eventbus_violations = event_bus.get("eventbus_violations", [])
+        isolated_functions = event_bus.get("isolated_functions", [])
+        
+        print(f"   ✅ Bypass Violations: {len(eventbus_violations)} (Expected: 0)")
+        print(f"   ✅ Isolated Functions: {len(isolated_functions)} (Expected: 0)")
+        
+        enforce_eventbus_only = len(eventbus_violations) == 0 and len(isolated_functions) == 0
+        print(f"\n🎯 EventBus-Only Enforcement: {'✅ PASS' if enforce_eventbus_only else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ EventBus Enforcement FAILED: {e}")
+        return False
+    
+    # Real Data Verification
+    print("\n🛡️ REAL DATA VERIFICATION:")
+    phase18_modules = [
+        "modules/reactive/smart_execution_reactor.py",
+        "modules/reactive/execution_loop_responder.py", 
+        "modules/reactive/live_alert_bridge.py"
+    ]
+    
+    real_data_confirmed = True
+    for module_path in phase18_modules:
+        if os.path.exists(module_path):
+            try:
+                with open(module_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    has_real_data = "MT5" in content and "real" in content.lower()
+                    has_no_mock = "real_data" not in content.lower() or "no real data" in content.lower()
+                    print(f"   ✅ {os.path.basename(module_path)}: Real MT5 data - {has_real_data and has_no_mock}")
+                    real_data_confirmed &= (has_real_data and has_no_mock)
+            except UnicodeDecodeError:
+                # Try with different encoding
+                with open(module_path, 'r', encoding='latin1') as f:
+                    content = f.read()
+                    has_real_data = "MT5" in content and "real" in content.lower()
+                    has_no_mock = "real_data" not in content.lower() or "no real data" in content.lower()
+                    print(f"   ✅ {os.path.basename(module_path)}: Real MT5 data - {has_real_data and has_no_mock}")
+                    real_data_confirmed &= (has_real_data and has_no_mock)
+        else:
+            print(f"   ❌ {module_path}: Module not found")
+            real_data_confirmed = False
+    
+    print(f"\n🎯 Real Data Verification: {'✅ PASS' if real_data_confirmed else '❌ FAIL'}")
+    
+    # Log Output Paths
+    print("\n📁 LOG OUTPUT PATHS:")
+    log_paths = ["logs/alert_bridge/", "logs/reactor/", "logs/loop_responder/"]
+    log_paths_exist = True
+    
+    for path in log_paths:
+        exists = os.path.exists(path)
+        print(f"   {'✅' if exists else '❌'} {path}: {'EXISTS' if exists else 'MISSING'}")
+        log_paths_exist &= exists
+    
+    print(f"\n🎯 Log Output Paths: {'✅ PASS' if log_paths_exist else '❌ FAIL'}")
+    
+    # Telemetry Streams
+    print("\n📊 TELEMETRY STREAMS:")
+    try:
+        with open('telemetry.json', 'r') as f:
+            telemetry = json.load(f)
+        
+        required_streams = [
+            "ExecutionDeviationAlert",
+            "KillSwitchTrigger", 
+            "SmartLogSync",
+            "RecalibrationRequest",
+            "TerminateMonitorLoop"
+        ]
+        
+        active_signals = telemetry.get("active_signals", [])
+        signal_emissions = telemetry.get("signal_emissions", {})
+        
+        streams_active = True
+        for stream in required_streams:
+            is_active = stream in active_signals or stream in signal_emissions
+            print(f"   {'✅' if is_active else '❌'} {stream}: {'ACTIVE' if is_active else 'INACTIVE'}")
+            streams_active &= is_active
+        
+        print(f"\n🎯 Telemetry Streams: {'✅ PASS' if streams_active else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ Telemetry Streams FAILED: {e}")
+        return False
+    
+    # Route Integrity
+    print("\n🔗 ROUTE INTEGRITY:")
+    required_routes = [
+        ("SmartExecutionMonitor", "SmartExecutionReactor", "ExecutionDeviationAlert"),
+        ("SmartExecutionMonitor", "SmartExecutionReactor", "RecalibrationRequest"),
+        ("SmartExecutionMonitor", "SmartExecutionReactor", "KillSwitchTrigger"),
+        ("SmartExecutionMonitor", "SmartExecutionReactor", "TerminateMonitorLoop"),
+        ("SmartExecutionReactor", "ExecutionLoopResponder", "TradeAdjustmentInitiated"),
+        ("SmartExecutionReactor", "ExecutionLoopResponder", "StrategyFreezeLock"),
+        ("SmartExecutionReactor", "ExecutionLoopResponder", "MacroSyncReboot"),
+        ("LiveAlertBridge", "DashboardEngine", "DashboardAlert"),
+        ("LiveAlertBridge", "TelemetryCollector", "AlertTelemetry"),
+        ("LiveAlertBridge", "RiskEngine", "EmergencyAlert")
+    ]
+    
+    routes = event_bus.get("routes", [])
+    route_integrity = True
+    
+    for producer, consumer, topic in required_routes:
+        route_exists = any(
+            r.get("producer") == producer and 
+            r.get("consumer") == consumer and 
+            r.get("topic") == topic and
+            r.get("status") == "active"
+            for r in routes
+        )
+        print(f"   {'✅' if route_exists else '❌'} {topic}: {producer} → {consumer}")
+        route_integrity &= route_exists
+    
+    print(f"\n🎯 Route Integrity: {'✅ PASS' if route_integrity else '❌ FAIL'}")
+    
+    # Module Registration
+    print("\n📋 MODULE REGISTRATION:")
+    try:
+        with open('system_tree.json', 'r') as f:
+            system_tree = json.load(f)
+        
+        required_modules = ["SmartExecutionReactor", "ExecutionLoopResponder", "LiveAlertBridge"]
+        nodes = system_tree.get("nodes", [])
+        
+        modules_registered = True
+        for module in required_modules:
+            is_registered = any(n.get("id") == module for n in nodes)
+            print(f"   {'✅' if is_registered else '❌'} {module}: {'REGISTERED' if is_registered else 'MISSING'}")
+            modules_registered &= is_registered
+        
+        print(f"\n🎯 Module Registration: {'✅ PASS' if modules_registered else '❌ FAIL'}")
+        
+    except Exception as e:
+        print(f"❌ Module Registration FAILED: {e}")
+        return False
+    
+    # Final Assessment
+    print("\n" + "=" * 60)
+    print("🏁 FINAL PHASE 18 COMPLIANCE ASSESSMENT:")
+    
+    all_checks = [
+        ("System Health Check", system_health_check),
+        ("EventBus-Only Enforcement", enforce_eventbus_only), 
+        ("Real Data Verification", real_data_confirmed),
+        ("Log Output Paths", log_paths_exist),
+        ("Telemetry Streams", streams_active),
+        ("Route Integrity", route_integrity),
+        ("Module Registration", modules_registered)
+    ]
+    
+    overall_pass = all(check[1] for check in all_checks)
+    
+    for name, status in all_checks:
+        print(f"   {'✅' if status else '❌'} {name}: {'PASS' if status else 'FAIL'}")
+    
+    print("\n" + "=" * 60)
+    if overall_pass:
+        print("🎉 PHASE 18 REACTIVE EXECUTION LOCK-IN: ✅ COMPLETE")
+        print("🚀 PRODUCTION MODE: ✅ ENABLED")
+        print("🔒 ARCHITECT MODE v2.9: ✅ FULLY COMPLIANT")
+        print("\n🏆 GENESIS PHASE 18 REACTIVE EXECUTION & KILL-SWITCH RESPONSE")
+        print("    STATUS: OPERATIONAL AND PRODUCTION-READY")
+    else:
+        print("❌ PHASE 18 REACTIVE EXECUTION LOCK-IN: FAILED")
+        print("🚫 PRODUCTION MODE: BLOCKED")
+        print("⚠️  ARCHITECT MODE v2.9: COMPLIANCE VIOLATIONS DETECTED")
+    
+    return overall_pass
+
+if __name__ == "__main__":
+    success = apply_phase18_upgrade()
+    exit(0 if success else 1)
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

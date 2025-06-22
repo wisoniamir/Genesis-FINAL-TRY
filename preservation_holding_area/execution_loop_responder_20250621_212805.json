@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_loop_responder",
+  "original_path": "modules\\execution\\execution_loop_responder.py",
+  "preserved_path": "preservation_holding_area\\execution_loop_responder_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30129,
+  "checksum": "1b2e1806750fd1d9f24852225bf6bbabb87f8e8802696de294e91c4ca5fb6346"
+}

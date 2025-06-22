@@ -1,0 +1,47 @@
+{
+  "EURUSD": {
+    "symbol": "EURUSD",
+    "base_confidence": 0.5,
+    "execution_confidence": 1.0,
+    "slippage_confidence": 1.0,
+    "timing_confidence": 0.10000000000000014,
+    "overall_confidence": 0.76,
+    "last_updated": "2025-06-17T23:01:56.812043+00:00"
+  },
+  "GBPUSD": {
+    "symbol": "GBPUSD",
+    "base_confidence": 0.5,
+    "execution_confidence": 1.0,
+    "slippage_confidence": 1.0,
+    "timing_confidence": 1.3877787807814457e-16,
+    "overall_confidence": 0.75,
+    "last_updated": "2025-06-17T23:01:56.815653+00:00"
+  },
+  "USDJPY": {
+    "symbol": "USDJPY",
+    "base_confidence": 0.5,
+    "execution_confidence": 1.0,
+    "slippage_confidence": 0.0,
+    "timing_confidence": 1.3877787807814457e-16,
+    "overall_confidence": 0.55,
+    "last_updated": "2025-06-17T23:01:56.819363+00:00"
+  },
+  "AUDUSD": {
+    "symbol": "AUDUSD",
+    "base_confidence": 0.5,
+    "execution_confidence": 1.0,
+    "slippage_confidence": 0.0,
+    "timing_confidence": 1.3877787807814457e-16,
+    "overall_confidence": 0.55,
+    "last_updated": "2025-06-17T23:01:56.822901+00:00"
+  },
+  "USDCAD": {
+    "symbol": "USDCAD",
+    "base_confidence": 0.5,
+    "execution_confidence": 1.0,
+    "slippage_confidence": 0.0,
+    "timing_confidence": 1.3877787807814457e-16,
+    "overall_confidence": 0.55,
+    "last_updated": "2025-06-17T23:01:56.825603+00:00"
+  }
+}

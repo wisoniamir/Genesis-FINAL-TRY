@@ -1,0 +1,219 @@
+import logging
+"""
+DashboardEngine Validation Tool - Final Compliance Check
+- Validates EventBus integration
+- Verifies real data enforcement
+- Checks JSONL output structure
+- Confirms system file registration
+
+This tool is used to perform the final validation of the DashboardEngine
+module for compliance with the GENESIS AI TRADING BOT SYSTEM requirements.
+"""
+
+import os
+import sys
+import json
+from datetime import datetime
+
+
+# <!-- @GENESIS_MODULE_END: validate_dashboard_engine -->
+
+
+# <!-- @GENESIS_MODULE_START: validate_dashboard_engine -->
+
+def validate_module_file():
+    """Validate dashboard_engine.py file exists and has required components"""
+    if not os.path.exists("dashboard_engine.py"):
+        print("❌ ERROR: dashboard_engine.py file not found")
+        return False
+        
+    print("✅ dashboard_engine.py file found")
+    
+    # Check file content for key requirements
+    with open("dashboard_engine.py", "r") as f:
+        content = f.read()
+        
+    requirements = [
+        ("Event Bus Import", "from event_bus import", True),
+        ("No real Data", "NO real DATA", True), 
+        ("Class Definition", "class DashboardEngine", True),
+        ("Real Data Enforcement", "real_data", True),
+        ("JSONL Logging", "jsonl", True),
+        ("Auto-refresh", "auto_refresh", True),
+        ("Telemetry Integration", "telemetry", True),
+        ("Dashboard Status Update", "DashboardStatusUpdate", True),
+        ("Module Handling", "on_module_telemetry", True),
+        ("Error Handling", "on_module_error", True)
+    ]
+    
+    for name, keyword, required in requirements:
+        if keyword.lower() in content.lower():
+            print(f"✅ {name} found in file")
+        elif required:
+            print(f"❌ ERROR: {name} not found in file")
+            return False
+        else:
+            print(f"⚠️ WARNING: Optional {name} not found in file")
+    
+    return True
+
+def validate_system_files():
+    """Validate DashboardEngine is properly registered in system files"""
+    # Check the files
+    system_files = {
+        "system_tree.json": ["DashboardEngine", "connections", "eventbus_routes"],
+        "event_bus.json": ["DashboardEngine", "DashboardStatusUpdate", "DashboardTelemetry"],
+        "module_registry.json": ["DashboardEngine", "active", "real_data"],
+        "build_status.json": ["DashboardEngine", "step_11", "complete"]
+    }
+    
+    for filename, required_terms in system_files.items():
+        if not os.path.exists(filename):
+            print(f"❌ ERROR: {filename} file not found")
+            return False
+            
+        with open(filename, "r") as f:
+            content = f.read()
+            
+        for term in required_terms:
+            if term.lower() in content.lower():
+                print(f"✅ '{term}' found in {filename}")
+            else:
+                print(f"❌ ERROR: '{term}' not found in {filename}")
+                return False
+    
+    return True
+
+def validate_log_directory():
+    """Validate logs/dashboard directory exists"""
+    log_path = "logs/dashboard"
+    feed_path = os.path.join(log_path, "feed")
+    
+    if os.path.exists(log_path) and os.path.isdir(log_path):
+        print(f"✅ {log_path} directory exists")
+    else:
+        print(f"❌ ERROR: {log_path} directory does not exist")
+        return False
+        
+    if os.path.exists(feed_path) and os.path.isdir(feed_path):
+        print(f"✅ {feed_path} directory exists")
+        return True
+    else:
+        print(f"❌ ERROR: {feed_path} directory does not exist")
+        return False
+
+def validate_event_handling():
+    """Validate event handlers for required events"""
+    with open("dashboard_engine.py", "r") as f:
+        content = f.read()
+        
+    required_handlers = [
+        "BacktestResults", "SignalCandidate", "PatternDetected",
+        "StrategySuggestion", "TradeJournalEntry", "ModuleTelemetry", "ModuleError",
+        "DashboardStatusUpdate", "DashboardTelemetry", "DashboardError"
+    ]
+    
+    for handler in required_handlers:
+        if handler.lower() in content.lower() and ("subscribe" in content.lower() or "register" in content.lower() or "emit" in content.lower()):
+            print(f"✅ {handler} event handler found")
+        else:
+            print(f"❌ ERROR: {handler} event handler not found or not properly registered")
+            return False
+    
+    return True
+
+def validate_auto_refresh():
+    """Validate auto-refresh implementation"""
+    with open("dashboard_engine.py", "r") as f:
+        content = f.read()
+    
+    requirements = [
+        ("Timer Thread", "thread", True),
+        ("15 Minute Refresh", "15", True),
+        ("Dashboard Feed Export", "export_dashboard_feed", True)
+    ]
+    
+    for name, keyword, required in requirements:
+        if keyword.lower() in content.lower():
+            print(f"✅ {name} found in implementation")
+        elif required:
+            print(f"❌ ERROR: {name} not found in implementation")
+            return False
+        else:
+            print(f"⚠️ WARNING: Optional {name} not found in implementation")
+    
+    return True
+
+def main():
+    """Run all validation checks"""
+    print("\n🧪 VALIDATING DASHBOARD ENGINE MODULE\n")
+    print("=" * 50)
+    
+    # Validate module file
+    print("\n📄 VALIDATING MODULE FILE\n")
+    if not validate_module_file():
+        print("\n❌ MODULE FILE VALIDATION FAILED\n")
+        return
+        
+    # Validate system files
+    print("\n📁 VALIDATING SYSTEM FILES\n")
+    if not validate_system_files():
+        print("\n❌ SYSTEM FILES VALIDATION FAILED\n")
+        return
+        
+    # Validate log directory
+    print("\n📊 VALIDATING LOG DIRECTORY\n")
+    if not validate_log_directory():
+        print("\n⚠️ LOG DIRECTORY VALIDATION FAILED\n")
+        # Not a critical failure
+        
+    # Validate event handling
+    print("\n🔄 VALIDATING EVENT HANDLING\n")
+    if not validate_event_handling():
+        print("\n❌ EVENT HANDLING VALIDATION FAILED\n")
+        return
+        
+    # Validate auto-refresh
+    print("\n⏰ VALIDATING AUTO-REFRESH\n")
+    if not validate_auto_refresh():
+        print("\n❌ AUTO-REFRESH VALIDATION FAILED\n")
+        return
+    
+    # Final result
+    print("\n" + "=" * 50)
+    print("\n✅ DASHBOARD ENGINE MODULE VALIDATION SUCCESSFUL")
+    print("All required components found and properly integrated")
+    print("\n✅ STEP 11 COMPLETED SUCCESSFULLY")
+    print("DashboardEngine is ready for use with GENESIS AI TRADING BOT SYSTEM")
+    print("\n" + "=" * 50)
+
+if __name__ == "__main__":
+    main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

@@ -1,0 +1,9 @@
+{
+  "module_id": "app_session",
+  "original_path": "modules\\restored\\app_session.py",
+  "preserved_path": "preservation_holding_area\\app_session_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 58092,
+  "checksum": "9196b1ffc54c2740027497ce905a58894580bd372f4210fd0a0eebb72f23c357"
+}

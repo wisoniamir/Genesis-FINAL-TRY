@@ -1,0 +1,105 @@
+# GENESIS Discovery-Based Docker GUI - Complete Production Setup
+FROM python:3.11-slim
+
+# Set environment variables
+ENV DISPLAY=:0
+ENV PYTHONUNBUFFERED=1
+ENV GENESIS_MODE=production
+ENV DISCOVERY_ENABLED=true
+
+# Install system dependencies for GUI and trading
+RUN apt-get update && apt-get install -y \
+    # X11 and GUI dependencies
+    xvfb \
+    x11-apps \
+    x11-utils \
+    x11vnc \
+    fluxbox \
+    # PyQt5 dependencies
+    python3-pyqt5 \
+    python3-pyqt5.qtwidgets \
+    python3-pyqt5.qtgui \
+    python3-pyqt5.qtcore \
+    # System tools
+    curl \
+    wget \
+    git \
+    # Network tools for MT5 connectivity
+    net-tools \
+    netcat-openbsd \
+    # Build tools
+    build-essential \
+    pkg-config \
+    # Cleanup
+    && rm -rf /var/lib/apt/lists/*
+
+# Create genesis user
+RUN useradd -m -s /bin/bash genesis && \
+    echo "genesis ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Set working directory
+WORKDIR /genesis
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install additional GUI and trading dependencies
+RUN pip install --no-cache-dir \
+    PyQt5==5.15.9 \
+    MetaTrader5==5.0.45 \
+    streamlit==1.28.1 \
+    plotly==5.17.0 \
+    pandas==2.1.4 \
+    numpy==1.24.3 \
+    scikit-learn==1.3.2 \
+    requests==2.31.0 \
+    websocket-client==1.6.4 \
+    asyncio==3.4.3 \
+    threading-timer==1.0.2
+
+# Copy GENESIS source code
+COPY . .
+
+# Set permissions
+RUN chown -R genesis:genesis /genesis
+RUN chmod +x *.py
+RUN chmod +x *.sh 2>/dev/null || true
+
+# Create necessary directories
+RUN mkdir -p /genesis/logs /genesis/data /genesis/backup /genesis/temp
+
+# Switch to genesis user
+USER genesis
+
+# Create X11 startup script
+RUN echo '#!/bin/bash' > /genesis/start_gui.sh && \
+    echo 'export DISPLAY=:0' >> /genesis/start_gui.sh && \
+    echo 'Xvfb :0 -screen 0 1920x1080x24 &' >> /genesis/start_gui.sh && \
+    echo 'sleep 2' >> /genesis/start_gui.sh && \
+    echo 'fluxbox &' >> /genesis/start_gui.sh && \
+    echo 'sleep 2' >> /genesis/start_gui.sh && \
+    echo 'cd /genesis' >> /genesis/start_gui.sh && \
+    echo 'python launch_desktop_app.py' >> /genesis/start_gui.sh && \
+    chmod +x /genesis/start_gui.sh
+
+# Create discovery validation script
+RUN echo '#!/usr/bin/env python3' > /genesis/validate_discovery.py && \
+    echo 'import sys' >> /genesis/validate_discovery.py && \
+    echo 'import os' >> /genesis/validate_discovery.py && \
+    echo 'sys.path.insert(0, "/genesis")' >> /genesis/validate_discovery.py && \
+    echo 'from interface.dashboard.discovery_main import GenesisDiscoveryEngine' >> /genesis/validate_discovery.py && \
+    echo 'engine = GenesisDiscoveryEngine()' >> /genesis/validate_discovery.py && \
+    echo 'report = engine.run_full_discovery()' >> /genesis/validate_discovery.py && \
+    echo 'print("✅ GENESIS Discovery Validation Complete")' >> /genesis/validate_discovery.py && \
+    echo 'print(f"Modules: {report[\"modules_discovered\"]}")' >> /genesis/validate_discovery.py && \
+    echo 'print(f"MT5: {report[\"mt5_status\"][\"connected\"]}")' >> /genesis/validate_discovery.py && \
+    chmod +x /genesis/validate_discovery.py
+
+# Expose ports
+EXPOSE 8501 8502 8503
+
+# Set the entry point
+ENTRYPOINT ["/genesis/start_gui.sh"]

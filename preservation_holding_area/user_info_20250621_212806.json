@@ -1,0 +1,9 @@
+{
+  "module_id": "user_info",
+  "original_path": "modules\\restored\\user_info.py",
+  "preserved_path": "preservation_holding_area\\user_info_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 37373,
+  "checksum": "1ed15ec76370c93e268f9e428cbcdad412318044fccff464aa10a5b00ba009c8"
+}

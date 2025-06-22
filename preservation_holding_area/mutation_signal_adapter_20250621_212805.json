@@ -1,0 +1,9 @@
+{
+  "module_id": "mutation_signal_adapter",
+  "original_path": "modules\\signal_processing\\mutation_signal_adapter.py",
+  "preserved_path": "preservation_holding_area\\mutation_signal_adapter_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23534,
+  "checksum": "558f2f6f592e156e3c21a9f607e9876e3bfb586cffb13b0bb7c5daa0f07c9f21"
+}

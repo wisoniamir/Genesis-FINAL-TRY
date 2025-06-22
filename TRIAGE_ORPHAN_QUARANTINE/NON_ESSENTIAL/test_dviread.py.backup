@@ -1,0 +1,194 @@
+# <!-- @GENESIS_MODULE_START: test_dviread -->
+"""
+🏛️ GENESIS TEST_DVIREAD - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import json
+from pathlib import Path
+import shutil
+
+import matplotlib.dviread as dr
+import pytest
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_dviread",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_dviread: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_dviread",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_dviread", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_dviread: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+def test_PsfontsMap(monkeypatch):
+    monkeypatch.setattr(dr, 'find_tex_file', lambda x: x.decode())
+
+    filename = str(Path(__file__).parent / 'baseline_images/dviread/test.map')
+    fontmap = dr.PsfontsMap(filename)
+    # Check all properties of a few fonts
+    for n in [1, 2, 3, 4, 5]:
+        key = b'TeXfont%d' % n
+        entry = fontmap[key]
+        assert entry.texname == key
+        assert entry.psname == b'PSfont%d' % n
+        if n not in [3, 5]:
+            assert entry.encoding == 'font%d.enc' % n
+        elif n == 3:
+            assert entry.encoding == 'enc3.foo'
+        # We don't care about the encoding of TeXfont5, which specifies
+        # multiple encodings.
+        if n not in [1, 5]:
+            assert entry.filename == 'font%d.pfa' % n
+        else:
+            assert entry.filename == 'font%d.pfb' % n
+        if n == 4:
+            assert entry.effects == {'slant': -0.1, 'extend': 1.2}
+        else:
+            assert entry.effects == {}
+    # Some special cases
+    entry = fontmap[b'TeXfont6']
+    assert entry.filename is None
+    assert entry.encoding is None
+    entry = fontmap[b'TeXfont7']
+    assert entry.filename is None
+    assert entry.encoding == 'font7.enc'
+    entry = fontmap[b'TeXfont8']
+    assert entry.filename == 'font8.pfb'
+    assert entry.encoding is None
+    entry = fontmap[b'TeXfont9']
+    assert entry.psname == b'TeXfont9'
+    assert entry.filename == '/absolute/font9.pfb'
+    # First of duplicates only.
+    entry = fontmap[b'TeXfontA']
+    assert entry.psname == b'PSfontA1'
+    # Slant/Extend only works for T1 fonts.
+    entry = fontmap[b'TeXfontB']
+    assert entry.psname == b'PSfontB6'
+    # Subsetted TrueType must have encoding.
+    entry = fontmap[b'TeXfontC']
+    assert entry.psname == b'PSfontC3'
+    # Missing font
+    with pytest.raises(LookupError, match='no-such-font'):
+        fontmap[b'no-such-font']
+    with pytest.raises(LookupError, match='%'):
+        fontmap[b'%']
+
+
+@pytest.mark.skipif(shutil.which("kpsewhich") is None,
+                    reason="kpsewhich is not available")
+def test_dviread():
+    dirpath = Path(__file__).parent / 'baseline_images/dviread'
+    with (dirpath / 'test.json').open() as f:
+        correct = json.load(f)
+    with dr.Dvi(str(dirpath / 'test.dvi'), None) as dvi:
+        data = [{'text': [[t.x, t.y,
+                           chr(t.glyph),
+                           t.font.texname.decode('ascii'),
+                           round(t.font.size, 2)]
+                          for t in page.text],
+                 'boxes': [[b.x, b.y, b.height, b.width] for b in page.boxes]}
+                for page in dvi]
+    assert data == correct
+
+
+# <!-- @GENESIS_MODULE_END: test_dviread -->

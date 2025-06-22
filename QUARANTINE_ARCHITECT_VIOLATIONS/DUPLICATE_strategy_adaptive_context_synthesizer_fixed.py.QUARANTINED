@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.396842+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py",
+      "line_numbers": [
+        57,
+        68
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py",
+      "line_numbers": [
+        38,
+        42,
+        54,
+        61,
+        65
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py",
+      "line_numbers": [
+        56,
+        63,
+        67,
+        70,
+        84
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py",
+      "line_numbers": [
+        285,
+        286,
+        471,
+        558
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py",
+      "line_numbers": [
+        55
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

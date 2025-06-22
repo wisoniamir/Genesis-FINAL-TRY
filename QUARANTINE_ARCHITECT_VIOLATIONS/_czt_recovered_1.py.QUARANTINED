@@ -1,0 +1,19 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_czt_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.892328+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_czt_recovered_1.py",
+      "line_numbers": [
+        109,
+        222,
+        368,
+        375
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase33_execution_envelope_harmonizer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.105356+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase33_execution_envelope_harmonizer.py",
+      "line_numbers": [
+        365,
+        373,
+        375,
+        384,
+        385
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase33_execution_envelope_harmonizer.py",
+      "line_numbers": [
+        1,
+        14,
+        42,
+        51,
+        74
+      ],
+      "violation_count": 33
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase33_execution_envelope_harmonizer.py",
+      "line_numbers": [
+        19,
+        48,
+        116,
+        164,
+        236
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase33_execution_envelope_harmonizer.py",
+      "line_numbers": [
+        38,
+        106,
+        154,
+        226,
+        277
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase33_execution_envelope_harmonizer.py",
+      "line_numbers": [
+        399
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

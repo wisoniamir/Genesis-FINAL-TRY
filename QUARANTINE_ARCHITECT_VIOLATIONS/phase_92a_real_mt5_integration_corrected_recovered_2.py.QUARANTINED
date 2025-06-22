@@ -1,0 +1,54 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_92a_real_mt5_integration_corrected_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.447173+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_92a_real_mt5_integration_corrected_recovered_2.py",
+      "line_numbers": [
+        9,
+        17
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_92a_real_mt5_integration_corrected_recovered_2.py",
+      "line_numbers": [
+        61
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_92a_real_mt5_integration_corrected_recovered_2.py",
+      "line_numbers": [
+        80
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_92a_real_mt5_integration_corrected_recovered_2.py",
+      "line_numbers": [
+        71
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_92a_real_mt5_integration_corrected_recovered_2.py",
+      "line_numbers": [
+        53,
+        97
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

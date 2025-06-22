@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\portfolio_optimizer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.297996+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\portfolio_optimizer.py",
+      "line_numbers": [
+        62,
+        87,
+        133,
+        166,
+        179
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\portfolio_optimizer.py",
+      "line_numbers": [
+        89,
+        173,
+        182,
+        192,
+        202
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\portfolio_optimizer.py",
+      "line_numbers": [
+        561
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\portfolio_optimizer.py",
+      "line_numbers": [
+        26,
+        175,
+        184,
+        190,
+        200
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\portfolio_optimizer.py",
+      "line_numbers": [
+        73,
+        84,
+        93,
+        119,
+        255
+      ],
+      "violation_count": 7
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

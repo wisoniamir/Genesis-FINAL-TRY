@@ -1,0 +1,29 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_102_institutional_modules.json",
+  "quarantine_timestamp": "2025-06-21T04:33:03.664045+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_102_institutional_modules.json",
+      "line_numbers": [
+        1720
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_102_institutional_modules.json",
+      "line_numbers": [
+        291,
+        292,
+        299,
+        300,
+        303
+      ],
+      "violation_count": 623
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,40 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\eventbus_compliance_fingerprint_sync.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.714863+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\eventbus_compliance_fingerprint_sync.py",
+      "line_numbers": [
+        16,
+        99,
+        124,
+        153,
+        214
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\eventbus_compliance_fingerprint_sync.py",
+      "line_numbers": [
+        134,
+        221
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\eventbus_compliance_fingerprint_sync.py",
+      "line_numbers": [
+        91,
+        270
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

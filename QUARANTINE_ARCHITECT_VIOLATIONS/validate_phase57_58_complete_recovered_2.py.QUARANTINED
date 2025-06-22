@@ -1,0 +1,83 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.617321+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+      "line_numbers": [
+        20,
+        42,
+        43,
+        62,
+        63
+      ],
+      "violation_count": 25
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+      "line_numbers": [
+        10,
+        11,
+        56,
+        175,
+        187
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+      "line_numbers": [
+        25,
+        72,
+        90,
+        180
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+      "line_numbers": [
+        86,
+        104,
+        154,
+        261
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+      "line_numbers": [
+        41,
+        59,
+        61,
+        79,
+        97
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase57_58_complete_recovered_2.py",
+      "line_numbers": [
+        44,
+        64,
+        82,
+        100,
+        123
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

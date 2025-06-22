@@ -1,0 +1,9 @@
+{
+  "module_id": "import_test",
+  "original_path": "modules\\restored\\import_test.py",
+  "preserved_path": "preservation_holding_area\\import_test_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13683,
+  "checksum": "7845ccd2d1127499066fa768f4eabc1e8e00e210cb8a82b4f161453105c797f1"
+}

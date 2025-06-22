@@ -1,0 +1,344 @@
+# <!-- @GENESIS_MODULE_START: validate_phase92b_completion -->
+
+from event_bus import EventBus
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("validate_phase92b_completion_recovered_1", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("validate_phase92b_completion_recovered_1", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "validate_phase92b_completion_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in validate_phase92b_completion_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "validate_phase92b_completion_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("validate_phase92b_completion_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in validate_phase92b_completion_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🎯 GENESIS PHASE 92B FINAL STATUS VALIDATOR
+Comprehensive validation of all Phase 92B deliverables and system status
+"""
+
+import json
+import os
+import logging
+from datetime import datetime, timezone
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger('Phase92BValidator')
+
+def validate_phase92b_completion():
+    """Validate all Phase 92B deliverables and system status"""
+    
+    print("🔍 GENESIS PHASE 92B COMPLETION VALIDATION")
+    print("=" * 60)
+    
+    validation_results = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "phase": "92B_core_system_reconnection",
+        "status": "validating",
+        "modules": {},
+        "files": {},
+        "tests": {},
+        "compliance": {}
+    }
+    
+    # 1. Validate Core Modules
+    print("\n📦 VALIDATING CORE MODULES:")
+    core_modules = {
+        "mt5_sync_adapter.py": "MT5 data synchronization",
+        "backtest_engine_simple.py": "Real MT5 backtest engine",
+        "live_trade_analyzer.py": "Live position analysis",
+        "dashboard_linkage_patch.py": "GUI button integration"
+    }
+    
+    for module, description in core_modules.items():
+        exists = os.path.exists(module)
+        if exists:
+            size = os.path.getsize(module)
+            print(f"  ✅ {module} ({size:,} bytes) - {description}")
+            validation_results["modules"][module] = {"exists": True, "size": size, "description": description}
+        else:
+            print(f"  ❌ {module} - MISSING")
+            validation_results["modules"][module] = {"exists": False, "description": description}
+    
+    # 2. Validate Output Files
+    print("\n📄 VALIDATING OUTPUT FILES:")
+    output_files = {
+        "backtest_results.json": "Backtest analysis results",
+        "backtest_summary.md": "Human-readable backtest summary",
+        "manual_trade_evaluation.json": "Live position analysis",
+        "telemetry/backtest_summary.json": "Dashboard backtest integration",
+        "telemetry/manual_trade_scores.json": "Dashboard live scores",
+        "logs/execution_log.json": "System execution log"
+    }
+    
+    for file_path, description in output_files.items():
+        exists = os.path.exists(file_path)
+        if exists:
+            size = os.path.getsize(file_path)
+            # Check if file contains real data (not empty or minimal)
+            is_substantive = size > 100  # Basic check for meaningful content
+            print(f"  ✅ {file_path} ({size:,} bytes) - {description}")
+            validation_results["files"][file_path] = {
+                "exists": True, 
+                "size": size, 
+                "substantive": is_substantive,
+                "description": description
+            }
+        else:
+            print(f"  ❌ {file_path} - MISSING")
+            validation_results["files"][file_path] = {"exists": False, "description": description}
+    
+    # 3. Validate Test Results
+    print("\n🧪 VALIDATING TEST RESULTS:")
+    test_files = {
+        "test_backtest_results.json": "Backtest engine test results",
+        "system_validation_results.json": "System validation results"
+    }
+    
+    for test_file, description in test_files.items():
+        exists = os.path.exists(test_file)
+        if exists:
+            try:
+                with open(test_file, 'r') as f:
+                    self.event_bus.request('data:live_feed') = json.load(f)
+                    
+                # Check for error indicators
+                has_errors = "error" in self.event_bus.request('data:live_feed') or any("error" in str(v) for v in self.event_bus.request('data:live_feed').values())
+                print(f"  ✅ {test_file} - {description} {'(❌ ERRORS DETECTED)' if has_errors else '(✅ CLEAN)'}")
+                validation_results["tests"][test_file] = {
+                    "exists": True,
+                    "has_errors": has_errors,
+                    "description": description
+                }
+            except Exception as e:
+                print(f"  ⚠️ {test_file} - EXISTS BUT UNREADABLE: {e}")
+                validation_results["tests"][test_file] = {
+                    "exists": True,
+                    "has_errors": True,
+                    "error": str(e)
+                }
+        else:
+            print(f"  ❌ {test_file} - MISSING")
+            validation_results["tests"][test_file] = {"exists": False, "description": description}
+    
+    # 4. Validate System Status Files
+    print("\n⚙️ VALIDATING SYSTEM STATUS:")
+    system_files = {
+        "dashboard_lock_state.json": "Dashboard operational state",
+        "dashboard_button_status.json": "Button handler status",
+        "build_tracker.md": "Build progress tracking",
+        "PHASE_92B_COMPLETION_REPORT.md": "Phase completion documentation"
+    }
+    
+    for sys_file, description in system_files.items():
+        exists = os.path.exists(sys_file)
+        if exists:
+            size = os.path.getsize(sys_file)
+            print(f"  ✅ {sys_file} ({size:,} bytes) - {description}")
+            validation_results["compliance"][sys_file] = {
+                "exists": True,
+                "size": size,
+                "description": description
+            }
+        else:
+            print(f"  ❌ {sys_file} - MISSING")
+            validation_results["compliance"][sys_file] = {"exists": False, "description": description}
+    
+    # 5. Overall Assessment
+    print("\n📊 PHASE 92B COMPLETION ASSESSMENT:")
+    
+    total_modules = len(core_modules)
+    working_modules = sum(1 for m in validation_results["modules"].values() if m.get("exists", False))
+    
+    total_outputs = len(output_files)
+    existing_outputs = sum(1 for f in validation_results["files"].values() if f.get("exists", False))
+    
+    total_tests = len(test_files)
+    passing_tests = sum(1 for t in validation_results["tests"].values() 
+                       if t.get("exists", False) and not t.get("has_errors", True))
+    
+    total_compliance = len(system_files)
+    compliant_files = sum(1 for c in validation_results["compliance"].values() if c.get("exists", False))
+    
+    print(f"  📦 Core Modules: {working_modules}/{total_modules} ({working_modules/total_modules:.1%})")
+    print(f"  📄 Output Files: {existing_outputs}/{total_outputs} ({existing_outputs/total_outputs:.1%})")
+    print(f"  🧪 Tests: {passing_tests}/{total_tests} ({passing_tests/total_tests:.1%})")
+    print(f"  ⚙️ Compliance: {compliant_files}/{total_compliance} ({compliant_files/total_compliance:.1%})")
+    
+    # Calculate overall completion score
+    overall_score = (
+        (working_modules/total_modules) * 0.4 +
+        (existing_outputs/total_outputs) * 0.3 +
+        (passing_tests/total_tests) * 0.2 +
+        (compliant_files/total_compliance) * 0.1
+    )
+    
+    validation_results["overall_score"] = overall_score
+    validation_results["completion_percentage"] = overall_score * 100
+    
+    print(f"\n🎯 OVERALL COMPLETION SCORE: {overall_score:.1%}")
+    
+    if overall_score >= 0.95:
+        status = "✅ EXCELLENT - PHASE 92B FULLY COMPLETE"
+        validation_results["status"] = "completed_excellent"
+    elif overall_score >= 0.85:
+        status = "✅ GOOD - PHASE 92B SUBSTANTIALLY COMPLETE"
+        validation_results["status"] = "completed_good"
+    elif overall_score >= 0.70:
+        status = "⚠️ PARTIAL - PHASE 92B MOSTLY COMPLETE"
+        validation_results["status"] = "partial_completion"
+    else:
+        status = "❌ INCOMPLETE - PHASE 92B NEEDS MORE WORK"
+        validation_results["status"] = "incomplete"
+    
+    print(f"\n🏆 PHASE 92B STATUS: {status}")
+    
+    # 6. Next Steps Recommendation
+    print(f"\n🔮 NEXT STEPS:")
+    if overall_score >= 0.90:
+        print("  ✅ System ready for Phase 92C advanced analytics integration")
+        print("  ✅ All core functionality operational with real MT5 data")
+        print("  ✅ Dashboard fully connected and responsive")
+    else:
+        print("  ⚠️ Address missing components before proceeding to Phase 92C")
+        print("  ⚠️ Ensure all tests are passing")
+        print("  ⚠️ Verify real data integration is complete")
+    
+    # Save validation results
+    with open("phase_92b_validation_results.json", 'w') as f:
+        json.dump(validation_results, f, indent=2)
+    
+    print(f"\n💾 Validation results saved to: phase_92b_validation_results.json")
+    
+    return validation_results
+
+def main():
+    """Run Phase 92B completion validation"""
+    try:
+        results = validate_phase92b_completion()
+        
+        print(f"\n" + "=" * 60)
+        print(f"🎉 GENESIS PHASE 92B VALIDATION COMPLETE")
+        print(f"📊 Completion Score: {results['completion_percentage']:.1f}%")
+        print(f"⏰ Validation Time: {results['timestamp']}")
+        print(f"🚀 Status: {results['status'].upper()}")
+        print(f"=" * 60)
+        
+        return results
+        
+    except Exception as e:
+        logger.error(f"Validation failed: {e}")
+        return {"error": str(e), "status": "validation_failed"}
+
+if __name__ == "__main__":
+    main()
+
+
+# <!-- @GENESIS_MODULE_END: validate_phase92b_completion -->

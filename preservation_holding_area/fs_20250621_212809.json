@@ -1,0 +1,9 @@
+{
+  "module_id": "fs",
+  "original_path": "modules\\restored\\fs.py",
+  "preserved_path": "preservation_holding_area\\fs_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 27514,
+  "checksum": "e7df6bbe1d17d1f5e478d18e7dc545bf121a6b3f18c0d4b1f6b36bfbde55b2cd"
+}

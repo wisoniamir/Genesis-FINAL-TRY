@@ -1,0 +1,9 @@
+{
+  "module_id": "post_trade_feedback_engine",
+  "original_path": "modules\\execution\\post_trade_feedback_engine.py",
+  "preserved_path": "preservation_holding_area\\post_trade_feedback_engine_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25558,
+  "checksum": "2347f323a6b96a6b98bf7ad7f8affd4233d01f5aecb14324aa52cd759728f0ce"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "websocket_test",
+  "original_path": "modules\\restored\\websocket_test.py",
+  "preserved_path": "preservation_holding_area\\websocket_test_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 242454,
+  "checksum": "bbbf5999e6bd7c8bdcb3542189321d8ab6497a49923ed20042c6fffb97596153"
+}

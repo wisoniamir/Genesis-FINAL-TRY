@@ -1,0 +1,9 @@
+{
+  "module_id": "sniper_signal_interceptor",
+  "original_path": "modules\\signal_processing\\sniper_signal_interceptor.py",
+  "preserved_path": "preservation_holding_area\\sniper_signal_interceptor_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 49350,
+  "checksum": "f0068c8c320bbbb4bdf00f70a569248ea1225bebbdc7f92261cfa7873493a37b"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "liquidity_sweep_validator",
+  "original_path": "modules\\unclassified\\liquidity_sweep_validator.py",
+  "preserved_path": "preservation_holding_area\\liquidity_sweep_validator_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 9371,
+  "checksum": "53b3980b83703e4eefb43343d346c24b2397d4626cb254a0cd4f4941c57ba73e"
+}

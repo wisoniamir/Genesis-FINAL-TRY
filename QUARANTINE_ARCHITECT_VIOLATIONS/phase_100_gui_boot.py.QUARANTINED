@@ -1,0 +1,116 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.850486+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        19
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        19
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        206,
+        393
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        382,
+        386,
+        390
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        30,
+        80,
+        111,
+        339,
+        360
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        84,
+        138,
+        377,
+        470,
+        564
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        143,
+        399,
+        426,
+        617
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        373,
+        448
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_100_gui_boot.py",
+      "line_numbers": [
+        82
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

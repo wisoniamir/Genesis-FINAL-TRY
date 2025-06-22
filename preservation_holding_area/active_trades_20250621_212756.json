@@ -1,0 +1,9 @@
+{
+  "module_id": "active_trades",
+  "original_path": "modules\\execution\\active_trades.py",
+  "preserved_path": "preservation_holding_area\\active_trades_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21574,
+  "checksum": "7cba53b56c3236f703e36f803e463d6b6afa8d753541dd887f019e00032e0cf0"
+}

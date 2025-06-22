@@ -1,0 +1,91 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.820294+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        6,
+        115,
+        228,
+        283,
+        314
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        170,
+        239,
+        251,
+        296,
+        456
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        248,
+        973,
+        1044
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        150,
+        454,
+        480,
+        483,
+        583
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        158
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        337,
+        531,
+        594,
+        615
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_scorer.py",
+      "line_numbers": [
+        131,
+        155,
+        161,
+        459,
+        467
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

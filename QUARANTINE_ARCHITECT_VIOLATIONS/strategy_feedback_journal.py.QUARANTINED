@@ -1,0 +1,91 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.415400+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        9,
+        136,
+        252,
+        318,
+        406
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        241,
+        311,
+        398,
+        419,
+        489
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        176,
+        265,
+        282,
+        345
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        107,
+        171,
+        306,
+        504,
+        542
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        59,
+        574
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        111,
+        112
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\strategy_feedback_journal.py",
+      "line_numbers": [
+        119,
+        120,
+        123,
+        124,
+        125
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

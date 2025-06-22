@@ -1,0 +1,303 @@
+{
+  "version": "v8.3.0_phase8_reconnection_complete",
+  "architect_mode": true,
+  "real_data_only": true,
+  "mock_data_forbidden": true,
+  "stackfix_applied": true,
+  "segmented_architecture": true,
+  "segments_directory": "EVENTBUS_SEGMENTS",
+  "master_index": "event_bus_index.json",
+  "optimization_timestamp": "2025-06-21T19:45:00.000000",
+  "phase_2_optimization_completed": true,
+  "phase_8_reconnection_completed": true,
+  "feedback_loops_enabled": true,
+  "feedback_event_map_integrated": true,
+  "routes_repaired": true,
+  "consumers_mapped": true,
+  "original_stats": {
+    "original_size_mb": 0.0005140304565429688,
+    "original_lines": 17,
+    "segments_created": 0
+  },
+  "phase_2_stats": {
+    "feedback_routes_added": 74,
+    "optimization_modules_upgraded": 5,
+    "feedback_latency_target_ms": 100,
+    "real_time_processing_enabled": true
+  },
+  "load_instruction": "Use EventBusLoader.load_segmented() for runtime assembly",
+  "rebuild_timestamp": "2025-06-22T17:54:07.459677",
+  "routes": {
+    "macro_analysis_complete": {
+      "producer": "macro_recalibrate",
+      "consumers": [
+        "signal_engine",
+        "execution_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "economic_event_detected": {
+      "producer": "macro_recalibrate",
+      "consumers": [
+        "risk_engine",
+        "signal_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "alpha_sweep_complete": {
+      "producer": "alpha_sweep",
+      "consumers": [
+        "signal_engine",
+        "execution_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "confluence_detected": {
+      "producer": "alpha_sweep",
+      "consumers": [
+        "signal_engine",
+        "sniper_checklist",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "sniper_validated": {
+      "producer": "sniper_checklist",
+      "consumers": [
+        "execution_engine",
+        "risk_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "entry_conditions_met": {
+      "producer": "sniper_checklist",
+      "consumers": [
+        "execution_engine",
+        "signal_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "kill_switch_triggered": {
+      "producer": "kill_switch_audit",
+      "consumers": [
+        "execution_engine",
+        "risk_engine",
+        "dashboard_engine",
+        "genesis_desktop"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "critical",
+      "mt5_dependent": true
+    },
+    "risk_limit_breached": {
+      "producer": "kill_switch_audit",
+      "consumers": [
+        "execution_engine",
+        "risk_engine",
+        "dashboard_engine",
+        "genesis_desktop"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "critical",
+      "mt5_dependent": true
+    },
+    "synergy_complete": {
+      "producer": "synergy_scan",
+      "consumers": [
+        "signal_engine",
+        "alpha_sweep",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "market_regime_changed": {
+      "producer": "synergy_scan",
+      "consumers": [
+        "macro_recalibrate",
+        "signal_engine",
+        "risk_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "genesis_map_updated": {
+      "producer": "genesis_map",
+      "consumers": [
+        "dashboard_engine",
+        "genesis_desktop"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "medium",
+      "mt5_dependent": false
+    },
+    "topology_validated": {
+      "producer": "genesis_map",
+      "consumers": [
+        "dashboard_engine",
+        "genesis_desktop",
+        "build_status"
+      ],
+      "data_type": "trading_intelligence",
+      "priority": "medium",
+      "mt5_dependent": false
+    },
+    "SIGNAL_BUY": {
+      "producer": "strategy_engine",
+      "consumers": [
+        "execution_engine"
+      ],
+      "data_type": "trading_signal",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "SIGNAL_SELL": {
+      "producer": "strategy_engine",
+      "consumers": [
+        "execution_engine"
+      ],
+      "data_type": "trading_signal",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "ORDER_EXECUTED": {
+      "producer": "execution_engine",
+      "consumers": [
+        "position_manager"
+      ],
+      "data_type": "trading_execution",
+      "priority": "critical",
+      "mt5_dependent": true
+    },
+    "POSITION_OPENED": {
+      "producer": "position_manager",
+      "consumers": [
+        "dashboard_engine",
+        "risk_engine"
+      ],
+      "data_type": "position_management",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "POSITION_CLOSED": {
+      "producer": "position_manager",
+      "consumers": [
+        "dashboard_engine",
+        "risk_engine"
+      ],
+      "data_type": "position_management",
+      "priority": "high",
+      "mt5_dependent": true
+    },
+    "PRICE_FEED_UPDATE": {
+      "producer": "mt5_connector",
+      "consumers": [
+        "strategy_engine",
+        "dashboard_engine"
+      ],
+      "data_type": "market_data",
+      "priority": "normal",
+      "mt5_dependent": true
+    },
+    "TICK_DATA": {
+      "producer": "mt5_connector",
+      "consumers": [
+        "strategy_engine",
+        "execution_engine"
+      ],
+      "data_type": "market_data",
+      "priority": "high",
+      "mt5_dependent": true
+    }
+  },
+  "SIGNAL_BUY": {
+    "emitters": [
+      "strategy_engine"
+    ],
+    "listeners": [
+      "execution_engine"
+    ]
+  },
+  "SIGNAL_SELL": {
+    "emitters": [
+      "strategy_engine"
+    ],
+    "listeners": [
+      "execution_engine"
+    ]
+  },
+  "ORDER_EXECUTED": {
+    "emitters": [
+      "execution_engine"
+    ],
+    "listeners": [
+      "position_manager"
+    ]
+  },
+  "POSITION_OPENED": {
+    "emitters": [
+      "position_manager"
+    ],
+    "listeners": []
+  },
+  "POSITION_CLOSED": {
+    "emitters": [
+      "position_manager"
+    ],
+    "listeners": []
+  },
+  "PRICE_FEED_UPDATE": {
+    "emitters": [
+      "mt5_connector"
+    ],
+    "listeners": [
+      "strategy_engine"
+    ]
+  },
+  "KILL_SWITCH_TRIGGERED": {
+    "emitters": [
+      "risk_guard"
+    ],
+    "listeners": [
+      "execution_engine",
+      "position_manager"
+    ]
+  },
+  "RISK_LEVEL_CHANGE": {
+    "emitters": [
+      "risk_guard"
+    ],
+    "listeners": [
+      "strategy_engine"
+    ]
+  },
+  "TICK_DATA": {
+    "emitters": [
+      "mt5_connector"
+    ],
+    "listeners": [
+      "strategy_engine",
+      "risk_guard"
+    ]
+  }
+}

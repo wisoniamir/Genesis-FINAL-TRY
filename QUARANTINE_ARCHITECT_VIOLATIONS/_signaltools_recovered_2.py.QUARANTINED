@@ -1,0 +1,67 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_signaltools_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:47.009432+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_signaltools_recovered_2.py",
+      "line_numbers": [
+        194,
+        1094,
+        1150,
+        1198,
+        1200
+      ],
+      "violation_count": 37
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_signaltools_recovered_2.py",
+      "line_numbers": [
+        2151,
+        4686
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_signaltools_recovered_2.py",
+      "line_numbers": [
+        47,
+        55,
+        257
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_signaltools_recovered_2.py",
+      "line_numbers": [
+        80,
+        89,
+        100,
+        461,
+        471
+      ],
+      "violation_count": 27
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_signaltools_recovered_2.py",
+      "line_numbers": [
+        288,
+        309,
+        394,
+        406,
+        408
+      ],
+      "violation_count": 69
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

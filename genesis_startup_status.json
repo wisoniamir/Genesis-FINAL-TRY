@@ -1,0 +1,25 @@
+{
+  "startup_timestamp": "2025-06-20T22:31:31.478998",
+  "workspace_path": "C:\\Users\\patra\\Genesis FINAL TRY",
+  "services_started": [
+    "watchdog_system"
+  ],
+  "startup_log": [
+    "[22:31:29] INFO: \ud83d\ude80 GENESIS AUTO-STARTUP INITIATED",
+    "[22:31:29] INFO: ============================================================",
+    "[22:31:29] INFO: Checking GENESIS system prerequisites...",
+    "[22:31:29] SUCCESS: All prerequisites satisfied",
+    "[22:31:29] INFO: Validating ARCHITECT MODE compliance...",
+    "[22:31:29] SUCCESS: ARCHITECT MODE v7.0.0 compliance verified",
+    "[22:31:29] INFO: Verifying Git pre-commit hooks...",
+    "[22:31:29] SUCCESS: Git pre-commit hooks verified (2 found)",
+    "[22:31:29] INFO: Starting GENESIS Watchdog System...",
+    "[22:31:31] SUCCESS: GENESIS Watchdog System started successfully",
+    "[22:31:31] INFO: Running initial system audit...",
+    "[22:31:31] WARNING: Initial audit FAILED - Violations detected",
+    "[22:31:31] INFO: Review audit_snapshot_report.md for details"
+  ],
+  "auto_startup_version": "v1.0.0",
+  "architect_mode_active": true,
+  "zero_tolerance_enforcement": true
+}

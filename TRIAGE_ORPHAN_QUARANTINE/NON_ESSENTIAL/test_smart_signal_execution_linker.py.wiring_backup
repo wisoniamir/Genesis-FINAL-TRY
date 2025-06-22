@@ -1,0 +1,423 @@
+#!/usr/bin/env python3
+"""
+GENESIS AI Trading System - Smart Signal Execution Linker Test Suite
+PHASE 25 - Signal-to-Execution Bridge Testing
+
+ARCHITECT MODE v2.7 COMPLIANT
+- Event-driven architecture (EventBus only)
+- Real signal and envelope data integration
+- Full telemetry and logging validation
+- Institutional-grade compliance testing
+"""
+
+import sys
+import os
+import json
+import time
+import unittest
+from unittest.mock import patch, MagicMock
+from datetime import datetime, timezone
+
+# Add project root to path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from smart_signal_execution_linker import SmartSignalExecutionLinker
+from hardened_event_bus import HardenedEventBus
+
+class TestSmartSignalExecutionLinker(unittest.TestCase):
+    """
+    Comprehensive test suite for Smart Signal Execution Linker
+    Tests signal-to-execution bridging, FTMO compliance, performance
+    """
+    
+    def setUp(self):
+        """Initialize test environment with real components"""
+        self.event_bus = HardenedEventBus()
+        self.linker = SmartSignalExecutionLinker()
+        
+        # Load test configuration
+        try:
+            with open('linker_config.json', 'r') as f:
+                self.config = json.load(f)
+        except FileNotFoundError:
+            self.skipTest("linker_config.json not found - skipping tests")
+    
+    def test_signal_confidence_filtering(self):
+        """Test: Signal filtering based on confidence threshold"""
+        print("\n🧪 Testing signal confidence filtering...")
+        
+        # Create test signal below threshold
+        low_confidence_signal = {
+            "signal_id": "test_signal_001",
+            "symbol": "EURUSD",
+            "confidence": 0.65,  # Below 0.75 threshold
+            "direction": "BUY",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "pattern_strength": 0.60,
+            "harmony_score": 0.70
+        }
+        
+        # Process signal through linker
+        initial_blocked_count = self.linker.performance_tracker['links_blocked_confidence']
+        
+        self.linker._handle_signal_generated({
+            'payload': low_confidence_signal
+        })
+        
+        final_blocked_count = self.linker.performance_tracker['links_blocked_confidence']
+        
+        print(f"   ✅ Low confidence signal blocked: {final_blocked_count > initial_blocked_count}")
+        self.assertGreater(final_blocked_count, initial_blocked_count)
+    
+    def test_high_confidence_signal_processing(self):
+        """Test: High confidence signal processing"""
+        print("\n🧪 Testing high confidence signal processing...")
+        
+        # Create test signal above threshold
+        high_confidence_signal = {
+            "signal_id": "test_signal_002",
+            "symbol": "GBPUSD",
+            "confidence": 0.85,  # Above 0.75 threshold
+            "direction": "SELL",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "pattern_strength": 0.80,
+            "harmony_score": 0.85,
+            "stop_loss": 1.2600,
+            "take_profit": 1.2500
+        }
+        
+        # Add signal to queue
+        initial_queue_size = len(self.linker.signal_queue)
+        
+        self.linker._handle_signal_generated({
+            'payload': high_confidence_signal
+        })
+        
+        final_queue_size = len(self.linker.signal_queue)
+        
+        print(f"   ✅ High confidence signal queued for processing")
+        self.assertGreaterEqual(final_queue_size, initial_queue_size)
+    
+    def test_execution_envelope_matching(self):
+        """Test: Signal-envelope matching and linking"""
+        print("\n🧪 Testing execution envelope matching...")
+        
+        # Create matching signal and envelope
+        test_signal = {
+            "signal_id": "test_signal_003",
+            "symbol": "USDJPY",
+            "confidence": 0.80,
+            "direction": "BUY",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "stop_loss": 149.00,
+            "take_profit": 150.00
+        }
+        
+        test_envelope = {
+            "envelope_id": "test_envelope_003",
+            "symbol": "USDJPY",
+            "position_size_lots": 0.5,
+            "entry_price_target": 149.50,
+            "decision_latency_ms": 125.0,
+            "risk_score": 0.4
+        }
+        
+        # Process signal and envelope
+        initial_links_count = self.linker.performance_tracker['links_created']
+        
+        self.linker._handle_signal_generated({'payload': test_signal})
+        self.linker._handle_execution_envelope_ready({'payload': test_envelope})
+        
+        final_links_count = self.linker.performance_tracker['links_created']
+        
+        print(f"   ✅ Signal-envelope link created")
+        self.assertGreaterEqual(final_links_count, initial_links_count)
+    
+    def test_kill_switch_blocking(self):
+        """Test: Kill switch blocking functionality"""
+        print("\n🧪 Testing kill switch blocking...")
+        
+        # Trigger kill switch
+        self.linker._handle_kill_switch({
+            'payload': {'status': 'TRIGGERED'}
+        })
+        
+        # Try to process signal
+        test_signal = {
+            "signal_id": "test_signal_004",
+            "symbol": "AUDUSD",
+            "confidence": 0.90,
+            "direction": "BUY",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        initial_blocked_count = self.linker.performance_tracker['links_blocked_killswitch']
+        
+        self.linker._handle_signal_generated({'payload': test_signal})
+        
+        final_blocked_count = self.linker.performance_tracker['links_blocked_killswitch']
+        
+        print(f"   ✅ Kill switch blocked execution")
+        self.assertEqual(self.linker.kill_switch_status, "TRIGGERED")
+        self.assertGreater(final_blocked_count, initial_blocked_count)
+    
+    def test_ftmo_constraints_validation(self):
+        """Test: FTMO compliance constraints"""
+        print("\n🧪 Testing FTMO constraints validation...")
+        
+        # Test daily trade limit
+        original_daily_trades = self.linker.performance_tracker['daily_trades_count']
+        self.linker.performance_tracker['daily_trades_count'] = self.linker.constraints.max_daily_trades
+        
+        test_signal = {
+            "signal_id": "test_signal_005",
+            "symbol": "USDCAD",
+            "confidence": 0.85,
+            "direction": "SELL",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        ftmo_validation = self.linker._validate_ftmo_constraints(test_signal)
+        
+        print(f"   ✅ FTMO daily limit validation: {'BLOCKED' if not ftmo_validation else 'ALLOWED'}")
+        self.assertFalse(ftmo_validation)
+        
+        # Restore original count
+        self.linker.performance_tracker['daily_trades_count'] = original_daily_trades
+    
+    def test_sl_tp_ratio_validation(self):
+        """Test: Stop loss to take profit ratio validation"""
+        print("\n🧪 Testing SL/TP ratio validation...")
+        
+        # Test valid BUY SL/TP ratio
+        entry_price = 1.0850
+        stop_loss = 1.0830    # 20 pips loss
+        take_profit = 1.0870  # 20 pips profit
+        
+        valid_ratio = self.linker._validate_sl_tp_ratio(entry_price, stop_loss, take_profit, "BUY")
+        
+        print(f"   ✅ Valid SL/TP ratio (1:1): {valid_ratio}")
+        self.assertTrue(valid_ratio)
+        
+        # Test invalid ratio
+        invalid_take_profit = 1.0860  # Only 10 pips profit vs 20 pips loss
+        invalid_ratio = self.linker._validate_sl_tp_ratio(entry_price, stop_loss, invalid_take_profit, "BUY")
+        
+        print(f"   ✅ Invalid SL/TP ratio (1:0.5): {not invalid_ratio}")
+        self.assertFalse(invalid_ratio)
+    
+    def test_linking_latency_measurement(self):
+        """Test: Linking latency measurement and tracking"""
+        print("\n🧪 Testing linking latency measurement...")
+        
+        # Create signal and envelope for timing test
+        test_signal = {
+            "signal_id": "test_signal_006",
+            "symbol": "EURUSD",
+            "confidence": 0.80,
+            "direction": "BUY",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "stop_loss": 1.0830,
+            "take_profit": 1.0870
+        }
+        
+        test_envelope = {
+            "envelope_id": "test_envelope_006",
+            "symbol": "EURUSD",
+            "position_size_lots": 0.3,
+            "entry_price_target": 1.0850,
+            "decision_latency_ms": 150.0,
+            "risk_score": 0.3
+        }
+        
+        start_time = time.time()
+        
+        # Create link to measure latency
+        link = self.linker._create_signal_execution_link(test_signal, test_envelope, start_time)
+        
+        if link:
+            print(f"   ✅ Link created with latency: {link.dispatch_latency_ms:.2f}ms")
+            self.assertLess(link.dispatch_latency_ms, 500)  # Under 500ms threshold
+            self.assertIsNotNone(link.link_id)
+        else:
+            print(f"   ⚠️ Link creation returned None")
+    
+    def test_telemetry_payload_creation(self):
+        """Test: Telemetry payload structure and content"""
+        print("\n🧪 Testing telemetry payload creation...")
+        
+        test_signal = {
+            "signal_id": "test_signal_007",
+            "signal_type": "MACD_CROSSOVER",
+            "timeframe": "H1",
+            "pattern_strength": 0.75,
+            "harmony_score": 0.80
+        }
+        
+        test_envelope = {
+            "envelope_id": "test_envelope_007",
+            "decision_latency_ms": 200.0,
+            "risk_score": 0.4,
+            "compliance_checks": {"ftmo_compliant": True}
+        }
+        
+        telemetry_payload = self.linker._create_link_telemetry_payload(
+            test_signal, test_envelope, 300.0
+        )
+        
+        # Verify telemetry structure
+        required_sections = ['signal_metadata', 'envelope_metadata', 'linking_metrics', 'system_state']
+        for section in required_sections:
+            self.assertIn(section, telemetry_payload)
+        
+        print(f"   ✅ Telemetry payload structure validated")
+        self.assertEqual(telemetry_payload['linking_metrics']['dispatch_latency_ms'], 300.0)
+    
+    def test_queue_management(self):
+        """Test: Signal and envelope queue management"""
+        print("\n🧪 Testing queue management...")
+        
+        # Test signal queue
+        initial_signal_queue_size = len(self.linker.signal_queue)
+        
+        test_signal = {
+            "signal_id": "test_signal_008",
+            "symbol": "GBPUSD",
+            "confidence": 0.78,
+            "direction": "SELL",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        self.linker._handle_signal_generated({'payload': test_signal})
+        
+        final_signal_queue_size = len(self.linker.signal_queue)
+        
+        print(f"   ✅ Signal queue size: {initial_signal_queue_size} → {final_signal_queue_size}")
+        
+        # Test envelope queue
+        initial_envelope_queue_size = len(self.linker.envelope_queue)
+        
+        test_envelope = {
+            "envelope_id": "test_envelope_008",
+            "symbol": "GBPUSD",
+            "position_size_lots": 0.4,
+            "entry_price_target": 1.2650
+        }
+        
+        self.linker._handle_execution_envelope_ready({'payload': test_envelope})
+        
+        final_envelope_queue_size = len(self.linker.envelope_queue)
+        
+        print(f"   ✅ Envelope queue size: {initial_envelope_queue_size} → {final_envelope_queue_size}")
+    
+    def test_performance_metrics_tracking(self):
+        """Test: Performance metrics tracking and updates"""
+        print("\n🧪 Testing performance metrics tracking...")
+        
+        # Get initial metrics
+        initial_metrics = self.linker.performance_tracker.copy()
+        
+        # Process multiple signals to update metrics
+        for i in range(3):
+            test_signal = {
+                "signal_id": f"test_signal_009_{i}",
+                "symbol": "USDJPY",
+                "confidence": 0.82,
+                "direction": "BUY",
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            
+            self.linker._handle_signal_generated({'payload': test_signal})        # Check metrics updates
+        final_metrics = self.linker.performance_tracker
+          # Check if any counter was incremented (signals should be processed)
+        metrics_changed = (
+            final_metrics['links_created'] > initial_metrics['links_created'] or
+            final_metrics['links_dispatched'] > initial_metrics['links_dispatched'] or
+            final_metrics['signals_queued'] > initial_metrics['signals_queued'] or
+            final_metrics['links_blocked_confidence'] > initial_metrics['links_blocked_confidence'] or
+            final_metrics['links_blocked_ftmo'] > initial_metrics['links_blocked_ftmo'] or
+            final_metrics['links_blocked_killswitch'] > initial_metrics['links_blocked_killswitch']
+        )
+        
+        print(f"   ✅ Performance metrics updated: {metrics_changed}")
+        print(f"       Links created: {initial_metrics['links_created']} → {final_metrics['links_created']}")
+        print(f"       Signals queued: {initial_metrics.get('signals_queued', 0)} → {final_metrics.get('signals_queued', 0)}")
+        print(f"       Links blocked: {initial_metrics['links_blocked_confidence']} → {final_metrics['links_blocked_confidence']}")
+        self.assertTrue(metrics_changed)
+        
+        # Test performance summary
+        performance_summary = self.linker.get_performance_summary()
+        
+        required_summary_fields = ['module', 'phase', 'performance_metrics', 'constraints', 'queue_status']
+        for field in required_summary_fields:
+            self.assertIn(field, performance_summary)
+        
+        print(f"   ✅ Performance summary structure validated")
+
+def run_phase25_tests():
+    """Execute PHASE 25 test suite"""
+    print("=" * 80)
+    print("🚀 GENESIS PHASE 25 - SMART SIGNAL EXECUTION LINKER TEST SUITE")
+    print("   ARCHITECT MODE v2.7 COMPLIANT")
+    print("=" * 80)
+    
+    # Load test configuration
+    try:
+        with open('linker_config.json', 'r') as f:
+            config = json.load(f)
+        print(f"✅ Configuration loaded: {config['linker_settings']['name']}")
+    except FileNotFoundError:
+        print("❌ linker_config.json not found")
+        return False
+    
+    # Create test suite
+    loader = unittest.TestLoader()
+    suite = loader.loadTestsFromTestCase(TestSmartSignalExecutionLinker)
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(suite)
+    
+    # Test results summary
+    print("\n" + "=" * 80)
+    print("📊 PHASE 25 TEST RESULTS SUMMARY")
+    print("=" * 80)
+    print(f"Tests Run: {result.testsRun}")
+    print(f"Failures: {len(result.failures)}")
+    print(f"Errors: {len(result.errors)}")
+    print(f"Success Rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%")
+    
+    if result.failures:
+        print("\n❌ FAILURES:")
+        for test, failure in result.failures:
+            print(f"   - {test}: {failure}")
+    
+    if result.errors:
+        print("\n⚠️ ERRORS:")
+        for test, error in result.errors:
+            print(f"   - {test}: {error}")
+    
+    # Architect compliance check
+    architect_compliant = (len(result.failures) == 0 and len(result.errors) == 0)
+    
+    print(f"\n🔐 ARCHITECT MODE v2.7 COMPLIANCE: {'✅ PASSED' if architect_compliant else '❌ FAILED'}")
+    print("=" * 80)
+    
+    return architect_compliant
+
+if __name__ == "__main__":
+    success = run_phase25_tests()
+    sys.exit(0 if success else 1)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        

@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_playbook_generator_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.741569+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_playbook_generator_recovered_1.py",
+      "line_numbers": [
+        17,
+        104,
+        133,
+        164,
+        186
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_playbook_generator_recovered_1.py",
+      "line_numbers": [
+        127,
+        158,
+        180,
+        198,
+        208
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_playbook_generator_recovered_1.py",
+      "line_numbers": [
+        110,
+        141
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_playbook_generator_recovered_1.py",
+      "line_numbers": [
+        96,
+        429
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_playbook_generator_recovered_1.py",
+      "line_numbers": [
+        119,
+        120,
+        121
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

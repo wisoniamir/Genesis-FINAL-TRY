@@ -1,0 +1,99 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.201882+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        10,
+        58,
+        288,
+        292,
+        295
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        273,
+        278
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        33,
+        110,
+        167,
+        213,
+        239
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        150,
+        191,
+        282,
+        334,
+        401
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        131,
+        172,
+        217,
+        269
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        396
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        98,
+        142,
+        155,
+        220,
+        246
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_surveillance_daemon.py",
+      "line_numbers": [
+        1
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

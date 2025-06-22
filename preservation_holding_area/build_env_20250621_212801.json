@@ -1,0 +1,9 @@
+{
+  "module_id": "build_env",
+  "original_path": "modules\\restored\\build_env.py",
+  "preserved_path": "preservation_holding_area\\build_env_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21364,
+  "checksum": "578a5d51a9c8b60e0c301b8d12a22cca2b9c0093823c38b35e31f47fb1dc35b2"
+}

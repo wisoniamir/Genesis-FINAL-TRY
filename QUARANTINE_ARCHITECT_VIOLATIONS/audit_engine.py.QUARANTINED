@@ -1,0 +1,103 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.349332+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        66,
+        75,
+        120,
+        183,
+        259
+      ],
+      "violation_count": 24
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        8,
+        51,
+        68,
+        194,
+        196
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        199
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        200
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        104,
+        127,
+        159,
+        207,
+        244
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        147,
+        186,
+        224,
+        262,
+        306
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        92,
+        170,
+        250,
+        365,
+        394
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\audit_engine.py",
+      "line_numbers": [
+        119,
+        143,
+        182,
+        236,
+        258
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "test_pca",
+  "original_path": "modules\\unclassified\\test_pca.py",
+  "preserved_path": "preservation_holding_area\\test_pca_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 49383,
+  "checksum": "1770b48e134526cfb973dcad3ad7301c0b080b3950ee12008d899e78bb6310d1"
+}

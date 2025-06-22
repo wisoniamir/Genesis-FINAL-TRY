@@ -1,0 +1,9 @@
+{
+  "module_id": "httpclient",
+  "original_path": "modules\\restored\\httpclient.py",
+  "preserved_path": "preservation_holding_area\\httpclient_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 68589,
+  "checksum": "815e4a2bcf999ad05f6545936e56e4d63ae077b1a5a6fa4eeb5de37dd0882e0b"
+}

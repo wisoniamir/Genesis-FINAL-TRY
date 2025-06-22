@@ -1,0 +1,68 @@
+# <!-- @GENESIS_MODULE_START: simple_import_test -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+Simple test to check Phase 57-58 module imports
+"""
+
+try:
+    print("Testing imports...")
+    
+    # Test event_bus import
+    print("Importing event_bus...")
+    import event_bus
+    print("✅ event_bus imported successfully")
+    
+    # Test json import
+    print("Importing json...")
+    import json
+    print("✅ json imported successfully")
+    
+    # Test datetime import
+    print("Importing datetime...")
+    import datetime
+    print("✅ datetime imported successfully")
+    
+    # Test os import
+    print("Importing os...")
+    import os
+    print("✅ os imported successfully")
+    
+    # Test numpy import
+    print("Importing numpy...")
+    import numpy as np
+    print("✅ numpy imported successfully")
+    
+    # Test sklearn import
+    print("Importing sklearn...")
+    import sklearn
+    print("✅ sklearn imported successfully")
+    
+    print("\n🎉 All basic imports successful!")
+    print("Now testing Phase 57 import...")
+    
+    # Test Phase 57 import
+    try:
+        from ml_retraining_loop_phase57 import MLRetrainingLoop
+        print("✅ MLRetrainingLoop imported successfully")
+    except Exception as e:
+        print(f"❌ Error importing MLRetrainingLoop: {e}")
+        
+    print("Now testing Phase 58 import...")
+    
+    # Test Phase 58 import
+    try:
+        from pattern_learning_engine_phase58 import PatternLearningEngine
+        print("✅ PatternLearningEngine imported successfully")
+    except Exception as e:
+        print(f"❌ Error importing PatternLearningEngine: {e}")
+        
+    print("\n✅ Phase 57-58 import test completed")
+    
+except Exception as e:
+    print(f"❌ Critical error during import test: {e}")
+    import traceback
+    traceback.print_exc()
+
+
+# <!-- @GENESIS_MODULE_END: simple_import_test -->

@@ -1,0 +1,61 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_dependency_validator.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.440522+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_dependency_validator.py",
+      "line_numbers": [
+        97
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_dependency_validator.py",
+      "line_numbers": [
+        26,
+        48,
+        67,
+        91
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_dependency_validator.py",
+      "line_numbers": [
+        43,
+        59,
+        83
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_dependency_validator.py",
+      "line_numbers": [
+        28,
+        37,
+        93,
+        111
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_dependency_validator.py",
+      "line_numbers": [
+        57,
+        79
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

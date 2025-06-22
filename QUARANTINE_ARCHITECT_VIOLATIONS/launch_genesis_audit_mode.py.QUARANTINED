@@ -1,0 +1,80 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.499152+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+      "line_numbers": [
+        216,
+        218,
+        219,
+        298
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+      "line_numbers": [
+        277
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+      "line_numbers": [
+        69,
+        86,
+        95,
+        104,
+        126
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+      "line_numbers": [
+        156,
+        169,
+        183,
+        201,
+        229
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+      "line_numbers": [
+        61,
+        153,
+        238,
+        369,
+        374
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\launch_genesis_audit_mode.py",
+      "line_numbers": [
+        136,
+        221,
+        252,
+        350,
+        421
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

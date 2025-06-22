@@ -1,0 +1,436 @@
+import logging
+
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
+import requests
+import asyncio
+import time
+import json
+import numpy as np
+from datetime import datetime, timedelta
+import threading
+
+
+# <!-- @GENESIS_MODULE_END: genesis_ultimate_dashboard -->
+
+
+# <!-- @GENESIS_MODULE_START: genesis_ultimate_dashboard -->
+
+# Page configuration
+st.set_page_config(
+    page_title="GENESIS Ultimate Trading Dashboard",
+    page_icon="🚀",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# ARCHITECT MODE COMPLIANCE: All styling without emojis
+st.markdown("""
+<style>
+.main-header {
+    background: linear-gradient(90deg, #1f77b4, #ff7f0e);
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.metric-card {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #1f77b4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+.status-warning {
+    color: #ffc107;
+    font-weight: bold;
+}
+.status-error {
+    color: #dc3545;
+    font-weight: bold;
+}
+.trading-panel {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 1rem;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# API Communication
+def get_api_data(endpoint):
+    try:
+        response = requests.get(f"http://localhost:8000{endpoint}", timeout=10)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {"error": f"API error: {response.status_code}"}
+    except Exception as e:
+        return {"error": f"Connection failed: {str(e)}"}
+
+def post_api_data(endpoint, data):
+    try:
+        response = requests.post(f"http://localhost:8000{endpoint}", json=data, timeout=10)
+        return response.json()
+    except Exception as e:
+        return {"error": f"Request failed: {str(e)}"}
+
+# Header
+st.markdown('<div class="main-header"><h1>GENESIS ULTIMATE TRADING DASHBOARD</h1><p>ARCHITECT MODE v7.0.0 | Real-time MT5 Integration | All Modules Connected</p></div>', unsafe_allow_html=True)
+
+# Sidebar Controls
+st.sidebar.title("Control Panel")
+auto_refresh = st.sidebar.checkbox("Auto Refresh (5s)", value=True)
+show_debug = st.sidebar.checkbox("Show Debug Info", value=False)
+enable_trading = st.sidebar.checkbox("Enable Live Trading", value=False)
+
+if enable_trading:
+    st.sidebar.warning("LIVE TRADING ENABLED - Real money at risk!")
+
+# Real-time data refresh logic
+if auto_refresh:
+    # Create containers for real-time updates
+    status_container = st.container()
+    rates_container = st.container()
+    charts_container = st.container()
+    trading_container = st.container()
+    analytics_container = st.container()
+    
+    # Continuous update loop
+    placeholder = st.empty()
+    
+    refresh_counter = 0
+    while True:
+        with placeholder.container():
+            refresh_counter += 1
+            current_time = datetime.now()
+            
+            # SYSTEM STATUS SECTION
+            with status_container:
+                st.subheader("System Status & Health")
+                
+                system_status = get_api_data("/api/system/status")
+                col1, col2, col3, col4, col5 = st.columns(5)
+                
+                with col1:
+                    if system_status.get("status") == "operational":
+                        st.metric("System", "OPERATIONAL", delta="Active")
+                    else:
+                        st.metric("System", "ERROR", delta="Failed")
+                
+                with col2:
+                    mt5_status = "CONNECTED" if system_status.get("modules", {}).get("mt5_integration") == "active" else "DISCONNECTED"
+                    st.metric("MT5 Connection", mt5_status)
+                
+                with col3:
+                    st.metric("EventBus", "ACTIVE" if system_status.get("modules", {}).get("eventbus") == "active" else "INACTIVE")
+                
+                with col4:
+                    st.metric("Compliance", "ENFORCED" if system_status.get("compliance") == "enforced" else "WARNING")
+                
+                with col5:
+                    st.metric("Data Source", "LIVE MT5" if system_status.get("live_data") else "MOCK")
+            
+            # LIVE MARKET RATES SECTION
+            with rates_container:
+                st.subheader("Live Market Rates")
+                
+                rates_data = get_api_data("/api/market/live-rates")
+                if "rates" in rates_data:
+                    rates_df = []
+                    for symbol, data in rates_data["rates"].items():
+                        rates_df.append({
+                            "Symbol": symbol,
+                            "Bid": f"{data['bid']:.5f}",
+                            "Ask": f"{data['ask']:.5f}",
+                            "Spread": f"{data['spread']:.5f}",
+                            "Last Update": data.get('time', 'N/A')
+                        })
+                    
+                    if rates_df:
+                        df = pd.DataFrame(rates_df)
+                        st.dataframe(df, use_container_width=True)
+                    else:
+                        st.warning("No live rates available")
+                else:
+                    st.error(f"Failed to get rates: {rates_data.get('error', 'Unknown error')}")
+            
+            # ADVANCED CHARTS SECTION
+            with charts_container:
+                st.subheader("Advanced Trading Charts")
+                
+                # Symbol selection
+                selected_symbol = st.selectbox("Select Symbol", 
+                    ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF", "NZDUSD"])
+                
+                # Timeframe selection
+                selected_tf = st.selectbox("Timeframe", ["M1", "M5", "M15", "M30", "H1", "H4", "D1"])
+                
+                # Get historical data
+                hist_data = get_api_data(f"/api/market/historical/{selected_symbol}/{selected_tf}?count=200")
+                
+                if "data" in hist_data and hist_data["data"]:
+                    df = pd.DataFrame(hist_data["data"])
+                    df['time'] = pd.to_datetime(df['time'])
+                    
+                    # Candlestick chart
+                    fig = go.Figure(data=go.Candlestick(
+                        x=df['time'],
+                        open=df['open'],
+                        high=df['high'],
+                        low=df['low'],
+                        close=df['close'],
+                        name=selected_symbol
+                    ))
+                    
+                    fig.update_layout(
+                        title=f"{selected_symbol} {selected_tf} Live Chart",
+                        yaxis_title="Price",
+                        xaxis_title="Time",
+                        height=500
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                    
+                    # Technical indicators
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        # Moving averages
+                        df['MA20'] = df['close'].rolling(window=20).mean()
+                        df['MA50'] = df['close'].rolling(window=50).mean()
+                        
+                        ma_fig = go.Figure()
+                        ma_fig.add_trace(go.Scatter(x=df['time'], y=df['close'], name='Close', line=dict(color='blue')))
+                        ma_fig.add_trace(go.Scatter(x=df['time'], y=df['MA20'], name='MA20', line=dict(color='red')))
+                        ma_fig.add_trace(go.Scatter(x=df['time'], y=df['MA50'], name='MA50', line=dict(color='green')))
+                        ma_fig.update_layout(title="Moving Averages", height=300)
+                        st.plotly_chart(ma_fig, use_container_width=True)
+                    
+                    with col2:
+                        # RSI
+                        delta = df['close'].diff()
+                        gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+                        loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+                        rs = gain / loss
+                        df['RSI'] = 100 - (100 / (1 + rs))
+                        
+                        rsi_fig = go.Figure()
+                        rsi_fig.add_trace(go.Scatter(x=df['time'], y=df['RSI'], name='RSI', line=dict(color='purple')))
+                        rsi_fig.add_hline(y=70, line_dash="dash", line_color="red", annotation_text="Overbought")
+                        rsi_fig.add_hline(y=30, line_dash="dash", line_color="green", annotation_text="Oversold")
+                        rsi_fig.update_layout(title="RSI (14)", height=300, yaxis=dict(range=[0, 100]))
+                        st.plotly_chart(rsi_fig, use_container_width=True)
+                
+                else:
+                    st.error("Failed to load chart data")
+            
+            # PATTERN DETECTION SECTION
+            patterns_data = get_api_data(f"/api/analysis/patterns/{selected_symbol}")
+            if "patterns" in patterns_data:
+                st.subheader("Pattern Detection Results")
+                
+                if patterns_data["patterns"]:
+                    for pattern in patterns_data["patterns"]:
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            st.metric("Pattern Type", pattern["type"])
+                        with col2:
+                            st.metric("Confidence", f"{pattern['confidence']:.2%}")
+                        with col3:
+                            signal_color = "green" if pattern["signal"] == "BUY" else "red"
+                            st.markdown(f"<span style='color: {signal_color}; font-weight: bold;'>{pattern['signal']}</span>", unsafe_allow_html=True)
+                else:
+                    st.info("No patterns detected")
+            
+            # TRADING INTERFACE SECTION
+            if enable_trading:
+                with trading_container:
+                    st.subheader("Live Trading Interface")
+                    st.warning("LIVE TRADING MODE - REAL MONEY AT RISK")
+                    
+                    col1, col2, col3, col4 = st.columns(4)
+                    
+                    with col1:
+                        trade_symbol = st.selectbox("Trade Symbol", 
+                            ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD"], key="trade_symbol")
+                    
+                    with col2:
+                        trade_action = st.selectbox("Action", ["BUY", "SELL"], key="trade_action")
+                    
+                    with col3:
+                        trade_volume = st.number_input("Volume", min_value=0.01, max_value=1.0, value=0.01, step=0.01)
+                    
+                    with col4:
+                        if st.button("EXECUTE TRADE", type="primary"):
+                            trade_request = {
+                                "symbol": trade_symbol,
+                                "action": trade_action,
+                                "volume": trade_volume
+                            }
+                            
+                            with st.spinner("Executing trade..."):
+                                result = post_api_data("/api/trading/execute", trade_request)
+                                
+                                if result.get("success"):
+                                    st.success(f"Trade executed successfully!")
+                                    st.json(result["trade"])
+                                else:
+                                    st.error(f"Trade failed: {result.get('reasons', 'Unknown error')}")
+            
+            # RISK MANAGEMENT SECTION
+            with analytics_container:
+                st.subheader("Risk Management & Analytics")
+                
+                risk_data = get_api_data("/api/risk/analysis")
+                portfolio_data = get_api_data("/api/portfolio/status")
+                
+                col1, col2, col3, col4 = st.columns(4)
+                
+                with col1:
+                    if "daily_pnl" in risk_data:
+                        pnl_color = "green" if risk_data["daily_pnl"] >= 0 else "red"
+                        st.metric("Daily P&L", f"{risk_data['daily_pnl']:.4f}", delta=f"{risk_data['daily_pnl']:.4f}")
+                
+                with col2:
+                    if "risk_status" in risk_data:
+                        status_color = "green" if risk_data["risk_status"] == "healthy" else "red"
+                        st.metric("Risk Status", risk_data["risk_status"].upper())
+                
+                with col3:
+                    if "active_positions" in portfolio_data:
+                        st.metric("Active Positions", portfolio_data["active_positions"])
+                
+                with col4:
+                    if "trade_history_count" in portfolio_data:
+                        st.metric("Total Trades", portfolio_data["trade_history_count"])
+                
+                # Risk limits display
+                if "max_drawdown" in risk_data:
+                    st.subheader("Risk Limits")
+                    col1, col2, col3 = st.columns(3)
+                    
+                    with col1:
+                        st.metric("Max Drawdown", f"{risk_data['max_drawdown']:.1%}")
+                    with col2:
+                        st.metric("Max Daily Loss", f"{risk_data['max_daily_loss']:.1%}")
+                    with col3:
+                        st.metric("Position Limit", f"{risk_data['position_limit']:.1%}")
+            
+            # DEBUG INFORMATION
+            if show_debug:
+                st.subheader("Debug Information")
+                
+                debug_data = {
+                    "refresh_count": refresh_counter,
+                    "last_update": current_time.isoformat(),
+                    "system_status": system_status,
+                    "rates_status": "rates" in rates_data,
+                    "api_health": get_api_data("/health")
+                }
+                
+                st.json(debug_data)
+            
+            # Status bar
+            st.markdown(f"<div style='text-align: center; color: #6c757d; padding: 1rem;'>Last Update: {current_time.strftime('%H:%M:%S')} | Refresh #{refresh_counter} | ARCHITECT MODE v7.0.0 ACTIVE</div>", unsafe_allow_html=True)
+        
+        # Refresh every 5 seconds
+        time.sleep(5)
+
+else:
+    st.info("Auto-refresh disabled. Enable it in the sidebar for live updates.")
+    st.markdown("### Manual Controls")
+    if st.button("Refresh Data"):
+        st.rerun()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

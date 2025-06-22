@@ -1,0 +1,130 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+  "quarantine_timestamp": "2025-06-21T04:33:24.105487+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        5089,
+        7579
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        2337,
+        3267,
+        4994,
+        4995,
+        6167
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        62,
+        63,
+        67,
+        68,
+        69
+      ],
+      "violation_count": 1621
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        248,
+        254,
+        3173,
+        3199,
+        3206
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "violation_count": 369
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "log_metric(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        2316,
+        3003
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        14,
+        15,
+        41,
+        42,
+        57
+      ],
+      "violation_count": 792
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        2316,
+        3003
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        2316,
+        3003
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        2316
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419\\event_bus.json",
+      "line_numbers": [
+        2316
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

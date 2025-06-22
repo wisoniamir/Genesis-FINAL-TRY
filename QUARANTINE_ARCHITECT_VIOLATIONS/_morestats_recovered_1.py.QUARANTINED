@@ -1,0 +1,75 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.912253+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+      "line_numbers": [
+        470,
+        500,
+        1191,
+        1459,
+        1834
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+      "line_numbers": [
+        2579
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+      "line_numbers": [
+        472,
+        486,
+        2063
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+      "line_numbers": [
+        497
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+      "line_numbers": [
+        633,
+        1290,
+        1316,
+        1372,
+        1790
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_morestats_recovered_1.py",
+      "line_numbers": [
+        214,
+        325,
+        386,
+        492,
+        624
+      ],
+      "violation_count": 26
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

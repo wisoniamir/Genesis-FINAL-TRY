@@ -1,0 +1,9 @@
+{
+  "module_id": "trade_journal",
+  "original_path": "modules\\execution\\trade_journal.py",
+  "preserved_path": "preservation_holding_area\\trade_journal_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23337,
+  "checksum": "a27211e1a202cc0d19d0cdf0ec24fdde0e5bc8901d62d4396f37146ebf52b3a6"
+}

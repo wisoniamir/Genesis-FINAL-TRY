@@ -1,0 +1,104 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.046280+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        354,
+        363,
+        379
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        112,
+        256
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        1,
+        33,
+        51,
+        54,
+        57
+      ],
+      "violation_count": 74
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        85,
+        105,
+        123,
+        159,
+        192
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        99,
+        118,
+        153,
+        186,
+        219
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        367
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        314
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        29,
+        39
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_reactive_signal_autopilot.py",
+      "line_numbers": [
+        113
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

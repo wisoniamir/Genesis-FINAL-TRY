@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_manager",
+  "original_path": "modules\\execution\\execution_manager.py",
+  "preserved_path": "preservation_holding_area\\execution_manager_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 35187,
+  "checksum": "549bbee4fb07a3b98db7fa4be0b9243be0c1e67bbb64377d923fe7179cc5572e"
+}

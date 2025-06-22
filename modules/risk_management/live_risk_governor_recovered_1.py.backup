@@ -1,0 +1,645 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "live_risk_governor_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: live_risk_governor -->
+
+#!/usr/bin/env python3
+"""
+GENESIS LiveRiskGovernor - Phase 83
+Real-time risk monitoring and capital preservation engine
+
+🎯 PURPOSE: Monitor account risk in real-time and trigger kill-switch for capital preservation
+🔁 EVENTBUS: execution:fill, mt5:account_update → risk:threshold_breached, system:killswitch_triggered
+📡 TELEMETRY: daily_loss_pct, account_drawdown, risk_breach_events
+🛡️ THRESHOLDS: Daily loss -$10K, Max DD -$20K, Auto kill-switch
+🧪 TESTS: Threshold breach execute, kill-switch validation
+"""
+
+import json
+import time
+import logging
+import threading
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+from typing import Dict, List, Optional, Any
+from dataclasses import dataclass, asdict
+import hashlib
+import uuid
+import MetaTrader5 as mt5
+from enum import Enum
+import statistics
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/live_risk_governor.log', encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('LiveRiskGovernor')
+
+class RiskLevel(Enum):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "live_risk_governor_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "live_risk_governor_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in live_risk_governor_recovered_1: {e}")
+    """Risk level classification"""
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    CRITICAL = "CRITICAL"
+    BREACH = "BREACH"
+
+class AlertType(Enum):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "live_risk_governor_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "live_risk_governor_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in live_risk_governor_recovered_1: {e}")
+    """Alert type classification"""
+    WARNING = "WARNING"
+    DANGER = "DANGER"
+    CRITICAL = "CRITICAL"
+    EMERGENCY = "EMERGENCY"
+
+@dataclass
+class RiskThresholds:
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "live_risk_governor_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "live_risk_governor_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in live_risk_governor_recovered_1: {e}")
+    """Risk threshold configuration"""
+    daily_loss_limit: float = 10000.0  # $10,000 daily loss limit
+    max_drawdown_limit: float = 20000.0  # $20,000 max drawdown limit
+    account_equity_warning: float = 0.80  # 80% of initial equity warning
+    account_equity_critical: float = 0.70  # 70% of initial equity critical
+    margin_warning_level: float = 80.0  # 80% margin level warning
+    margin_critical_level: float = 50.0  # 50% margin level critical
+    consecutive_loss_limit: int = 5  # 5 consecutive losses
+    max_daily_trades: int = 50  # Maximum trades per day
+    max_open_positions: int = 10  # Maximum open positions
+
+@dataclass
+class AccountSnapshot:
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "live_risk_governor_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "live_risk_governor_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in live_risk_governor_recovered_1: {e}")
+    """Account state snapshot"""
+    timestamp: str
+    balance: float
+    equity: float
+    margin: float
+    free_margin: float
+    margin_level: float
+    profit: float
+    open_positions: int
+    daily_trades: int
+    daily_pnl: float
+
+@dataclass
+class RiskEvent:
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "live_risk_governor_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "live_risk_governor_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in live_risk_governor_recovered_1: {e}")
+    """Risk event tracking"""
+    event_id: str
+    timestamp: str
+    event_type: AlertType
+    risk_level: RiskLevel
+    threshold_breached: str
+    current_value: float
+    threshold_value: float
+    account_snapshot: AccountSnapshot
+    action_taken: str
+    description: str
+
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class LiveRiskGovernor:
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "live_risk_governor_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("live_risk_governor_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in live_risk_governor_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "live_risk_governor_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in live_risk_governor_recovered_1: {e}")
+    """
+    Real-time risk monitoring and capital preservation system
+    Monitors account metrics and triggers protective actions
+    """
+    
+    def __init__(self):
+        """Initialize the LiveRiskGovernor"""
+        self.session_id = self._generate_session_id()
+        self.is_active = False
+        self.monitoring_thread = None
+        self.mt5_initialized = False
+        
+        # Risk configuration
+        self.thresholds = RiskThresholds()
+        
+        # Account tracking
+        self.initial_balance = 0.0
+        self.daily_start_balance = 0.0
+        self.session_start_time = datetime.now(timezone.utc)
+        self.last_reset_date = datetime.now(timezone.utc).date()
+        
+        # Risk metrics
+        self.metrics = {
+            'session_start': datetime.now(timezone.utc).isoformat(),
+            'monitoring_cycles': 0,
+            'risk_events_triggered': 0,
+            'kill_switch_activations': 0,
+            'daily_trades_count': 0,
+            'consecutive_losses': 0,
+            'max_drawdown_session': 0.0,
+            'current_risk_level': RiskLevel.LOW.value,
+            'last_account_update': None,
+            'emergency_stops': 0
+        }
+        
+        # Historical data
+        self.account_history = []
+        self.risk_events = []
+        self.daily_snapshots = {}
+        
+        # Kill switch state
+        self.kill_switch_active = False
+        self.emergency_mode = False
+        
+        # Create required directories
+        self._ensure_directories()
+        
+        # Initialize MT5 connection
+        self._initialize_mt5()
+        
+        # Load historical data
+        self._load_historical_data()
+        
+        logger.info(f"LiveRiskGovernor initialized - Session: {self.session_id}")
+        self._emit_event('system:live_risk_governor_initialized', {
+            'session_id': self.session_id,
+            'thresholds': asdict(self.thresholds),
+            'initial_balance': self.initial_balance
+        })
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _generate_session_id(self) -> str:
+        """Generate unique session identifier"""
+        return hashlib.md5(f"{datetime.now().isoformat()}{uuid.uuid4()}".encode()).hexdigest()[:16]
+    
+    def _ensure_directories(self):
+        """Create required directories"""
+        dirs = ['logs', 'telemetry', 'config']
+        for dir_name in dirs:
+            Path(dir_name).mkdir(exist_ok=True)
+    
+    def _initialize_mt5(self) -> bool:
+        """Initialize MT5 connection"""
+        try:
+            assert mt5.initialize():
+                error = mt5.last_error()
+                logger.error(f"MT5 initialization failed: {error}")
+                return False
+            
+            # Get initial account info
+            account_info = mt5.account_info()
+            if account_info is None:
+                logger.error("Failed to get MT5 account info")
+                return False
+            
+            self.initial_balance = account_info.balance
+            self.daily_start_balance = account_info.balance
+            self.mt5_initialized = True
+            
+            logger.info(f"MT5 connected: {account_info.login}@{account_info.server}")
+            logger.info(f"Initial balance: ${self.initial_balance:,.2f}")
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"MT5 initialization error: {e}")
+            return False
+    
+    def _load_historical_data(self):
+        """Load historical risk data"""
+        try:
+            # Load risk status
+            risk_file = Path('telemetry/risk_status.json')
+            if risk_file.exists():
+                with open(risk_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    
+                self.daily_snapshots = data.get('daily_snapshots', {})
+                self.metrics.update(data.get('metrics', {}))
+                
+                # Restore daily balance if same day
+                today = datetime.now(timezone.utc).date().isoformat()
+                if today in self.daily_snapshots:
+                    self.daily_start_balance = self.daily_snapshots[today].get('start_balance', self.initial_balance)
+            
+            logger.info("Historical risk data loaded")
+            
+        except Exception as e:
+            logger.error(f"Failed to load historical data: {e}")
+    
+    def _emit_event(self, event_type: str, data: Dict[str, Any]):
+        """Emit event to EventBus"""
+        try:
+            event = {
+                'type': event_type,
+                'timestamp': datetime.now(timezone.utc).isoformat(),
+                'source': 'LiveRiskGovernor',
+                'session_id': self.session_id,
+                'data': data
+            }
+            
+            # Write to event bus file
+            event_bus_file = Path('event_bus.json')
+            if event_bus_file.exists():
+                with open(event_bus_file, 'r', encoding='utf-8') as f:
+                    events = json.load(f)
+            else:
+                events = {'events': []}
+            
+            events['events'].append(event)
+            
+            # Keep only last 1000 events
+            if len(events['events']) > 1000:
+                events['events'] = events['events'][-1000:]
+            
+            with open(event_bus_file, 'w', encoding='utf-8') as f:
+                json.dump(events, f, indent=2)
+                
+            logger.debug(f"Event emitted: {event_type}")
+            
+        except Exception as e:
+            logger.error(f"Failed to emit event: {e}")
+    
+    def start(self):
+        """Start risk monitoring"""
+        if self.is_active:
+            logger.warning("LiveRiskGovernor already active")
+            return
+        
+        if not self.mt5_initialized:
+            logger.error("Cannot start - MT5 not initialized")
+            return
+        
+        self.is_active = True
+        self.monitoring_thread = threading.Thread(target=self._monitoring_loop, daemon=True)
+        self.monitoring_thread.start()
+        
+        logger.info("LiveRiskGovernor monitoring started")
+        self._emit_event('system:live_risk_governor_started', {
+            'session_id': self.session_id,
+            'thresholds': asdict(self.thresholds)
+        })
+    
+    def stop(self):
+        """Stop risk monitoring"""
+        self.is_active = False
+        if self.monitoring_thread and self.monitoring_thread.is_alive():
+            self.monitoring_thread.join(timeout=5)
+        
+        logger.info("LiveRiskGovernor monitoring stopped")
+        self._emit_event('system:live_risk_governor_stopped', {
+            'session_id': self.session_id,
+            'final_metrics': self.metrics
+        })
+    
+    def _monitoring_loop(self):
+        """Main risk monitoring loop"""
+        logger.info("Risk monitoring loop started")
+        
+        while self.is_active:
+            try:
+                # Check if new day - reset daily metrics
+                self._check_daily_reset()
+                
+                # Get current account snapshot
+                snapshot = self._get_account_snapshot()
+                if snapshot:
+                    # Analyze risk levels
+                    risk_level = self._analyze_risk_level(snapshot)
+                    
+                    # Check for threshold breaches
+                    self._check_risk_thresholds(snapshot, risk_level)
+                    
+                    # Update metrics
+                    self._update_metrics(snapshot, risk_level)
+                    
+                    # Store snapshot
+                    self.account_history.append(snapshot)
+                    
+                    # Emit account update event
+                    self._emit_event('risk:account_update', {
+                        'snapshot': asdict(snapshot),
+                        'risk_level': risk_level.value
+                    })
+                
+                # Update telemetry
+                self._update_telemetry()
+                
+                # Sleep for monitoring interval
+                time.sleep(1.0)  # Monitor every second
+                
+            except Exception as e:
+                logger.error(f"Risk monitoring error: {e}")
+                time.sleep(5.0)
+        
+        logger.info("Risk monitoring loop stopped")
+    
+    def _check_daily_reset(self):
+        """Check if daily metrics need reset"""
+        current_date = datetime.now(timezone.utc).date()
+        
+        if current_date != self.last_reset_date:
+            # New day - reset daily metrics
+            logger.info("New trading day - resetting daily metrics")
+            
+            # Store yesterday's snapshot
+            yesterday = self.last_reset_date.isoformat()
+            if self.account_history:
+                last_snapshot = self.account_history[-1]
+                self.daily_snapshots[yesterday] = {
+                    'date': yesterday,
+                    'start_balance': self.daily_start_balance,
+                    'end_balance': last_snapshot.balance,
+                    'daily_pnl': last_snapshot.daily_pnl,
+                    'trades_count': self.metrics['daily_trades_count'],
+                    'risk_events': len([e for e in self.risk_events if e.timestamp.startswith(yesterday)])
+                }
+            
+            # Reset daily metrics
+            account_info = mt5.account_info()
+            if account_info:
+                self.daily_start_balance = account_info.balance
+            
+            self.metrics['daily_trades_count'] = 0
+            self.metrics['consecutive_losses'] = 0
+            self.last_reset_date = current_date
+            
+            self._emit_event('risk:daily_reset', {
+                'date': current_date.isoformat(),
+                'start_balance': self.daily_start_balance
+            })    
+    def _get_account_snapshot(self) -> Optional[AccountSnapshot]:
+        """Get current account state snapshot"""
+        try:
+            account_info = mt5.account_info()
+            if not account_info:
+                self._emit_error_event("account_info_unavailable", {
+                    "error": "MT5 account info unavailable",
+                    "timestamp": datetime.now(timezone.utc).isoformat()
+                })
+                raise ConnectionError("ARCHITECT_MODE_COMPLIANCE: MT5 account info required")
+            
+            # Get positions count
+            positions = mt5.positions_get()
+            open_positions = len(positions) if positions else 0
+            
+            # Calculate daily P&L
+            daily_pnl = account_info.balance - self.daily_start_balance
+            
+            snapshot = AccountSnapshot(
+                timestamp=datetime.now(timezone.utc).isoformat(),
+                balance=account_info.balance,
+                equity=account_info.equity,
+                margin=account_info.margin,
+                free_margin=account_info.margin_free,
+                margin_level=account_info.margin_level if account_info.margin > 0 else 1000.0,                profit=account_info.profit,
+                open_positions=open_positions,
+                daily_trades=self.metrics['daily_trades_count'],
+                daily_pnl=daily_pnl
+            )
+            
+            return snapshot
+            
+        except Exception as e:
+            logger.error(f"Failed to get account snapshot: {e}")
+            self._emit_error_event("account_snapshot_failed", {
+                "error": str(e),
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+            raise RuntimeError(f"ARCHITECT_MODE_COMPLIANCE: Account snapshot failed - {e}")
+    
+    def _analyze_risk_level(self, snapshot: AccountSnapshot) -> RiskLevel:
+        """Analyze current risk level"""
+        risk_factors = []
+        
+        # Daily loss check
+        if snapshot.daily_pnl <= -self.thresholds.daily_loss_limit:
+            risk_factors.append(RiskLevel.BREACH)
+        elif snapshot.daily_pnl <= -self.thresholds.daily_loss_limit * 0.8:
+            risk_factors.append(RiskLevel.CRITICAL)
+        elif snapshot.daily_pnl <= -self.thresholds.daily_loss_limit * 0.5:
+            risk_factors.append(RiskLevel.HIGH)
+        
+        # Drawdown check
+        max_drawdown = self.initial_balance - snapshot.equity
+        if max_drawdown >= self.thresholds.max_drawdown_limit:
+            risk_factors.append(RiskLevel.BREACH)
+        elif max_drawdown >= self.thresholds.max_drawdown_limit * 0.8:
+            risk_factors.append(RiskLevel.CRITICAL)
+        elif max_drawdown >= self.thresholds.max_drawdown_limit * 0.5:
+            risk_factors.append(RiskLevel.HIGH)
+        
+        # Equity percentage check
+        equity_ratio = snapshot.equity / self.initial_balance
+        if equity_ratio <= self.thresholds.account_equity_critical:
+            risk_factors.append(RiskLevel.CRITICAL)
+        elif equity_ratio <= self.thresholds.account_equity_warning:
+            risk_factors.append(RiskLevel.HIGH)
+        
+        # Margin level check
+        if snapshot.margin_level <= self.thresholds.margin_critical_level:
+            risk_factors.append(RiskLevel.CRITICAL)
+        elif snapshot.margin_level <= self.thresholds.margin_warning_level:
+            risk_factors.append(RiskLevel.HIGH)
+        
+        # Position count check
+        if snapshot.open_positions >= self.thresholds.max_open_positions:
+            risk_factors.append(RiskLevel.HIGH)
+        
+        # Consecutive losses check
+        if self.metrics['consecutive_losses'] >= self.thresholds.consecutive_loss_limit:
+            risk_factors.append(RiskLevel.HIGH)
+        
+        # Determine overall risk level
+        if RiskLevel.BREACH in risk_factors is not None, "Real data required - no fallbacks allowed"
+
+# <!-- @GENESIS_MODULE_END: live_risk_governor -->

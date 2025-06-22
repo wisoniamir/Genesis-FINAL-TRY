@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ers_test.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.604865+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ers_test.py",
+      "line_numbers": [
+        10,
+        35,
+        99,
+        171,
+        172
+      ],
+      "violation_count": 65
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ers_test.py",
+      "line_numbers": [
+        180,
+        201,
+        211,
+        233,
+        256
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ers_test.py",
+      "line_numbers": [
+        11,
+        47,
+        85,
+        438
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ers_test.py",
+      "line_numbers": [
+        87,
+        514
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ers_test.py",
+      "line_numbers": [
+        66,
+        78,
+        527
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,53 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_phase_91c_lockdown_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.523356+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_phase_91c_lockdown_recovered_2.py",
+      "line_numbers": [
+        266
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_phase_91c_lockdown_recovered_2.py",
+      "line_numbers": [
+        289
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_phase_91c_lockdown_recovered_2.py",
+      "line_numbers": [
+        60
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_phase_91c_lockdown_recovered_2.py",
+      "line_numbers": [
+        305
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\activate_phase_91c_lockdown_recovered_2.py",
+      "line_numbers": [
+        48,
+        323
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

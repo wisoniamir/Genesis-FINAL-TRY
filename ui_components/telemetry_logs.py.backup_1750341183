@@ -1,0 +1,232 @@
+"""
+GENESIS Dashboard - Telemetry Logs Component
+Real-time telemetry logs viewer
+"""
+
+import streamlit as st
+import pandas as pd
+import json
+import time
+from datetime import datetime, timedelta
+import os
+
+class TelemetryLogsComponent:
+    """
+    Component for displaying real-time telemetry logs
+    """
+    
+    def __init__(self, config):
+        """Initialize with configuration"""
+        self.config = config
+        self.telemetry_config = config["telemetry_logs"]
+        self.refresh_rate = config["refresh_rate"]["telemetry"]
+        self.last_updated = datetime.now()
+    
+    def load_telemetry_logs(self, severity="info", max_logs=1000):
+        """Load telemetry logs from TelemetryCollector"""
+        try:
+            logs = []
+            
+            # Determine severity level
+            severity_levels = {
+                "debug": 1,
+                "info": 2,
+                "warning": 3,
+                "error": 4,
+                "critical": 5
+            }
+            
+            min_severity = severity_levels.get(severity, 2)
+            
+            # Get log files
+            telemetry_files = []
+            
+            # Check telemetry.json first
+            if os.path.exists("telemetry.json"):
+                telemetry_files.append("telemetry.json")
+            
+            # Look for module-specific logs
+            for module_dir in ["logs/signal_validator", "logs/smart_monitor", "logs/signal_reinforcement", "logs/journal"]:
+                if os.path.exists(module_dir):
+                    for file_name in os.listdir(module_dir):
+                        if file_name.endswith(".jsonl") and not file_name.startswith("_"):
+                            telemetry_files.append(os.path.join(module_dir, file_name))
+            
+            # Process each file
+            for file_path in telemetry_files:
+                try:
+                    if file_path.endswith(".json"):
+                        # Process JSON file
+                        with open(file_path, "r") as f:
+                            data = json.load(f)
+                            if "events" in data:
+                                for event in data["events"]:
+                                    # Add severity
+                                    event_type = event.get("event_type", "").lower()
+                                    if "error" in event_type:
+                                        event["severity"] = "error"
+                                    elif "warning" in event_type:
+                                        event["severity"] = "warning"
+                                    else:
+                                        event["severity"] = "info"
+                                        
+                                    # Check severity threshold
+                                    event_severity = severity_levels.get(event["severity"], 2)
+                                    if event_severity >= min_severity:
+                                        logs.append(event)
+                    else:
+                        # Process JSONL file
+                        with open(file_path, "r") as f:
+                            for line in f:
+                                try:
+                                    log = json.loads(line.strip())
+                                    
+                                    # Determine severity if not present
+                                    if "severity" not in log:
+                                        if "error" in file_path or "error" in str(log).lower():
+                                            log["severity"] = "error"
+                                        elif "warning" in file_path or "warning" in str(log).lower():
+                                            log["severity"] = "warning"
+                                        else:
+                                            log["severity"] = "info"
+                                    
+                                    # Check severity threshold
+                                    log_severity = severity_levels.get(log["severity"], 2)
+                                    if log_severity >= min_severity:
+                                        logs.append(log)
+                                except:
+                                    continue
+                except:
+                    continue
+            
+            # Sort by timestamp if available
+            logs = sorted(logs, key=lambda x: x.get("timestamp", ""), reverse=True)
+            
+            # Limit to max logs
+            logs = logs[:max_logs]
+            
+            self.last_updated = datetime.now()
+            return logs
+            
+        except Exception as e:
+            st.error(f"Error loading telemetry logs: {str(e)}")
+            return []
+    
+    def render(self):
+        """Render the telemetry logs viewer"""
+        st.markdown('<div class="main-title">Telemetry Logs</div>', unsafe_allow_html=True)
+        
+        # Add severity filter
+        col1, col2, col3 = st.columns([2, 2, 1])
+        
+        with col1:
+            severity = st.selectbox(
+                "Severity Level",
+                options=self.telemetry_config["available_severities"],
+                index=self.telemetry_config["available_severities"].index(self.telemetry_config["default_severity"])
+            )
+        
+        with col2:
+            max_logs = st.slider(
+                "Max Logs",
+                min_value=100,
+                max_value=self.telemetry_config["max_logs"],
+                value=100,
+                step=100
+            )
+        
+        with col3:
+            # Add refresh button
+            if st.button("🔄 Refresh"):
+                st.experimental_rerun()
+        
+        # Load the logs
+        logs = self.load_telemetry_logs(severity, max_logs)
+        
+        # Display last updated time
+        st.markdown(f'<div class="last-update">Last updated: {self.last_updated.strftime("%H:%M:%S")}</div>', unsafe_allow_html=True)
+        
+        if not logs:
+            st.info(f"No {severity} level logs found.")
+            return
+        
+        # Create DataFrame
+        logs_df = pd.DataFrame(logs)
+        
+        # Format logs for display
+        display_logs = []
+        
+        for log in logs:
+            # Get timestamp
+            timestamp = log.get("timestamp", "")
+            if timestamp:
+                # Format timestamp
+                try:
+                    dt = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+                    formatted_time = dt.strftime("%H:%M:%S")
+                except:
+                    formatted_time = timestamp
+            else:
+                formatted_time = "Unknown"
+            
+            # Get module/source
+            module = log.get("module", log.get("producer", "Unknown"))
+            
+            # Get message
+            message = log.get("message", log.get("event_type", ""))
+            if not message and "data" in log:
+                message = str(log["data"])
+            
+            # Get severity
+            severity = log.get("severity", "info")
+            
+            # Add to display logs
+            display_logs.append({
+                "Time": formatted_time,
+                "Module": module,
+                "Message": message,
+                "Severity": severity
+            })
+        
+        # Convert to DataFrame
+        display_df = pd.DataFrame(display_logs)
+        
+        # Create an expander for each log category
+        log_categories = {}
+        
+        for log in display_logs:
+            module = log["Module"]
+            if module not in log_categories:
+                log_categories[module] = []
+            
+            log_categories[module].append(log)
+        
+        # Display logs by module
+        for module, module_logs in log_categories.items():
+            with st.expander(f"{module} ({len(module_logs)} logs)", expanded=module == "ErrorHandler"):
+                module_df = pd.DataFrame(module_logs)
+                
+                # Apply conditional formatting
+                def color_severity(val):
+                    color = "white"
+                    if val == "error":
+                        color = "#FF4136"
+                    elif val == "warning":
+                        color = "#FFA500"
+                    elif val == "info":
+                        color = "#00BFFF"
+                    
+                    return f'color: {color}'
+                
+                # Apply styling and display
+                st.dataframe(
+                    module_df.style.applymap(
+                        color_severity,
+                        subset=["Severity"]
+                    ),
+                    height=min(100 + len(module_logs) * 35, 400)
+                )
+        
+        # Show raw logs in expandable view
+        with st.expander("Raw Logs (JSON)", expanded=False):
+            st.json(logs)

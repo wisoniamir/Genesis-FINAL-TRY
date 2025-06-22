@@ -1,0 +1,52 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_polyint_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.463281+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_polyint_recovered_2.py",
+      "line_numbers": [
+        249,
+        538,
+        554,
+        556,
+        569
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_polyint_recovered_2.py",
+      "line_numbers": [
+        89,
+        242
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_polyint_recovered_2.py",
+      "line_numbers": [
+        141
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_polyint_recovered_2.py",
+      "line_numbers": [
+        140,
+        347,
+        456,
+        654,
+        735
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

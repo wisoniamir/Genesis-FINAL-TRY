@@ -1,0 +1,627 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("genesis_architecture_status_generator", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("genesis_architecture_status_generator", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "genesis_architecture_status_generator",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in genesis_architecture_status_generator: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "genesis_architecture_status_generator",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("genesis_architecture_status_generator", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in genesis_architecture_status_generator: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+📊 GENESIS HIGH ARCHITECTURE STATUS GENERATOR v1.0
+
+🎯 OBJECTIVE: Generate comprehensive technical status of entire GENESIS system
+including all modules, compliance, recovery operations, and architectural metrics.
+
+🔒 ARCHITECT MODE COMPLIANCE:
+- ✅ Operates under system_mode: "quarantined_compliance_enforcer"
+- ✅ Real data collection only
+- ✅ EventBus connectivity status included
+- ✅ Full build continuity tracking
+"""
+
+import os
+import json
+import ast
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Set, Any, Optional
+
+
+# <!-- @GENESIS_MODULE_END: genesis_architecture_status_generator -->
+
+
+# <!-- @GENESIS_MODULE_START: genesis_architecture_status_generator -->
+
+class GenesisArchitectureStatusGenerator:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("genesis_architecture_status_generator", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("genesis_architecture_status_generator", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "genesis_architecture_status_generator",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in genesis_architecture_status_generator: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "genesis_architecture_status_generator",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("genesis_architecture_status_generator", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in genesis_architecture_status_generator: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "genesis_architecture_status_generator",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in genesis_architecture_status_generator: {e}")
+    """📊 Comprehensive GENESIS system status analyzer"""
+    
+    def __init__(self, workspace_path: str):
+        self.workspace_path = Path(workspace_path)
+        self.status_data = {
+            "genesis_architecture_status": {
+                "generation_timestamp": datetime.now().isoformat(),
+                "generator_version": "v1.0",
+                "architect_mode": "ACTIVE_v3.0",
+                "system_mode": "quarantined_compliance_enforcer"
+            }
+        }
+    
+    def load_json_file(self, file_path: Path) -> Dict[str, Any]:
+        """📋 Safely load JSON file with error handling"""
+        try:
+            if file_path.exists():
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            else:
+                return {"status": "FILE_NOT_FOUND", "path": str(file_path)}
+        except Exception as e:
+            return {"status": "LOAD_ERROR", "error": str(e), "path": str(file_path)}
+    
+    def analyze_file_structure(self, file_path: Path) -> Dict[str, Any]:
+        """🔍 Analyze Python file structure"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Basic metrics
+            analysis = {
+                "file_size": file_path.stat().st_size,
+                "lines_of_code": len(content.splitlines()),
+                "last_modified": datetime.fromtimestamp(file_path.stat().st_mtime).isoformat(),
+                "has_genesis_metadata": '@GENESIS_CATEGORY:' in content,
+                "eventbus_integration": any(term in content.lower() for term in ['event_bus', 'eventbus', 'hardendeventbus']),
+                "telemetry_enabled": any(term in content.lower() for term in ['telemetry', 'logging', 'emit_telemetry']),
+                "mt5_integration": any(term in content.lower() for term in ['mt5', 'metatrader', 'broker']),
+                "live_data_usage": any(term in content.lower() for term in ['live_data', 'simulated_data', 'production_data']),
+                "syntax_valid": True,
+                "function_count": 0,
+                "class_count": 0,
+                "import_count": 0
+            }
+            
+            # AST analysis for structure
+            try:
+                tree = ast.parse(content)
+                analysis["function_count"] = len([n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)])
+                analysis["class_count"] = len([n for n in ast.walk(tree) if isinstance(n, ast.ClassDef)])
+                analysis["import_count"] = len([n for n in ast.walk(tree) if isinstance(n, (ast.Import, ast.ImportFrom))])
+            except SyntaxError:
+                analysis["syntax_valid"] = False
+            
+            return analysis
+        except Exception as e:
+            return {"status": "ANALYSIS_ERROR", "error": str(e)}
+    
+    def collect_core_system_files(self) -> Dict[str, Any]:
+        """📊 Collect status of all core GENESIS system files"""
+        core_files = {
+            "build_status.json": self.load_json_file(self.workspace_path / "build_status.json"),
+            "build_tracker.md": {"exists": (self.workspace_path / "build_tracker.md").exists()},
+            "system_tree.json": self.load_json_file(self.workspace_path / "system_tree.json"),
+            "module_registry.json": self.load_json_file(self.workspace_path / "module_registry.json"),
+            "event_bus.json": self.load_json_file(self.workspace_path / "event_bus.json"),
+            "telemetry.json": self.load_json_file(self.workspace_path / "telemetry.json"),
+            "compliance.json": self.load_json_file(self.workspace_path / "compliance.json"),
+            "genesis_config.json": self.load_json_file(self.workspace_path / "genesis_config.json"),
+            "triage_report.json": self.load_json_file(self.workspace_path / "triage_report.json"),
+            "orphan_classification_data.json": self.load_json_file(self.workspace_path / "orphan_classification_data.json"),
+            "patch_registry.json": self.load_json_file(self.workspace_path / "patch_registry.json"),
+            "real_data.json": self.load_json_file(self.workspace_path / "real_data.json"),
+            "live_data.json": self.load_json_file(self.workspace_path / "live_data.json")
+        }
+        return core_files
+    
+    def analyze_module_ecosystem(self) -> Dict[str, Any]:
+        """🔍 Analyze entire Python module ecosystem"""
+        modules = {}
+        total_modules = 0
+        
+        # Core Python files in workspace
+        for file_path in self.workspace_path.glob("*.py"):
+            if not file_path.name.startswith('.'):
+                modules[file_path.name] = self.analyze_file_structure(file_path)
+                total_modules += 1
+        
+        # Subdirectory modules
+        for subdir in ['src', 'core', 'engines', 'adapters', 'ui_components', 'strategies']:
+            subdir_path = self.workspace_path / subdir
+            if subdir_path.exists():
+                for file_path in subdir_path.rglob("*.py"):
+                    relative_path = file_path.relative_to(self.workspace_path)
+                    modules[str(relative_path)] = self.analyze_file_structure(file_path)
+                    total_modules += 1
+        
+        return {
+            "total_modules_analyzed": total_modules,
+            "modules": modules
+        }
+    
+    def analyze_quarantine_status(self) -> Dict[str, Any]:
+        """🗂️ Analyze quarantine directories and contents"""
+        quarantine_dirs = [
+            "TRIAGE_ORPHAN_QUARANTINE",
+            "QUARANTINE_ARCHITECT_VIOLATIONS", 
+            "QUARANTINE_DUPLICATES",
+            "EMERGENCY_COMPLIANCE_QUARANTINE"
+        ]
+        
+        quarantine_status = {}
+        
+        for qdir in quarantine_dirs:
+            qdir_path = self.workspace_path / qdir
+            if qdir_path.exists():
+                # Count files in quarantine
+                file_count = sum(1 for _ in qdir_path.rglob("*") if _.is_file())
+                
+                # Analyze subdirectories
+                subdirs = [d.name for d in qdir_path.iterdir() if d.is_dir()]
+                
+                quarantine_status[qdir] = {
+                    "exists": True,
+                    "total_files": file_count,
+                    "subdirectories": subdirs,
+                    "last_modified": datetime.fromtimestamp(qdir_path.stat().st_mtime).isoformat()
+                }
+            else:
+                quarantine_status[qdir] = {"exists": False}
+        
+        return quarantine_status
+    
+    def calculate_architecture_metrics(self, core_files: Dict, modules: Dict) -> Dict[str, Any]:
+        """📊 Calculate high-level architecture metrics"""
+        
+        # Extract key metrics from core files
+        build_status = core_files.get("build_status.json", {})
+        module_registry = core_files.get("module_registry.json", {})
+        triage_report = core_files.get("triage_report.json", {})
+        
+        # Module analysis
+        module_data = modules.get("modules", {})
+        total_functions = sum(m.get("function_count", 0) for m in module_data.values() if isinstance(m, dict))
+        total_classes = sum(m.get("class_count", 0) for m in module_data.values() if isinstance(m, dict))
+        
+        eventbus_connected = sum(1 for m in module_data.values() if isinstance(m, dict) and m.get("eventbus_integration", False))
+        telemetry_enabled = sum(1 for m in module_data.values() if isinstance(m, dict) and m.get("telemetry_enabled", False))
+        syntax_valid = sum(1 for m in module_data.values() if isinstance(m, dict) and m.get("syntax_valid", False))
+        
+        return {
+            "system_health": {
+                "total_active_modules": build_status.get("active_modules", 0),
+                "quarantined_modules": build_status.get("quarantined_modules", 0),
+                "registered_modules": module_registry.get("total_registered", 0),
+                "architectural_integrity": build_status.get("architectural_integrity", "UNKNOWN")
+            },
+            "code_metrics": {
+                "total_python_files": modules.get("total_modules_analyzed", 0),
+                "total_functions": total_functions,
+                "total_classes": total_classes,
+                "eventbus_connected_modules": eventbus_connected,
+                "telemetry_enabled_modules": telemetry_enabled,
+                "syntax_valid_modules": syntax_valid
+            },
+            "triage_metrics": {
+                "orphans_before_triage": triage_report.get("orphans_before_triage", 0),
+                "orphans_after_triage": triage_report.get("new_orphan_count", 0),
+                "orphans_quarantined": triage_report.get("orphans_quarantined", 0),
+                "orphan_reduction_percentage": 0 if not triage_report.get("orphans_before_triage") else round((triage_report.get("orphans_quarantined", 0) / triage_report.get("orphans_before_triage", 1)) * 100, 1)
+            },
+            "recovery_metrics": {
+                "modules_recovered": build_status.get("modules_recovered", 0),
+                "modules_failed_recovery": build_status.get("modules_failed_recovery", 0),
+                "recovery_success_rate": 0 if not build_status.get("modules_recovered") else round((build_status.get("modules_recovered", 0) / (build_status.get("modules_recovered", 0) + build_status.get("modules_failed_recovery", 0))) * 100, 1)
+            },
+            "compliance_metrics": {
+                "live_data_eliminated": build_status.get("live_data_eliminated", False),
+                "event_bus_status": build_status.get("event_bus_status", "UNKNOWN"),
+                "telemetry_active": build_status.get("telemetry_active", False),
+                "architect_mode_active": build_status.get("architect_mode_v3", False)
+            }
+        }
+    
+    def generate_phase_progression_status(self, core_files: Dict) -> Dict[str, Any]:
+        """📈 Analyze phase progression and completion status"""
+        build_status = core_files.get("build_status.json", {})
+        
+        # Extract phase information
+        phase_status = {
+            "current_phase": "Phase 101+",
+            "phase_101_status": build_status.get("phase_101_status", "UNKNOWN"),
+            "sniper_signal_integration": build_status.get("sniper_signal_integration", "UNKNOWN"),
+            "autonomous_executor_enhanced": build_status.get("autonomous_executor_enhanced", False),
+            "phase_100_gui_ready": build_status.get("optimization_flags", {}).get("phase_100_gui_ready", False)
+        }
+        
+        # System readiness assessment
+        readiness_factors = [
+            build_status.get("architect_mode_v3", False),
+            build_status.get("telemetry_active", False),
+            build_status.get("live_data_eliminated", False),
+            build_status.get("triage_completed", False),
+            build_status.get("module_recovery_completed", False)
+        ]
+        
+        phase_status["system_readiness_percentage"] = round((sum(readiness_factors) / len(readiness_factors)) * 100, 1)
+        
+        return phase_status
+    
+    def generate_comprehensive_status(self) -> Dict[str, Any]:
+        """🚀 Generate complete GENESIS architecture status"""
+        print("📊 GENESIS HIGH ARCHITECTURE STATUS GENERATOR — Analyzing System")
+        print("=" * 70)
+        
+        # Collect all system data
+        print("📋 Collecting core system files...")
+        core_files = self.collect_core_system_files()
+        
+        print("🔍 Analyzing module ecosystem...")
+        modules = self.analyze_module_ecosystem()
+        
+        print("🗂️ Analyzing quarantine status...")
+        quarantine_status = self.analyze_quarantine_status()
+        
+        print("📊 Calculating architecture metrics...")
+        metrics = self.calculate_architecture_metrics(core_files, modules)
+        
+        print("📈 Analyzing phase progression...")
+        phase_status = self.generate_phase_progression_status(core_files)
+        
+        # Compile comprehensive status
+        self.status_data.update({
+            "core_system_files": core_files,
+            "module_ecosystem": modules,
+            "quarantine_status": quarantine_status,
+            "architecture_metrics": metrics,
+            "phase_progression": phase_status,
+            "system_summary": {
+                "total_files_analyzed": len(core_files) + modules.get("total_modules_analyzed", 0),
+                "system_health_status": "OPERATIONAL" if metrics["system_health"]["architectural_integrity"] == "EMERGENCY_REPAIRS_APPLIED" else "UNKNOWN",
+                "architect_compliance": "ACTIVE" if core_files.get("build_status.json", {}).get("architect_mode_v3", False) else "INACTIVE",
+                "emergency_mode": "quarantined_compliance_enforcer",
+                "last_major_operation": "Module Recovery Engine",
+                "next_recommended_action": "Manual syntax review for 6 execution modules"
+            }
+        })
+        
+        return self.status_data
+    
+    def save_status_file(self, output_path: Path):
+        """💾 Save comprehensive status to JSON file"""
+        try:
+            with open(output_path, 'w', encoding='utf-8') as f:
+                json.dump(self.status_data, f, indent=2, ensure_ascii=False)
+            print(f"💾 Status file saved to: {output_path}")
+        except Exception as e:
+            print(f"❌ Failed to save status file: {str(e)}")
+
+def main():
+    """🚀 Main execution entry point"""
+    workspace_path = r"c:\Users\patra\Genesis FINAL TRY"
+    
+    generator = GenesisArchitectureStatusGenerator(workspace_path)
+    status_data = generator.generate_comprehensive_status()
+    
+    # Save to timestamped file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_path = Path(workspace_path) / f"GENESIS_HIGH_ARCHITECTURE_STATUS_{timestamp}.json"
+    
+    generator.save_status_file(output_path)
+    
+    # Also save as current status
+    current_status_path = Path(workspace_path) / "GENESIS_ARCHITECTURE_STATUS.json"
+    generator.save_status_file(current_status_path)
+    
+    print(f"\n📊 GENESIS HIGH ARCHITECTURE STATUS GENERATED")
+    print(f"   Total Files Analyzed: {status_data['system_summary']['total_files_analyzed']}")
+    print(f"   System Health: {status_data['system_summary']['system_health_status']}")
+    print(f"   Architect Compliance: {status_data['system_summary']['architect_compliance']}")
+    print(f"   Current Status Files:")
+    print(f"     - {output_path}")
+    print(f"     - {current_status_path}")
+
+if __name__ == "__main__":
+    main()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

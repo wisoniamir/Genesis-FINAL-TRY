@@ -1,0 +1,16 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\audit_snapshot_report.md",
+  "quarantine_timestamp": "2025-06-21T04:33:01.488152+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\audit_snapshot_report.md",
+      "line_numbers": [
+        21
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

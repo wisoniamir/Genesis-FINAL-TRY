@@ -1,0 +1,9 @@
+{
+  "module_id": "phase_102_kill_switch_execution_loop",
+  "original_path": "modules\\execution\\phase_102_kill_switch_execution_loop.py",
+  "preserved_path": "preservation_holding_area\\phase_102_kill_switch_execution_loop_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 32507,
+  "checksum": "44c9a73bfd6d5f59f77e67083476fb1d83c6fa82f53e5930c76478c197a63f08"
+}

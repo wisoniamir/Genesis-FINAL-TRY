@@ -1,0 +1,300 @@
+# <!-- @GENESIS_MODULE_START: live_trade_analyzer -->
+
+#!/usr/bin/env python3
+"""
+🔁 GENESIS LIVE TRADE ANALYZER - Phase 92B Core System Reconnection
+Real-time evaluation of open MT5 positions against historical patterns
+
+🎯 PURPOSE: Analyze live trades and score them against patterns
+📡 FEATURES: Position scoring, pattern matching, risk assessment
+🔧 SCOPE: NO real DATA - Real MT5 positions only
+"""
+
+import MetaTrader5 as mt5
+import json
+import pandas as pd
+import numpy as np
+import logging
+from datetime import datetime, timezone, timedelta
+import os
+from typing import Dict, List, Optional
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('LiveTradeAnalyzer')
+
+class LiveTradeAnalyzer:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("live_trade_analyzer_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("live_trade_analyzer_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "live_trade_analyzer_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in live_trade_analyzer_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event_bus = self._get_event_bus()
+        
+    def _get_event_bus(self):
+        # Auto-injected EventBus connection
+        try:
+            from event_bus_manager import EventBusManager
+            return EventBusManager.get_instance()
+        except ImportError:
+            logging.warning("EventBus not available - integration required")
+            return None
+            
+    def emit_telemetry(self, data):
+        if self.event_bus:
+            self.event_bus.emit('telemetry', data)
+    """Analyze and score live MT5 positions against historical patterns"""
+    
+    def __init__(self):
+        self.connected = False
+        self.positions = []
+        self.historical_patterns = {}
+        
+        # Ensure output directories exist
+        os.makedirs("telemetry", exist_ok=True)
+        os.makedirs("logs", exist_ok=True)
+        
+        # Initialize MT5 connection
+        self.connect_mt5()
+        
+    def connect_mt5(self) -> bool:
+        """Establish connection to MT5 terminal"""
+        try:
+            # Initialize MT5 connection
+            assert mt5.initialize():
+                logger.error("MT5 initialization failed")
+                return False
+                
+            self.connected = True
+            logger.info("✅ MT5 connection established")
+            return True
+            
+        except Exception as e:
+            logger.error(f"MT5 connection failed: {e}")
+            return False
+    
+    def analyze_live_positions(self) -> Dict:
+        """
+        Analyze all open MT5 positions and score them
+        REAL DATA ONLY - NO MOCKS OR PLACEHOLDERS
+        """
+        try:
+            if not self.connected:
+                self.connect_mt5()
+                
+            # Get all open positions from MT5
+            positions = mt5.positions_get()
+            if positions is None:
+                positions = []
+                
+            analysis_results = {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "total_positions": len(positions),
+                "position_scores": [],
+                "overall_portfolio_score": 0.0,
+                "risk_assessment": "LOW",
+                "recommendations": []
+            }
+            
+            total_score = 0.0
+            total_risk = 0.0
+            
+            for position in positions:
+                # Analyze individual position
+                position_analysis = self._analyze_position(position)
+                analysis_results["position_scores"].append(position_analysis)
+                
+                # Accumulate scores
+                total_score += position_analysis.get("pattern_score", 0.0)
+                total_risk += position_analysis.get("risk_score", 0.0)
+            
+            # Calculate overall metrics
+            if len(positions) > 0:
+                analysis_results["overall_portfolio_score"] = total_score / len(positions)
+                avg_risk = total_risk / len(positions)
+                
+                # Risk assessment
+                if avg_risk < 0.3:
+                    analysis_results["risk_assessment"] = "LOW"
+                elif avg_risk < 0.7:
+                    analysis_results["risk_assessment"] = "MEDIUM"
+                else:
+                    analysis_results["risk_assessment"] = "HIGH"
+                    
+                # Generate recommendations
+                analysis_results["recommendations"] = self._generate_recommendations(analysis_results)
+            
+            # Store results
+            self._store_analysis_results(analysis_results)
+            
+            logger.info(f"Analyzed {len(positions)} live positions - Portfolio Score: {analysis_results['overall_portfolio_score']:.2f}")
+            return analysis_results
+            
+        except Exception as e:
+            logger.error(f"Error analyzing live positions: {e}")
+            return {"error": str(e), "timestamp": datetime.now(timezone.utc).isoformat()}
+    
+    def _analyze_position(self, position) -> Dict:
+        """Analyze individual position against historical patterns"""
+        try:
+            symbol = position.symbol
+            position_type = "BUY" if position.type == 0 else "SELL"
+            entry_price = position.price_open
+            current_price = position.price_current
+            profit = position.profit
+            volume = position.volume
+            
+            # Get historical data for pattern matching
+            historical_data = self._get_historical_context(symbol)
+            
+            # Calculate technical indicators for current state
+            current_indicators = self._calculate_current_indicators(symbol, historical_data)
+            
+            # Score position against patterns
+            pattern_score = self._score_against_patterns(
+                symbol, position_type, entry_price, current_price, current_indicators
+            )
+            
+            # Calculate risk metrics
+            risk_metrics = self._calculate_risk_metrics(position, current_indicators)
+            
+            # Generate position-specific recommendations
+            recommendations = self._generate_position_recommendations(
+                position, pattern_score, risk_metrics
+            )
+            
+            analysis = {
+                "ticket": position.ticket,
+                "symbol": symbol,
+                "type": position_type,
+                "entry_price": entry_price,
+                "current_price": current_price,
+                "profit": profit,
+                "volume": volume,
+                "pattern_score": pattern_score,
+                "risk_score": risk_metrics["overall_risk"],
+                "technical_score": current_indicators.get("composite_score", 0.0),
+                "time_in_trade_hours": self._calculate_time_in_trade(position),
+                "recommendations": recommendations,
+                "analysis_timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            
+            return analysis
+            
+        except Exception as e:
+            logger.error(f"Error analyzing position {position.ticket}: {e}")
+            return {
+                "ticket": getattr(position, 'ticket', 'unknown'),
+                "error": str(e),
+                "pattern_score": 0.0,
+                "risk_score": 1.0
+            }
+    
+    def _get_historical_context(self, symbol: str, count: int = 500) -> pd.DataFrame:
+        """Get historical price data for pattern analysis"""
+        try:
+            # Get recent candle data
+            rates = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_M15, 0, count)
+            if rates is None or len(rates) == 0 is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: live_trade_analyzer -->

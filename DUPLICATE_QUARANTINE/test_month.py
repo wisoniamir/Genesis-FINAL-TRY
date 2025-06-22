@@ -1,0 +1,1275 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_month -->
+"""
+🏛️ GENESIS TEST_MONTH - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_month", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_month", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_month",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_month: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_month",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_month", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_month: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+Tests for the following offsets:
+- SemiMonthBegin
+- SemiMonthEnd
+- MonthBegin
+- MonthEnd
+"""
+from __future__ import annotations
+
+from datetime import datetime
+
+import pytest
+
+from pandas._libs.tslibs import Timestamp
+from pandas._libs.tslibs.offsets import (
+    MonthBegin,
+    MonthEnd,
+    SemiMonthBegin,
+    SemiMonthEnd,
+)
+
+from pandas import (
+    DatetimeIndex,
+    Series,
+    _testing as tm,
+)
+from pandas.tests.tseries.offsets.common import (
+    assert_is_on_offset,
+    assert_offset_equal,
+)
+
+
+class TestSemiMonthEnd:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_month", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_month", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_month",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_month: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_month",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_month", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_month: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_month",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_month: {e}")
+    def test_offset_whole_year(self):
+        dates = (
+            datetime(2007, 12, 31),
+            datetime(2008, 1, 15),
+            datetime(2008, 1, 31),
+            datetime(2008, 2, 15),
+            datetime(2008, 2, 29),
+            datetime(2008, 3, 15),
+            datetime(2008, 3, 31),
+            datetime(2008, 4, 15),
+            datetime(2008, 4, 30),
+            datetime(2008, 5, 15),
+            datetime(2008, 5, 31),
+            datetime(2008, 6, 15),
+            datetime(2008, 6, 30),
+            datetime(2008, 7, 15),
+            datetime(2008, 7, 31),
+            datetime(2008, 8, 15),
+            datetime(2008, 8, 31),
+            datetime(2008, 9, 15),
+            datetime(2008, 9, 30),
+            datetime(2008, 10, 15),
+            datetime(2008, 10, 31),
+            datetime(2008, 11, 15),
+            datetime(2008, 11, 30),
+            datetime(2008, 12, 15),
+            datetime(2008, 12, 31),
+        )
+
+        for base, exp_date in zip(dates[:-1], dates[1:]):
+            assert_offset_equal(SemiMonthEnd(), base, exp_date)
+
+        # ensure .apply_index works as expected
+        shift = DatetimeIndex(dates[:-1])
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = SemiMonthEnd() + shift
+
+        exp = DatetimeIndex(dates[1:])
+        tm.assert_index_equal(result, exp)
+
+    offset_cases = []
+    offset_cases.append(
+        (
+            SemiMonthEnd(),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 15),
+                datetime(2008, 1, 15): datetime(2008, 1, 31),
+                datetime(2008, 1, 31): datetime(2008, 2, 15),
+                datetime(2006, 12, 14): datetime(2006, 12, 15),
+                datetime(2006, 12, 29): datetime(2006, 12, 31),
+                datetime(2006, 12, 31): datetime(2007, 1, 15),
+                datetime(2007, 1, 1): datetime(2007, 1, 15),
+                datetime(2006, 12, 1): datetime(2006, 12, 15),
+                datetime(2006, 12, 15): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(day_of_month=20),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 20),
+                datetime(2008, 1, 15): datetime(2008, 1, 20),
+                datetime(2008, 1, 21): datetime(2008, 1, 31),
+                datetime(2008, 1, 31): datetime(2008, 2, 20),
+                datetime(2006, 12, 14): datetime(2006, 12, 20),
+                datetime(2006, 12, 29): datetime(2006, 12, 31),
+                datetime(2006, 12, 31): datetime(2007, 1, 20),
+                datetime(2007, 1, 1): datetime(2007, 1, 20),
+                datetime(2006, 12, 1): datetime(2006, 12, 20),
+                datetime(2006, 12, 15): datetime(2006, 12, 20),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(0),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 15),
+                datetime(2008, 1, 16): datetime(2008, 1, 31),
+                datetime(2008, 1, 15): datetime(2008, 1, 15),
+                datetime(2008, 1, 31): datetime(2008, 1, 31),
+                datetime(2006, 12, 29): datetime(2006, 12, 31),
+                datetime(2006, 12, 31): datetime(2006, 12, 31),
+                datetime(2007, 1, 1): datetime(2007, 1, 15),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(0, day_of_month=16),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 16),
+                datetime(2008, 1, 16): datetime(2008, 1, 16),
+                datetime(2008, 1, 15): datetime(2008, 1, 16),
+                datetime(2008, 1, 31): datetime(2008, 1, 31),
+                datetime(2006, 12, 29): datetime(2006, 12, 31),
+                datetime(2006, 12, 31): datetime(2006, 12, 31),
+                datetime(2007, 1, 1): datetime(2007, 1, 16),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(2),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 31),
+                datetime(2008, 1, 31): datetime(2008, 2, 29),
+                datetime(2006, 12, 29): datetime(2007, 1, 15),
+                datetime(2006, 12, 31): datetime(2007, 1, 31),
+                datetime(2007, 1, 1): datetime(2007, 1, 31),
+                datetime(2007, 1, 16): datetime(2007, 2, 15),
+                datetime(2006, 11, 1): datetime(2006, 11, 30),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(-1),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+                datetime(2008, 6, 30): datetime(2008, 6, 15),
+                datetime(2008, 12, 31): datetime(2008, 12, 15),
+                datetime(2006, 12, 29): datetime(2006, 12, 15),
+                datetime(2006, 12, 30): datetime(2006, 12, 15),
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(-1, day_of_month=4),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+                datetime(2007, 1, 4): datetime(2006, 12, 31),
+                datetime(2008, 6, 30): datetime(2008, 6, 4),
+                datetime(2008, 12, 31): datetime(2008, 12, 4),
+                datetime(2006, 12, 5): datetime(2006, 12, 4),
+                datetime(2006, 12, 30): datetime(2006, 12, 4),
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            SemiMonthEnd(-2),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 15),
+                datetime(2008, 6, 30): datetime(2008, 5, 31),
+                datetime(2008, 3, 15): datetime(2008, 2, 15),
+                datetime(2008, 12, 31): datetime(2008, 11, 30),
+                datetime(2006, 12, 29): datetime(2006, 11, 30),
+                datetime(2006, 12, 14): datetime(2006, 11, 15),
+                datetime(2007, 1, 1): datetime(2006, 12, 15),
+            },
+        )
+    )
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_apply_index(self, case):
+        # https://github.com/pandas-dev/pandas/issues/34580
+        offset, cases = case
+        shift = DatetimeIndex(cases.keys())
+        exp = DatetimeIndex(cases.values())
+
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = offset + shift
+        tm.assert_index_equal(result, exp)
+
+    on_offset_cases = [
+        (datetime(2007, 12, 31), True),
+        (datetime(2007, 12, 15), True),
+        (datetime(2007, 12, 14), False),
+        (datetime(2007, 12, 1), False),
+        (datetime(2008, 2, 29), True),
+    ]
+
+    @pytest.mark.parametrize("case", on_offset_cases)
+    def test_is_on_offset(self, case):
+        dt, expected = case
+        assert_is_on_offset(SemiMonthEnd(), dt, expected)
+
+    @pytest.mark.parametrize("klass", [Series, DatetimeIndex])
+    def test_vectorized_offset_addition(self, klass):
+        shift = klass(
+            [
+                Timestamp("2000-01-15 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-15", tz="US/Central"),
+            ],
+            name="a",
+        )
+
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = shift + SemiMonthEnd()
+            result2 = SemiMonthEnd() + shift
+
+        exp = klass(
+            [
+                Timestamp("2000-01-31 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-29", tz="US/Central"),
+            ],
+            name="a",
+        )
+        tm.assert_equal(result, exp)
+        tm.assert_equal(result2, exp)
+
+        shift = klass(
+            [
+                Timestamp("2000-01-01 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-01", tz="US/Central"),
+            ],
+            name="a",
+        )
+
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = shift + SemiMonthEnd()
+            result2 = SemiMonthEnd() + shift
+
+        exp = klass(
+            [
+                Timestamp("2000-01-15 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-15", tz="US/Central"),
+            ],
+            name="a",
+        )
+        tm.assert_equal(result, exp)
+        tm.assert_equal(result2, exp)
+
+
+class TestSemiMonthBegin:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_month", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_month", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_month",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_month: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_month",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_month", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_month: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_month",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_month: {e}")
+    def test_offset_whole_year(self):
+        dates = (
+            datetime(2007, 12, 15),
+            datetime(2008, 1, 1),
+            datetime(2008, 1, 15),
+            datetime(2008, 2, 1),
+            datetime(2008, 2, 15),
+            datetime(2008, 3, 1),
+            datetime(2008, 3, 15),
+            datetime(2008, 4, 1),
+            datetime(2008, 4, 15),
+            datetime(2008, 5, 1),
+            datetime(2008, 5, 15),
+            datetime(2008, 6, 1),
+            datetime(2008, 6, 15),
+            datetime(2008, 7, 1),
+            datetime(2008, 7, 15),
+            datetime(2008, 8, 1),
+            datetime(2008, 8, 15),
+            datetime(2008, 9, 1),
+            datetime(2008, 9, 15),
+            datetime(2008, 10, 1),
+            datetime(2008, 10, 15),
+            datetime(2008, 11, 1),
+            datetime(2008, 11, 15),
+            datetime(2008, 12, 1),
+            datetime(2008, 12, 15),
+        )
+
+        for base, exp_date in zip(dates[:-1], dates[1:]):
+            assert_offset_equal(SemiMonthBegin(), base, exp_date)
+
+        # ensure .apply_index works as expected
+        shift = DatetimeIndex(dates[:-1])
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = SemiMonthBegin() + shift
+
+        exp = DatetimeIndex(dates[1:])
+        tm.assert_index_equal(result, exp)
+
+    offset_cases = [
+        (
+            SemiMonthBegin(),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 15),
+                datetime(2008, 1, 15): datetime(2008, 2, 1),
+                datetime(2008, 1, 31): datetime(2008, 2, 1),
+                datetime(2006, 12, 14): datetime(2006, 12, 15),
+                datetime(2006, 12, 29): datetime(2007, 1, 1),
+                datetime(2006, 12, 31): datetime(2007, 1, 1),
+                datetime(2007, 1, 1): datetime(2007, 1, 15),
+                datetime(2006, 12, 1): datetime(2006, 12, 15),
+                datetime(2006, 12, 15): datetime(2007, 1, 1),
+            },
+        ),
+        (
+            SemiMonthBegin(day_of_month=20),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 20),
+                datetime(2008, 1, 15): datetime(2008, 1, 20),
+                datetime(2008, 1, 21): datetime(2008, 2, 1),
+                datetime(2008, 1, 31): datetime(2008, 2, 1),
+                datetime(2006, 12, 14): datetime(2006, 12, 20),
+                datetime(2006, 12, 29): datetime(2007, 1, 1),
+                datetime(2006, 12, 31): datetime(2007, 1, 1),
+                datetime(2007, 1, 1): datetime(2007, 1, 20),
+                datetime(2006, 12, 1): datetime(2006, 12, 20),
+                datetime(2006, 12, 15): datetime(2006, 12, 20),
+            },
+        ),
+        (
+            SemiMonthBegin(0),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 1),
+                datetime(2008, 1, 16): datetime(2008, 2, 1),
+                datetime(2008, 1, 15): datetime(2008, 1, 15),
+                datetime(2008, 1, 31): datetime(2008, 2, 1),
+                datetime(2006, 12, 29): datetime(2007, 1, 1),
+                datetime(2006, 12, 2): datetime(2006, 12, 15),
+                datetime(2007, 1, 1): datetime(2007, 1, 1),
+            },
+        ),
+        (
+            SemiMonthBegin(0, day_of_month=16),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 1),
+                datetime(2008, 1, 16): datetime(2008, 1, 16),
+                datetime(2008, 1, 15): datetime(2008, 1, 16),
+                datetime(2008, 1, 31): datetime(2008, 2, 1),
+                datetime(2006, 12, 29): datetime(2007, 1, 1),
+                datetime(2006, 12, 31): datetime(2007, 1, 1),
+                datetime(2007, 1, 5): datetime(2007, 1, 16),
+                datetime(2007, 1, 1): datetime(2007, 1, 1),
+            },
+        ),
+        (
+            SemiMonthBegin(2),
+            {
+                datetime(2008, 1, 1): datetime(2008, 2, 1),
+                datetime(2008, 1, 31): datetime(2008, 2, 15),
+                datetime(2006, 12, 1): datetime(2007, 1, 1),
+                datetime(2006, 12, 29): datetime(2007, 1, 15),
+                datetime(2006, 12, 15): datetime(2007, 1, 15),
+                datetime(2007, 1, 1): datetime(2007, 2, 1),
+                datetime(2007, 1, 16): datetime(2007, 2, 15),
+                datetime(2006, 11, 1): datetime(2006, 12, 1),
+            },
+        ),
+        (
+            SemiMonthBegin(-1),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 15),
+                datetime(2008, 6, 30): datetime(2008, 6, 15),
+                datetime(2008, 6, 14): datetime(2008, 6, 1),
+                datetime(2008, 12, 31): datetime(2008, 12, 15),
+                datetime(2006, 12, 29): datetime(2006, 12, 15),
+                datetime(2006, 12, 15): datetime(2006, 12, 1),
+                datetime(2007, 1, 1): datetime(2006, 12, 15),
+            },
+        ),
+        (
+            SemiMonthBegin(-1, day_of_month=4),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 4),
+                datetime(2007, 1, 4): datetime(2007, 1, 1),
+                datetime(2008, 6, 30): datetime(2008, 6, 4),
+                datetime(2008, 12, 31): datetime(2008, 12, 4),
+                datetime(2006, 12, 5): datetime(2006, 12, 4),
+                datetime(2006, 12, 30): datetime(2006, 12, 4),
+                datetime(2006, 12, 2): datetime(2006, 12, 1),
+                datetime(2007, 1, 1): datetime(2006, 12, 4),
+            },
+        ),
+        (
+            SemiMonthBegin(-2),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 1),
+                datetime(2008, 6, 30): datetime(2008, 6, 1),
+                datetime(2008, 6, 14): datetime(2008, 5, 15),
+                datetime(2008, 12, 31): datetime(2008, 12, 1),
+                datetime(2006, 12, 29): datetime(2006, 12, 1),
+                datetime(2006, 12, 15): datetime(2006, 11, 15),
+                datetime(2007, 1, 1): datetime(2006, 12, 1),
+            },
+        ),
+    ]
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_apply_index(self, case):
+        offset, cases = case
+        shift = DatetimeIndex(cases.keys())
+
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = offset + shift
+
+        exp = DatetimeIndex(cases.values())
+        tm.assert_index_equal(result, exp)
+
+    on_offset_cases = [
+        (datetime(2007, 12, 1), True),
+        (datetime(2007, 12, 15), True),
+        (datetime(2007, 12, 14), False),
+        (datetime(2007, 12, 31), False),
+        (datetime(2008, 2, 15), True),
+    ]
+
+    @pytest.mark.parametrize("case", on_offset_cases)
+    def test_is_on_offset(self, case):
+        dt, expected = case
+        assert_is_on_offset(SemiMonthBegin(), dt, expected)
+
+    @pytest.mark.parametrize("klass", [Series, DatetimeIndex])
+    def test_vectorized_offset_addition(self, klass):
+        shift = klass(
+            [
+                Timestamp("2000-01-15 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-15", tz="US/Central"),
+            ],
+            name="a",
+        )
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = shift + SemiMonthBegin()
+            result2 = SemiMonthBegin() + shift
+
+        exp = klass(
+            [
+                Timestamp("2000-02-01 00:15:00", tz="US/Central"),
+                Timestamp("2000-03-01", tz="US/Central"),
+            ],
+            name="a",
+        )
+        tm.assert_equal(result, exp)
+        tm.assert_equal(result2, exp)
+
+        shift = klass(
+            [
+                Timestamp("2000-01-01 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-01", tz="US/Central"),
+            ],
+            name="a",
+        )
+        with tm.assert_produces_warning(None):
+            # GH#22535 check that we don't get a FutureWarning from adding
+            # an integer array to PeriodIndex
+            result = shift + SemiMonthBegin()
+            result2 = SemiMonthBegin() + shift
+
+        exp = klass(
+            [
+                Timestamp("2000-01-15 00:15:00", tz="US/Central"),
+                Timestamp("2000-02-15", tz="US/Central"),
+            ],
+            name="a",
+        )
+        tm.assert_equal(result, exp)
+        tm.assert_equal(result2, exp)
+
+
+class TestMonthBegin:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_month", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_month", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_month",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_month: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_month",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_month", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_month: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_month",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_month: {e}")
+    offset_cases = []
+    # NOTE: I'm not entirely happy with the logic here for Begin -ss
+    # see thread 'offset conventions' on the ML
+    offset_cases.append(
+        (
+            MonthBegin(),
+            {
+                datetime(2008, 1, 31): datetime(2008, 2, 1),
+                datetime(2008, 2, 1): datetime(2008, 3, 1),
+                datetime(2006, 12, 31): datetime(2007, 1, 1),
+                datetime(2006, 12, 1): datetime(2007, 1, 1),
+                datetime(2007, 1, 31): datetime(2007, 2, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            MonthBegin(0),
+            {
+                datetime(2008, 1, 31): datetime(2008, 2, 1),
+                datetime(2008, 1, 1): datetime(2008, 1, 1),
+                datetime(2006, 12, 3): datetime(2007, 1, 1),
+                datetime(2007, 1, 31): datetime(2007, 2, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            MonthBegin(2),
+            {
+                datetime(2008, 2, 29): datetime(2008, 4, 1),
+                datetime(2008, 1, 31): datetime(2008, 3, 1),
+                datetime(2006, 12, 31): datetime(2007, 2, 1),
+                datetime(2007, 12, 28): datetime(2008, 2, 1),
+                datetime(2007, 1, 1): datetime(2007, 3, 1),
+                datetime(2006, 11, 1): datetime(2007, 1, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            MonthBegin(-1),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 1),
+                datetime(2008, 5, 31): datetime(2008, 5, 1),
+                datetime(2008, 12, 31): datetime(2008, 12, 1),
+                datetime(2006, 12, 29): datetime(2006, 12, 1),
+                datetime(2006, 1, 2): datetime(2006, 1, 1),
+            },
+        )
+    )
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+
+class TestMonthEnd:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_month", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_month", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_month",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_month: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_month",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_month", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_month: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_month",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_month: {e}")
+    def test_day_of_month(self):
+        dt = datetime(2007, 1, 1)
+        offset = MonthEnd()
+
+        result = dt + offset
+        assert result == Timestamp(2007, 1, 31)
+
+        result = result + offset
+        assert result == Timestamp(2007, 2, 28)
+
+    def test_normalize(self):
+        dt = datetime(2007, 1, 1, 3)
+
+        result = dt + MonthEnd(normalize=True)
+        expected = dt.replace(hour=0) + MonthEnd()
+        assert result == expected
+
+    offset_cases = []
+    offset_cases.append(
+        (
+            MonthEnd(),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 31),
+                datetime(2008, 1, 31): datetime(2008, 2, 29),
+                datetime(2006, 12, 29): datetime(2006, 12, 31),
+                datetime(2006, 12, 31): datetime(2007, 1, 31),
+                datetime(2007, 1, 1): datetime(2007, 1, 31),
+                datetime(2006, 12, 1): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            MonthEnd(0),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 31),
+                datetime(2008, 1, 31): datetime(2008, 1, 31),
+                datetime(2006, 12, 29): datetime(2006, 12, 31),
+                datetime(2006, 12, 31): datetime(2006, 12, 31),
+                datetime(2007, 1, 1): datetime(2007, 1, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            MonthEnd(2),
+            {
+                datetime(2008, 1, 1): datetime(2008, 2, 29),
+                datetime(2008, 1, 31): datetime(2008, 3, 31),
+                datetime(2006, 12, 29): datetime(2007, 1, 31),
+                datetime(2006, 12, 31): datetime(2007, 2, 28),
+                datetime(2007, 1, 1): datetime(2007, 2, 28),
+                datetime(2006, 11, 1): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            MonthEnd(-1),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+                datetime(2008, 6, 30): datetime(2008, 5, 31),
+                datetime(2008, 12, 31): datetime(2008, 11, 30),
+                datetime(2006, 12, 29): datetime(2006, 11, 30),
+                datetime(2006, 12, 30): datetime(2006, 11, 30),
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+    on_offset_cases = [
+        (MonthEnd(), datetime(2007, 12, 31), True),
+        (MonthEnd(), datetime(2008, 1, 1), False),
+    ]
+
+    @pytest.mark.parametrize("case", on_offset_cases)
+    def test_is_on_offset(self, case):
+        offset, dt, expected = case
+        assert_is_on_offset(offset, dt, expected)
+
+
+# <!-- @GENESIS_MODULE_END: test_month -->

@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"// Guardian Free - High Performance Configuration": true,
+		"files.watcherExclude": {
+			"**/.git/**": true,
+			"**/node_modules/**": true,
+			"**/.venv/**": true,
+			"**/quarantine/**": true,
+			"**/QUARANTINE_VIOLATIONS/**": true,
+			"**/repair_backups/**": true,
+			"**/logs/**": true,
+			"**/__pycache__/**": true,
+			"**/*.pyc": true,
+			"**/telemetry.json": true,
+			"**/*_backup_*": true,
+			"**/*_copy*": true,
+			"**/test_results/**": true,
+			"**/backup/**": true
+		},
+		"search.exclude": {
+			"**/.venv": true,
+			"**/quarantine": true,
+			"**/QUARANTINE_VIOLATIONS": true,
+			"**/repair_backups": true,
+			"**/logs": true,
+			"**/__pycache__": true,
+			"**/*.pyc": true,
+			"**/test_results": true,
+			"**/backup": true
+		},
+		"editor.minimap.enabled": false,
+		"editor.bracketPairColorization.enabled": false,
+		"editor.guides.bracketPairs": false,
+		"workbench.activityBar.visible": false,
+		"breadcrumbs.enabled": false,
+		"python.analysis.indexing": false,
+		"python.analysis.autoSearchPaths": false
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python",
+			"ms-python.vscode-pylance"
+		]
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "backports",
+  "original_path": "modules\\restored\\backports.py",
+  "preserved_path": "preservation_holding_area\\backports_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21839,
+  "checksum": "e37c9890fc8d72f496b49dea8859e65cfe260d376a6f350542541439e760cb72"
+}

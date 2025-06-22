@@ -1,0 +1,39 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_agglomerative_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.231366+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_agglomerative_recovered_1.py",
+      "line_numbers": [
+        519
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_agglomerative_recovered_1.py",
+      "line_numbers": [
+        92,
+        1009
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_agglomerative_recovered_1.py",
+      "line_numbers": [
+        318,
+        326,
+        421,
+        583,
+        605
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

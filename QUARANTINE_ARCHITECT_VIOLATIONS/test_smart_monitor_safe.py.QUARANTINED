@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.550912+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        47,
+        115,
+        142,
+        186,
+        215
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        1,
+        41,
+        42,
+        46,
+        79
+      ],
+      "violation_count": 31
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        196,
+        242
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        220,
+        256
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        116,
+        143,
+        187,
+        252
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        63,
+        273
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_smart_monitor_safe.py",
+      "line_numbers": [
+        71,
+        72,
+        73
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

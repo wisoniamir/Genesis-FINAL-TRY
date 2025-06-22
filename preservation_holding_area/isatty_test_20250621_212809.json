@@ -1,0 +1,9 @@
+{
+  "module_id": "isatty_test",
+  "original_path": "modules\\restored\\isatty_test.py",
+  "preserved_path": "preservation_holding_area\\isatty_test_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13159,
+  "checksum": "27c1ff65c52682f627d89fc4d0aea8c37e89feb44f55273a105826cfedda3747"
+}

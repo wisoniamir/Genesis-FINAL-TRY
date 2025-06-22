@@ -1,0 +1,90 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.794560+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        10,
+        86,
+        1027,
+        2140,
+        2151
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        798,
+        921
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        1127,
+        1130
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        91,
+        95,
+        99,
+        519,
+        972
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        93,
+        97,
+        101
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        184,
+        186,
+        188,
+        190,
+        192
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\console_recovered_1.py",
+      "line_numbers": [
+        39,
+        486,
+        533,
+        675,
+        681
+      ],
+      "violation_count": 29
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

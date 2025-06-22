@@ -1,0 +1,115 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.905677+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        127,
+        173,
+        355,
+        373,
+        375
+      ],
+      "violation_count": 32
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        1537,
+        2117,
+        2397
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        4498,
+        5496,
+        5804,
+        5807,
+        6069
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        249,
+        2973,
+        4508,
+        4538,
+        4644
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        3589,
+        3693
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        38,
+        41,
+        124,
+        185,
+        2356
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        5166
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        94,
+        148,
+        173,
+        283,
+        651
+      ],
+      "violation_count": 46
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basedatatypes.py",
+      "line_numbers": [
+        128,
+        228,
+        288,
+        699,
+        705
+      ],
+      "violation_count": 92
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

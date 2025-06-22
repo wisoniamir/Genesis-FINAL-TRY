@@ -1,0 +1,67 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\art3d_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.315260+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\art3d_recovered_1.py",
+      "line_numbers": [
+        123,
+        248,
+        1130,
+        1214,
+        1219
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\art3d_recovered_1.py",
+      "line_numbers": [
+        203,
+        204
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\art3d_recovered_1.py",
+      "line_numbers": [
+        899,
+        1210,
+        1215
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\art3d_recovered_1.py",
+      "line_numbers": [
+        297,
+        359,
+        526,
+        829,
+        834
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\art3d_recovered_1.py",
+      "line_numbers": [
+        72,
+        187,
+        317,
+        361,
+        379
+      ],
+      "violation_count": 26
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

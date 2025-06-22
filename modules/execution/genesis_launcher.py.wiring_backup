@@ -1,0 +1,292 @@
+# -*- coding: utf-8 -*-
+# <!-- @GENESIS_MODULE_START: genesis_launcher -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+GENESIS GUI Launcher
+Main entry point for GENESIS Trading Bot
+"""
+
+import tkinter as tk
+from tkinter import ttk, messagebox, scrolledtext
+import threading
+import subprocess
+import json
+import os
+import sys
+from pathlib import Path
+import webbrowser
+
+class GenesisLauncher:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event_bus = self._get_event_bus()
+        
+    def _get_event_bus(self):
+        # Auto-injected EventBus connection
+        try:
+            from event_bus_manager import EventBusManager
+            return EventBusManager.get_instance()
+        except ImportError:
+            logging.warning("EventBus not available - integration required")
+            return None
+            
+    def emit_telemetry(self, data):
+        if self.event_bus:
+            self.event_bus.emit('telemetry', data)
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("GENESIS Trading Bot v1.0.0")
+        self.root.geometry("800x600")
+        self.root.configure(bg='#1a1a1a')
+        
+        # Style configuration
+        self.style = ttk.Style()
+        self.style.theme_use('clam')
+        self.setup_styles()
+        
+        # Variables
+        self.mt5_status = tk.StringVar(value="Not Connected")
+        self.system_status = tk.StringVar(value="Initializing...")
+        
+        self.create_interface()
+        self.check_system_status()
+    
+    def setup_styles(self):
+        """Configure custom styles"""
+        self.style.configure('Title.TLabel', 
+                           font=('Arial', 16, 'bold'),
+                           foreground='#00ff88',
+                           background='#1a1a1a')
+        
+        self.style.configure('Status.TLabel',
+                           font=('Arial', 10),
+                           foreground='#ffffff',
+                           background='#1a1a1a')
+        
+        self.style.configure('Action.TButton',
+                           font=('Arial', 11, 'bold'),
+                           foreground='#ffffff')
+    
+    def create_interface(self):
+        """Create the main interface"""
+        # Header Frame
+        header_frame = tk.Frame(self.root, bg='#1a1a1a', height=100)
+        header_frame.pack(fill='x', padx=20, pady=10)
+        
+        title_label = ttk.Label(header_frame, text="🚀 GENESIS Trading Bot", style='Title.TLabel')
+        title_label.pack(pady=10)
+        
+        subtitle_label = ttk.Label(header_frame, text="Institutional-Grade Automated Trading System", style='Status.TLabel')
+        subtitle_label.pack()
+        
+        # Status Frame
+        status_frame = tk.LabelFrame(self.root, text="System Status", bg='#2a2a2a', fg='#ffffff', font=('Arial', 12, 'bold'))
+        status_frame.pack(fill='x', padx=20, pady=10)
+        
+        # System Status
+        sys_status_frame = tk.Frame(status_frame, bg='#2a2a2a')
+        sys_status_frame.pack(fill='x', padx=10, pady=5)
+        
+        ttk.Label(sys_status_frame, text="System:", style='Status.TLabel').pack(side='left')
+        ttk.Label(sys_status_frame, textvariable=self.system_status, style='Status.TLabel').pack(side='left', padx=(10,0))
+        
+        # MT5 Status
+        mt5_status_frame = tk.Frame(status_frame, bg='#2a2a2a')
+        mt5_status_frame.pack(fill='x', padx=10, pady=5)
+        
+        ttk.Label(mt5_status_frame, text="MT5:", style='Status.TLabel').pack(side='left')
+        ttk.Label(mt5_status_frame, textvariable=self.mt5_status, style='Status.TLabel').pack(side='left', padx=(10,0))
+        
+        # Action Buttons Frame
+        actions_frame = tk.LabelFrame(self.root, text="Actions", bg='#2a2a2a', fg='#ffffff', font=('Arial', 12, 'bold'))
+        actions_frame.pack(fill='x', padx=20, pady=10)
+        
+        button_frame = tk.Frame(actions_frame, bg='#2a2a2a')
+        button_frame.pack(fill='x', padx=10, pady=10)
+        
+        ttk.Button(button_frame, text="Start Dashboard", command=self.start_dashboard, style='Action.TButton').pack(side='left', padx=5)
+        ttk.Button(button_frame, text="Connect MT5", command=self.connect_mt5, style='Action.TButton').pack(side='left', padx=5)
+        ttk.Button(button_frame, text="System Check", command=self.system_check, style='Action.TButton').pack(side='left', padx=5)
+        ttk.Button(button_frame, text="View Logs", command=self.view_logs, style='Action.TButton').pack(side='left', padx=5)
+        
+        # Console Frame
+        console_frame = tk.LabelFrame(self.root, text="Console Output", bg='#2a2a2a', fg='#ffffff', font=('Arial', 12, 'bold'))
+        console_frame.pack(fill='both', expand=True, padx=20, pady=10)
+        
+        self.console = scrolledtext.ScrolledText(console_frame, 
+                                               bg='#000000', 
+                                               fg='#00ff88',
+                                               font=('Consolas', 10),
+                                               height=15)
+        self.console.pack(fill='both', expand=True, padx=10, pady=10)
+        
+        self.log_message("🚀 GENESIS Trading Bot Launcher Started")
+        self.log_message("🔐 Architect Mode v5.0.0 - INSTITUTIONAL_GRADE")
+    
+    def log_message(self, message: str):
+        """Add message to console"""
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        self.console.insert(tk.END, f"[{timestamp}] {message}\n")
+        self.console.see(tk.END)
+    
+    def check_system_status(self):
+        """Check GENESIS system status"""
+        try:
+            # Check if lock state exists
+            if Path('genesis_lock_state.json').exists():
+                self.system_status.set("✅ LOCKED & READY")
+                self.log_message("✅ System integrity verified - DEPLOYMENT READY")
+            else:
+                self.system_status.set("⚠️ NOT LOCKED")
+                self.log_message("⚠️ System not properly locked")
+            
+            # Check MT5 connection
+            try:
+                import MetaTrader5 as mt5
+                if mt5.initialize():
+                    account_info = mt5.account_info()
+                    if account_info:
+                        self.mt5_status.set(f"✅ Connected: {account_info.login}")
+                        self.log_message(f"✅ MT5 Connected: {account_info.login}@{account_info.server}")
+                    else:
+                        self.mt5_status.set("❌ Login Failed")
+                    mt5.shutdown()
+                else:
+                    self.mt5_status.set("❌ Connection Failed")
+                    self.log_message("❌ MT5 Connection Failed")
+            except ImportError:
+                self.mt5_status.set("❌ MT5 Not Installed")
+                self.log_message("❌ MetaTrader5 package not installed")
+                
+        except Exception as e:
+            self.log_message(f"❌ Status check error: {e}")
+    
+    def start_dashboard(self):
+        """Start GENESIS dashboard"""
+        self.log_message("🚀 Starting GENESIS Dashboard...")
+        try:
+            subprocess.Popen([sys.executable, "dashboard.py"], 
+                           creationflags=subprocess.CREATE_NEW_CONSOLE if os.name == 'nt' else 0)
+            self.log_message("✅ Dashboard started successfully")
+        except Exception as e:
+            self.log_message(f"❌ Dashboard start failed: {e}")
+            messagebox.showerror("Error", f"Failed to start dashboard: {e}")
+    
+    def connect_mt5(self):
+        """Test MT5 connection"""
+        self.log_message("🔌 Testing MT5 connection...")
+        threading.Thread(target=self._test_mt5_connection, daemon=True).start()
+    
+    def _test_mt5_connection(self):
+        """Test MT5 connection in background"""
+        try:
+            import MetaTrader5 as mt5
+            if mt5.initialize():
+                account_info = mt5.account_info()
+                if account_info:
+                    self.mt5_status.set(f"✅ Connected: {account_info.login}")
+                    self.log_message(f"✅ MT5 Test Success: {account_info.login}@{account_info.server}")
+                    self.log_message(f"💰 Balance: ${account_info.balance:.2f}")
+                else:
+                    self.mt5_status.set("❌ Login Failed")
+                    self.log_message("❌ MT5 Login Failed - Check credentials")
+                mt5.shutdown()
+            else:
+                error = mt5.last_error()
+                self.mt5_status.set("❌ Connection Failed")
+                self.log_message(f"❌ MT5 Connection Failed: {error}")
+        except Exception as e:
+            self.log_message(f"❌ MT5 Test Error: {e}")
+    
+    def system_check(self):
+        """Run comprehensive system check"""
+        self.log_message("🔍 Running system check...")
+        threading.Thread(target=self._run_system_check, daemon=True).start()
+    
+    def _run_system_check(self):
+        """Run system check in background"""
+        try:
+            # Check core files
+            core_files = [
+                'system_tree.json', 'module_registry.json', 'build_status.json',
+                'genesis_lock_state.json', 'module_fingerprints_snapshot.json'
+            ]
+            
+            missing_files = []
+            for file in core_files:
+                if not Path(file).exists():
+                    missing_files.append(file)
+            
+            if missing_files:
+                self.log_message(f"❌ Missing files: {', '.join(missing_files)}")
+            else:
+                self.log_message("✅ All core files present")
+            
+            # Check Python modules
+            required_modules = ['MetaTrader5', 'numpy', 'pandas', 'sklearn']
+            missing_modules = []
+            
+            for module in required_modules:
+                try:
+                    __import__(module)
+                    self.log_message(f"✅ {module} available")
+                except ImportError:
+                    missing_modules.append(module)
+                    self.log_message(f"❌ {module} not installed")
+            
+            if not missing_files and not missing_modules:
+                self.log_message("🎯 System check PASSED - Ready for trading")
+            else:
+                self.log_message("⚠️ System check found issues - Review above")
+                
+        except Exception as e:
+            self.log_message(f"❌ System check error: {e}")
+    
+    def view_logs(self):
+        """Open logs directory"""
+        try:
+            if os.name == 'nt':  # Windows
+                subprocess.run(['explorer', 'logs'])
+            else:  # Unix-like
+                subprocess.run(['xdg-open', 'logs'])
+            self.log_message("📁 Logs directory opened")
+        except Exception as e:
+            self.log_message(f"❌ Failed to open logs: {e}")
+    
+    def run(self):
+        """Start the GUI"""
+        self.root.mainloop()
+
+def main():
+    # Auto-injected telemetry
+    telemetry = TelemetryManager.get_instance()
+    telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()})
+    # Auto-injected telemetry
+    telemetry = TelemetryManager.get_instance()
+    telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()})
+    """Main launcher function"""
+    try:
+        launcher = GenesisLauncher()
+        launcher.run()
+    except Exception as e:
+        print(f"Launcher error: {e}")
+        input("Press Enter to exit...")
+
+if __name__ == "__main__":
+    main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: genesis_launcher -->

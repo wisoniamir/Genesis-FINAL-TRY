@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_feedback_mutator",
+  "original_path": "modules\\signal_processing\\execution_feedback_mutator.py",
+  "preserved_path": "preservation_holding_area\\execution_feedback_mutator_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 47772,
+  "checksum": "1b3c108df30b0993857a154c97d77f84863b508ba6a34ea8f4a64673caef5973"
+}

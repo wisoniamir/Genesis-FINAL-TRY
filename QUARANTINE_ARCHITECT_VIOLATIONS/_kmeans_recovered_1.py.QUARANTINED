@@ -1,0 +1,58 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_kmeans_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.207014+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_kmeans_recovered_1.py",
+      "line_numbers": [
+        342,
+        344,
+        894,
+        1215,
+        1218
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_kmeans_recovered_1.py",
+      "line_numbers": [
+        943,
+        1085,
+        1143,
+        1172
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_kmeans_recovered_1.py",
+      "line_numbers": [
+        598,
+        736,
+        1478,
+        1534,
+        1535
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_kmeans_recovered_1.py",
+      "line_numbers": [
+        155,
+        229,
+        268,
+        285,
+        452
+      ],
+      "violation_count": 19
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

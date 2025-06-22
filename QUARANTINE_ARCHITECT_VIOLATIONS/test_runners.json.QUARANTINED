@@ -1,0 +1,33 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\test_runners.json",
+  "quarantine_timestamp": "2025-06-21T04:33:04.874550+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\test_runners.json",
+      "line_numbers": [
+        10,
+        20,
+        26,
+        32,
+        37
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\test_runners.json",
+      "line_numbers": [
+        6,
+        8,
+        15,
+        29,
+        36
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

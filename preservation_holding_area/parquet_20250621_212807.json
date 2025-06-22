@@ -1,0 +1,9 @@
+{
+  "module_id": "parquet",
+  "original_path": "modules\\restored\\parquet.py",
+  "preserved_path": "preservation_holding_area\\parquet_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 45381,
+  "checksum": "0b3a9cf3cefc0e4469ed5f5203b678ba08f6cb2c07699d6549f90acccb8f2782"
+}

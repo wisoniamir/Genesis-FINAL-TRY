@@ -1,0 +1,26 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\PHASE_101_ARCHITECT_CERTIFICATION.md",
+  "quarantine_timestamp": "2025-06-21T04:33:03.563356+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\PHASE_101_ARCHITECT_CERTIFICATION.md",
+      "line_numbers": [
+        31,
+        67
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\PHASE_101_ARCHITECT_CERTIFICATION.md",
+      "line_numbers": [
+        31
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

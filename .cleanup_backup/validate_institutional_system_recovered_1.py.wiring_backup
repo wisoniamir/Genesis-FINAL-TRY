@@ -1,0 +1,409 @@
+# <!-- @GENESIS_MODULE_START: validate_institutional_system -->
+
+#!/usr/bin/env python3
+"""
+GENESIS INSTITUTIONAL SYSTEM VALIDATOR
+Final validation of the rebuilt institutional trading system
+
+🎯 PURPOSE: Comprehensive validation of institutional-grade system
+🔧 SCOPE: All modules, configurations, and compliance standards
+🏆 GOAL: Production readiness certification
+"""
+
+import json
+import logging
+from pathlib import Path
+from datetime import datetime, timezone
+from typing import Dict, List, Any
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger('InstitutionalValidator')
+
+class InstitutionalSystemValidator:
+    """Comprehensive validation of the institutional GENESIS system"""
+    
+    def __init__(self):
+        self.base_path = Path("c:/Users/patra/Genesis FINAL TRY")
+        self.institutional_path = self.base_path / "genesis_institutional_build"
+        
+        self.validation_results = {
+            'timestamp': datetime.now(timezone.utc).isoformat(),
+            'system_version': 'v6.2.0-institutional',
+            'validation_status': 'UNKNOWN',
+            'checks_performed': [],
+            'passed_checks': 0,
+            'failed_checks': 0,
+            'warnings': [],
+            'errors': [],
+            'recommendations': []
+        }
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def validate_directory_structure(self) -> bool:
+        """Validate institutional system directory structure"""
+        logger.info("🔍 Validating directory structure...")
+        
+        required_dirs = ['engines', 'adapters', 'gui', 'core', 'config']
+        required_files = [
+            'system_tree.json',
+            'module_registry.json', 
+            'event_bus.json',
+            'telemetry.json',
+            'compliance.json',
+            'rebuild_report.json'
+        ]
+        
+        check_result = {
+            'check_name': 'Directory Structure',
+            'status': 'PASS',
+            'details': []
+        }
+        
+        # Check directories
+        for dir_name in required_dirs:
+            dir_path = self.institutional_path / dir_name
+            if dir_path.exists():
+                check_result['details'].append(f"✅ Directory: {dir_name}")
+            else:
+                check_result['status'] = 'FAIL'
+                check_result['details'].append(f"❌ Missing directory: {dir_name}")
+        
+        # Check files
+        for file_name in required_files:
+            file_path = self.institutional_path / file_name
+            if file_path.exists():
+                check_result['details'].append(f"✅ File: {file_name}")
+            else:
+                check_result['status'] = 'FAIL'
+                check_result['details'].append(f"❌ Missing file: {file_name}")
+        
+        self.validation_results['checks_performed'].append(check_result)
+        
+        if check_result['status'] == 'PASS':
+            self.validation_results['passed_checks'] += 1
+            return True
+        else:
+            self.validation_results['failed_checks'] += 1
+            return False
+    
+    def validate_module_quality(self) -> bool:
+        """Validate all modules meet institutional quality standards"""
+        logger.info("🏆 Validating module quality standards...")
+        
+        system_tree_path = self.institutional_path / "system_tree.json"
+        with open(system_tree_path, 'r') as f:
+            system_tree = json.load(f)
+        
+        check_result = {
+            'check_name': 'Module Quality Standards',
+            'status': 'PASS',
+            'details': []
+        }
+        
+        min_score = 80.0
+        total_modules = 0
+        passing_modules = 0
+        
+        for category, modules in system_tree.items():
+            if category == 'genesis_system':
+                continue
+                
+            for module_name, module_info in modules.items():
+                total_modules += 1
+                score = module_info.get('quality_score', 0)
+                
+                if score >= min_score:
+                    passing_modules += 1
+                    check_result['details'].append(f"✅ {module_name}: {score}")
+                else:
+                    check_result['status'] = 'FAIL'
+                    check_result['details'].append(f"❌ {module_name}: {score} < {min_score}")
+        
+        if check_result['status'] == 'PASS':
+            check_result['details'].append(f"✅ All {total_modules} modules meet quality standards")
+        
+        self.validation_results['checks_performed'].append(check_result)
+        
+        if check_result['status'] == 'PASS':
+            self.validation_results['passed_checks'] += 1
+            return True
+        else:
+            self.validation_results['failed_checks'] += 1
+            return False
+    
+    def validate_mt5_integration(self) -> bool:
+        """Validate MT5 integration requirements"""
+        logger.info("📈 Validating MT5 integration...")
+        
+        system_tree_path = self.institutional_path / "system_tree.json"
+        with open(system_tree_path, 'r') as f:
+            system_tree = json.load(f)
+        
+        check_result = {
+            'check_name': 'MT5 Integration',
+            'status': 'PASS',
+            'details': []
+        }
+        
+        mt5_modules = 0
+        total_modules = 0
+        
+        for category, modules in system_tree.items():
+            if category == 'genesis_system':
+                continue
+                
+            for module_name, module_info in modules.items():
+                total_modules += 1
+                
+                if module_info.get('mt5_integration', False):
+                    mt5_modules += 1
+                    check_result['details'].append(f"✅ {module_name}: MT5 integrated")
+        
+        mt5_percentage = (mt5_modules / total_modules) * 100 if total_modules > 0 else 0
+        
+        if mt5_percentage >= 40:  # At least 40% should have MT5 integration
+            check_result['details'].append(f"✅ MT5 integration: {mt5_percentage:.1f}% ({mt5_modules}/{total_modules})")
+        else:
+            check_result['status'] = 'FAIL'
+            check_result['details'].append(f"❌ Insufficient MT5 integration: {mt5_percentage:.1f}% < 40%")
+        
+        self.validation_results['checks_performed'].append(check_result)
+        
+        if check_result['status'] == 'PASS':
+            self.validation_results['passed_checks'] += 1
+            return True
+        else:
+            self.validation_results['failed_checks'] += 1
+            return False
+    
+    def validate_eventbus_integration(self) -> bool:
+        """Validate EventBus integration requirements"""
+        logger.info("🔄 Validating EventBus integration...")
+        
+        system_tree_path = self.institutional_path / "system_tree.json"
+        with open(system_tree_path, 'r') as f:
+            system_tree = json.load(f)
+        
+        check_result = {
+            'check_name': 'EventBus Integration',
+            'status': 'PASS',
+            'details': []
+        }
+        
+        eventbus_modules = 0
+        total_modules = 0
+        
+        for category, modules in system_tree.items():
+            if category == 'genesis_system':
+                continue
+                
+            for module_name, module_info in modules.items():
+                total_modules += 1
+                
+                if module_info.get('eventbus_connected', False):
+                    eventbus_modules += 1
+                    check_result['details'].append(f"✅ {module_name}: EventBus connected")
+                else:
+                    check_result['details'].append(f"⚠️ {module_name}: No EventBus connection")
+        
+        eventbus_percentage = (eventbus_modules / total_modules) * 100 if total_modules > 0 else 0
+        
+        if eventbus_percentage >= 80:  # At least 80% should be EventBus connected
+            check_result['details'].append(f"✅ EventBus integration: {eventbus_percentage:.1f}% ({eventbus_modules}/{total_modules})")
+        else:
+            check_result['status'] = 'FAIL'
+            check_result['details'].append(f"❌ Insufficient EventBus integration: {eventbus_percentage:.1f}% < 80%")
+        
+        self.validation_results['checks_performed'].append(check_result)
+        
+        if check_result['status'] == 'PASS':
+            self.validation_results['passed_checks'] += 1
+            return True
+        else:
+            self.validation_results['failed_checks'] += 1
+            return False
+    
+    def validate_telemetry_coverage(self) -> bool:
+        """Validate telemetry monitoring coverage"""
+        logger.info("📊 Validating telemetry coverage...")
+        
+        system_tree_path = self.institutional_path / "system_tree.json"
+        with open(system_tree_path, 'r') as f:
+            system_tree = json.load(f)
+        
+        check_result = {
+            'check_name': 'Telemetry Coverage',
+            'status': 'PASS',
+            'details': []
+        }
+        
+        telemetry_modules = 0
+        total_modules = 0
+        
+        for category, modules in system_tree.items():
+            if category == 'genesis_system':
+                continue
+                
+            for module_name, module_info in modules.items():
+                total_modules += 1
+                
+                if module_info.get('telemetry_enabled', False):
+                    telemetry_modules += 1
+                    check_result['details'].append(f"✅ {module_name}: Telemetry enabled")
+                else:
+                    check_result['status'] = 'FAIL'
+                    check_result['details'].append(f"❌ {module_name}: No telemetry")
+        
+        telemetry_percentage = (telemetry_modules / total_modules) * 100 if total_modules > 0 else 0
+        
+        if telemetry_percentage == 100:  # 100% telemetry coverage required
+            check_result['details'].append(f"✅ Complete telemetry coverage: {telemetry_percentage}% ({telemetry_modules}/{total_modules})")
+        else:
+            check_result['status'] = 'FAIL'
+            check_result['details'].append(f"❌ Incomplete telemetry coverage: {telemetry_percentage}% < 100%")
+        
+        self.validation_results['checks_performed'].append(check_result)
+        
+        if check_result['status'] == 'PASS':
+            self.validation_results['passed_checks'] += 1
+            return True
+        else:
+            self.validation_results['failed_checks'] += 1
+            return False
+    
+    def validate_configuration_files(self) -> bool:
+        """Validate system configuration files"""
+        logger.info("⚙️ Validating configuration files...")
+        
+        check_result = {
+            'check_name': 'Configuration Files',
+            'status': 'PASS',
+            'details': []
+        }
+        
+        config_files = {
+            'system_tree.json': ['genesis_system', 'core_engines'],
+            'event_bus.json': ['version', 'routes'],
+            'telemetry.json': ['version', 'metrics'],
+            'compliance.json': ['version', 'requirements']
+        }
+        
+        for file_name, required_keys in config_files.items():
+            file_path = self.institutional_path / file_name
+            
+            if not file_path.exists():
+                check_result['status'] = 'FAIL'
+                check_result['details'].append(f"❌ Missing: {file_name}")
+                continue
+            
+            try:
+                with open(file_path, 'r') as f:
+                    config_data = json.load(f)
+                
+                missing_keys = [key for key in required_keys if key not in config_data]
+                
+                if missing_keys:
+                    check_result['status'] = 'FAIL'
+                    check_result['details'].append(f"❌ {file_name}: Missing keys {missing_keys}")
+                else:
+                    check_result['details'].append(f"✅ {file_name}: Valid configuration")
+                    
+            except json.JSONDecodeError:
+                check_result['status'] = 'FAIL'
+                check_result['details'].append(f"❌ {file_name}: Invalid JSON format")
+        
+        self.validation_results['checks_performed'].append(check_result)
+        
+        if check_result['status'] == 'PASS':
+            self.validation_results['passed_checks'] += 1
+            return True
+        else:
+            self.validation_results['failed_checks'] += 1
+            return False
+    
+    def validate_system(self) -> Dict:
+        """Execute complete system validation"""
+        logger.info("🔍 GENESIS INSTITUTIONAL SYSTEM VALIDATION INITIATED")
+        logger.info("=" * 60)
+        
+        # Perform all validation checks
+        validations = [
+            self.validate_directory_structure(),
+            self.validate_module_quality(),
+            self.validate_mt5_integration(),
+            self.validate_eventbus_integration(),
+            self.validate_telemetry_coverage(),
+            self.validate_configuration_files()
+        ]
+        
+        # Determine overall status
+        if all(validations):
+            self.validation_results['validation_status'] = 'PRODUCTION_READY'
+            status_icon = "🏆"
+        elif self.validation_results['passed_checks'] >= 4:
+            self.validation_results['validation_status'] = 'CONDITIONALLY_READY'
+            status_icon = "⚠️"
+        else:
+            self.validation_results['validation_status'] = 'NOT_READY'
+            status_icon = "❌"
+        
+        # Save validation report
+        with open(self.institutional_path / 'validation_report.json', 'w') as f:
+            json.dump(self.validation_results, f, indent=2)
+        
+        logger.info(f"{status_icon} VALIDATION COMPLETE: {self.validation_results['validation_status']}")
+        logger.info(f"📊 Passed: {self.validation_results['passed_checks']}/{len(validations)}")
+        
+        return self.validation_results
+
+def main():
+    """Execute institutional system validation"""
+    print("🔍 GENESIS INSTITUTIONAL SYSTEM VALIDATOR")
+    print("=" * 50)
+    
+    validator = InstitutionalSystemValidator()
+    results = validator.validate_system()
+    
+    print(f"\n{results['validation_status']} - VALIDATION RESULTS:")
+    print(f"✅ Passed Checks: {results['passed_checks']}")
+    print(f"❌ Failed Checks: {results['failed_checks']}")
+    
+    if results['validation_status'] == 'PRODUCTION_READY':
+        print("\n🏆 SYSTEM CERTIFIED FOR INSTITUTIONAL DEPLOYMENT")
+    elif results['validation_status'] == 'CONDITIONALLY_READY':
+        print("\n⚠️ SYSTEM READY WITH CONDITIONS - Review failed checks")
+    else:
+        print("\n❌ SYSTEM NOT READY - Critical issues must be resolved")
+    
+    print(f"\n📋 Full report: validation_report.json")
+    return results
+
+if __name__ == "__main__":
+    main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: validate_institutional_system -->

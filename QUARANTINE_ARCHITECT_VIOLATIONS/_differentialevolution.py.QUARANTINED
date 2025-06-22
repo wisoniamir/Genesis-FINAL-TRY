@@ -1,0 +1,58 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_differentialevolution.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.020835+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_differentialevolution.py",
+      "line_numbers": [
+        132,
+        144,
+        300,
+        606,
+        607
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_differentialevolution.py",
+      "line_numbers": [
+        1184,
+        1204,
+        1336,
+        1954
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_differentialevolution.py",
+      "line_numbers": [
+        900,
+        1463,
+        1536,
+        1592,
+        1696
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_differentialevolution.py",
+      "line_numbers": [
+        778,
+        853,
+        912,
+        948,
+        950
+      ],
+      "violation_count": 17
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.579216+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        21,
+        22,
+        23,
+        32,
+        33
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        33
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        33
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        33
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        13
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        71
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        97
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        109
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\targeted_mt5_analysis_recovered_2.py",
+      "line_numbers": [
+        43
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

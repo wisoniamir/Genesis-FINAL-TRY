@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.298241+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        65,
+        187,
+        193,
+        575,
+        580
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        1,
+        14,
+        50,
+        51,
+        86
+      ],
+      "violation_count": 158
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        39,
+        151,
+        165,
+        212,
+        240
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        167,
+        204,
+        234,
+        248,
+        293
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        133,
+        215,
+        809
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        112,
+        819
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        227,
+        228,
+        229,
+        230
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

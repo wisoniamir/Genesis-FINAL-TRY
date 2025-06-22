@@ -1,0 +1,106 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.288198+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        444,
+        482,
+        492,
+        493
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        226,
+        256,
+        266,
+        296,
+        306
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        202,
+        538
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        219,
+        549
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        396,
+        509
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        544
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        71,
+        568
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\step7_deadlock_debugger_recovered_1.py",
+      "line_numbers": [
+        89,
+        90,
+        91,
+        92
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

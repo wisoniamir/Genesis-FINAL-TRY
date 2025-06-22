@@ -1,0 +1,9 @@
+{
+  "module_id": "emergency_eventbus_deduplication",
+  "original_path": "core\\emergency_eventbus_deduplication.py",
+  "preserved_path": "preservation_holding_area\\emergency_eventbus_deduplication_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19408,
+  "checksum": "902dd36f4b440281207ffd5281383586de1c5b59d1c82390d3e5637495185496"
+}

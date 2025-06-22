@@ -1,0 +1,87 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.148494+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        34,
+        35
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        26,
+        49,
+        106,
+        112,
+        124
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        31,
+        115,
+        118,
+        138,
+        155
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        269
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        421
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        120,
+        140,
+        153,
+        176,
+        211
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase47_live_feed_sync_integration_recovered_2.py",
+      "line_numbers": [
+        34,
+        98,
+        282,
+        298,
+        349
+      ],
+      "violation_count": 7
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

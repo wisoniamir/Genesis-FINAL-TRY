@@ -1,0 +1,37 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.py",
+  "quarantine_timestamp": "2025-06-21T04:33:06.492291+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.py",
+      "line_numbers": [
+        99
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.py",
+      "line_numbers": [
+        22,
+        28,
+        95
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.cleanup_backup\\DUPLICATE_build_tracker.py",
+      "line_numbers": [
+        35,
+        100
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

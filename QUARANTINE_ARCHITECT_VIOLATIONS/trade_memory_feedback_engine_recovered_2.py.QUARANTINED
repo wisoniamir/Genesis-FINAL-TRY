@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_memory_feedback_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.863340+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_memory_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        33,
+        37,
+        169,
+        229,
+        250
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_memory_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        223,
+        245,
+        297,
+        323,
+        377
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_memory_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        314,
+        393,
+        407,
+        691
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_memory_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        155,
+        749
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_memory_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        48,
+        231,
+        232,
+        235,
+        238
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

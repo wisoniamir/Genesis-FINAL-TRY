@@ -1,0 +1,98 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.574794+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        16,
+        58,
+        184,
+        185,
+        186
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        185
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        185
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        116,
+        168,
+        311,
+        331,
+        366
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        119,
+        196,
+        325,
+        357,
+        383
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        241
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        163,
+        239,
+        335,
+        444
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\system_tree_rebuild_engine.py",
+      "line_numbers": [
+        101,
+        143,
+        364,
+        379,
+        385
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

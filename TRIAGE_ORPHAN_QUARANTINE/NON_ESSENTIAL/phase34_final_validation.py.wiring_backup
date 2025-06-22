@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""
+GENESIS Phase 34 - Final Validation and Summary
+Manual validation of Phase 34 broker discovery and dashboard integration
+ARCHITECT MODE v2.9 - COMPLETE
+"""
+
+import json
+import os
+from datetime import datetime
+
+def validate_phase34_completion():
+    """Validate Phase 34 completion status"""
+    print("="*80)
+    print("GENESIS PHASE 34 - BROKER DISCOVERY + DASHBOARD INTEGRATION")
+    print("FINAL VALIDATION SUMMARY")
+    print("="*80)
+    
+    validation_results = {
+        "timestamp": datetime.now().isoformat(),
+        "phase_34_status": "VALIDATING",
+        "validations": []
+    }
+    
+    # 1. Broker Discovery Engine Test
+    print("\n1. BROKER DISCOVERY ENGINE VALIDATION")
+    try:
+        from test_phase34_broker_discovery_final import Phase34BrokerDiscoveryFixedTest
+        test_suite = Phase34BrokerDiscoveryFixedTest()
+        success = test_suite.run_all_tests()
+        status = "✅ PASSED" if success else "❌ FAILED"
+        print(f"   Status: {status}")
+        validation_results["validations"].append({"test": "broker_discovery_engine", "status": success})
+    except Exception as e:
+        print(f"   Status: ❌ FAILED - {str(e)}")
+        validation_results["validations"].append({"test": "broker_discovery_engine", "status": False, "error": str(e)})
+    
+    # 2. Dashboard Panel Component
+    print("\n2. DASHBOARD PANEL COMPONENT VALIDATION")
+    try:
+        from ui_components.broker_discovery_panel import BrokerDiscoveryPanel
+        panel = BrokerDiscoveryPanel({"refresh_rate": {"broker_discovery": 15}})
+        state = panel.load_broker_discovery_state()
+        required_keys = ["rule_profile_active", "account_type_detected", "override_mode", "broker_discovery_status", "rule_customization_active"]
+        has_all_keys = all(key in state for key in required_keys)
+        status = "✅ PASSED" if has_all_keys else "❌ FAILED"
+        print(f"   Status: {status}")
+        print(f"   Panel state keys: {list(state.keys())}")
+        validation_results["validations"].append({"test": "dashboard_panel_component", "status": has_all_keys})
+    except Exception as e:
+        print(f"   Status: ❌ FAILED - {str(e)}")
+        validation_results["validations"].append({"test": "dashboard_panel_component", "status": False, "error": str(e)})
+    
+    # 3. Dashboard Configuration
+    print("\n3. DASHBOARD CONFIGURATION VALIDATION")
+    try:
+        with open("dashboard_config.json", "r") as f:
+            config = json.load(f)
+        
+        has_broker_tab = "broker_discovery" in config["layout"]["main_content"]["tabs"]
+        has_refresh_rate = "broker_discovery" in config["refresh_rate"]
+        has_module_monitor = "BrokerDiscoveryEngine" in config["modules_to_monitor"]
+        
+        config_valid = has_broker_tab and has_refresh_rate and has_module_monitor
+        status = "✅ PASSED" if config_valid else "❌ FAILED"
+        print(f"   Status: {status}")
+        print(f"   Broker discovery tab: {has_broker_tab}")
+        print(f"   Refresh rate configured: {has_refresh_rate}")
+        print(f"   Module monitoring: {has_module_monitor}")
+        validation_results["validations"].append({"test": "dashboard_configuration", "status": config_valid})
+    except Exception as e:
+        print(f"   Status: ❌ FAILED - {str(e)}")
+        validation_results["validations"].append({"test": "dashboard_configuration", "status": False, "error": str(e)})
+    
+    # 4. Build Status Updates
+    print("\n4. BUILD STATUS VALIDATION")
+    try:
+        with open("build_status.json", "r") as f:
+            build_status = json.load(f)
+        
+        phase34_flags = [
+            "phase_34_broker_discovery_complete",
+            "phase_34_telemetry_dashboard_integration", 
+            "phase_34_dashboard_panel_integration",
+            "phase_34_broker_discovery_panel_created",
+            "phase_34_dashboard_config_updated"
+        ]
+        
+        flags_status = [build_status.get(flag, False) for flag in phase34_flags]
+        module_connected = "BrokerDiscoveryEngine" in build_status.get("modules_connected", [])
+        
+        build_valid = all(flags_status) and module_connected
+        status = "✅ PASSED" if build_valid else "❌ FAILED"
+        print(f"   Status: {status}")
+        print(f"   Phase 34 flags: {sum(flags_status)}/{len(phase34_flags)} complete")
+        print(f"   Module connected: {module_connected}")
+        validation_results["validations"].append({"test": "build_status", "status": build_valid})
+    except Exception as e:
+        print(f"   Status: ❌ FAILED - {str(e)}")
+        validation_results["validations"].append({"test": "build_status", "status": False, "error": str(e)})
+    
+    # 5. EventBus Integration
+    print("\n5. EVENTBUS INTEGRATION VALIDATION")
+    try:
+        with open("module_registry.json", "r") as f:
+            module_registry = json.load(f)
+        
+        # Find BrokerDiscoveryEngine in registry
+        broker_module = None
+        for module in module_registry.get("modules", []):
+            if module.get("name") == "BrokerDiscoveryEngine":
+                broker_module = module
+                break
+        
+        has_module = broker_module is not None
+        has_events = has_module and len(broker_module.get("event_input", [])) > 0 and len(broker_module.get("event_output", [])) > 0
+        
+        eventbus_valid = has_module and has_events
+        status = "✅ PASSED" if eventbus_valid else "❌ FAILED"
+        print(f"   Status: {status}")
+        print(f"   Module registered: {has_module}")
+        print(f"   Event routes configured: {has_events}")
+        validation_results["validations"].append({"test": "eventbus_integration", "status": eventbus_valid})
+    except Exception as e:
+        print(f"   Status: ❌ FAILED - {str(e)}")
+        validation_results["validations"].append({"test": "eventbus_integration", "status": False, "error": str(e)})
+    
+    # Final Summary
+    print("\n" + "="*80)
+    print("PHASE 34 VALIDATION SUMMARY")
+    print("="*80)
+    
+    total_tests = len(validation_results["validations"])
+    passed_tests = sum(1 for v in validation_results["validations"] if v["status"])
+    success_rate = (passed_tests / total_tests * 100) if total_tests > 0 else 0
+    
+    validation_results["total_tests"] = total_tests
+    validation_results["passed_tests"] = passed_tests
+    validation_results["success_rate"] = success_rate
+    
+    print(f"Total Validations: {total_tests}")
+    print(f"Passed: {passed_tests}")
+    print(f"Failed: {total_tests - passed_tests}")
+    print(f"Success Rate: {success_rate:.1f}%")
+    
+    if success_rate == 100:
+        validation_results["phase_34_status"] = "COMPLETE"
+        print("\n🎉 PHASE 34 BROKER DISCOVERY + DASHBOARD INTEGRATION: COMPLETE")
+        print("✅ All systems operational and integrated")
+        print("✅ Real-time telemetry dashboard active")
+        print("✅ Broker discovery engine fully functional")
+        print("✅ EventBus integration verified")
+        print("✅ GENESIS architect compliance maintained")
+    else:
+        validation_results["phase_34_status"] = "PARTIAL"
+        print(f"\n⚠️ PHASE 34 VALIDATION: {passed_tests}/{total_tests} COMPONENTS OPERATIONAL")
+        print("Some components require attention - see details above")
+    
+    # Save validation results
+    results_file = f"phase34_final_validation_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(results_file, 'w') as f:
+        json.dump(validation_results, f, indent=2)
+    
+    print(f"\nDetailed results saved to: {results_file}")
+    print("="*80)
+    
+    return validation_results["phase_34_status"] == "COMPLETE"
+
+if __name__ == "__main__":
+    success = validate_phase34_completion()
+    exit(0 if success else 1)

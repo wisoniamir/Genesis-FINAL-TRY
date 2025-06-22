@@ -1,0 +1,9 @@
+{
+  "module_id": "segment",
+  "original_path": "modules\\restored\\segment.py",
+  "preserved_path": "preservation_holding_area\\segment_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 51403,
+  "checksum": "d366812302911ea28c40ac123bd3f43945913718474278fd08925d4274551a07"
+}

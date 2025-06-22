@@ -1,0 +1,81 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.504619+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+      "line_numbers": [
+        22,
+        289,
+        290,
+        296,
+        308
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+      "line_numbers": [
+        41,
+        77,
+        113,
+        140,
+        194
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+      "line_numbers": [
+        72,
+        108,
+        135,
+        189,
+        217
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+      "line_numbers": [
+        65,
+        94,
+        128,
+        152,
+        171
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+      "line_numbers": [
+        68,
+        70,
+        97,
+        104,
+        106
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase45_integration_fixed_recovered_1.py",
+      "line_numbers": [
+        348
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

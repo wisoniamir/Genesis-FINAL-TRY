@@ -1,0 +1,9 @@
+{
+  "module_id": "_stochastic_gradient",
+  "original_path": "modules\\restored\\_stochastic_gradient.py",
+  "preserved_path": "preservation_holding_area\\_stochastic_gradient_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 134405,
+  "checksum": "b8fc823ebbb6b6eaf28b4b6ffe5c4edfcf9e919b009ea100cc2f3d556b2730a0"
+}

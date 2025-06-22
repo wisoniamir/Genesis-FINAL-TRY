@@ -1,0 +1,9 @@
+{
+  "module_id": "smart_execution_liveloop",
+  "original_path": "modules\\execution\\smart_execution_liveloop.py",
+  "preserved_path": "preservation_holding_area\\smart_execution_liveloop_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 42876,
+  "checksum": "8dde291b2e1d48827badaee0934cfa2a8c67000d11ce7a83c709d383f69a6b75"
+}

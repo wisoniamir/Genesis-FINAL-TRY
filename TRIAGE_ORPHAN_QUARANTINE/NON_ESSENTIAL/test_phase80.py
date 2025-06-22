@@ -1,0 +1,1182 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_phase80", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_phase80", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase80",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase80", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase80: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: test_phase80 -->
+
+#!/usr/bin/env python3
+"""
+Test Suite for Genesis GUI Launcher Enhanced - Phase 80
+Architect Mode v5.0.0 Compliant Test Framework
+
+Comprehensive testing for GUI functionality, event handling, telemetry integration,
+and user interaction scenarios for Streamlit-based implementation.
+"""
+
+import unittest
+import threading
+import time
+import json
+import os
+import sys
+import tempfile
+import shutil
+from unittest.mock import Mock, patch, MagicMock
+from datetime import datetime
+
+# Add the project root to the path for imports
+sys.path.insert(0, os.path.abspath('.'))
+
+# Import the module under test
+try:
+    from genesis_gui_launcher import GenesisGUILauncher, GUIConfig, SystemStatus, LiveSignal, ActiveTrade
+except ImportError as e:
+    print(f"Import error: {e}")
+    print("Ensuring all dependencies are available...")
+
+
+class TestGUIDataStructures(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase80", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase80", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase80",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase80", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase80: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase80",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase80: {e}")
+    """Test GUI data structures and configurations"""
+"""
+[RESTORED] GENESIS MODULE - COMPLEXITY HIERARCHY ENFORCED
+Original: c:\Users\patra\Genesis FINAL TRY\test_phase80_fixed.py
+Hash: 34ae169e9a1ba7711b4b715e7180fffe8fb2ad21fa946ae5dea95cab90358f15
+Type: PREFERRED
+Restored: 2025-06-19T12:08:20.591007+00:00
+Architect Compliance: VERIFIED
+"""
+
+
+    
+    def test_gui_config_creation(self):
+        """Test GUIConfig dataclass creation"""
+        config = GUIConfig()
+        
+        self.assertEqual(config.refresh_interval_ms, 250)
+        self.assertEqual(config.max_concurrent_signals, 100)
+        self.assertEqual(config.ui_latency_threshold_ms, 250)
+        self.assertEqual(config.architect_mode, "v5.0.0")
+        self.assertEqual(config.compliance_level, "INSTITUTIONAL_GRADE")
+        
+    def test_system_status_creation(self):
+        """Test SystemStatus dataclass creation"""
+        status = SystemStatus(
+            mode="LIVE",
+            compliance_score=95.5,
+            security_level="HIGH",
+            active_modules=25,
+            violations_count=0,
+            kill_switch_status="ARMED",
+            last_updated=datetime.now().isoformat()
+        )
+        
+        self.assertEqual(status.mode, "LIVE")
+        self.assertEqual(status.compliance_score, 95.5)
+        self.assertEqual(status.security_level, "HIGH")
+        
+    def test_live_signal_creation(self):
+        """Test LiveSignal dataclass creation"""
+        signal = LiveSignal(
+            signal_id="SIG_001",
+            confidence=0.85,
+            validation_status="VALIDATED",
+            source="PatternMiner",
+            timestamp=datetime.now().isoformat(),
+            symbol="EURUSD",
+            direction="BUY",
+            strength=0.75
+        )
+        
+        self.assertEqual(signal.signal_id, "SIG_001")
+        self.assertEqual(signal.confidence, 0.85)
+        self.assertEqual(signal.symbol, "EURUSD")
+        
+    def test_active_trade_creation(self):
+        """Test ActiveTrade dataclass creation"""
+        trade = ActiveTrade(
+            trade_id="T_001",
+            symbol="GBPUSD",
+            direction="SELL",
+            entry_price=1.2500,
+            current_price=1.2480,
+            pnl=20.0,
+            status="OPEN",
+            timestamp=datetime.now().isoformat()
+        )
+        
+        self.assertEqual(trade.trade_id, "T_001")
+        self.assertEqual(trade.symbol, "GBPUSD")
+        self.assertEqual(trade.pnl, 20.0)
+
+
+class TestGenesisGUILauncher(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase80", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase80", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase80",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase80", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase80: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase80",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase80: {e}")
+    """Test GenesisGUILauncher main class functionality"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        # Create temporary directories for testing
+        self.test_dir = tempfile.mkdtemp()
+        self.original_cwd = os.getcwd()
+        os.chdir(self.test_dir)
+        
+        # Create necessary directories
+        os.makedirs('logs', exist_ok=True)
+        os.makedirs('telemetry', exist_ok=True)
+        
+        # Create mock files
+        self.create_mock_files()
+        
+    def tearDown(self):
+        """Cleanup test environment"""
+        os.chdir(self.original_cwd)
+        shutil.rmtree(self.test_dir)
+        
+    def create_mock_files(self):
+        """Create mock configuration and data files"""
+        # Mock build_status.json
+        build_status = {
+            "architect_mode_status": {
+                "architect_mode_v500_activation": True,
+                "architect_mode_v500_compliance_grade": "INSTITUTIONAL_GRADE"
+            },
+            "module_registry_status": {
+                "total_modules_registered": 66,
+                "active_modules": 66
+            }
+        }
+        with open('build_status.json', 'w') as f:
+            json.dump(build_status, f)
+            
+        # Mock telemetry.json
+        telemetry = {
+            "system_metrics": {
+                "cpu_usage": 45.2,
+                "memory_usage": 2048,
+                "active_threads": 12
+            },
+            "gui_metrics": {
+                "ui_latency_ms": 150,
+                "refresh_rate": 4.0
+            }
+        }
+        with open('telemetry.json', 'w') as f:
+            json.dump(telemetry, f)
+            
+        # Mock event_bus.json
+        event_bus = {
+            "events": [],
+            "subscribers": ["gui_launcher"]
+        }
+        with open('event_bus.json', 'w') as f:
+            json.dump(event_bus, f)
+    
+    def test_gui_initialization(self):
+        """Test GUI launcher initialization"""
+        launcher = GenesisGUILauncher()
+        
+        self.assertIsNotNone(launcher.config)
+        self.assertIsNotNone(launcher.logger)
+        self.assertIsNotNone(launcher.session_id)
+        self.assertIsNotNone(launcher.event_bus)
+        self.assertIsNotNone(launcher.telemetry_data)
+        self.assertIsNotNone(launcher.gui_state)
+        
+        # Verify session ID format
+        self.assertEqual(len(launcher.session_id), 16)
+        
+        # Verify event bus initialization
+        self.assertTrue(launcher.event_bus["connected"])
+        self.assertIn("status:*", launcher.event_bus["subscribers"])
+        
+    def test_session_id_generation(self):
+        """Test session ID generation"""
+        launcher1 = GenesisGUILauncher()
+        launcher2 = GenesisGUILauncher()
+        
+        # Session IDs should be unique
+        self.assertNotEqual(launcher1.session_id, launcher2.session_id)
+        
+        # Session IDs should be 16 characters
+        self.assertEqual(len(launcher1.session_id), 16)
+        self.assertEqual(len(launcher2.session_id), 16)
+    
+    def test_event_emission(self):
+        """Test event emission functionality"""
+        launcher = GenesisGUILauncher()
+        
+        # Test event emission
+        launcher._emit_event("test:event", {"test": "data"})
+        
+        # Verify event was logged to event_bus.json
+        with open('event_bus.json', 'r') as f:
+            events = json.load(f)
+            
+        self.assertTrue(len(events['events']) > 0)
+        
+        # Find our test event
+        test_event = None
+        for event in events['events']:
+            if event['event_type'] == 'test:event':
+                test_event = event
+                break
+                
+        self.assertIsNotNone(test_event)
+        self.assertEqual(test_event['source'], 'genesis_gui_launcher')
+        self.assertEqual(test_event['payload']['test'], 'data')
+        
+    def test_system_status_loading(self):
+        """Test system status loading functionality"""
+        launcher = GenesisGUILauncher()
+        
+        status = launcher._load_system_status()
+        
+        self.assertIsNotNone(status)
+        self.assertIsInstance(status, SystemStatus)
+        self.assertEqual(status.mode, "ARCHITECT_v5.0.0")
+        self.assertEqual(status.compliance_score, 100.0)
+        self.assertEqual(status.security_level, "INSTITUTIONAL_GRADE")
+        
+    def test_live_signals_loading(self):
+        """Test live signals loading functionality"""
+        launcher = GenesisGUILauncher()
+        
+        signals = launcher._load_live_signals()
+        
+        self.assertIsInstance(signals, list)
+        # Should return empty list if no signals file exists
+        self.assertEqual(len(signals), 0)
+        
+    def test_active_trades_loading(self):
+        """Test active trades loading functionality"""
+        launcher = GenesisGUILauncher()
+        
+        trades = launcher._load_active_trades()
+        
+        self.assertIsInstance(trades, list)
+        # Should return empty list if no trades file exists
+        self.assertEqual(len(trades), 0)
+        
+    def test_toggle_action_handling(self):
+        """Test toggle action handling"""
+        launcher = GenesisGUILauncher()
+        
+        # Test kill switch toggle
+        launcher._handle_toggle_action("kill_switch", True)
+        
+        # Verify event was emitted
+        with open('event_bus.json', 'r') as f:
+            events = json.load(f)
+            
+        # Find the toggle event
+        toggle_event = None
+        for event in events['events']:
+            if event['event_type'] == 'gui:action:toggle':
+                toggle_event = event
+                break
+                
+        self.assertIsNotNone(toggle_event)
+        self.assertEqual(toggle_event['payload']['toggle_type'], 'kill_switch')
+        self.assertEqual(toggle_event['payload']['new_state'], True)
+
+
+class TestTelemetryIntegration(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase80", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase80", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase80",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase80", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase80: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase80",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase80: {e}")
+    """Test telemetry integration and monitoring"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        self.test_dir = tempfile.mkdtemp()
+        self.original_cwd = os.getcwd()
+        os.chdir(self.test_dir)
+        
+        os.makedirs('logs', exist_ok=True)
+        os.makedirs('telemetry', exist_ok=True)
+        
+        # Create telemetry files
+        telemetry = {
+            "system_metrics": {
+                "cpu_usage": 45.2,
+                "memory_usage": 2048,
+                "disk_usage": 75.5,
+                "network_latency": 25
+            }
+        }
+        with open('telemetry.json', 'w') as f:
+            json.dump(telemetry, f)
+    
+    def tearDown(self):
+        """Cleanup test environment"""
+        os.chdir(self.original_cwd)
+        shutil.rmtree(self.test_dir)
+        
+    def test_telemetry_data_loading(self):
+        """Test telemetry data loading from files"""
+        launcher = GenesisGUILauncher()
+        
+        # Access telemetry data
+        telemetry = launcher.telemetry_data
+        
+        self.assertIsNotNone(telemetry)
+        self.assertIsInstance(telemetry, dict)
+        self.assertIn("system_health", telemetry)
+        
+    def test_performance_metrics_tracking(self):
+        """Test performance metrics tracking"""
+        launcher = GenesisGUILauncher()
+        
+        # Check performance metrics initialization
+        self.assertIn("ui_latency_ms", launcher.performance_metrics)
+        self.assertIn("action_acknowledgment_rate", launcher.performance_metrics)
+        self.assertIn("gui_errors", launcher.performance_metrics)
+        
+        # Verify initial values
+        self.assertEqual(launcher.performance_metrics["gui_errors"], 0)
+        self.assertEqual(launcher.performance_metrics["refresh_count"], 0)
+
+
+class TestEventBusIntegration(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase80", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase80", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase80",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase80", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase80: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase80",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase80: {e}")
+    """Test EventBus integration and event flow"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        self.test_dir = tempfile.mkdtemp()
+        self.original_cwd = os.getcwd()
+        os.chdir(self.test_dir)
+        
+        os.makedirs('logs', exist_ok=True)
+        
+        # Create event_bus.json
+        event_bus = {
+            "events": [],
+            "subscribers": []
+        }
+        with open('event_bus.json', 'w') as f:
+            json.dump(event_bus, f)
+    
+    def tearDown(self):
+        """Cleanup test environment"""
+        os.chdir(self.original_cwd)
+        shutil.rmtree(self.test_dir)
+        
+    def test_event_bus_initialization(self):
+        """Test EventBus initialization"""
+        launcher = GenesisGUILauncher()
+        
+        self.assertTrue(launcher.event_bus["connected"])
+        self.assertIn("status:*", launcher.event_bus["subscribers"])
+        self.assertIn("signal:*", launcher.event_bus["subscribers"])
+        self.assertIn("trade:*", launcher.event_bus["subscribers"])
+        
+    def test_event_emission_and_logging(self):
+        """Test event emission and logging to event_bus.json"""
+        launcher = GenesisGUILauncher()
+        
+        # Emit multiple events
+        launcher._emit_event("test:event1", {"data": "value1"})
+        launcher._emit_event("test:event2", {"data": "value2"})
+        
+        # Read events from file
+        with open('event_bus.json', 'r') as f:
+            events = json.load(f)
+            
+        # Should have system initialization event plus our test events
+        self.assertTrue(len(events['events']) >= 3)
+        
+        # Verify event structure
+        for event in events['events']:
+            self.assertIn('timestamp', event)
+            self.assertIn('event_type', event)
+            self.assertIn('source', event)
+            self.assertIn('session_id', event)
+            self.assertIn('payload', event)
+
+
+class TestPerformanceRequirements(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase80", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase80", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase80",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase80", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase80: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase80",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase80: {e}")
+    """Test performance requirements and compliance"""
+    
+    def test_ui_latency_measurement(self):
+        """Test UI latency measurement and tracking"""
+        launcher = GenesisGUILauncher()
+        
+        # Simulate UI operation
+        start_time = time.time()
+        time.sleep(0.01)  # 10ms simulation
+        end_time = time.time()
+        
+        latency_ms = (end_time - start_time) * 1000
+        launcher.performance_metrics["ui_latency_ms"].append(latency_ms)
+        
+        # Verify latency is recorded
+        self.assertTrue(len(launcher.performance_metrics["ui_latency_ms"]) > 0)
+        self.assertTrue(launcher.performance_metrics["ui_latency_ms"][-1] >= 10)
+        
+    def test_memory_usage_compliance(self):
+        """Test memory usage compliance"""
+        import psutil
+        import os
+        
+        process = psutil.Process(os.getpid())
+        initial_memory = process.memory_info().rss / 1024 / 1024  # MB
+        
+        launcher = GenesisGUILauncher()
+        
+        final_memory = process.memory_info().rss / 1024 / 1024  # MB
+        memory_increase = final_memory - initial_memory
+        
+        # Memory increase should be reasonable (< 100MB for initialization)
+        self.assertLess(memory_increase, 100)
+        
+    def test_concurrent_signal_handling(self):
+        """Test concurrent signal handling capacity"""
+        launcher = GenesisGUILauncher()
+        
+        # Simulate concurrent signals
+        for i in range(10):
+            launcher._emit_event(f"signal:test_{i}", {"signal_id": i})
+            
+        # Verify all events were processed
+        with open('event_bus.json', 'r') as f:
+            events = json.load(f)
+            
+        signal_events = [e for e in events['events'] if e['event_type'].startswith('signal:test_')]
+        self.assertEqual(len(signal_events), 10)
+
+
+class TestArchitectCompliance(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase80", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase80", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase80",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase80", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase80: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase80",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase80: {e}")
+    """Test Architect Mode v5.0.0 compliance requirements"""
+    
+    def test_module_registration_compliance(self):
+        """Test module registration compliance"""
+        # Verify module is properly registered
+        if os.path.exists('module_registry.json'):
+            with open('module_registry.json', 'r') as f:
+                registry = json.load(f)
+                
+            # Find GenesisGUILauncher in registry
+            gui_module = None
+            for module in registry.get('modules', []):
+                if module['name'] == 'GenesisGUILauncher':
+                    gui_module = module
+                    break
+                    
+            if gui_module:
+                self.assertEqual(gui_module['status'], 'active')
+                self.assertTrue(gui_module['architect_compliant'])
+                self.assertTrue(gui_module['telemetry'])
+                self.assertTrue(gui_module['compliance'])
+                
+    def test_real_data_enforcement(self):
+        """Test real data enforcement (no mock/placeholder data)"""
+        launcher = GenesisGUILauncher()
+        
+        # Verify no placeholder data in configuration
+        self.assertNotIn("placeholder", str(launcher.config).lower())
+        self.assertNotIn("mock", str(launcher.config).lower())
+        self.assertNotIn("test", str(launcher.config).lower())
+        
+    def test_telemetry_hooks_active(self):
+        """Test telemetry hooks are active and functional"""
+        launcher = GenesisGUILauncher()
+        
+        # Verify telemetry data structure exists
+        self.assertIsNotNone(launcher.telemetry_data)
+        self.assertIn("system_health", launcher.telemetry_data)
+        
+        # Verify performance metrics tracking
+        self.assertIsNotNone(launcher.performance_metrics)
+        self.assertIn("ui_latency_ms", launcher.performance_metrics)
+        
+    def test_event_bus_integration_active(self):
+        """Test EventBus integration is active and compliant"""
+        launcher = GenesisGUILauncher()
+        
+        # Verify EventBus connection
+        self.assertTrue(launcher.event_bus["connected"])
+        
+        # Verify event emission works
+        launcher._emit_event("compliance:test", {"test": True})
+        
+        # Verify event was logged
+        with open('event_bus.json', 'r') as f:
+            events = json.load(f)
+            
+        compliance_events = [e for e in events['events'] if e['event_type'] == 'compliance:test']
+        self.assertTrue(len(compliance_events) > 0)
+
+
+if __name__ == '__main__':
+    # Create test suite
+    test_suite = unittest.TestSuite()
+    
+    # Add test classes
+    test_classes = [
+        TestGUIDataStructures,
+        TestGenesisGUILauncher,
+        TestTelemetryIntegration,
+        TestEventBusIntegration,
+        TestPerformanceRequirements,
+        TestArchitectCompliance
+    ]
+    
+    for test_class in test_classes:
+        tests = unittest.TestLoader().loadTestsFromTestCase(test_class)
+        test_suite.addTests(tests)
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(test_suite)
+    
+    # Report results
+    if result.wasSuccessful():
+        print("\n🎯 PHASE 80 GUI LAUNCHER: ALL TESTS PASSED")
+        print("✅ Architect Mode v5.0.0 Compliance: VERIFIED")
+        print("✅ EventBus Integration: ACTIVE")
+        print("✅ Telemetry Hooks: FUNCTIONAL")
+        print("✅ Performance Requirements: MET")
+    else:
+        print(f"\n❌ PHASE 80 GUI LAUNCHER: {len(result.failures)} FAILURES, {len(result.errors)} ERRORS")
+        
+    sys.exit(0 if result.wasSuccessful() else 1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase80 -->

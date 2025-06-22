@@ -1,0 +1,77 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.887460+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+      "line_numbers": [
+        62,
+        71,
+        180,
+        210,
+        212
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+      "line_numbers": [
+        66,
+        82,
+        196,
+        219,
+        244
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+      "line_numbers": [
+        80,
+        230
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+      "line_numbers": [
+        54,
+        124
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+      "line_numbers": [
+        182,
+        183,
+        184,
+        185,
+        186
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_priority_resolver_recovered_1.py",
+      "line_numbers": [
+        190,
+        191,
+        192
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

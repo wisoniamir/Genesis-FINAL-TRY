@@ -1,0 +1,67 @@
+{
+  "genesis_metadata": {
+    "version": "v7.0.0-ultimate-enforcement",
+    "generation_timestamp": "2025-06-20T21:50:00.000000",
+    "architect_mode": "v7.0.0",
+    "test_strategy": "REAL_DATA_ONLY"
+  },
+  "test_execution_strategy": {
+    "real_data_mandatory": true,
+    "mock_data_prohibited": true,
+    "simulation_prohibited": true,
+    "live_mt5_required": true,
+    "eventbus_integration": "MANDATORY"
+  },
+  "active_test_runners": {
+    "comprehensive_performance_testing_engine.py": {
+      "status": "ACTIVE",
+      "data_source": "real_data.json",
+      "mt5_connection": "REQUIRED",
+      "mock_usage": "PROHIBITED",
+      "eventbus_integration": true
+    },
+    "validate_step7_smart_monitor.py": {
+      "status": "ACTIVE", 
+      "data_source": "real_data.json",
+      "mock_usage": "PROHIBITED",
+      "eventbus_integration": true
+    },
+    "test_smart_monitor.py": {
+      "status": "ACTIVE",
+      "data_source": "real_data.json", 
+      "mock_usage": "PROHIBITED",
+      "eventbus_integration": true
+    }
+  },
+  "prohibited_test_patterns": {
+    "mock_data_usage": "BANNED",
+    "simulation_mode": "BANNED",
+    "test_only_scaffolds": "BANNED",
+    "isolated_test_functions": "BANNED",
+    "dummy_data": "BANNED",
+    "fake_mt5_data": "BANNED"
+  },
+  "test_compliance_rules": {
+    "all_tests_use_real_data": true,
+    "all_tests_eventbus_integrated": true,
+    "no_isolated_test_logic": true,
+    "no_mock_frameworks": true,
+    "live_mt5_connection_required": true,
+    "telemetry_validation_required": true
+  },
+  "test_data_sources": {
+    "primary": "real_data.json",
+    "mt5_live_connection": true,
+    "historical_data": "mt5_only",
+    "fallback_data": "NONE",
+    "simulation_data": "PROHIBITED"
+  },
+  "test_validation": {
+    "architect_mode_compliance": "v7.0.0",
+    "zero_tolerance_violations": true,
+    "real_time_monitoring": true,
+    "performance_benchmarks": true,
+    "regression_prevention": true
+  },
+  "last_updated": "2025-06-20T21:50:00.000000"
+}

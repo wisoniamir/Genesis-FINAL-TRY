@@ -1,0 +1,9 @@
+{
+  "module_id": "signal_feed",
+  "original_path": "modules\\signal_processing\\signal_feed.py",
+  "preserved_path": "preservation_holding_area\\signal_feed_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17298,
+  "checksum": "7cef16b37dd2a880de0f06a5eee18edc9ed9681ec0adb94a34d09a9eacd213e3"
+}

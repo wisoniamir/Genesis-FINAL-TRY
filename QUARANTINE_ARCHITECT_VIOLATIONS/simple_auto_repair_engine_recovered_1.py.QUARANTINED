@@ -1,0 +1,126 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.938811+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        67,
+        416
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        65
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        67
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        46,
+        47,
+        53,
+        108,
+        181
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        52
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        50,
+        71
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        101,
+        152,
+        154,
+        185,
+        214
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        144,
+        178,
+        207,
+        235,
+        263
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        59,
+        277,
+        290
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        356,
+        415,
+        559,
+        627
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\simple_auto_repair_engine_recovered_1.py",
+      "line_numbers": [
+        91,
+        489
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

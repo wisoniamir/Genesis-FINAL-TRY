@@ -1,0 +1,45 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\build_tracker_logger.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.673834+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\build_tracker_logger.py",
+      "line_numbers": [
+        83
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\build_tracker_logger.py",
+      "line_numbers": [
+        93
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\build_tracker_logger.py",
+      "line_numbers": [
+        31,
+        32
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\build_tracker_logger.py",
+      "line_numbers": [
+        38,
+        234
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

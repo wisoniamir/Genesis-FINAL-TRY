@@ -1,0 +1,9 @@
+{
+  "module_id": "kill_switch_logic",
+  "original_path": "modules\\risk_management\\kill_switch_logic.py",
+  "preserved_path": "preservation_holding_area\\kill_switch_logic_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21131,
+  "checksum": "1c3923ca3b30378387016aee79ff5836be7ccd7928567f3c077a506a4793d636"
+}

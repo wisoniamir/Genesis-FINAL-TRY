@@ -1,0 +1,35 @@
+# GENESIS Docker GUI Application - ARCHITECT MODE v7.0.0
+version: '3.8'
+
+services:
+  # GENESIS GUI Dashboard
+  genesis-gui-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.gui
+    container_name: genesis-gui-dashboard
+    environment:
+      - DISPLAY=host.docker.internal:0
+      - DOCKER_MODE=true
+      - QT_X11_NO_MITSHM=1
+      - QT_LOGGING_RULES=*=false
+      - ARCHITECT_MODE=v7.0.0
+      - PYTHONPATH=/genesis
+    volumes:
+      # X11 socket for GUI
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # Persistent data
+      - ./data:/genesis/data
+      - ./logs:/genesis/logs
+      - ./config:/genesis/config
+    networks:
+      - genesis-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+networks:
+  genesis-network:
+    driver: bridge

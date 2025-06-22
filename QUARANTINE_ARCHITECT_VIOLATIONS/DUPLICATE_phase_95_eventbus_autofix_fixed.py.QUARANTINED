@@ -1,0 +1,62 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_phase_95_eventbus_autofix_fixed.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.355004+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_phase_95_eventbus_autofix_fixed.py",
+      "line_numbers": [
+        106,
+        115
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_phase_95_eventbus_autofix_fixed.py",
+      "line_numbers": [
+        57,
+        101,
+        110,
+        217,
+        246
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_phase_95_eventbus_autofix_fixed.py",
+      "line_numbers": [
+        95,
+        104,
+        113,
+        240,
+        270
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_phase_95_eventbus_autofix_fixed.py",
+      "line_numbers": [
+        62
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_phase_95_eventbus_autofix_fixed.py",
+      "line_numbers": [
+        176,
+        250
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

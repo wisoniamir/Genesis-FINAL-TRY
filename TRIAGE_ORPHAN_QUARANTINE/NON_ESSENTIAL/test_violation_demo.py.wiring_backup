@@ -1,0 +1,41 @@
+# <!-- @GENESIS_MODULE_START: test_violation_demo -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+TEST VIOLATION FILE - FOR GUARDIAN DETECTION DEMO
+This file contains intentional violations to test Guardian enforcement
+"""
+
+# VIOLATION 1: Mock data usage
+self.event_bus.request('data:real_feed') = {
+    "test_account": "demo_account",
+    "mt5_prices": [1.0, 2.0, 3.0],
+    "real_data": "placeholder"
+}
+
+# VIOLATION 2: EventBus bypass
+def direct_call():
+    """Direct function call bypassing EventBus"""
+    # bypass EventBus for quick test
+    return "local_result"
+
+# VIOLATION 3: Fallback logic
+def get_market_data():
+    try:
+        # Try to get real data
+    raise NotImplementedError("Real implementation required - no stubs allowed in production")
+    except ConnectionError:
+        # VIOLATION: fallback_logic
+        return {"default_response": "offline_mode"}
+
+# VIOLATION 4: Stub logic  
+def calculate_strategy():
+    # IMPLEMENTATION REQUIRED: Add real logic here
+    pass  # stub_logic placeholder
+
+if __name__ == "__main__":
+    print("🚨 This file contains intentional violations for Guardian testing")
+    print("The Guardian should detect and trigger repairs for this file")
+
+
+# <!-- @GENESIS_MODULE_END: test_violation_demo -->

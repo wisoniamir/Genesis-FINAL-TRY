@@ -1,0 +1,9 @@
+{
+  "module_id": "validate_phase45_integration",
+  "original_path": "modules\\restored\\validate_phase45_integration.py",
+  "preserved_path": "preservation_holding_area\\validate_phase45_integration_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23576,
+  "checksum": "4acf03da57bc2bd73f608d7707c300a0d05f258f52172111aac08aebff9b354d"
+}

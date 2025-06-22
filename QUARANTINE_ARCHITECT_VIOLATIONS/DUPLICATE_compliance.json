@@ -1,0 +1,16 @@
+{
+  "version": "v6.2.0-institutional",
+  "standards": "INSTITUTIONAL_GRADE",
+  "requirements": {
+    "no_mock_data": true,
+    "mt5_live_only": true,
+    "eventbus_mandatory": true,
+    "telemetry_required": true,
+    "error_handling_required": true
+  },
+  "validation_rules": {
+    "min_quality_score": 80.0,
+    "min_file_size": 5000,
+    "duplicate_tolerance": 0
+  }
+}

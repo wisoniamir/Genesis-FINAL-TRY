@@ -1,0 +1,9 @@
+{
+  "module_id": "mem",
+  "original_path": "modules\\restored\\mem.py",
+  "preserved_path": "preservation_holding_area\\mem_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 14537,
+  "checksum": "aa3c6222f5e36d0ac44dbff163fc3530eda27d5e4f9f89ef917a3a3faeadb730"
+}

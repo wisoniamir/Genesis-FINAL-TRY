@@ -1,0 +1,158 @@
+{
+  "segment_type": "routes",
+  "category": "mt5_integration",
+  "routes": {
+    "mt5_data_feed": {
+      "topic": "market_data.real_time",
+      "source": "mt5_adapter",
+      "destination": [
+        "signal_processor",
+        "risk_engine",
+        "execution_engine"
+      ],
+      "data_type": "real_market_data",
+      "mock_forbidden": true
+    },
+    "universal_mt5_discovery_engine_discovery_universal_mt5_discovery_engine_output": {
+      "topic": "discovery.universal_mt5_discovery_engine_output",
+      "source": "universal_mt5_discovery_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_discovery_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.733689"
+    },
+    "broker_discovery_engine_discovery_broker_discovery_engine_output": {
+      "topic": "discovery.broker_discovery_engine_output",
+      "source": "broker_discovery_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_discovery_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.733689"
+    },
+    "mt5_adapter_discovery_mt5_adapter_output": {
+      "topic": "discovery.mt5_adapter_output",
+      "source": "mt5_adapter",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_discovery_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.733689"
+    },
+    "universal_mt5_discovery_engine_status": {
+      "producer": "universal_mt5_discovery_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "universal_mt5_discovery_engine"
+    },
+    "universal_mt5_discovery_engine_telemetry": {
+      "producer": "universal_mt5_discovery_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "universal_mt5_discovery_engine"
+    },
+    "market_data_feed": {
+      "producer": "mt5_adapter",
+      "consumer": "signal_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "mt5_adapter"
+    },
+    "broker_status": {
+      "producer": "mt5_adapter",
+      "consumer": "execution_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "mt5_adapter"
+    },
+    "broker_discovery_engine_status": {
+      "producer": "broker_discovery_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "broker_discovery_engine"
+    },
+    "broker_discovery_engine_telemetry": {
+      "producer": "broker_discovery_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "broker_discovery_engine"
+    },
+    "mt5_adapter_status": {
+      "producer": "mt5_adapter",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "mt5_adapter"
+    },
+    "mt5_adapter_telemetry": {
+      "producer": "mt5_adapter",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "mt5_adapter"
+    },
+    "collect_telemetry_universal_mt5_discovery_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "universal_mt5_discovery_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "universal_mt5_discovery_engine"
+    },
+    "collect_telemetry_broker_discovery_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "broker_discovery_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "broker_discovery_engine"
+    },
+    "collect_telemetry_mt5_adapter": {
+      "producer": "telemetry_collector",
+      "consumer": "mt5_adapter",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "mt5_adapter"
+    }
+  },
+  "route_count": 4
+}

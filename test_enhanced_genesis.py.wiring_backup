@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🚀 GENESIS ENHANCED SYSTEM TEST LAUNCHER
+
+Quick test script to verify the enhanced audit/production dashboard works.
+This launches the enhanced system with both audit and production capabilities.
+"""
+
+import os
+import sys
+import subprocess
+from pathlib import Path
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: test_enhanced_genesis -->
+
+
+# <!-- @GENESIS_MODULE_START: test_enhanced_genesis -->
+
+def main():
+    print("🚀 GENESIS Enhanced System Test Launcher")
+    print("=" * 50)
+    
+    # Check if dashboard exists
+    dashboard_file = "genesis_audit_dashboard_final.py"
+    launcher_file = "launch_genesis_audit_mode.py"
+    
+    if Path(dashboard_file).exists():
+        print(f"✅ Found enhanced dashboard: {dashboard_file}")
+    else:
+        print(f"❌ Dashboard not found: {dashboard_file}")
+        return
+        
+    if Path(launcher_file).exists():
+        print(f"✅ Found enhanced launcher: {launcher_file}")
+    else:
+        print(f"❌ Launcher not found: {launcher_file}")
+        return
+        
+    print("\n🎯 Enhanced Features Available:")
+    print("• Original audit mode controls")
+    print("• Production mode activation button")
+    print("• Enhanced MT5 connection testing")
+    print("• Signal monitoring preparation")
+    print("• Kill switch integration")
+    print("• Execution console framework")
+    
+    print("\n🔧 Choose launch method:")
+    print("1. Enhanced Dashboard Only")
+    print("2. Full Backend + Enhanced Dashboard")
+    print("3. Exit")
+    
+    choice = input("\nEnter choice (1-3): ").strip()
+    
+    if choice == "1":
+        print(f"\n🚀 Launching enhanced dashboard...")
+        subprocess.run([sys.executable, dashboard_file])
+    elif choice == "2":
+        print(f"\n🚀 Launching full enhanced system...")
+        subprocess.run([sys.executable, launcher_file])
+    elif choice == "3":
+        print("👋 Goodbye!")
+    else:
+        print("❌ Invalid choice")
+
+if __name__ == "__main__":
+    main()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

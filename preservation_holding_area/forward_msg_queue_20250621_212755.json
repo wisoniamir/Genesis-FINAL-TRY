@@ -1,0 +1,9 @@
+{
+  "module_id": "forward_msg_queue",
+  "original_path": "modules\\restored\\forward_msg_queue.py",
+  "preserved_path": "preservation_holding_area\\forward_msg_queue_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 22123,
+  "checksum": "80a110dd73273cf42bd5b18af997a18caa699ac7a6c735e2b2088013ef378757"
+}

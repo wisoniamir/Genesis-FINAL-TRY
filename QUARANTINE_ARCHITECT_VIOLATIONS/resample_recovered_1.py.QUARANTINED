@@ -1,0 +1,100 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.454901+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        271,
+        470,
+        956,
+        1009,
+        1750
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        448,
+        2833
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        1908,
+        2549,
+        2809
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        448,
+        458,
+        469,
+        1784
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        446,
+        1713,
+        2188,
+        2197
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        1550,
+        1564,
+        1761,
+        1856,
+        2286
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        191,
+        422,
+        452,
+        471,
+        1520
+      ],
+      "violation_count": 31
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# alternative",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resample_recovered_1.py",
+      "line_numbers": [
+        456
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

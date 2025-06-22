@@ -1,0 +1,79 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.094389+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        24,
+        146,
+        168,
+        187,
+        198
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        162,
+        181,
+        208,
+        286,
+        304
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        341,
+        431
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        381,
+        387,
+        398,
+        400,
+        411
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        124,
+        441
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\post_trade_feedback_engine_recovered_2.py",
+      "line_numbers": [
+        189,
+        190,
+        191,
+        192,
+        195
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

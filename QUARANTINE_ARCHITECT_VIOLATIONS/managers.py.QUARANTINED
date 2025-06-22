@@ -1,0 +1,110 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.644341+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        332,
+        1575,
+        1610,
+        1657,
+        1669
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        749,
+        971,
+        989,
+        1033,
+        1055
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        168,
+        174,
+        178,
+        1822,
+        1933
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        1947,
+        1952
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        581
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        1503
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        2108,
+        2138
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        395,
+        673,
+        754,
+        758,
+        811
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\managers.py",
+      "line_numbers": [
+        220,
+        310,
+        354,
+        356,
+        362
+      ],
+      "violation_count": 49
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

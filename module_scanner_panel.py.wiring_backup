@@ -1,0 +1,512 @@
+# -*- coding: utf-8 -*-
+
+# <!-- @GENESIS_MODULE_START: module_scanner_panel -->
+
+"""
+📊 GENESIS MODULE SCANNER PANEL v8.0
+UI component for displaying module classification and upgrade status
+"""
+
+import os
+import sys
+import json
+from typing import Dict, List, Any, Optional
+from datetime import datetime
+import logging
+from pathlib import Path
+
+# Import UI components (PyQt5)
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtWidgets import (
+    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
+    QTableWidget, QTableWidgetItem, QHeaderView, QProgressBar,
+    QComboBox, QFrame, QSplitter, QTabWidget, QTextEdit
+)
+
+# Import EventBus and Telemetry
+from hardened_event_bus import EventBus, Event
+from telemetry_engine import TelemetryManager, TelemetryEvent
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+# Configuration paths
+ROOT_DIR = Path(os.path.dirname(os.path.abspath(__file__)))
+SYSTEM_TREE_PATH = ROOT_DIR / 'system_tree.json'
+MODULE_REGISTRY_PATH = ROOT_DIR / 'module_registry.json'
+BUILD_STATUS_PATH = ROOT_DIR / 'build_status.json'
+DASHBOARD_PANEL_SUMMARY_PATH = ROOT_DIR / 'dashboard_panel_summary.json'
+
+
+class ModuleScannerPanel(QWidget):
+    """
+    Dashboard panel for displaying module classification and upgrade status
+    """
+    
+    def __init__(self, parent=None):
+        """Initialize the module scanner panel"""
+        super(ModuleScannerPanel, self).__init__(parent)
+        
+        self.setWindowTitle("GENESIS Module Scanner")
+        self.resize(1200, 800)
+        
+        # Load data
+        self.module_data = {}
+        self.summary_data = {}
+        self.build_status = {}
+        
+        # Setup UI
+        self.setup_ui()
+        
+        # Load initial data
+        self.load_data()
+        
+        # Setup refresh timer
+        self.refresh_timer = QTimer(self)
+        self.refresh_timer.timeout.connect(self.load_data)
+        self.refresh_timer.start(30000)  # Refresh every 30 seconds
+        
+        # Register with EventBus
+        self.setup_event_subscriptions()
+        
+        # Log panel initialization
+        telemetry.log_event(TelemetryEvent(
+            category="ui",
+            name="module_scanner_panel_initialized",
+            properties={"timestamp": datetime.now().isoformat()}
+        ))
+
+    def setup_ui(self):
+        """Setup the UI components"""
+        main_layout = QVBoxLayout(self)
+        
+        # Header section
+        header_layout = QHBoxLayout()
+        
+        self.title_label = QLabel("📊 GENESIS MODULE SCANNER")
+        self.title_label.setStyleSheet("font-size: 18pt; font-weight: bold;")
+        header_layout.addWidget(self.title_label)
+        
+        header_layout.addStretch(1)
+        
+        self.refresh_button = QPushButton("🔄 Refresh")
+        self.refresh_button.clicked.connect(self.load_data)
+        header_layout.addWidget(self.refresh_button)
+        
+        self.run_scan_button = QPushButton("🔍 Run Scanner")
+        self.run_scan_button.clicked.connect(self.run_scanner)
+        header_layout.addWidget(self.run_scan_button)
+        
+        main_layout.addLayout(header_layout)
+        
+        # Status summary section
+        status_frame = QFrame()
+        status_frame.setFrameShape(QFrame.StyledPanel)
+        status_frame.setStyleSheet("background-color: #f0f0f0; border-radius: 5px;")
+        status_layout = QHBoxLayout(status_frame)
+        
+        # Module counts
+        self.total_modules_label = QLabel("Total Modules: 0")
+        self.total_modules_label.setStyleSheet("font-size: 12pt;")
+        status_layout.addWidget(self.total_modules_label)
+        
+        self.classified_modules_label = QLabel("Classified Modules: 0")
+        self.classified_modules_label.setStyleSheet("font-size: 12pt;")
+        status_layout.addWidget(self.classified_modules_label)
+        
+        self.enhanced_modules_label = QLabel("Enhanced Modules: 0")
+        self.enhanced_modules_label.setStyleSheet("font-size: 12pt;")
+        status_layout.addWidget(self.enhanced_modules_label)
+        
+        # Overall progress
+        self.progress_label = QLabel("System Compliance:")
+        self.progress_label.setStyleSheet("font-size: 12pt;")
+        status_layout.addWidget(self.progress_label)
+        
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setRange(0, 100)
+        self.progress_bar.setValue(0)
+        self.progress_bar.setTextVisible(True)
+        self.progress_bar.setFormat("%p%")
+        self.progress_bar.setMinimumWidth(200)
+        status_layout.addWidget(self.progress_bar)
+        
+        main_layout.addWidget(status_frame)
+        
+        # Main content section (tabs)
+        self.tab_widget = QTabWidget()
+        
+        # Category summary tab
+        self.category_tab = QWidget()
+        category_layout = QVBoxLayout(self.category_tab)
+        
+        self.category_table = QTableWidget()
+        self.category_table.setColumnCount(5)
+        self.category_table.setHorizontalHeaderLabels(["Category", "Total", "Complete", "Needs Enhancement", "Status"])
+        self.category_table.horizontalHeader().setStretchLastSection(True)
+        self.category_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+        category_layout.addWidget(self.category_table)
+        
+        self.tab_widget.addTab(self.category_tab, "📊 Category Summary")
+        
+        # Module details tab
+        self.details_tab = QWidget()
+        details_layout = QVBoxLayout(self.details_tab)
+        
+        # Filter controls
+        filter_layout = QHBoxLayout()
+        
+        filter_layout.addWidget(QLabel("Category:"))
+        self.category_filter = QComboBox()
+        self.category_filter.addItem("All Categories")
+        self.category_filter.currentIndexChanged.connect(self.apply_filters)
+        filter_layout.addWidget(self.category_filter)
+        
+        filter_layout.addWidget(QLabel("Status:"))
+        self.status_filter = QComboBox()
+        self.status_filter.addItems(["All Statuses", "Compliant", "Needs Enhancement"])
+        self.status_filter.currentIndexChanged.connect(self.apply_filters)
+        filter_layout.addWidget(self.status_filter)
+        
+        filter_layout.addStretch(1)
+        
+        details_layout.addLayout(filter_layout)
+        
+        # Module details table
+        self.details_table = QTableWidget()
+        self.details_table.setColumnCount(6)
+        self.details_table.setHorizontalHeaderLabels(["Module Name", "Category", "Roles", "EventBus", "Telemetry", "Status"])
+        self.details_table.horizontalHeader().setStretchLastSection(True)
+        self.details_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+        details_layout.addWidget(self.details_table)
+        
+        self.tab_widget.addTab(self.details_tab, "🔍 Module Details")
+        
+        # System status tab
+        self.status_tab = QWidget()
+        status_tab_layout = QVBoxLayout(self.status_tab)
+        
+        self.status_text = QTextEdit()
+        self.status_text.setReadOnly(True)
+        status_tab_layout.addWidget(self.status_text)
+        
+        self.tab_widget.addTab(self.status_tab, "📈 System Status")
+        
+        main_layout.addWidget(self.tab_widget)
+        
+        # Footer section
+        footer_layout = QHBoxLayout()
+        
+        self.status_label = QLabel("Ready")
+        footer_layout.addWidget(self.status_label)
+        
+        footer_layout.addStretch(1)
+        
+        self.timestamp_label = QLabel(f"Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        footer_layout.addWidget(self.timestamp_label)
+        
+        main_layout.addLayout(footer_layout)
+
+    def load_data(self):
+        """Load data from system files"""
+        try:
+            # Update timestamp
+            self.timestamp_label.setText(f"Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            
+            # Load module registry
+            if os.path.exists(MODULE_REGISTRY_PATH):
+                with open(MODULE_REGISTRY_PATH, 'r', encoding='utf-8') as f:
+                    self.module_data = json.load(f)
+            
+            # Load dashboard panel summary
+            if os.path.exists(DASHBOARD_PANEL_SUMMARY_PATH):
+                with open(DASHBOARD_PANEL_SUMMARY_PATH, 'r', encoding='utf-8') as f:
+                    self.summary_data = json.load(f)
+            
+            # Load build status
+            if os.path.exists(BUILD_STATUS_PATH):
+                with open(BUILD_STATUS_PATH, 'r', encoding='utf-8') as f:
+                    self.build_status = json.load(f)
+            
+            # Update UI components
+            self.update_ui()
+            
+            self.status_label.setText("Data loaded successfully")
+            
+        except Exception as e:
+            logging.error(f"Error loading data: {str(e)}")
+            self.status_label.setText(f"Error loading data: {str(e)}")
+
+    def update_ui(self):
+        """Update UI with loaded data"""
+        # Update summary counters
+        try:
+            total_modules = self.build_status.get("total_modules", 0)
+            classified_modules = self.build_status.get("classified_modules", 0)
+            enhanced_modules = self.build_status.get("enhanced_modules", 0)
+            
+            self.total_modules_label.setText(f"Total Modules: {total_modules}")
+            self.classified_modules_label.setText(f"Classified Modules: {classified_modules}")
+            self.enhanced_modules_label.setText(f"Enhanced Modules: {enhanced_modules}")
+            
+            # Update progress bar
+            compliance_value = self.build_status.get("compliance_score", "0/0").split("/")[0]
+            try:
+                compliance_pct = int(compliance_value)
+            except ValueError:
+                compliance_pct = 0
+            self.progress_bar.setValue(compliance_pct)
+            
+            # Update category table
+            self.update_category_table()
+            
+            # Update details table
+            self.update_details_table()
+            
+            # Update system status
+            self.update_system_status()
+            
+        except Exception as e:
+            logging.error(f"Error updating UI: {str(e)}")
+            self.status_label.setText(f"Error updating UI: {str(e)}")
+
+    def update_category_table(self):
+        """Update the category summary table"""
+        self.category_table.setRowCount(0)
+        
+        if not self.summary_data or "module_categories" not in self.summary_data:
+            return
+        
+        categories = self.summary_data.get("module_categories", [])
+        
+        # Update category filter
+        self.category_filter.clear()
+        self.category_filter.addItem("All Categories")
+        
+        # Load data
+        self.category_table.setRowCount(len(categories))
+        for row, category in enumerate(categories):
+            self.category_filter.addItem(category.get("category", ""))
+            
+            # Set table values
+            self.category_table.setItem(row, 0, QTableWidgetItem(category.get("category", "")))
+            self.category_table.setItem(row, 1, QTableWidgetItem(str(category.get("total", 0))))
+            self.category_table.setItem(row, 2, QTableWidgetItem(str(category.get("complete", 0))))
+            self.category_table.setItem(row, 3, QTableWidgetItem(str(category.get("needs_enhancement", 0))))
+            
+            status_item = QTableWidgetItem(category.get("status", ""))
+            if "complete" in category.get("status", "").lower():
+                status_item.setForeground(QtGui.QBrush(QtGui.QColor("green")))
+            else:
+                status_item.setForeground(QtGui.QBrush(QtGui.QColor("orange")))
+            self.category_table.setItem(row, 4, status_item)
+
+    def update_details_table(self):
+        """Update the module details table"""
+        self.details_table.setRowCount(0)
+        
+        if not self.module_data or "modules" not in self.module_data:
+            return
+        
+        modules = self.module_data.get("modules", {})
+        filtered_modules = []
+        
+        # Apply filters
+        category_filter = self.category_filter.currentText()
+        status_filter = self.status_filter.currentText()
+        
+        for name, module in modules.items():
+            if category_filter != "All Categories" and module.get("category", "") != category_filter:
+                continue
+                
+            if status_filter != "All Statuses":
+                if status_filter == "Compliant" and module.get("compliance_status", "") != "COMPLIANT":
+                    continue
+                if status_filter == "Needs Enhancement" and module.get("status", "") != "NEEDS_ENHANCEMENT":
+                    continue
+            
+            filtered_modules.append((name, module))
+        
+        # Load data
+        self.details_table.setRowCount(len(filtered_modules))
+        for row, (name, module) in enumerate(filtered_modules):
+            self.details_table.setItem(row, 0, QTableWidgetItem(name))
+            self.details_table.setItem(row, 1, QTableWidgetItem(module.get("category", "")))
+            
+            roles_str = ", ".join(module.get("roles", []))
+            self.details_table.setItem(row, 2, QTableWidgetItem(roles_str))
+            
+            eventbus_item = QTableWidgetItem("✅" if module.get("eventbus_integrated", False) else "❌")
+            eventbus_item.setTextAlignment(Qt.AlignCenter)
+            self.details_table.setItem(row, 3, eventbus_item)
+            
+            telemetry_item = QTableWidgetItem("✅" if module.get("telemetry_enabled", False) else "❌")
+            telemetry_item.setTextAlignment(Qt.AlignCenter)
+            self.details_table.setItem(row, 4, telemetry_item)
+            
+            status_item = QTableWidgetItem(module.get("status", ""))
+            if module.get("status", "") == "ACTIVE":
+                status_item.setForeground(QtGui.QBrush(QtGui.QColor("green")))
+            else:
+                status_item.setForeground(QtGui.QBrush(QtGui.QColor("orange")))
+            self.details_table.setItem(row, 5, status_item)
+
+    def update_system_status(self):
+        """Update the system status text display"""
+        if not self.build_status:
+            return
+        
+        status_text = f"""
+# GENESIS SYSTEM STATUS
+
+## 🏗️ Architecture
+- **System Status:** {self.build_status.get("system_status", "UNKNOWN")}
+- **Architect Mode:** {self.build_status.get("architect_mode", "UNKNOWN")}
+- **Architecture Mapping:** {self.build_status.get("architecture_mapping_timestamp", "Not Completed")}
+
+## 📊 Module Statistics
+- **Total Modules:** {self.build_status.get("total_modules", 0)}
+- **Classified Modules:** {self.build_status.get("classified_modules", 0)}
+- **Enhanced Modules:** {self.build_status.get("enhanced_modules", 0)}
+- **EventBus Integration:** {self.build_status.get("eventbus_integrated", 0)}
+- **Telemetry Enabled:** {self.build_status.get("telemetry_enabled", 0)}
+
+## 🚀 Trading System Status
+- **MT5 Connection:** {self.build_status.get("mt5_connection_status", "UNKNOWN")}
+- **Compliance Score:** {self.build_status.get("compliance_score", "UNKNOWN")}
+- **Production Ready:** {"✅ Yes" if self.build_status.get("production_ready", False) else "❌ No"}
+- **Institutional Dashboard:** {"✅ Ready" if self.build_status.get("institutional_dashboard_ready", False) else "❌ Not Ready"}
+- **Docker Deployment:** {"✅ Ready" if self.build_status.get("docker_deployment_ready", False) else "❌ Not Ready"}
+"""
+        
+        # Add architecture mapping stats if available
+        mapping_stats = self.build_status.get("architecture_mapping_stats", {})
+        if mapping_stats:
+            status_text += "\n## 🔍 Architecture Mapping Statistics\n"
+            
+            # Add module counts by category
+            modules_by_category = mapping_stats.get("modules_by_category", {})
+            if modules_by_category:
+                status_text += "### Module Counts by Category\n"
+                for category, count in modules_by_category.items():
+                    status_text += f"- **{category}:** {count}\n"
+            
+            # Add repair statistics
+            status_text += f"\n### Repair Actions\n"
+            status_text += f"- **Total Repairs:** {mapping_stats.get('total_repair_actions', 0)}\n"
+            status_text += f"- **Applied Repairs:** {mapping_stats.get('repair_actions_applied', 0)}\n"
+        
+        self.status_text.setMarkdown(status_text)
+
+    def apply_filters(self):
+        """Apply filters to the module details table"""
+        self.update_details_table()
+
+    def setup_event_subscriptions(self):
+        """Set up EventBus subscriptions for this UI component"""
+        event_bus.subscribe("module_status_changed", self.handle_module_status_update)
+        event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+        event_bus.subscribe("architecture_mapping_completed", self.handle_mapping_completed)
+        event_bus.subscribe("repair_action_applied", self.handle_repair_update)
+        
+        # Register with telemetry
+        telemetry.log_event(TelemetryEvent(
+            category="ui", 
+            name="event_subscriptions_setup", 
+            properties={"component": self.__class__.__name__}
+        ))
+
+    def handle_module_status_update(self, event):
+        """Handle module status update events"""
+        self.load_data()
+
+    def handle_system_status_update(self, event):
+        """Handle system status update events"""
+        self.load_data()
+
+    def handle_mapping_completed(self, event):
+        """Handle architecture mapping completed events"""
+        self.load_data()
+        
+        # Show notification
+        QtWidgets.QMessageBox.information(
+            self, 
+            "Architecture Mapping Completed",
+            f"Architecture mapping has completed successfully.\n\n"
+            f"Total Modules: {event.data.get('total_modules', 0)}\n"
+            f"Enhanced Modules: {event.data.get('enhanced_modules', 0)}"
+        )
+
+    def handle_repair_update(self, event):
+        """Handle repair action update events"""
+        self.load_data()
+
+    def run_scanner(self):
+        """Run the module scanner"""
+        # Confirm with user
+        reply = QtWidgets.QMessageBox.question(
+            self,
+            "Run Module Scanner",
+            "This will scan all modules in the system and may take several minutes. Continue?",
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+            QtWidgets.QMessageBox.No
+        )
+        
+        if reply == QtWidgets.QMessageBox.Yes:
+            self.status_label.setText("Running module scanner...")
+            
+            # Launch the scanner process
+            try:
+                import subprocess
+                cmd = [sys.executable, "run_architecture_mapper.py"]
+                subprocess.Popen(cmd)
+                
+                self.status_label.setText("Module scanner launched. Check logs for progress.")
+            except Exception as e:
+                logging.error(f"Error launching scanner: {str(e)}")
+                self.status_label.setText(f"Error launching scanner: {str(e)}")
+                
+                QtWidgets.QMessageBox.critical(
+                    self,
+                    "Error",
+                    f"Failed to launch module scanner: {str(e)}"
+                )
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+# <!-- @GENESIS_MODULE_END: module_scanner_panel -->
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    
+    # Apply style sheet
+    app.setStyle("Fusion")
+    
+    # Dark palette
+    palette = QtGui.QPalette()
+    palette.setColor(QtGui.QPalette.Window, QtGui.QColor(53, 53, 53))
+    palette.setColor(QtGui.QPalette.WindowText, Qt.white)
+    palette.setColor(QtGui.QPalette.Base, QtGui.QColor(25, 25, 25))
+    palette.setColor(QtGui.QPalette.AlternateBase, QtGui.QColor(53, 53, 53))
+    palette.setColor(QtGui.QPalette.ToolTipBase, Qt.white)
+    palette.setColor(QtGui.QPalette.ToolTipText, Qt.white)
+    palette.setColor(QtGui.QPalette.Text, Qt.white)
+    palette.setColor(QtGui.QPalette.Button, QtGui.QColor(53, 53, 53))
+    palette.setColor(QtGui.QPalette.ButtonText, Qt.white)
+    palette.setColor(QtGui.QPalette.BrightText, Qt.red)
+    palette.setColor(QtGui.QPalette.Link, QtGui.QColor(42, 130, 218))
+    palette.setColor(QtGui.QPalette.Highlight, QtGui.QColor(42, 130, 218))
+    palette.setColor(QtGui.QPalette.HighlightedText, Qt.black)
+    app.setPalette(palette)
+    
+    # Create and show the panel
+    panel = ModuleScannerPanel()
+    panel.show()
+    
+    sys.exit(app.exec_())

@@ -1,0 +1,58 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ewm_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.650291+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ewm_recovered_2.py",
+      "line_numbers": [
+        99,
+        386,
+        418,
+        1063
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ewm_recovered_2.py",
+      "line_numbers": [
+        371,
+        603,
+        672,
+        952,
+        984
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ewm_recovered_2.py",
+      "line_numbers": [
+        370,
+        373,
+        380,
+        602,
+        910
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ewm_recovered_2.py",
+      "line_numbers": [
+        98,
+        389,
+        391,
+        541,
+        566
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

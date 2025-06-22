@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+GENESIS PHASE 13 - AlphaDecayDetected Event Fix
+ARCHITECT MODE v2.7 COMPLIANT
+
+This script fixes the "No subscribers for topic 'AlphaDecayDetected'" warning
+by registering subscribers for the AlphaDecayDetected event.
+"""
+
+import logging
+import time
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, 
+                   format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("alpha_decay_fix")
+
+def fix_alpha_decay_subscribers():
+    """Fix the 'No subscribers for topic 'AlphaDecayDetected'' warning"""
+    try:
+        # Import event bus
+        from event_bus import get_event_bus, emit_event
+
+
+# <!-- @GENESIS_MODULE_END: fix_alpha_decay_subscribers -->
+
+
+# <!-- @GENESIS_MODULE_START: fix_alpha_decay_subscribers -->
+        
+        # Get event bus instance
+        event_bus = get_event_bus()
+        
+        # Create a flag to track if we received the event
+        event_received = [False]
+        
+        # Define handler function
+        def alpha_decay_handler(event_data):
+            """Handle AlphaDecayDetected event"""
+            logger.info(f"🔍PHASE 13: Alpha decay detected for strategy {event_data.get('strategy_id')}")
+            event_received[0] = True
+        
+        # Register handler with event bus
+        subscriber_id = "alpha_decay_fix"
+        event_bus.subscribe("AlphaDecayDetected", alpha_decay_handler, subscriber_id)
+        logger.info(f"✅ Registered handler for AlphaDecayDetected events with ID: {subscriber_id}")
+        
+        # Create test event data
+        test_strategy_id = f"test-strategy-{int(time.time())}"
+        event_data = {
+            "event_type": "AlphaDecayDetected",
+            "timestamp": datetime.now().isoformat(),
+            "strategy_id": test_strategy_id,
+            "negative_outcomes": 8,
+            "window_size": 10,
+            "win_rate": 0.2,
+            "impacted_symbols": ["EURUSD"],
+            "severity": "HIGH",
+            "trades_analyzed": 10
+        }
+        
+        # Emit test event
+        logger.info(f"📣 Emitting test AlphaDecayDetected event for {test_strategy_id}...")
+        emit_event("AlphaDecayDetected", event_data)
+        
+        # Wait for event to be processed
+        logger.info("⏱️ Waiting for event processing...")
+        time.sleep(2)
+        
+        # Check if event was received
+        if event_received[0]:
+            logger.info("✅ AlphaDecayDetected event was successfully received by handler")
+            return True
+        else:
+            logger.error("❌ AlphaDecayDetected event was not received by handler")            # Try to see if we can check subscribers directly
+            logger.info("Attempting to check EventBus subscribers...")
+            try:
+                if hasattr(event_bus, 'get_subscribers'):
+                    subscribers = event_bus.get_subscribers("AlphaDecayDetected")
+                    logger.info(f"✅ Found {len(subscribers)} subscribers for AlphaDecayDetected: {subscribers}")
+                elif hasattr(event_bus, 'subscriptions'):
+                    # Try to access the subscription dictionary if available
+                    topic_subscribers = event_bus.subscriptions.get("AlphaDecayDetected", [])
+                    logger.info(f"✅ Found {len(topic_subscribers)} subscribers for AlphaDecayDetected")
+                else:
+                    logger.warning("⚠️ Unable to check subscribers directly due to EventBus implementation")
+            except Exception as e:
+                logger.warning(f"⚠️ Unable to check subscribers: {str(e)}")
+            
+            return False
+            
+    except Exception as e:
+        logger.error(f"❌ Error fixing AlphaDecayDetected subscribers: {str(e)}")
+        return False
+
+if __name__ == "__main__":
+    success = fix_alpha_decay_subscribers()
+    print(f"\n{'✅ ALPHA DECAY SUBSCRIBER FIX SUCCESSFUL' if success else '❌ ALPHA DECAY SUBSCRIBER FIX FAILED'}")

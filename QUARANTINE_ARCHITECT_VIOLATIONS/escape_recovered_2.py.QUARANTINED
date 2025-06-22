@@ -1,0 +1,44 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\escape_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.632290+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\escape_recovered_2.py",
+      "line_numbers": [
+        133,
+        140,
+        201,
+        206,
+        211
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\escape_recovered_2.py",
+      "line_numbers": [
+        222,
+        253,
+        348
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\escape_recovered_2.py",
+      "line_numbers": [
+        168,
+        281,
+        323,
+        353,
+        362
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

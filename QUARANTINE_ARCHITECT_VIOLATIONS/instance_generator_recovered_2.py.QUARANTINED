@@ -1,0 +1,70 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.882454+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+      "line_numbers": [
+        499,
+        549,
+        1211,
+        1212,
+        1213
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+      "line_numbers": [
+        499,
+        501,
+        565,
+        604,
+        824
+      ],
+      "violation_count": 38
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+      "line_numbers": [
+        352
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+      "line_numbers": [
+        831
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+      "line_numbers": [
+        771,
+        807
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\instance_generator_recovered_2.py",
+      "line_numbers": [
+        776
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

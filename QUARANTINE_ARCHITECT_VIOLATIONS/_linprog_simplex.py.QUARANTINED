@@ -1,0 +1,31 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linprog_simplex.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.416012+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linprog_simplex.py",
+      "line_numbers": [
+        394,
+        402,
+        427
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_linprog_simplex.py",
+      "line_numbers": [
+        156,
+        364,
+        387,
+        399,
+        432
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

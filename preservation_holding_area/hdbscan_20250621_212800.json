@@ -1,0 +1,9 @@
+{
+  "module_id": "hdbscan",
+  "original_path": "modules\\restored\\hdbscan.py",
+  "preserved_path": "preservation_holding_area\\hdbscan_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 53240,
+  "checksum": "2c72a44e26890d48e85cbe405ec2e38cbb90f88a61e217eb2b933e019567a051"
+}

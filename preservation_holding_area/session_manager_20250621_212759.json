@@ -1,0 +1,9 @@
+{
+  "module_id": "session_manager",
+  "original_path": "modules\\restored\\session_manager.py",
+  "preserved_path": "preservation_holding_area\\session_manager_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 55014,
+  "checksum": "89b02f442c3b7f7505bf6995175dd7e1d551b85f85357acf5b8c12aec2032cc3"
+}

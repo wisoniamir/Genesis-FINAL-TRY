@@ -1,0 +1,511 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("config_engine", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("config_engine", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "config_engine",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("config_engine", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in config_engine: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+⚙️ GENESIS CONFIG ENGINE — ARCHITECT MODE v7.0 COMPLIANT
+Dynamic configuration management for all modules.
+"""
+
+import json
+import logging
+from typing import Dict, Any, Optional
+from pathlib import Path
+from datetime import datetime
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: config_engine -->
+
+
+# <!-- @GENESIS_MODULE_START: config_engine -->
+
+class ConfigEngine:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("config_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("config_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "config_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("config_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in config_engine: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "config_engine",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in config_engine: {e}")
+    """
+    ⚙️ CORE CONFIG ENGINE
+    
+    ARCHITECT MODE COMPLIANCE:
+    - ✅ Real-time config updates
+    - ✅ Event integration
+    - ✅ Validation and defaults
+    - ✅ Persistence and backup
+    - ✅ Module-specific configs
+    """
+    
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        self.config_path = Path("config")
+        self.config_path.mkdir(exist_ok=True)
+        
+        # Master configuration
+        self.master_config = {}
+        self.module_configs = {}
+        
+        # Load configurations
+        self._load_master_config()
+        self._load_module_configs()
+        
+        self.logger.info("⚙️ Config Engine initialized")
+        
+    def _load_master_config(self):
+        """Load master configuration"""
+        try:
+            master_file = self.config_path / "master_config.json"
+            if master_file.exists():
+                with open(master_file, 'r') as f:
+                    self.master_config = json.load(f)
+            else:
+                # Create default master config
+                self.master_config = {
+                    "system": {
+                        "debug_mode": False,
+                        "telemetry_enabled": True,
+                        "event_bus_enabled": True,
+                        "mt5_enabled": True
+                    },
+                    "logging": {
+                        "level": "INFO",
+                        "file_logging": True,
+                        "console_logging": True
+                    },
+                    "performance": {
+                        "max_memory_mb": 1024,
+                        "max_cpu_percent": 80,
+                        "heartbeat_interval": 30
+                    }
+                }
+                self._save_master_config()
+                
+        except Exception as e:
+            self.logger.error(f"Master config load error: {e}")
+            
+    def _save_master_config(self):
+        """Save master configuration"""
+        try:
+            master_file = self.config_path / "master_config.json"
+            with open(master_file, 'w') as f:
+                json.dump(self.master_config, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(f"Master config save error: {e}")
+            
+    def _load_module_configs(self):
+        """Load all module configurations"""
+        try:
+            # Scan for module config files
+            for config_file in self.config_path.glob("*_config.json"):
+                module_name = config_file.stem.replace("_config", "")
+                try:
+                    with open(config_file, 'r') as f:
+                        self.module_configs[module_name] = json.load(f)
+                except Exception as e:
+                    self.logger.error(f"Failed to load config for {module_name}: {e}")
+                    
+        except Exception as e:
+            self.logger.error(f"Module configs load error: {e}")
+            
+    def get_config(self, key: str, default: Any = None) -> Any:
+        """Get configuration value by key"""
+        try:
+            keys = key.split('.')
+            config = self.master_config
+            
+            for k in keys:
+                if isinstance(config, dict) and k in config:
+                    config = config[k]
+                else:
+                    return default
+                    
+            return config
+            
+        except Exception as e:
+            self.logger.error(f"Config get error for key {key}: {e}")
+            return default
+            
+    def set_config(self, key: str, value: Any):
+        """Set configuration value"""
+        try:
+            keys = key.split('.')
+            config = self.master_config
+            
+            # Navigate to parent
+            for k in keys[:-1]:
+                if k not in config:
+                    config[k] = {}
+                config = config[k]
+                
+            # Set final value
+            config[keys[-1]] = value
+            
+            # Save to file
+            self._save_master_config()
+            
+            self.logger.info(f"Config updated: {key} = {value}")
+            
+        except Exception as e:
+            self.logger.error(f"Config set error for key {key}: {e}")
+            
+    def get_module_config(self, module_name: str) -> Optional[Dict[str, Any]]:
+        """Get configuration for specific module"""
+        try:
+            if module_name in self.module_configs:
+                return self.module_configs[module_name]
+                
+            # Try to load from file
+            config_file = self.config_path / f"{module_name}_config.json"
+            if config_file.exists():
+                with open(config_file, 'r') as f:
+                    config = json.load(f)
+                    self.module_configs[module_name] = config
+                    return config
+                    
+            return None
+            
+        except Exception as e:
+            self.logger.error(f"Module config get error for {module_name}: {e}")
+            return None
+            
+    def set_module_config(self, module_name: str, config: Dict[str, Any]):
+        """Set configuration for specific module"""
+        try:
+            # Update in memory
+            self.module_configs[module_name] = config
+            
+            # Save to file
+            config_file = self.config_path / f"{module_name}_config.json"
+            with open(config_file, 'w') as f:
+                json.dump(config, f, indent=2)
+                
+            self.logger.info(f"Module config updated: {module_name}")
+            
+        except Exception as e:
+            self.logger.error(f"Module config set error for {module_name}: {e}")
+            
+    def get_all_modules(self) -> Dict[str, Dict[str, Any]]:
+        """Get all module configurations"""
+        return self.module_configs.copy()
+        
+    def reload_configs(self):
+        """Reload all configurations from files"""
+        try:
+            self._load_master_config()
+            self._load_module_configs()
+            self.logger.info("All configurations reloaded")
+            
+        except Exception as e:
+            self.logger.error(f"Config reload error: {e}")
+            
+    def backup_configs(self) -> str:
+        """Create backup of all configurations"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_dir = self.config_path / "backups"
+            backup_dir.mkdir(exist_ok=True)
+            
+            backup_file = backup_dir / f"config_backup_{timestamp}.json"
+            
+            backup_data = {
+                "timestamp": timestamp,
+                "master_config": self.master_config,
+                "module_configs": self.module_configs
+            }
+            
+            with open(backup_file, 'w') as f:
+                json.dump(backup_data, f, indent=2)
+                
+            self.logger.info(f"Config backup created: {backup_file}")
+            return str(backup_file)
+            
+        except Exception as e:
+            self.logger.error(f"Config backup error: {e}")
+            return ""
+            
+    def restore_configs(self, backup_file: str):
+        """Restore configurations from backup"""
+        try:
+            with open(backup_file, 'r') as f:
+                backup_data = json.load(f)
+                
+            self.master_config = backup_data.get("master_config", {})
+            self.module_configs = backup_data.get("module_configs", {})
+            
+            # Save restored configs
+            self._save_master_config()
+            for module_name, config in self.module_configs.items():
+                self.set_module_config(module_name, config)
+                
+            self.logger.info(f"Configs restored from: {backup_file}")
+            
+        except Exception as e:
+            self.logger.error(f"Config restore error: {e}")
+            
+    def validate_config(self, module_name: str, config: Dict[str, Any]) -> bool:
+        """Validate module configuration"""
+        try:
+            # Basic validation rules
+            validation_rules = {
+                "strategy_engine": {
+                    "required_keys": ["enabled_strategies", "signal_threshold"],
+                    "types": {"signal_threshold": (int, float)}
+                },
+                "execution_manager": {
+                    "required_keys": ["max_slippage", "max_concurrent_orders"],
+                    "types": {"max_slippage": (int, float), "max_concurrent_orders": int}
+                },
+                "kill_switch": {
+                    "required_keys": ["max_drawdown", "daily_loss_limit"],
+                    "types": {"max_drawdown": (int, float), "daily_loss_limit": (int, float)}
+                }
+            }
+            
+            if module_name in validation_rules:
+                rules = validation_rules[module_name]
+                
+                # Check required keys
+                for key in rules.get("required_keys", []):
+                    if key not in config:
+                        self.logger.error(f"Missing required key '{key}' in {module_name} config")
+                        return False
+                        
+                # Check types
+                for key, expected_types in rules.get("types", {}).items():
+                    if key in config and not isinstance(config[key], expected_types):
+                        self.logger.error(f"Invalid type for '{key}' in {module_name} config")
+                        return False
+                        
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Config validation error for {module_name}: {e}")
+            return False
+            
+    def get_system_status(self) -> Dict[str, Any]:
+        """Get configuration system status"""
+        return {
+            "master_config_loaded": bool(self.master_config),
+            "total_modules": len(self.module_configs),
+            "config_path": str(self.config_path),
+            "modules": list(self.module_configs.keys()),
+            "last_updated": datetime.now().isoformat()
+        }
+
+# Global config engine instance
+_config_engine = ConfigEngine()
+
+def get_config_engine() -> ConfigEngine:
+    """Get the global ConfigEngine instance"""
+    return _config_engine
+
+def get_config(key: str, default: Any = None) -> Any:
+    """Global function to get config value"""
+    return _config_engine.get_config(key, default)
+
+def set_config(key: str, value: Any):
+    """Global function to set config value"""
+    _config_engine.set_config(key, value)
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

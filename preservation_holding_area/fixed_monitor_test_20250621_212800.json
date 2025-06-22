@@ -1,0 +1,9 @@
+{
+  "module_id": "fixed_monitor_test",
+  "original_path": "modules\\monitoring\\fixed_monitor_test.py",
+  "preserved_path": "preservation_holding_area\\fixed_monitor_test_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17174,
+  "checksum": "b2bf9020177b89069aaf3759c12e956ec84d138a83ca78ff8f85e112c67aa1bb"
+}

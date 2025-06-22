@@ -1,0 +1,9 @@
+{
+  "module_id": "asyncio_test",
+  "original_path": "modules\\restored\\asyncio_test.py",
+  "preserved_path": "preservation_holding_area\\asyncio_test_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 49081,
+  "checksum": "2a400dc168dc83c0fcb579a0bf4c3c7bf45f89b0edd6b6c7e02619103f308cd5"
+}

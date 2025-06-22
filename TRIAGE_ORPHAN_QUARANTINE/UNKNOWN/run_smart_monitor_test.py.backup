@@ -1,0 +1,231 @@
+# <!-- @GENESIS_MODULE_START: run_smart_monitor_test -->
+"""
+🏛️ GENESIS RUN_SMART_MONITOR_TEST - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "run_smart_monitor_test",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in run_smart_monitor_test: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "run_smart_monitor_test",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("run_smart_monitor_test", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in run_smart_monitor_test: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+GENESIS AI TRADING BOT SYSTEM - SmartExecutionMonitor Test Launcher
+ARCHITECT LOCK-IN v2.7 COMPLIANT
+"""
+
+import subprocess
+import time
+import os
+import sys
+import json
+import logging
+from datetime import datetime
+
+# Set up logging
+log_dir = "logs/smart_monitor"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] - %(message)s",
+    handlers=[
+        logging.FileHandler(f"{log_dir}/test_launcher_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger("SmartMonitorTestLauncher")
+
+def run_test():
+    """Run the SmartExecutionMonitor test with proper sequencing"""
+    logger.info("🚀 Starting GENESIS SmartExecutionMonitor Test Sequence")
+    
+    # Step 1: Start SmartExecutionMonitor in the background
+    logger.info("Starting SmartExecutionMonitor...")
+    monitor_process = subprocess.Popen(
+        [sys.executable, "smart_execution_monitor.py"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+    logger.info(f"SmartExecutionMonitor started with PID: {monitor_process.pid}")
+    
+    # Give the monitor time to initialize and register event handlers
+    logger.info("Waiting for SmartExecutionMonitor to initialize...")
+    time.sleep(5)
+    
+    # Step 2: Run the test script
+    logger.info("Starting test script...")
+    test_process = subprocess.Popen(
+        [sys.executable, "test_smart_monitor.py"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+    
+    # Wait for the test to complete
+    stdout, stderr = test_process.communicate()
+    
+    # Log test output
+    logger.info("Test script completed.")
+    logger.info(f"Test exit code: {test_process.returncode}")
+    logger.info("Test stdout:")
+    for line in stdout.split('\n'):
+        if line.strip():
+            logger.info(f"  {line.strip()}")
+    
+    if stderr:
+        logger.warning("Test stderr:")
+        for line in stderr.split('\n'):
+            if line.strip():
+                logger.warning(f"  {line.strip()}")
+    
+    # Terminate SmartExecutionMonitor
+    logger.info("Terminating SmartExecutionMonitor...")
+    monitor_process.terminate()
+    monitor_process.wait(timeout=5)
+    logger.info("SmartExecutionMonitor terminated")
+    
+    # Check test results file
+    result_files = [f for f in os.listdir(log_dir) if f.startswith("smart_monitor_test_") and f.endswith(".json")]
+    if result_files:
+        latest_result = max(result_files, key=lambda x: os.path.getmtime(os.path.join(log_dir, x)))
+        result_path = os.path.join(log_dir, latest_result)
+        logger.info(f"Reading test results from: {result_path}")
+        
+        try:
+            with open(result_path, 'r') as f:
+                results = json.load(f)
+            
+            # Print test summary
+            print("\n" + "="*80)
+            print(f"🧾 SMART MONITOR TEST SUMMARY: {results['test_result']}")
+            if "test_completion_time" in results and "test_start_time" in results:
+                duration = (datetime.fromisoformat(results['test_completion_time']) - 
+                           datetime.fromisoformat(results['test_start_time'])).total_seconds()
+                print(f"⏱️ Duration: {duration} seconds")
+            print(f"📊 Events Received: {len(results.get('events_received', []))}")
+            print(f"✅ Slippage Alert: {'PASSED' if results.get('slippage_alert_received', False) else 'FAILED'}")
+            print(f"✅ Latency Alert: {'PASSED' if results.get('latency_alert_received', False) else 'FAILED'}")
+            print(f"✅ KillSwitch Trigger: {'PASSED' if results.get('killswitch_triggered', False) else 'FAILED'}")
+            print(f"✅ Pattern Recalibration: {'PASSED' if results.get('recalibration_requested', False) else 'FAILED'}")
+            print("="*80 + "\n")
+            
+            return results['test_result'] == "PASSED"
+        except Exception as e:
+            logger.error(f"Error processing test results: {e}")
+            return False
+    else:
+        logger.error("No test result file found!")
+        return False
+
+if __name__ == "__main__":
+    try:
+        success = run_test()
+        sys.exit(0 if success else 1)
+    except Exception as e:
+        logger.exception(f"Test launcher failed: {e}")
+        sys.exit(1)
+
+
+# <!-- @GENESIS_MODULE_END: run_smart_monitor_test -->

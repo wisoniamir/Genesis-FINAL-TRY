@@ -1,0 +1,54 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_auto_startup.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.431992+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_auto_startup.py",
+      "line_numbers": [
+        62,
+        84,
+        117
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_auto_startup.py",
+      "line_numbers": [
+        76,
+        109,
+        139
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_auto_startup.py",
+      "line_numbers": [
+        48,
+        213,
+        217,
+        224
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_auto_startup.py",
+      "line_numbers": [
+        54,
+        72,
+        104,
+        131,
+        160
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

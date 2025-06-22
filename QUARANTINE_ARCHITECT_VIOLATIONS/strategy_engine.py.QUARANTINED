@@ -1,0 +1,113 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.380983+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        21,
+        22,
+        25,
+        28,
+        30
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        443,
+        450,
+        481,
+        488,
+        527
+      ],
+      "violation_count": 26
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        69
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        1403,
+        1598
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        14,
+        110,
+        134,
+        180,
+        209
+      ],
+      "violation_count": 59
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        126,
+        172,
+        201,
+        230,
+        258
+      ],
+      "violation_count": 57
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        311,
+        387
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        114,
+        1411,
+        1442,
+        1657
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\strategy\\strategy_engine.py",
+      "line_numbers": [
+        35,
+        119,
+        128,
+        167,
+        174
+      ],
+      "violation_count": 24
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

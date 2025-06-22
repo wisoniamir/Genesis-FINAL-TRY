@@ -1,0 +1,9 @@
+{
+  "module_id": "mutable_status_container",
+  "original_path": "modules\\restored\\mutable_status_container.py",
+  "preserved_path": "preservation_holding_area\\mutable_status_container_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18778,
+  "checksum": "cae52e953c6fb5516513386a2a2f813ce44f5b5f09d843b9148e84cc70dfdb54"
+}

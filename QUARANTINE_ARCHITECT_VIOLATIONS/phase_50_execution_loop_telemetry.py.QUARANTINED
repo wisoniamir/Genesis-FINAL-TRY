@@ -1,0 +1,74 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.864798+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+      "line_numbers": [
+        185
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+      "line_numbers": [
+        78,
+        95,
+        106,
+        416,
+        447
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+      "line_numbers": [
+        89,
+        100,
+        112
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+      "line_numbers": [
+        363,
+        364,
+        392,
+        393
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+      "line_numbers": [
+        199,
+        206,
+        213,
+        220,
+        228
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_50_execution_loop_telemetry.py",
+      "line_numbers": [
+        579
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-06-18T01:46:14.305851",
+  "total_patterns": 2,
+  "recommendations": [
+    {
+      "rank": 1,
+      "pattern_id": "high_success",
+      "category": "technical",
+      "success_rate": 0.85,
+      "confidence": 0.8,
+      "occurrences": 50,
+      "recommendation_strength": 0.68,
+      "last_updated": "2025-06-18T01:46:14.305788"
+    },
+    {
+      "rank": 2,
+      "pattern_id": "medium_success",
+      "category": "technical",
+      "success_rate": 0.7,
+      "confidence": 0.75,
+      "occurrences": 30,
+      "recommendation_strength": 0.5249999999999999,
+      "last_updated": "2025-06-18T01:46:14.305808"
+    }
+  ],
+  "performance_metrics": {
+    "patterns_identified": 0,
+    "patterns_validated": 0,
+    "recommendations_made": 0,
+    "success_rate": 0.0,
+    "last_learning_cycle": "2025-06-18T01:46:14.255469"
+  },
+  "pattern_categories_summary": {
+    "technical": {
+      "total_patterns": 3
+    },
+    "event_driven": {
+      "total_patterns": 0
+    },
+    "volatility_based": {
+      "total_patterns": 0
+    },
+    "time_based": {
+      "total_patterns": 0
+    }
+  }
+}

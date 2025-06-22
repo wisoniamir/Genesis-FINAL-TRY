@@ -1,0 +1,103 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.767180+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        11,
+        27,
+        137,
+        205,
+        271
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        195,
+        261,
+        323,
+        382,
+        598
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        243,
+        490
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        155,
+        231,
+        293,
+        303,
+        527
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        100,
+        192,
+        258,
+        320,
+        538
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        105,
+        610
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        113,
+        114,
+        115
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_bias_dashboard.py",
+      "line_numbers": [
+        122,
+        123,
+        124,
+        127,
+        128
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

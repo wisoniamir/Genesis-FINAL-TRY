@@ -1,0 +1,33 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\telemetry_collector.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.949938+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\telemetry_collector.py",
+      "line_numbers": [
+        40,
+        67,
+        80,
+        104,
+        123
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\telemetry_collector.py",
+      "line_numbers": [
+        74,
+        99,
+        118,
+        135,
+        152
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

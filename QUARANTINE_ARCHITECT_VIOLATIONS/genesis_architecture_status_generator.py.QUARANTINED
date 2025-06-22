@@ -1,0 +1,81 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.407872+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        62,
+        97,
+        201,
+        225
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        62
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        62
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        38,
+        49,
+        70,
+        276
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        44,
+        79,
+        280
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        108,
+        193,
+        198
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_architecture_status_generator.py",
+      "line_numbers": [
+        42,
+        152
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

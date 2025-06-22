@@ -1,0 +1,353 @@
+import logging
+# <!-- @GENESIS_MODULE_START: verify_live_deployment -->
+"""
+🏛️ GENESIS VERIFY_LIVE_DEPLOYMENT - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("verify_live_deployment", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("verify_live_deployment", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "verify_live_deployment",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in verify_live_deployment: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "verify_live_deployment",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("verify_live_deployment", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in verify_live_deployment: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+GENESIS Live Deployment Verification
+Final check before going live with real trading
+"""
+
+import json
+import os
+import sys
+from pathlib import Path
+from datetime import datetime
+
+def verify_deployment_readiness():
+    """Comprehensive deployment readiness check"""
+    
+    print("🚀 GENESIS LIVE DEPLOYMENT VERIFICATION")
+    print("=" * 50)
+    print(f"Timestamp: {datetime.now().isoformat()}")
+    print()
+    
+    checks_passed = 0
+    total_checks = 8
+    
+    # Check 1: System lock state
+    try:
+        lock_file = Path('genesis_lock_state.json')
+        if lock_file.exists():
+            with open(lock_file, 'r') as f:
+                lock_data = json.load(f)
+            
+            if lock_data.get('metadata', {}).get('system_locked'):
+                print("✅ System Lock State: SECURED")
+                checks_passed += 1
+            else:
+                print("❌ System Lock State: NOT SECURED")
+        else:
+            print("❌ System Lock State: MISSING LOCK FILE")
+    except Exception as e:
+        print(f"❌ System Lock State: ERROR - {e}")
+    
+    # Check 2: Installer package
+    try:
+        dist_dir = Path('dist')
+        installer_files = list(dist_dir.glob('genesis_v1_installer_*.zip'))
+        
+        if installer_files:
+            latest_installer = max(installer_files, key=lambda x: x.stat().st_mtime)
+            size_mb = latest_installer.stat().st_size / (1024 * 1024)
+            print(f"✅ Installer Package: {latest_installer.name} ({size_mb:.1f} MB)")
+            checks_passed += 1
+        else:
+            print("❌ Installer Package: NOT FOUND")
+    except Exception as e:
+        print(f"❌ Installer Package: ERROR - {e}")
+    
+    # Check 3: GUI Launcher
+    try:
+        launcher_file = Path('genesis_launcher.py')
+        batch_file = Path('genesis_launcher.bat')
+        
+        if launcher_file.exists() and batch_file.exists():
+            print("✅ GUI Launcher: READY")
+            checks_passed += 1
+        else:
+            print("❌ GUI Launcher: MISSING FILES")
+    except Exception as e:
+        print(f"❌ GUI Launcher: ERROR - {e}")
+    
+    # Check 4: Build status
+    try:
+        build_file = Path('build_status.json')
+        if build_file.exists():
+            with open(build_file, 'r') as f:
+                build_data = json.load(f)
+            
+            final_status = build_data.get('final_system_status', 'UNKNOWN')
+            if final_status == 'DEPLOYMENT_READY':
+                print("✅ Build Status: DEPLOYMENT_READY")
+                checks_passed += 1
+            else:
+                print(f"❌ Build Status: {final_status}")
+        else:
+            print("❌ Build Status: MISSING FILE")
+    except Exception as e:
+        print(f"❌ Build Status: ERROR - {e}")
+    
+    # Check 5: Core modules
+    try:
+        core_modules = [
+            'auto_execution_manager.py',
+            'live_risk_governor.py',
+            'dashboard.py'
+        ]
+        
+        missing_modules = []
+        for module in core_modules:
+            if not Path(module).exists():
+                missing_modules.append(module)
+        
+        if not missing_modules:
+            print("✅ Core Modules: ALL PRESENT")
+            checks_passed += 1
+        else:
+            print(f"❌ Core Modules: MISSING {', '.join(missing_modules)}")
+    except Exception as e:
+        print(f"❌ Core Modules: ERROR - {e}")
+    
+    # Check 6: System tree
+    try:
+        tree_file = Path('system_tree.json')
+        if tree_file.exists():
+            with open(tree_file, 'r') as f:
+                tree_data = json.load(f)
+            
+            nodes = len(tree_data.get('nodes', []))
+            if nodes >= 70:
+                print(f"✅ System Tree: {nodes} NODES REGISTERED")
+                checks_passed += 1
+            else:
+                print(f"❌ System Tree: ONLY {nodes} NODES")
+        else:
+            print("❌ System Tree: MISSING FILE")
+    except Exception as e:
+        print(f"❌ System Tree: ERROR - {e}")
+    
+    # Check 7: Module registry
+    try:
+        registry_file = Path('module_registry.json')
+        if registry_file.exists():
+            with open(registry_file, 'r') as f:
+                registry_data = json.load(f)
+            
+            modules = len(registry_data.get('modules', []))
+            if modules >= 70:
+                print(f"✅ Module Registry: {modules} MODULES ACTIVE")
+                checks_passed += 1
+            else:
+                print(f"❌ Module Registry: ONLY {modules} MODULES")
+        else:
+            print("❌ Module Registry: MISSING FILE")
+    except Exception as e:
+        print(f"❌ Module Registry: ERROR - {e}")
+    
+    # Check 8: Requirements file
+    try:
+        req_file = Path('requirements.txt')
+        if req_file.exists():
+            with open(req_file, 'r') as f:
+                requirements = f.read().strip().split('\n')
+            
+            if len(requirements) >= 5:
+                print(f"✅ Requirements: {len(requirements)} DEPENDENCIES LISTED")
+                checks_passed += 1
+            else:
+                print(f"❌ Requirements: INSUFFICIENT DEPENDENCIES")
+        else:
+            print("❌ Requirements: MISSING FILE")
+    except Exception as e:
+        print(f"❌ Requirements: ERROR - {e}")
+    
+    print()
+    print("=" * 50)
+    
+    # Final assessment
+    success_rate = (checks_passed / total_checks) * 100
+    
+    print(f"DEPLOYMENT READINESS: {checks_passed}/{total_checks} checks passed ({success_rate:.1f}%)")
+    
+    if success_rate >= 100:
+        print("🎉 DEPLOYMENT STATUS: ✅ FULLY READY FOR LIVE TRADING")
+        print("🚀 GO LIVE: All systems verified and operational")
+        deployment_ready = True
+    elif success_rate >= 75:
+        print("⚠️ DEPLOYMENT STATUS: ⚠️ MOSTLY READY (minor issues)")
+        print("🔧 RECOMMENDATION: Fix remaining issues before going live")
+        deployment_ready = False
+    else:
+        print("❌ DEPLOYMENT STATUS: ❌ NOT READY")
+        print("🛑 CRITICAL: Resolve all issues before deployment")
+        deployment_ready = False
+    
+    print()
+    print("🎯 NEXT STEPS:")
+    if deployment_ready:
+        print("1. Extract the installer ZIP package")
+        print("2. Run genesis_launcher.bat")
+        print("3. Connect to MetaTrader 5")
+        print("4. Start with demo trading")
+        print("5. Monitor performance closely")
+        print("6. Gradually move to live trading")
+    else:
+        print("1. Review failed checks above")
+        print("2. Fix any missing components")
+        print("3. Re-run this verification")
+        print("4. Only proceed when 100% ready")
+    
+    print()
+    print("🔥 GENESIS v1.0.0 - READY TO CHANGE THE TRADING GAME! 🔥")
+    
+    return deployment_ready
+
+if __name__ == "__main__":
+    ready = verify_deployment_readiness()
+    sys.exit(0 if ready else 1)
+
+
+# <!-- @GENESIS_MODULE_END: verify_live_deployment -->

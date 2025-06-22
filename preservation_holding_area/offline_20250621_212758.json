@@ -1,0 +1,9 @@
+{
+  "module_id": "offline",
+  "original_path": "modules\\restored\\offline.py",
+  "preserved_path": "preservation_holding_area\\offline_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 38672,
+  "checksum": "c50abf315aa2defa1c1e975206edf62d66d1cac68bc9368a085e2e1142a6203b"
+}

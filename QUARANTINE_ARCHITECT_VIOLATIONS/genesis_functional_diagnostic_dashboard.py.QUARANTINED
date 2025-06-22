@@ -1,0 +1,138 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.579725+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        231,
+        259,
+        1026
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        122,
+        137,
+        142,
+        152,
+        182
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        29,
+        422,
+        873,
+        874,
+        876
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        14
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        212,
+        232,
+        297,
+        305,
+        465
+      ],
+      "violation_count": 42
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        55,
+        64,
+        106,
+        124,
+        144
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        115,
+        135,
+        150,
+        175,
+        196
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        102,
+        121,
+        141,
+        156,
+        181
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        112,
+        388,
+        608,
+        623,
+        939
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        292,
+        298,
+        303
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_functional_diagnostic_dashboard.py",
+      "line_numbers": [
+        125
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

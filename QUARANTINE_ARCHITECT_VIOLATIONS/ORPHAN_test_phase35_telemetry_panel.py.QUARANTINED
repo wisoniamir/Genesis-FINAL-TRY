@@ -1,0 +1,91 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.575896+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        110,
+        112,
+        114,
+        213,
+        215
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        18
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        1,
+        51,
+        67,
+        118,
+        124
+      ],
+      "violation_count": 52
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        78,
+        122,
+        229,
+        312,
+        420
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        106,
+        221,
+        304,
+        412,
+        495
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        103,
+        380,
+        526,
+        539,
+        549
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_phase35_telemetry_panel.py",
+      "line_numbers": [
+        61,
+        565
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

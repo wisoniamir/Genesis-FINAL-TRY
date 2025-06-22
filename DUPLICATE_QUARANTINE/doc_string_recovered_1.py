@@ -1,0 +1,916 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("doc_string_recovered_1", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("doc_string_recovered_1", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "doc_string_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in doc_string_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "doc_string_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("doc_string_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in doc_string_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022-2025)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""Allows us to create and absorb changes (aka Deltas) to elements."""
+
+from __future__ import annotations
+
+import ast
+import contextlib
+import inspect
+import re
+import types
+from typing import TYPE_CHECKING, Any, Final, cast
+
+import streamlit
+from streamlit.elements.lib.layout_utils import LayoutConfig, validate_width
+from streamlit.proto.DocString_pb2 import DocString as DocStringProto
+from streamlit.proto.DocString_pb2 import Member as MemberProto
+from streamlit.runtime.metrics_util import gather_metrics
+from streamlit.runtime.scriptrunner.script_runner import (
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+    __file__ as SCRIPTRUNNER_FILENAME,  # noqa: N812
+)
+from streamlit.runtime.secrets import Secrets
+from streamlit.string_util import is_mem_address_str
+
+if TYPE_CHECKING:
+    from streamlit.delta_generator import DeltaGenerator
+    from streamlit.elements.lib.layout_utils import WidthWithoutContent
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: doc_string_recovered_1 -->
+
+
+# <!-- @GENESIS_MODULE_START: doc_string_recovered_1 -->
+
+
+CONFUSING_STREAMLIT_SIG_PREFIXES: Final = ("(element, ",)
+
+
+class HelpMixin:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("doc_string_recovered_1", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("doc_string_recovered_1", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "doc_string_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in doc_string_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "doc_string_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("doc_string_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in doc_string_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "doc_string_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in doc_string_recovered_1: {e}")
+    @gather_metrics("help")
+    def help(
+        self, obj: Any = streamlit, *, width: WidthWithoutContent = "stretch"
+    ) -> DeltaGenerator:
+        """Display help and other information for a given object.
+
+        Depending on the type of object that is passed in, this displays the
+        object's name, type, value, signature, docstring, and member variables,
+        methods — as well as the values/docstring of members and methods.
+
+        Parameters
+        ----------
+        obj : any
+            The object whose information should be displayed. If left
+            unspecified, this call will display help for Streamlit itself.
+        width : "stretch" or int
+            The width of the help element. This can be one of the following:
+
+            - ``"stretch"`` (default): The width of the element matches the
+              width of the parent container.
+            - An integer specifying the width in pixels: The element has a
+              fixed width. If the specified width is greater than the width of
+              the parent container, the width of the element matches the width
+              of the parent container.
+
+        Example
+        -------
+
+        Don't remember how to initialize a dataframe? Try this:
+
+        >>> import streamlit as st
+        >>> import pandas
+        >>>
+        >>> st.help(pandas.DataFrame)
+
+        .. output::
+            https://doc-string.streamlit.app/
+            height: 700px
+
+        Want to quickly check what data type is output by a certain function?
+        Try:
+
+        >>> import streamlit as st
+        >>>
+        >>> x = my_poorly_documented_function()
+        >>> st.help(x)
+
+        Want to quickly inspect an object? No sweat:
+
+        >>> class Dog:
+        >>>   '''A typical dog.'''
+        >>>
+        >>>   def __init__(self, breed, color):
+        >>>     self.breed = breed
+        >>>     self.color = color
+        >>>
+        >>>   def bark(self):
+        >>>     return 'Woof!'
+        >>>
+        >>>
+        >>> fido = Dog("poodle", "white")
+        >>>
+        >>> st.help(fido)
+
+        .. output::
+            https://doc-string1.streamlit.app/
+            height: 300px
+
+        And if you're using Magic, you can get help for functions, classes,
+        and modules without even typing ``st.help``:
+
+        >>> import streamlit as st
+        >>> import pandas
+        >>>
+        >>> # Get help for Pandas read_csv:
+        >>> pandas.read_csv
+        >>>
+        >>> # Get help for Streamlit itself:
+        >>> st
+
+        .. output::
+            https://doc-string2.streamlit.app/
+            height: 700px
+        """
+        doc_string_proto = DocStringProto()
+
+        validate_width(width, allow_content=False)
+        layout_config = LayoutConfig(width=width)
+        _marshall(doc_string_proto, obj)
+
+        return self.dg._enqueue(
+            "doc_string", doc_string_proto, layout_config=layout_config
+        )
+
+    @property
+    def dg(self) -> DeltaGenerator:
+        """Get our DeltaGenerator."""
+        return cast("DeltaGenerator", self)
+
+
+def _marshall(doc_string_proto: DocStringProto, obj: Any) -> None:
+    """Construct a DocString object.
+
+    See DeltaGenerator.help for docs.
+    """
+    var_name = _get_variable_name()
+    if var_name is not None:
+        doc_string_proto.name = var_name
+
+    obj_type = _get_type_as_str(obj)
+    doc_string_proto.type = obj_type
+
+    obj_docs = _get_docstring(obj)
+    if obj_docs is not None:
+        doc_string_proto.doc_string = obj_docs
+
+    obj_value = _get_value(obj, var_name)
+    if obj_value is not None:
+        doc_string_proto.value = obj_value
+
+    doc_string_proto.members.extend(_get_members(obj))
+
+
+def _get_name(obj: object) -> str | None:
+    # Try to get the fully-qualified name of the object.
+    # For example: st.help(bar.Baz(123))
+    #    The name is bar.Baz
+    name = getattr(obj, "__qualname__", None)
+    if name:
+        return cast("str", name)
+
+    # Try to get the name of the object.
+    # For example: st.help(bar.Baz(123))
+    #   The name is Baz
+    return cast("str | None", getattr(obj, "__name__", None))
+
+
+def _get_module(obj: object) -> str | None:
+    return getattr(obj, "__module__", None)
+
+
+def _get_signature(obj: object) -> str | None:
+    if not inspect.isclass(obj) and not callable(obj):
+        return None
+
+    sig = ""
+
+    try:
+        sig = str(inspect.signature(obj))
+    except ValueError:
+        sig = "(...)"
+    except TypeError:
+        return None
+
+    is_delta_gen = False
+    with contextlib.suppress(AttributeError):
+        is_delta_gen = obj.__module__ == "streamlit.delta_generator"
+        # Functions such as numpy.minimum don't have a __module__ attribute,
+        # since we're only using it to check if its a DeltaGenerator, its ok
+        # to continue
+
+    if is_delta_gen:
+        for prefix in CONFUSING_STREAMLIT_SIG_PREFIXES:
+            if sig.startswith(prefix):
+                sig = sig.replace(prefix, "(")
+                break
+
+    return sig
+
+
+def _get_docstring(obj: object) -> str | None:
+    doc_string = inspect.getdoc(obj)
+
+    # Sometimes an object has no docstring, but the object's type does.
+    # If that's the case here, use the type's docstring.
+    # For objects where type is "type" we do not print the docs (e.g. int).
+    # We also do not print the docs for functions and methods if the docstring is empty.
+    if doc_string is None:
+        obj_type = type(obj)
+
+        if (
+            obj_type is not type
+            and obj_type is not types.ModuleType
+            and not inspect.isfunction(obj)
+            and not inspect.ismethod(obj)
+        ):
+            doc_string = inspect.getdoc(obj_type)
+
+    if doc_string:
+        return doc_string.strip()
+
+    return None
+
+
+def _get_variable_name() -> str | None:
+    """Try to get the name of the variable in the current line, as set by the user.
+
+    For example:
+    foo = bar.Baz(123)
+    st.help(foo)
+
+    The name is "foo"
+    """
+    code = _get_current_line_of_code_as_str()
+
+    if code is None:
+        return None
+
+    return _get_variable_name_from_code_str(code)
+
+
+def _get_variable_name_from_code_str(code: str) -> str | None:
+    tree = ast.parse(code)
+
+    # Example:
+    #
+    # > tree = Module(
+    # >   body=[
+    # >     Expr(
+    # >       value=Call(
+    # >         args=[
+    # >           Name(id='the variable name')
+    # >         ],
+    # >         keywords=[
+    # >           ???
+    # >         ],
+    # >       )
+    # >     )
+    # >   ]
+    # > )
+
+    # Check if this is an magic call (i.e. it's not st.help or st.write).
+    # If that's the case, just clean it up and return it.
+    if not _is_stcommand(tree, command_name="help") and not _is_stcommand(
+        tree, command_name="write"
+    ):
+        # A common pattern is to add "," at the end of a magic command to make it print.
+        # This removes that final ",", so it looks nicer.
+        return code.removesuffix(",")
+
+    arg_node = _get_stcommand_arg(tree)
+
+    # If st.help() is called without an argument, return no variable name.
+    if not arg_node:
+        return None
+
+    # If walrus, get name.
+    # E.g. st.help(foo := 123) should give you "foo".
+    if type(arg_node) is ast.NamedExpr:
+        # This next "if" will always be true, but need to add this for the type-checking test to
+        # pass.
+        if type(arg_node.target) is ast.Name:
+            return arg_node.target.id
+
+    # If constant, there's no variable name.
+    # E.g. st.help("foo") or st.help(123) should give you None.
+    elif type(arg_node) is ast.Constant:
+        return None
+
+    # Otherwise, return whatever is inside st.help(<-- here -->)
+
+    # But, if multiline, only return the first line.
+    code_lines = code.split("\n")
+    is_multiline = len(code_lines) > 1
+
+    start_offset = arg_node.col_offset
+
+    if is_multiline:
+        first_lineno = arg_node.lineno - 1  # Lines are 1-indexed!
+        first_line = code_lines[first_lineno]
+        end_offset = None
+
+    else:
+        first_line = code_lines[0]
+        end_offset = getattr(arg_node, "end_col_offset", -1)
+
+    return first_line[start_offset:end_offset]
+
+
+_NEWLINES = re.compile(r"[\n\r]+")
+
+
+def _get_current_line_of_code_as_str() -> str | None:
+    scriptrunner_frame = _get_scriptrunner_frame()
+
+    if scriptrunner_frame is None:
+        # If there's no ScriptRunner frame, something weird is going on. This
+        # can happen when the script is executed with `python myscript.py`.
+        # Either way, let's bail out nicely just in case there's some valid
+        # edge case where this is OK.
+        return None
+
+    code_context = scriptrunner_frame.code_context
+
+    if not code_context:
+        # Sometimes a frame has no code_context. This can happen inside certain exec() calls, for
+        # example. If this happens, we can't determine the variable name. Just return.
+        # For the background on why exec() doesn't produce code_context, see
+        # https://stackoverflow.com/a/12072941
+        return None
+
+    code_as_string = "".join(code_context)
+    return re.sub(_NEWLINES, "", code_as_string.strip())
+
+
+def _get_scriptrunner_frame() -> inspect.FrameInfo | None:
+    prev_frame = None
+    scriptrunner_frame = None
+
+    # Look back in call stack to get the variable name passed into st.help().
+    # The frame *before* the ScriptRunner frame is the correct one.
+    # IMPORTANT: This will change if we refactor the code. But hopefully our tests will catch the
+    # issue and we'll fix it before it lands upstream!
+    for frame in inspect.stack():
+        # Check if this is running inside a funny "exec()" block that won't provide the info we
+        # need. If so, just quit.
+        if frame.code_context is None:
+            return None
+
+        if frame.filename == SCRIPTRUNNER_FILENAME:
+            scriptrunner_frame = prev_frame
+            break
+
+        prev_frame = frame
+
+    return scriptrunner_frame
+
+
+def _is_stcommand(tree: Any, command_name: str) -> bool:
+    """Checks whether the AST in tree is a call for command_name."""
+    root_node = tree.body[0].value
+
+    if not isinstance(root_node, ast.Call):
+        return False
+
+    return (
+        # st call called without module. E.g. "help()"
+        getattr(root_node.func, "id", None) == command_name
+        or
+        # st call called with module. E.g. "foo.help()" (where usually "foo" is "st")
+        getattr(root_node.func, "attr", None) == command_name
+    )
+
+
+def _get_stcommand_arg(tree: ast.Module) -> ast.expr | None:
+    """Gets the argument node for the st command in tree (AST)."""
+
+    root_node = tree.body[0].value  # type: ignore
+
+    if root_node.args:
+        return cast("ast.expr", root_node.args[0])
+
+    return None
+
+
+def _get_type_as_str(obj: object) -> str:
+    if inspect.isclass(obj):
+        return "class"
+
+    return str(type(obj).__name__)
+
+
+def _get_first_line(text: str) -> str:
+    if not text:
+        return ""
+
+    left, _, _ = text.partition("\n")
+    return left
+
+
+def _get_weight(value: Any) -> int:
+    if inspect.ismodule(value):
+        return 3
+    if inspect.isclass(value):
+        return 2
+    if callable(value):
+        return 1
+    return 0
+
+
+def _get_value(obj: object, var_name: str | None) -> str | None:
+    obj_value = _get_human_readable_value(obj)
+
+    if obj_value is not None:
+        return obj_value
+
+    # If there's no human-readable value, it's some complex object.
+    # So let's provide other info about it.
+    name = _get_name(obj)
+
+    if name:
+        name_obj = obj
+    else:
+        # If the object itself doesn't have a name, then it's probably an instance
+        # of some class Foo. So let's show info about Foo in the value slot.
+        name_obj = type(obj)
+        name = _get_name(name_obj)
+
+    module = _get_module(name_obj)
+    sig = _get_signature(name_obj) or ""
+
+    if name:
+        obj_value = f"{module}.{name}{sig}" if module else f"{name}{sig}"
+
+    if obj_value == var_name:
+        # No need to repeat the same info.
+        # For example: st.help(re) shouldn't show "re module re", just "re module".
+        obj_value = None
+
+    return obj_value
+
+
+def _get_human_readable_value(value: Any) -> str | None:
+    if isinstance(value, Secrets):
+        # Don't want to read secrets.toml because that will show a warning if there's no
+        # secrets.toml file.
+        return None
+
+    if inspect.isclass(value) or inspect.ismodule(value) or callable(value):
+        return None
+
+    value_str = repr(value)
+
+    if isinstance(value, str):
+        # Special-case strings as human-readable because they're allowed to look like
+        # "<foo blarg at 0x15ee6f9a0>".
+        return _shorten(value_str)
+
+    if is_mem_address_str(value_str):
+        # If value_str looks like "<foo blarg at 0x15ee6f9a0>" it's not human readable.
+        return None
+
+    return _shorten(value_str)
+
+
+def _shorten(s: str, length: int = 300) -> str:
+    s = s.strip()
+    return s[:length] + "..." if len(s) > length else s
+
+
+def _is_computed_property(obj: object, attr_name: str) -> bool:
+    obj_class = getattr(obj, "__class__", None)
+
+    if not obj_class:
+        return False
+
+    # Go through superclasses in order of inheritance (mro) to see if any of them have an
+    # attribute called attr_name. If so, check if it's a @property.
+    for parent_class in inspect.getmro(obj_class):
+        class_attr = getattr(parent_class, attr_name, None)
+
+        if class_attr is None:
+            continue
+
+        # If is property, return it.
+        if isinstance(class_attr, property) or inspect.isgetsetdescriptor(class_attr):
+            return True
+
+    return False
+
+
+def _get_members(obj: object) -> list[MemberProto]:
+    members_for_sorting = []
+
+    for attr_name in dir(obj):
+        if attr_name.startswith("_"):
+            continue
+
+        try:
+            is_computed_value = _is_computed_property(obj, attr_name)
+            if is_computed_value:
+                parent_attr = getattr(obj.__class__, attr_name)
+
+                member_type = "property"
+
+                weight = 0
+                member_docs = _get_docstring(parent_attr)
+                member_value = None
+            else:
+                attr_value = getattr(obj, attr_name)
+                weight = _get_weight(attr_value)
+
+                human_readable_value = _get_human_readable_value(attr_value)
+
+                member_type = _get_type_as_str(attr_value)
+
+                if human_readable_value is None:
+                    member_docs = _get_docstring(attr_value)
+                    member_value = None
+                else:
+                    member_docs = None
+                    member_value = human_readable_value
+        except AttributeError:
+            # If there's an AttributeError, we can just skip it.
+            # This can happen when members are exposed with `dir()`
+            # but are conditionally unavailable.
+            continue
+
+        if member_type == "module":
+            # Don't pollute the output with all imported modules.
+            continue
+
+        member = MemberProto()
+        member.name = attr_name
+        member.type = member_type
+
+        if member_docs is not None:
+            member.doc_string = _get_first_line(member_docs)
+
+        if member_value is not None:
+            member.value = member_value
+
+        members_for_sorting.append((weight, member))
+
+    if members_for_sorting:
+        sorted_members = sorted(members_for_sorting, key=lambda x: (x[0], x[1].name))
+        return [m for _, m in sorted_members]
+
+    return []
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

@@ -1,0 +1,9 @@
+{
+  "module_id": "live_trade_analyzer",
+  "original_path": "modules\\monitoring\\live_trade_analyzer.py",
+  "preserved_path": "preservation_holding_area\\live_trade_analyzer_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 12191,
+  "checksum": "fa49ff0c1dbf953c434d0ef010fc26a3d85bae02f90ad8531e9d89aa529de1a7"
+}

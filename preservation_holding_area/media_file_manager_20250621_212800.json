@@ -1,0 +1,9 @@
+{
+  "module_id": "media_file_manager",
+  "original_path": "modules\\restored\\media_file_manager.py",
+  "preserved_path": "preservation_holding_area\\media_file_manager_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25169,
+  "checksum": "568753c9ce5932b6ab15f6642070d6e9098927ca79a9a8f3ca89027a6dbc9d69"
+}

@@ -1,0 +1,94 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.458797+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        483,
+        535,
+        542,
+        782,
+        786
+      ],
+      "violation_count": 32
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        1851,
+        2507
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        1093,
+        3420
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        363
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        4028
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        1406,
+        2517
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        414,
+        623,
+        642,
+        654,
+        666
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\axes3d_recovered_1.py",
+      "line_numbers": [
+        319,
+        383,
+        454,
+        574,
+        578
+      ],
+      "violation_count": 51
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

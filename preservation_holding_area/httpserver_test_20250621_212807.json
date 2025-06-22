@@ -1,0 +1,9 @@
+{
+  "module_id": "httpserver_test",
+  "original_path": "modules\\restored\\httpserver_test.py",
+  "preserved_path": "preservation_holding_area\\httpserver_test_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 278776,
+  "checksum": "77f3766b1744644ec7966d9652f4a714fbab6359330177f161521386264a0ef3"
+}

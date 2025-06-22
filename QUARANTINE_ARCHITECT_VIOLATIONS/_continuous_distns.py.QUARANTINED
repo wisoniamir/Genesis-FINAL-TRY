@@ -1,0 +1,106 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.770421+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        887,
+        2455,
+        2864,
+        4459,
+        5227
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        8569,
+        9408,
+        9787
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        12471
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        5301,
+        5353,
+        5354,
+        5355,
+        5364
+      ],
+      "violation_count": 26
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        2621
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        10750
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        269,
+        475,
+        840,
+        2131,
+        3680
+      ],
+      "violation_count": 36
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        68,
+        480,
+        485,
+        500,
+        860
+      ],
+      "violation_count": 74
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_continuous_distns.py",
+      "line_numbers": [
+        10005
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

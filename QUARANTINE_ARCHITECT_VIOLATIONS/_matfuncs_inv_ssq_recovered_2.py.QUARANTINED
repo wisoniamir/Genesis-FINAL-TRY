@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_inv_ssq_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.552253+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_inv_ssq_recovered_2.py",
+      "line_numbers": [
+        19,
+        23,
+        27,
+        31,
+        35
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_inv_ssq_recovered_2.py",
+      "line_numbers": [
+        38,
+        73
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_inv_ssq_recovered_2.py",
+      "line_numbers": [
+        700,
+        866
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_inv_ssq_recovered_2.py",
+      "line_numbers": [
+        444,
+        453,
+        500,
+        512,
+        591
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_inv_ssq_recovered_2.py",
+      "line_numbers": [
+        194,
+        248,
+        258,
+        302,
+        307
+      ],
+      "violation_count": 16
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

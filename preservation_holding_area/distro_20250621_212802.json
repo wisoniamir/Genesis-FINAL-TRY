@@ -1,0 +1,9 @@
+{
+  "module_id": "distro",
+  "original_path": "modules\\restored\\distro.py",
+  "preserved_path": "preservation_holding_area\\distro_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 77095,
+  "checksum": "24bce1c9a3b49dc0b4c4857ec8baa50893a872836ab8bc9d6e6a111b5d3bf754"
+}

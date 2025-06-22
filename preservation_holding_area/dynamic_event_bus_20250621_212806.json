@@ -1,0 +1,9 @@
+{
+  "module_id": "dynamic_event_bus",
+  "original_path": "core\\dynamic_event_bus.py",
+  "preserved_path": "preservation_holding_area\\dynamic_event_bus_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 40512,
+  "checksum": "5c89259748e62a11c871928ebebe9da34427c02918648e3500f3e3c388e36845"
+}

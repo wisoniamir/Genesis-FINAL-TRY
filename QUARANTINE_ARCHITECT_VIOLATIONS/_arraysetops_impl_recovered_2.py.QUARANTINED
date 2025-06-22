@@ -1,0 +1,57 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_arraysetops_impl_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.277971+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_arraysetops_impl_recovered_2.py",
+      "line_numbers": [
+        1055,
+        1057,
+        1061,
+        1064,
+        1066
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_arraysetops_impl_recovered_2.py",
+      "line_numbers": [
+        300,
+        318,
+        986
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_arraysetops_impl_recovered_2.py",
+      "line_numbers": [
+        100,
+        111,
+        365,
+        673,
+        722
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_arraysetops_impl_recovered_2.py",
+      "line_numbers": [
+        98,
+        109,
+        135,
+        321,
+        381
+      ],
+      "violation_count": 18
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,67 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colorbar_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.532997+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colorbar_recovered_1.py",
+      "line_numbers": [
+        41,
+        207,
+        763,
+        883,
+        972
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colorbar_recovered_1.py",
+      "line_numbers": [
+        765
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colorbar_recovered_1.py",
+      "line_numbers": [
+        396,
+        1042,
+        1046,
+        1276
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colorbar_recovered_1.py",
+      "line_numbers": [
+        164,
+        166,
+        516,
+        589,
+        595
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colorbar_recovered_1.py",
+      "line_numbers": [
+        158,
+        175,
+        183,
+        328,
+        340
+      ],
+      "violation_count": 37
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

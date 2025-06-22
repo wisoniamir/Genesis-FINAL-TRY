@@ -1,0 +1,85 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.002459+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        14
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        1,
+        37,
+        44,
+        48,
+        49
+      ],
+      "violation_count": 70
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        344,
+        444,
+        463,
+        495,
+        509
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        397,
+        468,
+        487,
+        503,
+        526
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        92,
+        411
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        522,
+        621
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_pattern_mining_engine_recovered_2.py",
+      "line_numbers": [
+        68,
+        638
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

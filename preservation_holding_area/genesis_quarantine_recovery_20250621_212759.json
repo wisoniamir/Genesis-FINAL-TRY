@@ -1,0 +1,9 @@
+{
+  "module_id": "genesis_quarantine_recovery",
+  "original_path": "modules\\restored\\genesis_quarantine_recovery.py",
+  "preserved_path": "preservation_holding_area\\genesis_quarantine_recovery_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25018,
+  "checksum": "ca0c15fde8308576a4f709ba8dc06f86aaf83707750d35490eb1c4cf7fa82e02"
+}

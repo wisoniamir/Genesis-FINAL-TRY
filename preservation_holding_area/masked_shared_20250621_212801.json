@@ -1,0 +1,9 @@
+{
+  "module_id": "masked_shared",
+  "original_path": "modules\\restored\\masked_shared.py",
+  "preserved_path": "preservation_holding_area\\masked_shared_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21592,
+  "checksum": "23912115b4a5e80be7bef236218705e72c37e170259caa6f86516742f33fa4d6"
+}

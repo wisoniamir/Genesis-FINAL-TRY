@@ -1,0 +1,62 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_elementwise_iterative_method_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.235763+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_elementwise_iterative_method_recovered_2.py",
+      "line_numbers": [
+        44,
+        46,
+        49,
+        81,
+        150
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_elementwise_iterative_method_recovered_2.py",
+      "line_numbers": [
+        202
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_elementwise_iterative_method_recovered_2.py",
+      "line_numbers": [
+        297,
+        320,
+        327,
+        334
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_elementwise_iterative_method_recovered_2.py",
+      "line_numbers": [
+        108,
+        115,
+        290
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_elementwise_iterative_method_recovered_2.py",
+      "line_numbers": [
+        324,
+        331
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

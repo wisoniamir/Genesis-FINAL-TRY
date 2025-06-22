@@ -1,0 +1,9 @@
+{
+  "module_id": "python",
+  "original_path": "modules\\restored\\python.py",
+  "preserved_path": "preservation_holding_area\\python_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 111295,
+  "checksum": "a683066bc7ae678e1788defef204a65f149dc85833d562670c1af678e15b344b"
+}

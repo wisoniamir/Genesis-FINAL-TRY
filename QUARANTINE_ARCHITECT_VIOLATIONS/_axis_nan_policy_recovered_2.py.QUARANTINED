@@ -1,0 +1,105 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.387283+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        38,
+        185,
+        358,
+        376,
+        377
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        166
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        444
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        262
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        425,
+        426,
+        430,
+        445,
+        458
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "\"sample\"",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        512
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        68,
+        508
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        45,
+        61,
+        73,
+        161,
+        170
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axis_nan_policy_recovered_2.py",
+      "line_numbers": [
+        117,
+        234,
+        236,
+        422,
+        437
+      ],
+      "violation_count": 14
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,272 @@
+{
+  "test_id": "exec_mon_test_20250616_142535",
+  "test_start_time": "2025-06-16T14:25:35.730790",
+  "execution_deviation_alerts": [
+    {
+      "timestamp": "2025-06-16T14:25:37.768140",
+      "data": {
+        "timestamp": "2025-06-16T17:25:37.768140",
+        "strategy_id": "unknown",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "severity": "high"
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:38.771317",
+      "data": {
+        "timestamp": "2025-06-16T17:25:38.771317",
+        "strategy_id": "unknown",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "severity": "high"
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:43.783185",
+      "data": {
+        "timestamp": "2025-06-16T17:25:43.783185",
+        "strategy_id": "unknown",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "severity": "high"
+      }
+    }
+  ],
+  "killswitch_triggers": [
+    {
+      "timestamp": "2025-06-16T14:25:37.768140",
+      "data": {
+        "timestamp": "2025-06-16T17:25:37.768140",
+        "strategy_id": "unknown",
+        "reason": "Performance metrics breach",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "triggered_by": "SmartExecutionMonitor",
+        "kill_switch_count": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:38.771317",
+      "data": {
+        "timestamp": "2025-06-16T17:25:38.771317",
+        "strategy_id": "unknown",
+        "reason": "Performance metrics breach",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "triggered_by": "SmartExecutionMonitor",
+        "kill_switch_count": 2
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:43.783185",
+      "data": {
+        "timestamp": "2025-06-16T17:25:43.783185",
+        "strategy_id": "unknown",
+        "reason": "Performance metrics breach",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "triggered_by": "SmartExecutionMonitor",
+        "kill_switch_count": 3
+      }
+    }
+  ],
+  "recalibration_requests": [
+    {
+      "timestamp": "2025-06-16T14:25:37.771086",
+      "data": {
+        "timestamp": "2025-06-16T17:25:37.771086",
+        "strategy_id": "unknown",
+        "metrics": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "severity": "high",
+        "kill_switch_count": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:38.771317",
+      "data": {
+        "timestamp": "2025-06-16T17:25:38.771317",
+        "strategy_id": "unknown",
+        "metrics": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "severity": "high",
+        "kill_switch_count": 2
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:43.783185",
+      "data": {
+        "timestamp": "2025-06-16T17:25:43.783185",
+        "strategy_id": "unknown",
+        "metrics": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "severity": "high",
+        "kill_switch_count": 3
+      }
+    }
+  ],
+  "smart_log_syncs": [
+    {
+      "timestamp": "2025-06-16T14:25:37.771086",
+      "data": {
+        "timestamp": "2025-06-16T17:25:37.771086",
+        "strategy_id": "unknown",
+        "event_type": "recalibration_requested",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "source": "SmartExecutionMonitor",
+        "kill_switch_count": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:38.771317",
+      "data": {
+        "timestamp": "2025-06-16T17:25:38.771317",
+        "strategy_id": "unknown",
+        "event_type": "recalibration_requested",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "source": "SmartExecutionMonitor",
+        "kill_switch_count": 2
+      }
+    },
+    {
+      "timestamp": "2025-06-16T14:25:43.783185",
+      "data": {
+        "timestamp": "2025-06-16T17:25:43.783185",
+        "strategy_id": "unknown",
+        "event_type": "recalibration_requested",
+        "details": {
+          "win_rate": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 0.58
+          },
+          "risk_reward": {
+            "live": 0.0,
+            "backtest": 0.0,
+            "threshold": 1.8
+          }
+        },
+        "source": "SmartExecutionMonitor",
+        "kill_switch_count": 3
+      }
+    }
+  ],
+  "test_status": "COMPLETED",
+  "tests_passed": 0,
+  "tests_failed": 6,
+  "tests_total": 6,
+  "completion_time": "2025-06-16T14:25:48.088973"
+}

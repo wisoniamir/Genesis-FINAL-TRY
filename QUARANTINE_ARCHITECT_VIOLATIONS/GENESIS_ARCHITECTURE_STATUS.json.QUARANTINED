@@ -1,0 +1,95 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+  "quarantine_timestamp": "2025-06-21T04:33:02.805448+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        2037,
+        8436,
+        64840,
+        64895,
+        80236
+      ],
+      "violation_count": 321
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        24,
+        75,
+        118,
+        136,
+        164
+      ],
+      "violation_count": 23096
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        4181,
+        74223,
+        93378,
+        93467,
+        93516
+      ],
+      "violation_count": 1050
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        148,
+        151,
+        152,
+        153,
+        154
+      ],
+      "violation_count": 70164
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        105832,
+        752987
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "\"sample\"",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        61338,
+        71138,
+        71139,
+        71140,
+        71141
+      ],
+      "violation_count": 28
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_ARCHITECTURE_STATUS.json",
+      "line_numbers": [
+        594334,
+        594630,
+        594631,
+        594864,
+        594865
+      ],
+      "violation_count": 27
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

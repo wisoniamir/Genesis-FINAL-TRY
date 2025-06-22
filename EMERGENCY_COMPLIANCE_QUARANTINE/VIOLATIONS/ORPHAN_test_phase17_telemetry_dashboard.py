@@ -1,0 +1,498 @@
+# <!-- @GENESIS_MODULE_START: test_phase17_telemetry_dashboard -->
+
+from datetime import datetime\nfrom event_bus import EventBus
+#!/usr/bin/env python3
+"""
+PHASE 17 TELEMETRY DASHBOARD VALIDATION TEST
+==========================================
+Validates the SmartTelemetryDashboard functionality with real signal emissions
+from SmartExecutionMonitor. Tests real-time monitoring and visualization.
+"""
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+import threading
+from pathlib import Path
+from typing import Dict, Any, List
+
+# Import required modules
+from telemetry_dashboard import SmartTelemetryDashboard
+from event_bus import emit_event, subscribe_to_event, get_event_bus
+
+# Configure logging
+log_dir = Path("logs/telemetry_dashboard")
+log_dir.mkdir(parents=True, exist_ok=True)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] - %(message)s",
+    handlers=[
+        logging.FileHandler(f"{log_dir}/phase17_validation_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger("Phase17ValidationTest")
+
+class Phase17ValidationTest:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("ORPHAN_test_phase17_telemetry_dashboard", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("ORPHAN_test_phase17_telemetry_dashboard", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss', 0)
+            if daily_loss > 0.05:
+                emit_telemetry("ORPHAN_test_phase17_telemetry_dashboard", "ftmo_violation", {"type": "daily_drawdown", "value": daily_loss})
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown', 0)
+            if max_drawdown > 0.10:
+                emit_telemetry("ORPHAN_test_phase17_telemetry_dashboard", "ftmo_violation", {"type": "max_drawdown", "value": max_drawdown})
+                return False
+
+            return True
+    """PHASE 17 Telemetry Dashboard validation test"""
+    
+    def __init__(self):
+        """Initialize test environment"""
+        self.test_results = {
+            "test_id": f"phase17_test_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}",
+            "start_time": datetime.datetime.utcnow().isoformat(),
+            "dashboard_initialized": False,
+            "telemetry_tracking": False,
+            "kill_switch_monitoring": False,
+            "signal_emission_tracking": False,
+            "loop_termination_detection": False,
+            "real_time_updates": False,
+            "alert_system": False,
+            "events_captured": [],
+            "test_result": "PENDING",
+            "test_completion_time": None
+        }
+        
+        self.dashboard = None
+        self.event_bus = get_event_bus()
+        
+        logger.info("🔍 PHASE 17 TELEMETRY DASHBOARD VALIDATION TEST INITIALIZED")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def test_dashboard_initialization(self) -> bool:
+        """Test 1: Dashboard Initialization"""
+        logger.info("📡 TEST 1: Dashboard Initialization")
+        
+        try:
+            # Initialize SmartTelemetryDashboard
+            self.dashboard = SmartTelemetryDashboard()
+            
+            # Verify dashboard attributes
+            required_attributes = [
+                'telemetry_data', 'signal_emissions', 'loop_events', 
+                'system_alerts', 'active_signals', 'metrics'
+            ]
+            
+            for attr in required_attributes:
+                if not hasattr(self.dashboard, attr):
+                    logger.error(f"❌ Missing dashboard attribute: {attr}")
+                    return False
+            
+            # Check initial metrics
+            if self.dashboard.metrics["kill_switch_count"] != 0:
+                logger.error(f"❌ Initial kill_switch_count should be 0, got {self.dashboard.metrics['kill_switch_count']}")
+                return False
+            
+            self.test_results["dashboard_initialized"] = True
+            logger.info("✅ Dashboard initialization successful")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Dashboard initialization failed: {e}")
+            return False
+    
+    def test_telemetry_tracking(self) -> bool:
+        """Test 2: Telemetry Tracking"""
+        logger.info("📊 TEST 2: Telemetry Tracking")
+        
+        if not self.dashboard:
+            logger.error("❌ Dashboard not initialized")
+            return False
+        
+        try:
+            # Emit test ModuleTelemetry event
+            test_telemetry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "module": "TestModule",
+                "action": "test_action",
+                "metrics": {"test_metric": 100}
+            }
+            
+            emit_event("ModuleTelemetry", test_telemetry, "Phase17ValidationTest")
+            
+            # Wait for processing
+            time.sleep(1)
+            
+            # Check if telemetry was captured
+            if "module_telemetry" in self.dashboard.telemetry_data:
+                telemetry_entries = self.dashboard.telemetry_data["module_telemetry"]
+                if len(telemetry_entries) > 0:
+                    self.test_results["telemetry_tracking"] = True
+                    logger.info("✅ Telemetry tracking successful")
+                    return True
+            
+            logger.error("❌ Telemetry tracking failed - no entries found")
+            return False            
+        except Exception as e:
+            logger.error(f"❌ Telemetry tracking test failed: {e}")
+            return False
+    
+    def test_kill_switch_monitoring(self) -> bool:
+        """Test 3: Kill Switch Monitoring"""
+        logger.info("⚡ TEST 3: Kill Switch Monitoring")
+        
+        if not self.dashboard:
+            logger.error("❌ Dashboard not initialized")
+            return False
+        
+        try:
+            initial_count = self.dashboard.metrics["kill_switch_count"]
+            
+            # Emit test KillSwitchTrigger event
+            kill_switch_data = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "strategy_id": "TEST_STRATEGY",
+                "reason": "Test kill switch",
+                "kill_switch_count": 1,
+                "triggered_by": "Phase17ValidationTest"
+            }
+            
+            emit_event("KillSwitchTrigger", kill_switch_data, "Phase17ValidationTest")
+            
+            # Wait for processing
+            time.sleep(1)
+            
+            # Check if kill switch was tracked
+            if self.dashboard.metrics["kill_switch_count"] > initial_count:
+                if "KillSwitchTrigger" in self.dashboard.signal_emissions:
+                    self.test_results["kill_switch_monitoring"] = True
+                    logger.info("✅ Kill switch monitoring successful")
+                    return True
+            
+            logger.error("❌ Kill switch monitoring failed")
+            return False
+            
+        except Exception as e:
+            logger.error(f"❌ Kill switch monitoring test failed: {e}")
+            return False
+    
+    def test_signal_emission_tracking(self) -> bool:
+        """Test 4: Signal Emission Tracking"""
+        logger.info("📡 TEST 4: Signal Emission Tracking")
+        
+        try:
+            initial_emissions = self.dashboard.metrics["total_emissions"]
+            
+            # Emit multiple test signals
+            test_signals = [
+                ("RecalibrationRequest", {
+                    "strategy_id": "TEST_STRATEGY",
+                    "severity": "medium",
+                    "kill_switch_count": 1
+                }),
+                ("SmartLogSync", {
+                    "strategy_id": "TEST_STRATEGY",
+                    "event_type": "test_sync",
+                    "kill_switch_count": 1
+                }),
+                ("ExecutionDeviationAlert", {
+                    "strategy_id": "TEST_STRATEGY",
+                    "severity": "medium",
+                    "details": {"test": "alert"}
+                })
+            ]
+            
+            for signal_type, signal_data in test_signals:
+                emit_event(signal_type, signal_data, "Phase17ValidationTest")
+                time.sleep(0.5)  # Small delay between emissions
+            
+            # Wait for processing
+            time.sleep(2)
+            
+            # Check if all signals were tracked
+            if self.dashboard.metrics["total_emissions"] > initial_emissions:
+                tracked_signals = set(self.dashboard.signal_emissions.keys())
+                expected_signals = {"RecalibrationRequest", "SmartLogSync", "ExecutionDeviationAlert"}
+                
+                if expected_signals.issubset(tracked_signals):
+                    self.test_results["signal_emission_tracking"] = True
+                    logger.info("✅ Signal emission tracking successful")
+                    return True
+            
+            logger.error("❌ Signal emission tracking failed")
+            return False
+            
+        except Exception as e:
+            logger.error(f"❌ Signal emission tracking test failed: {e}")
+            return False
+    
+    def test_loop_termination_detection(self) -> bool:
+        """Test 5: Loop Termination Detection"""
+        logger.info("🔄 TEST 5: Loop Termination Detection")
+        
+        try:
+            # Emit test TerminateMonitorLoop event
+            termination_data = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "reason": "test_termination",
+                "source": "Phase17ValidationTest"
+            }
+            
+            emit_event("TerminateMonitorLoop", termination_data, "Phase17ValidationTest")
+            
+            # Wait for processing
+            time.sleep(1)
+            
+            # Check if termination was detected
+            if self.dashboard.metrics["last_termination"] is not None:
+                if len(self.dashboard.loop_events) > 0:
+                    self.test_results["loop_termination_detection"] = True
+                    logger.info("✅ Loop termination detection successful")
+                    return True
+            
+            logger.error("❌ Loop termination detection failed")
+            return False
+            
+        except Exception as e:
+            logger.error(f"❌ Loop termination detection test failed: {e}")
+            return False
+    
+    def test_real_time_updates(self) -> bool:
+        """Test 6: Real-time Updates"""
+        logger.info("⏱️ TEST 6: Real-time Updates")
+        
+        try:
+            # Check telemetry file updates
+            telemetry_file = Path("telemetry.json")
+            
+            if telemetry_file.exists():
+                # Read current telemetry
+                with open(telemetry_file, 'r') as f:
+                    telemetry_data = json.load(f)
+                
+                # Check if live_metrics are present and updated
+                if "live_metrics" in telemetry_data:
+                    live_metrics = telemetry_data["live_metrics"]
+                    
+                    # Verify key metrics are being updated
+                    if ("total_emissions" in live_metrics and 
+                        "last_update" in self.dashboard.metrics):
+                        
+                        self.test_results["real_time_updates"] = True
+                        logger.info("✅ Real-time updates successful")
+                        return True
+            
+            logger.error("❌ Real-time updates test failed")
+            return False
+            
+        except Exception as e:
+            logger.error(f"❌ Real-time updates test failed: {e}")
+            return False
+    
+    def test_alert_system(self) -> bool:
+        """Test 7: Alert System"""
+        logger.info("🚨 TEST 7: Alert System")
+        
+        try:
+            initial_alerts = len(self.dashboard.system_alerts)
+            
+            # Emit event that should trigger an alert
+            error_data = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "module": "TestModule",
+                "error_type": "test_error",
+                "message": "Test error message"
+            }
+            
+            emit_event("ModuleError", error_data, "Phase17ValidationTest")
+            
+            # Wait for processing
+            time.sleep(1)
+            
+            # Check if alert was created
+            if len(self.dashboard.system_alerts) > initial_alerts:
+                # Verify alert structure
+                latest_alert = self.dashboard.system_alerts[-1]
+                required_fields = ["timestamp", "severity", "message", "data", "id"]
+                
+                if all(field in latest_alert for field in required_fields):
+                    self.test_results["alert_system"] = True
+                    logger.info("✅ Alert system successful")
+                    return True
+            
+            logger.error("❌ Alert system test failed")
+            return False
+            
+        except Exception as e:
+            logger.error(f"❌ Alert system test failed: {e}")
+            return False
+    
+    def run_validation_suite(self) -> bool:
+        """Run the complete validation suite"""
+        logger.info("🚀 STARTING PHASE 17 TELEMETRY DASHBOARD VALIDATION SUITE")
+        
+        # List of all tests
+        tests = [
+            ("Dashboard Initialization", self.test_dashboard_initialization),
+            ("Telemetry Tracking", self.test_telemetry_tracking),
+            ("Kill Switch Monitoring", self.test_kill_switch_monitoring),
+            ("Signal Emission Tracking", self.test_signal_emission_tracking),
+            ("Loop Termination Detection", self.test_loop_termination_detection),
+            ("Real-time Updates", self.test_real_time_updates),
+            ("Alert System", self.test_alert_system)
+        ]
+        
+        passed_tests = 0
+        total_tests = len(tests)
+        
+        # Run each test
+        for test_name, test_func in tests:
+            logger.info(f"🧪 Running: {test_name}")
+            
+            try:
+                if test_func():
+                    passed_tests += 1
+                    logger.info(f"✅ {test_name}: PASSED")
+                else:
+                    logger.error(f"❌ {test_name}: FAILED")
+                    
+            except Exception as e:
+                logger.error(f"❌ {test_name}: FAILED with exception: {e}")
+            
+            # Small delay between tests
+            time.sleep(1)
+        
+        # Calculate results
+        success_rate = (passed_tests / total_tests) * 100
+        
+        logger.info(f"📊 VALIDATION RESULTS:")
+        logger.info(f"   - Tests Passed: {passed_tests}/{total_tests}")
+        logger.info(f"   - Success Rate: {success_rate:.1f}%")
+        
+        # Update test results
+        self.test_results["test_completion_time"] = datetime.datetime.utcnow().isoformat()
+        
+        if passed_tests == total_tests:
+            self.test_results["test_result"] = "PASSED"
+            logger.info("🎉 ALL TESTS PASSED - PHASE 17 VALIDATION SUCCESSFUL!")
+            return True
+        else:
+            self.test_results["test_result"] = "FAILED"
+            logger.error(f"❌ VALIDATION FAILED - {total_tests - passed_tests} tests failed")
+            return False
+    
+    def save_test_results(self):
+        """Save test results to file"""
+        try:
+            results_file = Path(f"logs/telemetry_dashboard/phase17_validation_results_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json")
+            
+            with open(results_file, 'w') as f:
+                json.dump(self.test_results, f, indent=2)
+            
+            logger.info(f"📄 Test results saved to: {results_file}")
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to save test results: {e}")
+    
+    def cleanup(self):
+        """Clean up test environment"""
+        try:
+            if self.dashboard:
+                self.dashboard.stop()
+                logger.info("✅ Dashboard stopped")
+            
+        except Exception as e:
+            logger.error(f"❌ Cleanup failed: {e}")
+
+def main():
+    """Main test execution"""
+    test = Phase17ValidationTest()
+    
+    try:
+        # Run validation suite
+        success = test.run_validation_suite()
+        
+        # Save results
+        test.save_test_results()
+        
+        # Return exit code
+        if success:
+            logger.info("🎉 PHASE 17 VALIDATION COMPLETED SUCCESSFULLY")
+            return 0
+        else:
+            logger.error("❌ PHASE 17 VALIDATION FAILED")
+            return 1
+            
+    except Exception as e:
+        logger.error(f"❌ Critical test failure: {e}")
+        return 1
+        
+    finally:
+        test.cleanup()
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_phase17_telemetry_dashboard -->

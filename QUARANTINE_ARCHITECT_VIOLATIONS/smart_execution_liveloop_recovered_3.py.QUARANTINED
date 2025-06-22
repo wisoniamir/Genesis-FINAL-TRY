@@ -1,0 +1,89 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.853021+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        72,
+        88,
+        162,
+        329,
+        336
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        216,
+        265,
+        285,
+        303,
+        346
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        246,
+        284,
+        326,
+        373,
+        408
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        520,
+        756
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        114,
+        791
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        119,
+        885
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\smart_execution_liveloop_recovered_3.py",
+      "line_numbers": [
+        173,
+        174,
+        175,
+        176,
+        177
+      ],
+      "violation_count": 14
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

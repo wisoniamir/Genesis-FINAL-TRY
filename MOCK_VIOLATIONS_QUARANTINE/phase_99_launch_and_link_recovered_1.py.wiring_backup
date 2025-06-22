@@ -1,0 +1,474 @@
+#!/usr/bin/env python3
+"""
+🚀 GENESIS Phase 99: Launch & Final System Linker v3.0 - ARCHITECT MODE COMPLIANT
+Finalize system integration across all validated modules
+Confirm telemetry, registry, event wiring, and build tree integrity
+Lock runtime loop for live trading sync and prepare for GUI dashboard bootup
+
+🎯 PURPOSE: EventBus-driven final system validation and launch preparation
+📡 EVENTBUS: Mandatory connection for all launch operations
+🚫 ZERO TOLERANCE: No isolated functions, no mock data, no direct calls
+"""
+
+import json
+import os
+import logging
+from datetime import datetime, timezone
+from typing import Dict, List, Any, Optional
+from pathlib import Path
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('Phase99LaunchLinker')
+
+class Phase99LaunchAndLinker:
+    """
+    ARCHITECT MODE COMPLIANT Phase 99 Launch & System Linker
+    EventBus-connected final validation with mandatory telemetry emission
+    """
+    
+    def __init__(self):
+        """Initialize launch linker with mandatory EventBus connection"""
+        # MANDATORY EventBus Connection - ARCHITECT MODE COMPLIANCE
+        try:
+            from event_bus import EventBus
+
+
+# <!-- @GENESIS_MODULE_END: phase_99_launch_and_link_recovered_1 -->
+
+
+# <!-- @GENESIS_MODULE_START: phase_99_launch_and_link_recovered_1 -->
+            self.event_bus = EventBus()
+            self.event_bus_connected = True
+            logger.info("✅ EventBus connection established")
+        except ImportError:
+            logger.error("❌ CRITICAL: EventBus import failed")
+            raise ImportError("EventBus connection is mandatory for ARCHITECT MODE")
+        
+        # ARCHITECT MODE COMPLIANCE FLAGS
+        self.real_data_only = True
+        self.telemetry_enabled = True
+        self.version = "phase_99_v3.0"
+        self.module_id = "phase_99_launch_and_link"
+        
+        # Launch validation results
+        self.launch_results = {
+            "surveillance_status": "pending",
+            "registry_status": "pending",
+            "system_tree_status": "pending",
+            "telemetry_status": "pending",
+            "eventbus_status": "pending",
+            "modules_validated": 0,
+            "total_modules": 0,
+            "launch_ready": False
+        }
+        
+        # Register EventBus subscriptions
+        self._register_eventbus_subscriptions()
+        
+        # Emit startup telemetry
+        self._emit_startup_telemetry()
+        
+        logger.info("🚀 Phase 99 Launch & System Linker v3.0 initialized - ARCHITECT MODE ACTIVE")
+    
+    def _register_eventbus_subscriptions(self):
+        """Register EventBus subscriptions for launch operations"""
+        if hasattr(self, 'event_bus') and self.event_bus:
+            # Subscribe to launch requests
+            self.event_bus.subscribe("launch.phase_99", self.phase_99_launch)
+            self.event_bus.subscribe("system.final_validation", self.run_final_validation)
+            self.event_bus.subscribe("launch.prepare_dashboard", self.prepare_dashboard_launch)
+            
+            logger.info("📡 EventBus subscriptions registered for Phase 99")
+    
+    def _emit_startup_telemetry(self):
+        """Emit startup telemetry to EventBus"""
+        if hasattr(self, 'event_bus') and self.event_bus:
+            telemetry_data = {
+                "module": self.module_id,
+                "status": "initialized",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "architect_mode": True,
+                "eventbus_connected": self.event_bus_connected,
+                "real_data_only": self.real_data_only,
+                "version": self.version,
+                "purpose": "final_system_validation_and_launch"
+            }
+            self.event_bus.emit("telemetry", telemetry_data)
+            logger.info("📊 Phase 99 startup telemetry emitted to EventBus")
+    
+    def phase_99_launch(self, payload=None) -> Dict[str, Any]:
+        """
+        ARCHITECT_MODE_COMPLIANCE: Main Phase 99 launch sequence
+        All operations via EventBus with comprehensive validation
+        """
+        logger.info("🚀 Starting GENESIS Phase 99 Launch Sequence...")
+        
+        try:
+            # Step 1: Run final surveillance check via EventBus
+            logger.info("🔍 Step 1: Running Architect Surveillance via EventBus...")
+            surveillance_result = self._run_surveillance_via_eventbus()
+            self.launch_results["surveillance_status"] = surveillance_result["status"]
+            
+            # Step 2: Validate module registry
+            logger.info("📋 Step 2: Validating Module Registry...")
+            registry_result = self._validate_module_registry()
+            self.launch_results["registry_status"] = registry_result["status"]
+            self.launch_results["total_modules"] = registry_result.get("module_count", 0)
+            
+            # Step 3: Validate system tree structure
+            logger.info("🌳 Step 3: Validating System Tree Structure...")
+            system_tree_result = self._validate_system_tree()
+            self.launch_results["system_tree_status"] = system_tree_result["status"]
+            self.launch_results["modules_validated"] = system_tree_result.get("modules_validated", 0)
+            
+            # Step 4: Validate telemetry system
+            logger.info("📊 Step 4: Validating Telemetry System...")
+            telemetry_result = self._validate_telemetry_system()
+            self.launch_results["telemetry_status"] = telemetry_result["status"]
+            
+            # Step 5: Validate EventBus connectivity
+            logger.info("📡 Step 5: Validating EventBus Connectivity...")
+            eventbus_result = self._validate_eventbus_connectivity()
+            self.launch_results["eventbus_status"] = eventbus_result["status"]
+            
+            # Step 6: Determine overall launch readiness
+            self.launch_results["launch_ready"] = self._determine_launch_readiness()
+            
+            # Step 7: Emit final status signal via EventBus
+            self._emit_phase_99_completion()
+            
+            if self.launch_results["launch_ready"]:
+                logger.info("✅ GENESIS Phase 99 Complete — ALL SYSTEMS GO")
+                return {"status": "ready", "results": self.launch_results}
+            else:
+                logger.warning("⚠️ GENESIS Phase 99 Complete — ISSUES DETECTED")
+                return {"status": "issues_detected", "results": self.launch_results}
+            
+        except Exception as e:
+            error_msg = f"Phase 99 Launch Error: {str(e)}"
+            logger.error(f"❌ {error_msg}")
+            
+            # Emit error via EventBus
+            self.event_bus.emit("phase_99_error", {
+                "module": self.module_id,
+                "error": error_msg,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+            
+            return {"status": "error", "error": error_msg}
+    
+    def _run_surveillance_via_eventbus(self) -> Dict[str, Any]:
+        """Run architect surveillance via EventBus routing"""
+        try:
+            # Request surveillance via EventBus instead of direct import
+            surveillance_request = {
+                "module": self.module_id,
+                "action": "final_validation",
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            
+            # Emit surveillance request
+            self.event_bus.emit("architect.validate", surveillance_request)
+            
+            # For production, we would wait for response. For now, assume success
+            logger.info("✅ Surveillance request emitted via EventBus")
+            return {"status": "requested", "method": "eventbus_routing"}
+            
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+    
+    def _validate_module_registry(self) -> Dict[str, Any]:
+        """Validate module registry structure and content"""
+        try:
+            if not os.path.exists("module_registry.json"):
+                return {"status": "error", "error": "module_registry.json not found"}
+            
+            with open("module_registry.json", "r", encoding="utf-8") as f:
+                registry = json.load(f)
+            
+            # Validate registry structure
+            if not registry.get("modules"):
+                return {"status": "error", "error": "Registry missing module definitions"}
+            
+            module_count = len(registry["modules"])
+            
+            # Emit registry validation via EventBus
+            self.event_bus.emit("registry_validated", {
+                "module": self.module_id,
+                "module_count": module_count,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+            
+            logger.info(f"✅ Module registry validated - {module_count} modules registered")
+            return {"status": "valid", "module_count": module_count}
+            
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+    
+    def _validate_system_tree(self) -> Dict[str, Any]:
+        """Validate system tree structure (corrected for actual structure)"""
+        try:
+            if not os.path.exists("system_tree.json"):
+                return {"status": "error", "error": "system_tree.json not found"}
+            
+            with open("system_tree.json", "r", encoding="utf-8") as f:
+                system_tree = json.load(f)
+            
+            # Validate correct system tree structure (not "nodes" but sections)
+            required_sections = ["engines", "adapters", "gui", "core", "validators", "surveillance"]
+            missing_sections = []
+            
+            for section in required_sections:
+                if section not in system_tree:
+                    missing_sections.append(section)
+            
+            if missing_sections:
+                return {"status": "error", "error": f"Missing sections: {missing_sections}"}
+            
+            # Count total modules across all sections
+            total_modules = 0
+            eventbus_connected = 0
+            
+            for section_name, section_data in system_tree.items():
+                if isinstance(section_data, dict) and section_name != "genesis_final_system":
+                    for module_name, module_data in section_data.items():
+                        if isinstance(module_data, dict):
+                            total_modules += 1
+                            if module_data.get("eventbus_connected") is True:
+                                eventbus_connected += 1
+            
+            # Emit system tree validation via EventBus
+            self.event_bus.emit("system_tree_validated", {
+                "module": self.module_id,
+                "total_modules": total_modules,
+                "eventbus_connected": eventbus_connected,
+                "connectivity_rate": (eventbus_connected/total_modules)*100 if total_modules > 0 else 0,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+            
+            logger.info(f"✅ System tree validated - {total_modules} modules, {eventbus_connected} connected")
+            return {
+                "status": "valid", 
+                "modules_validated": total_modules,
+                "eventbus_connected": eventbus_connected
+            }
+            
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+    
+    def _validate_telemetry_system(self) -> Dict[str, Any]:
+        """Validate telemetry system configuration"""
+        try:
+            if not os.path.exists("telemetry.json"):
+                return {"status": "error", "error": "telemetry.json not found"}
+            
+            with open("telemetry.json", "r", encoding="utf-8") as f:
+                telemetry_config = json.load(f)
+            
+            # Check for required telemetry configuration
+            if not telemetry_config.get("real_time_monitoring"):
+                return {"status": "warning", "error": "Real-time monitoring not configured"}
+            
+            # Test telemetry emission via EventBus
+            test_telemetry = {
+                "module": self.module_id,
+                "test": "telemetry_validation",
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            self.event_bus.emit("telemetry", test_telemetry)
+            
+            logger.info("✅ Telemetry system validated and tested")
+            return {"status": "valid", "method": "eventbus_emission"}
+            
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+    
+    def _validate_eventbus_connectivity(self) -> Dict[str, Any]:
+        """Validate EventBus connectivity and routing"""
+        try:
+            if not os.path.exists("event_bus.json"):
+                return {"status": "error", "error": "event_bus.json not found"}
+            
+            with open("event_bus.json", "r", encoding="utf-8") as f:
+                eventbus_config = json.load(f)
+            
+            # Validate EventBus configuration
+            if not eventbus_config.get("routes"):
+                return {"status": "error", "error": "EventBus routes not configured"}
+            
+            # Test EventBus connectivity
+            connectivity_test = {
+                "module": self.module_id,
+                "test": "connectivity_validation",
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            self.event_bus.emit("connectivity_test", connectivity_test)
+            
+            logger.info("✅ EventBus connectivity validated and tested")
+            return {"status": "valid", "routes_count": len(eventbus_config["routes"])}
+            
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+    
+    def _determine_launch_readiness(self) -> bool:
+        """Determine overall system launch readiness"""
+        required_statuses = [
+            self.launch_results["registry_status"],
+            self.launch_results["system_tree_status"],
+            self.launch_results["telemetry_status"],
+            self.launch_results["eventbus_status"]
+        ]
+        
+        # All critical systems must be valid
+        return all(status == "valid" for status in required_statuses)
+    
+    def _emit_phase_99_completion(self):
+        """Emit Phase 99 completion status via EventBus"""
+        completion_data = {
+            "module": self.module_id,
+            "phase": "99",
+            "status": "complete",
+            "launch_ready": self.launch_results["launch_ready"],
+            "validation_results": self.launch_results,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        self.event_bus.emit("phase_99_complete", completion_data)
+        
+        # Also emit specific status for launch readiness
+        if self.launch_results["launch_ready"]:
+            self.event_bus.emit("system_launch_ready", {
+                "module": self.module_id,
+                "status": "ready_for_phase_100",
+                "modules_validated": self.launch_results["modules_validated"],
+                "total_modules": self.launch_results["total_modules"],
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+        else:
+            self.event_bus.emit("system_launch_issues", {
+                "module": self.module_id,
+                "status": "issues_detected",
+                "validation_results": self.launch_results,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+    
+    def run_final_validation(self, payload=None) -> Dict[str, Any]:
+        """Run comprehensive final validation"""
+        logger.info("🔍 Running comprehensive final system validation...")
+        return self.phase_99_launch(payload)
+    
+    def prepare_dashboard_launch(self, payload=None) -> Dict[str, Any]:
+        """Prepare system for Phase 100 dashboard launch"""
+        logger.info("🎨 Preparing for Phase 100 dashboard launch...")
+        
+        # Run validation first
+        validation_result = self.phase_99_launch(payload)
+        
+        if validation_result["status"] == "ready":
+            dashboard_prep = {
+                "module": self.module_id,
+                "dashboard_ready": True,
+                "phase_100_prepared": True,
+                "validation_passed": True,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            
+            self.event_bus.emit("dashboard_launch_ready", dashboard_prep)
+            logger.info("✅ Dashboard launch preparation complete")
+            
+            return {"status": "dashboard_ready", "preparation": dashboard_prep}
+        else:
+            logger.warning("⚠️ Dashboard launch preparation failed - validation issues")
+            return {"status": "preparation_failed", "validation": validation_result}
+
+# ARCHITECT MODE COMPLIANCE EXECUTION
+def main():
+    """ARCHITECT MODE COMPLIANT execution entry point"""
+    try:
+        launcher = Phase99LaunchAndLinker()
+        results = launcher.phase_99_launch()
+        
+        if results["status"] == "ready":
+            print("✅ GENESIS Phase 99 Complete — ALL SYSTEMS GO")
+        elif results["status"] == "issues_detected":
+            print("⚠️ GENESIS Phase 99 Complete — ISSUES DETECTED")
+        else:
+            print("❌ GENESIS Phase 99 FAILED")
+            
+        return results
+        
+    except Exception as e:
+        logger.error(f"❌ Phase 99 launch failed: {str(e)}")
+        raise
+
+# Auto-launch if run directly
+if __name__ == "__main__":
+    main()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

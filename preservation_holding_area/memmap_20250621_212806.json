@@ -1,0 +1,9 @@
+{
+  "module_id": "memmap",
+  "original_path": "modules\\restored\\memmap.py",
+  "preserved_path": "preservation_holding_area\\memmap_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24155,
+  "checksum": "539b40daa22e3599a49f8bff7e8a10e3d0ab3d060f59645c3eb9ef4dbd7c25d4"
+}

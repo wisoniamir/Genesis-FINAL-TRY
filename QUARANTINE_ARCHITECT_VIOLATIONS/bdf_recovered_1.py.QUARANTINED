@@ -1,0 +1,40 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\bdf_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.018445+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\bdf_recovered_1.py",
+      "line_numbers": [
+        116
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\bdf_recovered_1.py",
+      "line_numbers": [
+        44,
+        369,
+        376
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\bdf_recovered_1.py",
+      "line_numbers": [
+        52,
+        211,
+        229,
+        285,
+        295
+      ],
+      "violation_count": 12
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

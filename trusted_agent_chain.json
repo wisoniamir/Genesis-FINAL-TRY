@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-06-21T04:33:52.602864+00:00",
+  "trusted_agents": [
+    "architect_agent",
+    "mutation_engine",
+    "telemetry_sync_agent"
+  ],
+  "verification_active": true,
+  "signature_required": true
+}

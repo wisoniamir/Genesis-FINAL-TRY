@@ -1,0 +1,318 @@
+import logging
+import sys
+from pathlib import Path
+
+# <!-- @GENESIS_MODULE_START: test_spss -->
+"""
+🏛️ GENESIS TEST_SPSS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import datetime
+from pathlib import Path
+
+import numpy as np
+import pytest
+
+import pandas as pd
+import pandas._testing as tm
+from pandas.util.version import Version
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_spss", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_spss", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_spss",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_spss: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_spss",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_spss", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_spss: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+pyreadstat = pytest.importorskip("pyreadstat")
+
+
+# TODO(CoW) - detection of chained assignment in cython
+# https://github.com/pandas-dev/pandas/issues/51315
+@pytest.mark.filterwarnings("ignore::pandas.errors.ChainedAssignmentError")
+@pytest.mark.filterwarnings("ignore:ChainedAssignmentError:FutureWarning")
+@pytest.mark.parametrize("path_klass", [lambda p: p, Path])
+def test_spss_labelled_num(path_klass, datapath):
+    # test file from the Haven project (https://haven.tidyverse.org/)
+    # Licence at LICENSES/HAVEN_LICENSE, LICENSES/HAVEN_MIT
+    fname = path_klass(datapath("io", "data", "spss", "labelled-num.sav"))
+
+    df = pd.read_spss(fname, convert_categoricals=True)
+    expected = pd.DataFrame({"VAR00002": "This is one"}, index=[0])
+    expected["VAR00002"] = pd.Categorical(expected["VAR00002"])
+    tm.assert_frame_equal(df, expected)
+
+    df = pd.read_spss(fname, convert_categoricals=False)
+    expected = pd.DataFrame({"VAR00002": 1.0}, index=[0])
+    tm.assert_frame_equal(df, expected)
+
+
+@pytest.mark.filterwarnings("ignore::pandas.errors.ChainedAssignmentError")
+@pytest.mark.filterwarnings("ignore:ChainedAssignmentError:FutureWarning")
+def test_spss_labelled_num_na(datapath):
+    # test file from the Haven project (https://haven.tidyverse.org/)
+    # Licence at LICENSES/HAVEN_LICENSE, LICENSES/HAVEN_MIT
+    fname = datapath("io", "data", "spss", "labelled-num-na.sav")
+
+    df = pd.read_spss(fname, convert_categoricals=True)
+    expected = pd.DataFrame({"VAR00002": ["This is one", None]})
+    expected["VAR00002"] = pd.Categorical(expected["VAR00002"])
+    tm.assert_frame_equal(df, expected)
+
+    df = pd.read_spss(fname, convert_categoricals=False)
+    expected = pd.DataFrame({"VAR00002": [1.0, np.nan]})
+    tm.assert_frame_equal(df, expected)
+
+
+@pytest.mark.filterwarnings("ignore::pandas.errors.ChainedAssignmentError")
+@pytest.mark.filterwarnings("ignore:ChainedAssignmentError:FutureWarning")
+def test_spss_labelled_str(datapath):
+    # test file from the Haven project (https://haven.tidyverse.org/)
+    # Licence at LICENSES/HAVEN_LICENSE, LICENSES/HAVEN_MIT
+    fname = datapath("io", "data", "spss", "labelled-str.sav")
+
+    df = pd.read_spss(fname, convert_categoricals=True)
+    expected = pd.DataFrame({"gender": ["Male", "Female"]})
+    expected["gender"] = pd.Categorical(expected["gender"])
+    tm.assert_frame_equal(df, expected)
+
+    df = pd.read_spss(fname, convert_categoricals=False)
+    expected = pd.DataFrame({"gender": ["M", "F"]})
+    tm.assert_frame_equal(df, expected)
+
+
+@pytest.mark.filterwarnings("ignore::pandas.errors.ChainedAssignmentError")
+@pytest.mark.filterwarnings("ignore:ChainedAssignmentError:FutureWarning")
+def test_spss_umlauts(datapath):
+    # test file from the Haven project (https://haven.tidyverse.org/)
+    # Licence at LICENSES/HAVEN_LICENSE, LICENSES/HAVEN_MIT
+    fname = datapath("io", "data", "spss", "umlauts.sav")
+
+    df = pd.read_spss(fname, convert_categoricals=True)
+    expected = pd.DataFrame(
+        {"var1": ["the ä umlaut", "the ü umlaut", "the ä umlaut", "the ö umlaut"]}
+    )
+    expected["var1"] = pd.Categorical(expected["var1"])
+    tm.assert_frame_equal(df, expected)
+
+    df = pd.read_spss(fname, convert_categoricals=False)
+    expected = pd.DataFrame({"var1": [1.0, 2.0, 1.0, 3.0]})
+    tm.assert_frame_equal(df, expected)
+
+
+def test_spss_usecols(datapath):
+    # usecols must be list-like
+    fname = datapath("io", "data", "spss", "labelled-num.sav")
+
+    with pytest.raises(TypeError, match="usecols must be list-like."):
+        pd.read_spss(fname, usecols="VAR00002")
+
+
+def test_spss_umlauts_dtype_backend(datapath, dtype_backend):
+    # test file from the Haven project (https://haven.tidyverse.org/)
+    # Licence at LICENSES/HAVEN_LICENSE, LICENSES/HAVEN_MIT
+    fname = datapath("io", "data", "spss", "umlauts.sav")
+
+    df = pd.read_spss(fname, convert_categoricals=False, dtype_backend=dtype_backend)
+    expected = pd.DataFrame({"var1": [1.0, 2.0, 1.0, 3.0]}, dtype="Int64")
+
+    if dtype_backend == "pyarrow":
+        pa = pytest.importorskip("pyarrow")
+
+        from pandas.arrays import ArrowExtensionArray
+
+        expected = pd.DataFrame(
+            {
+                col: ArrowExtensionArray(pa.array(expected[col], from_pandas=True))
+                for col in expected.columns
+            }
+        )
+
+    tm.assert_frame_equal(df, expected)
+
+
+def test_invalid_dtype_backend():
+    msg = (
+        "dtype_backend numpy is invalid, only 'numpy_nullable' and "
+        "'pyarrow' are allowed."
+    )
+    with pytest.raises(ValueError, match=msg):
+        pd.read_spss("test", dtype_backend="numpy")
+
+
+@pytest.mark.filterwarnings("ignore::pandas.errors.ChainedAssignmentError")
+@pytest.mark.filterwarnings("ignore:ChainedAssignmentError:FutureWarning")
+def test_spss_metadata(datapath):
+    # GH 54264
+    fname = datapath("io", "data", "spss", "labelled-num.sav")
+
+    df = pd.read_spss(fname)
+    metadata = {
+        "column_names": ["VAR00002"],
+        "column_labels": [None],
+        "column_names_to_labels": {"VAR00002": None},
+        "file_encoding": "UTF-8",
+        "number_columns": 1,
+        "number_rows": 1,
+        "variable_value_labels": {"VAR00002": {1.0: "This is one"}},
+        "value_labels": {"labels0": {1.0: "This is one"}},
+        "variable_to_label": {"VAR00002": "labels0"},
+        "notes": [],
+        "original_variable_types": {"VAR00002": "F8.0"},
+        "readstat_variable_types": {"VAR00002": "double"},
+        "table_name": None,
+        "missing_ranges": {},
+        "missing_user_values": {},
+        "variable_storage_width": {"VAR00002": 8},
+        "variable_display_width": {"VAR00002": 8},
+        "variable_alignment": {"VAR00002": "unknown"},
+        "variable_measure": {"VAR00002": "unknown"},
+        "file_label": None,
+        "file_format": "sav/zsav",
+    }
+    if Version(pyreadstat.__version__) >= Version("1.2.4"):
+        metadata.update(
+            {
+                "creation_time": datetime.datetime(2015, 2, 6, 14, 33, 36),
+                "modification_time": datetime.datetime(2015, 2, 6, 14, 33, 36),
+            }
+        )
+    if Version(pyreadstat.__version__) >= Version("1.2.8"):
+        metadata["mr_sets"] = {}
+    tm.assert_dict_equal(df.attrs, metadata)
+
+
+# <!-- @GENESIS_MODULE_END: test_spss -->

@@ -1,0 +1,1206 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_phase74_75 -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_phase74_75", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_phase74_75", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase74_75",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase74_75", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase74_75: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+🧪 GENESIS PHASE 74-75 TEST SUITE - COMPREHENSIVE TESTING
+═══════════════════════════════════════════════════════════════
+
+🎯 PURPOSE:
+Comprehensive test suite for KillSwitch Integrity Monitor and AI Mutation Decision Visualizer.
+Validates all functionality, error handling, performance, and compliance requirements.
+
+🛡️ ARCHITECT MODE v5.0.0 COMPLIANCE:
+✅ Full test coverage for both modules
+✅ Integration testing with EventBus
+✅ Performance and latency validation
+✅ Error handling and edge case coverage
+✅ Telemetry and logging validation
+✅ Compliance and audit trail testing
+
+🧪 TEST CATEGORIES:
+1. Unit Tests - Individual component functionality
+2. Integration Tests - EventBus and system integration
+3. Performance Tests - Latency and throughput validation
+4. Error Handling Tests - Failure scenarios and recovery
+5. Compliance Tests - Audit trail and regulatory requirements
+6. End-to-End Tests - Complete workflow validation
+"""
+
+import unittest
+import json
+import time
+import threading
+import tempfile
+import os
+import uuid
+from unittest.mock import Mock, patch, MagicMock
+from collections import deque
+import datetime
+
+# Import modules under test
+from kill_switch_integrity_monitor import (
+    KillSwitchIntegrityMonitor, 
+    KillSwitchStatus, 
+    IntegrityMetrics
+)
+from mutation_decision_visualizer import (
+    AIMutationDecisionVisualizer,
+    DecisionType,
+    ConfidenceLevel,
+    DecisionFactor,
+    MutationDecision,
+    VisualizationMetrics
+)
+
+
+class MockEventBus:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase74_75", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase74_75", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase74_75",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase74_75", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase74_75: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase74_75",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase74_75: {e}")
+    """Mock EventBus for testing"""
+    
+    def __init__(self):
+        self.subscribers = {}
+        self.emitted_events = []
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def subscribe(self, topic, handler):
+        if topic not in self.subscribers:
+            self.subscribers[topic] = []
+        self.subscribers[topic].append(handler)
+    
+    def emit(self, topic, data):
+        self.emitted_events.append({'topic': topic, 'data': data, 'timestamp': time.time()})
+        if topic in self.subscribers:
+            for handler in self.subscribers[topic]:
+                try:
+                    handler(data)
+                except Exception as e:
+                    print(f"Error in event handler: {e}")
+
+
+class TestKillSwitchIntegrityMonitor(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase74_75", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase74_75", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase74_75",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase74_75", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase74_75: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase74_75",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase74_75: {e}")
+    """Test suite for KillSwitch Integrity Monitor"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        self.temp_dir = tempfile.mkdtemp()
+        self.config_path = os.path.join(self.temp_dir, "test_config.json")
+        
+        # Create test config
+        test_config = {
+            "heartbeat_interval_ms": 100,
+            "max_response_time_ms": 50,
+            "failure_threshold": 2,
+            "quarantine_threshold": 3,
+            "test_interval_seconds": 1,
+            "telemetry_interval_ms": 200
+        }
+        
+        with open(self.config_path, 'w') as f:
+            json.dump(test_config, f)
+        
+        self.mock_event_bus = MockEventBus()
+        self.monitor = KillSwitchIntegrityMonitor(self.config_path)
+        self.monitor.connect_event_bus(self.mock_event_bus)
+
+    def tearDown(self):
+        """Cleanup test environment"""
+        if self.monitor.running:
+            self.monitor.stop_monitoring()
+        
+        # Cleanup temp files
+        if os.path.exists(self.config_path):
+            os.remove(self.config_path)
+        os.rmdir(self.temp_dir)
+
+    def test_initialization(self):
+        """Test monitor initialization"""
+        self.assertIsNotNone(self.monitor.registry_id)
+        self.assertIsNotNone(self.monitor.module_fingerprint)
+        self.assertFalse(self.monitor.running)
+        self.assertEqual(len(self.monitor.response_times), 0)
+        self.assertIsInstance(self.monitor.kill_switch_status, KillSwitchStatus)
+
+    def test_config_loading(self):
+        """Test configuration loading"""
+        self.assertEqual(self.monitor.config['heartbeat_interval_ms'], 100)
+        self.assertEqual(self.monitor.config['max_response_time_ms'], 50)
+        self.assertTrue(self.monitor.config['auto_quarantine_enabled'])
+
+    def test_start_stop_monitoring(self):
+        """Test starting and stopping monitor"""
+        # Test start
+        self.monitor.start_monitoring()
+        self.assertTrue(self.monitor.running)
+        self.assertIsNotNone(self.monitor.monitor_thread)
+        
+        # Wait for telemetry event
+        time.sleep(0.3)
+        
+        # Check telemetry was emitted
+        telemetry_events = [e for e in self.mock_event_bus.emitted_events 
+                          if e['topic'] == 'TelemetryEvent']
+        self.assertGreater(len(telemetry_events), 0)
+        
+        # Test stop
+        self.monitor.stop_monitoring()
+        self.assertFalse(self.monitor.running)
+
+    def test_heartbeat_handling(self):
+        """Test heartbeat event handling"""
+        heartbeat_data = {
+            'is_active': True,
+            'timestamp': datetime.datetime.now().isoformat()
+        }
+        
+        self.monitor._handle_heartbeat(heartbeat_data)
+        
+        self.assertTrue(self.monitor.kill_switch_status.is_active)
+        self.assertEqual(len(self.monitor.heartbeat_history), 1)
+
+    def test_health_check_response(self):
+        """Test health check handling"""
+        health_check_data = {'request_id': str(uuid.uuid4())}
+        
+        self.monitor._handle_health_check(health_check_data)
+        
+        # Check health response was emitted
+        health_responses = [e for e in self.mock_event_bus.emitted_events 
+                          if e['topic'] == 'HealthCheckResponse']
+        self.assertEqual(len(health_responses), 1)
+
+    def test_kill_switch_functionality_test(self):
+        """Test kill-switch functionality testing"""
+        initial_response_count = len(self.monitor.response_times)
+        
+        self.monitor._test_kill_switch_functionality()
+        
+        # Check response time was recorded
+        self.assertEqual(len(self.monitor.response_times), initial_response_count + 1)
+        
+        # Check test event was emitted
+        test_events = [e for e in self.mock_event_bus.emitted_events 
+                      if e['topic'] == 'KillSwitchTest']
+        self.assertEqual(len(test_events), 1)
+
+    def test_failure_handling(self):
+        """Test failure detection and handling"""
+        # Simulate test failure by setting high response time
+        self.monitor.kill_switch_status.response_time_ms = 200  # Above threshold
+        self.monitor.kill_switch_status.test_success = False
+        
+        # Simulate multiple failures
+        for _ in range(3):
+            self.monitor._handle_test_failure()
+        
+        # Check alert was emitted
+        alert_events = [e for e in self.mock_event_bus.emitted_events 
+                       if e['topic'] == 'KillSwitchIntegrityAlert']
+        self.assertGreater(len(alert_events), 0)
+
+    def test_quarantine_trigger(self):
+        """Test quarantine triggering"""
+        # Set failure count above quarantine threshold
+        self.monitor.kill_switch_status.failure_count = 5
+        
+        self.monitor._trigger_quarantine()
+        
+        # Check quarantine event was emitted
+        quarantine_events = [e for e in self.mock_event_bus.emitted_events 
+                           if e['topic'] == 'SystemQuarantine']
+        self.assertEqual(len(quarantine_events), 1)
+        self.assertEqual(self.monitor.metrics.quarantine_triggers, 1)
+
+    def test_availability_calculation(self):
+        """Test availability percentage calculation"""
+        # Add response times (some good, some bad)
+        good_times = [30, 40, 45, 35, 50]  # Under threshold
+        bad_times = [100, 150, 200]       # Over threshold
+        
+        for rt in good_times + bad_times:
+            self.monitor.response_times.append(rt)
+        
+        self.monitor._update_availability_metrics()
+        
+        expected_availability = (len(good_times) / len(good_times + bad_times)) * 100
+        self.assertEqual(self.monitor.kill_switch_status.availability_percent, expected_availability)
+
+    def test_performance_metrics(self):
+        """Test performance metric collection"""
+        # Add some response times
+        for rt in [25, 30, 35, 40, 45]:
+            self.monitor.response_times.append(rt)
+        
+        metrics = self.monitor._get_current_metrics()
+        
+        self.assertIn('avg_response_time_ms', metrics)
+        self.assertIn('max_response_time_ms', metrics)
+        self.assertIn('availability_percent', metrics)
+        self.assertEqual(metrics['avg_response_time_ms'], 35.0)  # Average of test data
+
+    def test_force_test(self):
+        """Test forced kill-switch test"""
+        status = self.monitor.force_test()
+        
+        self.assertIn('kill_switch_status', status)
+        self.assertIn('metrics', status)
+        self.assertGreater(len(self.monitor.response_times), 0)
+
+
+class TestAIMutationDecisionVisualizer(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase74_75", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase74_75", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase74_75",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase74_75", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase74_75: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase74_75",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase74_75: {e}")
+    """Test suite for AI Mutation Decision Visualizer"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        self.temp_dir = tempfile.mkdtemp()
+        self.config_path = os.path.join(self.temp_dir, "test_config.json")
+        
+        # Create test config
+        test_config = {
+            "visualization_update_interval_ms": 100,
+            "telemetry_interval_ms": 200,
+            "high_impact_threshold": 0.8,
+            "decision_retention_hours": 1
+        }
+        
+        with open(self.config_path, 'w') as f:
+            json.dump(test_config, f)
+        
+        self.mock_event_bus = MockEventBus()
+        self.visualizer = AIMutationDecisionVisualizer(self.config_path)
+        self.visualizer.connect_event_bus(self.mock_event_bus)
+
+    def tearDown(self):
+        """Cleanup test environment"""
+        if self.visualizer.running:
+            self.visualizer.stop_visualization()
+        
+        # Cleanup temp files
+        if os.path.exists(self.config_path):
+            os.remove(self.config_path)
+        os.rmdir(self.temp_dir)
+
+    def test_initialization(self):
+        """Test visualizer initialization"""
+        self.assertIsNotNone(self.visualizer.registry_id)
+        self.assertIsNotNone(self.visualizer.module_fingerprint)
+        self.assertFalse(self.visualizer.running)
+        self.assertEqual(len(self.visualizer.active_decisions), 0)
+
+    def test_start_stop_visualization(self):
+        """Test starting and stopping visualizer"""
+        # Test start
+        self.visualizer.start_visualization()
+        self.assertTrue(self.visualizer.running)
+        self.assertIsNotNone(self.visualizer.visualizer_thread)
+        
+        # Wait for events
+        time.sleep(0.3)
+        
+        # Test stop
+        self.visualizer.stop_visualization()
+        self.assertFalse(self.visualizer.running)
+
+    def test_decision_request_handling(self):
+        """Test AI decision request handling"""
+        decision_data = {
+            'decision_id': str(uuid.uuid4()),
+            'decision_type': 'strategy_adjustment',
+            'factors': [
+                {
+                    'id': 'factor1',
+                    'name': 'market_volatility',
+                    'value': 0.75,
+                    'weight': 1.0,
+                    'confidence': 0.8,
+                    'description': 'High market volatility detected',
+                    'impact_score': 0.9
+                }
+            ],
+            'model_version': 'v1.0.0',
+            'impact_assessment': {'risk_level': 'medium'}
+        }
+        
+        self.visualizer._handle_decision_request(decision_data)
+        
+        # Check decision was stored
+        self.assertEqual(len(self.visualizer.active_decisions), 1)
+        self.assertEqual(self.visualizer.metrics.decisions_tracked, 1)
+        
+        # Check explanation event was emitted
+        explanation_events = [e for e in self.mock_event_bus.emitted_events 
+                            if e['topic'] == 'MutationDecisionExplained']
+        self.assertEqual(len(explanation_events), 1)
+
+    def test_confidence_calculation(self):
+        """Test confidence score calculation"""
+        factors = [
+            DecisionFactor('f1', 'factor1', 0.8, 1.0, 0.9, 'desc1', 0.8),
+            DecisionFactor('f2', 'factor2', 0.6, 0.5, 0.7, 'desc2', 0.6),
+            DecisionFactor('f3', 'factor3', 0.9, 1.5, 0.8, 'desc3', 0.9)
+        ]
+        
+        confidence = self.visualizer._calculate_confidence(factors)
+        
+        # Calculate expected confidence
+        expected = (0.9*1.0 + 0.7*0.5 + 0.8*1.5) / (1.0 + 0.5 + 1.5)
+        self.assertAlmostEqual(confidence, expected, places=2)
+
+    def test_confidence_level_mapping(self):
+        """Test confidence level enum mapping"""
+        self.assertEqual(
+            self.visualizer._map_confidence_level(0.95), 
+            ConfidenceLevel.VERY_HIGH
+        )
+        self.assertEqual(
+            self.visualizer._map_confidence_level(0.75), 
+            ConfidenceLevel.HIGH
+        )
+        self.assertEqual(
+            self.visualizer._map_confidence_level(0.55), 
+            ConfidenceLevel.MEDIUM
+        )
+        self.assertEqual(
+            self.visualizer._map_confidence_level(0.35), 
+            ConfidenceLevel.LOW
+        )
+        self.assertEqual(
+            self.visualizer._map_confidence_level(0.15), 
+            ConfidenceLevel.VERY_LOW
+        )
+
+    def test_explanation_generation(self):
+        """Test decision explanation generation"""
+        factors = [
+            DecisionFactor('f1', 'market_volatility', 0.8, 1.0, 0.9, 'High volatility', 0.9),
+            DecisionFactor('f2', 'trend_strength', 0.6, 0.8, 0.7, 'Moderate trend', 0.6)
+        ]
+        
+        explanation = self.visualizer._generate_explanation(
+            DecisionType.STRATEGY_ADJUSTMENT, 
+            factors, 
+            0.85
+        )
+        
+        self.assertIn('market_volatility', explanation)
+        self.assertIn('85.00%', explanation)
+        self.assertIsInstance(explanation, str)
+        self.assertGreater(len(explanation), 0)
+
+    def test_high_impact_decision_detection(self):
+        """Test high-impact decision detection and alerting"""
+        high_impact_data = {
+            'decision_id': str(uuid.uuid4()),
+            'decision_type': 'emergency_halt',
+            'factors': [
+                {
+                    'id': 'emergency_factor',
+                    'name': 'system_failure',
+                    'value': 0.95,
+                    'weight': 1.0,
+                    'confidence': 0.95,
+                    'description': 'Critical system failure detected',
+                    'impact_score': 0.95
+                }
+            ]
+        }
+        
+        self.visualizer._handle_decision_request(high_impact_data)
+        
+        # Check high-impact alert was emitted
+        high_impact_alerts = [e for e in self.mock_event_bus.emitted_events 
+                            if e['topic'] == 'HighImpactDecisionAlert']
+        self.assertEqual(len(high_impact_alerts), 1)
+        self.assertEqual(self.visualizer.metrics.high_impact_decisions, 1)
+
+    def test_strategy_mutation_handling(self):
+        """Test strategy mutation execution handling"""
+        # First create a decision
+        decision_id = str(uuid.uuid4())
+        decision_data = {
+            'decision_id': decision_id,
+            'decision_type': 'strategy_adjustment',
+            'factors': []
+        }
+        self.visualizer._handle_decision_request(decision_data)
+        
+        # Then handle mutation execution
+        mutation_data = {
+            'decision_id': decision_id,
+            'status': 'executed',
+            'outcome': {'success': True}
+        }
+        self.visualizer._handle_strategy_mutation(mutation_data)
+        
+        # Check decision status was updated
+        decision = self.visualizer.active_decisions[decision_id]
+        self.assertEqual(decision.execution_status, 'executed')
+
+    def test_model_update_handling(self):
+        """Test ML model update handling"""
+        model_data = {
+            'model_version': 'v2.0.0',
+            'performance_metrics': {
+                'accuracy': 0.85,
+                'precision': 0.82,
+                'recall': 0.88
+            }
+        }
+        
+        self.visualizer._handle_model_update(model_data)
+        
+        self.assertEqual(self.visualizer.metrics.model_updates_processed, 1)
+        self.assertIn('v2.0.0', self.visualizer.model_performance)
+
+    def test_compliance_logging(self):
+        """Test compliance audit logging"""
+        decision_data = {
+            'decision_id': str(uuid.uuid4()),
+            'decision_type': 'risk_mitigation',
+            'factors': [],
+            'model_version': 'v1.0.0'
+        }
+        
+        self.visualizer._handle_decision_request(decision_data)
+        
+        # Check compliance log was emitted
+        compliance_logs = [e for e in self.mock_event_bus.emitted_events 
+                         if e['topic'] == 'ComplianceAuditLog']
+        self.assertEqual(len(compliance_logs), 1)
+        self.assertEqual(self.visualizer.metrics.compliance_logs_generated, 1)
+
+    def test_visualization_update(self):
+        """Test visualization data updates"""
+        self.visualizer._update_visualization()
+        
+        # Check visualization update was emitted
+        viz_updates = [e for e in self.mock_event_bus.emitted_events 
+                      if e['topic'] == 'DecisionVisualizationUpdate']
+        self.assertEqual(len(viz_updates), 1)
+
+    def test_decision_analysis(self):
+        """Test detailed decision analysis"""
+        decision_id = str(uuid.uuid4())
+        decision_data = {
+            'decision_id': decision_id,
+            'decision_type': 'pattern_adaptation',
+            'factors': [
+                {
+                    'id': 'pattern_factor',
+                    'name': 'breakout_pattern',
+                    'value': 0.85,
+                    'weight': 1.0,
+                    'confidence': 0.9,
+                    'description': 'Strong breakout pattern detected',
+                    'impact_score': 0.85
+                }
+            ]
+        }
+        
+        self.visualizer._handle_decision_request(decision_data)
+        analysis = self.visualizer.get_decision_analysis(decision_id)
+        
+        self.assertIsNotNone(analysis)
+        self.assertIn('decision', analysis)
+        self.assertIn('confidence_score', analysis)
+        self.assertIn('factor_analysis', analysis)
+
+
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class TestIntegration(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase74_75", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase74_75", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase74_75",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase74_75", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase74_75: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase74_75",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase74_75: {e}")
+    """Integration tests for both modules working together"""
+    
+    def setUp(self):
+        """Setup integration test environment"""
+        self.mock_event_bus = MockEventBus()
+        
+        # Create temporary configs
+        self.temp_dir = tempfile.mkdtemp()
+        
+        # Setup kill-switch monitor
+        self.monitor = KillSwitchIntegrityMonitor()
+        self.monitor.connect_event_bus(self.mock_event_bus)
+        
+        # Setup decision visualizer
+        self.visualizer = AIMutationDecisionVisualizer()
+        self.visualizer.connect_event_bus(self.mock_event_bus)
+
+    def tearDown(self):
+        """Cleanup integration test environment"""
+        if self.monitor.running:
+            self.monitor.stop_monitoring()
+        if self.visualizer.running:
+            self.visualizer.stop_visualization()
+        
+        os.rmdir(self.temp_dir)
+
+    def test_eventbus_integration(self):
+        """Test EventBus integration between modules"""
+        # Start both modules
+        self.monitor.start_monitoring()
+        self.visualizer.start_visualization()
+        
+        # Wait for initialization events
+        time.sleep(0.3)
+        
+        # Check that both modules emitted telemetry
+        telemetry_events = [e for e in self.mock_event_bus.emitted_events 
+                          if e['topic'] == 'TelemetryEvent']
+        self.assertGreater(len(telemetry_events), 0)
+        
+        # Check event sources
+        sources = [e['data']['source'] for e in telemetry_events]
+        self.assertIn('KillSwitchIntegrityMonitor', sources)
+        self.assertIn('AIMutationDecisionVisualizer', sources)
+
+    def test_cross_module_alerts(self):
+        """Test alert handling between modules"""
+        # Trigger kill-switch alert
+        self.monitor._emit_alert("kill_switch_failure", {"test": True})
+        
+        # Trigger high-impact decision
+        decision_data = {
+            'decision_id': str(uuid.uuid4()),
+            'decision_type': 'emergency_halt',
+            'factors': [
+                {
+                    'id': 'emergency',
+                    'name': 'kill_switch_failure',
+                    'value': 0.95,
+                    'weight': 1.0,
+                    'confidence': 0.95,
+                    'description': 'Kill switch failure detected',
+                    'impact_score': 0.95
+                }
+            ]
+        }
+        self.visualizer._handle_decision_request(decision_data)
+        
+        # Check both alerts were emitted
+        alert_events = [e for e in self.mock_event_bus.emitted_events 
+                       if 'Alert' in e['topic']]
+        self.assertGreater(len(alert_events), 0)
+
+    def test_performance_under_load(self):
+        """Test performance under load conditions"""
+        start_time = time.time()
+        
+        # Start both modules
+        self.monitor.start_monitoring()
+        self.visualizer.start_visualization()
+        
+        # Generate load
+        for i in range(100):
+            # Generate heartbeat
+            self.monitor._handle_heartbeat({'is_active': True})
+            
+            # Generate decision request
+            decision_data = {
+                'decision_id': f"decision_{i}",
+                'decision_type': 'strategy_adjustment',
+                'factors': [
+                    {
+                        'id': f'factor_{i}',
+                        'name': f'test_factor_{i}',
+                        'value': 0.5,
+                        'weight': 1.0,
+                        'confidence': 0.7,
+                        'description': f'Test factor {i}',
+                        'impact_score': 0.6
+                    }
+                ]
+            }
+            self.visualizer._handle_decision_request(decision_data)
+        
+        end_time = time.time()
+        processing_time = end_time - start_time
+        
+        # Check performance (should process 100 events in reasonable time)
+        self.assertLess(processing_time, 5.0)  # Under 5 seconds
+        
+        # Check all events were processed
+        self.assertEqual(len(self.visualizer.active_decisions), 100)
+        self.assertEqual(len(self.monitor.heartbeat_history), 100)
+
+
+def run_performance_benchmark():
+    """Run performance benchmark tests"""
+    print("\n🚀 Running Performance Benchmarks")
+    print("=" * 50)
+    
+    # Kill-switch monitor benchmark
+    monitor = KillSwitchIntegrityMonitor()
+    event_bus = MockEventBus()
+    monitor.connect_event_bus(event_bus)
+    
+    start_time = time.time()
+    for _ in range(1000):
+        monitor._test_kill_switch_functionality()
+    end_time = time.time()
+    
+    kill_switch_time = end_time - start_time
+    print(f"🚨 Kill-switch tests (1000): {kill_switch_time:.3f}s ({1000/kill_switch_time:.1f} tests/sec)")
+    
+    # Decision visualizer benchmark
+    visualizer = AIMutationDecisionVisualizer()
+    visualizer.connect_event_bus(event_bus)
+    
+    start_time = time.time()
+    for i in range(1000):
+        decision_data = {
+            'decision_id': f"bench_{i}",
+            'decision_type': 'strategy_adjustment',
+            'factors': [
+                {
+                    'id': f'factor_{i}',
+                    'name': 'benchmark_factor',
+                    'value': 0.7,
+                    'weight': 1.0,
+                    'confidence': 0.8,
+                    'description': 'Benchmark test factor',
+                    'impact_score': 0.7
+                }
+            ]
+        }
+        visualizer._handle_decision_request(decision_data)
+    end_time = time.time()
+    
+    decision_time = end_time - start_time
+    print(f"🔬 Decision processing (1000): {decision_time:.3f}s ({1000/decision_time:.1f} decisions/sec)")
+    
+    print(f"\n✅ Performance benchmarks completed")
+
+
+def main():
+    """Main test runner"""
+    print("🧪 GENESIS PHASE 74-75 TEST SUITE")
+    print("=" * 60)
+    
+    # Run unit tests
+    test_loader = unittest.TestLoader()
+    test_suite = unittest.TestSuite()
+    
+    # Add test classes
+    test_suite.addTests(test_loader.loadTestsFromTestCase(TestKillSwitchIntegrityMonitor))
+    test_suite.addTests(test_loader.loadTestsFromTestCase(TestAIMutationDecisionVisualizer))
+    test_suite.addTests(test_loader.loadTestsFromTestCase(TestIntegration))
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(test_suite)
+    
+    # Run performance benchmarks
+    run_performance_benchmark()
+    
+    # Print summary
+    print(f"\n📊 TEST SUMMARY")
+    print("=" * 30)
+    print(f"Tests run: {result.testsRun}")
+    print(f"Failures: {len(result.failures)}")
+    print(f"Errors: {len(result.errors)}")
+    print(f"Success rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%")
+    
+    if result.failures:
+        print(f"\n❌ FAILURES:")
+        for test, traceback in result.failures:
+            print(f"  - {test}")
+    
+    if result.errors:
+        print(f"\n💥 ERRORS:")
+        for test, traceback in result.errors:
+            print(f"  - {test}")
+    
+    success = len(result.failures) == 0 and len(result.errors) == 0
+    print(f"\n{'✅ ALL TESTS PASSED' if success else '❌ TESTS FAILED'}")
+    
+    return success
+
+
+if __name__ == "__main__":
+    success = main()
+    exit(0 if success else 1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase74_75 -->

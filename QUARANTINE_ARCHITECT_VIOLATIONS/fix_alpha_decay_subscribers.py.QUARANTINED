@@ -1,0 +1,48 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\fix_alpha_decay_subscribers.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.115013+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\fix_alpha_decay_subscribers.py",
+      "line_numbers": [
+        44,
+        48,
+        58
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\fix_alpha_decay_subscribers.py",
+      "line_numbers": [
+        22,
+        72
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\fix_alpha_decay_subscribers.py",
+      "line_numbers": [
+        82,
+        87
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\fix_alpha_decay_subscribers.py",
+      "line_numbers": [
+        69,
+        80
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

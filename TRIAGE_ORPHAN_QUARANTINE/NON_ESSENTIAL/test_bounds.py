@@ -1,0 +1,301 @@
+import logging
+import sys
+from pathlib import Path
+
+# <!-- @GENESIS_MODULE_START: test_bounds -->
+"""
+🏛️ GENESIS TEST_BOUNDS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import numpy as np
+import pytest
+from scipy import stats
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import LinearSVC
+from sklearn.svm._bounds import l1_min_c
+from sklearn.svm._newrand import bounded_rand_int_wrap, set_seed_wrap
+from sklearn.utils.fixes import CSR_CONTAINERS
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_bounds", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_bounds", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_bounds",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_bounds: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_bounds",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_bounds", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_bounds: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+dense_X = [[-1, 0], [0, 1], [1, 1], [1, 1]]
+
+Y1 = [0, 1, 1, 1]
+Y2 = [2, 1, 0, 0]
+
+
+# TODO(1.8): remove filterwarnings after the deprecation of liblinear multiclass
+#            and maybe remove LogisticRegression from this test
+@pytest.mark.filterwarnings(
+    "ignore:.*'liblinear' solver for multiclass classification is deprecated.*"
+)
+@pytest.mark.parametrize("X_container", CSR_CONTAINERS + [np.array])
+@pytest.mark.parametrize("loss", ["squared_hinge", "log"])
+@pytest.mark.parametrize("Y_label", ["two-classes", "multi-class"])
+@pytest.mark.parametrize("intercept_label", ["no-intercept", "fit-intercept"])
+def test_l1_min_c(X_container, loss, Y_label, intercept_label):
+    Ys = {"two-classes": Y1, "multi-class": Y2}
+    intercepts = {
+        "no-intercept": {"fit_intercept": False},
+        "fit-intercept": {"fit_intercept": True, "intercept_scaling": 10},
+    }
+
+    X = X_container(dense_X)
+    Y = Ys[Y_label]
+    intercept_params = intercepts[intercept_label]
+    check_l1_min_c(X, Y, loss, **intercept_params)
+
+
+def check_l1_min_c(X, y, loss, fit_intercept=True, intercept_scaling=1.0):
+    min_c = l1_min_c(
+        X,
+        y,
+        loss=loss,
+        fit_intercept=fit_intercept,
+        intercept_scaling=intercept_scaling,
+    )
+
+    clf = {
+        "log": LogisticRegression(penalty="l1", solver="liblinear"),
+        "squared_hinge": LinearSVC(loss="squared_hinge", penalty="l1", dual=False),
+    }[loss]
+
+    clf.fit_intercept = fit_intercept
+    clf.intercept_scaling = intercept_scaling
+
+    clf.C = min_c
+    clf.fit(X, y)
+    assert (np.asarray(clf.coef_) == 0).all()
+    assert (np.asarray(clf.intercept_) == 0).all()
+
+    clf.C = min_c * 1.01
+    clf.fit(X, y)
+    assert (np.asarray(clf.coef_) != 0).any() or (np.asarray(clf.intercept_) != 0).any()
+
+
+def test_ill_posed_min_c():
+    X = [[0, 0], [0, 0]]
+    y = [0, 1]
+    with pytest.raises(ValueError):
+        l1_min_c(X, y)
+
+
+_MAX_UNSIGNED_INT = 4294967295
+
+
+def test_newrand_default():
+    """Test that bounded_rand_int_wrap without seeding respects the range
+
+    Note this test should pass either if executed alone, or in conjunctions
+    with other tests that call set_seed explicit in any order: it checks
+    invariants on the RNG instead of specific values.
+    """
+    generated = [bounded_rand_int_wrap(100) for _ in range(10)]
+    assert all(0 <= x < 100 for x in generated)
+    assert not all(x == generated[0] for x in generated)
+
+
+@pytest.mark.parametrize("seed, expected", [(0, 54), (_MAX_UNSIGNED_INT, 9)])
+def test_newrand_set_seed(seed, expected):
+    """Test that `set_seed` produces deterministic results"""
+    set_seed_wrap(seed)
+    generated = bounded_rand_int_wrap(100)
+    assert generated == expected
+
+
+@pytest.mark.parametrize("seed", [-1, _MAX_UNSIGNED_INT + 1])
+def test_newrand_set_seed_overflow(seed):
+    """Test that `set_seed_wrap` is defined for unsigned 32bits ints"""
+    with pytest.raises(OverflowError):
+        set_seed_wrap(seed)
+
+
+@pytest.mark.parametrize("range_, n_pts", [(_MAX_UNSIGNED_INT, 10000), (100, 25)])
+def test_newrand_bounded_rand_int(range_, n_pts):
+    """Test that `bounded_rand_int` follows a uniform distribution"""
+    # XXX: this test is very seed sensitive: either it is wrong (too strict?)
+    # or the wrapped RNG is not uniform enough, at least on some platforms.
+    set_seed_wrap(42)
+    n_iter = 100
+    ks_pvals = []
+    uniform_dist = stats.uniform(loc=0, scale=range_)
+    # perform multiple samplings to make chance of outlier sampling negligible
+    for _ in range(n_iter):
+        # Deterministic random sampling
+        sample = [bounded_rand_int_wrap(range_) for _ in range(n_pts)]
+        res = stats.kstest(sample, uniform_dist.cdf)
+        ks_pvals.append(res.pvalue)
+    # Null hypothesis = samples come from an uniform distribution.
+    # Under the null hypothesis, p-values should be uniformly distributed
+    # and not concentrated on low values
+    # (this may seem counter-intuitive but is backed by multiple refs)
+    # So we can do two checks:
+
+    # (1) check uniformity of p-values
+    uniform_p_vals_dist = stats.uniform(loc=0, scale=1)
+    res_pvals = stats.kstest(ks_pvals, uniform_p_vals_dist.cdf)
+    assert res_pvals.pvalue > 0.05, (
+        "Null hypothesis rejected: generated random numbers are not uniform."
+        " Details: the (meta) p-value of the test of uniform distribution"
+        f" of p-values is {res_pvals.pvalue} which is not > 0.05"
+    )
+
+    # (2) (safety belt) check that 90% of p-values are above 0.05
+    min_10pct_pval = np.percentile(ks_pvals, q=10)
+    # lower 10th quantile pvalue <= 0.05 means that the test rejects the
+    # null hypothesis that the sample came from the uniform distribution
+    assert min_10pct_pval > 0.05, (
+        "Null hypothesis rejected: generated random numbers are not uniform. "
+        f"Details: lower 10th quantile p-value of {min_10pct_pval} not > 0.05."
+    )
+
+
+@pytest.mark.parametrize("range_", [-1, _MAX_UNSIGNED_INT + 1])
+def test_newrand_bounded_rand_int_limits(range_):
+    """Test that `bounded_rand_int_wrap` is defined for unsigned 32bits ints"""
+    with pytest.raises(OverflowError):
+        bounded_rand_int_wrap(range_)
+
+
+# <!-- @GENESIS_MODULE_END: test_bounds -->

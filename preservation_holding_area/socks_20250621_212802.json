@@ -1,0 +1,9 @@
+{
+  "module_id": "socks",
+  "original_path": "modules\\restored\\socks.py",
+  "preserved_path": "preservation_holding_area\\socks_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 43389,
+  "checksum": "78418384cf6a099b897e62a9087f2c6a0faf4a5cdf134f109761f63d35824d2b"
+}

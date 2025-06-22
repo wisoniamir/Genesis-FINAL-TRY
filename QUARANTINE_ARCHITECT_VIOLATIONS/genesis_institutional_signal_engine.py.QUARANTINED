@@ -1,0 +1,104 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.435384+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        23
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        47,
+        254,
+        265,
+        292,
+        329
+      ],
+      "violation_count": 27
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        258,
+        287,
+        322,
+        342,
+        428
+      ],
+      "violation_count": 24
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        485,
+        486,
+        487,
+        488,
+        489
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        660,
+        666,
+        672,
+        678,
+        685
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        1043,
+        1047
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        279,
+        280,
+        281,
+        282,
+        283
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\genesis_institutional_signal_engine.py",
+      "line_numbers": [
+        267,
+        268,
+        269,
+        270,
+        273
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

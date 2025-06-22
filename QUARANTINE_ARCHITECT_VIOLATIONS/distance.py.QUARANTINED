@@ -1,0 +1,79 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.037452+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+      "line_numbers": [
+        329,
+        330,
+        334,
+        1012,
+        2088
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+      "line_numbers": [
+        1993,
+        2293,
+        2323,
+        3092,
+        3128
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+      "line_numbers": [
+        2561,
+        2655
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+      "line_numbers": [
+        2596,
+        2674
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+      "line_numbers": [
+        587,
+        589,
+        1332,
+        1733,
+        2571
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\distance.py",
+      "line_numbers": [
+        156,
+        178,
+        256,
+        284,
+        504
+      ],
+      "violation_count": 25
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

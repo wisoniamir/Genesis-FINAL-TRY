@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-06-21T09:56:22.955025+00:00",
+  "statistics": {
+    "total_modules": 14028,
+    "modules_scanned": 14028,
+    "modules_upgraded": 13554,
+    "modules_compliant": 474,
+    "modules_failed": 0,
+    "upgrade_actions_applied": 39989,
+    "compliance_violations_fixed": 0
+  },
+  "compliance_summary": {
+    "total_modules": 14028,
+    "compliant_modules": 474,
+    "compliance_rate": 3.3789563729683487,
+    "modules_upgraded": 13554,
+    "upgrade_rate": 96.62104362703165
+  },
+  "feature_analysis": {
+    "eventbus_coverage": 81.8577131451383,
+    "telemetry_coverage": 81.87197034502424,
+    "ftmo_coverage": 81.32306814941546,
+    "risk_management_coverage": 2.765896777872826,
+    "kill_switch_coverage": 81.38009694895922,
+    "pattern_intelligence_coverage": 1.133447390932421,
+    "institutional_logic_coverage": 81.39435414884517
+  },
+  "failed_modules": [],
+  "recommendations": [
+    "Important: Strengthen risk management capabilities"
+  ]
+}

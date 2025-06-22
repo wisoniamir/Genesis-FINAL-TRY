@@ -1,0 +1,358 @@
+import logging
+# <!-- @GENESIS_MODULE_START: dechunk -->
+"""
+🏛️ GENESIS DECHUNK - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, cast
+
+from contourpy._contourpy import FillType, LineType
+from contourpy.array import (
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("dechunk", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("dechunk", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "dechunk",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in dechunk: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "dechunk",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("dechunk", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in dechunk: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+    concat_codes_or_none,
+    concat_offsets_or_none,
+    concat_points_or_none,
+    concat_points_or_none_with_nan,
+)
+from contourpy.enum_util import as_fill_type, as_line_type
+from contourpy.typecheck import check_filled, check_lines
+
+if TYPE_CHECKING:
+    import contourpy._contourpy as cpy
+
+
+def dechunk_filled(filled: cpy.FillReturn, fill_type: FillType | str) -> cpy.FillReturn:
+    """Return the specified filled contours with chunked data moved into the first chunk.
+
+    Filled contours that are not chunked (``FillType.OuterCode`` and ``FillType.OuterOffset``) and
+    those that are but only contain a single chunk are returned unmodified. Individual polygons are
+    unchanged, they are not geometrically combined.
+
+    Args:
+        filled (sequence of arrays): Filled contour data, such as returned by
+            :meth:`.ContourGenerator.filled`.
+        fill_type (FillType or str): Type of :meth:`~.ContourGenerator.filled` as enum or string
+            equivalent.
+
+    Return:
+        Filled contours in a single chunk.
+
+    .. versionadded:: 1.2.0
+    """
+    fill_type = as_fill_type(fill_type)
+
+    if fill_type in (FillType.OuterCode, FillType.OuterOffset):
+        # No-op if fill_type is not chunked.
+        return filled
+
+    check_filled(filled, fill_type)
+    if len(filled[0]) < 2:
+        # No-op if just one chunk.
+        return filled
+
+    if TYPE_CHECKING:
+        filled = cast(cpy.FillReturn_Chunk, filled)
+    points = concat_points_or_none(filled[0])
+
+    if fill_type == FillType.ChunkCombinedCode:
+        if TYPE_CHECKING:
+            filled = cast(cpy.FillReturn_ChunkCombinedCode, filled)
+        if points is None:
+            ret1: cpy.FillReturn_ChunkCombinedCode = ([None], [None])
+        else:
+            ret1 = ([points], [concat_codes_or_none(filled[1])])
+        return ret1
+    elif fill_type == FillType.ChunkCombinedOffset:
+        if TYPE_CHECKING:
+            filled = cast(cpy.FillReturn_ChunkCombinedOffset, filled)
+        if points is None:
+            ret2: cpy.FillReturn_ChunkCombinedOffset = ([None], [None])
+        else:
+            ret2 = ([points], [concat_offsets_or_none(filled[1])])
+        return ret2
+    elif fill_type == FillType.ChunkCombinedCodeOffset:
+        if TYPE_CHECKING:
+            filled = cast(cpy.FillReturn_ChunkCombinedCodeOffset, filled)
+        if points is None:
+            ret3: cpy.FillReturn_ChunkCombinedCodeOffset = ([None], [None], [None])
+        else:
+            outer_offsets = concat_offsets_or_none(filled[2])
+            ret3 = ([points], [concat_codes_or_none(filled[1])], [outer_offsets])
+        return ret3
+    elif fill_type == FillType.ChunkCombinedOffsetOffset:
+        if TYPE_CHECKING:
+            filled = cast(cpy.FillReturn_ChunkCombinedOffsetOffset, filled)
+        if points is None:
+            ret4: cpy.FillReturn_ChunkCombinedOffsetOffset = ([None], [None], [None])
+        else:
+            outer_offsets = concat_offsets_or_none(filled[2])
+            ret4 = ([points], [concat_offsets_or_none(filled[1])], [outer_offsets])
+        return ret4
+    else:
+        raise ValueError(f"Invalid FillType {fill_type}")
+
+
+def dechunk_lines(lines: cpy.LineReturn, line_type: LineType | str) -> cpy.LineReturn:
+    """Return the specified contour lines with chunked data moved into the first chunk.
+
+    Contour lines that are not chunked (``LineType.Separate`` and ``LineType.SeparateCode``) and
+    those that are but only contain a single chunk are returned unmodified. Individual lines are
+    unchanged, they are not geometrically combined.
+
+    Args:
+        lines (sequence of arrays): Contour line data, such as returned by
+            :meth:`.ContourGenerator.lines`.
+        line_type (LineType or str): Type of :meth:`~.ContourGenerator.lines` as enum or string
+            equivalent.
+
+    Return:
+        Contour lines in a single chunk.
+
+    .. versionadded:: 1.2.0
+    """
+    line_type = as_line_type(line_type)
+
+    if line_type in (LineType.Separate, LineType.SeparateCode):
+        # No-op if line_type is not chunked.
+        return lines
+
+    check_lines(lines, line_type)
+    if len(lines[0]) < 2:
+        # No-op if just one chunk.
+        return lines
+
+    if TYPE_CHECKING:
+        lines = cast(cpy.LineReturn_Chunk, lines)
+
+    if line_type == LineType.ChunkCombinedCode:
+        if TYPE_CHECKING:
+            lines = cast(cpy.LineReturn_ChunkCombinedCode, lines)
+        points = concat_points_or_none(lines[0])
+        if points is None:
+            ret1: cpy.LineReturn_ChunkCombinedCode = ([None], [None])
+        else:
+            ret1 = ([points], [concat_codes_or_none(lines[1])])
+        return ret1
+    elif line_type == LineType.ChunkCombinedOffset:
+        if TYPE_CHECKING:
+            lines = cast(cpy.LineReturn_ChunkCombinedOffset, lines)
+        points = concat_points_or_none(lines[0])
+        if points is None:
+            ret2: cpy.LineReturn_ChunkCombinedOffset = ([None], [None])
+        else:
+            ret2 = ([points], [concat_offsets_or_none(lines[1])])
+        return ret2
+    elif line_type == LineType.ChunkCombinedNan:
+        if TYPE_CHECKING:
+            lines = cast(cpy.LineReturn_ChunkCombinedNan, lines)
+        points = concat_points_or_none_with_nan(lines[0])
+        ret3: cpy.LineReturn_ChunkCombinedNan = ([points],)
+        return ret3
+    else:
+        raise ValueError(f"Invalid LineType {line_type}")
+
+
+def dechunk_multi_filled(
+    multi_filled: list[cpy.FillReturn],
+    fill_type: FillType | str,
+) -> list[cpy.FillReturn]:
+    """Return multiple sets of filled contours with chunked data moved into the first chunks.
+
+    Filled contours that are not chunked (``FillType.OuterCode`` and ``FillType.OuterOffset``) and
+    those that are but only contain a single chunk are returned unmodified. Individual polygons are
+    unchanged, they are not geometrically combined.
+
+    Args:
+        multi_filled (nested sequence of arrays): Filled contour data, such as returned by
+            :meth:`.ContourGenerator.multi_filled`.
+        fill_type (FillType or str): Type of :meth:`~.ContourGenerator.filled` as enum or string
+            equivalent.
+
+    Return:
+        Multiple sets of filled contours in a single chunk.
+
+    .. versionadded:: 1.3.0
+    """
+    fill_type = as_fill_type(fill_type)
+
+    if fill_type in (FillType.OuterCode, FillType.OuterOffset):
+        # No-op if fill_type is not chunked.
+        return multi_filled
+
+    return [dechunk_filled(filled, fill_type) for filled in multi_filled]
+
+
+def dechunk_multi_lines(
+    multi_lines: list[cpy.LineReturn],
+    line_type: LineType | str,
+) -> list[cpy.LineReturn]:
+    """Return multiple sets of contour lines with all chunked data moved into the first chunks.
+
+    Contour lines that are not chunked (``LineType.Separate`` and ``LineType.SeparateCode``) and
+    those that are but only contain a single chunk are returned unmodified. Individual lines are
+    unchanged, they are not geometrically combined.
+
+    Args:
+        multi_lines (nested sequence of arrays): Contour line data, such as returned by
+            :meth:`.ContourGenerator.multi_lines`.
+        line_type (LineType or str): Type of :meth:`~.ContourGenerator.lines` as enum or string
+            equivalent.
+
+    Return:
+        Multiple sets of contour lines in a single chunk.
+
+    .. versionadded:: 1.3.0
+    """
+    line_type = as_line_type(line_type)
+
+    if line_type in (LineType.Separate, LineType.SeparateCode):
+        # No-op if line_type is not chunked.
+        return multi_lines
+
+    return [dechunk_lines(lines, line_type) for lines in multi_lines]
+
+
+# <!-- @GENESIS_MODULE_END: dechunk -->

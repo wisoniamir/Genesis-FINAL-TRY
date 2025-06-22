@@ -1,0 +1,55 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase61_62_orchestrator_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.163092+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase61_62_orchestrator_recovered_1.py",
+      "line_numbers": [
+        73,
+        107,
+        219,
+        235,
+        363
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase61_62_orchestrator_recovered_1.py",
+      "line_numbers": [
+        89,
+        123,
+        230,
+        275,
+        369
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase61_62_orchestrator_recovered_1.py",
+      "line_numbers": [
+        57,
+        210,
+        287
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase61_62_orchestrator_recovered_1.py",
+      "line_numbers": [
+        193,
+        309,
+        356
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

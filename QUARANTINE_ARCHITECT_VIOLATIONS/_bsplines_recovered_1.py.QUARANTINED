@@ -1,0 +1,65 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_bsplines_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.577294+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_bsplines_recovered_1.py",
+      "line_numbers": [
+        1338,
+        1548,
+        1606
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_bsplines_recovered_1.py",
+      "line_numbers": [
+        823,
+        1547
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_bsplines_recovered_1.py",
+      "line_numbers": [
+        1048,
+        1500,
+        2079
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_bsplines_recovered_1.py",
+      "line_numbers": [
+        246,
+        439,
+        540,
+        542,
+        822
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_bsplines_recovered_1.py",
+      "line_numbers": [
+        25,
+        156,
+        160,
+        218,
+        451
+      ],
+      "violation_count": 21
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

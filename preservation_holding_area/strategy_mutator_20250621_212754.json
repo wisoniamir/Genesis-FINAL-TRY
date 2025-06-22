@@ -1,0 +1,9 @@
+{
+  "module_id": "strategy_mutator",
+  "original_path": "modules\\signal_processing\\strategy_mutator.py",
+  "preserved_path": "preservation_holding_area\\strategy_mutator_20250621_212754.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 22968,
+  "checksum": "2d3107f7ccac4254e5556dac34bc29d108bcd2af4a29c85dfe9d4e5f080f5233"
+}

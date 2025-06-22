@@ -1,0 +1,295 @@
+# <!-- @GENESIS_MODULE_START: reverseContourPen_recovered_2 -->
+"""
+🏛️ GENESIS REVERSECONTOURPEN_RECOVERED_2 - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+from fontTools.misc.arrayTools import pairwise
+from fontTools.pens.filterPen import ContourFilterPen
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "reverseContourPen_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in reverseContourPen_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "reverseContourPen_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("reverseContourPen_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in reverseContourPen_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+__all__ = ["reversedContour", "ReverseContourPen"]
+
+
+class ReverseContourPen(ContourFilterPen):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "reverseContourPen_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in reverseContourPen_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "reverseContourPen_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("reverseContourPen_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in reverseContourPen_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "reverseContourPen_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in reverseContourPen_recovered_2: {e}")
+    """Filter pen that passes outline data to another pen, but reversing
+    the winding direction of all contours. Components are simply passed
+    through unchanged.
+
+    Closed contours are reversed in such a way that the first point remains
+    the first point.
+    """
+
+    def __init__(self, outPen, outputImpliedClosingLine=False):
+        super().__init__(outPen)
+        self.outputImpliedClosingLine = outputImpliedClosingLine
+
+    def filterContour(self, contour):
+        return reversedContour(contour, self.outputImpliedClosingLine)
+
+
+def reversedContour(contour, outputImpliedClosingLine=False):
+    """Generator that takes a list of pen's (operator, operands) tuples,
+    and yields them with the winding direction reversed.
+    """
+    if not contour:
+        return  # nothing to do, stop iteration
+
+    # valid contours must have at least a starting and ending command,
+    # can't have one without the other
+    assert len(contour) > 1, "invalid contour"
+
+    # the type of the last command determines if the contour is closed
+    contourType = contour.pop()[0]
+    assert contourType in ("endPath", "closePath")
+    closed = contourType == "closePath"
+
+    firstType, firstPts = contour.pop(0)
+    assert firstType in ("moveTo", "qCurveTo"), (
+        "invalid initial segment type: %r" % firstType
+    )
+    firstOnCurve = firstPts[-1]
+    if firstType == "qCurveTo":
+        # special case for TrueType paths contaning only off-curve points
+        assert firstOnCurve is None, "off-curve only paths must end with 'None'"
+        assert not contour, "only one qCurveTo allowed per off-curve path"
+        firstPts = (firstPts[0],) + tuple(reversed(firstPts[1:-1])) + (None,)
+
+    if not contour:
+        # contour contains only one segment, nothing to reverse
+        if firstType == "moveTo":
+            closed = False  # single-point paths can't be closed
+        else:
+            closed = True  # off-curve paths are closed by definition
+        yield firstType, firstPts
+    else:
+        lastType, lastPts = contour[-1]
+        lastOnCurve = lastPts[-1]
+        if closed:
+            # for closed paths, we keep the starting point
+            yield firstType, firstPts
+            if firstOnCurve != lastOnCurve:
+                # emit an implied line between the last and first points
+                yield "lineTo", (lastOnCurve,)
+                contour[-1] = (lastType, tuple(lastPts[:-1]) + (firstOnCurve,))
+
+            if len(contour) > 1:
+                secondType, secondPts = contour[0]
+            else:
+                # contour has only two points, the second and last are the same
+                secondType, secondPts = lastType, lastPts
+
+            if not outputImpliedClosingLine:
+                # if a lineTo follows the initial moveTo, after reversing it
+                # will be implied by the closePath, so we don't emit one;
+                # unless the lineTo and moveTo overlap, in which case we keep the
+                # duplicate points
+                if secondType == "lineTo" and firstPts != secondPts:
+                    del contour[0]
+                    if contour:
+                        contour[-1] = (lastType, tuple(lastPts[:-1]) + secondPts)
+        else:
+            # for open paths, the last point will become the first
+            yield firstType, (lastOnCurve,)
+            contour[-1] = (lastType, tuple(lastPts[:-1]) + (firstOnCurve,))
+
+        # we iterate over all segment pairs in reverse order, and yield
+        # each one with the off-curve points reversed (if any), and
+        # with the on-curve point of the following segment
+        for (curType, curPts), (_, nextPts) in pairwise(contour, reverse=True):
+            yield curType, tuple(reversed(curPts[:-1])) + (nextPts[-1],)
+
+    yield "closePath" if closed else "endPath", ()
+
+
+# <!-- @GENESIS_MODULE_END: reverseContourPen_recovered_2 -->

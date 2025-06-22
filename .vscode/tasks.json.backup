@@ -1,0 +1,521 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start GENESIS Dashboard",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"-m",
+				"streamlit",
+				"run",
+				"dashboard.py"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Run StrategyRecommenderEngine",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"strategy_recommender_engine.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Test Smart Monitor",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"test_smart_monitor.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Validate STEP 7 Smart Monitor",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"validate_step7_smart_monitor.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Start GENESIS Guardian v5.0",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian.py"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": true,
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Force Guardian v5.0 Scan",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"-c",
+				"from guardian import enforce_guardian_continuity; enforce_guardian_continuity()"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Start Guardian Autoboot Lifecycle",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_autoboot_lifecycle.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Start Guardian Continuous Service (Always Active)",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_continuous_service.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Start Guardian Phase Hook Linker",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_phase_hook_linker.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Start Guardian Phase Hook Linker (Continuous)",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_phase_hook_linker.py",
+				"--continuous"
+			],
+			"group": "build",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Stop Guardian Service",
+			"type": "shell",
+			"command": "taskkill",
+			"args": [
+				"/F",
+				"/IM",
+				"python.exe",
+				"/T"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always"
+			},
+			"windows": {
+				"command": "taskkill",
+				"args": [
+					"/F",
+					"/IM",
+					"python.exe",
+					"/T"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		}
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"validate_step7_smart_monitor.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Start GENESIS Guardian v5.0",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian.py"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": true,
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
+		},
+		{
+			"label": "Force Guardian v5.0 Scan",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"-c",
+				"from guardian import enforce_guardian_continuity; enforce_guardian_continuity()"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Start Guardian Autoboot Lifecycle",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_autoboot_lifecycle.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
+		},
+		{
+			"label": "Run Phase 90 Repair Engine",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"repair_engine_advanced_patches.py"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Run Phase 95 EventBus Validator",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_95_eventbus_validator.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Phase 95 EventBus Focused Validator",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_95_eventbus_focused_validator.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Phase 95 EventBus Auto-Fix",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_95_eventbus_autofix_fixed.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Complete Phase 95 EventBus Validation",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_95_completion_validator.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Phase 96 Signal Wiring Enforcer",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_96_signal_wiring_enforcer.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Phase 96 Signal Wiring Focused Validator",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_96_signal_wiring_focused_validator.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Phase 96 Signal Wiring Auto-Fix",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_96_signal_wiring_autofix.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Complete Phase 96 Signal Wiring Validation",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_96_completion_validator.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Phase 97.1 MT5 Indicator Scanner",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_97_1_mt5_indicator_scanner.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Complete Phase 97.1 MT5 Indicator Validation",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"phase_97_1_completion_validator.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Guardian Continuous Service (Always Active)",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_continuous_service.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
+		},
+		{
+			"label": "Stop Guardian Service",
+			"type": "shell",
+			"command": "taskkill",
+			"args": [
+				"/F",
+				"/IM",
+				"python.exe",
+				"/T"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always"
+			},
+			"windows": {
+				"command": "taskkill",
+				"args": [
+					"/F",
+					"/IM",
+					"python.exe",
+					"/T"
+				]
+			}
+		},
+		{
+			"label": "Run Guardian Phase Hook Linker",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"guardian_phase_hook_linker.py"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			},
+			"problemMatcher": []
+		}
+	]
+}

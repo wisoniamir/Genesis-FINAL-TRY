@@ -1,0 +1,103 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.578862+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        299,
+        348,
+        416,
+        445,
+        521
+      ],
+      "violation_count": 25
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        173,
+        288,
+        452,
+        3257,
+        3411
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        122,
+        760,
+        761,
+        949,
+        3330
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        1295,
+        1535,
+        1573,
+        1650,
+        1788
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        1543
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        395,
+        1154,
+        1753,
+        1889,
+        2015
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        404,
+        546,
+        758,
+        823,
+        900
+      ],
+      "violation_count": 24
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\backend_bases_recovered_2.py",
+      "line_numbers": [
+        3476
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

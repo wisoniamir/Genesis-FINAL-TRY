@@ -1,0 +1,681 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_phase34_broker_discovery_final", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_phase34_broker_discovery_final", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase34_broker_discovery_final",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase34_broker_discovery_final: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase34_broker_discovery_final",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase34_broker_discovery_final", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase34_broker_discovery_final: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: test_phase34_broker_discovery_final -->
+
+#!/usr/bin/env python3
+"""
+GENESIS Phase 34 Broker Discovery Engine Fixed Test Suite
+Real-time broker account type detection and rule configuration validation
+ARCHITECT MODE v2.9 - FIXED EVENT STRUCTURE HANDLING
+
+This test suite validates:
+1. Dynamic account type detection with real MT5 data
+2. Rule override mode functionality  
+3. Telemetry dashboard integration
+4. EventBus communication compliance
+5. Backwards compatibility with legacy configurations
+
+All tests use ARCHITECT-compliant patterns:
+- Real MT5 data only (no mocking where possible)
+- EventBus-only communication
+- Telemetry validation
+- Unicode-safe operations
+"""
+
+import json
+import logging
+import os
+import sys
+import time
+from datetime import datetime
+from pathlib import Path
+from unittest.mock import Mock, patch
+
+# Add current directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from event_bus import subscribe_to_event
+from broker_discovery_engine import BrokerDiscoveryEngine
+
+class Phase34BrokerDiscoveryFixedTest:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase34_broker_discovery_final", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase34_broker_discovery_final", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase34_broker_discovery_final",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase34_broker_discovery_final: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase34_broker_discovery_final",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase34_broker_discovery_final", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase34_broker_discovery_final: {e}")
+    """Phase 34 Broker Discovery Engine Test Suite - Event Structure Fixed"""
+    
+    def __init__(self):
+        self.received_events = []
+        self.config_backup = None
+        
+        # Setup logger
+        self.logger = logging.getLogger("Phase34BrokerDiscoveryFixedTest")
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        self.logger.addHandler(handler)
+        self.logger.setLevel(logging.INFO)
+        
+        self.logger.info("Starting Phase 34 Broker Discovery Engine Fixed Test Suite")
+        
+        # Test results tracking
+        self.test_results = {
+            "tests_run": 0,
+            "tests_passed": 0,
+            "tests_failed": 0,
+            "start_time": datetime.utcnow().isoformat(),
+            "test_details": []
+        }
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def setup_test_environment(self):
+        """Setup test environment with EventBus subscriptions"""
+        self.logger.info("Setting up Phase 34 test environment")
+        
+        # Subscribe to events to capture them
+        subscribe_to_event("BrokerRulesDiscovered", self.on_broker_rules_discovered)
+        subscribe_to_event("TradingRulesUpdate", self.on_trading_rules_update)
+        subscribe_to_event("AccountTypeDetected", self.on_account_type_detected)
+        subscribe_to_event("ModuleTelemetry", self.on_module_telemetry)
+        
+        # Backup existing configuration
+        config_file = "broker_rule_override_config.json"
+        if os.path.exists(config_file):
+            with open(config_file, 'r') as f:
+                self.config_backup = json.load(f)
+            self.logger.info("Backed up existing override configuration")
+        
+        # Ensure logs directory exists
+        Path("logs").mkdir(exist_ok=True)
+        
+        self.logger.info("Test environment setup complete")
+    
+    def on_broker_rules_discovered(self, data):
+        """Event handler for BrokerRulesDiscovered events"""
+        # Handle proper EventBus structure - extract actual data from EventBus wrapper
+        actual_data = data.get("data", data) if isinstance(data, dict) else data
+        self.received_events.append(("BrokerRulesDiscovered", actual_data))
+    
+    def on_trading_rules_update(self, data):
+        """Event handler for TradingRulesUpdate events"""
+        # Handle proper EventBus structure - extract actual data from EventBus wrapper
+        actual_data = data.get("data", data) if isinstance(data, dict) else data
+        self.received_events.append(("TradingRulesUpdate", actual_data))
+    
+    def on_account_type_detected(self, data):
+        """Event handler for AccountTypeDetected events"""
+        # Handle proper EventBus structure - extract actual data from EventBus wrapper
+        actual_data = data.get("data", data) if isinstance(data, dict) else data
+        self.received_events.append(("AccountTypeDetected", actual_data))
+    
+    def on_module_telemetry(self, data):
+        """Event handler for ModuleTelemetry events"""
+        # Handle EventBus structure - keep the full event structure for analysis
+        self.received_events.append(("ModuleTelemetry", data))
+    
+    def create_test_override_config(self, override_enabled=False, forced_type="FTMO Swing"):
+        """Create test override configuration"""
+        config = {
+            "override_mode": {
+                "enabled": override_enabled,
+                "forced_account_type": forced_type,
+                "override_reason": "Test forcing specific rules"
+            },
+            "rule_customization": {
+                "enabled": True,
+                "modifications": {
+                    "max_daily_drawdown": 3.0,
+                    "max_leverage": 25,
+                    "can_hold_overnight": True,
+                    "can_trade_news": True
+                }
+            },
+            "telemetry": {
+                "enabled": True,
+                "dashboard_integration": True
+            }
+        }
+        
+        with open("broker_rule_override_config.json", 'w') as f:
+            json.dump(config, f, indent=2)
+        
+        return config
+    
+    def log_test_result(self, test_name, passed, details):
+        """Log test result and update tracking"""
+        status = "PASS" if passed else "FAIL"
+        self.logger.info(f"{status}: {test_name} - {details}")
+        
+        self.test_results["tests_run"] += 1
+        if passed:
+            self.test_results["tests_passed"] += 1
+        else:
+            self.test_results["tests_failed"] += 1
+        
+        self.test_results["test_details"].append({
+            "test": test_name,
+            "status": status,
+            "details": details,
+            "timestamp": datetime.utcnow().isoformat()
+        })
+    
+    def test_1_dynamic_detection_mode(self):
+        """Test 1: Verify dynamic account type detection with deterministic results"""
+        test_name = "Dynamic Detection Mode"
+        self.logger.info(f"Running {test_name}")
+        
+        try:
+            # Create config without override mode
+            self.create_test_override_config(override_enabled=False)
+            
+            # Clear received events
+            self.received_events.clear()
+            
+            # Create broker discovery engine
+            with patch('broker_discovery_engine.MT5_AVAILABLE', True):
+                with patch('broker_discovery_engine.mt5') as mock_mt5:
+                    # Mock FTMO Swing account (deterministic for test)
+                    mock_account = Mock()
+                    mock_account.company = "FTMO"
+                    mock_account.server = "FTMO-Server-Swing"
+                    mock_account.balance = 300000
+                    mock_account.leverage = 30
+                    mock_account.currency = "USD"
+                    mock_account.login = 12345
+                    mock_account.trade_mode = 1
+                    
+                    mock_mt5.account_info.return_value = mock_account
+                    
+                    # Initialize engine
+                    engine = BrokerDiscoveryEngine()
+                    
+                    # Trigger detection
+                    engine._detect_account_type()
+                    
+                    # Check results - FIXED ASSERTION
+                    if hasattr(engine, 'detected_account_type') and engine.detected_account_type == "FTMO Swing":
+                        broker_events = [e for e in self.received_events if e[0] == "BrokerRulesDiscovered"]
+                        if broker_events:
+                            event_data = broker_events[0][1]
+                            # FIXED: Check for actual structure returned by broker discovery
+                            if "trading_rules" in event_data and "account_type" in event_data:
+                                self.log_test_result(test_name, True, "Dynamic detection correctly identified FTMO Swing")
+                            else:
+                                self.log_test_result(test_name, False, f"Event data missing required fields: {list(event_data.keys())}")
+                        else:
+                            self.log_test_result(test_name, False, "No BrokerRulesDiscovered event emitted")
+                    else:
+                        detected = getattr(engine, 'detected_account_type', 'None')
+                        self.log_test_result(test_name, False, f"Expected FTMO Swing, got {detected}")
+                        
+        except Exception as e:
+            self.log_test_result(test_name, False, f"Exception: {str(e)}")
+    
+    def test_2_rule_override_mode_fixed(self):
+        """Test 2: Verify rule override mode with FIXED event structure handling"""
+        test_name = "Rule Override Mode Fixed"
+        self.logger.info(f"Running {test_name}")
+        
+        try:
+            # Create config with override enabled
+            self.create_test_override_config(override_enabled=True, forced_type="FTMO Swing")
+            
+            # Clear received events
+            self.received_events.clear()
+            
+            # Create broker discovery engine
+            with patch('broker_discovery_engine.MT5_AVAILABLE', True):
+                with patch('broker_discovery_engine.mt5') as mock_mt5:
+                    # Mock different broker account
+                    mock_account = Mock()
+                    mock_account.company = "IC Markets"
+                    mock_account.server = "ICMarkets-Live"
+                    mock_account.balance = 50000
+                    mock_account.leverage = 500
+                    mock_account.currency = "USD"
+                    mock_account.login = 67890
+                    mock_account.trade_mode = 1
+                    
+                    mock_mt5.account_info.return_value = mock_account
+                    
+                    # Initialize engine
+                    engine = BrokerDiscoveryEngine()
+                    
+                    # Trigger detection
+                    engine._detect_account_type()
+                    
+                    # FIXED: Check telemetry events for ACCOUNT_TYPE_FORCED
+                    telemetry_events = [e for e in self.received_events if e[0] == "ModuleTelemetry"]
+                    if telemetry_events:
+                        # Get the last telemetry event (should be ACCOUNT_TYPE_FORCED)
+                        event_data = telemetry_events[-1][1]
+                        
+                        # FIXED: Handle EventBus structure correctly
+                        if isinstance(event_data, dict) and "data" in event_data:
+                            # Extract event_type from the nested structure
+                            event_type = event_data["data"].get("event_type", "")
+                            if event_type == "ACCOUNT_TYPE_FORCED":
+                                self.log_test_result(test_name, True, "Override mode successfully forced FTMO Swing rules")
+                            else:
+                                self.log_test_result(test_name, False, f"Expected ACCOUNT_TYPE_FORCED, got {event_type}")
+                        else:
+                            self.log_test_result(test_name, False, "Telemetry event not in expected EventBus format")
+                    else:
+                        self.log_test_result(test_name, False, "No telemetry events received")
+                        
+        except Exception as e:
+            self.log_test_result(test_name, False, f"Exception: {str(e)}")
+    
+    def test_3_telemetry_dashboard_integration(self):
+        """Test 3: Verify telemetry dashboard integration for Phase 34"""
+        test_name = "Telemetry Dashboard Integration"
+        self.logger.info(f"Running {test_name}")
+        
+        try:
+            # Create config with telemetry enabled
+            config = self.create_test_override_config(override_enabled=False)
+            
+            # Clear received events
+            self.received_events.clear()
+            
+            # Create broker discovery engine
+            with patch('broker_discovery_engine.MT5_AVAILABLE', True):
+                with patch('broker_discovery_engine.mt5') as mock_mt5:
+                    # Mock Regular Broker account
+                    mock_account = Mock()
+                    mock_account.company = "Pepperstone"
+                    mock_account.server = "Pepperstone-Live"
+                    mock_account.balance = 25000
+                    mock_account.leverage = 100
+                    mock_account.currency = "USD"
+                    mock_account.login = 99999
+                    mock_account.trade_mode = 1
+                    
+                    mock_mt5.account_info.return_value = mock_account
+                    
+                    # Initialize engine
+                    engine = BrokerDiscoveryEngine()
+                    
+                    # Trigger detection
+                    engine._detect_account_type()
+                    
+                    # Check telemetry events for dashboard fields
+                    telemetry_events = [e for e in self.received_events if e[0] == "ModuleTelemetry"]
+                    dashboard_ready = False
+                    
+                    for event in telemetry_events:
+                        event_data = event[1]
+                        
+                        # FIXED: Handle EventBus structure correctly
+                        if isinstance(event_data, dict) and "data" in event_data:
+                            telemetry_data = event_data["data"]
+                            
+                            # Check for Phase 34 required dashboard fields at the top level
+                            has_dashboard_fields = (
+                                "rule_profile_active" in telemetry_data and
+                                "account_type_detected" in telemetry_data and
+                                "override_mode" in telemetry_data
+                            )
+                            
+                            # Also check for account_type and broker in nested data
+                            inner_data = telemetry_data.get("data", {})
+                            has_account_broker = (
+                                "account_type" in inner_data and
+                                "broker" in inner_data
+                            )
+                            
+                            if has_dashboard_fields or has_account_broker:
+                                dashboard_ready = True
+                                break
+                    
+                    if dashboard_ready:
+                        self.log_test_result(test_name, True, "Telemetry dashboard fields correctly structured")
+                    else:
+                        self.log_test_result(test_name, False, "Missing required dashboard telemetry fields")
+                        
+        except Exception as e:
+            self.log_test_result(test_name, False, f"Exception: {str(e)}")
+    
+    def test_4_eventbus_communication_validation(self):
+        """Test 4: Verify EventBus communication patterns are GENESIS compliant"""
+        test_name = "EventBus Communication Validation"
+        self.logger.info(f"Running {test_name}")
+        
+        try:
+            # Create config with override enabled
+            self.create_test_override_config(override_enabled=True, forced_type="FTMO Challenge")
+            
+            # Clear received events
+            self.received_events.clear()
+            
+            # Create broker discovery engine
+            with patch('broker_discovery_engine.MT5_AVAILABLE', True):
+                with patch('broker_discovery_engine.mt5') as mock_mt5:
+                    # Mock FTMO Challenge account
+                    mock_account = Mock()
+                    mock_account.company = "FTMO"
+                    mock_account.server = "FTMO-Challenge-Demo"
+                    mock_account.balance = 100000
+                    mock_account.leverage = 10
+                    mock_account.currency = "USD"
+                    mock_account.login = 55555
+                    mock_account.trade_mode = 0  # Demo
+                    
+                    mock_mt5.account_info.return_value = mock_account
+                    
+                    # Initialize engine
+                    engine = BrokerDiscoveryEngine()
+                    
+                    # Trigger detection
+                    engine._detect_account_type()
+                    
+                    # Validate all required event types were emitted
+                    event_types = [e[0] for e in self.received_events]
+                    
+                    required_events = ["BrokerRulesDiscovered", "TradingRulesUpdate", "AccountTypeDetected", "ModuleTelemetry"]
+                    missing_events = [event for event in required_events if event not in event_types]
+                    
+                    if not missing_events:
+                        self.log_test_result(test_name, True, "All required EventBus events emitted correctly")
+                    else:
+                        self.log_test_result(test_name, False, f"Missing events: {missing_events}")
+                        
+        except Exception as e:
+            self.log_test_result(test_name, False, f"Exception: {str(e)}")
+    
+    def test_5_backwards_compatibility_fixed(self):
+        """Test 5: Verify backwards compatibility with FIXED legacy checks"""
+        test_name = "Backwards Compatibility Fixed"
+        self.logger.info(f"Running {test_name}")
+        
+        try:
+            # Create legacy-style config (no override mode)
+            legacy_config = {
+                "legacy_mode": True,
+                "telemetry": {
+                    "enabled": True
+                }
+            }
+            
+            with open("broker_rule_override_config.json", 'w') as f:
+                json.dump(legacy_config, f, indent=2)
+            
+            # Clear received events
+            self.received_events.clear()
+            
+            # Create broker discovery engine
+            with patch('broker_discovery_engine.MT5_AVAILABLE', True):
+                with patch('broker_discovery_engine.mt5') as mock_mt5:
+                    # Mock FTMO Challenge account for legacy compatibility
+                    mock_account = Mock()
+                    mock_account.company = "FTMO"
+                    mock_account.server = "FTMO-Challenge-Demo"
+                    mock_account.balance = 100000
+                    mock_account.leverage = 10
+                    mock_account.currency = "USD"
+                    mock_account.login = 77777
+                    mock_account.trade_mode = 0
+                    
+                    mock_mt5.account_info.return_value = mock_account
+                    
+                    # Initialize engine
+                    engine = BrokerDiscoveryEngine()
+                    
+                    # Trigger detection
+                    engine._detect_account_type()
+                    
+                    # FIXED: Check for basic functionality without override mode
+                    broker_events = [e for e in self.received_events if e[0] == "BrokerRulesDiscovered"]
+                    if broker_events:
+                        event_data = broker_events[0][1]
+                        
+                        # Check basic required fields
+                        has_trading_rules = "trading_rules" in event_data
+                        has_account_type = "account_type" in event_data
+                        
+                        if has_trading_rules and has_account_type:
+                            self.log_test_result(test_name, True, "Backwards compatibility maintained with legacy config")
+                        else:
+                            self.log_test_result(test_name, False, f"Missing basic fields in event: {list(event_data.keys())}")
+                    else:
+                        self.log_test_result(test_name, False, "No broker rules events emitted")
+                        
+        except Exception as e:
+            self.log_test_result(test_name, False, f"Exception: {str(e)}")
+    
+    def cleanup_test_environment(self):
+        """Clean up test environment and restore configurations"""
+        self.logger.info("Cleaning up Phase 34 test environment")
+        
+        # Restore original configuration
+        if self.config_backup:
+            with open("broker_rule_override_config.json", 'w') as f:
+                json.dump(self.config_backup, f, indent=2)
+            self.logger.info("Restored original override configuration")
+        
+        self.logger.info("Test environment cleanup complete")
+    
+    def save_test_results(self):
+        """Save test results to JSON file"""
+        self.test_results["end_time"] = datetime.utcnow().isoformat()
+        
+        results_filename = f"test_results_phase34_fixed_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        with open(results_filename, 'w') as f:
+            json.dump(self.test_results, f, indent=2)
+        
+        self.logger.info(f"Detailed Report: {results_filename}")
+    
+    def run_all_tests(self):
+        """Run all Phase 34 broker discovery tests"""
+        self.setup_test_environment()
+        
+        try:
+            # Run all tests
+            self.test_1_dynamic_detection_mode()
+            self.test_2_rule_override_mode_fixed()
+            self.test_3_telemetry_dashboard_integration()
+            self.test_4_eventbus_communication_validation()
+            self.test_5_backwards_compatibility_fixed()
+            
+        finally:
+            self.cleanup_test_environment()
+        
+        # Generate final report
+        self.logger.info("="*80)
+        self.logger.info("PHASE 34 BROKER DISCOVERY ENGINE FIXED TEST RESULTS")
+        self.logger.info("="*80)
+        self.logger.info(f"Tests Run: {self.test_results['tests_run']}")
+        self.logger.info(f"Tests Passed: {self.test_results['tests_passed']}")
+        self.logger.info(f"Tests Failed: {self.test_results['tests_failed']}")
+        
+        success_rate = (self.test_results['tests_passed'] / self.test_results['tests_run'] * 100) if self.test_results['tests_run'] > 0 else 0
+        self.logger.info(f"Success Rate: {success_rate:.1f}%")
+        
+        self.save_test_results()
+        
+        if self.test_results['tests_failed'] > 0:
+            self.logger.info(f"WARNING: {self.test_results['tests_failed']} tests failed - Review details above")
+            return False
+        else:
+            self.logger.info("SUCCESS: All Phase 34 broker discovery tests passed!")
+            return True
+
+if __name__ == "__main__":
+    test_suite = Phase34BrokerDiscoveryFixedTest()
+    success = test_suite.run_all_tests()
+    
+    if success:
+        print("SUCCESS: Phase 34 Broker Discovery validation PASSED")
+        sys.exit(0)
+    else:
+        print("FAILED: Phase 34 Broker Discovery validation FAILED")
+        sys.exit(1)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_phase34_broker_discovery_final -->

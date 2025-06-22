@@ -1,0 +1,888 @@
+# <!-- @GENESIS_MODULE_START: genesis_dashboard_ui_live_sync -->
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS INSTITUTIONAL DASHBOARD UI v6.0.0 - PHASE 92A
+Real-Time Dashboard Integration — Live Sync Enforcement
+
+🎯 PURPOSE: Replace all static/mock data with real-time MT5 + EventBus connections
+📡 INTEGRATION: Full MT5 connection and live data sync
+🔁 EVENT-DRIVEN: All UI updates via EventBus events
+🚫 ARCHITECT MODE: Zero tolerance for mock data
+"""
+
+import tkinter as tk
+from tkinter import ttk, scrolledtext, messagebox
+import json
+import threading
+import time
+import os
+from datetime import datetime, timezone
+import uuid
+import hashlib
+from typing import Dict, List, Any, Optional
+import queue
+import logging
+import pandas as pd
+import numpy as np
+from pathlib import Path
+
+# Import MT5 for live data connection - ARCHITECT MODE: NO FALLBACK
+try:
+    import MetaTrader5 as mt5
+    MT5_AVAILABLE = True
+    logging.info("MT5 package loaded successfully")
+except ImportError as e:
+    logging.error(f"🚫 ARCHITECT_MODE_VIOLATION: MetaTrader5 is required - {str(e)}")
+    MT5_AVAILABLE = False
+    raise ImportError("MetaTrader5 module is required for GENESIS Dashboard")
+
+# Import EventBus for event-driven updates - ARCHITECT MODE: NO FALLBACK
+from hardened_event_bus import get_event_bus, emit_event, subscribe_to_event
+
+# Import MT5 connection bridge for live data
+from mt5_connection_bridge import MT5ConnectionBridge
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('dashboard_ui_live.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+class GenesisDashboardLiveSync:
+    """
+    GENESIS Dashboard Live Sync Implementation - PHASE 92A
+    
+    Replaces all static/mock data with real-time connections to:
+    - MT5 for account data, trades, and market data
+    - EventBus for real-time system events
+    - Indicator scanner for live technical indicators
+    """
+    
+    def __init__(self, root=None):
+        """Initialize the live-synced dashboard with real-time MT5 connection"""
+        self.root = root or tk.Tk()
+        self.root.title("GENESIS Institutional Dashboard v6.0.0")
+        self.root.geometry("1280x800")
+        
+        # Initialize MT5 connection bridge
+        self.mt5_bridge = MT5ConnectionBridge()
+        self.connected = False
+        
+        # Initialize EventBus connection
+        self.event_bus = get_event_bus()
+        self.event_queue = queue.Queue()
+        
+        # Data storage
+        self.account_data = {}
+        self.market_data = {}
+        self.open_trades = []
+        self.indicator_data = {}
+        self.symbols = []
+        
+        # UI components
+        self.tabControl = ttk.Notebook(self.root)
+        self.tab_main = ttk.Frame(self.tabControl)
+        self.tab_trades = ttk.Frame(self.tabControl)
+        self.tab_indicators = ttk.Frame(self.tabControl)
+        self.tab_telemetry = ttk.Frame(self.tabControl)
+        
+        self.tabControl.add(self.tab_main, text="Dashboard")
+        self.tabControl.add(self.tab_trades, text="Active Trades")
+        self.tabControl.add(self.tab_indicators, text="Indicators")
+        self.tabControl.add(self.tab_telemetry, text="Telemetry")
+        self.tabControl.pack(expand=1, fill="both")
+        
+        # Setup UI components
+        self.setup_main_tab()
+        self.setup_trades_tab()
+        self.setup_indicators_tab()
+        self.setup_telemetry_tab()
+        
+        # Register EventBus event handlers
+        self.register_event_handlers()
+        
+        # Start real-time update threads
+        self.start_real_time_updates()
+        
+        logger.info("GenesisDashboardLiveSync initialized")
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def setup_main_tab(self):
+        """Setup the main dashboard tab with MT5 account data"""
+        frame = self.tab_main
+        
+        # MT5 Connection status
+        self.connection_frame = ttk.LabelFrame(frame, text="MT5 Connection")
+        self.connection_frame.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
+        
+        self.conn_status_label = ttk.Label(self.connection_frame, text="Status: Disconnected")
+        self.conn_status_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        
+        self.connect_btn = ttk.Button(self.connection_frame, text="Connect", command=self.connect_to_mt5)
+        self.connect_btn.grid(row=0, column=1, padx=5, pady=5)
+        
+        # Account information
+        self.account_frame = ttk.LabelFrame(frame, text="Account Information")
+        self.account_frame.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+        
+        self.login_label = ttk.Label(self.account_frame, text="Login: N/A")
+        self.login_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        
+        self.server_label = ttk.Label(self.account_frame, text="Server: N/A")
+        self.server_label.grid(row=0, column=1, padx=5, pady=5, sticky="w")
+        
+        self.balance_label = ttk.Label(self.account_frame, text="Balance: $0.00")
+        self.balance_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        
+        self.equity_label = ttk.Label(self.account_frame, text="Equity: $0.00")
+        self.equity_label.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+        
+        self.margin_label = ttk.Label(self.account_frame, text="Margin: $0.00")
+        self.margin_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+        
+        self.free_margin_label = ttk.Label(self.account_frame, text="Free Margin: $0.00")
+        self.free_margin_label.grid(row=2, column=1, padx=5, pady=5, sticky="w")
+        
+        # Symbol list from MT5 Market Watch
+        self.symbols_frame = ttk.LabelFrame(frame, text="Market Watch Symbols")
+        self.symbols_frame.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
+        
+        self.symbols_list = tk.Listbox(self.symbols_frame, height=10, width=50)
+        self.symbols_list.grid(row=0, column=0, padx=5, pady=5, sticky="nsew")
+        
+        scrollbar = ttk.Scrollbar(self.symbols_frame, orient="vertical", command=self.symbols_list.yview)
+        scrollbar.grid(row=0, column=1, sticky="ns")
+        self.symbols_list.configure(yscrollcommand=scrollbar.set)
+        
+        self.symbols_frame.grid_columnconfigure(0, weight=1)
+        self.symbols_frame.grid_rowconfigure(0, weight=1)
+        
+        # EventBus events display
+        self.events_frame = ttk.LabelFrame(frame, text="Real-Time Events")
+        self.events_frame.grid(row=0, column=1, rowspan=3, padx=10, pady=10, sticky="nsew")
+        
+        self.events_text = scrolledtext.ScrolledText(self.events_frame, width=50, height=20)
+        self.events_text.grid(row=0, column=0, padx=5, pady=5, sticky="nsew")
+        self.events_text.config(state=tk.DISABLED)
+        
+        self.events_frame.grid_columnconfigure(0, weight=1)
+        self.events_frame.grid_rowconfigure(0, weight=1)
+        
+        # Configure grid weights
+        frame.grid_columnconfigure(0, weight=1)
+        frame.grid_columnconfigure(1, weight=1)
+        frame.grid_rowconfigure(2, weight=1)
+        
+    def setup_trades_tab(self):
+        """Setup the trades tab with live MT5 open trades"""
+        frame = self.tab_trades
+        
+        # Open trades table
+        self.trades_frame = ttk.LabelFrame(frame, text="Open Trades")
+        self.trades_frame.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        
+        # Create treeview for trades
+        columns = ("ticket", "symbol", "type", "volume", "open_price", "sl", "tp", "profit", "comment")
+        self.trades_tree = ttk.Treeview(self.trades_frame, columns=columns, show="headings")
+        
+        # Define headings
+        self.trades_tree.heading("ticket", text="Ticket")
+        self.trades_tree.heading("symbol", text="Symbol")
+        self.trades_tree.heading("type", text="Type")
+        self.trades_tree.heading("volume", text="Volume")
+        self.trades_tree.heading("open_price", text="Open Price")
+        self.trades_tree.heading("sl", text="Stop Loss")
+        self.trades_tree.heading("tp", text="Take Profit")
+        self.trades_tree.heading("profit", text="Profit")
+        self.trades_tree.heading("comment", text="Comment")
+        
+        # Define columns
+        self.trades_tree.column("ticket", width=80)
+        self.trades_tree.column("symbol", width=80)
+        self.trades_tree.column("type", width=60)
+        self.trades_tree.column("volume", width=60)
+        self.trades_tree.column("open_price", width=80)
+        self.trades_tree.column("sl", width=80)
+        self.trades_tree.column("tp", width=80)
+        self.trades_tree.column("profit", width=80)
+        self.trades_tree.column("comment", width=150)
+        
+        # Add scrollbar
+        scrollbar = ttk.Scrollbar(self.trades_frame, orient=tk.VERTICAL, command=self.trades_tree.yview)
+        self.trades_tree.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.trades_tree.pack(fill=tk.BOTH, expand=True)
+        
+    def setup_indicators_tab(self):
+        """Setup the indicators tab with live MT5 indicators"""
+        frame = self.tab_indicators
+        
+        # Symbol selection
+        self.indicator_control_frame = ttk.Frame(frame)
+        self.indicator_control_frame.pack(padx=10, pady=10, fill=tk.X)
+        
+        ttk.Label(self.indicator_control_frame, text="Symbol:").pack(side=tk.LEFT, padx=5)
+        self.indicator_symbol_var = tk.StringVar()
+        self.indicator_symbol_combo = ttk.Combobox(self.indicator_control_frame, textvariable=self.indicator_symbol_var)
+        self.indicator_symbol_combo.pack(side=tk.LEFT, padx=5)
+        
+        ttk.Label(self.indicator_control_frame, text="Timeframe:").pack(side=tk.LEFT, padx=5)
+        self.indicator_timeframe_var = tk.StringVar()
+        self.indicator_timeframe_combo = ttk.Combobox(
+            self.indicator_control_frame, 
+            textvariable=self.indicator_timeframe_var,
+            values=["M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1", "MN"]
+        )
+        self.indicator_timeframe_combo.pack(side=tk.LEFT, padx=5)
+        self.indicator_timeframe_combo.current(4)  # Default to H1
+        
+        ttk.Button(self.indicator_control_frame, text="Load Indicators", 
+                  command=self.load_live_indicators).pack(side=tk.LEFT, padx=5)
+        
+        # Indicator display
+        self.indicators_notebook = ttk.Notebook(frame)
+        self.indicators_notebook.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        
+        # Create tabs for different indicators
+        self.macd_frame = ttk.Frame(self.indicators_notebook)
+        self.rsi_frame = ttk.Frame(self.indicators_notebook)
+        self.stoch_frame = ttk.Frame(self.indicators_notebook)
+        
+        self.indicators_notebook.add(self.macd_frame, text="MACD")
+        self.indicators_notebook.add(self.rsi_frame, text="RSI")
+        self.indicators_notebook.add(self.stoch_frame, text="Stoch RSI")
+        
+        # MACD display
+        self.macd_text = scrolledtext.ScrolledText(self.macd_frame)
+        self.macd_text.pack(fill=tk.BOTH, expand=True)
+        
+        # RSI display
+        self.rsi_text = scrolledtext.ScrolledText(self.rsi_frame)
+        self.rsi_text.pack(fill=tk.BOTH, expand=True)
+        
+        # Stoch RSI display
+        self.stoch_text = scrolledtext.ScrolledText(self.stoch_frame)
+        self.stoch_text.pack(fill=tk.BOTH, expand=True)
+        
+    def setup_telemetry_tab(self):
+        """Setup the telemetry tab with real-time system events"""
+        frame = self.tab_telemetry
+        
+        # System telemetry
+        self.telemetry_frame = ttk.LabelFrame(frame, text="System Telemetry")
+        self.telemetry_frame.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        
+        self.telemetry_text = scrolledtext.ScrolledText(self.telemetry_frame)
+        self.telemetry_text.pack(fill=tk.BOTH, expand=True)
+        
+        # Kill switch status
+        self.kill_switch_frame = ttk.LabelFrame(frame, text="Emergency Kill Switch")
+        self.kill_switch_frame.pack(padx=10, pady=10, fill=tk.X)
+        
+        self.kill_switch_status = ttk.Label(
+            self.kill_switch_frame, 
+            text="KILL SWITCH: INACTIVE", 
+            foreground="green"
+        )
+        self.kill_switch_status.pack(side=tk.LEFT, padx=10, pady=10)
+        
+        self.kill_switch_btn = ttk.Button(
+            self.kill_switch_frame, 
+            text="ACTIVATE KILL SWITCH", 
+            command=self.activate_kill_switch
+        )
+        self.kill_switch_btn.pack(side=tk.LEFT, padx=10, pady=10)
+    
+    def connect_to_mt5(self):
+        """Connect to MT5 and retrieve real account data"""
+        try:
+            # Update UI
+            self.conn_status_label.config(text="Status: Connecting...")
+            self.root.update()
+            
+            # Connect via MT5 bridge
+            result = self.mt5_bridge.connect_to_mt5()
+            
+            if result["connected"]:
+                self.connected = True
+                self.account_data = result["account_info"]
+                
+                # Update UI with real account data
+                self.conn_status_label.config(text="Status: Connected")
+                self.login_label.config(text=f"Login: {self.account_data['login']}")
+                self.server_label.config(text=f"Server: {self.account_data['server']}")
+                self.balance_label.config(text=f"Balance: ${self.account_data['balance']:.2f}")
+                self.equity_label.config(text=f"Equity: ${self.account_data['equity']:.2f}")
+                self.margin_label.config(text=f"Margin: ${self.account_data['margin']:.2f}")
+                self.free_margin_label.config(text=f"Free Margin: ${self.account_data['free_margin']:.2f}")
+                
+                # Load market symbols
+                self.load_market_symbols()
+                
+                # Load open trades
+                self.load_open_trades()
+                
+                # Log to telemetry
+                self.log_telemetry_event("mt5_connected", {
+                    "login": self.account_data['login'],
+                    "server": self.account_data['server'],
+                    "balance": self.account_data['balance']
+                })
+                
+                logger.info(f"Connected to MT5: {self.account_data['login']} on {self.account_data['server']}")
+            else:
+                messagebox.showerror("Connection Error", f"Failed to connect: {result.get('error_message', 'Unknown error')}")
+                logger.error(f"MT5 connection error: {result.get('error_message')}")
+        except Exception as e:
+            messagebox.showerror("Connection Error", f"Error: {str(e)}")
+            logger.exception("Error connecting to MT5")
+    
+    def load_market_symbols(self):
+        """Load real-time market symbols from MT5 Market Watch"""
+        if not self.connected:
+            logger.warning("Cannot load symbols - not connected to MT5")
+            return
+        
+        try:
+            # Sync market data from MT5
+            result = self.mt5_bridge.sync_market_data()
+            
+            if result["success"]:
+                # Clear existing symbols
+                self.symbols_list.delete(0, tk.END)
+                self.symbols = []
+                
+                # Add all symbols to the list
+                for symbol_data in result["active_symbols"]:
+                    symbol_name = symbol_data["symbol"]
+                    self.symbols.append(symbol_name)
+                    self.symbols_list.insert(tk.END, f"{symbol_name} - Bid: {symbol_data['bid']:.5f} Ask: {symbol_data['ask']:.5f}")
+                
+                # Update indicator symbol dropdown
+                self.indicator_symbol_combo['values'] = self.symbols
+                if self.symbols:
+                    self.indicator_symbol_var.set(self.symbols[0])
+                
+                logger.info(f"Loaded {len(self.symbols)} symbols from MT5 Market Watch")
+            else:
+                logger.error(f"Failed to sync market data: {result.get('error')}")
+                
+        except Exception as e:
+            logger.exception("Error loading market symbols")
+    
+    def load_open_trades(self):
+        """Load real-time open trades from MT5"""
+        if not self.connected:
+            logger.warning("Cannot load trades - not connected to MT5")
+            return
+        
+        try:
+            # Clear existing trades
+            for item in self.trades_tree.get_children():
+                self.trades_tree.delete(item)
+            
+            # Get positions from MT5
+            positions = mt5.positions_get()
+            
+            if positions is None:
+                logger.warning("No positions retrieved from MT5")
+                return
+            
+            # Convert to list of dictionaries
+            positions_list = []
+            for position in positions:
+                position_dict = {
+                    "ticket": position.ticket,
+                    "symbol": position.symbol,
+                    "type": "BUY" if position.type == 0 else "SELL",
+                    "volume": position.volume,
+                    "open_price": position.price_open,
+                    "sl": position.sl,
+                    "tp": position.tp,
+                    "profit": position.profit,
+                    "comment": position.comment
+                }
+                positions_list.append(position_dict)
+            
+            # Update trades tree
+            for pos in positions_list:
+                values = (
+                    pos["ticket"],
+                    pos["symbol"],
+                    pos["type"],
+                    pos["volume"],
+                    f"{pos['open_price']:.5f}",
+                    f"{pos['sl']:.5f}" if pos['sl'] > 0 else "-",
+                    f"{pos['tp']:.5f}" if pos['tp'] > 0 else "-",
+                    f"{pos['profit']:.2f}",
+                    pos["comment"]
+                )
+                self.trades_tree.insert("", tk.END, values=values)
+            
+            logger.info(f"Loaded {len(positions_list)} open trades from MT5")
+            
+        except Exception as e:
+            logger.exception("Error loading open trades")
+    
+    def load_live_indicators(self):
+        """Load live indicators from MT5 for selected symbol and timeframe"""
+        if not self.connected:
+            messagebox.showwarning("Not Connected", "Please connect to MT5 first")
+            return
+        
+        symbol = self.indicator_symbol_var.get()
+        timeframe_str = self.indicator_timeframe_var.get()
+        
+        # Map timeframe string to MT5 timeframe constant
+        timeframe_map = {
+            "M1": mt5.TIMEFRAME_M1,
+            "M5": mt5.TIMEFRAME_M5,
+            "M15": mt5.TIMEFRAME_M15,
+            "M30": mt5.TIMEFRAME_M30,
+            "H1": mt5.TIMEFRAME_H1,
+            "H4": mt5.TIMEFRAME_H4,
+            "D1": mt5.TIMEFRAME_D1,
+            "W1": mt5.TIMEFRAME_W1,
+            "MN": mt5.TIMEFRAME_MN1
+        }
+        timeframe = timeframe_map.get(timeframe_str, mt5.TIMEFRAME_H1)
+        
+        try:
+            # Load historical data for indicators
+            rates = mt5.copy_rates_from_pos(symbol, timeframe, 0, 100)
+            if rates is None or len(rates) == 0:
+                messagebox.showwarning("Data Error", f"Could not retrieve data for {symbol} {timeframe_str}")
+                return
+            
+            # Convert to pandas DataFrame
+            rates_df = pd.DataFrame(rates)
+            rates_df['time'] = pd.to_datetime(rates_df['time'], unit='s')
+            
+            # Calculate indicators
+            self.calculate_macd(rates_df)
+            self.calculate_rsi(rates_df)
+            self.calculate_stoch_rsi(rates_df)
+            
+            logger.info(f"Loaded indicators for {symbol} {timeframe_str}")
+            
+        except Exception as e:
+            logger.exception(f"Error loading indicators: {str(e)}")
+            messagebox.showerror("Indicator Error", f"Error calculating indicators: {str(e)}")
+    
+    def calculate_macd(self, df):
+        """Calculate MACD indicator from live MT5 data"""
+        try:
+            # Calculate EMA12 and EMA26
+            ema12 = df['close'].ewm(span=12, adjust=False).mean()
+            ema26 = df['close'].ewm(span=26, adjust=False).mean()
+            
+            # Calculate MACD line and signal line
+            macd_line = ema12 - ema26
+            signal_line = macd_line.ewm(span=9, adjust=False).mean()
+            histogram = macd_line - signal_line
+            
+            # Display results
+            self.macd_text.config(state=tk.NORMAL)
+            self.macd_text.delete(1.0, tk.END)
+            
+            self.macd_text.insert(tk.END, "MACD INDICATOR - LIVE MT5 DATA\n")
+            self.macd_text.insert(tk.END, f"Symbol: {self.indicator_symbol_var.get()}\n")
+            self.macd_text.insert(tk.END, f"Timeframe: {self.indicator_timeframe_var.get()}\n\n")
+            self.macd_text.insert(tk.END, "Last 10 values:\n\n")
+            
+            # Show last 10 values
+            for i in range(min(10, len(df))):
+                idx = len(df) - i - 1
+                self.macd_text.insert(tk.END, f"Time: {df['time'].iloc[idx]}\n")
+                self.macd_text.insert(tk.END, f"MACD Line: {macd_line.iloc[idx]:.6f}\n")
+                self.macd_text.insert(tk.END, f"Signal Line: {signal_line.iloc[idx]:.6f}\n")
+                self.macd_text.insert(tk.END, f"Histogram: {histogram.iloc[idx]:.6f}\n")
+                
+                # Add buy/sell indication
+                if macd_line.iloc[idx] > signal_line.iloc[idx]:
+                    self.macd_text.insert(tk.END, "Signal: BUY\n\n")
+                else:
+                    self.macd_text.insert(tk.END, "Signal: SELL\n\n")
+            
+            self.macd_text.config(state=tk.DISABLED)
+            
+        except Exception as e:
+            logger.exception(f"Error calculating MACD: {str(e)}")
+            self.macd_text.config(state=tk.NORMAL)
+            self.macd_text.delete(1.0, tk.END)
+            self.macd_text.insert(tk.END, f"Error calculating MACD: {str(e)}")
+            self.macd_text.config(state=tk.DISABLED)
+    
+    def calculate_rsi(self, df):
+        """Calculate RSI indicator from live MT5 data"""
+        try:
+            # Calculate RSI
+            delta = df['close'].diff()
+            gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+            loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+            
+            # Calculate RS and RSI
+            rs = gain / loss
+            rsi = 100 - (100 / (1 + rs))
+            
+            # Display results
+            self.rsi_text.config(state=tk.NORMAL)
+            self.rsi_text.delete(1.0, tk.END)
+            
+            self.rsi_text.insert(tk.END, "RSI INDICATOR - LIVE MT5 DATA\n")
+            self.rsi_text.insert(tk.END, f"Symbol: {self.indicator_symbol_var.get()}\n")
+            self.rsi_text.insert(tk.END, f"Timeframe: {self.indicator_timeframe_var.get()}\n\n")
+            self.rsi_text.insert(tk.END, "Last 10 values:\n\n")
+            
+            # Show last 10 values
+            for i in range(min(10, len(df))):
+                idx = len(df) - i - 1
+                if idx < 14:  # RSI needs at least 14 periods
+                    continue
+                    
+                self.rsi_text.insert(tk.END, f"Time: {df['time'].iloc[idx]}\n")
+                self.rsi_text.insert(tk.END, f"RSI: {rsi.iloc[idx]:.2f}\n")
+                
+                # Add overbought/oversold indication
+                if rsi.iloc[idx] > 70:
+                    self.rsi_text.insert(tk.END, "Signal: OVERBOUGHT (Potential Sell)\n\n")
+                elif rsi.iloc[idx] < 30:
+                    self.rsi_text.insert(tk.END, "Signal: OVERSOLD (Potential Buy)\n\n")
+                else:
+                    self.rsi_text.insert(tk.END, "Signal: NEUTRAL\n\n")
+            
+            self.rsi_text.config(state=tk.DISABLED)
+            
+        except Exception as e:
+            logger.exception(f"Error calculating RSI: {str(e)}")
+            self.rsi_text.config(state=tk.NORMAL)
+            self.rsi_text.delete(1.0, tk.END)
+            self.rsi_text.insert(tk.END, f"Error calculating RSI: {str(e)}")
+            self.rsi_text.config(state=tk.DISABLED)
+    
+    def calculate_stoch_rsi(self, df):
+        """Calculate Stochastic RSI indicator from live MT5 data"""
+        try:
+            # Calculate RSI first
+            delta = df['close'].diff()
+            gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+            loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+            rs = gain / loss
+            rsi = 100 - (100 / (1 + rs))
+            
+            # Calculate Stochastic RSI
+            stoch_window = 14
+            min_rsi = rsi.rolling(window=stoch_window).min()
+            max_rsi = rsi.rolling(window=stoch_window).max()
+            
+            # %K line (raw Stoch RSI)
+            k = 100 * (rsi - min_rsi) / (max_rsi - min_rsi)
+            
+            # %D line (3-period SMA of %K)
+            d = k.rolling(window=3).mean()
+            
+            # Display results
+            self.stoch_text.config(state=tk.NORMAL)
+            self.stoch_text.delete(1.0, tk.END)
+            
+            self.stoch_text.insert(tk.END, "STOCHASTIC RSI INDICATOR - LIVE MT5 DATA\n")
+            self.stoch_text.insert(tk.END, f"Symbol: {self.indicator_symbol_var.get()}\n")
+            self.stoch_text.insert(tk.END, f"Timeframe: {self.indicator_timeframe_var.get()}\n\n")
+            self.stoch_text.insert(tk.END, "Last 10 values:\n\n")
+            
+            # Show last 10 values
+            for i in range(min(10, len(df))):
+                idx = len(df) - i - 1
+                if idx < 28:  # Stoch RSI needs at least 14+14 periods
+                    continue
+                    
+                self.stoch_text.insert(tk.END, f"Time: {df['time'].iloc[idx]}\n")
+                self.stoch_text.insert(tk.END, f"Stoch RSI %K: {k.iloc[idx]:.2f}\n")
+                self.stoch_text.insert(tk.END, f"Stoch RSI %D: {d.iloc[idx]:.2f}\n")
+                
+                # Add overbought/oversold indication
+                if k.iloc[idx] > 80:
+                    self.stoch_text.insert(tk.END, "Signal: OVERBOUGHT (Potential Sell)\n\n")
+                elif k.iloc[idx] < 20:
+                    self.stoch_text.insert(tk.END, "Signal: OVERSOLD (Potential Buy)\n\n")
+                else:
+                    self.stoch_text.insert(tk.END, "Signal: NEUTRAL\n\n")
+            
+            self.stoch_text.config(state=tk.DISABLED)
+            
+        except Exception as e:
+            logger.exception(f"Error calculating Stochastic RSI: {str(e)}")
+            self.stoch_text.config(state=tk.NORMAL)
+            self.stoch_text.delete(1.0, tk.END)
+            self.stoch_text.insert(tk.END, f"Error calculating Stochastic RSI: {str(e)}")
+            self.stoch_text.config(state=tk.DISABLED)
+    
+    def register_event_handlers(self):
+        """Register handlers for real-time EventBus events"""
+        # Subscribe to execution events
+        subscribe_to_event("execution:fill", self.handle_execution_event)
+        subscribe_to_event("alert:kill_switch", self.handle_kill_switch_event)
+        subscribe_to_event("telemetry:heartbeat", self.handle_telemetry_event)
+        
+        logger.info("EventBus handlers registered")
+    
+    def handle_execution_event(self, event_data):
+        """Handle real-time execution events"""
+        self.event_queue.put(("execution", event_data))
+    
+    def handle_kill_switch_event(self, event_data):
+        """Handle kill switch activation events"""
+        self.event_queue.put(("kill_switch", event_data))
+    
+    def handle_telemetry_event(self, event_data):
+        """Handle telemetry heartbeat events"""
+        self.event_queue.put(("telemetry", event_data))
+    
+    def process_event_queue(self):
+        """Process events from the queue and update UI"""
+        try:
+            while not self.event_queue.empty():
+                event_type, event_data = self.event_queue.get_nowait()
+                
+                if event_type == "execution":
+                    self.update_execution_display(event_data)
+                    # Refresh trades list with latest data
+                    self.load_open_trades()
+                    
+                elif event_type == "kill_switch":
+                    self.update_kill_switch_display(event_data)
+                    
+                elif event_type == "telemetry":
+                    self.update_telemetry_display(event_data)
+        except queue.Empty:
+    raise NotImplementedError("Real implementation required - no stubs allowed in production")
+        except Exception as e:
+            logger.exception(f"Error processing event queue: {str(e)}")
+            
+        # Schedule next queue check
+        self.root.after(100, self.process_event_queue)
+    
+    def update_execution_display(self, event_data):
+        """Update UI with execution event data"""
+        self.events_text.config(state=tk.NORMAL)
+        self.events_text.insert(tk.END, f"EXECUTION: {datetime.now().strftime('%H:%M:%S')}\n")
+        self.events_text.insert(tk.END, f"Signal ID: {event_data.get('signal_id', 'N/A')}\n")
+        self.events_text.insert(tk.END, f"Symbol: {event_data.get('symbol', 'N/A')}\n")
+        self.events_text.insert(tk.END, f"Action: {event_data.get('action', 'N/A')}\n")
+        self.events_text.insert(tk.END, f"Volume: {event_data.get('lot_size', 0.0)}\n")
+        self.events_text.insert(tk.END, f"Ticket: {event_data.get('ticket', 'N/A')}\n")
+        self.events_text.insert(tk.END, f"Price: {event_data.get('price', 0.0)}\n")
+        self.events_text.insert(tk.END, "-" * 40 + "\n")
+        
+        # Auto-scroll to bottom
+        self.events_text.see(tk.END)
+        self.events_text.config(state=tk.DISABLED)
+    
+    def update_kill_switch_display(self, event_data):
+        """Update UI with kill switch event data"""
+        self.kill_switch_status.config(
+            text="KILL SWITCH: ACTIVE", 
+            foreground="red"
+        )
+        
+        # Log to events display
+        self.events_text.config(state=tk.NORMAL)
+        self.events_text.insert(tk.END, f"⚠️ KILL SWITCH ACTIVATED: {datetime.now().strftime('%H:%M:%S')}\n")
+        self.events_text.insert(tk.END, f"Reason: {event_data.get('reason', 'Emergency Activation')}\n")
+        self.events_text.insert(tk.END, f"Triggered by: {event_data.get('source', 'System')}\n")
+        self.events_text.insert(tk.END, "-" * 40 + "\n")
+        self.events_text.see(tk.END)
+        self.events_text.config(state=tk.DISABLED)
+        
+        # Log to telemetry
+        self.log_telemetry_event("kill_switch_activated", event_data)
+    
+    def update_telemetry_display(self, event_data):
+        """Update UI with telemetry event data"""
+        timestamp = datetime.now().strftime('%H:%M:%S')
+        
+        self.telemetry_text.config(state=tk.NORMAL)
+        self.telemetry_text.insert(tk.END, f"TELEMETRY: {timestamp}\n")
+        
+        # Format and display telemetry data nicely
+        for key, value in event_data.items():
+            if key not in ["timestamp", "type"]:
+                if isinstance(value, dict):
+                    self.telemetry_text.insert(tk.END, f"{key}:\n")
+                    for k, v in value.items():
+                        self.telemetry_text.insert(tk.END, f"  {k}: {v}\n")
+                else:
+                    self.telemetry_text.insert(tk.END, f"{key}: {value}\n")
+        
+        self.telemetry_text.insert(tk.END, "-" * 40 + "\n")
+        self.telemetry_text.see(tk.END)
+        self.telemetry_text.config(state=tk.DISABLED)
+    
+    def activate_kill_switch(self):
+        """Manually activate the kill switch"""
+        result = messagebox.askyesno(
+            "Kill Switch Confirmation", 
+            "Are you sure you want to activate the EMERGENCY KILL SWITCH?\n\n"
+            "This will immediately close all open positions and prevent new trades."
+        )
+        
+        if result:
+            # Emit kill switch event
+            emit_event("alert:kill_switch", {
+                "action": "ACTIVATE",
+                "source": "dashboard_ui",
+                "reason": "Manual activation",
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+            
+            # Update UI
+            self.kill_switch_status.config(
+                text="KILL SWITCH: ACTIVE", 
+                foreground="red"
+            )
+            
+            logger.warning("Kill switch manually activated")
+    
+    def refresh_account_data(self):
+        """Refresh account data from MT5"""
+        if not self.connected:
+            return
+        
+        try:
+            # Get account info directly from MT5
+            account_info = mt5.account_info()
+            if account_info is None:
+                logger.warning("Failed to retrieve account info")
+                return
+            
+            # Update account data
+            self.account_data = {
+                "login": account_info.login,
+                "trade_mode": account_info.trade_mode,
+                "balance": account_info.balance,
+                "equity": account_info.equity,
+                "margin": account_info.margin,
+                "free_margin": getattr(account_info, 'margin_free', account_info.equity - account_info.margin),
+                "margin_level": getattr(account_info, 'margin_level', 0.0),
+                "currency": account_info.currency
+            }
+            
+            # Update UI
+            self.balance_label.config(text=f"Balance: ${self.account_data['balance']:.2f}")
+            self.equity_label.config(text=f"Equity: ${self.account_data['equity']:.2f}")
+            self.margin_label.config(text=f"Margin: ${self.account_data['margin']:.2f}")
+            self.free_margin_label.config(text=f"Free Margin: ${self.account_data['free_margin']:.2f}")
+            
+        except Exception as e:
+            logger.exception(f"Error refreshing account data: {str(e)}")
+    
+    def log_telemetry_event(self, event_type, data):
+        """Log telemetry event to the system"""
+        try:
+            # Add timestamp and session info
+            event_data = {
+                **data,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "source": "genesis_dashboard_ui",
+                "session_id": str(uuid.uuid4())[:8]
+            }
+            
+            # Emit telemetry event
+            emit_event(f"telemetry:{event_type}", event_data)
+            
+            # Also update telemetry display
+            self.update_telemetry_display(event_data)
+            
+        except Exception as e:
+            logger.exception(f"Error logging telemetry: {str(e)}")
+    
+    def start_real_time_updates(self):
+        """Start threads for real-time updates"""
+        # Start event queue processor
+        self.process_event_queue()
+        
+        # Schedule periodic data refreshes
+        self.schedule_periodic_updates()
+    
+    def schedule_periodic_updates(self):
+        """Schedule periodic updates for real-time data"""
+        # Update account data every 5 seconds
+        def refresh_account():
+            self.refresh_account_data()
+            self.root.after(5000, refresh_account)
+        
+        # Update market data every 10 seconds
+        def refresh_market():
+            if self.connected:
+                self.load_market_symbols()
+            self.root.after(10000, refresh_market)
+        
+        # Update trades every 3 seconds
+        def refresh_trades():
+            if self.connected:
+                self.load_open_trades()
+            self.root.after(3000, refresh_trades)
+        
+        # Start the refresh cycles
+        self.root.after(5000, refresh_account)
+        self.root.after(10000, refresh_market)
+        self.root.after(3000, refresh_trades)
+        
+        # Emit heartbeat every 15 seconds
+        def emit_heartbeat():
+            if self.connected:
+                self.log_telemetry_event("heartbeat", {
+                    "dashboard_status": "active",
+                    "mt5_connected": self.connected,
+                    "account_balance": self.account_data.get("balance", 0.0),
+                    "account_equity": self.account_data.get("equity", 0.0)
+                })
+            self.root.after(15000, emit_heartbeat)
+        
+        self.root.after(15000, emit_heartbeat)
+    
+    def run(self):
+        """Run the dashboard application"""
+        try:
+            self.root.mainloop()
+        except Exception as e:
+            logger.exception(f"Error in main loop: {str(e)}")
+        finally:
+            # Shutdown MT5 connection on exit
+            if MT5_AVAILABLE and mt5.terminal_info() is not None:
+                mt5.shutdown()
+                logger.info("MT5 connection closed")
+
+if __name__ == "__main__":
+    # Initialize and run dashboard
+    dashboard = GenesisDashboardLiveSync()
+    dashboard.run()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: genesis_dashboard_ui_live_sync -->

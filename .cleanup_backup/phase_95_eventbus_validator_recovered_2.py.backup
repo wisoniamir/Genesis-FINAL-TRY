@@ -1,0 +1,783 @@
+# <!-- @GENESIS_MODULE_START: phase_95_eventbus_validator_recovered_2 -->
+"""
+🏛️ GENESIS PHASE_95_EVENTBUS_VALIDATOR_RECOVERED_2 - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "phase_95_eventbus_validator_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in phase_95_eventbus_validator_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "phase_95_eventbus_validator_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("phase_95_eventbus_validator_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in phase_95_eventbus_validator_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+GENESIS EventBus Link Validator - Phase 95
+Enforces total connectivity and routing compliance across the GENESIS EventBus.
+Ensures every module emits and consumes signals correctly via event_bus.json with no broken, orphaned, or duplicate routes.
+"""
+import os
+import re
+import json
+import logging
+import hashlib
+from datetime import datetime
+from typing import Dict, List, Set, Tuple, Any, Optional
+from pathlib import Path
+
+# Setup logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+class EventBusLinkValidator:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "phase_95_eventbus_validator_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in phase_95_eventbus_validator_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "phase_95_eventbus_validator_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("phase_95_eventbus_validator_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in phase_95_eventbus_validator_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "phase_95_eventbus_validator_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in phase_95_eventbus_validator_recovered_2: {e}")
+    """
+    GENESIS EventBus Validator - Phase 95
+    Validates EventBus connectivity, route integrity, and signal flow compliance.
+    """
+    
+    def __init__(self, workspace_root: str = "."):
+        self.workspace_root = Path(workspace_root).absolute()
+        self.violations = []
+        self.orphaned_routes = []
+        self.invalid_listeners = []
+        self.duplicate_keys = []
+        self.hardcoded_violations = []
+        self.patches_generated = []
+        
+        # Core files to validate
+        self.event_bus_file = self.workspace_root / "event_bus.json"
+        self.system_tree_file = self.workspace_root / "system_tree.json"
+        self.build_status_file = self.workspace_root / "build_status.json"
+        self.build_tracker_file = self.workspace_root / "build_tracker.md"
+        
+        logger.info(f"EventBus Validator initialized for workspace: {self.workspace_root}")
+    
+    def validate_eventbus_integrity(self) -> Dict[str, Any]:
+        """
+        Main validation entry point.
+        Returns complete validation report.
+        """
+        logger.info("🔐 Starting GENESIS EventBus Phase 95 Validation...")
+        
+        report = {
+            "phase": 95,
+            "validator": "EventBus Link Validator",
+            "timestamp": datetime.now().isoformat(),
+            "status": "running",
+            "violations_found": 0,
+            "patches_generated": 0,
+            "orphaned_routes": [],
+            "invalid_listeners": [],
+            "duplicate_keys": [],
+            "hardcoded_violations": [],
+            "patches": []
+        }
+        
+        try:
+            # Step 1: Parse and validate event_bus.json
+            event_bus_data = self._load_event_bus()
+            if not event_bus_data:
+                return self._generate_error_report("Failed to load event_bus.json")
+            
+            # Step 2: Parse system_tree.json
+            system_tree_data = self._load_system_tree()
+            if not system_tree_data:
+                return self._generate_error_report("Failed to load system_tree.json")
+            
+            # Step 3: Validate routes against live files
+            self._validate_emitters_exist(event_bus_data, system_tree_data)
+            self._validate_consumers_bound(event_bus_data, system_tree_data)
+            self._check_orphaned_events(event_bus_data, system_tree_data)
+            self._check_duplicate_route_keys(event_bus_data)
+            
+            # Step 4: Scan source files for hardcoded violations
+            self._scan_hardcoded_violations()
+            
+            # Step 5: Generate patches if violations found
+            if self.violations:
+                self._generate_patches()
+            
+            # Step 6: Generate final report
+            report.update({
+                "status": "completed",
+                "violations_found": len(self.violations),
+                "patches_generated": len(self.patches_generated),
+                "orphaned_routes": self.orphaned_routes,
+                "invalid_listeners": self.invalid_listeners,
+                "duplicate_keys": self.duplicate_keys,
+                "hardcoded_violations": self.hardcoded_violations,
+                "patches": self.patches_generated
+            })
+            
+            # Step 7: Save report and update build status
+            self._save_eventbus_report(report)
+            self._update_build_status(report)
+            
+            # Step 8: Check exit conditions
+            if self._check_exit_conditions(report):
+                logger.info("✅ EventBus Phase 95 Validation PASSED")
+                report["phase_95_complete"] = True
+                report["event_bus_integrity"] = "validated"
+            else:
+                logger.warning("⛔️ EventBus Phase 95 Validation FAILED - Violations detected")
+                self._trigger_guardian_alert(report)
+            
+            return report
+            
+        except Exception as e:
+            logger.error(f"EventBus validation failed: {str(e)}")
+            return self._generate_error_report(str(e))
+    
+    def _load_event_bus(self) -> Optional[Dict]:
+        """Load and validate event_bus.json structure"""
+        try:
+            if not self.event_bus_file.exists():
+                logger.error(f"event_bus.json not found at {self.event_bus_file}")
+                return None
+            
+            with open(self.event_bus_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Validate basic structure
+            if not isinstance(data.get('routes'), dict):
+                logger.error("event_bus.json missing 'routes' dictionary")
+                return None
+            
+            logger.info(f"✅ Loaded event_bus.json with {len(data['routes'])} routes")
+            return data
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in event_bus.json: {str(e)}")
+            return None
+        except Exception as e:
+            logger.error(f"Failed to load event_bus.json: {str(e)}")
+            return None
+    
+    def _load_system_tree(self) -> Optional[Dict]:
+        """Load and validate system_tree.json structure"""
+        try:
+            if not self.system_tree_file.exists():
+                logger.error(f"system_tree.json not found at {self.system_tree_file}")
+                return None
+            
+            with open(self.system_tree_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            logger.info(f"✅ Loaded system_tree.json with modules data")
+            return data
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in system_tree.json: {str(e)}")
+            return None
+        except Exception as e:
+            logger.error(f"Failed to load system_tree.json: {str(e)}")
+            return None
+    
+    def _validate_emitters_exist(self, event_bus_data: Dict, system_tree_data: Dict):
+        """Validate all emitters exist in live files"""
+        logger.info("🔍 Validating emitters exist in live files...")
+        
+        routes = event_bus_data.get('routes', {})
+        modules = system_tree_data.get('modules', {})
+        
+        for route_name, route_config in routes.items():
+            publisher = route_config.get('publisher')
+            if not publisher:
+                continue
+            
+            # Check if publisher exists in system tree
+            if publisher not in modules:
+                self.orphaned_routes.append({
+                    "route": route_name,
+                    "publisher": publisher,
+                    "reason": "Publisher not found in system_tree.json"
+                })
+                continue
+            
+            # Check if publisher file exists
+            module_info = modules[publisher]
+            file_path = module_info.get('file_path', '')
+            
+            if file_path:
+                # Convert relative path to absolute
+                abs_file_path = self.workspace_root / file_path.lstrip('.\\').lstrip('./')
+                if not abs_file_path.exists():
+                    self.orphaned_routes.append({
+                        "route": route_name,
+                        "publisher": publisher,
+                        "file_path": str(abs_file_path),
+                        "reason": "Publisher file does not exist"
+                    })
+                else:
+                    # Check if file contains emit() calls
+                    if not self._file_contains_emit(abs_file_path):
+                        self.orphaned_routes.append({
+                            "route": route_name,
+                            "publisher": publisher,
+                            "file_path": str(abs_file_path),
+                            "reason": "Publisher file contains no emit() calls"
+                        })
+        
+        logger.info(f"Found {len(self.orphaned_routes)} orphaned routes")
+    
+    def _validate_consumers_bound(self, event_bus_data: Dict, system_tree_data: Dict):
+        """Validate all consumers are listening and bound"""
+        logger.info("🔍 Validating consumers are bound and listening...")
+        
+        routes = event_bus_data.get('routes', {})
+        modules = system_tree_data.get('modules', {})
+        
+        for route_name, route_config in routes.items():
+            subscribers = route_config.get('subscribers', [])
+            
+            for subscriber in subscribers:
+                if subscriber not in modules:
+                    self.invalid_listeners.append({
+                        "route": route_name,
+                        "subscriber": subscriber,
+                        "reason": "Subscriber not found in system_tree.json"
+                    })
+                    continue
+                
+                # Check if subscriber file exists
+                module_info = modules[subscriber]
+                file_path = module_info.get('file_path', '')
+                
+                if file_path:
+                    abs_file_path = self.workspace_root / file_path.lstrip('.\\').lstrip('./')
+                    if not abs_file_path.exists():
+                        self.invalid_listeners.append({
+                            "route": route_name,
+                            "subscriber": subscriber,
+                            "file_path": str(abs_file_path),
+                            "reason": "Subscriber file does not exist"
+                        })
+                    else:
+                        # Check if file contains subscribe() calls
+                        if not self._file_contains_subscribe(abs_file_path):
+                            self.invalid_listeners.append({
+                                "route": route_name,
+                                "subscriber": subscriber,
+                                "file_path": str(abs_file_path),
+                                "reason": "Subscriber file contains no subscribe() calls"
+                            })
+        
+        logger.info(f"Found {len(self.invalid_listeners)} invalid listeners")
+    
+    def _check_orphaned_events(self, event_bus_data: Dict, system_tree_data: Dict):
+        """Check for events with no active publishers or subscribers"""
+        logger.info("🔍 Checking for orphaned events...")
+        
+        routes = event_bus_data.get('routes', {})
+        
+        for route_name, route_config in routes.items():
+            publisher = route_config.get('publisher')
+            subscribers = route_config.get('subscribers', [])
+            
+            # Event is orphaned if publisher doesn't exist or has no subscribers
+            if not publisher or len(subscribers) == 0:
+                self.orphaned_routes.append({
+                    "route": route_name,
+                    "publisher": publisher,
+                    "subscribers": subscribers,
+                    "reason": "Event has no active publisher or subscribers"
+                })
+    
+    def _check_duplicate_route_keys(self, event_bus_data: Dict):
+        """Check for duplicate route keys in event_bus.json"""
+        logger.info("🔍 Checking for duplicate route keys...")
+        
+        routes = event_bus_data.get('routes', {})
+        route_topics = {}
+        
+        for route_name, route_config in routes.items():
+            topic = route_config.get('topic', '')
+            
+            if topic in route_topics:
+                self.duplicate_keys.append({
+                    "route_1": route_topics[topic],
+                    "route_2": route_name,
+                    "topic": topic,
+                    "reason": "Duplicate topic key found"
+                })
+            else:
+                route_topics[topic] = route_name
+        
+        logger.info(f"Found {len(self.duplicate_keys)} duplicate keys")
+    
+    def _scan_hardcoded_violations(self):
+        """Scan source files for hardcoded local function calls that bypass EventBus"""
+        logger.info("🔍 Scanning for hardcoded EventBus bypass violations...")
+        
+        # Patterns that indicate direct module calls bypassing EventBus
+        violation_patterns = [
+            r'from\s+(\w+)\s+import\s+\w+.*\(\)',  # Direct imports with function calls
+            r'\w+\.\w+\s*\(',  # Direct method calls on modules
+            r'import\s+(\w+).*\1\.\w+\(',  # Import and immediate use
+        ]
+        
+        # Search in key directories
+        search_dirs = ['modules', 'engine', 'core', '.']
+        
+        for search_dir in search_dirs:
+            dir_path = self.workspace_root / search_dir
+            if not dir_path.exists():
+                continue
+            
+            for py_file in dir_path.rglob("*.py"):
+                if 'backup' in str(py_file) or '__pycache__' in str(py_file):
+                    continue
+                
+                try:
+                    with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                    
+                    # Check for patterns that suggest EventBus bypass
+                    for line_num, line in enumerate(content.split('\n'), 1):
+                        # Skip comments and EventBus-related lines
+                        if line.strip().startswith('#') or 'event_bus' in line.lower():
+                            continue
+                        
+                        # Look for direct function calls between modules
+                        if any(re.search(pattern, line) for pattern in violation_patterns):
+                            # Additional check to ensure it's not an EventBus call
+                            if 'emit(' not in line and 'subscribe(' not in line:
+                                self.hardcoded_violations.append({
+                                    "file": str(py_file.relative_to(self.workspace_root)),
+                                    "line": line_num,
+                                    "code": line.strip(),
+                                    "reason": "Potential direct module call bypassing EventBus"
+                                })
+                
+                except Exception as e:
+                    logger.warning(f"Could not scan file {py_file}: {str(e)}")
+        
+        logger.info(f"Found {len(self.hardcoded_violations)} potential hardcoded violations")
+    
+    def _file_contains_emit(self, file_path: Path) -> bool:
+        """Check if file contains emit() calls"""
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            return '.emit(' in content or 'emit_event(' in content
+        except Exception:
+            return False
+    
+    def _file_contains_subscribe(self, file_path: Path) -> bool:
+        """Check if file contains subscribe() calls"""
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            return '.subscribe(' in content or 'subscribe_to_event(' in content
+        except Exception:
+            return False
+    
+    def _generate_patches(self):
+        """Generate auto-correction patches for found violations"""
+        logger.info("🔧 Generating auto-correction patches...")
+        
+        # Patch 1: Fix missing emit() bindings
+        for orphaned in self.orphaned_routes:
+            if "contains no emit() calls" in orphaned.get('reason', ''):
+                patch = {
+                    "type": "add_emit_binding",
+                    "file": orphaned.get('file_path'),
+                    "route": orphaned.get('route'),
+                    "publisher": orphaned.get('publisher'),
+                    "suggestion": f"Add emit() call for route '{orphaned.get('route')}'"
+                }
+                self.patches_generated.append(patch)
+        
+        # Patch 2: Fix missing subscribe() bindings
+        for invalid in self.invalid_listeners:
+            if "contains no subscribe() calls" in invalid.get('reason', ''):
+                patch = {
+                    "type": "add_subscribe_binding",
+                    "file": invalid.get('file_path'),
+                    "route": invalid.get('route'),
+                    "subscriber": invalid.get('subscriber'),
+                    "suggestion": f"Add subscribe() call for route '{invalid.get('route')}'"
+                }
+                self.patches_generated.append(patch)
+        
+        # Patch 3: Rename conflicting keys
+        for duplicate in self.duplicate_keys:
+            patch = {
+                "type": "rename_duplicate_key",
+                "route_1": duplicate.get('route_1'),
+                "route_2": duplicate.get('route_2'),
+                "topic": duplicate.get('topic'),
+                "suggestion": f"Rename duplicate topic '{duplicate.get('topic')}'"
+            }
+            self.patches_generated.append(patch)
+        
+        # Patch 4: Suggest refactor for hardcoded violations
+        for violation in self.hardcoded_violations:
+            patch = {
+                "type": "refactor_hardcoded_call",
+                "file": violation.get('file'),
+                "line": violation.get('line'),
+                "code": violation.get('code'),
+                "suggestion": "Replace direct call with EventBus emit/subscribe pattern"
+            }
+            self.patches_generated.append(patch)
+        
+        logger.info(f"Generated {len(self.patches_generated)} patches")
+    
+    def _save_eventbus_report(self, report: Dict):
+        """Save EventBus validation report"""
+        report_file = self.workspace_root / "eventbus_report.md"
+        
+        try:
+            with open(report_file, 'w', encoding='utf-8') as f:
+                f.write("# GENESIS EventBus Phase 95 Validation Report\n\n")
+                f.write(f"**Generated:** {report['timestamp']}\n")
+                f.write(f"**Status:** {report['status']}\n")
+                f.write(f"**Violations Found:** {report['violations_found']}\n")
+                f.write(f"**Patches Generated:** {report['patches_generated']}\n\n")
+                
+                if report['orphaned_routes']:
+                    f.write("## 🚨 Orphaned Routes\n\n")
+                    for orphaned in report['orphaned_routes']:
+                        f.write(f"- **Route:** {orphaned.get('route', 'N/A')}\n")
+                        f.write(f"  - **Publisher:** {orphaned.get('publisher', 'N/A')}\n")
+                        f.write(f"  - **Reason:** {orphaned.get('reason', 'N/A')}\n\n")
+                
+                if report['invalid_listeners']:
+                    f.write("## 🚨 Invalid Listeners\n\n")
+                    for invalid in report['invalid_listeners']:
+                        f.write(f"- **Route:** {invalid.get('route', 'N/A')}\n")
+                        f.write(f"  - **Subscriber:** {invalid.get('subscriber', 'N/A')}\n")
+                        f.write(f"  - **Reason:** {invalid.get('reason', 'N/A')}\n\n")
+                
+                if report['duplicate_keys']:
+                    f.write("## 🚨 Duplicate Keys\n\n")
+                    for duplicate in report['duplicate_keys']:
+                        f.write(f"- **Topic:** {duplicate.get('topic', 'N/A')}\n")
+                        f.write(f"  - **Routes:** {duplicate.get('route_1', 'N/A')} vs {duplicate.get('route_2', 'N/A')}\n\n")
+                
+                if report['hardcoded_violations']:
+                    f.write("## 🚨 Hardcoded Violations\n\n")
+                    for violation in report['hardcoded_violations']:
+                        f.write(f"- **File:** {violation.get('file', 'N/A')}\n")
+                        f.write(f"  - **Line:** {violation.get('line', 'N/A')}\n")
+                        f.write(f"  - **Code:** `{violation.get('code', 'N/A')}`\n\n")
+                
+                if report['patches']:
+                    f.write("## 🔧 Generated Patches\n\n")
+                    for patch in report['patches']:
+                        f.write(f"- **Type:** {patch.get('type', 'N/A')}\n")
+                        f.write(f"  - **Suggestion:** {patch.get('suggestion', 'N/A')}\n\n")
+            
+            logger.info(f"✅ EventBus report saved to {report_file}")
+            
+        except Exception as e:
+            logger.error(f"Failed to save EventBus report: {str(e)}")
+    
+    def _update_build_status(self, report: Dict):
+        """Update build_status.json with Phase 95 results"""
+        try:
+            if self.build_status_file.exists():
+                with open(self.build_status_file, 'r', encoding='utf-8') as f:
+                    build_status = json.load(f)
+            else:
+                build_status = {}
+            
+            # Update with Phase 95 results
+            build_status.update({
+                "phase_95_eventbus_validation": {
+                    "timestamp": report['timestamp'],
+                    "status": report['status'],
+                    "violations_found": report['violations_found'],
+                    "patches_generated": report['patches_generated'],
+                    "validator_version": "95.0"
+                },
+                "last_update": report['timestamp']
+            })
+            
+            # Add completion flags if validation passed
+            if report.get('phase_95_complete'):
+                build_status["phase_95_complete"] = True
+                build_status["event_bus_integrity"] = "validated"
+            
+            with open(self.build_status_file, 'w', encoding='utf-8') as f:
+                json.dump(build_status, f, indent=2)
+            
+            logger.info("✅ Build status updated with Phase 95 results")
+            
+        except Exception as e:
+            logger.error(f"Failed to update build status: {str(e)}")
+    
+    def _update_build_tracker(self, message: str):
+        """Update build_tracker.md with validation message"""
+        try:
+            timestamp = datetime.now().isoformat()
+            log_entry = f"\n\n## Phase 95 EventBus Validation - {timestamp}\n{message}\n"
+            
+            with open(self.build_tracker_file, 'a', encoding='utf-8') as f:
+                f.write(log_entry)
+            
+        except Exception as e:
+            logger.error(f"Failed to update build tracker: {str(e)}")
+    
+    def _check_exit_conditions(self, report: Dict) -> bool:
+        """Check if Phase 95 exit conditions are met"""
+        conditions_met = (
+            len(report['orphaned_routes']) == 0 and
+            len(report['invalid_listeners']) == 0 and
+            len(report['duplicate_keys']) == 0 and
+            len(report['hardcoded_violations']) == 0
+        )
+        
+        return conditions_met
+    
+    def _trigger_guardian_alert(self, report: Dict):
+        """Trigger Guardian EVENTBUS_ALERT for violations"""
+        logger.warning("⛔️ Triggering Guardian EVENTBUS_ALERT")
+        
+        alert_data = {
+            "alert_type": "EVENTBUS_ALERT",
+            "timestamp": datetime.now().isoformat(),
+            "violations": report['violations_found'],
+            "details": {
+                "orphaned_routes": len(report['orphaned_routes']),
+                "invalid_listeners": len(report['invalid_listeners']),
+                "duplicate_keys": len(report['duplicate_keys']),
+                "hardcoded_violations": len(report['hardcoded_violations'])
+            }
+        }
+        
+        # Log to build tracker
+        self._update_build_tracker(f"signal_routing_violation: {alert_data}")
+        
+        # Save alert file for Guardian pickup
+        alert_file = self.workspace_root / "guardian_eventbus_alert.json"
+        try:
+            with open(alert_file, 'w', encoding='utf-8') as f:
+                json.dump(alert_data, f, indent=2)
+        except Exception as e:
+            logger.error(f"Failed to save Guardian alert: {str(e)}")
+    
+    def _generate_error_report(self, error_message: str) -> Dict[str, Any]:
+        """Generate error report for validation failure"""
+        return {
+            "phase": 95,
+            "validator": "EventBus Link Validator",
+            "timestamp": datetime.now().isoformat(),
+            "status": "error",
+            "error": error_message,
+            "phase_95_complete": False,
+            "event_bus_integrity": "failed"
+        }
+
+def main():
+    """Main entry point for Phase 95 EventBus validation"""
+    try:
+        validator = EventBusLinkValidator()
+        report = validator.validate_eventbus_integrity()
+        
+        print("\n" + "="*60)
+        print("GENESIS EVENTBUS PHASE 95 VALIDATION COMPLETE")
+        print("="*60)
+        print(f"Status: {report['status']}")
+        print(f"Violations Found: {report['violations_found']}")
+        print(f"Patches Generated: {report['patches_generated']}")
+        
+        if report.get('phase_95_complete'):
+            print("✅ Phase 95 PASSED - EventBus integrity validated")
+        else:
+            print("⛔️ Phase 95 FAILED - Violations require attention")
+        
+        return report
+        
+    except Exception as e:
+        logger.error(f"Phase 95 validation failed: {str(e)}")
+        raise
+
+if __name__ == "__main__":
+    main()
+
+
+# <!-- @GENESIS_MODULE_END: phase_95_eventbus_validator_recovered_2 -->

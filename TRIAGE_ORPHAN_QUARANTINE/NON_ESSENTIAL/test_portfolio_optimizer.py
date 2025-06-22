@@ -1,0 +1,433 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_portfolio_optimizer",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_portfolio_optimizer", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_portfolio_optimizer: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: test_portfolio_optimizer --> 
+🏛️ GENESIS test_portfolio_optimizer - INSTITUTIONAL GRADE v8.0.0 
+================================================================ 
+ARCHITECT MODE ULTIMATE: Professional-grade trading module 
+ 
+🎯 ENHANCED FEATURES: 
+- Complete EventBus integration 
+- Real-time telemetry monitoring 
+- FTMO compliance enforcement 
+- Emergency kill-switch protection 
+- Institutional-grade architecture 
+ 
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement 
+ 
+from datetime import datetime 
+import logging 
+ 
+#!/usr/bin/env python3
+"""
+🧪 GENESIS TRADING BOT — PHASE 46 PORTFOLIO OPTIMIZER TESTS
+📋 Module: test_portfolio_optimizer.py
+🎯 Purpose: Comprehensive test suite for risk-adjusted portfolio optimization
+📅 Created: 2025-06-18
+⚖️ Compliance: ARCHITECT_MODE_V4.0
+🧭 Phase: 46
+"""
+
+import unittest
+import json
+import time
+from unittest.mock import Mock, patch, MagicMock
+from datetime import datetime, timezone
+
+# Import the module under test
+from portfolio_optimizer import PortfolioOptimizer, StrategyMetrics
+
+class TestPortfolioOptimizer(unittest.TestCase):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_portfolio_optimizer",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_portfolio_optimizer", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_portfolio_optimizer: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_portfolio_optimizer",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_portfolio_optimizer: {e}")
+    """
+    🧪 Test Suite for Portfolio Optimizer
+    
+    📌 Test Coverage:
+    - high_risk_strategies_deprioritized
+    - kill_switch_strategies_ignored  
+    - weights_sum_to_1
+    - telemetry_emitted
+    - real_time_update_on_fill_event
+    - exposure_limit_enforcement
+    - risk_score_calculation
+    - weight_normalization
+    """
+
+    def setUp(self):
+        """Set up test fixtures"""
+        self.optimizer = PortfolioOptimizer()
+        
+        # Sample strategy data for testing
+        self.live_strategies = [
+            {
+                "id": "low_risk_strategy",
+                "expected_return": 0.15,
+                "max_drawdown": 0.05,
+                "volatility": 0.08,
+                "confluence_score": 0.85,
+                "kill_switch": False,
+                "current_weight": 0.25
+            },
+            {
+                "id": "high_risk_strategy",
+                "expected_return": 0.12,
+                "max_drawdown": 0.25,  # High drawdown
+                "volatility": 0.30,    # High volatility
+                "confluence_score": 0.70,
+                "kill_switch": False,
+                "current_weight": 0.30
+            },
+            {
+                "id": "kill_switch_strategy",
+                "expected_return": 0.20,
+                "max_drawdown": 0.08,
+                "volatility": 0.12,
+                "confluence_score": 0.90,
+                "kill_switch": True,   # Kill switch active
+                "current_weight": 0.20
+            },
+            {
+                "id": "low_confluence_strategy",
+                "expected_return": 0.18,
+                "max_drawdown": 0.10,
+                "volatility": 0.15,
+                "confluence_score": 0.45,  # Below threshold
+                "kill_switch": False,
+                "current_weight": 0.25
+            }
+        ]
+
+    def test_high_risk_strategies_deprioritized(self):
+        """Test that high-risk strategies receive lower weights"""
+        print("🧪 Testing high-risk strategy deprioritization...")
+        
+        # Mock _get_active_strategies to return our test data
+        with patch.object(self.optimizer, '_get_active_strategies', return_value=self.live_strategies):
+            weights = self.optimizer.rebalance_portfolio(self.live_strategies)
+        
+        # Convert to dict for easier lookup
+        weight_dict = dict(weights)
+        
+        # Verify high-risk strategy gets lower weight than low-risk strategy
+        if "low_risk_strategy" in weight_dict and "high_risk_strategy" in weight_dict:
+            self.assertGreater(
+                weight_dict["low_risk_strategy"],
+                weight_dict["high_risk_strategy"],
+                "Low-risk strategy should have higher weight than high-risk strategy"
+            )
+        
+        print(f"✅ High-risk deprioritization test passed: {weight_dict}")
+
+    def test_kill_switch_strategies_ignored(self):
+        """Test that strategies with kill switch active are ignored"""
+        print("🧪 Testing kill switch strategy filtering...")
+        
+        with patch.object(self.optimizer, '_get_active_strategies', return_value=self.live_strategies):
+            weights = self.optimizer.rebalance_portfolio(self.live_strategies)
+        
+        # Convert to dict for easier lookup
+        weight_dict = dict(weights)
+        
+        # Verify kill switch strategy is not included
+        self.assertNotIn(
+            "kill_switch_strategy",
+            weight_dict,
+            "Kill switch strategy should be excluded from portfolio"
+        )
+        
+        print(f"✅ Kill switch filtering test passed - strategy excluded")
+
+    def test_weights_sum_to_1(self):
+        """Test that portfolio weights sum to approximately 1.0"""
+        print("🧪 Testing weight normalization...")
+        
+        with patch.object(self.optimizer, '_get_active_strategies', return_value=self.live_strategies):
+            weights = self.optimizer.rebalance_portfolio(self.live_strategies)
+        
+        # Calculate total weight
+        total_weight = sum(weight for _, weight in weights)
+        
+        # Verify weights sum to 1.0 (within tolerance)
+        self.assertAlmostEqual(
+            total_weight,
+            1.0,
+            places=2,
+            msg="Portfolio weights should sum to 1.0"
+        )
+        
+        print(f"✅ Weight normalization test passed: total={total_weight:.4f}")
+
+    def test_telemetry_emitted(self):
+        """Test that telemetry is properly emitted during rebalancing"""
+        print("🧪 Testing telemetry emission...")
+        
+        # Mock the event bus emit method
+        with patch.object(self.optimizer.event_bus, 'emit') as mock_emit:
+            with patch.object(self.optimizer, '_get_active_strategies', return_value=self.live_strategies):
+                self.optimizer.rebalance_portfolio(self.live_strategies)
+            
+            # Verify telemetry events were emitted
+            emit_calls = mock_emit.call_args_list
+            emitted_topics = [call[0][0] for call in emit_calls]
+            
+            # Check for expected telemetry topics
+            expected_topics = ["telemetry_portfolio_summary", "portfolio_rebalanced"]
+            
+            for topic in expected_topics:
+                self.assertIn(
+                    topic,
+                    emitted_topics,
+                    f"Expected telemetry topic '{topic}' should be emitted"
+                )
+        
+        print(f"✅ Telemetry emission test passed - {len(emit_calls)} events emitted")
+
+    def test_real_time_update_on_fill_event(self):
+        """Test that trade fill events trigger portfolio rebalancing"""
+        print("🧪 Testing real-time update on fill event...")
+        
+        # Mock the rebalance trigger
+        with patch.object(self.optimizer, '_trigger_rebalance') as mock_trigger:
+            # Simulate trade fill event
+            fill_data = {
+                "strategy_id": "test_strategy",
+                "symbol": "EURUSD",
+                "volume": 0.1,
+                "price": 1.0850
+            }
+            
+            self.optimizer._handle_trade_filled(fill_data)
+            
+            # Verify rebalance was triggered
+            mock_trigger.assert_called_once_with("trade_filled")
+        
+        print("✅ Real-time update test passed - rebalance triggered on fill")
+
+    def test_exposure_limit_enforcement(self):
+        """Test FTMO exposure limit enforcement"""
+        print("🧪 Testing exposure limit enforcement...")
+        
+        # Test daily limit
+        daily_exceeds = self.optimizer.check_exposure_limits(15000, "test_strategy")
+        self.assertFalse(daily_exceeds, "Should reject position exceeding daily limit")
+        
+        # Test trailing limit
+        trailing_exceeds = self.optimizer.check_exposure_limits(25000, "test_strategy")
+        self.assertFalse(trailing_exceeds, "Should reject position exceeding trailing limit")
+        
+        # Test acceptable position
+        acceptable = self.optimizer.check_exposure_limits(5000, "test_strategy")
+        self.assertTrue(acceptable, "Should accept position within limits")
+        
+        print("✅ Exposure limit enforcement test passed")
+
+    def test_risk_score_calculation(self):
+        """Test risk score calculation accuracy"""
+        print("🧪 Testing risk score calculation...")
+        
+        test_strategy = {
+            "id": "test_risk_calc",
+            "expected_return": 0.20,
+            "max_drawdown": 0.10,
+            "volatility": 0.15,
+            "confluence_score": 0.80,
+            "kill_switch": False,
+            "current_weight": 0.25
+        }
+        
+        with patch.object(self.optimizer, '_get_active_strategies', return_value=[test_strategy]):
+            weights = self.optimizer.rebalance_portfolio([test_strategy])
+        
+        # Verify weight calculation
+        self.assertEqual(len(weights), 1, "Should have one strategy weight")
+        strategy_id, weight = weights[0]
+        self.assertEqual(strategy_id, "test_risk_calc", "Strategy ID should match")
+        self.assertGreater(weight, 0, "Weight should be positive")
+        self.assertLessEqual(weight, 1, "Weight should not exceed 1")
+        
+        print(f"✅ Risk score calculation test passed: weight={weight:.4f}")
+
+    def test_weight_normalization(self):
+        """Test weight normalization with edge cases"""
+        print("🧪 Testing weight normalization edge cases...")
+          # Test with zero total score
+        portfolio_score = [("strategy1", 0.0), ("strategy2", 0.0)]
+        normalized = self.optimizer._normalize_weights(portfolio_score, 0.0)
+        
+        # Should get equal weights
+        self.assertEqual(len(normalized), 2, "Should have two strategies")
+        for _, weight in normalized:
+            self.assertAlmostEqual(weight, 0.5, places=2, msg="Should get equal weights for zero scores")
+        
+        # Test with normal scores
+        portfolio_score = [("strategy1", 0.6), ("strategy2", 0.4)]
+        normalized = self.optimizer._normalize_weights(portfolio_score, 1.0)
+        
+        weight_dict = dict(normalized)
+        self.assertAlmostEqual(weight_dict["strategy1"], 0.6, places=2)
+        self.assertAlmostEqual(weight_dict["strategy2"], 0.4, places=2)
+        
+        print("✅ Weight normalization edge case test passed")
+
+    def test_confluence_threshold_filtering(self):
+        """Test filtering of strategies below confluence threshold"""
+        print("🧪 Testing confluence threshold filtering...")
+        
+        with patch.object(self.optimizer, '_get_active_strategies', return_value=self.live_strategies):
+            weights = self.optimizer.rebalance_portfolio(self.live_strategies)
+        
+        weight_dict = dict(weights)
+        
+        # Low confluence strategy should be excluded
+        self.assertNotIn(
+            "low_confluence_strategy",
+            weight_dict,
+            "Low confluence strategy should be excluded"
+        )
+        
+        print("✅ Confluence threshold filtering test passed")
+
+    def test_portfolio_summary_generation(self):
+        """Test portfolio summary generation"""
+        print("🧪 Testing portfolio summary generation...")
+        
+        with patch.object(self.optimizer, '_get_active_strategies', return_value=self.live_strategies):
+            summary = self.optimizer.get_portfolio_summary()
+        
+        # Verify summary structure
+        required_keys = ["timestamp", "total_strategies", "active_strategies", 
+                        "portfolio_weights", "exposure_limits", "risk_thresholds"]
+        
+        for key in required_keys:
+            self.assertIn(key, summary, f"Summary should contain '{key}'")
+        
+        # Verify data types
+        self.assertIsInstance(summary["total_strategies"], int)
+        self.assertIsInstance(summary["active_strategies"], int)
+        self.assertIsInstance(summary["portfolio_weights"], list)
+        
+        print("✅ Portfolio summary generation test passed")
+
+    def test_event_bus_subscription(self):
+        """Test EventBus subscription setup"""
+        print("🧪 Testing EventBus subscription setup...")
+        
+        # Verify optimizer has event bus
+        self.assertIsNotNone(self.optimizer.event_bus, "Optimizer should have EventBus instance")
+        
+        # Test event handler methods exist
+        self.assertTrue(hasattr(self.optimizer, '_handle_trade_filled'))
+        self.assertTrue(hasattr(self.optimizer, '_handle_stoploss_triggered'))
+        self.assertTrue(hasattr(self.optimizer, '_handle_takeprofit_triggered'))
+        self.assertTrue(hasattr(self.optimizer, '_handle_portfolio_imbalance'))
+        
+        print("✅ EventBus subscription test passed")
+
+def run_portfolio_optimizer_tests():
+    """Run comprehensive test suite for portfolio optimizer"""
+    print("🚀 Starting Portfolio Optimizer Test Suite - Phase 46")
+    print("=" * 60)
+    
+    # Create test suite
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestPortfolioOptimizer)
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(suite)
+    
+    # Test summary
+    total_tests = result.testsRun
+    failures = len(result.failures)
+    errors = len(result.errors)
+    success_rate = ((total_tests - failures - errors) / total_tests * 100) if total_tests > 0 else 0
+    
+    print("=" * 60)
+    print(f"📊 TEST SUMMARY:")
+    print(f"   Total Tests: {total_tests}")
+    print(f"   Passed: {total_tests - failures - errors}")
+    print(f"   Failed: {failures}")
+    print(f"   Errors: {errors}")
+    print(f"   Success Rate: {success_rate:.1f}%")
+    print("=" * 60)
+    
+    if failures == 0 and errors == 0:
+        print("✅ ALL TESTS PASSED - Portfolio Optimizer ready for production")
+    else:
+        print("❌ SOME TESTS FAILED - Review and fix issues before deployment")
+    
+    return result
+
+if __name__ == "__main__":
+    run_portfolio_optimizer_tests()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+         
+# <!-- @GENESIS_MODULE_END: test_portfolio_optimizer --> 

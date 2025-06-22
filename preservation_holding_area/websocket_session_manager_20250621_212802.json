@@ -1,0 +1,9 @@
+{
+  "module_id": "websocket_session_manager",
+  "original_path": "modules\\restored\\websocket_session_manager.py",
+  "preserved_path": "preservation_holding_area\\websocket_session_manager_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18183,
+  "checksum": "eaffd7a62d41870bde576acd6aad7669c2ada83589e7a1b9c443041fed859c5d"
+}

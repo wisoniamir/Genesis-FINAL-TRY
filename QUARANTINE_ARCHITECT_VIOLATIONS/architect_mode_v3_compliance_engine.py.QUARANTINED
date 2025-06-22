@@ -1,0 +1,80 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.345864+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+      "line_numbers": [
+        19,
+        147,
+        245
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+      "line_numbers": [
+        38,
+        195,
+        199,
+        200,
+        201
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+      "line_numbers": [
+        57,
+        111,
+        135,
+        158,
+        198
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+      "line_numbers": [
+        89,
+        127,
+        150,
+        184,
+        222
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+      "line_numbers": [
+        62,
+        66,
+        74,
+        78,
+        100
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_mode_v3_compliance_engine.py",
+      "line_numbers": [
+        176,
+        350
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

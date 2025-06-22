@@ -1,0 +1,221 @@
+{
+  "telemetry_feedback_metadata": {
+    "version": "v1.0_phase2_optimization",
+    "generation_timestamp": "2025-06-21T19:45:00.000000",
+    "architect_mode": true,
+    "zero_tolerance_enforcement": true,
+    "phase_2_optimization_active": true,
+    "real_time_telemetry_enabled": true,
+    "mock_telemetry_forbidden": true
+  },
+  "feedback_telemetry_streams": {
+    "execution_performance": {
+      "stream_id": "exec_perf_001",
+      "collection_frequency_ms": 100,
+      "buffer_size": 1000,
+      "retention_hours": 24,
+      "real_time_alerts": true,
+      "metrics": {
+        "execution_latency_ms": {
+          "type": "histogram",
+          "thresholds": [50, 100, 200],
+          "alert_on_exceed": true
+        },
+        "slippage_bps": {
+          "type": "gauge",
+          "thresholds": [1.0, 2.5, 5.0],
+          "alert_on_exceed": true
+        },
+        "fill_rate_percent": {
+          "type": "counter",
+          "target_minimum": 95.0,
+          "alert_on_below": true
+        },
+        "execution_quality_score": {
+          "type": "gauge",
+          "target_minimum": 0.85,
+          "alert_on_below": true
+        }
+      }
+    },
+    "feedback_loop_performance": {
+      "stream_id": "feedback_perf_002",
+      "collection_frequency_ms": 50,
+      "buffer_size": 2000,
+      "retention_hours": 48,
+      "real_time_alerts": true,
+      "metrics": {
+        "feedback_latency_ms": {
+          "type": "histogram",
+          "thresholds": [25, 50, 100],
+          "alert_on_exceed": true
+        },
+        "loop_convergence_time_ms": {
+          "type": "histogram",
+          "thresholds": [200, 500, 1000],
+          "alert_on_exceed": true
+        },
+        "feedback_accuracy_score": {
+          "type": "gauge",
+          "target_minimum": 0.85,
+          "alert_on_below": true
+        },
+        "optimization_improvement_percent": {
+          "type": "counter",
+          "target_minimum": 2.0,
+          "alert_on_below": true
+        }
+      }
+    },
+    "strategy_mutation": {
+      "stream_id": "strategy_mut_003",
+      "collection_frequency_ms": 1000,
+      "buffer_size": 500,
+      "retention_hours": 168,
+      "real_time_alerts": true,
+      "metrics": {
+        "mutation_success_rate": {
+          "type": "gauge",
+          "target_minimum": 0.60,
+          "alert_on_below": true
+        },
+        "strategy_stability_score": {
+          "type": "gauge",
+          "target_minimum": 0.75,
+          "alert_on_below": true
+        },
+        "performance_improvement_pct": {
+          "type": "histogram", 
+          "thresholds": [1.0, 5.0, 10.0],
+          "alert_on_below": [1.0]
+        },
+        "risk_adjusted_return": {
+          "type": "gauge",
+          "target_minimum": 1.2,
+          "alert_on_below": true
+        }
+      }
+    },
+    "risk_monitoring": {
+      "stream_id": "risk_monitor_004",
+      "collection_frequency_ms": 25,
+      "buffer_size": 4000,
+      "retention_hours": 24,
+      "real_time_alerts": true,
+      "metrics": {
+        "drawdown_percent": {
+          "type": "gauge",
+          "thresholds": [2.0, 5.0, 8.0],
+          "alert_on_exceed": true,
+          "critical_threshold": 10.0
+        },
+        "var_95_percent": {
+          "type": "gauge",
+          "thresholds": [1.0, 2.0, 3.0],
+          "alert_on_exceed": true
+        },
+        "position_correlation": {
+          "type": "gauge",
+          "thresholds": [0.6, 0.8, 0.9],
+          "alert_on_exceed": true
+        },
+        "leverage_ratio": {
+          "type": "gauge",
+          "maximum_allowed": 10.0,
+          "alert_on_exceed": true
+        }
+      }
+    },
+    "market_adaptation": {
+      "stream_id": "market_adapt_005",
+      "collection_frequency_ms": 200,
+      "buffer_size": 1500,
+      "retention_hours": 72,
+      "real_time_alerts": true,
+      "metrics": {
+        "market_regime_detection_accuracy": {
+          "type": "gauge",
+          "target_minimum": 0.80,
+          "alert_on_below": true
+        },
+        "adaptation_speed_ms": {
+          "type": "histogram",
+          "thresholds": [100, 300, 500],
+          "alert_on_exceed": true
+        },
+        "volatility_prediction_error": {
+          "type": "gauge",
+          "maximum_allowed": 0.15,
+          "alert_on_exceed": true
+        },
+        "liquidity_impact_cost_bps": {
+          "type": "gauge",
+          "thresholds": [0.5, 1.0, 2.0],
+          "alert_on_exceed": true
+        }
+      }
+    }
+  },
+  "alert_configurations": {
+    "critical_alerts": {
+      "drawdown_breach": {
+        "threshold": 5.0,
+        "action": "immediate_position_reduction",
+        "notification_channels": ["dashboard", "email", "sms"]
+      },
+      "system_latency_critical": {
+        "threshold": 200.0,
+        "action": "performance_optimization_trigger",
+        "notification_channels": ["dashboard", "slack"]
+      },
+      "feedback_loop_failure": {
+        "threshold": 3,
+        "action": "fallback_to_static_strategy",
+        "notification_channels": ["dashboard", "email"]
+      }
+    },
+    "warning_alerts": {
+      "performance_degradation": {
+        "threshold": 0.80,
+        "action": "performance_analysis_trigger",
+        "notification_channels": ["dashboard"]
+      },
+      "high_correlation": {
+        "threshold": 0.85,
+        "action": "position_diversification_review",
+        "notification_channels": ["dashboard"]
+      }
+    }
+  },
+  "dashboard_integration": {
+    "real_time_dashboard_feeds": [
+      "execution_performance",
+      "feedback_loop_performance", 
+      "risk_monitoring"
+    ],
+    "summary_dashboard_feeds": [
+      "strategy_mutation",
+      "market_adaptation"
+    ],
+    "update_frequency_ms": 100,
+    "chart_retention_hours": 24,
+    "alert_display": true
+  },
+  "ftmo_compliance_telemetry": {
+    "daily_pnl_tracking": {
+      "frequency_ms": 60000,
+      "alert_threshold_pct": 4.0,
+      "critical_threshold_pct": 5.0
+    },
+    "max_drawdown_tracking": {
+      "frequency_ms": 10000,
+      "alert_threshold_pct": 8.0,
+      "critical_threshold_pct": 10.0
+    },
+    "profit_target_tracking": {
+      "frequency_ms": 300000,
+      "target_threshold_pct": 10.0,
+      "notification_on_achievement": true
+    }
+  }
+}

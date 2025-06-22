@@ -1,0 +1,9 @@
+{
+  "module_id": "popen_loky_posix",
+  "original_path": "modules\\restored\\popen_loky_posix.py",
+  "preserved_path": "preservation_holding_area\\popen_loky_posix_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 22062,
+  "checksum": "035d25a4d3490706303f4355c0f1aaa831c99e011820585e1e59880ad1f9cae2"
+}

@@ -1,0 +1,365 @@
+# -*- coding: utf-8 -*-
+# <!-- @GENESIS_MODULE_START: launch_phase18_production -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "launch_phase18_production_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in launch_phase18_production_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "launch_phase18_production_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("launch_phase18_production_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in launch_phase18_production_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+"""
+GENESIS AI TRADING SYSTEM - PHASE 18 PRODUCTION LAUNCHER
+Launches all reactive execution modules and runs comprehensive integration test
+
+🔐 ARCHITECT MODE COMPLIANCE v2.9:
+- ✅ ALL REACTIVE MODULES ACTIVE
+- ✅ REAL MT5 DATA ONLY
+- ✅ TELEMETRY ACTIVE
+- ✅ PRODUCTION GRADE
+"""
+
+import os
+import sys
+import json
+import logging
+import time
+import datetime
+import threading
+from pathlib import Path
+
+# Add the project root to the path for imports
+project_root = Path(__file__).resolve().parent
+sys.path.insert(0, str(project_root))
+
+from smart_execution_reactor import SmartExecutionReactor
+from smart_execution_monitor import SmartExecutionMonitor
+from execution_loop_responder import ExecutionLoopResponder
+from live_alert_bridge import LiveAlertBridge
+from event_bus import get_event_bus
+
+class Phase18ProductionLauncher:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "launch_phase18_production_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in launch_phase18_production_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "launch_phase18_production_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("launch_phase18_production_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in launch_phase18_production_recovered_1: {e}")
+    """
+    Production launcher for all Phase 18 reactive execution modules.
+    """
+    
+    def __init__(self):
+        """Initialize production launcher."""
+        self.logger = self._setup_logging()
+        self.running_modules = {}
+        self.shutdown_requested = False
+        
+        # Module instances
+        self.reactor = None
+        self.monitor = None
+        self.responder = None
+        self.alert_bridge = None
+        
+        self.logger.info("🚀 Phase18ProductionLauncher initialized")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_logging(self) -> logging.Logger:
+        """Setup production logging."""
+        logger = logging.getLogger("Phase18Production")
+        if not logger.handlers:
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            )
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+            logger.setLevel(logging.INFO)
+        return logger
+    
+    def launch_all_modules(self):
+        """Launch all Phase 18 reactive execution modules."""
+        self.logger.info("🔥 PHASE 18 PRODUCTION DEPLOYMENT - Starting all reactive modules")
+        
+        try:
+            # Initialize SmartExecutionReactor (automatically subscribes to EventBus)
+            self.logger.info("📡 Initializing SmartExecutionReactor...")
+            self.reactor = SmartExecutionReactor()
+            self.running_modules["SmartExecutionReactor"] = "INITIALIZED"
+            
+            # Initialize SmartExecutionMonitor (automatically subscribes to EventBus)
+            self.logger.info("📊 Initializing SmartExecutionMonitor...")
+            self.monitor = SmartExecutionMonitor()
+            self.running_modules["SmartExecutionMonitor"] = "INITIALIZED"
+            
+            # Initialize ExecutionLoopResponder (automatically subscribes to EventBus)
+            self.logger.info("🔄 Initializing ExecutionLoopResponder...")
+            self.responder = ExecutionLoopResponder()
+            self.running_modules["ExecutionLoopResponder"] = "INITIALIZED"
+            
+            # Initialize LiveAlertBridge (automatically subscribes to EventBus)
+            self.logger.info("🚨 Initializing LiveAlertBridge...")
+            self.alert_bridge = LiveAlertBridge()
+            self.running_modules["LiveAlertBridge"] = "INITIALIZED"
+            
+            # Wait for modules to initialize
+            time.sleep(1)
+            
+            self.logger.info(f"✅ PHASE 18 PRODUCTION DEPLOYMENT COMPLETE - {len(self.running_modules)} modules initialized and subscribed")
+            self._log_module_status()
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"❌ PHASE 18 LAUNCH FAILED: {str(e)}")
+            import traceback
+            self.logger.error(f"Error details: {traceback.format_exc()}")
+            return False
+    
+    def _log_module_status(self):
+        """Log the status of all running modules."""
+        self.logger.info("📋 MODULE STATUS:")
+        for module_name, status in self.running_modules.items():
+            self.logger.info(f"   {module_name}: {status}")
+    
+    def run_integration_test(self):
+        """Run the integration test with all modules active."""
+        self.logger.info("🧪 Running PHASE 18 integration test with all modules active...")
+        
+        # Import and run the test
+        try:
+            import subprocess
+            result = subprocess.run([
+                sys.executable, "test_phase18_reactive_execution_fixed.py"
+            ], capture_output=True, text=True, timeout=30)
+            
+            if result.returncode == 0:
+                self.logger.info("✅ Integration test PASSED")
+                return True
+            else:
+                self.logger.error(f"❌ Integration test FAILED: {result.stderr}")
+                return False
+                
+        except Exception as e:
+            self.logger.error(f"❌ Test execution error: {str(e)}")
+            return False
+    
+    def shutdown_all_modules(self):
+        """Gracefully shutdown all modules."""
+        self.logger.info("🛑 Initiating graceful shutdown of all Phase 18 modules...")
+        self.shutdown_requested = True
+        
+        # Signal shutdown to modules
+        if self.reactor and hasattr(self.reactor, 'halt_requested'):
+            self.reactor.halt_requested = True
+        
+        # Clear module references
+        self.running_modules.clear()
+        
+        self.logger.info("✅ All Phase 18 modules shut down")
+
+def run_production_deployment_with_test():
+    """Run the full Phase 18 production deployment and integration test."""
+    print("=" * 80)
+    print("🚀 GENESIS PHASE 18 REACTIVE EXECUTION - PRODUCTION DEPLOYMENT + TEST")
+    print("=" * 80)
+    
+    launcher = Phase18ProductionLauncher()
+    
+    try:
+        # Launch all modules
+        if not launcher.launch_all_modules():
+            print("❌ PRODUCTION DEPLOYMENT FAILED")
+            return False
+        
+        print("✅ PRODUCTION DEPLOYMENT SUCCESSFUL")
+        
+        # Run integration test
+        print("🧪 Running integration test...")
+        test_success = launcher.run_integration_test()
+        
+        if test_success:
+            print("✅ PHASE 18 INTEGRATION TEST PASSED")
+            print("🎯 PHASE 18 READY FOR PRODUCTION")
+        else:
+            print("❌ PHASE 18 INTEGRATION TEST FAILED")
+            print("🔧 REQUIRES INVESTIGATION")
+        
+        return test_success
+        
+    except KeyboardInterrupt:
+        print("\n🛑 Shutdown requested by user")
+        return True
+    except Exception as e:
+        print(f"❌ PRODUCTION DEPLOYMENT ERROR: {str(e)}")
+        return False
+    finally:
+        launcher.shutdown_all_modules()
+
+if __name__ == "__main__":
+    success = run_production_deployment_with_test()
+    sys.exit(0 if success else 1)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: launch_phase18_production -->

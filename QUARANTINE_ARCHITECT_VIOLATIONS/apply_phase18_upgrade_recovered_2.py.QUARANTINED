@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\apply_phase18_upgrade_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.808448+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\apply_phase18_upgrade_recovered_2.py",
+      "line_numbers": [
+        27,
+        53,
+        202,
+        208,
+        219
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\apply_phase18_upgrade_recovered_2.py",
+      "line_numbers": [
+        78,
+        79,
+        80,
+        86,
+        87
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\apply_phase18_upgrade_recovered_2.py",
+      "line_numbers": [
+        22,
+        46,
+        74,
+        109,
+        169
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\apply_phase18_upgrade_recovered_2.py",
+      "line_numbers": [
+        40,
+        59,
+        132,
+        184
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\apply_phase18_upgrade_recovered_2.py",
+      "line_numbers": [
+        89,
+        214
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

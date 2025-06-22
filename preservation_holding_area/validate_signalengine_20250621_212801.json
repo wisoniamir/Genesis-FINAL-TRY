@@ -1,0 +1,9 @@
+{
+  "module_id": "validate_signalengine",
+  "original_path": "modules\\signal_processing\\validate_signalengine.py",
+  "preserved_path": "preservation_holding_area\\validate_signalengine_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 11516,
+  "checksum": "6a1b86cdf6e82c9af2722f66f811902a5c280465c4912a77e3accd49dcd8350d"
+}

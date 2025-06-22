@@ -1,0 +1,218 @@
+{
+  "segment_type": "routes",
+  "category": "risk",
+  "routes": {
+    "comprehensive_mt5_integration_risk": {
+      "topic": "risk.comprehensive_mt5_integration",
+      "source": "comprehensive_mt5_integration",
+      "destination": [
+        "execution_engine",
+        "dashboard",
+        "kill_switch"
+      ],
+      "data_type": "risk_data",
+      "mock_forbidden": true
+    },
+    "mt5_module_discovery_engine_risk": {
+      "topic": "risk.mt5_module_discovery_engine",
+      "source": "mt5_module_discovery_engine",
+      "destination": [
+        "execution_engine",
+        "dashboard",
+        "kill_switch"
+      ],
+      "data_type": "risk_data",
+      "mock_forbidden": true
+    },
+    "risk_engine_risk_risk_engine_output": {
+      "topic": "risk.risk_engine_output",
+      "source": "risk_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_risk_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "genesis_institutional_risk_engine_risk_genesis_institutional_risk_engine_output": {
+      "topic": "risk.genesis_institutional_risk_engine_output",
+      "source": "genesis_institutional_risk_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_risk_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "ftmo_limit_guard_risk_ftmo_limit_guard_output": {
+      "topic": "risk.ftmo_limit_guard_output",
+      "source": "ftmo_limit_guard",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_risk_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "risk_engine_status": {
+      "producer": "risk_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "risk_engine"
+    },
+    "risk_engine_telemetry": {
+      "producer": "risk_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "risk_engine"
+    },
+    "risk_assessment": {
+      "producer": "ftmo_limit_guard",
+      "consumer": "execution_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "ftmo_limit_guard"
+    },
+    "risk_alert": {
+      "producer": "ftmo_limit_guard",
+      "consumer": "kill_switch",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "ftmo_limit_guard"
+    },
+    "genesis_institutional_risk_engine_status": {
+      "producer": "genesis_institutional_risk_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_risk_engine"
+    },
+    "genesis_institutional_risk_engine_telemetry": {
+      "producer": "genesis_institutional_risk_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_risk_engine"
+    },
+    "kill_switch_status": {
+      "producer": "kill_switch",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "kill_switch"
+    },
+    "kill_switch_telemetry": {
+      "producer": "kill_switch",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "kill_switch"
+    },
+    "emergency_stop": {
+      "producer": "phase_102_kill_switch_execution_loop",
+      "consumer": "execution_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "phase_102_kill_switch_execution_loop"
+    },
+    "dashboard_risk_management_panel_update": {
+      "producer": "risk_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "risk_engine"
+    },
+    "telemetry_risk_management_panel_metrics": {
+      "producer": "risk_engine",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "risk_engine"
+    },
+    "dashboard_institutional_risk_panel_update": {
+      "producer": "genesis_institutional_risk_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_risk_engine"
+    },
+    "telemetry_institutional_risk_panel_metrics": {
+      "producer": "genesis_institutional_risk_engine",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "genesis_institutional_risk_engine"
+    },
+    "dashboard_emergency_control_panel_update": {
+      "producer": "kill_switch",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "kill_switch"
+    },
+    "telemetry_emergency_control_panel_metrics": {
+      "producer": "kill_switch",
+      "consumer": "dashboard_panel_configurator",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "kill_switch"
+    },
+    "collect_telemetry_risk_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "risk_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.403947",
+      "module": "risk_engine"
+    },
+    "collect_telemetry_genesis_institutional_risk_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "genesis_institutional_risk_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.404281",
+      "module": "genesis_institutional_risk_engine"
+    },
+    "collect_telemetry_kill_switch": {
+      "producer": "telemetry_collector",
+      "consumer": "kill_switch",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.405053",
+      "module": "kill_switch"
+    }
+  },
+  "route_count": 5
+}

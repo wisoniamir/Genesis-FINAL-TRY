@@ -1,0 +1,50 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_omp_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.190242+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_omp_recovered_1.py",
+      "line_numbers": [
+        669,
+        1043
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_omp_recovered_1.py",
+      "line_numbers": [
+        1065
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_omp_recovered_1.py",
+      "line_numbers": [
+        51,
+        181,
+        1070
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_omp_recovered_1.py",
+      "line_numbers": [
+        81,
+        125,
+        148,
+        259,
+        286
+      ],
+      "violation_count": 15
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

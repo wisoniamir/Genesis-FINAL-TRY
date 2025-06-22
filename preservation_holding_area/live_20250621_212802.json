@@ -1,0 +1,9 @@
+{
+  "module_id": "live",
+  "original_path": "modules\\restored\\live.py",
+  "preserved_path": "preservation_holding_area\\live_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30637,
+  "checksum": "40e78f43089cc746ed3c0283dc4f365aeee80b75866024ae769d5648eac93deb"
+}

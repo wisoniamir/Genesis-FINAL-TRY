@@ -1,0 +1,18 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_high_architecture_manifest.json",
+  "quarantine_timestamp": "2025-06-21T04:33:02.933191+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_high_architecture_manifest.json",
+      "line_numbers": [
+        15,
+        24,
+        92
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

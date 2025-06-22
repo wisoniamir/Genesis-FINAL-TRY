@@ -1,0 +1,51 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_multioutput_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.942259+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_multioutput_recovered_1.py",
+      "line_numbers": [
+        227,
+        304,
+        848
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_multioutput_recovered_1.py",
+      "line_numbers": [
+        867
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_multioutput_recovered_1.py",
+      "line_numbers": [
+        34,
+        61,
+        79,
+        102,
+        120
+      ],
+      "violation_count": 43
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_multioutput_recovered_1.py",
+      "line_numbers": [
+        236,
+        653,
+        665
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,49 @@
+# <!-- @GENESIS_MODULE_START: trace_phase18_chain_fixed -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+GENESIS PHASE 18 REACTIVE EXECUTION CHAIN TRACER
+Traces the complete reactive execution flow through EventBus routes
+"""
+
+import json
+
+def trace_reactive_execution_chain():
+    """Trace Phase 18 reactive execution chain"""
+    with open('event_bus.json', 'r') as f:
+        eb = json.load(f)
+    
+    print("PHASE 18 REACTIVE EXECUTION CHAIN:")
+    print("="*50)
+    
+    print("\nTRIGGER EVENTS -> SmartExecutionReactor:")
+    trigger_routes = [r for r in eb['routes'] if r['consumer'] == 'SmartExecutionReactor']
+    for r in trigger_routes:
+        print(f"   ACTIVE: {r['topic']}: {r['producer']} -> {r['consumer']}")
+    
+    print(f"\nTotal Trigger Routes: {len(trigger_routes)}")
+    
+    print("\nSmartExecutionReactor -> ExecutionLoopResponder:")
+    reactor_routes = [r for r in eb['routes'] if r['producer'] == 'SmartExecutionReactor']
+    for r in reactor_routes:
+        print(f"   ACTIVE: {r['topic']}: {r['producer']} -> {r['consumer']}")
+    
+    print(f"\nTotal Reactor Output Routes: {len(reactor_routes)}")
+    
+    print("\nLiveAlertBridge -> System Components:")
+    alert_routes = [r for r in eb['routes'] if r['producer'] == 'LiveAlertBridge']
+    for r in alert_routes:
+        print(f"   ACTIVE: {r['topic']}: {r['producer']} -> {r['consumer']}")
+    
+    print(f"\nTotal Alert Routes: {len(alert_routes)}")
+    
+    print(f"\nTOTAL PHASE 18 ROUTES: {len(trigger_routes) + len(reactor_routes) + len(alert_routes)}")
+    
+    return len(trigger_routes) + len(reactor_routes) + len(alert_routes)
+
+if __name__ == "__main__":
+    total = trace_reactive_execution_chain()
+    print(f"\nPHASE 18 REACTIVE EXECUTION CHAIN: {total} ROUTES ACTIVE - SUCCESS")
+
+
+# <!-- @GENESIS_MODULE_END: trace_phase18_chain_fixed -->

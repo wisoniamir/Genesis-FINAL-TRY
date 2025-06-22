@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_1_mt5_indicator_scanner.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.864272+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_1_mt5_indicator_scanner.py",
+      "line_numbers": [
+        717
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_1_mt5_indicator_scanner.py",
+      "line_numbers": [
+        61,
+        73,
+        128,
+        131,
+        133
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_1_mt5_indicator_scanner.py",
+      "line_numbers": [
+        72,
+        706,
+        722,
+        727,
+        760
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_1_mt5_indicator_scanner.py",
+      "line_numbers": [
+        123,
+        721,
+        755,
+        787,
+        831
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_97_1_mt5_indicator_scanner.py",
+      "line_numbers": [
+        116,
+        520,
+        570,
+        718,
+        764
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

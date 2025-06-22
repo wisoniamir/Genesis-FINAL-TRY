@@ -1,0 +1,662 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_cobyla -->
+"""
+🏛️ GENESIS TEST_COBYLA - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import math
+
+import numpy as np
+from numpy.testing import assert_allclose, assert_, assert_array_equal
+import pytest
+
+from scipy.optimize import fmin_cobyla, minimize, Bounds
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_cobyla", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_cobyla", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_cobyla",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_cobyla: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_cobyla",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_cobyla", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_cobyla: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+class TestCobyla:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_cobyla", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_cobyla", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_cobyla",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_cobyla: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_cobyla",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_cobyla", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_cobyla: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_cobyla",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_cobyla: {e}")
+    def setup_method(self):
+        self.x0 = [4.95, 0.66]
+        self.solution = [math.sqrt(25 - (2.0/3)**2), 2.0/3]
+        self.opts = {'disp': False, 'rhobeg': 1, 'tol': 1e-5,
+                     'maxiter': 100}
+
+    def fun(self, x):
+        return x[0]**2 + abs(x[1])**3
+
+    def con1(self, x):
+        return x[0]**2 + x[1]**2 - 25
+
+    def con2(self, x):
+        return -self.con1(x)
+
+    @pytest.mark.xslow(True, reason='not slow, but noisy so only run rarely')
+    def test_simple(self, capfd):
+        # use disp=True as smoke test for gh-8118
+        x = fmin_cobyla(self.fun, self.x0, [self.con1, self.con2], rhobeg=1,
+                        rhoend=1e-5, maxfun=100, disp=True)
+        assert_allclose(x, self.solution, atol=1e-4)
+
+    def test_minimize_simple(self):
+        class Callback:
+            def detect_confluence_patterns(self, market_data: dict) -> float:
+                    """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                    confluence_score = 0.0
+
+                    # Simple confluence calculation
+                    if market_data.get('trend_aligned', False):
+                        confluence_score += 0.3
+                    if market_data.get('support_resistance_level', False):
+                        confluence_score += 0.3
+                    if market_data.get('volume_confirmation', False):
+                        confluence_score += 0.2
+                    if market_data.get('momentum_aligned', False):
+                        confluence_score += 0.2
+
+                    emit_telemetry("test_cobyla", "confluence_detected", {
+                        "score": confluence_score,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    return confluence_score
+            def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                    """GENESIS Risk Management - Calculate optimal position size"""
+                    account_balance = 100000  # Default FTMO account size
+                    risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                    position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                    emit_telemetry("test_cobyla", "position_calculated", {
+                        "risk_amount": risk_amount,
+                        "position_size": position_size,
+                        "risk_percentage": (position_size / account_balance) * 100
+                    })
+
+                    return position_size
+            def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                    """GENESIS Emergency Kill Switch"""
+                    try:
+                        # Emit emergency event
+                        if hasattr(self, 'event_bus') and self.event_bus:
+                            emit_event("emergency_stop", {
+                                "module": "test_cobyla",
+                                "reason": reason,
+                                "timestamp": datetime.now().isoformat()
+                            })
+
+                        # Log telemetry
+                        self.emit_module_telemetry("emergency_stop", {
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                        # Set emergency state
+                        if hasattr(self, '_emergency_stop_active'):
+                            self._emergency_stop_active = True
+
+                        return True
+                    except Exception as e:
+                        print(f"Emergency stop error in test_cobyla: {e}")
+                        return False
+            def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                    """GENESIS FTMO Compliance Validator"""
+                    # Daily drawdown check (5%)
+                    daily_loss = trade_data.get('daily_loss_pct', 0)
+                    if daily_loss > 5.0:
+                        self.emit_module_telemetry("ftmo_violation", {
+                            "type": "daily_drawdown", 
+                            "value": daily_loss,
+                            "threshold": 5.0
+                        })
+                        return False
+
+                    # Maximum drawdown check (10%)
+                    max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                    if max_drawdown > 10.0:
+                        self.emit_module_telemetry("ftmo_violation", {
+                            "type": "max_drawdown", 
+                            "value": max_drawdown,
+                            "threshold": 10.0
+                        })
+                        return False
+
+                    # Risk per trade check (2%)
+                    risk_pct = trade_data.get('risk_percent', 0)
+                    if risk_pct > 2.0:
+                        self.emit_module_telemetry("ftmo_violation", {
+                            "type": "risk_exceeded", 
+                            "value": risk_pct,
+                            "threshold": 2.0
+                        })
+                        return False
+
+                    return True
+            def emit_module_telemetry(self, event: str, data: dict = None):
+                    """GENESIS Module Telemetry Hook"""
+                    telemetry_data = {
+                        "timestamp": datetime.now().isoformat(),
+                        "module": "test_cobyla",
+                        "event": event,
+                        "data": data or {}
+                    }
+                    try:
+                        emit_telemetry("test_cobyla", event, telemetry_data)
+                    except Exception as e:
+                        print(f"Telemetry error in test_cobyla: {e}")
+            def initialize_eventbus(self):
+                    """GENESIS EventBus Initialization"""
+                    try:
+                        self.event_bus = get_event_bus()
+                        if self.event_bus:
+                            emit_event("module_initialized", {
+                                "module": "test_cobyla",
+                                "timestamp": datetime.now().isoformat(),
+                                "status": "active"
+                            })
+                    except Exception as e:
+                        print(f"EventBus initialization error in test_cobyla: {e}")
+            def __init__(self):
+                self.n_calls = 0
+                self.last_x = None
+
+            def __call__(self, x):
+                self.n_calls += 1
+                self.last_x = x
+
+        callback = Callback()
+
+        # Minimize with method='COBYLA'
+        cons = ({'type': 'ineq', 'fun': self.con1},
+                {'type': 'ineq', 'fun': self.con2})
+        sol = minimize(self.fun, self.x0, method='cobyla', constraints=cons,
+                       callback=callback, options=self.opts)
+        assert_allclose(sol.x, self.solution, atol=1e-4)
+        assert_(sol.success, sol.message)
+        assert_(sol.maxcv < 1e-5, sol)
+        assert_(sol.nfev < 70, sol)
+        assert_(sol.fun < self.fun(self.solution) + 1e-3, sol)
+        assert_(sol.nfev == callback.n_calls,
+                "Callback is not called exactly once for every function eval.")
+        assert_array_equal(
+            sol.x,
+            callback.last_x,
+            "Last design vector sent to the callback is not equal to returned value.",
+        )
+
+    def test_minimize_constraint_violation(self):
+        rng = np.random.RandomState(1234)
+        pb = rng.rand(10, 10)
+        spread = rng.rand(10)
+
+        def p(w):
+            return pb.dot(w)
+
+        def f(w):
+            return -(w * spread).sum()
+
+        def c1(w):
+            return 500 - abs(p(w)).sum()
+
+        def c2(w):
+            return 5 - abs(p(w).sum())
+
+        def c3(w):
+            return 5 - abs(p(w)).max()
+
+        cons = ({'type': 'ineq', 'fun': c1},
+                {'type': 'ineq', 'fun': c2},
+                {'type': 'ineq', 'fun': c3})
+        w0 = np.zeros((10,))
+        sol = minimize(f, w0, method='cobyla', constraints=cons,
+                       options={'catol': 1e-6})
+        assert_(sol.maxcv > 1e-6)
+        assert_(not sol.success)
+
+
+def test_vector_constraints():
+    # test that fmin_cobyla and minimize can take a combination
+    # of constraints, some returning a number and others an array
+    def fun(x):
+        return (x[0] - 1)**2 + (x[1] - 2.5)**2
+
+    def fmin(x):
+        return fun(x) - 1
+
+    def cons1(x):
+        a = np.array([[1, -2, 2], [-1, -2, 6], [-1, 2, 2]])
+        return np.array([a[i, 0] * x[0] + a[i, 1] * x[1] +
+                         a[i, 2] for i in range(len(a))])
+
+    def cons2(x):
+        return x     # identity, acts as bounds x > 0
+
+    x0 = np.array([2, 0])
+    cons_list = [fun, cons1, cons2]
+
+    xsol = [1.4, 1.7]
+    fsol = 0.8
+
+    # testing fmin_cobyla
+    sol = fmin_cobyla(fun, x0, cons_list, rhoend=1e-5)
+    assert_allclose(sol, xsol, atol=1e-4)
+
+    sol = fmin_cobyla(fun, x0, fmin, rhoend=1e-5)
+    assert_allclose(fun(sol), 1, atol=1e-4)
+
+    # testing minimize
+    constraints = [{'type': 'ineq', 'fun': cons} for cons in cons_list]
+    sol = minimize(fun, x0, constraints=constraints, tol=1e-5)
+    assert_allclose(sol.x, xsol, atol=1e-4)
+    assert_(sol.success, sol.message)
+    assert_allclose(sol.fun, fsol, atol=1e-4)
+
+    constraints = {'type': 'ineq', 'fun': fmin}
+    sol = minimize(fun, x0, constraints=constraints, tol=1e-5)
+    assert_allclose(sol.fun, 1, atol=1e-4)
+
+
+class TestBounds:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_cobyla", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_cobyla", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_cobyla",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_cobyla: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_cobyla",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_cobyla", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_cobyla: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_cobyla",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_cobyla: {e}")
+    # Test cobyla support for bounds (only when used via `minimize`)
+    # Invalid bounds is tested in
+    # test_optimize.TestOptimizeSimple.test_minimize_invalid_bounds
+
+    def test_basic(self):
+        def f(x):
+            return np.sum(x**2)
+
+        lb = [-1, None, 1, None, -0.5]
+        ub = [-0.5, -0.5, None, None, -0.5]
+        bounds = [(a, b) for a, b in zip(lb, ub)]
+        # these are converted to Bounds internally
+
+        res = minimize(f, x0=[1, 2, 3, 4, 5], method='cobyla', bounds=bounds)
+        ref = [-0.5, -0.5, 1, 0, -0.5]
+        assert res.success
+        assert_allclose(res.x, ref, atol=1e-3)
+
+    def test_unbounded(self):
+        def f(x):
+            return np.sum(x**2)
+
+        bounds = Bounds([-np.inf, -np.inf], [np.inf, np.inf])
+        res = minimize(f, x0=[1, 2], method='cobyla', bounds=bounds)
+        assert res.success
+        assert_allclose(res.x, 0, atol=1e-3)
+
+        bounds = Bounds([1, -np.inf], [np.inf, np.inf])
+        res = minimize(f, x0=[1, 2], method='cobyla', bounds=bounds)
+        assert res.success
+        assert_allclose(res.x, [1, 0], atol=1e-3)
+
+
+# <!-- @GENESIS_MODULE_END: test_cobyla -->

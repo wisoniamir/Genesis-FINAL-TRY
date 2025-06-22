@@ -1,0 +1,71 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.115761+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "line_numbers": [
+        128,
+        174,
+        176,
+        183
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "line_numbers": [
+        79,
+        125,
+        164
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "line_numbers": [
+        108,
+        138,
+        188
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "line_numbers": [
+        65,
+        166
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "line_numbers": [
+        134,
+        179
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "line_numbers": [
+        56,
+        207
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

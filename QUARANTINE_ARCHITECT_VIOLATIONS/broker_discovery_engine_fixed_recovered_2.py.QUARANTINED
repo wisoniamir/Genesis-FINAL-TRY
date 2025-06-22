@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.152714+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        42,
+        226,
+        247,
+        263,
+        284
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        236,
+        252,
+        271,
+        391
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        294,
+        335,
+        405
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        232
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        203,
+        324,
+        384
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        191,
+        192
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\broker_discovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        194,
+        195,
+        196,
+        197,
+        198
+      ],
+      "violation_count": 7
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

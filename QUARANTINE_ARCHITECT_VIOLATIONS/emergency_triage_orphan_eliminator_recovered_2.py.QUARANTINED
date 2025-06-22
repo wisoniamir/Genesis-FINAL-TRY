@@ -1,0 +1,53 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_triage_orphan_eliminator_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.528836+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_triage_orphan_eliminator_recovered_2.py",
+      "line_numbers": [
+        74
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_triage_orphan_eliminator_recovered_2.py",
+      "line_numbers": [
+        192
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_triage_orphan_eliminator_recovered_2.py",
+      "line_numbers": [
+        204
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_triage_orphan_eliminator_recovered_2.py",
+      "line_numbers": [
+        134
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\emergency_triage_orphan_eliminator_recovered_2.py",
+      "line_numbers": [
+        86,
+        173
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

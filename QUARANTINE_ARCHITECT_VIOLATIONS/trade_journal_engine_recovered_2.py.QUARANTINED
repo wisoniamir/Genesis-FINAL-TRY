@@ -1,0 +1,95 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.775131+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        11,
+        107,
+        157,
+        214,
+        224
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        144,
+        205,
+        220,
+        240,
+        254
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        122,
+        162
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        232,
+        238,
+        252
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        70
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        77,
+        334
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        85,
+        86
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\trade_journal_engine_recovered_2.py",
+      "line_numbers": [
+        93,
+        94,
+        95,
+        96
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "lexer",
+  "original_path": "modules\\restored\\lexer.py",
+  "preserved_path": "preservation_holding_area\\lexer_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 120961,
+  "checksum": "5559ef74165d18f5a826294f52fef732769dcbc1590aa9d15bb04fe1a7ff04f7"
+}

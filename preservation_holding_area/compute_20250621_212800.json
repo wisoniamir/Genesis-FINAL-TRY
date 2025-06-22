@@ -1,0 +1,9 @@
+{
+  "module_id": "compute",
+  "original_path": "modules\\restored\\compute.py",
+  "preserved_path": "preservation_holding_area\\compute_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 31210,
+  "checksum": "26ba19bc88b5f306d9e03bc59295c15ea7dd819c04a0fdfc9c43db095aba1768"
+}

@@ -1,0 +1,127 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.566683+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        62,
+        63,
+        64,
+        212,
+        213
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        24
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        617
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        224,
+        228,
+        232,
+        472
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        38,
+        49,
+        57,
+        79,
+        430
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        91,
+        455,
+        542,
+        566,
+        642
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        477,
+        506,
+        921
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        452,
+        525,
+        561,
+        563,
+        611
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        89
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        63
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_audit_dashboard_final.py",
+      "line_numbers": [
+        64
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

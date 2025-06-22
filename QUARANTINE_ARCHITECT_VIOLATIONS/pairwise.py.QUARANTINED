@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pairwise.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.737225+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pairwise.py",
+      "line_numbers": [
+        344,
+        396,
+        659,
+        668,
+        760
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pairwise.py",
+      "line_numbers": [
+        398,
+        1972
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pairwise.py",
+      "line_numbers": [
+        56,
+        61,
+        576,
+        2031,
+        2048
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pairwise.py",
+      "line_numbers": [
+        64,
+        69,
+        182,
+        199,
+        405
+      ],
+      "violation_count": 22
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

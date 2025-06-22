@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-06-22T18:21:15.059851",
+  "summary": {
+    "quarantined": 6699,
+    "repaired": 6699,
+    "activated": 6699,
+    "failed": 0
+  },
+  "event_bus": {
+    "total_routes": 29,
+    "trading_routes": {
+      "SIGNAL_BUY": {
+        "emitters": [
+          "strategy_engine"
+        ],
+        "listeners": [
+          "execution_engine"
+        ]
+      },
+      "SIGNAL_SELL": {
+        "emitters": [
+          "strategy_engine"
+        ],
+        "listeners": [
+          "execution_engine"
+        ]
+      },
+      "ORDER_EXECUTED": {
+        "emitters": [
+          "execution_engine"
+        ],
+        "listeners": [
+          "position_manager"
+        ]
+      },
+      "POSITION_OPENED": {
+        "emitters": [
+          "position_manager"
+        ],
+        "listeners": []
+      },
+      "POSITION_CLOSED": {
+        "emitters": [
+          "position_manager"
+        ],
+        "listeners": []
+      },
+      "PRICE_FEED_UPDATE": {
+        "emitters": [
+          "mt5_connector"
+        ],
+        "listeners": [
+          "strategy_engine"
+        ]
+      },
+      "KILL_SWITCH_TRIGGERED": {
+        "emitters": [
+          "risk_guard"
+        ],
+        "listeners": [
+          "execution_engine",
+          "position_manager"
+        ]
+      },
+      "RISK_LEVEL_CHANGE": {
+        "emitters": [
+          "risk_guard"
+        ],
+        "listeners": [
+          "strategy_engine"
+        ]
+      },
+      "TICK_DATA": {
+        "emitters": [
+          "mt5_connector"
+        ],
+        "listeners": [
+          "strategy_engine",
+          "risk_guard"
+        ]
+      }
+    }
+  },
+  "trading_modules": {
+    "mt5_connector": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    },
+    "execution_engine": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    },
+    "strategy_engine": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    },
+    "position_manager": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    },
+    "risk_guard": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    },
+    "kill_switch_audit": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    },
+    "trader_core": {
+      "status": "Unknown",
+      "reason": "N/A"
+    },
+    "signal_engine": {
+      "status": "ACTIVE",
+      "reason": "N/A"
+    }
+  },
+  "failed_modules": {}
+}

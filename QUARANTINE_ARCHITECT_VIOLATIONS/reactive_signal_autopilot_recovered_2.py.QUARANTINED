@@ -1,0 +1,76 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.744791+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+      "line_numbers": [
+        132,
+        200,
+        222,
+        470
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+      "line_numbers": [
+        145,
+        215,
+        243
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+      "line_numbers": [
+        139,
+        252
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+      "line_numbers": [
+        172,
+        186,
+        241,
+        330,
+        428
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+      "line_numbers": [
+        99,
+        493
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\reactive_signal_autopilot_recovered_2.py",
+      "line_numbers": [
+        153,
+        154,
+        155,
+        156,
+        157
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

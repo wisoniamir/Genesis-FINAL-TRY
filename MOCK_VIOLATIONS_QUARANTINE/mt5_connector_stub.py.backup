@@ -1,0 +1,585 @@
+# <!-- @GENESIS_MODULE_START: mt5_connector_stub -->
+
+from datetime import datetime\nfrom event_bus import EventBus
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "mt5_connector_stub",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in mt5_connector_stub: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "mt5_connector_stub",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("mt5_connector_stub", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in mt5_connector_stub: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+MT5 Connector Stub - For testing dashboard integration
+Simulates MT5 API calls for testing without MT5 terminal
+
+This is a test utility only and should be replaced with real MT5 connection
+in production. It follows the same interface as the MT5 Python API.
+"""
+
+# MT5 constants
+TIMEFRAME_M1 = 1
+TIMEFRAME_M2 = 2
+TIMEFRAME_M3 = 3
+TIMEFRAME_M4 = 4
+TIMEFRAME_M5 = 5
+TIMEFRAME_M6 = 6
+TIMEFRAME_M10 = 10
+TIMEFRAME_M12 = 12
+TIMEFRAME_M15 = 15
+TIMEFRAME_M20 = 20
+TIMEFRAME_M30 = 30
+TIMEFRAME_H1 = 60
+TIMEFRAME_H2 = 120
+TIMEFRAME_H3 = 180
+TIMEFRAME_H4 = 240
+TIMEFRAME_H6 = 360
+TIMEFRAME_H8 = 480
+TIMEFRAME_H12 = 720
+TIMEFRAME_D1 = 1440
+TIMEFRAME_W1 = 10080
+TIMEFRAME_MN1 = 43200
+
+import random
+import time
+import datetime
+from typing import Dict, List, Any, Optional
+import logging
+import numpy as np
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('MT5ConnectorStub')
+
+class MT5AccountInfo:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "mt5_connector_stub",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in mt5_connector_stub: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "mt5_connector_stub",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("mt5_connector_stub", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in mt5_connector_stub: {e}")
+    def __init__(self):
+        self._emit_startup_telemetry()
+        self.login = 1510944899
+        self.trade_mode = 0
+        self.leverage = 100
+        self.margin_so_mode = 0
+        self.trade_allowed = True
+        self.trade_expert = True
+        self.balance = 50000.0
+        self.credit = 0.0
+        self.profit = 1245.78
+        self.equity = 51245.78
+        self.margin = 2500.0
+        self.margin_free = 48745.78
+        self.margin_level = 2049.83
+        self.margin_so_call = 100.0
+        self.margin_so_so = 50.0
+        self.margin_initial = 0.0
+        self.margin_maintenance = 0.0
+        self.assets = 51245.78
+        self.liabilities = 0.0
+        self.commission_blocked = 0.0
+        self.name = "Test User"
+        self.server = "FTMO-Demo"
+        self.currency = "USD"
+        self.company = "FTMO"
+
+
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        class MT5SymbolInfo:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "mt5_connector_stub",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in mt5_connector_stub: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "mt5_connector_stub",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("mt5_connector_stub", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in mt5_connector_stub: {e}")
+    def __init__(self, name):
+        self.name = name
+        self.visible = True
+        self.select = True
+        self.description = f"{name} Currency Pair"
+        self.path = f"Forex\\{name}"
+        self.point = 0.00001 if "JPY" not in name else 0.001
+        self.digits = 5 if "JPY" not in name else 3
+        self.spread = random.randint(1, 5)
+        self.trade_tick_size = self.point
+        self.trade_contract_size = 100000.0
+        self.trade_tick_value = 1.0
+        self.volume_min = 0.01
+        self.volume_max = 500.0
+        self.volume_step = 0.01
+        self.margin_initial = 0.0
+        self.margin_maintenance = 0.0
+
+class MT5Tick:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "mt5_connector_stub",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in mt5_connector_stub: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "mt5_connector_stub",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("mt5_connector_stub", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in mt5_connector_stub: {e}")
+    def __init__(self, symbol):
+        # Random price based on symbol
+        base_price = {
+            "EURUSD": 1.12,
+            "GBPUSD": 1.31,
+            "USDJPY": 134.5,
+            "AUDUSD": 0.71,
+            "USDCAD": 1.35,
+            "USDCHF": 0.92,
+            "NZDUSD": 0.63
+        }.get(symbol, 1.0)
+        
+        spread_pips = random.randint(1, 5)
+        spread = spread_pips * (0.001 if "JPY" in symbol else 0.00001)
+        
+        self.time = int(time.time())
+        self.bid = base_price
+        self.ask = base_price + spread
+        self.last = base_price
+        self.volume = random.randint(1, 100)
+        self.flags = 0
+
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class MT5Position:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "mt5_connector_stub",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in mt5_connector_stub: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "mt5_connector_stub",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("mt5_connector_stub", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in mt5_connector_stub: {e}")
+    def __init__(self, index):
+        symbols = ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD"]
+        position_type = random.choice([0, 1])  # 0 = buy, 1 = sell
+        symbol = random.choice(symbols)
+        
+        # Base prices
+        base_prices = {
+            "EURUSD": 1.12,
+            "GBPUSD": 1.31,
+            "USDJPY": 134.5,
+            "AUDUSD": 0.71
+        }
+        
+        base_price = base_prices.get(symbol, 1.0)
+        open_price = base_price * (1 + random.uniform(-0.01, 0.01))
+        current_price = base_price * (1 + random.uniform(-0.01, 0.01))
+        
+        # Calculate profit based on direction and price difference
+        direction = 1 if position_type == 0 else -1
+        price_diff = current_price - open_price
+        volume = random.choice([0.01, 0.05, 0.1, 0.2, 0.5, 1.0])
+        
+        # Point value
+        point = 0.00001 if "JPY" not in symbol else 0.001
+        
+        # Profit calculation (simplified)
+        profit = direction * price_diff * volume * 100000 / point
+        
+        self.ticket = 1000000 + index
+        self.time = int(time.time() - random.randint(3600, 86400))
+        self.time_update = int(time.time())
+        self.time_msc = self.time * 1000
+        self.time_update_msc = self.time_update * 1000
+        self.type = position_type
+        self.magic = 12345
+        self.identifier = self.ticket
+        self.reason = 0
+        self.volume = volume
+        self.price_open = open_price
+        self.sl = open_price - direction * 100 * point
+        self.tp = open_price + direction * 100 * point
+        self.price_current = current_price
+        self.swap = 0.0
+        self.profit = profit
+        self.symbol = symbol
+        self.comment = f"Test position {index+1}"
+        self.external_id = ""
+
+# Global state
+_initialized = False
+_logged_in = False
+_account_info = MT5AccountInfo()
+_symbols = {
+    "EURUSD": MT5SymbolInfo("EURUSD"),
+    "GBPUSD": MT5SymbolInfo("GBPUSD"),
+    "USDJPY": MT5SymbolInfo("USDJPY"),
+    "AUDUSD": MT5SymbolInfo("AUDUSD"),
+    "USDCAD": MT5SymbolInfo("USDCAD"),
+    "USDCHF": MT5SymbolInfo("USDCHF"),
+    "NZDUSD": MT5SymbolInfo("NZDUSD")
+}
+_positions = [MT5Position(i) for i in range(3)]  # 3 random positions
+
+# MT5 API stub functions
+def initialize() -> bool:
+    """Initialize MT5 terminal connection"""
+    global _initialized
+    logger.info("MT5 stub initialized")
+    _initialized = True
+    return True
+
+def shutdown() -> None:
+    """Shut down connection to MT5 terminal"""
+    global _initialized
+    logger.info("MT5 stub shutdown")
+    _initialized = False
+
+def login(login: int, password: str, server: str) -> bool:
+    """Log in to MT5 account"""
+    global _logged_in
+    logger.info(f"MT5 stub logged in: {login}@{server}")
+    _logged_in = True
+    return True
+
+def account_info():
+    """Get account info"""
+    if not _initialized or not _logged_in:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    return _account_info
+
+def terminal_info():
+    """Get terminal info"""
+    if not _initialized:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    return {"connected": True, "community_account": "", "community_connection": 0}
+
+def symbols_get():
+    """Get all symbols"""
+    if not _initialized:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    return list(_symbols.values())
+
+def symbol_info(symbol: str):
+    """Get symbol info"""
+    if not _initialized or symbol not in _symbols:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    return _symbols[symbol]
+
+def symbol_info_tick(symbol: str):
+    """Get symbol tick info"""
+    if not _initialized or symbol not in _symbols:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    return MT5Tick(symbol)
+
+def positions_get():
+    """Get open positions"""
+    if not _initialized:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    return _positions
+
+def copy_rates_from_pos(symbol: str, timeframe: int, start_pos: int, count: int):
+    """Copy rates from position"""
+    if not _initialized or symbol not in _symbols:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    
+    # Generate random OHLC data
+    base_price = {
+        "EURUSD": 1.12,
+        "GBPUSD": 1.31,
+        "USDJPY": 134.5,
+        "AUDUSD": 0.71,
+        "USDCAD": 1.35,
+        "USDCHF": 0.92,
+        "NZDUSD": 0.63
+    }.get(symbol, 1.0)
+    
+    # Point size
+    point = 0.00001 if "JPY" not in symbol else 0.001
+    
+    # Generate time series
+    now = int(time.time())
+    period_seconds = {
+        1: 60,         # M1
+        5: 300,        # M5
+        15: 900,       # M15
+        30: 1800,      # M30
+        60: 3600,      # H1
+        240: 14400,    # H4
+        1440: 86400,   # D1
+        10080: 604800, # W1
+    }.get(timeframe, 3600)  # Default to H1
+    
+    # Generate OHLCV data
+    rates = []
+    for i in range(count):
+        # Calculate time for this candle
+        candle_time = now - ((start_pos + i) * period_seconds)
+        
+        # Random price movement (more volatile for longer timeframes)
+        volatility = np.sqrt(period_seconds) * point * 10
+        
+        # Generate OHLC with random walk
+        close_price = base_price * (1 + np.random.normal(0, 0.0005))
+        open_price = close_price * (1 + np.random.normal(0, 0.0002))
+        high_price = max(open_price, close_price) * (1 + abs(np.random.normal(0, 0.0003)))
+        low_price = min(open_price, close_price) * (1 - abs(np.random.normal(0, 0.0003)))
+        
+        # Add to rates array
+        rates.append({
+            'time': candle_time,
+            'open': open_price,
+            'high': high_price,
+            'low': low_price,
+            'close': close_price,
+            'tick_volume': int(np.random.exponential(1000)),
+            'spread': random.randint(1, 5),
+            'real_volume': int(np.random.exponential(10000))
+        })
+    
+    return np.array(rates)
+
+def last_error() -> int:
+    """Get last error code"""
+    return 0
+
+def calendar_get(from_date: datetime.datetime, to_date: datetime.datetime):
+    """Get economic calendar events"""
+    if not _initialized:
+        self.event_bus.emit('error:fallback_triggered', {'module': __name__})
+        return self.event_bus.request('data:default_value')
+    
+    events = []
+    
+    # Generate some sample events
+    events_data = [
+        ("US Non-Farm Payrolls", "USD", "United States", 3),
+        ("EU CPI Flash Estimate y/y", "EUR", "European Union", 3),
+        ("UK GDP Growth Rate QoQ", "GBP", "United Kingdom", 3),
+        ("FOMC Meeting Minutes", "USD", "United States", 3),
+        ("RBA Interest Rate Decision", "AUD", "Australia", 3),
+        ("BOJ Policy Rate", "JPY", "Japan", 3),
+        ("German Manufacturing PMI", "EUR", "Germany", 2),
+        ("US ISM Manufacturing PMI", "USD", "United States", 2),
+        ("UK Manufacturing PMI", "GBP", "United Kingdom", 2),
+        ("Australian Employment Change", "AUD", "Australia", 2),
+        ("Canadian GDP MoM", "CAD", "Canada", 2),
+        ("Swiss CPI MoM", "CHF", "Switzerland", 2),
+        ("NZ Employment Change q/q", "NZD", "New Zealand", 2),
+        ("US Factory Orders m/m", "USD", "United States", 1),
+        ("FOMC Member Speech", "USD", "United States", 1)
+    ]
+    
+    # Create event objects
+    for i, (event_name, currency, country, importance) in enumerate(events_data):
+        # Random time between from_date and to_date
+        days_range = (to_date - from_date).days
+        random_days = random.randint(0, max(days_range, 1) - 1)
+        random_hours = random.randint(0, 23)
+        random_minutes = random.choice([0, 15, 30, 45])
+        
+        event_time = from_date + datetime.timedelta(days=random_days, hours=random_hours, minutes=random_minutes)
+        event_timestamp = int(event_time.timestamp())
+          # Create event as a dictionary with attributes
+        event = type('CalendarEvent', (object,), {
+            'id': i + 1,
+            'time': event_timestamp,
+            'country': country,
+            'currency': currency,
+            'importance': importance,
+            'event_name': event_name,
+            'previous': round(random.uniform(-2.0, 5.0), 1),
+            'forecast': round(random.uniform(-1.0, 4.0), 1),
+            'actual': round(random.uniform(-3.0, 6.0), 1) if random.random() < 0.7 else None,
+            'unit': "%" if "Rate" in event_name or "CPI" in event_name else "K" if "Employment" in event_name else ""
+        })()
+        
+        events.append(event)
+    
+    return events
+
+
+# <!-- @GENESIS_MODULE_END: mt5_connector_stub -->

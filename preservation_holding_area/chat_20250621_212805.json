@@ -1,0 +1,9 @@
+{
+  "module_id": "chat",
+  "original_path": "modules\\restored\\chat.py",
+  "preserved_path": "preservation_holding_area\\chat_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 52033,
+  "checksum": "54a3664bc2cd8f4bed8d9b06af5bf121e1f00e9dcdf8d249252f581dee90a5fd"
+}

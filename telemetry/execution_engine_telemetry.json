@@ -1,0 +1,18 @@
+{
+  "engine_status": "INITIALIZING",
+  "orders_pending": 0,
+  "orders_today": 0,
+  "daily_pnl": 0.0,
+  "account_balance": 0.0,
+  "margin_level": 0.0,
+  "last_execution_time": null,
+  "timestamp": "2025-06-18T18:16:14.850336+00:00",
+  "engine_id": "auto_exec_sync_1750270574",
+  "uptime_seconds": 0.000452,
+  "mt5_connected": false,
+  "kill_switch_active": false,
+  "avg_execution_latency_ms": 0.0,
+  "orders_executed_today": 0,
+  "total_orders_processed": 0,
+  "account_info": {}
+}

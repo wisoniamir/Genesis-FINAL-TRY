@@ -1,0 +1,9 @@
+{
+  "module_id": "auto_execution_sync_engine",
+  "original_path": "modules\\execution\\auto_execution_sync_engine.py",
+  "preserved_path": "preservation_holding_area\\auto_execution_sync_engine_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 32756,
+  "checksum": "c22bff2c934648e089610fce35f15e07f9d3f84dde872556537747945a588c3a"
+}

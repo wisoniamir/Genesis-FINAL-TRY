@@ -1,0 +1,9 @@
+{
+  "module_id": "dataset",
+  "original_path": "modules\\restored\\dataset.py",
+  "preserved_path": "preservation_holding_area\\dataset_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 47586,
+  "checksum": "109b0849adc9675e88b6fb650716102fe445e3c19b5913e611bea6deda60aa90"
+}

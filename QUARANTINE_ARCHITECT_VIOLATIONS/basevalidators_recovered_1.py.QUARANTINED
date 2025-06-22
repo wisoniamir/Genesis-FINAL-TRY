@@ -1,0 +1,82 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.967064+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+      "line_numbers": [
+        95,
+        97,
+        280,
+        408,
+        605
+      ],
+      "violation_count": 28
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+      "line_numbers": [
+        275,
+        347
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+      "line_numbers": [
+        511,
+        1431,
+        1451,
+        1475,
+        1669
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+      "line_numbers": [
+        766,
+        1715,
+        2155,
+        2363,
+        2755
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+      "line_numbers": [
+        79,
+        116,
+        220,
+        619,
+        650
+      ],
+      "violation_count": 35
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\basevalidators_recovered_1.py",
+      "line_numbers": [
+        21,
+        50,
+        103,
+        122,
+        138
+      ],
+      "violation_count": 71
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

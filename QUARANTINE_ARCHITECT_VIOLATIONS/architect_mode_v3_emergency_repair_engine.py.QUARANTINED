@@ -1,0 +1,128 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.633406+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        18,
+        23,
+        56,
+        117,
+        118
+      ],
+      "violation_count": 34
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        23,
+        220,
+        228,
+        399
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        229,
+        400
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        104,
+        181,
+        201,
+        221,
+        258
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        135,
+        196,
+        216,
+        237,
+        326
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        165,
+        169,
+        377,
+        380
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        146,
+        349,
+        579,
+        603
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        264
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        348
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        190
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\architect_mode_v3_emergency_repair_engine.py",
+      "line_numbers": [
+        191
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

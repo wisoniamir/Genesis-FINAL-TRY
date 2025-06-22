@@ -1,0 +1,33 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_figurewidget.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.408539+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_figurewidget.py",
+      "line_numbers": [
+        43,
+        52,
+        60,
+        287,
+        371
+      ],
+      "violation_count": 28
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_figurewidget.py",
+      "line_numbers": [
+        12927,
+        13944,
+        14349,
+        14778,
+        15269
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,18 @@
+{
+  "connection_status": "connected",
+  "last_update": "2025-06-18T19:41:21.902322+00:00",
+  "account_info": {
+    "login": 1510944899,
+    "server": "FTMO-Demo",
+    "balance": 199908.89,
+    "equity": 199908.89,
+    "margin": 25313.9,
+    "margin_level": 788.2630096508241,
+    "currency": "USD",
+    "leverage": 30,
+    "company": "FTMO Global Markets Ltd"
+  },
+  "open_positions_count": 0,
+  "ping_ms": 26,
+  "connection_health": "excellent"
+}

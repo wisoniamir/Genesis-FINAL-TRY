@@ -1,0 +1,261 @@
+# <!-- @GENESIS_MODULE_START: test_quad_tree -->
+"""
+🏛️ GENESIS TEST_QUAD_TREE - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import pickle
+
+import numpy as np
+import pytest
+
+from sklearn.neighbors._quad_tree import _QuadTree
+from sklearn.utils import check_random_state
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_quad_tree",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_quad_tree: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_quad_tree",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_quad_tree", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_quad_tree: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+def test_quadtree_boundary_computation():
+    # Introduce a point into a quad tree with boundaries not easy to compute.
+    Xs = []
+
+    # check a random case
+    Xs.append(np.array([[-1, 1], [-4, -1]], dtype=np.float32))
+    # check the case where only 0 are inserted
+    Xs.append(np.array([[0, 0], [0, 0]], dtype=np.float32))
+    # check the case where only negative are inserted
+    Xs.append(np.array([[-1, -2], [-4, 0]], dtype=np.float32))
+    # check the case where only small numbers are inserted
+    Xs.append(np.array([[-1e-6, 1e-6], [-4e-6, -1e-6]], dtype=np.float32))
+
+    for X in Xs:
+        tree = _QuadTree(n_dimensions=2, verbose=0)
+        tree.build_tree(X)
+        tree._check_coherence()
+
+
+def test_quadtree_similar_point():
+    # Introduce a point into a quad tree where a similar point already exists.
+    # Test will hang if it doesn't complete.
+    Xs = []
+
+    # check the case where points are actually different
+    Xs.append(np.array([[1, 2], [3, 4]], dtype=np.float32))
+    # check the case where points are the same on X axis
+    Xs.append(np.array([[1.0, 2.0], [1.0, 3.0]], dtype=np.float32))
+    # check the case where points are arbitrarily close on X axis
+    Xs.append(np.array([[1.00001, 2.0], [1.00002, 3.0]], dtype=np.float32))
+    # check the case where points are the same on Y axis
+    Xs.append(np.array([[1.0, 2.0], [3.0, 2.0]], dtype=np.float32))
+    # check the case where points are arbitrarily close on Y axis
+    Xs.append(np.array([[1.0, 2.00001], [3.0, 2.00002]], dtype=np.float32))
+    # check the case where points are arbitrarily close on both axes
+    Xs.append(np.array([[1.00001, 2.00001], [1.00002, 2.00002]], dtype=np.float32))
+
+    # check the case where points are arbitrarily close on both axes
+    # close to machine epsilon - x axis
+    Xs.append(np.array([[1, 0.0003817754041], [2, 0.0003817753750]], dtype=np.float32))
+
+    # check the case where points are arbitrarily close on both axes
+    # close to machine epsilon - y axis
+    Xs.append(
+        np.array([[0.0003817754041, 1.0], [0.0003817753750, 2.0]], dtype=np.float32)
+    )
+
+    for X in Xs:
+        tree = _QuadTree(n_dimensions=2, verbose=0)
+        tree.build_tree(X)
+        tree._check_coherence()
+
+
+@pytest.mark.parametrize("n_dimensions", (2, 3))
+@pytest.mark.parametrize("protocol", (0, 1, 2))
+def test_quad_tree_pickle(n_dimensions, protocol):
+    rng = check_random_state(0)
+
+    X = rng.random_sample((10, n_dimensions))
+
+    tree = _QuadTree(n_dimensions=n_dimensions, verbose=0)
+    tree.build_tree(X)
+
+    s = pickle.dumps(tree, protocol=protocol)
+    bt2 = pickle.loads(s)
+
+    for x in X:
+        cell_x_tree = tree.get_cell(x)
+        cell_x_bt2 = bt2.get_cell(x)
+        assert cell_x_tree == cell_x_bt2
+
+
+@pytest.mark.parametrize("n_dimensions", (2, 3))
+def test_qt_insert_duplicate(n_dimensions):
+    rng = check_random_state(0)
+
+    X = rng.random_sample((10, n_dimensions))
+    Xd = np.r_[X, X[:5]]
+    tree = _QuadTree(n_dimensions=n_dimensions, verbose=0)
+    tree.build_tree(Xd)
+
+    cumulative_size = tree.cumulative_size
+    leafs = tree.leafs
+
+    # Assert that the first 5 are indeed duplicated and that the next
+    # ones are single point leaf
+    for i, x in enumerate(X):
+        cell_id = tree.get_cell(x)
+        assert leafs[cell_id]
+        assert cumulative_size[cell_id] == 1 + (i < 5)
+
+
+def test_summarize():
+    # Simple check for quad tree's summarize
+
+    angle = 0.9
+    X = np.array(
+        [[-10.0, -10.0], [9.0, 10.0], [10.0, 9.0], [10.0, 10.0]], dtype=np.float32
+    )
+    query_pt = X[0, :]
+    n_dimensions = X.shape[1]
+    offset = n_dimensions + 2
+
+    qt = _QuadTree(n_dimensions, verbose=0)
+    qt.build_tree(X)
+
+    idx, summary = qt._py_summarize(query_pt, X, angle)
+
+    node_dist = summary[n_dimensions]
+    node_size = summary[n_dimensions + 1]
+
+    # Summary should contain only 1 node with size 3 and distance to
+    # X[1:] barycenter
+    barycenter = X[1:].mean(axis=0)
+    ds2c = ((X[0] - barycenter) ** 2).sum()
+
+    assert idx == offset
+    assert node_size == 3, "summary size = {}".format(node_size)
+    assert np.isclose(node_dist, ds2c)
+
+    # Summary should contain all 3 node with size 1 and distance to
+    # each point in X[1:] for ``angle=0``
+    idx, summary = qt._py_summarize(query_pt, X, 0.0)
+    barycenter = X[1:].mean(axis=0)
+    ds2c = ((X[0] - barycenter) ** 2).sum()
+
+    assert idx == 3 * (offset)
+    for i in range(3):
+        node_dist = summary[i * offset + n_dimensions]
+        node_size = summary[i * offset + n_dimensions + 1]
+
+        ds2c = ((X[0] - X[i + 1]) ** 2).sum()
+
+        assert node_size == 1, "summary size = {}".format(node_size)
+        assert np.isclose(node_dist, ds2c)
+
+
+# <!-- @GENESIS_MODULE_END: test_quad_tree -->

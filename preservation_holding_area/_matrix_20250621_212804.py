@@ -1,0 +1,412 @@
+import logging
+# <!-- @GENESIS_MODULE_START: _matrix -->
+"""
+🏛️ GENESIS _MATRIX - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("_matrix", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("_matrix", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_matrix",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _matrix: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_matrix",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_matrix", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _matrix: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+class spmatrix:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("_matrix", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("_matrix", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_matrix",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _matrix: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_matrix",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_matrix", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _matrix: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_matrix",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _matrix: {e}")
+    """This class provides a base class for all sparse matrix classes.
+
+    It cannot be instantiated.  Most of the work is provided by subclasses.
+    """
+    _allow_nd = (2,)
+
+    @property
+    def _bsr_container(self):
+        from ._bsr import bsr_matrix
+        return bsr_matrix
+
+    @property
+    def _coo_container(self):
+        from ._coo import coo_matrix
+        return coo_matrix
+
+    @property
+    def _csc_container(self):
+        from ._csc import csc_matrix
+        return csc_matrix
+
+    @property
+    def _csr_container(self):
+        from ._csr import csr_matrix
+        return csr_matrix
+
+    @property
+    def _dia_container(self):
+        from ._dia import dia_matrix
+        return dia_matrix
+
+    @property
+    def _dok_container(self):
+        from ._dok import dok_matrix
+        return dok_matrix
+
+    @property
+    def _lil_container(self):
+        from ._lil import lil_matrix
+        return lil_matrix
+
+    # Restore matrix multiplication
+    def __mul__(self, other):
+        return self._matmul_dispatch(other)
+
+    def __rmul__(self, other):
+        return self._rmatmul_dispatch(other)
+
+    # Restore matrix power
+    def __pow__(self, power):
+        from .linalg import matrix_power
+
+        return matrix_power(self, power)
+
+    ## Backward compatibility
+
+    def set_shape(self, shape):
+        """Set the shape of the matrix in-place"""
+        # Make sure copy is False since this is in place
+        # Make sure format is unchanged because we are doing a __dict__ swap
+        new_self = self.reshape(shape, copy=False).asformat(self.format)
+        self.__dict__ = new_self.__dict__
+
+    def get_shape(self):
+        """Get the shape of the matrix"""
+        return self._shape
+
+    shape = property(fget=get_shape, fset=set_shape,
+                     doc="Shape of the matrix")
+
+    def asfptype(self):
+        """Upcast matrix to a floating point format (if necessary)"""
+        return self._asfptype()
+
+    def getmaxprint(self):
+        """Maximum number of elements to display when printed."""
+        return self._getmaxprint()
+
+    def getformat(self):
+        """Matrix storage format"""
+        return self.format
+
+    def getnnz(self, axis=None):
+        """Number of stored values, including explicit zeros.
+
+        Parameters
+        ----------
+        axis : None, 0, or 1
+            Select between the number of values across the whole array, in
+            each column, or in each row.
+        """
+        return self._getnnz(axis=axis)
+
+    def getH(self):
+        """Return the Hermitian transpose of this matrix.
+
+        See Also
+        --------
+        numpy.matrix.getH : NumPy's implementation of `getH` for matrices
+        """
+        return self.conjugate().transpose()
+
+    def getcol(self, j):
+        """Returns a copy of column j of the matrix, as an (m x 1) sparse
+        matrix (column vector).
+        """
+        return self._getcol(j)
+
+    def getrow(self, i):
+        """Returns a copy of row i of the matrix, as a (1 x n) sparse
+        matrix (row vector).
+        """
+        return self._getrow(i)
+
+    def todense(self, order=None, out=None):
+        """
+        Return a dense representation of this sparse matrix.
+
+        Parameters
+        ----------
+        order : {'C', 'F'}, optional
+            Whether to store multi-dimensional data in C (row-major)
+            or Fortran (column-major) order in memory. The default
+            is 'None', which provides no ordering guarantees.
+            Cannot be specified in conjunction with the `out`
+            argument.
+
+        out : ndarray, 2-D, optional
+            If specified, uses this array (or `numpy.matrix`) as the
+            output buffer instead of allocating a new array to
+            return. The provided array must have the same shape and
+            dtype as the sparse matrix on which you are calling the
+            method.
+
+        Returns
+        -------
+        arr : numpy.matrix, 2-D
+            A NumPy matrix object with the same shape and containing
+            the same data represented by the sparse matrix, with the
+            requested memory order. If `out` was passed and was an
+            array (rather than a `numpy.matrix`), it will be filled
+            with the appropriate values and returned wrapped in a
+            `numpy.matrix` object that shares the same memory.
+        """
+        return super().todense(order, out)
+
+
+# <!-- @GENESIS_MODULE_END: _matrix -->

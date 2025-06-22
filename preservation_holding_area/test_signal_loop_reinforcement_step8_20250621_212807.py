@@ -1,0 +1,546 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_signal_loop_reinforcement_step8", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_signal_loop_reinforcement_step8", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_signal_loop_reinforcement_step8",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_signal_loop_reinforcement_step8: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_signal_loop_reinforcement_step8",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_signal_loop_reinforcement_step8", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_signal_loop_reinforcement_step8: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+GENESIS Test SignalLoopReinforcementEngine STEP 8 - ARCHITECT MODE v2.7
+=========================================================================
+Validates the enhanced SignalLoopReinforcementEngine with STEP 8 capabilities:
+1. Signal ID tracking across sessions
+2. Win rate calculations (10, 20, 50 trades)
+3. Slippage mean/variance analysis
+4. TP:SL ratio tracking
+5. Edge decay detection (>15% performance drop)
+6. Reinforcement boost for high-performing signals
+7. Proper event emissions (SignalFeedbackScore, DecayDetectedEvent, ReinforcementLearningLog)
+
+Dependencies: event_bus.py, signal_loop_reinforcement_engine.py
+Emits: Test events to trigger STEP 8 functionality
+Consumes: SignalFeedbackScore, DecayDetectedEvent, ReinforcementLearningLog
+Compliance: ENFORCED
+Real Data: ENABLED (uses realistic signal performance data)
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+from datetime import datetime
+from pathlib import Path
+
+# Configure logging
+log_dir = Path("logs/reinforcement_engine/")
+log_dir.mkdir(parents=True, exist_ok=True)
+log_file = log_dir / f"test_step8_reinforcement_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.log"
+
+logger = logging.getLogger("TestSignalReinforcementStep8")
+logger.setLevel(logging.INFO)
+
+# Create file handler
+fh = logging.FileHandler(log_file, encoding='utf-8')
+fh.setLevel(logging.INFO)
+
+# Create console handler
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+# Create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+ch.setFormatter(formatter)
+
+# Add handlers
+logger.addHandler(fh)
+logger.addHandler(ch)
+
+# Import EventBus and engine
+from event_bus import get_event_bus
+from signal_loop_reinforcement_engine import SignalLoopReinforcementEngine
+
+
+# <!-- @GENESIS_MODULE_END: test_signal_loop_reinforcement_step8 -->
+
+
+# <!-- @GENESIS_MODULE_START: test_signal_loop_reinforcement_step8 -->
+
+# Test results tracking
+test_results = {
+    "test_id": f"step8_test_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}",
+    "test_start_time": datetime.utcnow().isoformat(),
+    "signal_feedback_scores_received": 0,
+    "decay_events_received": 0,
+    "reinforcement_logs_received": 0,
+    "events_received": [],
+    "test_result": "PENDING",
+    "step8_features_validated": {
+        "signal_id_tracking": False,
+        "win_rate_calculations": False,
+        "edge_decay_detection": False,
+        "reinforcement_boost": False,
+        "proper_event_formats": False
+    }
+}
+
+def test_step8_signal_reinforcement():
+    """Test STEP 8 SignalLoopReinforcementEngine functionality"""
+    
+    logger.info(" Starting STEP 8 SignalLoopReinforcementEngine Test")
+    
+    try:
+        # Initialize the engine
+        logger.info("Initializing SignalLoopReinforcementEngine...")
+        engine = SignalLoopReinforcementEngine()
+        
+        # Get EventBus for testing
+        event_bus = get_event_bus()
+        
+        # Subscribe to output events
+        event_bus.subscribe("SignalFeedbackScore", on_signal_feedback_score, "TestStep8")
+        event_bus.subscribe("DecayDetectedEvent", on_decay_detected_event, "TestStep8")
+        event_bus.subscribe("ReinforcementLearningLog", on_reinforcement_learning_log, "TestStep8")
+        
+        logger.info(" Engine initialized, running STEP 8 tests...")
+        
+        # Test 1: Signal ID tracking with multiple trades
+        logger.info("Test 1: Signal ID tracking across sessions")
+        test_signal_tracking(engine)
+        
+        # Test 2: Edge decay detection
+        logger.info("Test 2: Edge decay detection (>15% performance drop)")
+        test_edge_decay_detection(engine)
+        
+        # Test 3: Reinforcement boost for high performers
+        logger.info("Test 3: Reinforcement boost for high-performing signals")
+        test_reinforcement_boost(engine)
+        
+        # Test 4: Win rate calculations at different windows
+        logger.info("Test 4: Win rate calculations (10, 20, 50 trades)")
+        test_win_rate_calculations(engine)
+        
+        # Test 5: Event format validation
+        logger.info("Test 5: Event format validation")
+        validate_event_formats()
+        
+        # Wait for events to process
+        time.sleep(2)
+        
+        # Generate final report
+        generate_test_report()
+        
+    except Exception as e:
+        logger.error(f" Test failed with exception: {str(e)}")
+        test_results["test_result"] = "FAILED"
+        test_results["error"] = str(e)
+
+def test_signal_tracking(engine):
+    """Test signal ID tracking across multiple trades"""
+    
+    signal_id = "test_signal_001"
+    
+    # Simulate 25 trades for this signal
+    trades = [
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.1},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 1.9},
+        {"outcome": "loss", "slippage": 0.1, "tp_sl_ratio": 0.8},
+        {"outcome": "win", "slippage": 0.4, "tp_sl_ratio": 2.3},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 1.8},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 2.0},
+        {"outcome": "loss", "slippage": 0.5, "tp_sl_ratio": 0.9},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.2},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 1.9},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 2.1},
+        # 10 trades so far - should trigger win_rate_10 calculation
+        {"outcome": "loss", "slippage": 0.4, "tp_sl_ratio": 0.7},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.4},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 1.8},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.1},
+        {"outcome": "loss", "slippage": 0.6, "tp_sl_ratio": 0.6},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.3},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 1.9},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.2},
+        # 20 trades so far - should trigger win_rate_20 calculation and potential reinforcement
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.1},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "loss", "slippage": 0.4, "tp_sl_ratio": 0.8},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 1.9},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.3}
+    ]
+    
+    for i, trade in enumerate(trades):
+        logger.info(f"Processing trade {i+1}/25 for signal {signal_id}")
+        engine.track_signal_performance(signal_id, trade["outcome"], trade["slippage"], trade["tp_sl_ratio"])
+        time.sleep(0.1)  # Small delay between trades
+    
+    # Verify signal tracking
+    if signal_id in engine.signal_performance:
+        signal_data = engine.signal_performance[signal_id]
+        logger.info(f" Signal {signal_id} tracked: {signal_data['total_trades']} trades")
+        logger.info(f"Win rate 10: {signal_data['win_rate_10']:.3f}")
+        logger.info(f"Win rate 20: {signal_data['win_rate_20']:.3f}")
+        test_results["step8_features_validated"]["signal_id_tracking"] = True
+        test_results["step8_features_validated"]["win_rate_calculations"] = True
+    else:
+        logger.error(f" Signal {signal_id} not found in tracking")
+
+def test_edge_decay_detection(engine):
+    """Test edge decay detection for signals with >15% performance drop"""
+    
+    signal_id = "test_signal_decay"
+    
+    # First 10 trades: good performance (80% win rate)
+    good_trades = [
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.1},
+        {"outcome": "loss", "slippage": 0.3, "tp_sl_ratio": 0.9},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 1.9},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.2},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 1.8},
+        {"outcome": "loss", "slippage": 0.4, "tp_sl_ratio": 0.8},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.1},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0}
+    ]
+    
+    # Next 10 trades: poor performance (30% win rate) - should trigger decay
+    poor_trades = [
+        {"outcome": "loss", "slippage": 0.5, "tp_sl_ratio": 0.7},
+        {"outcome": "loss", "slippage": 0.4, "tp_sl_ratio": 0.8},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 1.9},
+        {"outcome": "loss", "slippage": 0.6, "tp_sl_ratio": 0.6},
+        {"outcome": "loss", "slippage": 0.5, "tp_sl_ratio": 0.9},
+        {"outcome": "loss", "slippage": 0.4, "tp_sl_ratio": 0.7},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 2.0},
+        {"outcome": "loss", "slippage": 0.5, "tp_sl_ratio": 0.8},
+        {"outcome": "loss", "slippage": 0.6, "tp_sl_ratio": 0.6},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 1.8}
+    ]
+    
+    logger.info("Adding good performance trades...")
+    for trade in good_trades:
+        engine.track_signal_performance(signal_id, trade["outcome"], trade["slippage"], trade["tp_sl_ratio"])
+        time.sleep(0.05)
+    
+    logger.info("Adding poor performance trades (should trigger decay)...")
+    for trade in poor_trades:
+        engine.track_signal_performance(signal_id, trade["outcome"], trade["slippage"], trade["tp_sl_ratio"])
+        time.sleep(0.05)
+    
+    # Check if decay was detected
+    if signal_id in engine.signal_performance:
+        signal_data = engine.signal_performance[signal_id]
+        logger.info(f"Edge decay score: {signal_data['edge_decay_score']:.3f}")
+        if signal_data["edge_decay_score"] < 1.0:
+            logger.info(" Edge decay detection working")
+            test_results["step8_features_validated"]["edge_decay_detection"] = True
+        else:
+            logger.warning(" Edge decay not detected")
+
+def test_reinforcement_boost(engine):
+    """Test reinforcement boost for high-performing signals"""
+    
+    signal_id = "test_signal_boost"
+    
+    # Create high-performing signal: >60% win rate, TP:SL > 1.7, slippage < 0.4
+    high_performance_trades = [
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.1},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 1.9},
+        {"outcome": "loss", "slippage": 0.2, "tp_sl_ratio": 0.9},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 2.2},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 1.8},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.1},
+        {"outcome": "loss", "slippage": 0.3, "tp_sl_ratio": 0.8},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 1.9},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.2},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 1.8},
+        {"outcome": "loss", "slippage": 0.2, "tp_sl_ratio": 0.9},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 2.1},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0},
+        {"outcome": "win", "slippage": 0.1, "tp_sl_ratio": 1.9},
+        {"outcome": "win", "slippage": 0.3, "tp_sl_ratio": 2.2},
+        {"outcome": "win", "slippage": 0.2, "tp_sl_ratio": 2.0}
+    ]
+    
+    logger.info("Adding high-performance trades (should trigger reinforcement boost)...")
+    for trade in high_performance_trades:
+        engine.track_signal_performance(signal_id, trade["outcome"], trade["slippage"], trade["tp_sl_ratio"])
+        time.sleep(0.05)
+    
+    # Check metrics for reinforcement boost
+    if engine.metrics["reinforcement_boosts_applied"] > 0:
+        logger.info(f" Reinforcement boost applied: {engine.metrics['reinforcement_boosts_applied']} times")
+        test_results["step8_features_validated"]["reinforcement_boost"] = True
+    else:
+        logger.warning(" No reinforcement boost detected")
+
+def test_win_rate_calculations(engine):
+    """Test win rate calculations at different windows"""
+    
+    # This is validated as part of signal tracking test
+    total_signals = len(engine.signal_performance)
+    logger.info(f"Total signals tracked: {total_signals}")
+    
+    for signal_id, data in engine.signal_performance.items():
+        logger.info(f"Signal {signal_id}: 10-trade WR: {data['win_rate_10']:.3f}, 20-trade WR: {data['win_rate_20']:.3f}")
+
+# Event callbacks
+def on_signal_feedback_score(event_data):
+    """Handle SignalFeedbackScore events"""
+    logger.info(f" SignalFeedbackScore received: {json.dumps(event_data, indent=2)}")
+    test_results["signal_feedback_scores_received"] += 1
+    test_results["events_received"].append({
+        "event_type": "SignalFeedbackScore",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+    
+    # Validate STEP 8 format
+    required_fields = ["signal_id", "score", "decay_flag", "timestamp"]
+    if all(field in event_data for field in required_fields):
+        test_results["step8_features_validated"]["proper_event_formats"] = True
+        logger.info(" SignalFeedbackScore format validation passed")
+
+def on_decay_detected_event(event_data):
+    """Handle DecayDetectedEvent events"""
+    logger.info(f" DecayDetectedEvent received: {json.dumps(event_data, indent=2)}")
+    test_results["decay_events_received"] += 1
+    test_results["events_received"].append({
+        "event_type": "DecayDetectedEvent",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+
+def on_reinforcement_learning_log(event_data):
+    """Handle ReinforcementLearningLog events"""
+    logger.info(f" ReinforcementLearningLog received: {json.dumps(event_data, indent=2)}")
+    test_results["reinforcement_logs_received"] += 1
+    test_results["events_received"].append({
+        "event_type": "ReinforcementLearningLog",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+
+def validate_event_formats():
+    """Validate that all events conform to STEP 8 specifications"""
+    logger.info("Validating STEP 8 event formats...")
+    
+    # Check if we received the expected events
+    if test_results["signal_feedback_scores_received"] > 0:
+        logger.info(f" Received {test_results['signal_feedback_scores_received']} SignalFeedbackScore events")
+    
+    if test_results["decay_events_received"] > 0:
+        logger.info(f" Received {test_results['decay_events_received']} DecayDetectedEvent events")
+    
+    if test_results["reinforcement_logs_received"] > 0:
+        logger.info(f" Received {test_results['reinforcement_logs_received']} ReinforcementLearningLog events")
+
+def generate_test_report():
+    """Generate final test report"""
+    
+    test_results["test_completion_time"] = datetime.utcnow().isoformat()
+    
+    # Determine overall result
+    features_validated = sum(test_results["step8_features_validated"].values())
+    total_features = len(test_results["step8_features_validated"])
+    
+    if features_validated == total_features:
+        test_results["test_result"] = "PASSED"
+        logger.info(" ALL STEP 8 TESTS PASSED")
+    else:
+        test_results["test_result"] = "PARTIAL_PASS"
+        logger.warning(f" {total_features - features_validated} STEP 8 FEATURES FAILED")
+    
+    # Save test results
+    results_file = log_dir / f"step8_test_results_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(results_file, 'w') as f:
+        json.dump(test_results, f, indent=2)
+    
+    logger.info(f" Test results saved to: {results_file}")
+    
+    # Print summary
+    logger.info("\n" + "="*60)
+    logger.info("STEP 8 TEST SUMMARY")
+    logger.info("="*60)
+    for feature, passed in test_results["step8_features_validated"].items():
+        status = " PASS" if passed else " FAIL"
+        logger.info(f"{feature}: {status}")
+    
+    logger.info(f"\nOverall Result: {test_results['test_result']}")
+    logger.info(f"Events Received: {len(test_results['events_received'])}")
+    logger.info("="*60)
+
+if __name__ == "__main__":
+    try:
+        test_step8_signal_reinforcement()
+        
+        # Save results for integration with build tracker
+        print(f" STEP 8 Test completed: {test_results['test_result']}")
+        
+    except Exception as e:
+        logger.error(f" Test execution failed: {e}")
+        print(f" STEP 8 Test failed: {e}")
+        sys.exit(1)
+
+
+def integrate_trading_feedback(model, historical_performance: Dict) -> None:
+    """Incorporate real trading feedback into the model"""
+    try:
+        # Get real trading logs
+        real_trades = get_trading_history()
+        
+        # Extract features and outcomes
+        features = []
+        outcomes = []
+        
+        for trade in real_trades:
+            # Extract relevant features from the trade
+            trade_features = extract_features_from_trade(trade)
+            trade_outcome = 1 if trade['profit'] > 0 else 0
+            
+            features.append(trade_features)
+            outcomes.append(trade_outcome)
+        
+        if len(features) > 10:  # Only update if we have sufficient data
+            # Incremental model update
+            model.partial_fit(features, outcomes)
+            
+            # Log update to telemetry
+            telemetry.log_event(TelemetryEvent(
+                category="ml_optimization", 
+                name="model_update", 
+                properties={"samples": len(features), "positive_ratio": sum(outcomes)/len(outcomes)}
+            ))
+            
+            # Emit event
+            emit_event("model_updated", {
+                "model_name": model.__class__.__name__,
+                "samples_processed": len(features),
+                "timestamp": datetime.now().isoformat()
+            })
+            
+    except Exception as e:
+        logging.error(f"Error integrating trading feedback: {str(e)}")
+        telemetry.log_event(TelemetryEvent(
+            category="error", 
+            name="feedback_integration_failed", 
+            properties={"error": str(e)}
+        ))

@@ -1,0 +1,1318 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase81",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase81: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase81",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase81", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase81: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: test_phase81 -->
+
+#!/usr/bin/env python3
+"""
+Test Suite for MT5 Connection Bridge - Phase 81
+Architect Mode v5.0.0 Compliant Test Framework
+
+Comprehensive testing for MT5 connection, synchronization, telemetry,
+and event-driven communication.
+"""
+
+import unittest
+import threading
+import time
+import json
+import os
+import sys
+from unittest.mock import Mock, patch, MagicMock
+from datetime import datetime
+
+# Add the project root to the path for imports
+sys.path.insert(0, os.path.abspath('.'))
+
+# Import the module under test
+try:
+    from mt5_connection_bridge import (
+        MT5ConnectionBridge, EventBusConnector, TelemetryCollector,
+        MT5AccountInfo, MT5Symbol, MT5Position
+    )
+except ImportError as e:
+    print(f"Import error: {e}")
+    print("MetaTrader5 library may not be installed - using mocks for testing")
+
+
+class TestEventBusConnector(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase81",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase81: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase81",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase81", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase81: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase81",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase81: {e}")
+    """Test EventBus integration for MT5 bridge"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        self.mock_bridge = Mock()
+        self.mock_bridge.session_id = "test_session_123"
+        self.eventbus = EventBusConnector(self.mock_bridge)
+        
+    def test_event_emission(self):
+        """Test event emission to EventBus"""
+        test_payload = {'account': '12345', 'status': 'connected'}
+        
+        # Create mock event_bus.json
+        with open('event_bus.json', 'w') as f:
+            json.dump({'events': []}, f)
+            
+        # Test event emission
+        self.eventbus.emit_event('mt5:connected', test_payload)
+        
+        # Verify event was logged
+        with open('event_bus.json', 'r') as f:
+            events = json.load(f)
+            
+        self.assertTrue(len(events['events']) > 0)
+        self.assertEqual(events['events'][-1]['event_type'], 'mt5:connected')
+        self.assertEqual(events['events'][-1]['source'], 'mt5_connection_bridge')
+        
+        # Cleanup
+        if os.path.exists('event_bus.json'):
+            os.remove('event_bus.json')
+            
+    def test_system_boot_handler(self):
+        """Test system boot event handling"""
+        self.eventbus.handle_system_boot({})
+        self.mock_bridge.initiate_auto_connection.assert_called_once()
+        
+    def test_login_request_handler(self):
+        """Test login request event handling"""
+        test_payload = {
+            'login': 12345,
+            'password': 'test_password',
+            'server': 'MetaQuotes-Demo'
+        }
+        
+        self.eventbus.handle_login_request(test_payload)
+        self.mock_bridge.connect.assert_called_once_with(12345, 'test_password', 'MetaQuotes-Demo')
+        
+    def test_reconnect_request_handler(self):
+        """Test reconnect request event handling"""
+        self.eventbus.handle_reconnect_request({})
+        self.mock_bridge.reconnect.assert_called_once()
+        
+    def test_sync_request_handler(self):
+        """Test sync request event handling"""
+        self.eventbus.handle_sync_request({})
+        self.mock_bridge.sync_all_data.assert_called_once()
+
+
+class TestTelemetryCollector(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase81",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase81: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase81",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase81", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase81: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase81",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase81: {e}")
+    """Test telemetry collection and tracking"""
+    
+    def setUp(self):
+        """Setup test environment"""
+        self.session_id = "test_session_456"
+        self.telemetry = TelemetryCollector(self.session_id)
+        
+    def test_connection_attempt_recording(self):
+        """Test connection attempt recording"""
+        initial_attempts = self.telemetry.telemetry_data['connection_attempts']
+        self.telemetry.record_connection_attempt()
+        self.assertEqual(
+            self.telemetry.telemetry_data['connection_attempts'],
+            initial_attempts + 1
+        )
+        
+    def test_connection_success_recording(self):
+        """Test connection success recording"""
+        initial_successes = self.telemetry.telemetry_data['successful_connections']
+        self.telemetry.record_connection_success()
+        self.assertEqual(
+            self.telemetry.telemetry_data['successful_connections'],
+            initial_successes + 1
+        )
+        
+    def test_sync_operation_recording(self):
+        """Test sync operation recording"""
+        self.telemetry.record_sync_operation(150, 5, 3)
+        
+        self.assertEqual(self.telemetry.telemetry_data['symbols_synced'], 150)
+        self.assertEqual(self.telemetry.telemetry_data['positions_synced'], 5)
+        self.assertEqual(self.telemetry.telemetry_data['orders_synced'], 3)
+        self.assertIsNotNone(self.telemetry.telemetry_data['last_sync_timestamp'])
+        
+    def test_latency_recording(self):
+        """Test latency recording"""
+        self.telemetry.record_latency('connection', 45.2)
+        
+        latency_samples = self.telemetry.telemetry_data['latency_samples']
+        self.assertTrue(len(latency_samples) > 0)
+        self.assertEqual(latency_samples[-1]['operation'], 'connection')
+        self.assertEqual(latency_samples[-1]['latency_ms'], 45.2)
+        
+    def test_latency_live_limit(self):
+        """Test latency sample limit (100 samples max)"""
+        # Add 150 samples
+        for i in range(150):
+            self.telemetry.record_latency(f'test_op_{i}', i * 10.0)
+            
+        # Should only keep last 100
+        self.assertEqual(len(self.telemetry.telemetry_data['latency_samples']), 100)
+        
+    def test_uptime_tracking(self):
+        """Test uptime tracking"""
+        time.sleep(0.1)  # Small delay
+        self.telemetry.update_uptime()
+        
+        uptime = self.telemetry.telemetry_data['uptime_seconds']
+        self.assertGreaterEqual(uptime, 0)
+        
+    def test_telemetry_saving(self):
+        """Test telemetry data saving to file"""
+        os.makedirs('telemetry', exist_ok=True)
+        
+        self.telemetry.record_connection_attempt()
+        self.telemetry.record_sync_operation(100, 2, 1)
+        self.telemetry.save_telemetry()
+        
+        # Verify file was created and contains data
+        self.assertTrue(os.path.exists('telemetry/connection_status.json'))
+        
+        with open('telemetry/connection_status.json', 'r') as f:
+            saved_data = json.load(f)
+            
+        self.assertEqual(saved_data['session_id'], self.session_id)
+        self.assertEqual(saved_data['telemetry']['symbols_synced'], 100)
+        
+        # Cleanup
+        os.remove('telemetry/connection_status.json')
+
+
+class TestMT5ConnectionBridge(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase81",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase81: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase81",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase81", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase81: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase81",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase81: {e}")
+    """Test main MT5 connection bridge functionality"""
+    
+    def setUp(self):
+        """Setup test environment with mocked MT5"""
+        # Mock MetaTrader5 module
+        self.mt5_mock = Mock()
+        
+        # Setup common MT5 mock responses
+        self.mt5_mock.initialize.return_value = True
+        self.mt5_mock.login.return_value = True
+        self.mt5_mock.last_error.return_value = (0, "Success")
+        
+        # Mock account info
+        mock_account = Mock()
+        mock_account.login = 12345
+        mock_account.name = "Test Account"
+        mock_account.server = "MetaQuotes-Demo"
+        mock_account.currency = "USD"
+        mock_account.balance = 10000.0
+        mock_account.equity = 10050.0
+        mock_account.margin = 0.0
+        mock_account.margin_free = 10050.0
+        mock_account.margin_level = 0.0
+        mock_account.profit = 50.0
+        mock_account.trade_allowed = True
+        mock_account.company = "MetaQuotes Ltd"
+        
+        self.mt5_mock.account_info.return_value = mock_account
+        
+        # Patch MT5 import
+        with patch.dict('sys.modules', {'MetaTrader5': self.mt5_mock}):
+            self.bridge = MT5ConnectionBridge()
+            
+    def test_bridge_initialization(self):
+        """Test bridge initialization"""
+        self.assertIsNotNone(self.bridge.session_id)
+        self.assertIsNotNone(self.bridge.logger)
+        self.assertIsNotNone(self.bridge.eventbus)
+        self.assertIsNotNone(self.bridge.telemetry)
+        self.assertFalse(self.bridge.connected)
+        
+    def test_session_id_generation(self):
+        """Test unique session ID generation"""
+        session_id = self.bridge._generate_session_id()
+        self.assertIsInstance(session_id, str)
+        self.assertEqual(len(session_id), 16)  # MD5 hash truncated to 16 chars
+        
+        # Generate another and ensure they're different
+        session_id2 = self.bridge._generate_session_id()
+        self.assertNotEqual(session_id, session_id2)
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_successful_connection(self, mock_mt5):
+        """Test successful MT5 connection"""
+        # Setup mock responses
+        mock_mt5.initialize.return_value = True
+        mock_mt5.login.return_value = True
+        
+        mock_account = Mock()
+        mock_account.login = 12345
+        mock_account.name = "Test Account"
+        mock_account.server = "MetaQuotes-Demo"
+        mock_account.currency = "USD"
+        mock_account.balance = 10000.0
+        mock_account.equity = 10050.0
+        mock_account.margin = 0.0
+        mock_account.margin_free = 10050.0
+        mock_account.margin_level = 0.0
+        mock_account.profit = 50.0
+        mock_account.trade_allowed = True
+        mock_account.company = "MetaQuotes Ltd"
+        
+        mock_mt5.account_info.return_value = mock_account
+        
+        # Test connection
+        result = self.bridge.connect(12345, "password", "MetaQuotes-Demo")
+        
+        self.assertTrue(result)
+        self.assertTrue(self.bridge.connected)
+        self.assertIsNotNone(self.bridge.account_info)
+        self.assertEqual(self.bridge.account_info.login, 12345)
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_connection_failure(self, mock_mt5):
+        """Test MT5 connection failure handling"""
+        # Setup mock to execute_live failure
+        mock_mt5.initialize.return_value = True
+        mock_mt5.login.return_value = False
+        mock_mt5.last_error.return_value = (1, "Invalid credentials")
+        
+        # Test connection failure
+        result = self.bridge.connect(12345, "wrong_password", "MetaQuotes-Demo")
+        
+        self.assertFalse(result)
+        self.assertFalse(self.bridge.connected)
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_mt5_initialization_failure(self, mock_mt5):
+        """Test MT5 initialization failure"""
+        mock_mt5.initialize.return_value = False
+        
+        result = self.bridge.connect(12345, "password", "MetaQuotes-Demo")
+        
+        self.assertFalse(result)
+        self.assertFalse(self.bridge.connected)
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_symbols_synchronization(self, mock_mt5):
+        """Test symbols synchronization"""
+        # Mock symbols response
+        mock_symbol = Mock()
+        mock_symbol.name = "EURUSD"
+        mock_symbol.description = "Euro vs US Dollar"
+        mock_symbol.currency_base = "EUR"
+        mock_symbol.currency_profit = "USD"
+        mock_symbol.currency_margin = "EUR"
+        mock_symbol.contract_size = 100000.0
+        mock_symbol.digits = 5
+        mock_symbol.point = 0.00001
+        mock_symbol.spread = 1
+        mock_symbol.trade_mode = 4
+        mock_symbol.volume_min = 0.01
+        mock_symbol.volume_max = 500.0
+        mock_symbol.volume_step = 0.01
+        
+        mock_mt5.symbols_get.return_value = [mock_symbol]
+        
+        # Test symbols sync
+        count = self.bridge.sync_symbols()
+        
+        self.assertEqual(count, 1)
+        self.assertIn("EURUSD", self.bridge.symbols)
+        self.assertEqual(self.bridge.symbols["EURUSD"].currency_base, "EUR")
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_positions_synchronization(self, mock_mt5):
+        """Test positions synchronization"""
+        # Mock position response
+        mock_position = Mock()
+        mock_position.ticket = 123456
+        mock_position.symbol = "EURUSD"
+        mock_position.type = 0  # Buy
+        mock_position.volume = 0.1
+        mock_position.price_open = 1.1000
+        mock_position.price_current = 1.1050
+        mock_position.profit = 50.0
+        mock_position.swap = 0.0
+        mock_position.comment = "Test position"
+        mock_position.time = 1640995200  # Unix timestamp
+        mock_position.magic = 12345
+        
+        mock_mt5.positions_get.return_value = [mock_position]
+        
+        # Test positions sync
+        count = self.bridge.sync_positions()
+        
+        self.assertEqual(count, 1)
+        self.assertIn(123456, self.bridge.positions)
+        self.assertEqual(self.bridge.positions[123456].symbol, "EURUSD")
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_orders_synchronization(self, mock_mt5):
+        """Test orders synchronization"""
+        # Mock order response
+        mock_order = Mock()
+        mock_order.ticket = 654321
+        mock_order.symbol = "GBPUSD"
+        mock_order.type = 2  # Buy limit
+        mock_order.volume_initial = 0.2
+        mock_order.price_open = 1.2500
+        mock_order.sl = 1.2400
+        mock_order.tp = 1.2600
+        mock_order.comment = "Test order"
+        mock_order.time_setup = 1640995200
+        mock_order.magic = 54321
+        
+        mock_mt5.orders_get.return_value = [mock_order]
+        
+        # Test orders sync
+        count = self.bridge.sync_orders()
+        
+        self.assertEqual(count, 1)
+        self.assertIn(654321, self.bridge.orders)
+        self.assertEqual(self.bridge.orders[654321]['symbol'], "GBPUSD")
+        
+    def test_connection_status_reporting(self):
+        """Test connection status reporting"""
+        status = self.bridge.get_connection_status()
+        
+        self.assertIsInstance(status, dict)
+        self.assertIn('connected', status)
+        self.assertIn('session_id', status)
+        self.assertIn('symbols_count', status)
+        self.assertIn('positions_count', status)
+        self.assertIn('orders_count', status)
+        self.assertIn('telemetry', status)
+        
+    def test_credentials_saving_and_loading(self):
+        """Test credential saving and auto-connection"""
+        os.makedirs('config', exist_ok=True)
+        
+        # Test saving credentials
+        self.bridge.save_credentials(12345, "test_password", "MetaQuotes-Demo")
+        
+        # Verify file was created
+        self.assertTrue(os.path.exists('config/mt5_credentials.json'))
+        
+        # Load and verify credentials
+        with open('config/mt5_credentials.json', 'r') as f:
+            creds = json.load(f)
+            
+        self.assertEqual(creds['login'], 12345)
+        self.assertEqual(creds['password'], "test_password")
+        self.assertEqual(creds['server'], "MetaQuotes-Demo")
+        
+        # Cleanup
+        os.remove('config/mt5_credentials.json')
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_sync_thread_lifecycle(self, mock_mt5):
+        """Test sync thread start and stop"""
+        # Mock connection
+        self.bridge.connected = True
+        
+        # Start sync thread
+        self.bridge.start_sync_thread()
+        self.assertTrue(self.bridge.sync_running)
+        self.assertTrue(self.bridge.sync_thread.is_alive())
+        
+        # Stop sync thread
+        self.bridge.sync_running = False
+        self.bridge.sync_thread.join(timeout=1)
+        self.assertFalse(self.bridge.sync_running)
+        
+    @patch('mt5_connection_bridge.mt5')
+    def test_connection_monitoring(self, mock_mt5):
+        """Test connection health monitoring"""
+        # Test when connected
+        self.bridge.connected = True
+        mock_mt5.terminal_info.return_value = Mock()
+        
+        is_connected = self.bridge.is_connected()
+        self.assertTrue(is_connected)
+        
+        # Test when disconnected
+        self.bridge.connected = False
+        
+        is_connected = self.bridge.is_connected()
+        self.assertFalse(is_connected)
+        
+    def test_account_type_detection(self):
+        """Test account type detection (demo vs live)"""
+        # Create bridge with mocked account info
+        self.bridge.account_info = MT5AccountInfo(
+            login=12345,
+            name="Test Account",
+            server="MetaQuotes-Demo",
+            currency="USD",
+            balance=10000.0,
+            equity=10000.0,
+            margin=0.0,
+            free_margin=10000.0,
+            margin_level=0.0,
+            profit=0.0,
+            trade_allowed=True,
+            account_type="DEMO",  # Detected as demo
+            company="MetaQuotes Ltd"
+        )
+        
+        self.assertEqual(self.bridge.account_info.account_type, "DEMO")
+        
+    def test_symbol_info_retrieval(self):
+        """Test symbol information retrieval"""
+        # Add test symbol
+        test_symbol = MT5Symbol(
+            name="EURUSD",
+            description="Euro vs US Dollar",
+            currency_base="EUR",
+            currency_profit="USD",
+            currency_margin="EUR",
+            contract_size=100000.0,
+            digits=5,
+            point=0.00001,
+            spread=1,
+            trade_mode=4,
+            volume_min=0.01,
+            volume_max=500.0,
+            volume_step=0.01
+        )
+        
+        self.bridge.symbols["EURUSD"] = test_symbol
+        
+        # Test retrieval
+        symbol_info = self.bridge.get_symbol_info("EURUSD")
+        self.assertIsNotNone(symbol_info)
+        self.assertEqual(symbol_info.name, "EURUSD")
+        
+        # Test non-existent symbol
+        symbol_info = self.bridge.get_symbol_info("NONEXISTENT")
+        self.assertIsNone(symbol_info)
+
+
+class TestDataStructures(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase81",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase81: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase81",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase81", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase81: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase81",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase81: {e}")
+    """Test data structure functionality"""
+    
+    def test_mt5_account_info_creation(self):
+        """Test MT5AccountInfo data structure"""
+        account_info = MT5AccountInfo(
+            login=12345,
+            name="Test Account",
+            server="MetaQuotes-Demo",
+            currency="USD",
+            balance=10000.0,
+            equity=10050.0,
+            margin=0.0,
+            free_margin=10050.0,
+            margin_level=0.0,
+            profit=50.0,
+            trade_allowed=True,
+            account_type="DEMO",
+            company="MetaQuotes Ltd"
+        )
+        
+        self.assertEqual(account_info.login, 12345)
+        self.assertEqual(account_info.currency, "USD")
+        self.assertEqual(account_info.balance, 10000.0)
+        self.assertTrue(account_info.trade_allowed)
+        
+    def test_mt5_symbol_creation(self):
+        """Test MT5Symbol data structure"""
+        symbol = MT5Symbol(
+            name="EURUSD",
+            description="Euro vs US Dollar",
+            currency_base="EUR",
+            currency_profit="USD",
+            currency_margin="EUR",
+            contract_size=100000.0,
+            digits=5,
+            point=0.00001,
+            spread=1,
+            trade_mode=4,
+            volume_min=0.01,
+            volume_max=500.0,
+            volume_step=0.01
+        )
+        
+        self.assertEqual(symbol.name, "EURUSD")
+        self.assertEqual(symbol.currency_base, "EUR")
+        self.assertEqual(symbol.contract_size, 100000.0)
+        self.assertEqual(symbol.digits, 5)
+        
+    def test_mt5_position_creation(self):
+        """Test MT5Position data structure"""
+        position = MT5Position(
+            ticket=123456,
+            symbol="GBPUSD",
+            type=0,
+            volume=0.1,
+            price_open=1.2500,
+            price_current=1.2550,
+            profit=50.0,
+            swap=0.0,
+            comment="Test position",
+            time=datetime.now(),
+            magic=12345
+        )
+        
+        self.assertEqual(position.ticket, 123456)
+        self.assertEqual(position.symbol, "GBPUSD")
+        self.assertEqual(position.volume, 0.1)
+        self.assertEqual(position.profit, 50.0)
+
+
+class TestPerformanceRequirements(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase81",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase81: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase81",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase81", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase81: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase81",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase81: {e}")
+    """Test performance requirements compliance"""
+    
+    def test_connection_latency(self):
+        """Test connection establishment latency"""
+        with patch('mt5_connection_bridge.mt5') as mock_mt5:
+            mock_mt5.initialize.return_value = True
+            mock_mt5.login.return_value = True
+            mock_mt5.account_info.return_value = Mock(
+                login=12345, name="Test", server="Demo", currency="USD",
+                balance=10000.0, equity=10000.0, margin=0.0,
+                margin_free=10000.0, margin_level=0.0, profit=0.0,
+                trade_allowed=True, company="Test"
+            )
+            
+            bridge = MT5ConnectionBridge()
+            
+            start_time = time.time()
+            result = bridge.connect(12345, "password", "MetaQuotes-Demo")
+            end_time = time.time()
+            
+            latency_ms = (end_time - start_time) * 1000
+            
+            # Should connect quickly (under 5 seconds)
+            self.assertLess(latency_ms, 5000, "Connection latency exceeds 5 seconds")
+            self.assertTrue(result)
+            
+    def test_sync_performance(self):
+        """Test synchronization performance"""
+        with patch('mt5_connection_bridge.mt5') as mock_mt5:
+            # Mock large symbol list (1000 symbols)
+            mock_symbols = []
+            for i in range(1000):
+                mock_symbol = Mock()
+                mock_symbol.name = f"SYMBOL{i}"
+                mock_symbol.description = f"Symbol {i}"
+                mock_symbol.currency_base = "USD"
+                mock_symbol.currency_profit = "USD"
+                mock_symbol.currency_margin = "USD"
+                mock_symbol.contract_size = 100000.0
+                mock_symbol.digits = 5
+                mock_symbol.point = 0.00001
+                mock_symbol.spread = 1
+                mock_symbol.trade_mode = 4
+                mock_symbol.volume_min = 0.01
+                mock_symbol.volume_max = 500.0
+                mock_symbol.volume_step = 0.01
+                mock_symbols.append(mock_symbol)
+                
+            mock_mt5.symbols_get.return_value = mock_symbols
+            
+            bridge = MT5ConnectionBridge()
+            
+            start_time = time.time()
+            count = bridge.sync_symbols()
+            end_time = time.time()
+            
+            sync_time_ms = (end_time - start_time) * 1000
+            
+            # Should sync quickly (under 2 seconds)
+            self.assertLess(sync_time_ms, 2000, "Symbol sync latency exceeds 2 seconds")
+            self.assertEqual(count, 1000)
+            
+    def test_memory_usage(self):
+        """Test memory usage during operations"""
+        import psutil
+        import os
+        
+        process = psutil.Process(os.getpid())
+        initial_memory = process.memory_info().rss / 1024 / 1024  # MB
+        
+        with patch('mt5_connection_bridge.mt5'):
+            bridge = MT5ConnectionBridge()
+            
+            # Simulate large data operations
+            for i in range(1000):
+                bridge.symbols[f"SYMBOL{i}"] = MT5Symbol(
+                    name=f"SYMBOL{i}",
+                    description=f"Symbol {i}",
+                    currency_base="USD",
+                    currency_profit="USD",
+                    currency_margin="USD",
+                    contract_size=100000.0,
+                    digits=5,
+                    point=0.00001,
+                    spread=1,
+                    trade_mode=4,
+                    volume_min=0.01,
+                    volume_max=500.0,
+                    volume_step=0.01
+                )
+                
+        final_memory = process.memory_info().rss / 1024 / 1024  # MB
+        memory_increase = final_memory - initial_memory
+        
+        # Should not use excessive memory
+        self.assertLess(memory_increase, 256, "Memory usage increase too high")
+
+
+def run_phase_81_tests():
+    """Run all Phase 81 tests"""
+    print("🧪 Running Phase 81 - MT5 Connection Bridge Tests")
+    print("=" * 60)
+    
+    # Create test suite
+    test_suite = unittest.TestSuite()
+    
+    # Add test classes
+    test_classes = [
+        TestEventBusConnector,
+        TestTelemetryCollector,
+        TestMT5ConnectionBridge,
+        TestDataStructures,
+        TestPerformanceRequirements
+    ]
+    
+    for test_
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class in test_classes:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase81",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase81: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase81",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase81", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase81: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "test_phase81",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in test_phase81: {e}")
+        tests = unittest.TestLoader().loadTestsFromTestCase(test_class)
+        test_suite.addTests(tests)
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(test_suite)
+    
+    # Test summary
+    print("\n" + "=" * 60)
+    print("🎯 PHASE 81 TEST SUMMARY")
+    print("=" * 60)
+    print(f"Tests Run: {result.testsRun}")
+    print(f"Failures: {len(result.failures)}")
+    print(f"Errors: {len(result.errors)}")
+    print(f"Success Rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%")
+    
+    if result.failures:
+        print("\n❌ FAILURES:")
+        for test, trace in result.failures:
+            print(f"  - {test}: {trace}")
+            
+    if result.errors:
+        print("\n💥 ERRORS:")
+        for test, trace in result.errors:
+            print(f"  - {test}: {trace}")
+            
+    # Architect compliance check
+    success_rate = (result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun
+    if success_rate >= 0.94:
+        print("\n✅ ARCHITECT MODE v5.0.0 COMPLIANCE: PASS")
+        print("   MT5 Connection Bridge meets all requirements")
+    else:
+        print("\n❌ ARCHITECT MODE v5.0.0 COMPLIANCE: FAIL")
+        print("   Test success rate below 94% threshold")
+    
+    return result.wasSuccessful()
+
+
+if __name__ == "__main__":
+    # Ensure test environment
+    os.makedirs('logs', exist_ok=True)
+    os.makedirs('telemetry', exist_ok=True)
+    os.makedirs('config', exist_ok=True)
+    
+    # Run tests
+    success = run_phase_81_tests()
+    
+    # Exit with appropriate code
+    sys.exit(0 if success else 1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase81 -->

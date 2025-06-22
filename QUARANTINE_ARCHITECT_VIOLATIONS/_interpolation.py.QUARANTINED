@@ -1,0 +1,45 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolation.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.073600+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolation.py",
+      "line_numbers": [
+        257,
+        259,
+        285,
+        512
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolation.py",
+      "line_numbers": [
+        598,
+        610,
+        616,
+        732,
+        852
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_interpolation.py",
+      "line_numbers": [
+        129,
+        206,
+        219,
+        363,
+        469
+      ],
+      "violation_count": 12
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

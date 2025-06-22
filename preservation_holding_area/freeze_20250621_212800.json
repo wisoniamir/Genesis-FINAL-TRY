@@ -1,0 +1,9 @@
+{
+  "module_id": "freeze",
+  "original_path": "modules\\restored\\freeze.py",
+  "preserved_path": "preservation_holding_area\\freeze_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26131,
+  "checksum": "116a41a52492b03b00b6702ea6fd110d4d2724eedc48d6676e6c5ae719b70943"
+}

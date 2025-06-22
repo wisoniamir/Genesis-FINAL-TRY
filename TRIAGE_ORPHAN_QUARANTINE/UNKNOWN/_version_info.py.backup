@@ -1,0 +1,285 @@
+# <!-- @GENESIS_MODULE_START: _version_info -->
+"""
+🏛️ GENESIS _VERSION_INFO - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+# SPDX-License-Identifier: MIT
+
+
+from functools import total_ordering
+
+from ._funcs import astuple
+from ._make import attrib, attrs
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_version_info",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _version_info: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_version_info",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_version_info", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _version_info: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+@total_ordering
+@attrs(eq=False, order=False, slots=True, frozen=True)
+class VersionInfo:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_version_info",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _version_info: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_version_info",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_version_info", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _version_info: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_version_info",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _version_info: {e}")
+    """
+    A version object that can be compared to tuple of length 1--4:
+
+    >>> attr.VersionInfo(19, 1, 0, "final")  <= (19, 2)
+    True
+    >>> attr.VersionInfo(19, 1, 0, "final") < (19, 1, 1)
+    True
+    >>> vi = attr.VersionInfo(19, 2, 0, "final")
+    >>> vi < (19, 1, 1)
+    False
+    >>> vi < (19,)
+    False
+    >>> vi == (19, 2,)
+    True
+    >>> vi == (19, 2, 1)
+    False
+
+    .. versionadded:: 19.2
+    """
+
+    year = attrib(type=int)
+    minor = attrib(type=int)
+    micro = attrib(type=int)
+    releaselevel = attrib(type=str)
+
+    @classmethod
+    def _from_version_string(cls, s):
+        """
+        Parse *s* and return a _VersionInfo.
+        """
+        v = s.split(".")
+        if len(v) == 3:
+            v.append("final")
+
+        return cls(
+            year=int(v[0]), minor=int(v[1]), micro=int(v[2]), releaselevel=v[3]
+        )
+
+    def _ensure_tuple(self, other):
+        """
+        Ensure *other* is a tuple of a valid length.
+
+        Returns a possibly transformed *other* and ourselves as a tuple of
+        the same length as *other*.
+        """
+
+        if self.__class__ is other.__class__:
+            other = astuple(other)
+
+        if not isinstance(other, tuple):
+            raise NotImplementedError
+
+        if not (1 <= len(other) <= 4):
+            raise NotImplementedError
+
+        return astuple(self)[: len(other)], other
+
+    def __eq__(self, other):
+        try:
+            us, them = self._ensure_tuple(other)
+        except NotImplementedError:
+            return NotImplemented
+
+        return us == them
+
+    def __lt__(self, other):
+        try:
+            us, them = self._ensure_tuple(other)
+        except NotImplementedError:
+            return NotImplemented
+
+        # Since alphabetically "dev0" < "final" < "post1" < "post2", we don't
+        # have to do anything special with releaselevel for now.
+        return us < them
+
+
+# <!-- @GENESIS_MODULE_END: _version_info -->

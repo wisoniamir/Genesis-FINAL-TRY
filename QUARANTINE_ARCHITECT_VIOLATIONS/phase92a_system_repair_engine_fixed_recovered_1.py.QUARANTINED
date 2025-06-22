@@ -1,0 +1,153 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.222155+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        54,
+        145,
+        167,
+        176,
+        182
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        147
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        146
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        113
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        51,
+        63,
+        64,
+        71,
+        74
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        77
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        79,
+        149
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        80
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "\"sample\"",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        81
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        65,
+        103,
+        135,
+        168,
+        201
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        97,
+        129,
+        162,
+        195,
+        209
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        60
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        179
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase92a_system_repair_engine_fixed_recovered_1.py",
+      "line_numbers": [
+        35,
+        113,
+        145,
+        261
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

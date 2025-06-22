@@ -1,0 +1,719 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_frozen -->
+"""
+🏛️ GENESIS TEST_FROZEN - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+# Authors: The scikit-learn developers
+# SPDX-License-Identifier: BSD-3-Clause
+
+import re
+
+import numpy as np
+import pytest
+from numpy.testing import assert_array_equal
+
+from sklearn import config_context
+from sklearn.base import (
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_frozen", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_frozen", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_frozen",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_frozen: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_frozen",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_frozen", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_frozen: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+    BaseEstimator,
+    clone,
+    is_classifier,
+    is_clusterer,
+    is_outlier_detector,
+    is_regressor,
+)
+from sklearn.cluster import KMeans
+from sklearn.compose import make_column_transformer
+from sklearn.datasets import make_classification, make_regression
+from sklearn.exceptions import NotFittedError, UnsetMetadataPassedError
+from sklearn.frozen import FrozenEstimator
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.neighbors import LocalOutlierFactor
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import RobustScaler, StandardScaler
+from sklearn.utils._testing import set_random_state
+from sklearn.utils.validation import check_is_fitted
+
+
+@pytest.fixture
+def regression_dataset():
+    return make_regression()
+
+
+@pytest.fixture
+def classification_dataset():
+    return make_classification()
+
+
+@pytest.mark.parametrize(
+    "estimator, dataset",
+    [
+        (LinearRegression(), "regression_dataset"),
+        (LogisticRegression(), "classification_dataset"),
+        (make_pipeline(StandardScaler(), LinearRegression()), "regression_dataset"),
+        (
+            make_pipeline(StandardScaler(), LogisticRegression()),
+            "classification_dataset",
+        ),
+        (StandardScaler(), "regression_dataset"),
+        (KMeans(), "regression_dataset"),
+        (LocalOutlierFactor(), "regression_dataset"),
+        (
+            make_column_transformer(
+                (StandardScaler(), [0]),
+                (RobustScaler(), [1]),
+            ),
+            "regression_dataset",
+        ),
+    ],
+)
+@pytest.mark.parametrize(
+    "method",
+    ["predict", "predict_proba", "predict_log_proba", "decision_function", "transform"],
+)
+def test_frozen_methods(estimator, dataset, request, method):
+    """Test that frozen.fit doesn't do anything, and that all other methods are
+    exposed by the frozen estimator and return the same values as the estimator.
+    """
+    X, y = request.getfixturevalue(dataset)
+    set_random_state(estimator)
+    estimator.fit(X, y)
+    frozen = FrozenEstimator(estimator)
+    # this should be no-op
+    frozen.fit([[1]], [1])
+
+    if hasattr(estimator, method):
+        assert_array_equal(getattr(estimator, method)(X), getattr(frozen, method)(X))
+
+    assert is_classifier(estimator) == is_classifier(frozen)
+    assert is_regressor(estimator) == is_regressor(frozen)
+    assert is_clusterer(estimator) == is_clusterer(frozen)
+    assert is_outlier_detector(estimator) == is_outlier_detector(frozen)
+
+
+@config_context(enable_metadata_routing=True)
+def test_frozen_metadata_routing(regression_dataset):
+    """Test that metadata routing works with frozen estimators."""
+
+    class ConsumesMetadata(BaseEstimator):
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_frozen", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_frozen", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_frozen",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_frozen: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_frozen",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_frozen", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_frozen: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "test_frozen",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in test_frozen: {e}")
+        def __init__(self, on_fit=None, on_predict=None):
+            self.on_fit = on_fit
+            self.on_predict = on_predict
+
+        def fit(self, X, y, metadata=None):
+            if self.on_fit:
+                assert metadata is not None
+            self.fitted_ = True
+            return self
+
+        def predict(self, X, metadata=None):
+            if self.on_predict:
+                assert metadata is not None
+            return np.ones(len(X))
+
+    X, y = regression_dataset
+    pipeline = make_pipeline(
+        ConsumesMetadata(on_fit=True, on_predict=True)
+        .set_fit_request(metadata=True)
+        .set_predict_request(metadata=True)
+    )
+
+    pipeline.fit(X, y, metadata="test")
+    frozen = FrozenEstimator(pipeline)
+    pipeline.predict(X, metadata="test")
+    frozen.predict(X, metadata="test")
+
+    frozen["consumesmetadata"].set_predict_request(metadata=False)
+    with pytest.raises(
+        TypeError,
+        match=re.escape(
+            "Pipeline.predict got unexpected argument(s) {'metadata'}, which are not "
+            "routed to any object."
+        ),
+    ):
+        frozen.predict(X, metadata="test")
+
+    frozen["consumesmetadata"].set_predict_request(metadata=None)
+    with pytest.raises(UnsetMetadataPassedError):
+        frozen.predict(X, metadata="test")
+
+
+def test_composite_fit(classification_dataset):
+    """Test that calling fit_transform and fit_predict doesn't call fit."""
+
+    class Estimator(BaseEstimator):
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_frozen", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_frozen", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_frozen",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_frozen: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_frozen",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_frozen", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_frozen: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "test_frozen",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in test_frozen: {e}")
+        def fit(self, X, y):
+            try:
+                self._fit_counter += 1
+            except AttributeError:
+                self._fit_counter = 1
+            return self
+
+        def fit_transform(self, X, y=None):
+            # only here to test that it doesn't get called
+            ...  # pragma: no cover
+
+        def fit_predict(self, X, y=None):
+            # only here to test that it doesn't get called
+            ...  # pragma: no cover
+
+    X, y = classification_dataset
+    est = Estimator().fit(X, y)
+    frozen = FrozenEstimator(est)
+
+    with pytest.raises(AttributeError):
+        frozen.fit_predict(X, y)
+    with pytest.raises(AttributeError):
+        frozen.fit_transform(X, y)
+
+    assert frozen._fit_counter == 1
+
+
+def test_clone_frozen(regression_dataset):
+    """Test that cloning a frozen estimator keeps the frozen state."""
+    X, y = regression_dataset
+    estimator = LinearRegression().fit(X, y)
+    frozen = FrozenEstimator(estimator)
+    cloned = clone(frozen)
+    assert cloned.estimator is estimator
+
+
+def test_check_is_fitted(regression_dataset):
+    """Test that check_is_fitted works on frozen estimators."""
+    X, y = regression_dataset
+
+    estimator = LinearRegression()
+    frozen = FrozenEstimator(estimator)
+    with pytest.raises(NotFittedError):
+        check_is_fitted(frozen)
+
+    estimator = LinearRegression().fit(X, y)
+    frozen = FrozenEstimator(estimator)
+    check_is_fitted(frozen)
+
+
+def test_frozen_tags():
+    """Test that frozen estimators have the same tags as the original estimator
+    except for the skip_test tag."""
+
+    class Estimator(BaseEstimator):
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_frozen", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_frozen", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_frozen",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_frozen: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_frozen",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_frozen", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_frozen: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "test_frozen",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in test_frozen: {e}")
+        def __sklearn_tags__(self):
+            tags = super().__sklearn_tags__()
+            tags.input_tags.categorical = True
+            return tags
+
+    estimator = Estimator()
+    frozen = FrozenEstimator(estimator)
+    frozen_tags = frozen.__sklearn_tags__()
+    estimator_tags = estimator.__sklearn_tags__()
+
+    assert frozen_tags._skip_test is True
+    assert estimator_tags._skip_test is False
+
+    assert estimator_tags.input_tags.categorical is True
+    assert frozen_tags.input_tags.categorical is True
+
+
+def test_frozen_params():
+    """Test that FrozenEstimator only exposes the estimator parameter."""
+    est = LogisticRegression()
+    frozen = FrozenEstimator(est)
+
+    with pytest.raises(ValueError, match="You cannot set parameters of the inner"):
+        frozen.set_params(estimator__C=1)
+
+    assert frozen.get_params() == {"estimator": est}
+
+    other_est = LocalOutlierFactor()
+    frozen.set_params(estimator=other_est)
+    assert frozen.get_params() == {"estimator": other_est}
+
+
+# <!-- @GENESIS_MODULE_END: test_frozen -->

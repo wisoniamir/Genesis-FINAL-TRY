@@ -1,0 +1,27 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_add_newdocs_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.199688+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_add_newdocs_recovered_2.py",
+      "line_numbers": [
+        6165,
+        6239,
+        6365
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_add_newdocs_recovered_2.py",
+      "line_numbers": [
+        21
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

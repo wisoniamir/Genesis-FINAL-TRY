@@ -1,0 +1,9 @@
+{
+  "module_id": "portfolio_optimizer",
+  "original_path": "modules\\optimization\\portfolio_optimizer.py",
+  "preserved_path": "preservation_holding_area\\portfolio_optimizer_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24721,
+  "checksum": "09c103eea160f1a6b34b980b41ac34ebee6b397a442dc6d363fcffb673b140e8"
+}

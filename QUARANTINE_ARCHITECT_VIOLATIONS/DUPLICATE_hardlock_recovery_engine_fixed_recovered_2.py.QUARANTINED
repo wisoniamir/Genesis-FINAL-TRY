@@ -1,0 +1,109 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.247548+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        330
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        57,
+        85,
+        91,
+        93,
+        97
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        92,
+        159
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        92,
+        158
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        92,
+        158
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        20,
+        131,
+        277,
+        317
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        62,
+        297
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "default =",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        159
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        140
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_hardlock_recovery_engine_fixed_recovered_2.py",
+      "line_numbers": [
+        87,
+        167
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

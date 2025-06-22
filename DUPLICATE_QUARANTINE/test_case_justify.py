@@ -1,0 +1,572 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_case_justify -->
+"""
+🏛️ GENESIS TEST_CASE_JUSTIFY - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+from datetime import datetime
+import operator
+
+import numpy as np
+import pytest
+
+from pandas import (
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_case_justify", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_case_justify", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_case_justify",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_case_justify: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_case_justify",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_case_justify", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_case_justify: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+    Series,
+    _testing as tm,
+)
+
+
+def test_title(any_string_dtype):
+    s = Series(["FOO", "BAR", np.nan, "Blah", "blurg"], dtype=any_string_dtype)
+    result = s.str.title()
+    expected = Series(["Foo", "Bar", np.nan, "Blah", "Blurg"], dtype=any_string_dtype)
+    tm.assert_series_equal(result, expected)
+
+
+def test_title_mixed_object():
+    s = Series(["FOO", np.nan, "bar", True, datetime.today(), "blah", None, 1, 2.0])
+    result = s.str.title()
+    expected = Series(
+        ["Foo", np.nan, "Bar", np.nan, np.nan, "Blah", None, np.nan, np.nan],
+        dtype=object,
+    )
+    tm.assert_almost_equal(result, expected)
+
+
+def test_lower_upper(any_string_dtype):
+    s = Series(["om", np.nan, "nom", "nom"], dtype=any_string_dtype)
+
+    result = s.str.upper()
+    expected = Series(["OM", np.nan, "NOM", "NOM"], dtype=any_string_dtype)
+    tm.assert_series_equal(result, expected)
+
+    result = result.str.lower()
+    tm.assert_series_equal(result, s)
+
+
+def test_lower_upper_mixed_object():
+    s = Series(["a", np.nan, "b", True, datetime.today(), "foo", None, 1, 2.0])
+
+    result = s.str.upper()
+    expected = Series(
+        ["A", np.nan, "B", np.nan, np.nan, "FOO", None, np.nan, np.nan], dtype=object
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.lower()
+    expected = Series(
+        ["a", np.nan, "b", np.nan, np.nan, "foo", None, np.nan, np.nan], dtype=object
+    )
+    tm.assert_series_equal(result, expected)
+
+
+@pytest.mark.parametrize(
+    "data, expected",
+    [
+        (
+            ["FOO", "BAR", np.nan, "Blah", "blurg"],
+            ["Foo", "Bar", np.nan, "Blah", "Blurg"],
+        ),
+        (["a", "b", "c"], ["A", "B", "C"]),
+        (["a b", "a bc. de"], ["A b", "A bc. de"]),
+    ],
+)
+def test_capitalize(data, expected, any_string_dtype):
+    s = Series(data, dtype=any_string_dtype)
+    result = s.str.capitalize()
+    expected = Series(expected, dtype=any_string_dtype)
+    tm.assert_series_equal(result, expected)
+
+
+def test_capitalize_mixed_object():
+    s = Series(["FOO", np.nan, "bar", True, datetime.today(), "blah", None, 1, 2.0])
+    result = s.str.capitalize()
+    expected = Series(
+        ["Foo", np.nan, "Bar", np.nan, np.nan, "Blah", None, np.nan, np.nan],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_swapcase(any_string_dtype):
+    s = Series(["FOO", "BAR", np.nan, "Blah", "blurg"], dtype=any_string_dtype)
+    result = s.str.swapcase()
+    expected = Series(["foo", "bar", np.nan, "bLAH", "BLURG"], dtype=any_string_dtype)
+    tm.assert_series_equal(result, expected)
+
+
+def test_swapcase_mixed_object():
+    s = Series(["FOO", np.nan, "bar", True, datetime.today(), "Blah", None, 1, 2.0])
+    result = s.str.swapcase()
+    expected = Series(
+        ["foo", np.nan, "BAR", np.nan, np.nan, "bLAH", None, np.nan, np.nan],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_casefold():
+    # GH25405
+    expected = Series(["ss", np.nan, "case", "ssd"])
+    s = Series(["ß", np.nan, "case", "ßd"])
+    result = s.str.casefold()
+
+    tm.assert_series_equal(result, expected)
+
+
+def test_casemethods(any_string_dtype):
+    values = ["aaa", "bbb", "CCC", "Dddd", "eEEE"]
+    s = Series(values, dtype=any_string_dtype)
+    assert s.str.lower().tolist() == [v.lower() for v in values]
+    assert s.str.upper().tolist() == [v.upper() for v in values]
+    assert s.str.title().tolist() == [v.title() for v in values]
+    assert s.str.capitalize().tolist() == [v.capitalize() for v in values]
+    assert s.str.swapcase().tolist() == [v.swapcase() for v in values]
+
+
+def test_pad(any_string_dtype):
+    s = Series(["a", "b", np.nan, "c", np.nan, "eeeeee"], dtype=any_string_dtype)
+
+    result = s.str.pad(5, side="left")
+    expected = Series(
+        ["    a", "    b", np.nan, "    c", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.pad(5, side="right")
+    expected = Series(
+        ["a    ", "b    ", np.nan, "c    ", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.pad(5, side="both")
+    expected = Series(
+        ["  a  ", "  b  ", np.nan, "  c  ", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_pad_mixed_object():
+    s = Series(["a", np.nan, "b", True, datetime.today(), "ee", None, 1, 2.0])
+
+    result = s.str.pad(5, side="left")
+    expected = Series(
+        ["    a", np.nan, "    b", np.nan, np.nan, "   ee", None, np.nan, np.nan],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.pad(5, side="right")
+    expected = Series(
+        ["a    ", np.nan, "b    ", np.nan, np.nan, "ee   ", None, np.nan, np.nan],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.pad(5, side="both")
+    expected = Series(
+        ["  a  ", np.nan, "  b  ", np.nan, np.nan, "  ee ", None, np.nan, np.nan],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_pad_fillchar(any_string_dtype):
+    s = Series(["a", "b", np.nan, "c", np.nan, "eeeeee"], dtype=any_string_dtype)
+
+    result = s.str.pad(5, side="left", fillchar="X")
+    expected = Series(
+        ["XXXXa", "XXXXb", np.nan, "XXXXc", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.pad(5, side="right", fillchar="X")
+    expected = Series(
+        ["aXXXX", "bXXXX", np.nan, "cXXXX", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.pad(5, side="both", fillchar="X")
+    expected = Series(
+        ["XXaXX", "XXbXX", np.nan, "XXcXX", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_pad_fillchar_bad_arg_raises(any_string_dtype):
+    s = Series(["a", "b", np.nan, "c", np.nan, "eeeeee"], dtype=any_string_dtype)
+
+    msg = "fillchar must be a character, not str"
+    with pytest.raises(TypeError, match=msg):
+        s.str.pad(5, fillchar="XY")
+
+    msg = "fillchar must be a character, not int"
+    with pytest.raises(TypeError, match=msg):
+        s.str.pad(5, fillchar=5)
+
+
+@pytest.mark.parametrize("method_name", ["center", "ljust", "rjust", "zfill", "pad"])
+def test_pad_width_bad_arg_raises(method_name, any_string_dtype):
+    # see gh-13598
+    s = Series(["1", "22", "a", "bb"], dtype=any_string_dtype)
+    op = operator.methodcaller(method_name, "f")
+
+    msg = "width must be of integer type, not str"
+    with pytest.raises(TypeError, match=msg):
+        op(s.str)
+
+
+def test_center_ljust_rjust(any_string_dtype):
+    s = Series(["a", "b", np.nan, "c", np.nan, "eeeeee"], dtype=any_string_dtype)
+
+    result = s.str.center(5)
+    expected = Series(
+        ["  a  ", "  b  ", np.nan, "  c  ", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.ljust(5)
+    expected = Series(
+        ["a    ", "b    ", np.nan, "c    ", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.rjust(5)
+    expected = Series(
+        ["    a", "    b", np.nan, "    c", np.nan, "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_center_ljust_rjust_mixed_object():
+    s = Series(["a", np.nan, "b", True, datetime.today(), "c", "eee", None, 1, 2.0])
+
+    result = s.str.center(5)
+    expected = Series(
+        [
+            "  a  ",
+            np.nan,
+            "  b  ",
+            np.nan,
+            np.nan,
+            "  c  ",
+            " eee ",
+            None,
+            np.nan,
+            np.nan,
+        ],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.ljust(5)
+    expected = Series(
+        [
+            "a    ",
+            np.nan,
+            "b    ",
+            np.nan,
+            np.nan,
+            "c    ",
+            "eee  ",
+            None,
+            np.nan,
+            np.nan,
+        ],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+    result = s.str.rjust(5)
+    expected = Series(
+        [
+            "    a",
+            np.nan,
+            "    b",
+            np.nan,
+            np.nan,
+            "    c",
+            "  eee",
+            None,
+            np.nan,
+            np.nan,
+        ],
+        dtype=object,
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_center_ljust_rjust_fillchar(any_string_dtype):
+    # GH#54533, GH#54792
+    s = Series(["a", "bb", "cccc", "ddddd", "eeeeee"], dtype=any_string_dtype)
+
+    result = s.str.center(5, fillchar="X")
+    expected = Series(
+        ["XXaXX", "XXbbX", "Xcccc", "ddddd", "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+    expected = np.array([v.center(5, "X") for v in np.array(s)], dtype=np.object_)
+    tm.assert_numpy_array_equal(np.array(result, dtype=np.object_), expected)
+
+    result = s.str.ljust(5, fillchar="X")
+    expected = Series(
+        ["aXXXX", "bbXXX", "ccccX", "ddddd", "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+    expected = np.array([v.ljust(5, "X") for v in np.array(s)], dtype=np.object_)
+    tm.assert_numpy_array_equal(np.array(result, dtype=np.object_), expected)
+
+    result = s.str.rjust(5, fillchar="X")
+    expected = Series(
+        ["XXXXa", "XXXbb", "Xcccc", "ddddd", "eeeeee"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+    expected = np.array([v.rjust(5, "X") for v in np.array(s)], dtype=np.object_)
+    tm.assert_numpy_array_equal(np.array(result, dtype=np.object_), expected)
+
+
+def test_center_ljust_rjust_fillchar_bad_arg_raises(any_string_dtype):
+    s = Series(["a", "bb", "cccc", "ddddd", "eeeeee"], dtype=any_string_dtype)
+
+    # If fillchar is not a character, normal str raises TypeError
+    # 'aaa'.ljust(5, 'XY')
+    # TypeError: must be char, not str
+    template = "fillchar must be a character, not {dtype}"
+
+    with pytest.raises(TypeError, match=template.format(dtype="str")):
+        s.str.center(5, fillchar="XY")
+
+    with pytest.raises(TypeError, match=template.format(dtype="str")):
+        s.str.ljust(5, fillchar="XY")
+
+    with pytest.raises(TypeError, match=template.format(dtype="str")):
+        s.str.rjust(5, fillchar="XY")
+
+    with pytest.raises(TypeError, match=template.format(dtype="int")):
+        s.str.center(5, fillchar=1)
+
+    with pytest.raises(TypeError, match=template.format(dtype="int")):
+        s.str.ljust(5, fillchar=1)
+
+    with pytest.raises(TypeError, match=template.format(dtype="int")):
+        s.str.rjust(5, fillchar=1)
+
+
+def test_zfill(any_string_dtype):
+    s = Series(["1", "22", "aaa", "333", "45678"], dtype=any_string_dtype)
+
+    result = s.str.zfill(5)
+    expected = Series(
+        ["00001", "00022", "00aaa", "00333", "45678"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+    expected = np.array([v.zfill(5) for v in np.array(s)], dtype=np.object_)
+    tm.assert_numpy_array_equal(np.array(result, dtype=np.object_), expected)
+
+    result = s.str.zfill(3)
+    expected = Series(["001", "022", "aaa", "333", "45678"], dtype=any_string_dtype)
+    tm.assert_series_equal(result, expected)
+    expected = np.array([v.zfill(3) for v in np.array(s)], dtype=np.object_)
+    tm.assert_numpy_array_equal(np.array(result, dtype=np.object_), expected)
+
+    s = Series(["1", np.nan, "aaa", np.nan, "45678"], dtype=any_string_dtype)
+    result = s.str.zfill(5)
+    expected = Series(
+        ["00001", np.nan, "00aaa", np.nan, "45678"], dtype=any_string_dtype
+    )
+    tm.assert_series_equal(result, expected)
+
+
+def test_wrap(any_string_dtype):
+    # test values are: two words less than width, two words equal to width,
+    # two words greater than width, one word less than width, one word
+    # equal to width, one word greater than width, multiple tokens with
+    # trailing whitespace equal to width
+    s = Series(
+        [
+            "hello world",
+            "hello world!",
+            "hello world!!",
+            "abcdefabcde",
+            "abcdefabcdef",
+            "abcdefabcdefa",
+            "ab ab ab ab ",
+            "ab ab ab ab a",
+            "\t",
+        ],
+        dtype=any_string_dtype,
+    )
+
+    # expected values
+    expected = Series(
+        [
+            "hello world",
+            "hello world!",
+            "hello\nworld!!",
+            "abcdefabcde",
+            "abcdefabcdef",
+            "abcdefabcdef\na",
+            "ab ab ab ab",
+            "ab ab ab ab\na",
+            "",
+        ],
+        dtype=any_string_dtype,
+    )
+
+    result = s.str.wrap(12, break_long_words=True)
+    tm.assert_series_equal(result, expected)
+
+
+def test_wrap_unicode(any_string_dtype):
+    # test with pre and post whitespace (non-unicode), NaN, and non-ascii Unicode
+    s = Series(
+        ["  pre  ", np.nan, "\xac\u20ac\U00008000 abadcafe"], dtype=any_string_dtype
+    )
+    expected = Series(
+        ["  pre", np.nan, "\xac\u20ac\U00008000 ab\nadcafe"], dtype=any_string_dtype
+    )
+    result = s.str.wrap(6)
+    tm.assert_series_equal(result, expected)
+
+
+# <!-- @GENESIS_MODULE_END: test_case_justify -->

@@ -1,0 +1,9 @@
+{
+  "module_id": "ntlmpool",
+  "original_path": "modules\\restored\\ntlmpool.py",
+  "preserved_path": "preservation_holding_area\\ntlmpool_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15837,
+  "checksum": "003f9217ed4751baa5c11d648b90f1dc586eb0cbdaf155991585cb07cda8ce49"
+}

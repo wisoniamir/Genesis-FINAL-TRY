@@ -1,0 +1,9 @@
+{
+  "module_id": "expr",
+  "original_path": "modules\\restored\\expr.py",
+  "preserved_path": "preservation_holding_area\\expr_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 51961,
+  "checksum": "35e71c7e399a902701c0232f5bb5e3ce7019f67218eb0b9df6d6f01997ee8e53"
+}

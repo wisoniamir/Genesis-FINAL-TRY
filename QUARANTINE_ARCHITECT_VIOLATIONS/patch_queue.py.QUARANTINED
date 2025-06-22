@@ -1,0 +1,58 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\dashboard\\components\\patch_queue.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.296821+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\dashboard\\components\\patch_queue.py",
+      "line_numbers": [
+        114,
+        148,
+        199,
+        239,
+        259
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\dashboard\\components\\patch_queue.py",
+      "line_numbers": [
+        138,
+        189,
+        229,
+        254,
+        267
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\dashboard\\components\\patch_queue.py",
+      "line_numbers": [
+        118,
+        151,
+        155,
+        202,
+        206
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\dashboard\\components\\patch_queue.py",
+      "line_numbers": [
+        133,
+        177,
+        227,
+        331
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

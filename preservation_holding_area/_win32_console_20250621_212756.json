@@ -1,0 +1,9 @@
+{
+  "module_id": "_win32_console",
+  "original_path": "modules\\restored\\_win32_console.py",
+  "preserved_path": "preservation_holding_area\\_win32_console_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 54625,
+  "checksum": "361fca79035bd58951d40a3ccc7b82bd43d36a81dc7abe64b3eca8885f1f7228"
+}

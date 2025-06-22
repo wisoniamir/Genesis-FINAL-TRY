@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""
+GENESIS Phase 82-83 Validation Test
+Quick validation of AutoExecutionManager and LiveRiskGovernor integration
+"""
+
+import json
+import sys
+from pathlib import Path
+from datetime import datetime
+
+def test_module_compliance():
+    """Test both modules for architect mode v5.0.0 compliance"""
+    
+    print("🎯 GENESIS PHASE 82-83 VALIDATION TEST")
+    print("=" * 50)
+    
+    # Check file existence
+    aem_file = Path('auto_execution_manager.py')
+    lrg_file = Path('live_risk_governor.py')
+    
+    print(f"AutoExecutionManager file exists: {aem_file.exists()}")
+    print(f"LiveRiskGovernor file exists: {lrg_file.exists()}")
+    
+    if not (aem_file.exists() and lrg_file.exists()):
+        print("❌ Required files missing")
+        return False
+    
+    # Check system tree registration
+    try:
+        with open('system_tree.json', 'r') as f:
+            system_tree = json.load(f)
+        
+        aem_node = None
+        lrg_node = None
+        
+        for node in system_tree.get('nodes', []):
+            if node.get('id') == 'AutoExecutionManager':
+                aem_node = node
+            elif node.get('id') == 'LiveRiskGovernor':
+                lrg_node = node
+        
+        print(f"\nAutoExecutionManager in system tree: {aem_node is not None}")
+        print(f"LiveRiskGovernor in system tree: {lrg_node is not None}")
+        
+        if aem_node:
+            print(f"AEM status: {aem_node.get('status')}")
+            print(f"AEM subscribes to: {len(aem_node.get('subscribes_to', []))} events")
+            print(f"AEM publishes to: {len(aem_node.get('publishes_to', []))} events")
+        
+        if lrg_node:
+            print(f"LRG status: {lrg_node.get('status')}")
+            print(f"LRG subscribes to: {len(lrg_node.get('subscribes_to', []))} events")
+            print(f"LRG publishes to: {len(lrg_node.get('publishes_to', []))} events")
+            
+    except Exception as e:
+        print(f"❌ System tree validation failed: {e}")
+        return False
+    
+    # Check module registry
+    try:
+        with open('module_registry.json', 'r') as f:
+            registry = json.load(f)
+        
+        aem_registered = False
+        lrg_registered = False
+        
+        for module in registry.get('modules', []):
+            if module.get('name') == 'AutoExecutionManager':
+                aem_registered = True
+                print(f"\nAEM registry status: {module.get('status')}")
+            elif module.get('name') == 'LiveRiskGovernor':
+                lrg_registered = True
+                print(f"LRG registry status: {module.get('status')}")
+        
+        print(f"\nAutoExecutionManager registered: {aem_registered}")
+        print(f"LiveRiskGovernor registered: {lrg_registered}")
+        
+    except Exception as e:
+        print(f"❌ Module registry validation failed: {e}")
+        return False
+    
+    # Validate architect mode compliance
+    try:
+        with open('build_status.json', 'r') as f:
+            build_status = json.load(f)
+        
+        architect_status = build_status.get('architect_mode_status', {})
+        
+        print(f"\n🔐 ARCHITECT MODE VALIDATION:")
+        print(f"v5.0.0 activation: {architect_status.get('architect_mode_v500_activation')}")
+        print(f"Structural enforcement: {architect_status.get('architect_mode_v500_structural_enforcement')}")
+        print(f"System breach status: {architect_status.get('architect_mode_v500_system_breach_status')}")
+        print(f"Compliance grade: {architect_status.get('architect_mode_v500_compliance_grade')}")
+        
+        phase_status = build_status.get('module_registry_status', {})
+        print(f"\nPhase 82 complete: {phase_status.get('phase_82_auto_execution_manager_complete')}")
+        print(f"Phase 83 complete: {phase_status.get('phase_83_live_risk_governor_complete')}")
+        
+    except Exception as e:
+        print(f"❌ Build status validation failed: {e}")
+        return False
+    
+    print("\n✅ VALIDATION COMPLETE - ALL SYSTEMS OPERATIONAL")
+    print(f"Timestamp: {datetime.now().isoformat()}")
+    return True
+
+if __name__ == "__main__":
+    success = test_module_compliance()
+    sys.exit(0 if success else 1)

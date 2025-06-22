@@ -1,0 +1,124 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.757927+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        8
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        68,
+        70,
+        91
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        91,
+        237,
+        241,
+        243
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        68
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        86,
+        171,
+        177
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        109,
+        179,
+        189
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        41,
+        64,
+        76,
+        87,
+        135
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        103,
+        113
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        84,
+        216,
+        242
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        219
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\hardened_event_bus.py",
+      "line_numbers": [
+        150,
+        229,
+        232
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

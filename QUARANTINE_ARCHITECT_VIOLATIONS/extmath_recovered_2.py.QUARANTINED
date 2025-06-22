@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\extmath_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.925925+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\extmath_recovered_2.py",
+      "line_numbers": [
+        763,
+        1047,
+        1050,
+        1055,
+        1166
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\extmath_recovered_2.py",
+      "line_numbers": [
+        728
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\extmath_recovered_2.py",
+      "line_numbers": [
+        1287
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\extmath_recovered_2.py",
+      "line_numbers": [
+        70,
+        80,
+        120,
+        593,
+        1237
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\extmath_recovered_2.py",
+      "line_numbers": [
+        72,
+        78,
+        148,
+        195,
+        202
+      ],
+      "violation_count": 22
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\.github\\prompts\\Prompt Architect.prompt.md",
+  "quarantine_timestamp": "2025-06-21T04:33:14.832513+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.github\\prompts\\Prompt Architect.prompt.md",
+      "line_numbers": [
+        118,
+        145,
+        203,
+        206,
+        228
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.github\\prompts\\Prompt Architect.prompt.md",
+      "line_numbers": [
+        9,
+        36,
+        128,
+        150,
+        180
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.github\\prompts\\Prompt Architect.prompt.md",
+      "line_numbers": [
+        117,
+        144,
+        150,
+        204,
+        226
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.github\\prompts\\Prompt Architect.prompt.md",
+      "line_numbers": [
+        25,
+        160,
+        164,
+        271,
+        316
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\.github\\prompts\\Prompt Architect.prompt.md",
+      "line_numbers": [
+        283
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

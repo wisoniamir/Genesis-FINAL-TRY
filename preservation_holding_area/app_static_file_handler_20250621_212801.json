@@ -1,0 +1,9 @@
+{
+  "module_id": "app_static_file_handler",
+  "original_path": "modules\\restored\\app_static_file_handler.py",
+  "preserved_path": "preservation_holding_area\\app_static_file_handler_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 14781,
+  "checksum": "98f963122bb5baa1b5a63b500374ea4938622abb522145126ab85c675bea4b50"
+}

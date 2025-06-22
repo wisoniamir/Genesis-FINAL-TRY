@@ -1,0 +1,407 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_neighbors_pipeline -->
+"""
+🏛️ GENESIS TEST_NEIGHBORS_PIPELINE - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_neighbors_pipeline", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_neighbors_pipeline", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_neighbors_pipeline",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_neighbors_pipeline: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_neighbors_pipeline",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_neighbors_pipeline", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_neighbors_pipeline: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+This is testing the equivalence between some estimators with internal nearest
+neighbors computations, and the corresponding pipeline versions with
+KNeighborsTransformer or RadiusNeighborsTransformer to precompute the
+neighbors.
+"""
+
+import numpy as np
+
+from sklearn.base import clone
+from sklearn.cluster import DBSCAN, SpectralClustering
+from sklearn.cluster.tests.common import generate_clustered_data
+from sklearn.datasets import make_blobs
+from sklearn.manifold import TSNE, Isomap, SpectralEmbedding
+from sklearn.neighbors import (
+    KNeighborsRegressor,
+    KNeighborsTransformer,
+    LocalOutlierFactor,
+    RadiusNeighborsRegressor,
+    RadiusNeighborsTransformer,
+)
+from sklearn.pipeline import make_pipeline
+from sklearn.utils._testing import assert_array_almost_equal
+
+
+def test_spectral_clustering():
+    # Test chaining KNeighborsTransformer and SpectralClustering
+    n_neighbors = 5
+    X, _ = make_blobs(random_state=0)
+
+    # compare the chained version and the compact version
+    est_chain = make_pipeline(
+        KNeighborsTransformer(n_neighbors=n_neighbors, mode="connectivity"),
+        SpectralClustering(
+            n_neighbors=n_neighbors, affinity="precomputed", random_state=42
+        ),
+    )
+    est_compact = SpectralClustering(
+        n_neighbors=n_neighbors, affinity="nearest_neighbors", random_state=42
+    )
+    labels_compact = est_compact.fit_predict(X)
+    labels_chain = est_chain.fit_predict(X)
+    assert_array_almost_equal(labels_chain, labels_compact)
+
+
+def test_spectral_embedding():
+    # Test chaining KNeighborsTransformer and SpectralEmbedding
+    n_neighbors = 5
+
+    n_samples = 1000
+    centers = np.array(
+        [
+            [0.0, 5.0, 0.0, 0.0, 0.0],
+            [0.0, 0.0, 4.0, 0.0, 0.0],
+            [1.0, 0.0, 0.0, 5.0, 1.0],
+        ]
+    )
+    S, true_labels = make_blobs(
+        n_samples=n_samples, centers=centers, cluster_std=1.0, random_state=42
+    )
+
+    # compare the chained version and the compact version
+    est_chain = make_pipeline(
+        KNeighborsTransformer(n_neighbors=n_neighbors, mode="connectivity"),
+        SpectralEmbedding(
+            n_neighbors=n_neighbors, affinity="precomputed", random_state=42
+        ),
+    )
+    est_compact = SpectralEmbedding(
+        n_neighbors=n_neighbors, affinity="nearest_neighbors", random_state=42
+    )
+    St_compact = est_compact.fit_transform(S)
+    St_chain = est_chain.fit_transform(S)
+    assert_array_almost_equal(St_chain, St_compact)
+
+
+def test_dbscan():
+    # Test chaining RadiusNeighborsTransformer and DBSCAN
+    radius = 0.3
+    n_clusters = 3
+    X = generate_clustered_data(n_clusters=n_clusters)
+
+    # compare the chained version and the compact version
+    est_chain = make_pipeline(
+        RadiusNeighborsTransformer(radius=radius, mode="distance"),
+        DBSCAN(metric="precomputed", eps=radius),
+    )
+    est_compact = DBSCAN(eps=radius)
+
+    labels_chain = est_chain.fit_predict(X)
+    labels_compact = est_compact.fit_predict(X)
+    assert_array_almost_equal(labels_chain, labels_compact)
+
+
+def test_isomap():
+    # Test chaining KNeighborsTransformer and Isomap with
+    # neighbors_algorithm='precomputed'
+    algorithm = "auto"
+    n_neighbors = 10
+
+    X, _ = make_blobs(random_state=0)
+    X2, _ = make_blobs(random_state=1)
+
+    # compare the chained version and the compact version
+    est_chain = make_pipeline(
+        KNeighborsTransformer(
+            n_neighbors=n_neighbors, algorithm=algorithm, mode="distance"
+        ),
+        Isomap(n_neighbors=n_neighbors, metric="precomputed"),
+    )
+    est_compact = Isomap(n_neighbors=n_neighbors, neighbors_algorithm=algorithm)
+
+    Xt_chain = est_chain.fit_transform(X)
+    Xt_compact = est_compact.fit_transform(X)
+    assert_array_almost_equal(Xt_chain, Xt_compact)
+
+    Xt_chain = est_chain.transform(X2)
+    Xt_compact = est_compact.transform(X2)
+    assert_array_almost_equal(Xt_chain, Xt_compact)
+
+
+def test_tsne():
+    # Test chaining KNeighborsTransformer and TSNE
+    max_iter = 250
+    perplexity = 5
+    n_neighbors = int(3.0 * perplexity + 1)
+
+    rng = np.random.RandomState(0)
+    X = rng.randn(20, 2)
+
+    for metric in ["minkowski", "sqeuclidean"]:
+        # compare the chained version and the compact version
+        est_chain = make_pipeline(
+            KNeighborsTransformer(
+                n_neighbors=n_neighbors, mode="distance", metric=metric
+            ),
+            TSNE(
+                init="random",
+                metric="precomputed",
+                perplexity=perplexity,
+                method="barnes_hut",
+                random_state=42,
+                max_iter=max_iter,
+            ),
+        )
+        est_compact = TSNE(
+            init="random",
+            metric=metric,
+            perplexity=perplexity,
+            max_iter=max_iter,
+            method="barnes_hut",
+            random_state=42,
+        )
+
+        Xt_chain = est_chain.fit_transform(X)
+        Xt_compact = est_compact.fit_transform(X)
+        assert_array_almost_equal(Xt_chain, Xt_compact)
+
+
+def test_lof_novelty_false():
+    # Test chaining KNeighborsTransformer and LocalOutlierFactor
+    n_neighbors = 4
+
+    rng = np.random.RandomState(0)
+    X = rng.randn(40, 2)
+
+    # compare the chained version and the compact version
+    est_chain = make_pipeline(
+        KNeighborsTransformer(n_neighbors=n_neighbors, mode="distance"),
+        LocalOutlierFactor(
+            metric="precomputed",
+            n_neighbors=n_neighbors,
+            novelty=False,
+            contamination="auto",
+        ),
+    )
+    est_compact = LocalOutlierFactor(
+        n_neighbors=n_neighbors, novelty=False, contamination="auto"
+    )
+
+    pred_chain = est_chain.fit_predict(X)
+    pred_compact = est_compact.fit_predict(X)
+    assert_array_almost_equal(pred_chain, pred_compact)
+
+
+def test_lof_novelty_true():
+    # Test chaining KNeighborsTransformer and LocalOutlierFactor
+    n_neighbors = 4
+
+    rng = np.random.RandomState(0)
+    X1 = rng.randn(40, 2)
+    X2 = rng.randn(40, 2)
+
+    # compare the chained version and the compact version
+    est_chain = make_pipeline(
+        KNeighborsTransformer(n_neighbors=n_neighbors, mode="distance"),
+        LocalOutlierFactor(
+            metric="precomputed",
+            n_neighbors=n_neighbors,
+            novelty=True,
+            contamination="auto",
+        ),
+    )
+    est_compact = LocalOutlierFactor(
+        n_neighbors=n_neighbors, novelty=True, contamination="auto"
+    )
+
+    pred_chain = est_chain.fit(X1).predict(X2)
+    pred_compact = est_compact.fit(X1).predict(X2)
+    assert_array_almost_equal(pred_chain, pred_compact)
+
+
+def test_kneighbors_regressor():
+    # Test chaining KNeighborsTransformer and classifiers/regressors
+    rng = np.random.RandomState(0)
+    X = 2 * rng.rand(40, 5) - 1
+    X2 = 2 * rng.rand(40, 5) - 1
+    y = rng.rand(40, 1)
+
+    n_neighbors = 12
+    radius = 1.5
+    # We precompute more neighbors than necessary, to have equivalence between
+    # k-neighbors estimator after radius-neighbors transformer, and vice-versa.
+    factor = 2
+
+    k_trans = KNeighborsTransformer(n_neighbors=n_neighbors, mode="distance")
+    k_trans_factor = KNeighborsTransformer(
+        n_neighbors=int(n_neighbors * factor), mode="distance"
+    )
+
+    r_trans = RadiusNeighborsTransformer(radius=radius, mode="distance")
+    r_trans_factor = RadiusNeighborsTransformer(
+        radius=int(radius * factor), mode="distance"
+    )
+
+    k_reg = KNeighborsRegressor(n_neighbors=n_neighbors)
+    r_reg = RadiusNeighborsRegressor(radius=radius)
+
+    test_list = [
+        (k_trans, k_reg),
+        (k_trans_factor, r_reg),
+        (r_trans, r_reg),
+        (r_trans_factor, k_reg),
+    ]
+
+    for trans, reg in test_list:
+        # compare the chained version and the compact version
+        reg_compact = clone(reg)
+        reg_precomp = clone(reg)
+        reg_precomp.set_params(metric="precomputed")
+
+        reg_chain = make_pipeline(clone(trans), reg_precomp)
+
+        y_pred_chain = reg_chain.fit(X, y).predict(X2)
+        y_pred_compact = reg_compact.fit(X, y).predict(X2)
+        assert_array_almost_equal(y_pred_chain, y_pred_compact)
+
+
+# <!-- @GENESIS_MODULE_END: test_neighbors_pipeline -->

@@ -1,0 +1,68 @@
+# GENESIS Docker GUI Application - ARCHITECT MODE v7.0.0
+FROM python:3.11-slim
+
+# Install system dependencies for GUI and X11
+RUN apt-get update && apt-get install -y \
+    # X11 and Qt5 dependencies
+    libx11-6 \
+    libxext6 \
+    libxrender1 \
+    libxtst6 \
+    libxi6 \
+    libxrandr2 \
+    libxss1 \
+    libasound2 \
+    libglib2.0-0 \
+    libgdk-pixbuf2.0-0 \
+    libgtk-3-0 \
+    libqt5gui5 \
+    libqt5widgets5 \
+    libqt5core5a \
+    qt5-default \
+    # Additional X11 tools
+    x11-apps \
+    xauth \
+    xvfb \
+    # Python build dependencies
+    build-essential \
+    python3-dev \
+    # Cleanup
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /genesis
+
+# Copy requirements and install Python dependencies
+COPY requirements-docker.txt .
+RUN pip install --no-cache-dir -r requirements-docker.txt
+
+# Copy GENESIS system files
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p /genesis/logs \
+    && mkdir -p /genesis/data \
+    && mkdir -p /genesis/config \
+    && mkdir -p /genesis/telemetry
+
+# Set environment variables for GUI
+ENV DISPLAY=host.docker.internal:0
+ENV QT_X11_NO_MITSHM=1
+ENV QT_LOGGING_RULES="*=false"
+ENV DOCKER_MODE=true
+ENV PYTHONPATH=/genesis:$PYTHONPATH
+
+# Create startup script
+RUN echo '#!/bin/bash' > /genesis/start_docker_gui.sh && \
+    echo 'echo "🚀 GENESIS Docker GUI App - ARCHITECT MODE v7.0.0"' >> /genesis/start_docker_gui.sh && \
+    echo 'echo "🐳 Starting in Docker mode with X11 forwarding..."' >> /genesis/start_docker_gui.sh && \
+    echo 'echo "🖥️ Display: $DISPLAY"' >> /genesis/start_docker_gui.sh && \
+    echo 'cd /genesis' >> /genesis/start_docker_gui.sh && \
+    echo 'python3 genesis_docker_gui_app.py' >> /genesis/start_docker_gui.sh && \
+    chmod +x /genesis/start_docker_gui.sh
+
+# Expose ports (if needed for additional services)
+EXPOSE 8501 8502
+
+# Set entrypoint
+ENTRYPOINT ["/genesis/start_docker_gui.sh"]

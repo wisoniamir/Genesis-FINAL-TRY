@@ -1,0 +1,9 @@
+{
+  "module_id": "mt5_order_executor_simple",
+  "original_path": "modules\\trading\\mt5_order_executor_simple.py",
+  "preserved_path": "preservation_holding_area\\mt5_order_executor_simple_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 3277,
+  "checksum": "fee92e69056283c5565cd35b722cc0d2b0db146692c1cb23cc3483ed5b2fe89e"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "gradient_boosting",
+  "original_path": "modules\\restored\\gradient_boosting.py",
+  "preserved_path": "preservation_holding_area\\gradient_boosting_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 120968,
+  "checksum": "8932de1d167928feaea2fb1925b63e7456960d16bb60054b2b9462209e317266"
+}

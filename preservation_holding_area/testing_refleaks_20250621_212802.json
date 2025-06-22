@@ -1,0 +1,9 @@
+{
+  "module_id": "testing_refleaks",
+  "original_path": "modules\\restored\\testing_refleaks.py",
+  "preserved_path": "preservation_holding_area\\testing_refleaks_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 20535,
+  "checksum": "4fa3b731c074f5ec0e1403430d0be67bae607e9f3c18993085596137b8582533"
+}

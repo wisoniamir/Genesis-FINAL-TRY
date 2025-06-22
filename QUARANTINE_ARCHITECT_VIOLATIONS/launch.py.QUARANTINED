@@ -1,0 +1,34 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch.py",
+  "quarantine_timestamp": "2025-06-21T04:33:03.012087+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch.py",
+      "line_numbers": [
+        13
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch.py",
+      "line_numbers": [
+        35
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\launch.py",
+      "line_numbers": [
+        18
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

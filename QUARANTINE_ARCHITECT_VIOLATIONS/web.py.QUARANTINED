@@ -1,0 +1,116 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.113936+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        158,
+        166,
+        173,
+        245,
+        250
+      ],
+      "violation_count": 52
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        238,
+        1308,
+        2664,
+        3300
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        1872,
+        3402
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        922,
+        1412,
+        1456,
+        1486,
+        1623
+      ],
+      "violation_count": 39
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        2520
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        613,
+        1334,
+        1347,
+        1425,
+        1596
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        1336,
+        1349,
+        1620,
+        1851,
+        1854
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        329,
+        579,
+        689,
+        965,
+        1064
+      ],
+      "violation_count": 41
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\web.py",
+      "line_numbers": [
+        373,
+        426,
+        941,
+        1011,
+        1020
+      ],
+      "violation_count": 45
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

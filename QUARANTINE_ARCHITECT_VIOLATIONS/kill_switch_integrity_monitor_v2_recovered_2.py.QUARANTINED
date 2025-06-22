@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.087113+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        12
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        27,
+        134,
+        140,
+        147,
+        228
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        146,
+        247,
+        267,
+        287,
+        305
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        355
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        132,
+        208,
+        276,
+        277,
+        278
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        118,
+        506
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\kill_switch_integrity_monitor_v2_recovered_2.py",
+      "line_numbers": [
+        170,
+        173,
+        176,
+        179
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

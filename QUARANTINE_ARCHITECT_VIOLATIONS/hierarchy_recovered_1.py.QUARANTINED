@@ -1,0 +1,87 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.620744+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        156,
+        522,
+        626,
+        723,
+        936
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        1362
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        1348,
+        2111,
+        2232,
+        2794,
+        3284
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        2133,
+        2259
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "default =",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        2923
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        1029,
+        1105,
+        1111,
+        1117,
+        1278
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\hierarchy_recovered_1.py",
+      "line_numbers": [
+        1026,
+        1041,
+        1048,
+        1101,
+        1236
+      ],
+      "violation_count": 39
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,20 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\restored_modules_registry.json",
+  "quarantine_timestamp": "2025-06-21T04:33:47.905851+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\restored_modules_registry.json",
+      "line_numbers": [
+        31,
+        32,
+        175,
+        176,
+        183
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

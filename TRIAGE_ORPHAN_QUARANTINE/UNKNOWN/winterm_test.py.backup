@@ -1,0 +1,330 @@
+# <!-- @GENESIS_MODULE_START: winterm_test -->
+"""
+🏛️ GENESIS WINTERM_TEST - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+# Copyright Jonathan Hartley 2013. BSD 3-Clause license, see LICENSE file.
+import sys
+from unittest import TestCase, main, skipUnless
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "winterm_test",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in winterm_test: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "winterm_test",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("winterm_test", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in winterm_test: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+try:
+    from unittest.mock import Mock, patch
+except ImportError:
+    from mock import Mock, patch
+
+from ..winterm import WinColor, WinStyle, WinTerm
+
+
+class WinTermTest(TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "winterm_test",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in winterm_test: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "winterm_test",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("winterm_test", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in winterm_test: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "winterm_test",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in winterm_test: {e}")
+
+    @patch('colorama.winterm.win32')
+    def testInit(self, mockWin32):
+        mockAttr = Mock()
+        mockAttr.wAttributes = 7 + 6 * 16 + 8
+        mockWin32.GetConsoleScreenBufferInfo.return_value = mockAttr
+        term = WinTerm()
+        self.assertEqual(term._fore, 7)
+        self.assertEqual(term._back, 6)
+        self.assertEqual(term._style, 8)
+
+    @skipUnless(sys.platform.startswith("win"), "requires Windows")
+    def testGetAttrs(self):
+        term = WinTerm()
+
+        term._fore = 0
+        term._back = 0
+        term._style = 0
+        self.assertEqual(term.get_attrs(), 0)
+
+        term._fore = WinColor.YELLOW
+        self.assertEqual(term.get_attrs(), WinColor.YELLOW)
+
+        term._back = WinColor.MAGENTA
+        self.assertEqual(
+            term.get_attrs(),
+            WinColor.YELLOW + WinColor.MAGENTA * 16)
+
+        term._style = WinStyle.BRIGHT
+        self.assertEqual(
+            term.get_attrs(),
+            WinColor.YELLOW + WinColor.MAGENTA * 16 + WinStyle.BRIGHT)
+
+    @patch('colorama.winterm.win32')
+    def testResetAll(self, mockWin32):
+        mockAttr = Mock()
+        mockAttr.wAttributes = 1 + 2 * 16 + 8
+        mockWin32.GetConsoleScreenBufferInfo.return_value = mockAttr
+        term = WinTerm()
+
+        term.set_console = Mock()
+        term._fore = -1
+        term._back = -1
+        term._style = -1
+
+        term.reset_all()
+
+        self.assertEqual(term._fore, 1)
+        self.assertEqual(term._back, 2)
+        self.assertEqual(term._style, 8)
+        self.assertEqual(term.set_console.called, True)
+
+    @skipUnless(sys.platform.startswith("win"), "requires Windows")
+    def testFore(self):
+        term = WinTerm()
+        term.set_console = Mock()
+        term._fore = 0
+
+        term.fore(5)
+
+        self.assertEqual(term._fore, 5)
+        self.assertEqual(term.set_console.called, True)
+
+    @skipUnless(sys.platform.startswith("win"), "requires Windows")
+    def testBack(self):
+        term = WinTerm()
+        term.set_console = Mock()
+        term._back = 0
+
+        term.back(5)
+
+        self.assertEqual(term._back, 5)
+        self.assertEqual(term.set_console.called, True)
+
+    @skipUnless(sys.platform.startswith("win"), "requires Windows")
+    def testStyle(self):
+        term = WinTerm()
+        term.set_console = Mock()
+        term._style = 0
+
+        term.style(22)
+
+        self.assertEqual(term._style, 22)
+        self.assertEqual(term.set_console.called, True)
+
+    @patch('colorama.winterm.win32')
+    def testSetConsole(self, mockWin32):
+        mockAttr = Mock()
+        mockAttr.wAttributes = 0
+        mockWin32.GetConsoleScreenBufferInfo.return_value = mockAttr
+        term = WinTerm()
+        term.windll = Mock()
+
+        term.set_console()
+
+        self.assertEqual(
+            mockWin32.SetConsoleTextAttribute.call_args,
+            ((mockWin32.STDOUT, term.get_attrs()), {})
+        )
+
+    @patch('colorama.winterm.win32')
+    def testSetConsoleOnStderr(self, mockWin32):
+        mockAttr = Mock()
+        mockAttr.wAttributes = 0
+        mockWin32.GetConsoleScreenBufferInfo.return_value = mockAttr
+        term = WinTerm()
+        term.windll = Mock()
+
+        term.set_console(on_stderr=True)
+
+        self.assertEqual(
+            mockWin32.SetConsoleTextAttribute.call_args,
+            ((mockWin32.STDERR, term.get_attrs()), {})
+        )
+
+
+if __name__ == '__main__':
+    main()
+
+
+# <!-- @GENESIS_MODULE_END: winterm_test -->

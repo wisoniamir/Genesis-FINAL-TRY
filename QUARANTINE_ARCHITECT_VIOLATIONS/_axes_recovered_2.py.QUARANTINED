@@ -1,0 +1,95 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.367133+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        136,
+        213,
+        236,
+        263,
+        378
+      ],
+      "violation_count": 75
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        720
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        1445,
+        2290,
+        2301,
+        2306,
+        2364
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        3060
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "default =",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        186
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        192,
+        584,
+        628,
+        902,
+        971
+      ],
+      "violation_count": 49
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        178,
+        1179,
+        1271,
+        1402,
+        1521
+      ],
+      "violation_count": 117
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# alternative",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_axes_recovered_2.py",
+      "line_numbers": [
+        5000
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "session_state_proxy",
+  "original_path": "modules\\restored\\session_state_proxy.py",
+  "preserved_path": "preservation_holding_area\\session_state_proxy_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17173,
+  "checksum": "370a2de1201fadafbb52464a3d4893eeba3be23775b5fc8bf4c7ab971ba7f25a"
+}

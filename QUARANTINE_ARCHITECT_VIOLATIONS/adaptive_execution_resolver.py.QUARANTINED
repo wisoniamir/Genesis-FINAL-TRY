@@ -1,0 +1,93 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.003799+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        202,
+        237,
+        265,
+        284,
+        305
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        231,
+        259,
+        278,
+        299,
+        322
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        638,
+        676
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        256
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        27
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        131,
+        896
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        168,
+        169,
+        172,
+        173,
+        176
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\adaptive_execution_resolver.py",
+      "line_numbers": [
+        197
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

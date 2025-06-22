@@ -1,0 +1,170 @@
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+MT5 Login Dialog Component
+"""
+
+from typing import Dict, Any, Optional
+import json
+import logging
+from datetime import datetime
+
+from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel,
+                           QLineEdit, QPushButton, QMessageBox)
+from PyQt5.QtCore import Qt
+
+import MetaTrader5 as mt5
+from core.telemetry import emit_telemetry
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: login_dialog -->
+
+
+# <!-- @GENESIS_MODULE_START: login_dialog -->
+
+class MT5LoginDialog(QDialog):
+    """Dialog for MT5 login credentials"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.logger = logging.getLogger(__name__)
+        self.session: Optional[Dict[str, Any]] = None
+        
+        self.setWindowTitle("Connect to MetaTrader 5")
+        self.setModal(True)
+        
+        # Create layout
+        layout = QVBoxLayout(self)
+        
+        # Add login fields
+        self._add_login_fields(layout)
+        
+        # Add buttons
+        self._add_buttons(layout)
+        
+    def _add_login_fields(self, layout: QVBoxLayout):
+        """Add login input fields"""
+        # Server field
+        server_layout = QHBoxLayout()
+        server_label = QLabel("Server:")
+        self.server_input = QLineEdit()
+        server_layout.addWidget(server_label)
+        server_layout.addWidget(self.server_input)
+        layout.addLayout(server_layout)
+        
+        # Login field  
+        login_layout = QHBoxLayout()
+        login_label = QLabel("Login:")
+        self.login_input = QLineEdit()
+        login_layout.addWidget(login_label)
+        login_layout.addWidget(self.login_input)
+        layout.addLayout(login_layout)
+        
+        # Password field
+        password_layout = QHBoxLayout()
+        password_label = QLabel("Password:")
+        self.password_input = QLineEdit()
+        self.password_input.setEchoMode(QLineEdit.Password)
+        password_layout.addWidget(password_label)
+        password_layout.addWidget(self.password_input)
+        layout.addLayout(password_layout)
+        
+    def _add_buttons(self, layout: QVBoxLayout):
+        """Add dialog buttons"""
+        button_layout = QHBoxLayout()
+        
+        # Connect button
+        self.connect_btn = QPushButton("Connect")
+        self.connect_btn.clicked.connect(self._handle_connect)
+        button_layout.addWidget(self.connect_btn)
+        
+        # Cancel button
+        cancel_btn = QPushButton("Cancel")
+        cancel_btn.clicked.connect(self.reject)
+        button_layout.addWidget(cancel_btn)
+        
+        layout.addLayout(button_layout)
+        
+    def _handle_connect(self):
+        """Handle MT5 connection attempt"""
+        try:
+            # Get credentials
+            server = self.server_input.text().strip()
+            login = int(self.login_input.text().strip())
+            password = self.password_input.text()
+            
+            if not all([server, login, password]):
+                QMessageBox.warning(self, "Error", "All fields are required")
+                return
+                
+            # Initialize MT5
+            if not mt5.initialize():
+                QMessageBox.critical(self, "Error", "Failed to initialize MT5")
+                return
+                
+            # Try to connect
+            if not mt5.login(login=login, password=password, server=server):
+                QMessageBox.critical(self, "Error", "Failed to connect to MT5")
+                return
+                
+            # Get account info
+            account_info = mt5.account_info()
+            if account_info is None:
+                QMessageBox.critical(self, "Error", "Failed to get account info")
+                return
+                
+            # Store session info
+            self.session = {
+                "server": server,
+                "login": login,
+                "connected_at": datetime.now().isoformat(),
+                "account_info": {
+                    "balance": account_info.balance,
+                    "equity": account_info.equity,
+                    "margin": account_info.margin
+                }
+            }
+            
+            # Emit telemetry
+            emit_telemetry("mt5_login", "connected", self.session)
+            
+            # Accept dialog
+            self.accept()
+            
+        except Exception as e:
+            self.logger.error(f"MT5 login failed: {e}")
+            QMessageBox.critical(self, "Error", f"Login failed: {str(e)}")
+            
+    def get_session(self) -> Optional[Dict[str, Any]]:
+        """Get the current MT5 session info"""
+        return self.session
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

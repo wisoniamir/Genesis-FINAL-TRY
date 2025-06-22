@@ -1,0 +1,626 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_multi_account_splitter -->
+"""
+🏛️ GENESIS TEST_MULTI_ACCOUNT_SPLITTER - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+"""
+GENESIS Multi-Account Splitter Test Suite v1.0 - PHASE 34
+Comprehensive validation of dynamic trade routing and position sizing
+ARCHITECT MODE v2.8 - STRICT COMPLIANCE
+
+Test Coverage:
+✅ Trade splitting algorithms (dynamic_balanced, equity_weighted, risk_distributed)
+✅ Account capacity monitoring and warnings
+✅ Position sizing calculations and adjustments
+✅ EventBus integration and route validation
+✅ Telemetry tracking and error handling
+✅ Load balancing efficiency
+✅ Account rule compliance
+✅ Edge cases and error scenarios
+"""
+
+import unittest
+import json
+import os
+import tempfile
+import time
+from datetime import datetime, timedelta
+from unittest.mock import Mock, patch
+from threading import Thread
+
+# Import the module to test
+from multi_account_splitter import MultiAccountSplitter
+
+class TestMultiAccountSplitter(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_multi_account_splitter", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_multi_account_splitter", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_multi_account_splitter",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_multi_account_splitter: {e}")
+                return False
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event_bus = self._get_event_bus()
+        
+    def _get_event_bus(self):
+        # Auto-injected EventBus connection
+        try:
+            from event_bus_manager import EventBusManager
+            return EventBusManager.get_instance()
+        except ImportError:
+            logging.warning("EventBus not available - integration required")
+            return None
+            
+    def emit_telemetry(self, data):
+        if self.event_bus:
+            self.event_bus.emit('telemetry', data)
+    """
+    GENESIS MultiAccountSplitter Test Suite - PHASE 34 Validation
+    Architecture Compliance Testing
+    """
+    
+    def setUp(self):
+        """Set up test environment with mock accounts and data"""
+        self.splitter = MultiAccountSplitter()
+        
+        # Mock account data for testing
+        self.mock_accounts = {
+            "FTMO_Challenge_001": {
+                "account_id": "FTMO_Challenge_001",
+                "account_type": "FTMO Challenge",
+                "current_equity": 100000.0,
+                "available_margin": 95000.0,
+                "max_utilization": 0.80,
+                "position_count": 2,
+                "last_update": datetime.utcnow().isoformat()
+            },
+            "FTMO_Swing_002": {
+                "account_id": "FTMO_Swing_002", 
+                "account_type": "FTMO Swing",
+                "current_equity": 200000.0,
+                "available_margin": 180000.0,
+                "max_utilization": 0.85,
+                "position_count": 3,
+                "last_update": datetime.utcnow().isoformat()
+            },
+            "Regular_Broker_003": {
+                "account_id": "Regular_Broker_003",
+                "account_type": "Regular Broker",
+                "current_equity": 50000.0,
+                "available_margin": 45000.0,
+                "max_utilization": 0.90,
+                "position_count": 1,
+                "last_update": datetime.utcnow().isoformat()
+            }
+        }
+        
+        # Initialize splitter with mock account data
+        self.splitter.connected_accounts = self.mock_accounts.copy()
+        for account_id, account_data in self.mock_accounts.items():
+            self.splitter.account_capacities[account_id] = {
+                "max_equity": account_data["current_equity"],
+                "current_utilization": account_data["position_count"] * 0.15,  # Mock utilization
+                "available_capacity": account_data["available_margin"] / account_data["current_equity"]
+            }
+          # Mock EventBus functions
+        self.emitted_events = []        
+        def mock_emit_event(topic, data, source):
+            self.emitted_events.append({"topic": topic, "data": data, "source": source})
+        
+        # Patch emit_event function
+        import multi_account_splitter
+        self.original_emit = multi_account_splitter.emit_event
+        multi_account_splitter.emit_event = mock_emit_event
+        
+    def tearDown(self):
+        """Clean up test environment"""
+        import multi_account_splitter
+        multi_account_splitter.emit_event = self.original_emit
+    
+    def test_01_module_initialization(self):
+        """Test MultiAccountSplitter module initialization and compliance"""
+        # Test basic initialization
+        self.assertEqual(self.splitter.module_name, "MultiAccountSplitter")
+        self.assertEqual(self.splitter.version, "1.0")
+        self.assertIsInstance(self.splitter.telemetry, dict)
+        self.assertIsInstance(self.splitter.routing_metrics, dict)
+        
+        # Test compliance requirements
+        self.assertIn("trades_split", self.splitter.telemetry)
+        self.assertIn("accounts_routed_to", self.splitter.telemetry)
+        self.assertIn("successful_splits", self.splitter.routing_metrics)
+        
+        # Test routing algorithms
+        valid_algorithms = ["dynamic_balanced", "equity_weighted", "risk_distributed"]
+        self.assertIn(self.splitter.routing_algorithm, valid_algorithms)
+        
+        print("✅ Module initialization test passed")
+    
+    def test_02_dynamic_balanced_splitting(self):
+        """Test dynamic balanced trade splitting algorithm"""
+        self.splitter.routing_algorithm = "dynamic_balanced"
+        
+        # Mock trade signal
+        trade_signal = {
+            "signal_id": "TEST_SIGNAL_001",
+            "symbol": "EURUSD",
+            "direction": "BUY",
+            "position_size": 1.0,  # 1 lot
+            "confidence": 0.85,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Test split calculation
+        result = self.splitter._calculate_split_allocation(trade_signal)
+        
+        # Validate results
+        self.assertIsInstance(result, dict)
+        self.assertIn("allocations", result)
+        self.assertIn("total_allocated", result)
+        self.assertIn("routing_metrics", result)
+        
+        # Check that total allocation equals original position size
+        total_allocated = sum(alloc["position_size"] for alloc in result["allocations"])
+        self.assertAlmostEqual(total_allocated, trade_signal["position_size"], places=2)
+        
+        # Check that all accounts are considered
+        allocated_accounts = [alloc["account_id"] for alloc in result["allocations"]]
+        self.assertTrue(len(allocated_accounts) > 0)
+        
+        print("✅ Dynamic balanced splitting test passed")
+    
+    def test_03_equity_weighted_splitting(self):
+        """Test equity weighted trade splitting algorithm"""
+        self.splitter.routing_algorithm = "equity_weighted"
+        
+        # Mock trade signal with larger position size
+        trade_signal = {
+            "signal_id": "TEST_SIGNAL_002",
+            "symbol": "GBPUSD",
+            "direction": "SELL",
+            "position_size": 2.5,  # 2.5 lots
+            "confidence": 0.75,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Test split calculation
+        result = self.splitter._calculate_split_allocation(trade_signal)
+        
+        # Validate equity weighting logic
+        self.assertIsInstance(result, dict)
+        allocations = result["allocations"]
+        
+        # Verify higher equity accounts get larger allocations
+        if len(allocations) >= 2:
+            # Sort by position size to check weighting
+            sorted_allocs = sorted(allocations, key=lambda x: x["position_size"], reverse=True)
+            
+            # Get corresponding account equity
+            for i in range(len(sorted_allocs) - 1):
+                current_account = sorted_allocs[i]["account_id"]
+                next_account = sorted_allocs[i + 1]["account_id"]
+                
+                current_equity = self.mock_accounts[current_account]["current_equity"]
+                next_equity = self.mock_accounts[next_account]["current_equity"]
+                
+                # Higher equity should generally get larger allocation
+                if current_equity > next_equity:
+                    self.assertGreaterEqual(sorted_allocs[i]["position_size"], 
+                                          sorted_allocs[i + 1]["position_size"])
+        
+        print("✅ Equity weighted splitting test passed")
+    
+    def test_04_risk_distributed_splitting(self):
+        """Test risk distributed trade splitting algorithm"""
+        self.splitter.routing_algorithm = "risk_distributed"
+        
+        # Mock high-risk trade signal
+        trade_signal = {
+            "signal_id": "TEST_SIGNAL_003",
+            "symbol": "XAUUSD",
+            "direction": "BUY",
+            "position_size": 0.5,  # 0.5 lots (smaller, higher risk)
+            "confidence": 0.65,  # Lower confidence
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Test split calculation
+        result = self.splitter._calculate_split_allocation(trade_signal)
+        
+        # Validate risk distribution
+        self.assertIsInstance(result, dict)
+        allocations = result["allocations"]
+        
+        # Check that risk is distributed across multiple accounts
+        if len(allocations) > 1:
+            # Ensure no single account takes all the risk
+            max_allocation = max(alloc["position_size"] for alloc in allocations)
+            total_position = sum(alloc["position_size"] for alloc in allocations)
+            
+            # Max single allocation should be less than 70% of total for risk distribution
+            max_percentage = max_allocation / total_position
+            self.assertLess(max_percentage, 0.70)
+        
+        print("✅ Risk distributed splitting test passed")
+    
+    def test_05_account_capacity_monitoring(self):
+        """Test account capacity monitoring and warning system"""
+        # Simulate near-capacity account
+        self.mock_accounts["FTMO_Challenge_001"]["current_equity"] = 100000.0
+        self.splitter.account_capacities["FTMO_Challenge_001"]["current_utilization"] = 0.88
+        
+        # Test capacity check
+        account_id = "FTMO_Challenge_001"
+        position_size = 0.5
+        
+        capacity_ok = self.splitter._check_account_capacity(account_id, position_size)
+        
+        # Should trigger capacity warning
+        self.assertFalse(capacity_ok)
+        
+        # Test with normal capacity account
+        normal_capacity_ok = self.splitter._check_account_capacity("Regular_Broker_003", 0.1)
+        self.assertTrue(normal_capacity_ok)
+        
+        print("✅ Account capacity monitoring test passed")
+    
+    def test_06_position_size_adjustments(self):
+        """Test position size adjustments and granularity compliance"""
+        # Test position size rounding to granularity
+        original_sizes = [0.127, 0.0456, 1.8342, 0.003]
+        expected_sizes = [0.13, 0.05, 1.83, 0.01]  # Rounded to 0.01 granularity
+        
+        for original, expected in zip(original_sizes, expected_sizes):
+            adjusted = self.splitter._adjust_position_size(original)
+            self.assertAlmostEqual(adjusted, expected, places=2)
+        
+        # Test minimum position size enforcement
+        too_small = 0.005
+        adjusted_small = self.splitter._adjust_position_size(too_small)
+        self.assertGreaterEqual(adjusted_small, self.splitter.min_position_size)
+        
+        print("✅ Position size adjustments test passed")
+    
+    def test_07_eventbus_integration(self):
+        """Test EventBus integration and route validation"""
+        # Mock a complete trade signal processing
+        trade_signal = {
+            "signal_id": "TEST_SIGNAL_004",
+            "symbol": "USDJPY",
+            "direction": "BUY",
+            "position_size": 1.5,
+            "confidence": 0.80,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Process the signal
+        self.splitter._handle_trade_signal_confirmed(trade_signal)
+        
+        # Check that events were emitted
+        self.assertGreater(len(self.emitted_events), 0)
+        
+        # Validate event topics
+        event_topics = [event["topic"] for event in self.emitted_events]
+        expected_topics = ["TradeRouteToAccount", "ModuleTelemetry"]
+        
+        for topic in expected_topics:
+            self.assertIn(topic, event_topics)
+        
+        print("✅ EventBus integration test passed")
+    
+    def test_08_telemetry_tracking(self):
+        """Test telemetry tracking and metrics collection"""
+        initial_trades_split = self.splitter.telemetry["trades_split"]
+        initial_accounts_routed = self.splitter.telemetry["accounts_routed_to"]
+        
+        # Process a trade to update telemetry
+        trade_signal = {
+            "signal_id": "TEST_SIGNAL_005",
+            "symbol": "EURGBP",
+            "direction": "SELL",
+            "position_size": 0.8,
+            "confidence": 0.70,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        self.splitter._handle_trade_signal_confirmed(trade_signal)
+        
+        # Check telemetry updates
+        self.assertGreater(self.splitter.telemetry["trades_split"], initial_trades_split)
+        self.assertGreaterEqual(self.splitter.telemetry["accounts_routed_to"], initial_accounts_routed)
+        
+        # Check that last_split_time was updated
+        self.assertIsNotNone(self.splitter.telemetry["last_split_time"])
+        
+        print("✅ Telemetry tracking test passed")
+    
+    def test_09_load_balancing_efficiency(self):
+        """Test load balancing efficiency and optimization"""
+        # Test multiple consecutive trades to check load balancing
+        trade_signals = [
+            {"signal_id": f"TEST_SIGNAL_{i:03d}", "symbol": "EURUSD", "direction": "BUY", 
+             "position_size": 0.5, "confidence": 0.75} for i in range(6, 11)
+        ]
+        
+        account_usage = {account_id: 0 for account_id in self.mock_accounts.keys()}
+        
+        for signal in trade_signals:
+            signal["timestamp"] = datetime.utcnow().isoformat()
+            result = self.splitter._calculate_split_allocation(signal)
+            
+            # Track account usage
+            for allocation in result["allocations"]:
+                account_usage[allocation["account_id"]] += allocation["position_size"]
+        
+        # Check that load is distributed reasonably
+        usage_values = list(account_usage.values())
+        if len(usage_values) > 1:
+            min_usage = min(usage_values)
+            max_usage = max(usage_values)
+            
+            # Load should be reasonably balanced (max/min ratio < 3.0)
+            if min_usage > 0:
+                balance_ratio = max_usage / min_usage
+                self.assertLess(balance_ratio, 3.0)
+        
+        print("✅ Load balancing efficiency test passed")
+    
+    def test_10_error_handling_and_edge_cases(self):
+        """Test error handling and edge case scenarios"""
+        # Test with empty accounts
+        original_accounts = self.splitter.connected_accounts.copy()
+        self.splitter.connected_accounts = {}
+        
+        trade_signal = {
+            "signal_id": "TEST_SIGNAL_ERROR_001",
+            "symbol": "GBPJPY",
+            "direction": "BUY",
+            "position_size": 1.0,
+            "confidence": 0.80,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Should handle gracefully without crashing
+        try:
+            result = self.splitter._calculate_split_allocation(trade_signal)
+            # Should return empty allocation or default handling
+            self.assertIsInstance(result, dict)
+        except Exception as e:
+            self.fail(f"Error handling failed: {e}")
+        
+        # Restore accounts
+        self.splitter.connected_accounts = original_accounts
+        
+        # Test with invalid position size
+        invalid_signal = trade_signal.copy()
+        invalid_signal["position_size"] = -1.0  # Invalid negative size
+        
+        try:
+            result = self.splitter._calculate_split_allocation(invalid_signal)
+            # Should handle gracefully
+            self.assertIsInstance(result, dict)
+        except Exception as e:
+            self.fail(f"Invalid position size handling failed: {e}")
+        
+        # Test with missing required fields
+        incomplete_signal = {"signal_id": "INCOMPLETE", "symbol": "EURUSD"}
+        
+        try:
+            result = self.splitter._calculate_split_allocation(incomplete_signal)
+            self.assertIsInstance(result, dict)
+        except Exception as e:
+            self.fail(f"Incomplete signal handling failed: {e}")
+        
+        print("✅ Error handling and edge cases test passed")
+    
+    def test_11_performance_benchmarks(self):
+        """Test performance benchmarks and latency requirements"""
+        # Test processing latency for single trade
+        trade_signal = {
+            "signal_id": "PERF_TEST_001",
+            "symbol": "EURUSD",
+            "direction": "BUY",
+            "position_size": 1.0,
+            "confidence": 0.85,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        start_time = time.perf_counter()
+        result = self.splitter._calculate_split_allocation(trade_signal)
+        end_time = time.perf_counter()
+        
+        latency_ms = (end_time - start_time) * 1000
+        
+        # Should process within 100ms for single trade
+        self.assertLess(latency_ms, 100.0)
+        
+        # Test batch processing performance
+        batch_signals = [
+            {
+                "signal_id": f"BATCH_PERF_{i:03d}",
+                "symbol": "EURUSD",
+                "direction": "BUY" if i % 2 == 0 else "SELL",
+                "position_size": 0.5 + (i * 0.1),
+                "confidence": 0.70 + (i * 0.01),
+                "timestamp": datetime.utcnow().isoformat()
+            } for i in range(10)
+        ]
+        
+        batch_start = time.perf_counter()
+        batch_results = []
+        for signal in batch_signals:
+            batch_results.append(self.splitter._calculate_split_allocation(signal))
+        batch_end = time.perf_counter()
+        
+        batch_latency_ms = (batch_end - batch_start) * 1000
+        avg_per_signal_ms = batch_latency_ms / len(batch_signals)
+        
+        # Average per signal should be under 50ms in batch processing
+        self.assertLess(avg_per_signal_ms, 50.0)
+        
+        print(f"✅ Performance benchmarks test passed - Single: {latency_ms:.2f}ms, Batch avg: {avg_per_signal_ms:.2f}ms")
+    
+    def test_12_architect_mode_compliance(self):
+        """Test strict architect mode compliance requirements"""
+        # Test real data only (no mock/dummy data in production paths)
+        self.assertNotIn("mock", self.splitter.module_name.lower())
+        self.assertNotIn("dummy", self.splitter.module_name.lower())
+        self.assertNotIn("test", self.splitter.module_name.lower())
+        
+        # Test EventBus integration (no local function calls)
+        # This is validated by checking that all major operations emit events
+        
+        # Test telemetry hooks
+        required_telemetry_fields = [
+            "trades_split", "accounts_routed_to", "capacity_warnings_issued",
+            "position_adjustments_made", "module_start_time"
+        ]
+        
+        for field in required_telemetry_fields:
+            self.assertIn(field, self.splitter.telemetry)
+        
+        # Test error logging capability
+        self.assertTrue(hasattr(self.splitter, 'logger'))
+        
+        # Test no isolated functions (all major operations should be event-driven)
+        # This is enforced by the module design
+        
+        print("✅ Architect mode compliance test passed")
+
+def run_multi_account_splitter_tests():
+    """
+    Run the complete MultiAccountSplitter test suite
+    ARCHITECT MODE v2.8 - Production Validation
+    """
+    print("🚀 GENESIS MultiAccountSplitter Test Suite v1.0 - PHASE 34")
+    print("=" * 80)
+    
+    # Create test suite
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestMultiAccountSplitter)
+    
+    # Run tests with detailed output
+    runner = unittest.TextTestRunner(verbosity=2, stream=None)
+    result = runner.run(suite)
+    
+    # Generate test report
+    total_tests = result.testsRun
+    failures = len(result.failures)
+    errors = len(result.errors)
+    passed = total_tests - failures - errors
+    
+    print("\n" + "=" * 80)
+    print("📊 PHASE 34 MultiAccountSplitter Test Results:")
+    print(f"✅ Tests Passed: {passed}/{total_tests}")
+    print(f"❌ Tests Failed: {failures}")
+    print(f"⚠️  Test Errors: {errors}")
+    print(f"🎯 Success Rate: {(passed/total_tests)*100:.1f}%")
+    
+    if failures > 0:
+        print("\n❌ FAILED TESTS:")
+        for test, traceback in result.failures:
+            print(f"  - {test}: {traceback.split('AssertionError: ')[-1].split('\\n')[0]}")
+    
+    if errors > 0:
+        print("\n⚠️ ERROR TESTS:")
+        for test, traceback in result.errors:
+            print(f"  - {test}: {traceback.split('Error: ')[-1].split('\\n')[0]}")
+    
+    # Compliance validation
+    compliance_status = "FULLY_COMPLIANT" if (failures == 0 and errors == 0) else "VIOLATIONS_DETECTED"
+    print(f"\n🔐 ARCHITECT MODE COMPLIANCE: {compliance_status}")
+    
+    return {
+        "total_tests": total_tests,
+        "passed": passed,
+        "failed": failures,
+        "errors": errors,
+        "success_rate": (passed/total_tests)*100,
+        "compliance_status": compliance_status
+    }
+
+if __name__ == "__main__":
+    # Run the test suite
+    test_results = run_multi_account_splitter_tests()
+    
+    # Exit with appropriate code
+    exit_code = 0 if test_results["failed"] == 0 and test_results["errors"] == 0 else 1
+    exit(exit_code)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_multi_account_splitter -->

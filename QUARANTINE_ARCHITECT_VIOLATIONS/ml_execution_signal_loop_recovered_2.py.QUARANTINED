@@ -1,0 +1,84 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.041801+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        27,
+        52,
+        170,
+        194,
+        262
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        186,
+        254,
+        265,
+        295,
+        334
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        151,
+        165,
+        548
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        179,
+        374,
+        409,
+        461
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        142,
+        572
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        250
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\ml_execution_signal_loop_recovered_2.py",
+      "line_numbers": [
+        242
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

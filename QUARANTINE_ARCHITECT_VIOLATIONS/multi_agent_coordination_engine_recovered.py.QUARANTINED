@@ -1,0 +1,81 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.218987+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+      "line_numbers": [
+        39,
+        43,
+        155,
+        172,
+        209
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+      "line_numbers": [
+        165,
+        203,
+        222,
+        241,
+        260
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+      "line_numbers": [
+        213,
+        232,
+        251,
+        295
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+      "line_numbers": [
+        138,
+        197,
+        394,
+        415,
+        455
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+      "line_numbers": [
+        147,
+        500
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi_agent_coordination_engine_recovered.py",
+      "line_numbers": [
+        54,
+        157,
+        158,
+        159,
+        160
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

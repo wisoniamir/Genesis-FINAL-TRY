@@ -1,0 +1,9 @@
+{
+  "module_id": "patches",
+  "original_path": "modules\\restored\\patches.py",
+  "preserved_path": "preservation_holding_area\\patches_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 388032,
+  "checksum": "6806a7909e7cb8ed4b1a7aa6d7eb9be618826d610cc473a8fbf9ad8e02351f05"
+}

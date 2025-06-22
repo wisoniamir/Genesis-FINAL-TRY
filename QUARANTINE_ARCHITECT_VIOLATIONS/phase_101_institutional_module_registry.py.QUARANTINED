@@ -1,0 +1,80 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.287823+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+      "line_numbers": [
+        103,
+        105
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+      "line_numbers": [
+        51,
+        109,
+        278
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+      "line_numbers": [
+        31,
+        206,
+        219,
+        307,
+        698
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+      "line_numbers": [
+        239,
+        394,
+        720,
+        764,
+        928
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+      "line_numbers": [
+        254,
+        261,
+        384,
+        576,
+        687
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\phase_101_institutional_module_registry.py",
+      "line_numbers": [
+        133,
+        263,
+        270,
+        343,
+        1010
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

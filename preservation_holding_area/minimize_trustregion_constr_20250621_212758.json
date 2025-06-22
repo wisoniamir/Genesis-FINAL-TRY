@@ -1,0 +1,9 @@
+{
+  "module_id": "minimize_trustregion_constr",
+  "original_path": "modules\\restored\\minimize_trustregion_constr.py",
+  "preserved_path": "preservation_holding_area\\minimize_trustregion_constr_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 43357,
+  "checksum": "1072c53346197fc1f7b2561f62edfcf321860c5bebe2f8224e4fd5870055404c"
+}

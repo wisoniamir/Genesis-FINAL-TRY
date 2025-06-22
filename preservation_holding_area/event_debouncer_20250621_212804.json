@@ -1,0 +1,9 @@
+{
+  "module_id": "event_debouncer",
+  "original_path": "modules\\restored\\event_debouncer.py",
+  "preserved_path": "preservation_holding_area\\event_debouncer_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13441,
+  "checksum": "98925489d953f8288a08daabbfb8eabb1b8cd9bd8ad15d93fe8917d138c6a20d"
+}

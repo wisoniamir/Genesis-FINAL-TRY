@@ -1,0 +1,9 @@
+{
+  "module_id": "live_backtest_comparison_engine",
+  "original_path": "modules\\execution\\live_backtest_comparison_engine.py",
+  "preserved_path": "preservation_holding_area\\live_backtest_comparison_engine_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 29506,
+  "checksum": "86b1f09fe57af67bfc7fa6d902b14e104ffc3dd96e28078d0c5e4f717b910d90"
+}

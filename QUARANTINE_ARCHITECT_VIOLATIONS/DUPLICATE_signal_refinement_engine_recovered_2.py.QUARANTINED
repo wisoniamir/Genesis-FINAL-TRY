@@ -1,0 +1,99 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.385437+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        246,
+        267,
+        296,
+        312,
+        359
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        258,
+        291,
+        307,
+        323,
+        434
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        283,
+        287
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        423
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        160,
+        223,
+        238,
+        260
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        169,
+        466
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        192,
+        195,
+        198,
+        201
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_signal_refinement_engine_recovered_2.py",
+      "line_numbers": [
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

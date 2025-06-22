@@ -1,0 +1,9 @@
+{
+  "module_id": "encryption",
+  "original_path": "modules\\restored\\encryption.py",
+  "preserved_path": "preservation_holding_area\\encryption_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13799,
+  "checksum": "fe6462a748b7b887fcb22596bd1b248d38aaa183ae1fa8b2af63f2056ec8a31d"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "audio_input",
+  "original_path": "modules\\restored\\audio_input.py",
+  "preserved_path": "preservation_holding_area\\audio_input_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26931,
+  "checksum": "ee8672e052689a393e4db2d0d7f588c4dba466854ed3cd220b2b8db5c61bcd78"
+}

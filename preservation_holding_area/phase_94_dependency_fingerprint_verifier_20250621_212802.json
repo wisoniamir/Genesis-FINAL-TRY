@@ -1,0 +1,9 @@
+{
+  "module_id": "phase_94_dependency_fingerprint_verifier",
+  "original_path": "modules\\restored\\phase_94_dependency_fingerprint_verifier.py",
+  "preserved_path": "preservation_holding_area\\phase_94_dependency_fingerprint_verifier_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 36184,
+  "checksum": "28fc8b5b4faf051baf63dc22e32188ab01b3fac1c2af5994538446ac55ceea71"
+}

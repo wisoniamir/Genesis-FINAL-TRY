@@ -1,0 +1,43 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\translate_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.962789+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\translate_recovered_2.py",
+      "line_numbers": [
+        55,
+        59,
+        63,
+        66,
+        75
+      ],
+      "violation_count": 73
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\translate_recovered_2.py",
+      "line_numbers": [
+        112,
+        386,
+        395,
+        400,
+        408
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\translate_recovered_2.py",
+      "line_numbers": [
+        741,
+        796
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

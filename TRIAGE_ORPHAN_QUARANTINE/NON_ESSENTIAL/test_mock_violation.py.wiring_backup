@@ -1,0 +1,19 @@
+"""
+TEST MODULE: Mock Data Example (This should trigger Guardian)
+"""
+
+# This is mock data - Guardian should detect and prevent this
+mock_trading_data = {
+    "symbol": "EURUSD",
+    "price": 1.0850,
+    "volume": 100000,
+    "is_simulated": True,  # RED FLAG!
+    "mock_data": True      # RED FLAG!
+}
+
+def get_fake_signals():
+    """Returns simulated trading signals"""
+    return ["BUY", "SELL", "HOLD"]  # Mock data
+
+if __name__ == "__main__":
+    print("Using mock data for testing")  # Guardian should catch this

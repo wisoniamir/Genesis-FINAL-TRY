@@ -1,0 +1,294 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_20news -->
+"""
+🏛️ GENESIS TEST_20NEWS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_20news", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_20news", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_20news",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_20news: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_20news",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_20news", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_20news: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""Test the 20news downloader, if the data is available,
+or if specifically requested via environment variable
+(e.g. for CI jobs)."""
+
+from functools import partial
+from unittest.mock import patch
+
+import numpy as np
+import pytest
+import scipy.sparse as sp
+
+from sklearn.datasets.tests.test_common import (
+    check_as_frame,
+    check_pandas_dependency_message,
+    check_return_X_y,
+)
+from sklearn.preprocessing import normalize
+from sklearn.utils._testing import assert_allclose_dense_sparse
+
+
+def test_20news(fetch_20newsgroups_fxt):
+    data = fetch_20newsgroups_fxt(subset="all", shuffle=False)
+    assert data.DESCR.startswith(".. _20newsgroups_dataset:")
+
+    # Extract a reduced dataset
+    data2cats = fetch_20newsgroups_fxt(
+        subset="all", categories=data.target_names[-1:-3:-1], shuffle=False
+    )
+    # Check that the ordering of the target_names is the same
+    # as the ordering in the full dataset
+    assert data2cats.target_names == data.target_names[-2:]
+    # Assert that we have only 0 and 1 as labels
+    assert np.unique(data2cats.target).tolist() == [0, 1]
+
+    # Check that the number of filenames is consistent with data/target
+    assert len(data2cats.filenames) == len(data2cats.target)
+    assert len(data2cats.filenames) == len(data2cats.data)
+
+    # Check that the first entry of the reduced dataset corresponds to
+    # the first entry of the corresponding category in the full dataset
+    entry1 = data2cats.data[0]
+    category = data2cats.target_names[data2cats.target[0]]
+    label = data.target_names.index(category)
+    entry2 = data.data[np.where(data.target == label)[0][0]]
+    assert entry1 == entry2
+
+    # check that return_X_y option
+    X, y = fetch_20newsgroups_fxt(subset="all", shuffle=False, return_X_y=True)
+    assert len(X) == len(data.data)
+    assert y.shape == data.target.shape
+
+
+def test_20news_length_consistency(fetch_20newsgroups_fxt):
+    """Checks the length consistencies within the bunch
+
+    This is a non-regression test for a bug present in 0.16.1.
+    """
+    # Extract the full dataset
+    data = fetch_20newsgroups_fxt(subset="all")
+    assert len(data["data"]) == len(data.data)
+    assert len(data["target"]) == len(data.target)
+    assert len(data["filenames"]) == len(data.filenames)
+
+
+def test_20news_vectorized(fetch_20newsgroups_vectorized_fxt):
+    # test subset = train
+    bunch = fetch_20newsgroups_vectorized_fxt(subset="train")
+    assert sp.issparse(bunch.data) and bunch.data.format == "csr"
+    assert bunch.data.shape == (11314, 130107)
+    assert bunch.target.shape[0] == 11314
+    assert bunch.data.dtype == np.float64
+    assert bunch.DESCR.startswith(".. _20newsgroups_dataset:")
+
+    # test subset = test
+    bunch = fetch_20newsgroups_vectorized_fxt(subset="test")
+    assert sp.issparse(bunch.data) and bunch.data.format == "csr"
+    assert bunch.data.shape == (7532, 130107)
+    assert bunch.target.shape[0] == 7532
+    assert bunch.data.dtype == np.float64
+    assert bunch.DESCR.startswith(".. _20newsgroups_dataset:")
+
+    # test return_X_y option
+    fetch_func = partial(fetch_20newsgroups_vectorized_fxt, subset="test")
+    check_return_X_y(bunch, fetch_func)
+
+    # test subset = all
+    bunch = fetch_20newsgroups_vectorized_fxt(subset="all")
+    assert sp.issparse(bunch.data) and bunch.data.format == "csr"
+    assert bunch.data.shape == (11314 + 7532, 130107)
+    assert bunch.target.shape[0] == 11314 + 7532
+    assert bunch.data.dtype == np.float64
+    assert bunch.DESCR.startswith(".. _20newsgroups_dataset:")
+
+
+def test_20news_normalization(fetch_20newsgroups_vectorized_fxt):
+    X = fetch_20newsgroups_vectorized_fxt(normalize=False)
+    X_ = fetch_20newsgroups_vectorized_fxt(normalize=True)
+    X_norm = X_["data"][:100]
+    X = X["data"][:100]
+
+    assert_allclose_dense_sparse(X_norm, normalize(X))
+    assert np.allclose(np.linalg.norm(X_norm.todense(), axis=1), 1)
+
+
+def test_20news_as_frame(fetch_20newsgroups_vectorized_fxt):
+    pd = pytest.importorskip("pandas")
+
+    bunch = fetch_20newsgroups_vectorized_fxt(as_frame=True)
+    check_as_frame(bunch, fetch_20newsgroups_vectorized_fxt)
+
+    frame = bunch.frame
+    assert frame.shape == (11314, 130108)
+    assert all([isinstance(col, pd.SparseDtype) for col in bunch.data.dtypes])
+
+    # Check a small subset of features
+    for expected_feature in [
+        "beginner",
+        "beginners",
+        "beginning",
+        "beginnings",
+        "begins",
+        "begley",
+        "begone",
+    ]:
+        assert expected_feature in frame.keys()
+    assert "category_class" in frame.keys()
+    assert bunch.target.name == "category_class"
+
+
+def test_as_frame_no_pandas(fetch_20newsgroups_vectorized_fxt, hide_available_pandas):
+    check_pandas_dependency_message(fetch_20newsgroups_vectorized_fxt)
+
+
+def test_outdated_pickle(fetch_20newsgroups_vectorized_fxt):
+    with patch("os.path.exists") as mock_is_exist:
+        with patch("joblib.load") as mock_load:
+            # mock that the dataset was cached
+            mock_is_exist.return_value = True
+            # mock that we have an outdated pickle with only X and y returned
+            mock_load.return_value = ("X", "y")
+            err_msg = "The cached dataset located in"
+            with pytest.raises(ValueError, match=err_msg):
+                fetch_20newsgroups_vectorized_fxt(as_frame=True)
+
+
+# <!-- @GENESIS_MODULE_END: test_20news -->

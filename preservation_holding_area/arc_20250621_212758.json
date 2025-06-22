@@ -1,0 +1,9 @@
+{
+  "module_id": "arc",
+  "original_path": "modules\\restored\\arc.py",
+  "preserved_path": "preservation_holding_area\\arc_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17050,
+  "checksum": "6ec815abd1c7104b978bb589c89f5433104ba77c3e4cba7f774ba8c144b515e6"
+}

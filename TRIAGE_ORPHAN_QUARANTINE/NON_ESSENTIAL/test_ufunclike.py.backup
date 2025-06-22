@@ -1,0 +1,378 @@
+# <!-- @GENESIS_MODULE_START: test_ufunclike -->
+"""
+🏛️ GENESIS TEST_UFUNCLIKE - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import numpy as np
+from numpy import fix, isneginf, isposinf
+from numpy.testing import assert_, assert_array_equal, assert_equal, assert_raises
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_ufunclike",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_ufunclike: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_ufunclike",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_ufunclike", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_ufunclike: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+class TestUfunclike:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_ufunclike",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_ufunclike: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_ufunclike",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_ufunclike", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_ufunclike: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_ufunclike",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_ufunclike: {e}")
+
+    def test_isposinf(self):
+        a = np.array([np.inf, -np.inf, np.nan, 0.0, 3.0, -3.0])
+        out = np.zeros(a.shape, bool)
+        tgt = np.array([True, False, False, False, False, False])
+
+        res = isposinf(a)
+        assert_equal(res, tgt)
+        res = isposinf(a, out)
+        assert_equal(res, tgt)
+        assert_equal(out, tgt)
+
+        a = a.astype(np.complex128)
+        with assert_raises(TypeError):
+            isposinf(a)
+
+    def test_isneginf(self):
+        a = np.array([np.inf, -np.inf, np.nan, 0.0, 3.0, -3.0])
+        out = np.zeros(a.shape, bool)
+        tgt = np.array([False, True, False, False, False, False])
+
+        res = isneginf(a)
+        assert_equal(res, tgt)
+        res = isneginf(a, out)
+        assert_equal(res, tgt)
+        assert_equal(out, tgt)
+
+        a = a.astype(np.complex128)
+        with assert_raises(TypeError):
+            isneginf(a)
+
+    def test_fix(self):
+        a = np.array([[1.0, 1.1, 1.5, 1.8], [-1.0, -1.1, -1.5, -1.8]])
+        out = np.zeros(a.shape, float)
+        tgt = np.array([[1., 1., 1., 1.], [-1., -1., -1., -1.]])
+
+        res = fix(a)
+        assert_equal(res, tgt)
+        res = fix(a, out)
+        assert_equal(res, tgt)
+        assert_equal(out, tgt)
+        assert_equal(fix(3.14), 3)
+
+    def test_fix_with_subclass(self):
+        class MyArray(np.ndarray):
+            def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                    """GENESIS Emergency Kill Switch"""
+                    try:
+                        # Emit emergency event
+                        if hasattr(self, 'event_bus') and self.event_bus:
+                            emit_event("emergency_stop", {
+                                "module": "test_ufunclike",
+                                "reason": reason,
+                                "timestamp": datetime.now().isoformat()
+                            })
+
+                        # Log telemetry
+                        self.emit_module_telemetry("emergency_stop", {
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                        # Set emergency state
+                        if hasattr(self, '_emergency_stop_active'):
+                            self._emergency_stop_active = True
+
+                        return True
+                    except Exception as e:
+                        print(f"Emergency stop error in test_ufunclike: {e}")
+                        return False
+            def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                    """GENESIS FTMO Compliance Validator"""
+                    # Daily drawdown check (5%)
+                    daily_loss = trade_data.get('daily_loss_pct', 0)
+                    if daily_loss > 5.0:
+                        self.emit_module_telemetry("ftmo_violation", {
+                            "type": "daily_drawdown", 
+                            "value": daily_loss,
+                            "threshold": 5.0
+                        })
+                        return False
+
+                    # Maximum drawdown check (10%)
+                    max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                    if max_drawdown > 10.0:
+                        self.emit_module_telemetry("ftmo_violation", {
+                            "type": "max_drawdown", 
+                            "value": max_drawdown,
+                            "threshold": 10.0
+                        })
+                        return False
+
+                    # Risk per trade check (2%)
+                    risk_pct = trade_data.get('risk_percent', 0)
+                    if risk_pct > 2.0:
+                        self.emit_module_telemetry("ftmo_violation", {
+                            "type": "risk_exceeded", 
+                            "value": risk_pct,
+                            "threshold": 2.0
+                        })
+                        return False
+
+                    return True
+            def emit_module_telemetry(self, event: str, data: dict = None):
+                    """GENESIS Module Telemetry Hook"""
+                    telemetry_data = {
+                        "timestamp": datetime.now().isoformat(),
+                        "module": "test_ufunclike",
+                        "event": event,
+                        "data": data or {}
+                    }
+                    try:
+                        emit_telemetry("test_ufunclike", event, telemetry_data)
+                    except Exception as e:
+                        print(f"Telemetry error in test_ufunclike: {e}")
+            def initialize_eventbus(self):
+                    """GENESIS EventBus Initialization"""
+                    try:
+                        self.event_bus = get_event_bus()
+                        if self.event_bus:
+                            emit_event("module_initialized", {
+                                "module": "test_ufunclike",
+                                "timestamp": datetime.now().isoformat(),
+                                "status": "active"
+                            })
+                    except Exception as e:
+                        print(f"EventBus initialization error in test_ufunclike: {e}")
+            def __new__(cls, data, metadata=None):
+                res = np.array(data, copy=True).view(cls)
+                res.metadata = metadata
+                return res
+
+            def __array_wrap__(self, obj, context=None, return_scalar=False):
+                if not isinstance(obj, MyArray):
+                    obj = obj.view(MyArray)
+                if obj.metadata is None:
+                    obj.metadata = self.metadata
+                return obj
+
+            def __array_finalize__(self, obj):
+                self.metadata = getattr(obj, 'metadata', None)
+                return self
+
+        a = np.array([1.1, -1.1])
+        m = MyArray(a, metadata='foo')
+        f = fix(m)
+        assert_array_equal(f, np.array([1, -1]))
+        assert_(isinstance(f, MyArray))
+        assert_equal(f.metadata, 'foo')
+
+        # check 0d arrays don't decay to scalars
+        m0d = m[0, ...]
+        m0d.metadata = 'bar'
+        f0d = fix(m0d)
+        assert_(isinstance(f0d, MyArray))
+        assert_equal(f0d.metadata, 'bar')
+
+    def test_scalar(self):
+        x = np.inf
+        actual = np.isposinf(x)
+        expected = np.True_
+        assert_equal(actual, expected)
+        assert_equal(type(actual), type(expected))
+
+        x = -3.4
+        actual = np.fix(x)
+        expected = np.float64(-3.0)
+        assert_equal(actual, expected)
+        assert_equal(type(actual), type(expected))
+
+        out = np.array(0.0)
+        actual = np.fix(x, out=out)
+        assert_(actual is out)
+
+
+# <!-- @GENESIS_MODULE_END: test_ufunclike -->

@@ -1,0 +1,9 @@
+{
+  "module_id": "base_command",
+  "original_path": "modules\\restored\\base_command.py",
+  "preserved_path": "preservation_holding_area\\base_command_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19840,
+  "checksum": "200f8fe8ca4a085f35df67796ddf4913c782deb7eba5193fe8c828c25f070984"
+}

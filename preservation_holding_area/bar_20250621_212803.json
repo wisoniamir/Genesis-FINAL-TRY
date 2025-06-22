@@ -1,0 +1,9 @@
+{
+  "module_id": "bar",
+  "original_path": "modules\\restored\\bar.py",
+  "preserved_path": "preservation_holding_area\\bar_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 14440,
+  "checksum": "0ef3beabac93f004a8fd453ff2a4a00ad24f70b2c85fbcf766f50940f9f70980"
+}

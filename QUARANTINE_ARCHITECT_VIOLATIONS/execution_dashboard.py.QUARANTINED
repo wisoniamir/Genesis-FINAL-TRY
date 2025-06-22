@@ -1,0 +1,78 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.187806+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+      "line_numbers": [
+        13,
+        40,
+        163,
+        175,
+        194
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+      "line_numbers": [
+        168,
+        189,
+        215,
+        304,
+        330
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+      "line_numbers": [
+        299,
+        391,
+        419,
+        433
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+      "line_numbers": [
+        141,
+        583
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+      "line_numbers": [
+        177,
+        178,
+        179,
+        180,
+        181
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\execution_dashboard.py",
+      "line_numbers": [
+        184,
+        185
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "decision_boundary",
+  "original_path": "modules\\restored\\decision_boundary.py",
+  "preserved_path": "preservation_holding_area\\decision_boundary_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 33578,
+  "checksum": "66b101bf5120f409d83047ec3339f4acca2dc08da8f9ebc4477c11deb56abc1c"
+}

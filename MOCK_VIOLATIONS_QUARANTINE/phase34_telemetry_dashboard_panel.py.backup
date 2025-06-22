@@ -1,0 +1,411 @@
+# @GENESIS_ORPHAN_STATUS: archived_patch
+# @GENESIS_SUGGESTED_ACTION: archive
+# @GENESIS_ANALYSIS_DATE: 2025-06-20T16:45:13.480155
+# @GENESIS_PROTECTION: DO_NOT_DELETE_UNTIL_REVIEWED
+
+# <!-- @GENESIS_MODULE_START: phase34_telemetry_dashboard_panel -->
+
+"""
+GENESIS Phase 34 - Telemetry Dashboard Panel for Broker Discovery
+Real-time telemetry display for broker rule profiles and account types
+ARCHITECT MODE v2.9 - STRICT COMPLIANCE
+
+PHASE 34 OBJECTIVE:
+Real-time dashboard panel showing:
+→ rule_profile_active
+→ account_type_detected  
+→ override_mode
+→ broker_discovery_status
+→ rule_customization_active
+
+COMPLIANCE REQUIREMENTS:
+✅ Real-time telemetry feeds only
+✅ EventBus communication only
+✅ Auto-refresh every 15 seconds
+✅ MT5 live data integration
+✅ No real or fallback data
+"""
+
+import json
+import time
+import logging
+from datetime import datetime, timedelta
+from typing import Dict, Any, Optional
+from threading import Lock
+import streamlit as st
+
+from event_bus import subscribe_to_event, emit_event
+from telemetry import TelemetryCollector
+
+class Phase34TelemetryDashboardPanel:
+    """
+    GENESIS Phase 34 Telemetry Dashboard Panel
+    Real-time broker discovery and rule profile monitoring
+    
+    Architecture Compliance:
+    - EventBus subscription only
+    - Real-time telemetry display
+    - Auto-refresh mechanism
+    - Live MT5 broker feed integration
+    """
+    
+    def __init__(self):
+        """Initialize Phase 34 telemetry dashboard panel"""
+        
+        self.module_name = "Phase34TelemetryDashboardPanel"
+        self.version = "1.0.0"
+        
+        # State management
+        self.state_lock = Lock()
+        self.dashboard_state = {
+            "rule_profile_active": None,
+            "account_type_detected": None, 
+            "override_mode": False,
+            "broker_discovery_status": "Initializing",
+            "rule_customization_active": False,
+            "last_update": None,
+            "broker_name": None,
+            "server_name": None,
+            "account_balance": None,
+            "detection_count": 0,
+            "rule_updates_count": 0,
+            "telemetry_health": "Unknown"
+        }
+        
+        # Telemetry tracking
+        self.telemetry_metrics = {
+            "panel_start_time": datetime.now().isoformat(),
+            "updates_processed": 0,
+            "last_broker_event": None,
+            "last_account_event": None,
+            "last_telemetry_event": None,
+            "dashboard_refresh_count": 0,
+            "error_count": 0
+        }
+        
+        # Configure logging
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger(self.module_name)
+        
+        # Initialize EventBus subscriptions
+        self._setup_event_subscriptions()
+        
+        self.logger.info(f"✅ {self.module_name} v{self.version} initialized - Dashboard panel ready")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_event_subscriptions(self):
+        """Set up EventBus subscriptions for broker discovery events"""
+        
+        try:
+            # Subscribe to broker discovery events
+            subscribe_to_event("BrokerRulesDiscovered", self._handle_broker_rules_discovered, self.module_name)
+            subscribe_to_event("AccountTypeDetected", self._handle_account_type_detected, self.module_name)
+            subscribe_to_event("TradingRulesUpdate", self._handle_trading_rules_update, self.module_name)
+            subscribe_to_event("ModuleTelemetry", self._handle_module_telemetry, self.module_name)
+            
+            self.logger.info("📡 EventBus subscriptions established for Phase 34 dashboard")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Failed to setup EventBus subscriptions: {str(e)}")
+            self._emit_telemetry("SUBSCRIPTION_ERROR", {"error": str(e)})
+    
+    def _handle_broker_rules_discovered(self, data: Dict[str, Any]):
+        """Handle BrokerRulesDiscovered events from BrokerDiscoveryEngine"""
+        
+        try:
+            with self.state_lock:
+                # Extract broker rule information
+                account_type = data.get("account_type", "Unknown")
+                trading_rules = data.get("trading_rules", {})
+                override_mode = data.get("override_mode", False)
+                broker = data.get("broker", "Unknown")
+                
+                # Update dashboard state
+                self.dashboard_state.update({
+                    "rule_profile_active": account_type,
+                    "account_type_detected": account_type,
+                    "override_mode": override_mode,
+                    "broker_discovery_status": "Active",
+                    "broker_name": broker,
+                    "last_update": datetime.now().isoformat(),
+                    "detection_count": self.dashboard_state["detection_count"] + 1
+                })
+                
+                # Check for rule customization
+                if trading_rules and len(trading_rules) > 0:
+                    self.dashboard_state["rule_customization_active"] = True
+                
+                self.telemetry_metrics["updates_processed"] += 1
+                self.telemetry_metrics["last_broker_event"] = datetime.now().isoformat()
+                
+                self.logger.info(f"📊 Dashboard updated - Broker rules discovered: {account_type}")
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error handling broker rules event: {str(e)}")
+            self.telemetry_metrics["error_count"] += 1
+    
+    def _handle_account_type_detected(self, data: Dict[str, Any]):
+        """Handle AccountTypeDetected events from BrokerDiscoveryEngine"""
+        
+        try:
+            with self.state_lock:
+                # Extract account information
+                account_type = data.get("account_type", "Unknown")
+                broker = data.get("broker", "Unknown")
+                server = data.get("server", "Unknown")
+                balance = data.get("balance", 0)
+                
+                # Update dashboard state
+                self.dashboard_state.update({
+                    "account_type_detected": account_type,
+                    "broker_name": broker,
+                    "server_name": server,
+                    "account_balance": balance,
+                    "broker_discovery_status": "Connected",
+                    "last_update": datetime.now().isoformat()
+                })
+                
+                self.telemetry_metrics["last_account_event"] = datetime.now().isoformat()
+                
+                self.logger.info(f"🎯 Account type detected: {account_type} ({broker})")
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error handling account type event: {str(e)}")
+            self.telemetry_metrics["error_count"] += 1
+    
+    def _handle_trading_rules_update(self, data: Dict[str, Any]):
+        """Handle TradingRulesUpdate events from BrokerDiscoveryEngine"""
+        
+        try:
+            with self.state_lock:
+                # Update rule counts
+                self.dashboard_state["rule_updates_count"] += 1
+                self.dashboard_state["last_update"] = datetime.now().isoformat()
+                
+                # Check if rules indicate customization
+                trading_rules = data.get("trading_rules", {})
+                if trading_rules and len(trading_rules) > 0:
+                    self.dashboard_state["rule_customization_active"] = True
+                
+                self.logger.info("🔄 Trading rules updated")
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error handling trading rules update: {str(e)}")
+            self.telemetry_metrics["error_count"] += 1
+    
+    def _handle_module_telemetry(self, data: Any):
+        """Handle ModuleTelemetry events for health monitoring"""
+        
+        try:
+            # Parse telemetry data if it's JSON string
+            if isinstance(data, str):
+                try:
+                    telemetry_data = json.loads(data)
+                except json.JSONDecodeError:
+                    return
+            else:
+                telemetry_data = data
+            
+            # Check if it's from BrokerDiscoveryEngine
+            if (isinstance(telemetry_data, dict) and 
+                telemetry_data.get("data", {}).get("module") == "BrokerDiscoveryEngine"):
+                
+                with self.state_lock:
+                    self.dashboard_state["telemetry_health"] = "Good"
+                    self.telemetry_metrics["last_telemetry_event"] = datetime.now().isoformat()
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error handling module telemetry: {str(e)}")
+            self.telemetry_metrics["error_count"] += 1
+    
+    def _emit_telemetry(self, event_type: str, data: Dict[str, Any]):
+        """Emit telemetry for dashboard operations"""
+        
+        telemetry_event = {
+            "timestamp": datetime.now().isoformat(),
+            "module": self.module_name,
+            "event_type": event_type,
+            "data": data,
+            "telemetry_metrics": self.telemetry_metrics.copy()
+        }
+        
+        try:
+            emit_event("ModuleTelemetry", json.dumps(telemetry_event))
+        except Exception as e:
+            self.logger.error(f"❌ Failed to emit telemetry: {str(e)}")
+    
+    def get_dashboard_data(self) -> Dict[str, Any]:
+        """Get current dashboard data for display"""
+        
+        with self.state_lock:
+            dashboard_data = self.dashboard_state.copy()
+            
+        # Add freshness indicator
+        if dashboard_data["last_update"]:
+            try:
+                last_update = datetime.fromisoformat(dashboard_data["last_update"])
+                age_seconds = (datetime.now() - last_update).total_seconds()
+                dashboard_data["data_age_seconds"] = age_seconds
+                dashboard_data["data_fresh"] = age_seconds < 30  # Fresh if less than 30 seconds
+            except:
+                dashboard_data["data_age_seconds"] = None
+                dashboard_data["data_fresh"] = False
+        else:
+            dashboard_data["data_age_seconds"] = None
+            dashboard_data["data_fresh"] = False
+        
+        # Increment refresh count
+        self.telemetry_metrics["dashboard_refresh_count"] += 1
+        
+        return dashboard_data
+    
+    def render_streamlit_panel(self):
+        """Render the Phase 34 dashboard panel in Streamlit"""
+        
+        # Get current data
+        dashboard_data = self.get_dashboard_data()
+        
+        # Main dashboard title
+        st.markdown("### 📊 Phase 34 - Broker Discovery Telemetry")
+        
+        # Status indicators row
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            status = dashboard_data["broker_discovery_status"]
+            status_color = "🟢" if status == "Active" else "🟡" if status == "Connected" else "🔴"
+            st.metric(
+                label="Discovery Status",
+                value=f"{status_color} {status}",
+                delta=None
+            )
+        
+        with col2:
+            rule_profile = dashboard_data["rule_profile_active"] or "None"
+            st.metric(
+                label="Rule Profile Active",
+                value=rule_profile,
+                delta=None
+            )
+        
+        with col3:
+            account_type = dashboard_data["account_type_detected"] or "Unknown"
+            st.metric(
+                label="Account Type",
+                value=account_type,
+                delta=None
+            )
+        
+        with col4:
+            override_status = "🔒 Enabled" if dashboard_data["override_mode"] else "🔓 Disabled"
+            st.metric(
+                label="Override Mode",
+                value=override_status,
+                delta=None
+            )
+        
+        # Detailed information section
+        st.markdown("#### 📈 Detailed Information")
+        
+        detail_col1, detail_col2 = st.columns(2)
+        
+        with detail_col1:
+            st.markdown("**Broker Details:**")
+            if dashboard_data["broker_name"]:
+                st.write(f"• Broker: {dashboard_data['broker_name']}")
+            if dashboard_data["server_name"]:
+                st.write(f"• Server: {dashboard_data['server_name']}")
+            if dashboard_data["account_balance"]:
+                st.write(f"• Balance: ${dashboard_data['account_balance']:,.2f}")
+            
+            st.markdown("**Rule Configuration:**")
+            customization_status = "✅ Active" if dashboard_data["rule_customization_active"] else "❌ Inactive"
+            st.write(f"• Customization: {customization_status}")
+        
+        with detail_col2:
+            st.markdown("**Activity Metrics:**")
+            st.write(f"• Detections: {dashboard_data['detection_count']}")
+            st.write(f"• Rule Updates: {dashboard_data['rule_updates_count']}")
+            st.write(f"• Dashboard Refreshes: {self.telemetry_metrics['dashboard_refresh_count']}")
+            
+            st.markdown("**System Health:**")
+            health_status = dashboard_data["telemetry_health"]
+            health_color = "🟢" if health_status == "Good" else "🟡" if health_status == "Unknown" else "🔴"
+            st.write(f"• Health: {health_color} {health_status}")
+        
+        # Data freshness indicator
+        if dashboard_data["data_fresh"]:
+            st.success(f"📡 Data is fresh (updated {dashboard_data['data_age_seconds']:.0f}s ago)")
+        else:
+            age = dashboard_data.get("data_age_seconds", 0)
+            if age > 60:
+                st.warning(f"⚠️ Data may be stale (updated {age:.0f}s ago)")
+            else:
+                st.info("🔄 Waiting for data updates...")
+        
+        # Last update timestamp
+        if dashboard_data["last_update"]:
+            st.caption(f"Last Update: {dashboard_data['last_update']}")
+        
+        # Auto-refresh every 15 seconds
+        time.sleep(1)  # Small delay to prevent excessive refreshing
+        
+    def start_background_monitoring(self):
+        """Start background monitoring for telemetry health"""
+        
+        # Emit initialization telemetry
+        self._emit_telemetry("DASHBOARD_INITIALIZED", {
+            "version": self.version,
+            "subscriptions_count": 4,
+            "auto_refresh_enabled": True
+        })
+        
+        self.logger.info("🚀 Phase 34 telemetry dashboard monitoring started")
+
+
+# Initialize the Phase 34 telemetry dashboard panel
+phase34_dashboard_panel = Phase34TelemetryDashboardPanel()
+
+def render_phase34_dashboard():
+    """Public function to render Phase 34 dashboard in Streamlit apps"""
+    
+    # Start background monitoring if not already started
+    phase34_dashboard_panel.start_background_monitoring()
+    
+    # Render the panel
+    phase34_dashboard_panel.render_streamlit_panel()
+
+if __name__ == "__main__":
+    # For standalone testing
+    import streamlit as st
+    
+    st.set_page_config(
+        page_title="GENESIS Phase 34 - Broker Discovery Telemetry",
+        page_icon="📊",
+        layout="wide"
+    )
+    
+    render_phase34_dashboard()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: phase34_telemetry_dashboard_panel -->

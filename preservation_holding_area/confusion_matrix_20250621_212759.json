@@ -1,0 +1,9 @@
+{
+  "module_id": "confusion_matrix",
+  "original_path": "modules\\restored\\confusion_matrix.py",
+  "preserved_path": "preservation_holding_area\\confusion_matrix_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 29160,
+  "checksum": "e7046e3c818cc791fb472c7f1536fa4a9c99a9df450eb01fb82ecaf1e5ef519b"
+}

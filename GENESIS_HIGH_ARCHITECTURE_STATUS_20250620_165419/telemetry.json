@@ -1,0 +1,2252 @@
+{
+  "telemetry_metadata": {
+    "version": "v3.0_institutional",
+    "generation_timestamp": "2025-06-20T17:14:24.760196",
+    "architect_mode": true,
+    "institutional_compliance": true,
+    "target_directory": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419",
+    "institutional_telemetry": true
+  },
+  "active_telemetry_modules": {
+    "advanced_signal_optimization_engine.py": {
+      "module": "advanced_signal_optimization_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\", {\n            \"model_type\": \"RandomForestClassifier\",\n            \"max_history\": 1000,\n            \"features_tracked\": 8\n        })",
+        "emit_telemetry(\"SIGNAL_TELEMETRY_COLLECTED\", {\n                        \"signal_id\": event_data.get(\"signal_id\", \"unknown\")",
+        "emit_telemetry(\"ERROR\", {\"error\": str(e)",
+        "emit_telemetry(\"TRADE_OUTCOME_RECORDED\", {\n                        \"signal_id\": signal_id,\n                        \"outcome\": outcome,\n                        \"pnl\": pnl,\n                        \"outcomes_collected\": len(self.outcome_history)",
+        "emit_telemetry(\"ERROR\", {\"error\": str(e)",
+        "emit_telemetry(\"JOURNAL_CONTEXT_EXTRACTED\", context_features)",
+        "emit_telemetry(\"PATTERN_SIGNAL_PROCESSED\", pattern_data)",
+        "emit_telemetry(\"SIGNAL_CONFIDENCE_PREDICTED\", {\n                        \"signal_id\": event_data.get(\"signal_id\")",
+        "emit_telemetry(\"ERROR\", {\"error\": str(e)",
+        "emit_telemetry(\"STRATEGY_OPTIMIZATION_GENERATED\", {\n                    \"win_rate\": win_rate,\n                    \"recommendations_count\": len(optimization_advice)",
+        "emit_telemetry(\"MODEL_TRAINING_COMPLETED\", {\n                \"accuracy\": self.model_accuracy,\n                \"precision\": self.model_precision,\n                \"recall\": self.model_recall,\n                \"training_samples\": len(X_train)",
+        "emit_telemetry(\"ERROR\", {\"error\": str(e)",
+        "emit_telemetry(self, event_type: str, data: Dict[str, Any])"
+      ]
+    },
+    "autonomous_order_executor.py": {
+      "module": "autonomous_order_executor",
+      "hooks": [
+        "telemetry.update(telemetry_data)",
+        "telemetry.\"\"\"\n        try:\n            execution_record = {\n                \"symbol\": symbol,\n                \"volume\": volume,\n                \"entry_price\": str(entry_price)"
+      ]
+    },
+    "broker_rule_sync_telemetry_widget.py": {
+      "module": "broker_rule_sync_telemetry_widget",
+      "hooks": [
+        "telemetry.broker_rules.sync_status\",\n            \"dashboard_enabled\": True,\n            \"real_data_only\": True\n        }\n        \n        # Initialize telemetry state\n        self.telemetry_state = {\n            \"rule_profile_active\": \"Unknown\",\n            \"account_type_detected\": \"Unknown\", \n            \"override_mode\": False,\n            \"last_rule_update\": None,\n            \"rule_sync_status\": \"Initializing\",\n            \"modules_synced\": [],\n            \"modules_pending\": [],\n            \"sync_error_count\": 0\n        }\n        \n        # Synchronization tracking\n        self.rule_sync_lock = Lock()",
+        "telemetry.broker_rules.sync_status\", \"BrokerRuleSyncWidget\", \"TelemetryCollector\")",
+        "emit_telemetry(\"WIDGET_INITIALIZED\", {\n            \"widget_id\": self.widget_config[\"widget_id\"],\n            \"update_interval\": self.widget_config[\"update_interval_seconds\"],\n            \"timestamp\": datetime.utcnow()",
+        "emit_telemetry(self, event_type: str, data: Dict[str, Any])",
+        "emit_telemetry(\"WIDGET_STOPPED\", {\n            \"widget_id\": self.widget_config[\"widget_id\"],\n            \"timestamp\": datetime.utcnow()"
+      ]
+    },
+    "build_status_updater.py": {
+      "module": "build_status_updater",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "compliance_enforcer.py": {
+      "module": "compliance_enforcer",
+      "hooks": [
+        "telemetry.json\"\n        if telemetry_path.exists()"
+      ]
+    },
+    "dashboard.py": {
+      "module": "dashboard",
+      "hooks": [
+        "telemetry.json, build_status.json\nCompliance: ENFORCED - No real/fallback data permitted\nTelemetry: ENABLED - All actions logged to telemetry.json\n\"\"\"\n\nimport os\nimport json\nimport logging\nimport time\nimport threading\nfrom datetime import datetime, timedelta\n\ntry:\n    import streamlit as st\n    import pandas as pd\n    import numpy as np\n    import plotly.express as px\n    import plotly.graph_objects as go\n    import matplotlib.pyplot as plt\n    import psutil\nexcept ImportError as e:\n    print(f\"Error importing dashboard dependencies: {e}\")"
+      ]
+    },
+    "dashboard_linkage_patch.py": {
+      "module": "dashboard_linkage_patch",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "emergency_architect_compliance_enforcer.py": {
+      "module": "emergency_architect_compliance_enforcer",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "emergency_triage_orphan_eliminator.py": {
+      "module": "emergency_triage_orphan_eliminator",
+      "hooks": [
+        "telemetry.*', r'compliance.*', r'module_registry.*'\n            ],\n            'execution_essential': [\n                r'execution_engine.*', r'autonomous.*executor.*', r'execution.*manager.*',\n                r'execution.*control.*', r'execution.*dispatcher.*'\n            ],\n            'strategy_essential': [\n                r'strategy.*engine.*', r'strategy.*mutation.*', r'strategy.*recommender.*'\n            ],\n            'signal_essential': [\n                r'signal.*engine.*', r'signal.*validator.*', r'signal.*fusion.*'\n            ],\n            'mt5_essential': [\n                r'mt5.*adapter.*', r'mt5.*connector.*', r'mt5.*bridge.*'\n            ],\n            'dashboard_essential': [\n                r'dashboard.*', r'gui.*', r'launcher.*', r'frontend.*'\n            ]\n        }\n        \n        # NON-ESSENTIAL patterns (SAFE TO QUARANTINE)"
+      ]
+    },
+    "eventbus_compliance_fingerprint_sync.py": {
+      "module": "eventbus_compliance_fingerprint_sync",
+      "hooks": [
+        "telemetry.json\", \"r\")",
+        "telemetry.json\", \"w\")"
+      ]
+    },
+    "execution_engine.py": {
+      "module": "execution_engine",
+      "hooks": [
+        "emit_telemetry(\"mt5_connection_established\", self._get_account_info()"
+      ]
+    },
+    "execution_flow_controller.py": {
+      "module": "execution_flow_controller",
+      "hooks": [
+        "emit_telemetry(\"controller_started\", {\"status\": \"active\", \"timestamp\": time.time()",
+        "emit_telemetry(\"controller_stopped\", {\"status\": \"stopped\", \"timestamp\": time.time()",
+        "emit_telemetry(\"prioritized_signal_received\", {\n                \"flow_id\": flow.flow_id,\n                \"priority\": priority,\n                \"signal_id\": signal_id\n            })",
+        "emit_telemetry(\"execution_sequence_received\", {\n                \"flow_id\": flow.flow_id,\n                \"sequence_id\": sequence_id,\n                \"steps_count\": len(steps)",
+        "emit_telemetry(\"resource_allocation\", {\n                \"request_id\": request_id,\n                \"allocated\": allocated,\n                \"resources_requested\": required_resources\n            })",
+        "emit_telemetry(\"circuit_breaker_triggered\", {\n                \"reason\": trigger_reason,\n                \"severity\": severity,\n                \"active_flows_paused\": len(self.active_flows)",
+        "emit_telemetry(\"emergency_stop_activated\", {\n                \"reason\": stop_reason,\n                \"flows_stopped\": len(self.active_flows)",
+        "emit_telemetry(\"optimization_applied\", {\n                \"type\": optimization_type,\n                \"improvements\": optimization_results\n            })",
+        "emit_telemetry(\"flow_completed\", {\n                            \"flow_id\": flow.flow_id,\n                            \"duration\": time.time()"
+      ]
+    },
+    "genesis_architecture_status_generator.py": {
+      "module": "genesis_architecture_status_generator",
+      "hooks": [
+        "telemetry.json\": self.load_json_file(self.workspace_path / \"telemetry.json\")"
+      ]
+    },
+    "genesis_architect_agent.py": {
+      "module": "genesis_architect_agent",
+      "hooks": [
+        "telemetry.json\"\n        try:\n            with open(telemetry_path, 'r', encoding='utf-8')",
+        "telemetry.json: {e}\")",
+        "telemetry.json\",\n            \"compliance.json\",\n            \"performance.json\",\n            \"error_log.json\",\n            \"module_connections.json\",\n            \"module_documentation.json\",\n            \"module_tests.json\",\n            \"recovery_map.json\"\n        ]\n        \n        missing_files = []\n        corrupted_files = []\n        \n        for file_name in required_files:\n            file_path = self.workspace_path / file_name\n            \n            assert file_path.exists()"
+      ]
+    },
+    "genesis_boot_test.py": {
+      "module": "genesis_boot_test",
+      "hooks": [
+        "telemetry.json\",\n            \"build_status.json\"\n        ]\n        \n        missing_files = [f for f in required_files if not Path(f)"
+      ]
+    },
+    "genesis_cleanup_engine_v3.py": {
+      "module": "genesis_cleanup_engine_v3",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\"]\n                file_name = os.path.basename(path)",
+        "telemetry.json\"\n        ]\n        \n        missing = []\n        present = []\n        \n        for file in required_files:\n            file_path = os.path.join(self.project_dir, file)",
+        "emit_telemetry(\"module_initialized\", {\"engine_id\": self.engine_id})",
+        "emit_telemetry(self, event_type: str, data: Dict[str, Any])",
+        "emit_telemetry(\"cleanup_skip_critical\", {\"path\": path, \"reason\": \"critical_folder\"})",
+        "emit_telemetry(\"folder_deleted\", {\"path\": path})",
+        "emit_telemetry(\"cleanup_error\", {\"path\": path, \"error\": str(e)",
+        "emit_telemetry(\"cleanup_skip_critical\", {\"path\": path, \"reason\": \"critical_file\"})",
+        "emit_telemetry(\"file_deleted\", {\"path\": path})",
+        "emit_telemetry(\"cleanup_error\", {\"path\": path, \"error\": str(e)",
+        "emit_telemetry(\"process_kill\", {\"target\": \"node.exe\", \"result\": result})",
+        "emit_telemetry(\"process_kill\", {\"target\": \"node\", \"result\": result})",
+        "emit_telemetry(\"process_kill_error\", {\"error\": str(e)",
+        "emit_telemetry(\"build_status_updated\", {\"actions\": len(self.cleanup_log)",
+        "emit_telemetry(\"build_tracker_updated\", {\"entries\": len(self.cleanup_log)",
+        "emit_telemetry(\"integrity_check\", {\n            \"files_present\": present,\n            \"files_missing\": missing,\n            \"total_required\": len(required_files)",
+        "emit_telemetry(\"cleanup_complete\", {\n            \"actions_performed\": len(self.cleanup_log)"
+      ]
+    },
+    "genesis_compliance_core.py": {
+      "module": "genesis_compliance_core",
+      "hooks": [
+        "telemetry.json\")",
+        "emit_telemetry()",
+        "emit_telemetry(self)"
+      ]
+    },
+    "genesis_dashboard_ui_live_sync.py": {
+      "module": "genesis_dashboard_ui_live_sync",
+      "hooks": [
+        "heartbeat()"
+      ]
+    },
+    "genesis_dependency_validator.py": {
+      "module": "genesis_dependency_validator",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "genesis_final_system_validation.py": {
+      "module": "genesis_final_system_validation",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "genesis_gui_launcher.py": {
+      "module": "genesis_gui_launcher",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\", 'r')",
+        "telemetry.json\", 'w')"
+      ]
+    },
+    "genesis_installer_builder.py": {
+      "module": "genesis_installer_builder",
+      "hooks": [
+        "telemetry.json',\n            'compliance.json',\n            'build_status.json',\n            'genesis_lock_state.json',\n            'module_fingerprints_snapshot.json'\n        ]\n        \n        # Performance tracking\n        self.metrics = {\n            'build_start_time': self.package_info['build_timestamp'],\n            'files_packaged': 0,\n            'total_package_size_mb': 0,\n            'compression_ratio': 0.0,\n            'build_duration_ms': 0,\n            'tests_passed': 0,\n            'installer_ready': False\n        }\n        \n        # Create required directories\n        self._ensure_directories()"
+      ]
+    },
+    "genesis_integrity_auditor.py": {
+      "module": "genesis_integrity_auditor",
+      "hooks": [
+        "telemetry.json',\n            'compliance.json',\n            'build_status.json',\n            'build_tracker.md'\n        ]\n        \n        # Module fingerprint registry\n        self.module_fingerprints: Dict[str, ModuleFingerprint] = {}\n        self.integrity_violations: List[str] = []\n        self.locked_files: List[str] = []\n        \n        # Performance metrics\n        self.metrics = {\n            'audit_start_time': datetime.now(timezone.utc)"
+      ]
+    },
+    "genesis_launcher.py": {
+      "module": "genesis_launcher",
+      "hooks": [
+        "telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()",
+        "telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "genesis_production_dashboard.py": {
+      "module": "genesis_production_dashboard",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "genesis_trade_engine.py": {
+      "module": "genesis_trade_engine",
+      "hooks": [
+        "emit_telemetry(\"signal_processing_error\", {\"error\": str(e)",
+        "emit_telemetry(\"trade_execution_error\", {\"error\": str(e)",
+        "emit_telemetry(self, event_type: str, data: Dict[str, Any])"
+      ]
+    },
+    "hardened_event_bus.py": {
+      "module": "hardened_event_bus",
+      "hooks": [
+        "telemetry.json')",
+        "telemetry.json', 'r')",
+        "telemetry.json: {str(e)",
+        "telemetry.json', telemetry_data)"
+      ]
+    },
+    "kill_switch_compliance.py": {
+      "module": "kill_switch_compliance",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "launch_dashboard.py": {
+      "module": "launch_dashboard",
+      "hooks": [
+        "telemetry.json\",\n                \"execution_log.json\", \n                \"event_bus.json\",\n                \"telemetry_dashboard_bindings.json\"\n            ],\n            \"telemetry_files\": [\n                \"telemetry/\",\n                \"dashboard_lock_state.json\"\n            ],\n            \"optional_files\": [\n                \"mt5_connection_bridge.py\",\n                \"logs/\"\n            ]\n        }\n        \n        validation_results = {\n            \"core_files_present\": True,\n            \"telemetry_structure_valid\": True,\n            \"dashboard_ui_ready\": True,\n            \"bindings_configured\": True,\n            \"mt5_bridge_available\": False,\n            \"live_mode_ready\": True\n        }\n        \n        # Check core files\n        missing_core = []\n        for file_path in requirements[\"core_files\"]:\n            if not os.path.exists(file_path)"
+      ]
+    },
+    "launch_genesis.py": {
+      "module": "launch_genesis",
+      "hooks": [
+        "telemetry.json\"\n        ]\n        \n        systems_initialized = 0\n        for system_file in core_systems:\n            file_path = self.workspace_root / system_file\n            if file_path.exists()"
+      ]
+    },
+    "module_recovery_engine.py": {
+      "module": "module_recovery_engine",
+      "hooks": [
+        "telemetry.recovery\", {{\n            \"event\": \"MODULE_RECOVERED\",\n            \"module\": self.module_name,\n            \"recovery_engine\": \"GenesisModuleRecoveryEngine\",\n            \"timestamp\": datetime.now()",
+        "heartbeat(self, data)"
+      ]
+    },
+    "mt5_connection_bridge.py": {
+      "module": "mt5_connection_bridge",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "mt5_sync_adapter.py": {
+      "module": "mt5_sync_adapter",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "orphan_intent_classifier.py": {
+      "module": "orphan_intent_classifier",
+      "hooks": [
+        "telemetry.*\", r\"monitor.*\", r\"tracker.*\", r\"surveillance.*\",\n                r\"compliance.*\", r\"audit.*\"\n            ],\n            \"ui_dashboard\": [\n                r\"dashboard.*\", r\"gui.*\", r\"ui.*\", r\"frontend.*\",\n                r\"widget.*\", r\"visualizer.*\"\n            ]\n        }\n        \n        # Test/debug patterns (likely safe to quarantine)"
+      ]
+    },
+    "pattern_meta_strategy_engine.py": {
+      "module": "pattern_meta_strategy_engine",
+      "hooks": [
+        "emit_telemetry(\"initialization\", {\"status\": \"active\"})",
+        "emit_telemetry(self, action: str, data: Dict)",
+        "emit_telemetry(\"trade_journal_processed\", {\"trade_id\": event_data.get('trade_id', 'unknown')",
+        "emit_telemetry(\"validated_signal_processed\", {\"signal_id\": event_data.get('signal_id', 'unknown')",
+        "emit_telemetry(\"macd_cross_processed\", {\"event\": event_data.get('cross_type', 'unknown')",
+        "emit_telemetry(\"stochrsi_cross_processed\", {\"event\": event_data.get('cross_type', 'unknown')",
+        "emit_telemetry(\"execution_snapshot_processed\", {\"snapshot_id\": event_data.get('snapshot_id', 'unknown')",
+        "emit_telemetry(\"price_action_processed\", {\"pattern_type\": event_data.get('pattern_type', 'unknown')",
+        "emit_telemetry(\"sl_hit_processed\", {\"trade_id\": event_data.get('trade_id', 'unknown')",
+        "emit_telemetry(\"tp_hit_processed\", {\"trade_id\": event_data.get('trade_id', 'unknown')",
+        "emit_telemetry(\"meta_bias_analysis_complete\", analysis_result)",
+        "emit_telemetry(\"meta_bias_analysis_error\", {\"error\": str(e)",
+        "emit_telemetry(\"strategy_mutation_applied\", {\n                \"mutation_id\": mutation_id,\n                \"strategy_id\": strategy_id,\n                \"mutation_type\": mutation_type,\n                \"justification\": justification,\n                \"parameters\": mutation_params\n            })",
+        "emit_telemetry(\"alpha_decay_detected\", {\n                \"strategy_id\": strategy_id,\n                \"decay_score\": decay_score,\n                \"affected_patterns\": affected_patterns,\n                \"action_taken\": \"weight_reduction\" if affected_patterns else \"monitoring\"\n            })",
+        "emit_telemetry(\"meta_strategy_updated\", {\n                \"strategy_id\": strategy_id,\n                \"update_type\": update_type,\n                \"parameters\": parameters\n            })",
+        "emit_telemetry(\"phase_11_ready\", pipeline_status)"
+      ]
+    },
+    "phase34_telemetry_dashboard_panel.py": {
+      "module": "phase34_telemetry_dashboard_panel",
+      "hooks": [
+        "emit_telemetry(\"SUBSCRIPTION_ERROR\", {\"error\": str(e)",
+        "emit_telemetry(self, event_type: str, data: Dict[str, Any])",
+        "emit_telemetry(\"DASHBOARD_INITIALIZED\", {\n            \"version\": self.version,\n            \"subscriptions_count\": 4,\n            \"auto_refresh_enabled\": True\n        })"
+      ]
+    },
+    "phase51_eventbus_compliance_fingerprint_sync.py": {
+      "module": "phase51_eventbus_compliance_fingerprint_sync",
+      "hooks": [
+        "telemetry.json\", \"r\")",
+        "telemetry.json\", \"w\")"
+      ]
+    },
+    "phase61_compliance_validation_engine.py": {
+      "module": "phase61_compliance_validation_engine",
+      "hooks": [
+        "telemetry.json')",
+        "telemetry.json\n            module_name = module.get('name', '')",
+        "telemetry.get('events', [])",
+        "telemetry.*emit',\n                    r'TelemetryUpdate',\n                    r'telemetry_hook',\n                    r'performance.*metric'\n                ]\n                \n                for pattern in telemetry_patterns:\n                    if re.search(pattern, content, re.IGNORECASE)"
+      ]
+    },
+    "phase_100_gui_boot.py": {
+      "module": "phase_100_gui_boot",
+      "hooks": [
+        "telemetry.update\", self.handle_telemetry_update)",
+        "telemetry.snapshot_captured\", {\n                \"module\": MODULE_ID,\n                \"snapshot\": snapshot,\n                \"timestamp\": datetime.now()"
+      ]
+    },
+    "phase_101_institutional_module_registry.py": {
+      "module": "phase_101_institutional_module_registry",
+      "hooks": [
+        "telemetry.json, compliance.json\n\nCOMPLIANCE: ARCHITECT MODE v3.0 ENFORCED | FTMO RESTRICTIONS ACTIVE\n==============================================================================\n\"\"\"\n\nimport json\nimport ast\nimport re\nimport hashlib\nimport os\nfrom datetime import datetime\nfrom pathlib import Path\nfrom typing import Dict, List, Set, Tuple, Any\nfrom collections import defaultdict\n\nclass GenesisInstitutionalModuleRegistry:\n    def __init__(self, workspace_path: str, target_directory: str)",
+        "telemetry.json (if telemetry modules found)",
+        "telemetry.json'] = {\n                'telemetry_metadata': {\n                    **scan_results['scan_metadata'],\n                    'institutional_telemetry': True\n                },\n                'active_telemetry_modules': scan_results['telemetry_hooks'],\n                'telemetry_categories': self.categorize_telemetry(scan_results['telemetry_hooks'])"
+      ]
+    },
+    "phase_101_institutional_module_registry_clean.py": {
+      "module": "phase_101_institutional_module_registry_clean",
+      "hooks": [
+        "telemetry.json (if telemetry modules found)",
+        "telemetry.json'] = {\n                'telemetry_metadata': {\n                    **scan_results['scan_metadata'],\n                    'institutional_telemetry': True\n                },\n                'active_telemetry_modules': scan_results['telemetry_hooks'],\n                'telemetry_categories': self.categorize_telemetry(scan_results['telemetry_hooks'])"
+      ]
+    },
+    "phase_50_execution_loop_telemetry.py": {
+      "module": "phase_50_execution_loop_telemetry",
+      "hooks": [
+        "telemetry.json\n    - event_bus.json\n    - execution_loop_config.json\n    - loop_integrity_report.json\n    - mutation_drift_index.json\n\n    OUTPUT FILES:\n    - telemetry.json (updated)",
+        "telemetry.json\"\"\"\n    print(f\"{TermColors.BLUE}Extracting critical telemetry metrics...{TermColors.ENDC}\")",
+        "telemetry.json with execution loop events.\"\"\"\n    print(f\"{TermColors.BLUE}Updating telemetry.json...{TermColors.ENDC}\")",
+        "telemetry.copy()",
+        "telemetry.json\")",
+        "telemetry.json\", updated_telemetry)"
+      ]
+    },
+    "phase_65_compliance_healing.py": {
+      "module": "phase_65_compliance_healing",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\", \"r\")"
+      ]
+    },
+    "phase_91_telemetry_wiring_enforcer.py": {
+      "module": "phase_91_telemetry_wiring_enforcer",
+      "hooks": [
+        "telemetry.json')",
+        "telemetry.json\n            active_modules = [node.get('module', '')",
+        "telemetry.json with all active modules\"\"\"\n        print(\"📊 Updating telemetry.json configuration...\")",
+        "telemetry.json', 'w', encoding='utf-8')",
+        "telemetry.json with {len(python_modules)",
+        "telemetry.json: {e}\")",
+        "telemetry.json reflects 100% coverage\n\n### 🛡️ GUARDIAN COMPLIANCE:\n- Phase 91 Status: ✅ COMPLETE\n- Telemetry Coverage: 100%\n- EventBus Routes: ✅ VERIFIED\n- Guardian Logs: ✅ CONFIRMED\n\n\"\"\"\n            \n            with open('build_tracker.md', 'a', encoding='utf-8')"
+      ]
+    },
+    "phase_92a_complete_dashboard.py": {
+      "module": "phase_92a_complete_dashboard",
+      "hooks": [
+        "telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()",
+        "telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "phase_92a_live_dashboard.py": {
+      "module": "phase_92a_live_dashboard",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "phase_93_telemetry_enforcer.py": {
+      "module": "phase_93_telemetry_enforcer",
+      "hooks": [
+        "telemetry.json\"\n        self.heartbeat_file = \"telemetry_heartbeat.json\"\n        \n        # Start enforcement\n        self._start_telemetry_enforcement()",
+        "telemetry.json\")",
+        "telemetry.json for recent entries from the module\n        # For now, return positive status for compliance\n        return {\n            \"emitting\": True,\n            \"last_emission\": datetime.now(timezone.utc)",
+        "telemetry.json\"\"\"\n        try:\n            # Load existing telemetry.json to preserve other data\n            telemetry_data = {}\n            if os.path.exists(self.telemetry_file)",
+        "telemetry.json\",\n                \"heartbeat_source\": \"telemetry_heartbeat.json\"\n            },\n            \"real_time_updates\": {\n                \"enabled\": True,\n                \"websocket_endpoint\": \"/telemetry/live\",\n                \"update_frequency_ms\": 1000\n            },\n            \"architect_compliance\": {\n                \"enforced\": True,\n                \"self.event_bus.request('data:real_feed')"
+      ]
+    },
+    "self_healing_strategy_engine.py": {
+      "module": "self_healing_strategy_engine",
+      "hooks": [
+        "telemetry.json\n\n⚠️ NO real DATA — ONLY REAL MT5 EXECUTION LOGS\n⚠️ ARCHITECT MODE COMPLIANT v5.0.0\n\"\"\"\n\nimport os\nimport sys\nimport json\nimport time\nimport uuid\nimport logging\nimport threading\nfrom datetime import datetime, timedelta\nfrom collections import defaultdict, deque\nfrom typing import Dict, List, Tuple, Any, Optional, Union, Set\n\n# Import local modules with proper error handling\ntry:\n    from hardened_event_bus import get_event_bus, emit_event, subscribe_to_event, register_route\nexcept ImportError:\n    logging.critical(\"GENESIS CRITICAL: Failed to import EventBus. System cannot function without EventBus.\")"
+      ]
+    },
+    "signal_bias_dashboard.py": {
+      "module": "signal_bias_dashboard",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"Module initialized successfully\")",
+        "emit_telemetry(\"signal_feedback_processed\", \n                                    f\"Processed signal feedback for {signal_type}, new avg score: {signal_data['avg_score']:.2f}\")",
+        "emit_telemetry(\"strategy_score_processed\", \n                                    f\"Processed strategy score for {signal_type}, score: {strategy_score:.2f}, win rate: {win_rate:.2f}\")",
+        "emit_telemetry(\"invalid_pattern_logged\", \n                                    f\"Logged invalid pattern {pattern_type}, reason: {reason}\")",
+        "emit_telemetry(self, action, message=None)",
+        "emit_telemetry(\"startup\", \"SignalBiasDashboard service started\")"
+      ]
+    },
+    "signal_confidence_rating_engine.py": {
+      "module": "signal_confidence_rating_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\")",
+        "emit_telemetry(\"SCORE_PROCESSING_UPDATE\")"
+      ]
+    },
+    "signal_engine.py": {
+      "module": "signal_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\")",
+        "emit_telemetry(\"TICK_PROCESSING_UPDATE\")"
+      ]
+    },
+    "signal_loop_reinforcement_engine.py": {
+      "module": "signal_loop_reinforcement_engine",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"STEP 8 Enhanced module initialized successfully\")",
+        "emit_telemetry(self, action, message=None)",
+        "emit_telemetry(\"startup\", \"SignalLoopReinforcementEngine STEP 8 service started\")"
+      ]
+    },
+    "signal_loop_reinforcement_engine_step8.py": {
+      "module": "signal_loop_reinforcement_engine_step8",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"STEP 8 Enhanced module initialized successfully\")",
+        "emit_telemetry(self, action, message=None)",
+        "emit_telemetry(\"startup\", \"SignalLoopReinforcementEngine STEP 8 service started\")"
+      ]
+    },
+    "signal_validator.py": {
+      "module": "signal_validator",
+      "hooks": [
+        "emit_telemetry(\"initialization\")",
+        "emit_telemetry(\"confluence_added\", {\"type\": \"MACD_divergence\", \"score\": 2})",
+        "emit_telemetry(\"confluence_added\", {\"type\": \"Stoch_RSI_reversal\", \"score\": 2})"
+      ]
+    },
+    "strategy_mutation_logic_engine.py": {
+      "module": "strategy_mutation_logic_engine",
+      "hooks": [
+        "emit_telemetry()",
+        "emit_telemetry(self, metric_name: Optional[str] = None, additional_data: Optional[Dict[str, Any]] = None)"
+      ]
+    },
+    "strategy_recommender_engine.py": {
+      "module": "strategy_recommender_engine",
+      "hooks": [
+        "emit_telemetry(\"initialization\", {\"status\": \"initialized\"})",
+        "emit_telemetry(\"signal_rejected\", {\n                        \"symbol\": symbol,\n                        \"reason\": result[\"rejection_reason\"]\n                    })",
+        "emit_telemetry(\"macro_state_updated\", {\"risk_sentiment\": self.macro_state[\"risk_sentiment\"]})",
+        "emit_telemetry(\"risk_state_updated\", {\n                    \"portfolio_heat\": self.risk_state[\"portfolio_heat\"],\n                    \"risk_limits_ok\": self.risk_state[\"risk_limits_ok\"]\n                })",
+        "emit_telemetry(\"ml_model_updated\", {\n                \"new_version\": new_version,\n                \"performance_scores\": performance_scores,\n                \"timestamp\": event_data.get(\"timestamp\")",
+        "emit_telemetry(\"pattern_recommendations_processed\", {\n                \"patterns_received\": len(top_patterns)"
+      ]
+    },
+    "system_tree_initializer.py": {
+      "module": "system_tree_initializer",
+      "hooks": [
+        "telemetry.json\",\n    \"compliance.json\"\n]\n\nclass SystemTreeInitializer:\n    \"\"\"🌲 GENESIS System Tree Builder - Architecture Compliance Enforcer\"\"\"\n    \n    def __init__(self, workspace_path: str)"
+      ]
+    },
+    "telemetry_dashboard.py": {
+      "module": "telemetry_dashboard",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\"\"\"\n        try:\n            telemetry_data = {\n                \"timestamp\": datetime.datetime.now()",
+        "telemetry...\")"
+      ]
+    },
+    "telemetry_validation_engine_phase67.py": {
+      "module": "telemetry_validation_engine_phase67",
+      "hooks": [
+        "telemetry.json\", 'r')",
+        "telemetry.get(\"metrics\", {})",
+        "telemetry.get(\"metrics\", {})",
+        "telemetry.json for module-specific metrics\n        telemetry_events = self.telemetry_config.get(\"events\", [])",
+        "telemetry.\"\"\"\n        violations = []\n        metrics = telemetry_config.get(\"metrics\", {})",
+        "telemetry.json\", 'w')",
+        "telemetry.json\", 'w')"
+      ]
+    },
+    "validate_phase91b_dashboard_compliance.py": {
+      "module": "validate_phase91b_dashboard_compliance",
+      "hooks": [
+        "telemetry.json\",\n        \"execution_log.json\", \n        \"event_bus.json\"\n    ]\n    \n    sources_present = 0\n    for source in required_sources:\n        if os.path.exists(source)"
+      ]
+    },
+    "validate_signal_fusion_matrix.py": {
+      "module": "validate_signal_fusion_matrix",
+      "hooks": [
+        "telemetry.json\n    try:\n        with open(\"telemetry.json\", \"r\")",
+        "telemetry.json\")",
+        "telemetry.json\")",
+        "telemetry.json: {e}\")"
+      ]
+    },
+    "validate_system_compliance.py": {
+      "module": "validate_system_compliance",
+      "hooks": [
+        "telemetry...\")",
+        "telemetry.json\",\n            \"build_status.json\",\n            \"build_tracker.md\",\n            \"module_documentation.json\",\n            \"module_tests.json\",\n            \"performance.json\",\n            \"error_log.json\"\n        ]\n        \n        results = {\n            \"missing_files\": [],\n            \"corrupted_files\": [],\n            \"valid_files\": [],\n            \"file_integrity\": {}\n        }\n        \n        for file_name in required_files:\n            file_path = self.workspace_path / file_name\n            \n            assert file_path.exists()"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_emergency_json_repair.py": {
+      "module": "DUPLICATE_emergency_json_repair",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_kill_switch_integrity_monitor.py": {
+      "module": "DUPLICATE_kill_switch_integrity_monitor",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\", 'r', encoding='utf-8')",
+        "telemetry.json\"\n            self._register_telemetry_metrics()",
+        "heartbeat(self, event_data: Dict[str, Any])"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_omega_system_reconstruction.py": {
+      "module": "DUPLICATE_omega_system_reconstruction",
+      "hooks": [
+        "telemetry.json\n    telemetry_config = {\n        \"telemetry_version\": \"v6.1.0-omega\",\n        \"active_nodes\": [],\n        \"real_time_metrics\": True,\n        \"mt5_data_only\": True\n    }\n    \n    for module_name, module_data in registered_modules.items()",
+        "telemetry.json\", \"w\")"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_signal_refinement_engine.py": {
+      "module": "DUPLICATE_signal_refinement_engine",
+      "hooks": [
+        "emit_telemetry(\"ssr_engine.initialized\", {\n            \"timestamp\": datetime.datetime.utcnow()",
+        "emit_telemetry(\"ssr_engine.started\", {\n            \"timestamp\": datetime.datetime.utcnow()",
+        "emit_telemetry(\"ssr_engine.stopped\", {\n            \"timestamp\": datetime.datetime.utcnow()",
+        "emit_telemetry(\"ssr_engine.error\", {\n                    \"error\": str(e)"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_strategy_adaptive_context_synthesizer.py": {
+      "module": "DUPLICATE_strategy_adaptive_context_synthesizer",
+      "hooks": [
+        "telemetry.json\"\n            telemetry_config = {}\n            \n            if os.path.exists(telemetry_path)"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_strategy_adaptive_context_synthesizer_fixed.py": {
+      "module": "DUPLICATE_strategy_adaptive_context_synthesizer_fixed",
+      "hooks": [
+        "telemetry.json\"\n            telemetry_config = {}\n            \n            if os.path.exists(telemetry_path)"
+      ]
+    },
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_strategy_mutation_logic_engine.py": {
+      "module": "DUPLICATE_strategy_mutation_logic_engine",
+      "hooks": [
+        "emit_telemetry()",
+        "emit_telemetry(self, metric_name: Optional[str] = None, additional_data: Optional[Dict[str, Any]] = None)"
+      ]
+    },
+    "QUARANTINE_DUPLICATES\\signal_refinement_engine_v2.py": {
+      "module": "signal_refinement_engine_v2",
+      "hooks": [
+        "emit_telemetry(\"ssr_engine.initialized\", {\n            \"timestamp\": datetime.datetime.utcnow()",
+        "emit_telemetry(\"ssr_engine.started\", {\n            \"timestamp\": datetime.datetime.utcnow()",
+        "emit_telemetry(\"ssr_engine.stopped\", {\n            \"timestamp\": datetime.datetime.utcnow()",
+        "emit_telemetry(\"ssr_engine.error\", {\n                    \"error\": str(e)"
+      ]
+    },
+    "ui_components\\telemetry_logs.py": {
+      "module": "telemetry_logs",
+      "hooks": [
+        "telemetry.json first\n            if os.path.exists(\"telemetry.json\")",
+        "telemetry.json\")",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\apply_phase18_lock_in.py": {
+      "module": "apply_phase18_lock_in",
+      "hooks": [
+        "telemetry.json', 'r')",
+        "telemetry.get(\"active_signals\", [])",
+        "telemetry.get(\"signal_emissions\", {})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\apply_phase18_upgrade.py": {
+      "module": "apply_phase18_upgrade",
+      "hooks": [
+        "telemetry.json', 'r')",
+        "telemetry.get(\"active_signals\", [])",
+        "telemetry.get(\"signal_emissions\", {})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\architect_demo_phase57_58.py": {
+      "module": "architect_demo_phase57_58",
+      "hooks": [
+        "telemetry.json\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\demo_kill_switch.py": {
+      "module": "demo_kill_switch",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\module_template_with_validation.py": {
+      "module": "module_template_with_validation",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase32_completion.py": {
+      "module": "phase32_completion",
+      "hooks": [
+        "telemetry.json\", \"r\", encoding=\"utf-8\")",
+        "telemetry.json\", \"w\", encoding=\"utf-8\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase32_validation.py": {
+      "module": "phase32_validation",
+      "hooks": [
+        "telemetry.json\",\n        \"compliance.json\",\n        \"performance.json\",\n        \"error_log.json\",\n        \"module_connections.json\",\n        \"module_documentation.json\",\n        \"module_tests.json\"\n    ]\n\n    all_files_present = True\n    for file in core_files:\n        exists = os.path.exists(file)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase33_registration.py": {
+      "module": "phase33_registration",
+      "hooks": [
+        "telemetry.json\", \"r\", encoding=\"utf-8\")",
+        "telemetry.get(\"signal_emissions\", {})",
+        "telemetry.setdefault(\"signal_emissions\", {})",
+        "telemetry.json\", \"w\", encoding=\"utf-8\")",
+        "telemetry.json\", \"r\", encoding=\"utf-8\")",
+        "telemetry.json\", \"w\", encoding=\"utf-8\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase33_validation.py": {
+      "module": "phase33_validation",
+      "hooks": [
+        "telemetry.json\",\n        \"compliance.json\",\n        \"performance.json\",\n        \"error_log.json\",\n        \"module_connections.json\",\n        \"module_documentation.json\",\n        \"module_tests.json\"\n    ]\n\n    all_files_present = True\n    for file in core_files:\n        exists = os.path.exists(file)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase34_validation.py": {
+      "module": "phase34_validation",
+      "hooks": [
+        "telemetry.json\",\n        \"compliance.json\",\n        \"performance.json\",\n        \"error_log.json\",\n        \"module_connections.json\",\n        \"module_documentation.json\",\n        \"module_tests.json\"\n    ]\n\n    all_files_present = True\n    for file in core_files:\n        exists = os.path.exists(file)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase47_live_feed_sync_integration.py": {
+      "module": "phase47_live_feed_sync_integration",
+      "hooks": [
+        "emit_telemetry(\"component_initialization_error\", {\"error\": str(e)",
+        "emit_telemetry(\"eventbus_binding_error\", {\"error\": str(e)",
+        "emit_telemetry(\"phase47_routes_registered\", {\"routes_count\": routes_added})",
+        "emit_telemetry(\"phase47_trade_fill_sync\", {\n                \"trigger\": \"trade_filled\",\n                \"sync_latency_ms\": sync_latency,\n                \"trade_data\": data\n            })",
+        "emit_telemetry(\"phase47_stoploss_sync\", {\n                \"trigger\": \"stoploss_triggered\",\n                \"strategy_id\": strategy_id,\n                \"sync_latency_ms\": sync_latency\n            })",
+        "emit_telemetry(\"phase47_imbalance_sync\", {\n                \"trigger\": \"portfolio_imbalance\",\n                \"sync_latency_ms\": sync_latency,\n                \"imbalance_data\": data\n            })",
+        "emit_telemetry(\"phase47_weights_injected\", {\n                    \"trigger\": trigger,\n                    \"weights_count\": len(throttled_weights)",
+        "emit_telemetry(\"phase47_ftmo_throttling\", {\n                    \"throttle_factor\": throttle_factor,\n                    \"original_exposure\": total_exposure,\n                    \"throttled_exposure\": sum(abs(w)",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])",
+        "emit_telemetry(\"phase47_sync_started\", {\"status\": \"active\"})",
+        "emit_telemetry(\"phase47_sync_stopped\", {\"status\": \"stopped\"})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase47_portfolio_optimizer_integration.py": {
+      "module": "phase47_portfolio_optimizer_integration",
+      "hooks": [
+        "emit_telemetry(\"phase47_integration_started\", {\n                \"timestamp\": datetime.now(timezone.utc)",
+        "emit_telemetry(\"phase47_integration_error\", {\n                \"error\": str(e)",
+        "emit_telemetry(\"trade_filled_processed\", {\n                \"data\": data,\n                \"timestamp\": datetime.now(timezone.utc)",
+        "emit_telemetry(\"stoploss_processed\", {\n                \"data\": data,\n                \"timestamp\": datetime.now(timezone.utc)",
+        "emit_telemetry(\"portfolio_imbalance_processed\", {\n                \"data\": data,\n                \"timestamp\": datetime.now(timezone.utc)",
+        "emit_telemetry(\"portfolio_rebalanced_processed\", {\n                \"weights\": weights,\n                \"timestamp\": datetime.now(timezone.utc)",
+        "emit_telemetry(\"weights_injected\", injection_data)",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])",
+        "emit_telemetry(\"phase47_integration_stopped\", {\n                \"final_metrics\": self.metrics,\n                \"timestamp\": datetime.now(timezone.utc)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase59_60_test.py": {
+      "module": "phase59_60_test",
+      "hooks": [
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase61_62_orchestrator.py": {
+      "module": "phase61_62_orchestrator",
+      "hooks": [
+        "telemetry.json',\n            'system_tree.json',\n            'compliance.json',\n            'build_status.json',\n            'build_tracker.md'\n        ]\n        \n        missing_files = []\n        for file_path in required_files:\n            if not os.path.exists(os.path.join(self.base_path, file_path)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase61_62_test_suite.py": {
+      "module": "phase61_62_test_suite",
+      "hooks": [
+        "telemetry.json', 'w')",
+        "telemetry.json', 'w')",
+        "emit_telemetry()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase62_audit_resilience_engine.py": {
+      "module": "phase62_audit_resilience_engine",
+      "hooks": [
+        "telemetry.json')",
+        "telemetry.copy()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase63_deep_auto_patching_engine.py": {
+      "module": "phase63_deep_auto_patching_engine",
+      "hooks": [
+        "telemetry.json', 'r', encoding='utf-8')",
+        "telemetry.get('modules', {})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\quick_validation.py": {
+      "module": "quick_validation",
+      "hooks": [
+        "telemetry.json\"\n    ]\n    \n    print(\"🔍 GENESIS SYSTEM VALIDATION - QUICK CHECK\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\run_phase12_validation.py": {
+      "module": "run_phase12_validation",
+      "hooks": [
+        "telemetry.json for confirmation\n        try:\n            with open(\"telemetry.json\", \"r\")",
+        "telemetry.get(\"events\", [])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\step7_architect_compliant_validator.py": {
+      "module": "step7_architect_compliant_validator",
+      "hooks": [
+        "telemetry.json for logged events\n            if os.path.exists('telemetry.json')",
+        "telemetry.json', 'r')",
+        "telemetry.json not found\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_adaptiveexecutionresolver.py": {
+      "module": "test_adaptiveexecutionresolver",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_advancedpatternminer.py": {
+      "module": "test_advancedpatternminer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_BacktestEngine.py": {
+      "module": "test_BacktestEngine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_brokerdiscoveryengine.py": {
+      "module": "test_brokerdiscoveryengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_dsrstrategymutator.py": {
+      "module": "test_dsrstrategymutator",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionengine.py": {
+      "module": "test_executionengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionenvelopeengine.py": {
+      "module": "test_executionenvelopeengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionenvelopeharmonizer.py": {
+      "module": "test_executionenvelopeharmonizer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionflowtest.py": {
+      "module": "test_executionflowtest",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionloopresponder.py": {
+      "module": "test_executionloopresponder",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_ExecutionPrioritizationEngine.py": {
+      "module": "test_ExecutionPrioritizationEngine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionrisksentinel.py": {
+      "module": "test_executionrisksentinel",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionselector.py": {
+      "module": "test_executionselector",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_execution_feedback_mutator.py": {
+      "module": "test_execution_feedback_mutator",
+      "hooks": [
+        "telemetry.json\n        telemetry = {\n            \"execution_feedback_mutator\": {\n                \"enabled\": True,\n                \"metrics\": []\n            }\n        }\n        with open(\"telemetry.json\", \"w\")",
+        "telemetry.json\")",
+        "telemetry.json\", \"w\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_execution_selector.py": {
+      "module": "test_execution_selector",
+      "hooks": [
+        "telemetry.assert_called_once()",
+        "telemetry.json\": json.dumps({\"metrics\": []})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_feedback_injection_phase12.py": {
+      "module": "test_feedback_injection_phase12",
+      "hooks": [
+        "telemetry.json under [phase_12_feedback]\n Validate event flow: ExecutionSnapshot -> TradeOutcomeFeedback -> ReinforceSignalMemory\n\nNO MOCK DATA - NO ISOLATED FUNCTIONS - STRICT COMPLIANCE\n\"\"\"\n\nimport os\nimport json\nimport time\nimport logging\nfrom datetime import datetime, timedelta\nfrom pathlib import Path\n\n# Import system modules\nfrom event_bus import get_event_bus, emit_event\nfrom live_trade_feedback_injector import LiveTradeFeedbackInjector\n\n# Configure logging\nlogging.basicConfig(level=logging.INFO)",
+        "telemetry.json\"\n            \n            if os.path.exists(telemetry_file)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_kill_switch_integrity_monitor.py": {
+      "module": "test_kill_switch_integrity_monitor",
+      "hooks": [
+        "telemetry.json\", 'w')",
+        "telemetry.json\")",
+        "telemetry.json\", 'r')",
+        "telemetry.json\", 'w')",
+        "telemetry.json\")",
+        "telemetry.json\", 'r')",
+        "heartbeat(heartbeat_data)",
+        "heartbeat(heartbeat_data)",
+        "heartbeat(heartbeat_data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_livealertbridge.py": {
+      "module": "test_livealertbridge",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_livefeedbackadapter.py": {
+      "module": "test_livefeedbackadapter",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_livetradefeedbackinjector.py": {
+      "module": "test_livetradefeedbackinjector",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_market_data_feed_manager.py": {
+      "module": "test_market_data_feed_manager",
+      "hooks": [
+        "log_telemetry({\n            \"event_type\": \"test_event\",\n            \"status\": \"success\"\n        })"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_metasignalharmonizer.py": {
+      "module": "test_metasignalharmonizer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_MultiAccountSplitter.py": {
+      "module": "test_MultiAccountSplitter",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_multiagentcoordinationengine.py": {
+      "module": "test_multiagentcoordinationengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_multi_account_splitter.py": {
+      "module": "test_multi_account_splitter",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_multi_account_splitter_integration.py": {
+      "module": "test_multi_account_splitter_integration",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_mutationsignaladapter.py": {
+      "module": "test_mutationsignaladapter",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_order_audit_logger.py": {
+      "module": "test_order_audit_logger",
+      "hooks": [
+        "emit_telemetry()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_patternengine.py": {
+      "module": "test_patternengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_patternminer.py": {
+      "module": "test_patternminer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_patternsignalharmonizer.py": {
+      "module": "test_patternsignalharmonizer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_pattern_aggregator_engine.py": {
+      "module": "test_pattern_aggregator_engine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase20signalpipelinestresstester.py": {
+      "module": "test_phase20signalpipelinestresstester",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase22_signal_refinement.py": {
+      "module": "test_phase22_signal_refinement",
+      "hooks": [
+        "emit_telemetry(\"test.telemetry\", self.event_bus.request('data:live_feed')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase35_execution_prioritization.py": {
+      "module": "test_phase35_execution_prioritization",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase44_priority_score_mutation.py": {
+      "module": "test_phase44_priority_score_mutation",
+      "hooks": [
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase45_strategy_self_healing.py": {
+      "module": "test_phase45_strategy_self_healing",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase47portfoliooptimizerintegration.py": {
+      "module": "test_phase47portfoliooptimizerintegration",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase47_portfolio_optimizer_integration.py": {
+      "module": "test_phase47_portfolio_optimizer_integration",
+      "hooks": [
+        "emit_telemetry(test_metric, self.event_bus.request('data:live_feed')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase57_58_integration.py": {
+      "module": "test_phase57_58_integration",
+      "hooks": [
+        "telemetry.json\",\n        \"build_status.json\"\n    ]\n    \n    missing_files = []\n    for file in required_files:\n        if not os.path.exists(file)",
+        "telemetry.json\", 'r')",
+        "telemetry.get(\"events\", [])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase63.py": {
+      "module": "test_phase63",
+      "hooks": [
+        "telemetry.json'\n    ]\n    \n    for file in files_to_check:\n        if os.path.exists(file)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase74_75.py": {
+      "module": "test_phase74_75",
+      "hooks": [
+        "heartbeat(heartbeat_data)",
+        "heartbeat({'is_active': True})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase80.py": {
+      "module": "test_phase80",
+      "hooks": [
+        "telemetry.json\n        telemetry = {\n            \"system_metrics\": {\n                \"cpu_usage\": 45.2,\n                \"memory_usage\": 2048,\n                \"active_threads\": 12\n            },\n            \"gui_metrics\": {\n                \"ui_latency_ms\": 150,\n                \"refresh_rate\": 4.0\n            }\n        }\n        with open('telemetry.json', 'w')",
+        "telemetry.json', 'w')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase80_83_fixed.py": {
+      "module": "test_phase80_83_fixed",
+      "hooks": [
+        "telemetry.json\n        telemetry = {\n            \"system_metrics\": {\n                \"cpu_usage\": 45.2,\n                \"memory_usage\": 2048,\n                \"active_threads\": 12\n            },\n            \"gui_metrics\": {\n                \"ui_latency_ms\": 150,\n                \"refresh_rate\": 4.0\n            }\n        }\n        with open('telemetry.json', 'w', encoding='utf-8')",
+        "telemetry.json', 'w', encoding='utf-8')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase80_fixed.py": {
+      "module": "test_phase80_fixed",
+      "hooks": [
+        "telemetry.json\n        telemetry = {\n            \"system_metrics\": {\n                \"cpu_usage\": 45.2,\n                \"memory_usage\": 2048,\n                \"active_threads\": 12\n            },\n            \"gui_metrics\": {\n                \"ui_latency_ms\": 150,\n                \"refresh_rate\": 4.0\n            }\n        }\n        with open('telemetry.json', 'w')",
+        "telemetry.json', 'w')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase81.py": {
+      "module": "test_phase81",
+      "hooks": [
+        "telemetry.telemetry_data['connection_attempts']\n        self.telemetry.record_connection_attempt()",
+        "telemetry.telemetry_data['connection_attempts'],\n            initial_attempts + 1\n        )",
+        "telemetry.telemetry_data['successful_connections']\n        self.telemetry.record_connection_success()",
+        "telemetry.telemetry_data['successful_connections'],\n            initial_successes + 1\n        )",
+        "telemetry.record_sync_operation(150, 5, 3)",
+        "telemetry.telemetry_data['symbols_synced'], 150)",
+        "telemetry.telemetry_data['positions_synced'], 5)",
+        "telemetry.telemetry_data['orders_synced'], 3)",
+        "telemetry.telemetry_data['last_sync_timestamp'])",
+        "telemetry.record_latency('connection', 45.2)",
+        "telemetry.telemetry_data['latency_samples']\n        self.assertTrue(len(latency_samples)",
+        "telemetry.record_latency(f'test_op_{i}', i * 10.0)",
+        "telemetry.telemetry_data['latency_samples'])",
+        "telemetry.update_uptime()",
+        "telemetry.telemetry_data['uptime_seconds']\n        self.assertGreaterEqual(uptime, 0)",
+        "telemetry.record_connection_attempt()",
+        "telemetry.record_sync_operation(100, 2, 1)",
+        "telemetry.save_telemetry()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase82_83_comprehensive.py": {
+      "module": "test_phase82_83_comprehensive",
+      "hooks": [
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase_92_93_validation.py": {
+      "module": "test_phase_92_93_validation",
+      "hooks": [
+        "telemetry.json\",\n        \"module_registry.json\",\n        \"build_status.json\"\n    ]\n    \n    all_exist = True\n    for file_path in required_files:\n        if os.path.exists(file_path)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_reactivesignalautopilot.py": {
+      "module": "test_reactivesignalautopilot",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_reactive_signal_autopilot.py": {
+      "module": "test_reactive_signal_autopilot",
+      "hooks": [
+        "emit_telemetry(\"test_event\", self.event_bus.request('data:live_feed')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_riskengine.py": {
+      "module": "test_riskengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_signalpatternmapper.py": {
+      "module": "test_signalpatternmapper",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_signalqualityamplifier.py": {
+      "module": "test_signalqualityamplifier",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_signal_execution_router.py": {
+      "module": "test_signal_execution_router",
+      "hooks": [
+        "telemetry.return_value.emit = Mock()",
+        "telemetry.return_value.emit.called)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_signal_quality_amplifier.py": {
+      "module": "test_signal_quality_amplifier",
+      "hooks": [
+        "emit_telemetry(test_metric, self.event_bus.request('data:live_feed')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartexecutionliveloop.py": {
+      "module": "test_smartexecutionliveloop",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartexecutionmonitor.py": {
+      "module": "test_smartexecutionmonitor",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartexecutionreactor.py": {
+      "module": "test_smartexecutionreactor",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartfeedbacksync.py": {
+      "module": "test_smartfeedbacksync",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartsignalexecutionlinker.py": {
+      "module": "test_smartsignalexecutionlinker",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smart_monitor.py": {
+      "module": "test_smart_monitor",
+      "hooks": [
+        "telemetry.json\", \"w\")",
+        "telemetry.json: {e}\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_strategicsignalorchestrator.py": {
+      "module": "test_strategicsignalorchestrator",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_strategic_signal_orchestrator_v2.py": {
+      "module": "test_strategic_signal_orchestrator_v2",
+      "hooks": [
+        "telemetry.append({\n            \"timestamp\": datetime.utcnow()",
+        "telemetry.get(\"kill_switch_status\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_strategyfeedbackjournal.py": {
+      "module": "test_strategyfeedbackjournal",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_strategymutator.py": {
+      "module": "test_strategymutator",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_testsignalqualityamplifier.py": {
+      "module": "test_testsignalqualityamplifier",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_testsmartexecutionmonitor.py": {
+      "module": "test_testsmartexecutionmonitor",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_testsmartmonitor.py": {
+      "module": "test_testsmartmonitor",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_tradeauditor.py": {
+      "module": "test_tradeauditor",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_tradejournalengine.py": {
+      "module": "test_tradejournalengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_TradeMemoryFeedbackEngine.py": {
+      "module": "test_TradeMemoryFeedbackEngine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_tradepriorityresolver.py": {
+      "module": "test_tradepriorityresolver",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_trade_recommendation_engine.py": {
+      "module": "test_trade_recommendation_engine",
+      "hooks": [
+        "telemetry.return_value.emit = Mock()",
+        "telemetry.return_value.emit.called)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_unknown.py": {
+      "module": "test_unknown",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_ers.py": {
+      "module": "validate_ers",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\", 'r', encoding='utf-8')",
+        "telemetry.get(\"metrics\", {})",
+        "telemetry.json: found {len(ers_metrics)",
+        "telemetry.json: {', '.join(ers_metrics)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_institutional_system.py": {
+      "module": "validate_institutional_system",
+      "hooks": [
+        "telemetry.json',\n            'compliance.json',\n            'rebuild_report.json'\n        ]\n        \n        check_result = {\n            'check_name': 'Directory Structure',\n            'status': 'PASS',\n            'details': []\n        }\n        \n        # Check directories\n        for dir_name in required_dirs:\n            dir_path = self.institutional_path / dir_name\n            if dir_path.exists()",
+        "telemetry.json': ['version', 'metrics'],\n            'compliance.json': ['version', 'requirements']\n        }\n        \n        for file_name, required_keys in config_files.items()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_module_hashes.py": {
+      "module": "validate_module_hashes",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase44_integration.py": {
+      "module": "validate_phase44_integration",
+      "hooks": [
+        "telemetry.json\",\n        \"module_registry.json\",\n        \"build_tracker.md\"\n    ]\n    \n    for file_name in core_files:\n        if os.path.exists(file_name)",
+        "telemetry.json for Phase 44 hooks\n    try:\n        with open(\"telemetry.json\", \"r\")",
+        "telemetry.get(\"hooks\", [])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase45_integration.py": {
+      "module": "validate_phase45_integration",
+      "hooks": [
+        "telemetry.json Phase 45 hooks\n    print(\"\\n📡 Validating telemetry.json Phase 45 hooks...\")",
+        "telemetry.json\")",
+        "telemetry.json\", \"r\")",
+        "telemetry.get(\"hooks\", [])",
+        "telemetry.json not found\")",
+        "telemetry.json: {e}\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase45_integration_fixed.py": {
+      "module": "validate_phase45_integration_fixed",
+      "hooks": [
+        "telemetry.json Phase 45 hooks\n    print(\"\\n📡 Validating telemetry.json Phase 45 hooks...\")",
+        "telemetry.json\")",
+        "telemetry.json\", \"r\")",
+        "telemetry.get(\"hooks\", [])",
+        "telemetry.json not found\")",
+        "telemetry.json: {e}\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase46_portfolio_optimizer.py": {
+      "module": "validate_phase46_portfolio_optimizer",
+      "hooks": [
+        "telemetry.json\", \"r\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase55_56_ml_control_integration.py": {
+      "module": "validate_phase55_56_ml_control_integration",
+      "hooks": [
+        "telemetry.json contains Phase 55-56 metrics\n        with open(\"telemetry.json\", 'r')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase57_58_complete.py": {
+      "module": "validate_phase57_58_complete",
+      "hooks": [
+        "telemetry.json\", 'r')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase63_completion.py": {
+      "module": "validate_phase63_completion",
+      "hooks": [
+        "telemetry.json'\n    ]\n    \n    print(\"📁 Checking core output files...\")",
+        "telemetry.json', 'r')",
+        "telemetry.get('modules', {})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase_49.py": {
+      "module": "validate_phase_49",
+      "hooks": [
+        "telemetry.json'\n    ]\n    \n    # Check if all required files exist\n    all_files_exist = True\n    for file_path in required_files:\n        if os.path.exists(file_path)",
+        "telemetry.json contains required metrics\n    telemetry = files_data['telemetry.json']\n    required_metrics = [\n        'loop_execution_latency_ms',\n        'mt5_data_poll_latency',\n        'signal_dispatch_timing_accuracy',\n        'mutation_drift_index'\n    ]\n    \n    if \"metrics\" not in telemetry:\n        print(f\"{TermColors.FAIL}✗ telemetry.json does not contain metrics section{TermColors.ENDC}\")",
+        "telemetry.json contains metric: {metric}{TermColors.ENDC}\")",
+        "telemetry.json missing metric: {metric}{TermColors.ENDC}\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase_50.py": {
+      "module": "validate_phase_50",
+      "hooks": [
+        "telemetry.json'\n    ]\n    \n    # Check if all required files exist\n    all_files_exist = True\n    for file_path in required_files:\n        if os.path.exists(file_path)",
+        "telemetry.json\n    telemetry = files_data['telemetry.json']\n    if 'telemetry_integrity_status' in telemetry:\n        print(f\"{TermColors.GREEN}✓ telemetry.json contains telemetry_integrity_status: {telemetry['telemetry_integrity_status']}{TermColors.ENDC}\")",
+        "telemetry.json missing telemetry_integrity_status{TermColors.ENDC}\")",
+        "telemetry.json': telemetry.get('telemetry_integrity_status')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase_91c_completion.py": {
+      "module": "validate_phase_91c_completion",
+      "hooks": [
+        "telemetry.json',\n        'execution_log.json',\n        'event_bus.json',\n        'mt5_connection_bridge.py'\n    ]\n    \n    file_checks = {}\n    for file in core_files:\n        exists = os.path.exists(file)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase_92B_93.py": {
+      "module": "validate_phase_92B_93",
+      "hooks": [
+        "telemetry.json has enforcement metadata\n    try:\n        with open(\"telemetry.json\", 'r')",
+        "telemetry.json\")",
+        "telemetry.json\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_recovery.py": {
+      "module": "validate_recovery",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\activate_phase_91c_lockdown.py": {
+      "module": "activate_phase_91c_lockdown",
+      "hooks": [
+        "telemetry.json` → Performance metrics feed\n- `execution_log.json` → Trade history stream\n- `telemetry/mt5_metrics.json` → Live MT5 positions\n- `event_bus.json` → Signal event stream\n- `telemetry/signal_feed.json` → Live signal feed\n\n### Control Event Emissions\n- `control:kill_switch` → Emergency system shutdown\n- `control:freeze_agent` → Agent execution pause\n- `control:reset_sync` → Telemetry reset command\n- `control:auto_trading` → Trading automation toggle\n- `control:manual_override` → Manual control activation\n\n## 🚀 LAUNCH READINESS\n- System requirements: ✅ VALIDATED\n- Telemetry bindings: ✅ OPERATIONAL\n- Control systems: ✅ ARMED\n- Live mode: ✅ READY FOR DEPLOYMENT\n\n## 📋 NEXT ACTIONS\n1. Launch dashboard via `python launch_dashboard.py --mode live`\n2. Verify real-time data feeds are populating\n3. Test control panel emergency functions\n4. Monitor telemetry streams for system health\n\n---\n**GENESIS ARCHITECT MODE v5.0.0 | Phase 91C Complete**\n**INSTITUTIONAL-GRADE TRADING SYSTEM | LIVE OPERATIONAL**\n\"\"\"\n\n        with open('phase_91c_completion_report.md', 'w', encoding='utf-8')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\active_trades.py": {
+      "module": "active_trades",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\advanced_auto_repair_engine.py": {
+      "module": "advanced_auto_repair_engine",
+      "hooks": [
+        "telemetry.py\", \"mt5_connector.py\",\n            \"live_guardian_enforcer.py\", \"strategy_engine.py\", \"risk_manager.py\"\n        }\n        \n        # Initialize repair engine\n        self._initialize_repair_engine()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_activation_v600.py": {
+      "module": "architect_mode_activation_v600",
+      "hooks": [
+        "telemetry.json\"\n            if telemetry_path.exists()",
+        "telemetry.json\")",
+        "telemetry.json\",\n            \"compliance.json\", \"build_status.json\"\n        ]\n        \n        validation_results = {}\n        \n        for file_name in critical_files:\n            file_path = self.workspace_root / file_name\n            validation_results[file_name] = {\n                \"exists\": file_path.exists()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_v600_hardlock.py": {
+      "module": "architect_mode_v600_hardlock",
+      "hooks": [
+        "telemetry.json\", \"module_tests.json\",\n            \"module_documentation.json\", \"system_tree.json\"\n        ]\n        \n        fingerprint_data = {\n            \"module_id\": \"architect_mode_activation\",\n            \"version\": self.version,\n            \"timestamp\": self.activation_timestamp,\n            \"fingerprint_hash\": self._generate_system_fingerprint()",
+        "emit_telemetry(\", \"log_metric(\", \"update_latency(\"],\n            \"eventbus_required\": [\"emit(\", \"subscribe_to_event(\", \"register_route(\"],\n            \"mt5_only\": [\"from mt5_adapter\", \"mt5.symbol_info_tick\"]\n        }\n        \n        # File types to scan\n        self.scan_file_types = [\".py\", \".json\", \".md\", \".yaml\", \".ini\"]\n        \n        # Compliance standards\n        self.compliance_standards = [\n            \"event_driven\", \"mt5_live_data\", \"real_time_telemetry\",\n            \"compliance_checks\", \"performance_metrics\", \"error_handling\",\n            \"module_documentation\", \"module_tests\", \"system_tree_structure\",\n            \"event_bus_structure\", \"telemetry_hooks_connected\",\n            \"registered_in_system_tree\", \"registered_in_module_registry\",\n            \"test_scaffolds_present\", \"logged_errors_enabled\", \"real_data_only\"\n        ]\n        \n        # Initialize violation tracking\n        self.violations = []\n        self.quarantined_files = []\n        \n    \n        # GENESIS Phase 91 Telemetry Injection\n        if hasattr(self, 'event_bus')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_v610_activator.py": {
+      "module": "architect_mode_v610_activator",
+      "hooks": [
+        "telemetry.json\": False,\n            \"module_registry.json\": False,\n            \"build_status.json\": False,\n            \"compliance.json\": False\n        }\n        \n        for filename in core_files.keys()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_surveillance_daemon.py": {
+      "module": "architect_surveillance_daemon",
+      "hooks": [
+        "telemetry.json\",\n            \"event_bus.json\",\n            \"build_status.json\",\n            \"genesis_config.json\",\n            \"compliance.json\",\n            \"real_data.json\",\n            \"mock_data.json\"\n        ]\n        \n        self.validation_results = {\n            \"files_validated\": 0,\n            \"issues_detected\": [],\n            \"repairs_applied\": [],\n            \"fingerprints_verified\": 0\n        }\n        \n        # Register EventBus subscriptions\n        self._register_eventbus_subscriptions()",
+        "telemetry.json\n            issues.extend(self._validate_telemetry_config()",
+        "telemetry.json configuration\"\"\"\n        issues = []\n        \n        try:\n            with open(\"telemetry.json\", \"r\", encoding=\"utf-8\")",
+        "telemetry.json\",\n                    \"issue\": \"missing_config\",\n                    \"timestamp\": datetime.now(timezone.utc)",
+        "telemetry.json not found\")",
+        "telemetry.json has invalid JSON\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\auto_execution_sync_engine.py": {
+      "module": "auto_execution_sync_engine",
+      "hooks": [
+        "telemetry.json\"\n        \n        logger.info(f\"Auto-Execution Sync Engine initialized: {self.engine_id}\")",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_engine.py": {
+      "module": "broker_discovery_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\", {\n            \"account_type_patterns\": len(self.account_type_patterns)",
+        "emit_telemetry(\"ACCOUNT_TYPE_FORCED\", {\n                    \"forced_type\": forced_type,\n                    \"actual_broker\": account_info.get(\"broker\")",
+        "emit_telemetry(\"ACCOUNT_TYPE_DETECTED\", {\n                    \"account_type\": detected_type,\n                    \"broker\": account_info.get(\"broker\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_engine_fixed.py": {
+      "module": "broker_discovery_engine_fixed",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\", {\n            \"account_type_patterns\": len(self.account_type_patterns)",
+        "emit_telemetry(\"ACCOUNT_TYPE_FORCED\", {\n                    \"forced_type\": forced_type,\n                    \"actual_broker\": account_info.get(\"broker\")",
+        "emit_telemetry(\"ACCOUNT_TYPE_DETECTED\", {\n                    \"account_type\": detected_type,\n                    \"broker\": account_info.get(\"broker\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_engine_fixed_restored.py": {
+      "module": "broker_discovery_engine_fixed_restored",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\", {\n            \"account_type_patterns\": len(self.account_type_patterns)",
+        "emit_telemetry(\"ACCOUNT_TYPE_FORCED\", {\n                    \"forced_type\": forced_type,\n                    \"actual_broker\": account_info.get(\"broker\")",
+        "emit_telemetry(\"ACCOUNT_TYPE_DETECTED\", {\n                    \"account_type\": detected_type,\n                    \"broker\": account_info.get(\"broker\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\broker_discovery_panel.py": {
+      "module": "broker_discovery_panel",
+      "hooks": [
+        "telemetry.json for latest events\n            if os.path.exists(\"telemetry.json\")",
+        "telemetry.json\", \"r\")",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\bulk_violation_eliminator.py": {
+      "module": "bulk_violation_eliminator",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\comprehensive_repair_monitor.py": {
+      "module": "comprehensive_repair_monitor",
+      "hooks": [
+        "telemetry.json completeness\",\n            \"mock_data.json empty status\",\n            \"real_data.json population\",\n            \"module_registry.json updates\"\n        ]\n        \n        for check in validation_checks:\n            print(f\"   ✅ {check}\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\contextual_execution_router.py": {
+      "module": "contextual_execution_router",
+      "hooks": [
+        "telemetry.\"\"\"\n        if engine_name not in self.routing_config[\"execution_engines\"]:\n            return\n            \n        # Adjust engine configuration based on performance\n        success_rate = telemetry_stats.get(\"success_rate\", 1.0)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\deep_patch_engine.py": {
+      "module": "deep_patch_engine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_bulk_repair.py": {
+      "module": "emergency_bulk_repair",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_eventbus_deduplication.py": {
+      "module": "emergency_eventbus_deduplication",
+      "hooks": [
+        "telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()",
+        "telemetry.emit('module_start', {'module': __name__, 'timestamp': time.time()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_triage_orphan_eliminator.py": {
+      "module": "emergency_triage_orphan_eliminator",
+      "hooks": [
+        "telemetry.*', r'compliance.*', r'module_registry.*'\n            ],\n            'execution_essential': [\n                r'execution_engine.*', r'autonomous.*executor.*', r'execution.*manager.*',\n                r'execution.*control.*', r'execution.*dispatcher.*'\n            ],\n            'strategy_essential': [\n                r'strategy.*engine.*', r'strategy.*mutation.*', r'strategy.*recommender.*'\n            ],\n            'signal_essential': [\n                r'signal.*engine.*', r'signal.*validator.*', r'signal.*fusion.*'\n            ],\n            'mt5_essential': [\n                r'mt5.*adapter.*', r'mt5.*connector.*', r'mt5.*bridge.*'\n            ],\n            'dashboard_essential': [\n                r'dashboard.*', r'gui.*', r'launcher.*', r'frontend.*'\n            ]\n        }\n        \n        # NON-ESSENTIAL patterns (SAFE TO QUARANTINE)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\example_prompt_with_hook.py": {
+      "module": "example_prompt_with_hook",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execute_phase_92a_patch.py": {
+      "module": "execute_phase_92a_patch",
+      "hooks": [
+        "telemetry.json->recent_executions\"\n                ]\n                \n            # Add patch metadata\n            bindings[\"dashboard_telemetry_bindings\"][\"phase_92a_patch\"] = {\n                \"applied\": True,\n                \"timestamp\": self.patch_timestamp.isoformat()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_feedback_mutator.py": {
+      "module": "execution_feedback_mutator",
+      "hooks": [
+        "telemetry.json\"\n        ]\n        \n        for file_path in required_files:\n            assert os.path.exists(file_path)",
+        "telemetry.json\", \"r\")",
+        "telemetry.json\", \"w\")",
+        "emit_telemetry()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_playbook_generator.py": {
+      "module": "execution_playbook_generator",
+      "hooks": [
+        "telemetry.update(telemetry_data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_risk_sentinel.py": {
+      "module": "execution_risk_sentinel",
+      "hooks": [
+        "telemetry.json, errors escalated to ERSAlert events\n⚙️ Performance: 12.3ms latency, 18MB memory, 2.1% CPU\n🗃️ Registry ID: ers-f8e7d6c5-9b4a-3210-8765-4321fedcba98\n⚖️ Compliance Score: A\n📌 Status: active\n📅 Last Modified: 2025-06-18\n📝 Author(s)",
+        "telemetry.json, execution_risk_config.json\n\n⚠️ NO real DATA — ONLY REAL MT5 EXECUTION LOGS\n⚠️ ARCHITECT MODE COMPLIANT v5.0.0\n\"\"\"\n\nimport os\nimport sys\nimport json\nimport time\nimport uuid\nimport logging\nimport threading\nfrom datetime import datetime, timedelta\nfrom collections import deque, defaultdict\nfrom typing import Dict, List, Tuple, Any, Optional, Union, Deque\n\n# Import local modules with proper error handling\ntry:\n    from event_bus import EventBus\nexcept ImportError:\n    logging.critical(\"GENESIS CRITICAL: Failed to import EventBus. System cannot function without EventBus.\")",
+        "telemetry.json if configured\"\"\"\n        # Add module identifier\n        data[\"source_module\"] = \"ExecutionRiskSentinel\"\n        \n        # Emit to EventBus\n        self.event_bus.emit(\"TelemetryEvent\", {\n            \"metric\": metric_path,\n            \"timestamp\": datetime.now()",
+        "telemetry.json\"\"\"\n        try:\n            # Read current telemetry file\n            telemetry_data = {}\n            if os.path.exists(\"telemetry.json\")",
+        "telemetry.json\", 'r')",
+        "telemetry.json\", 'w')",
+        "telemetry.json: {e}\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor.py": {
+      "module": "execution_supervisor",
+      "hooks": [
+        "telemetry.json\")",
+        "emit_telemetry()",
+        "emit_telemetry(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_new.py": {
+      "module": "execution_supervisor_new",
+      "hooks": [
+        "telemetry.json\")",
+        "emit_telemetry()",
+        "emit_telemetry(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_new_restored.py": {
+      "module": "execution_supervisor_new_restored",
+      "hooks": [
+        "telemetry.json\")",
+        "emit_telemetry()",
+        "emit_telemetry(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_supervisor_recovered.py": {
+      "module": "execution_supervisor_recovered",
+      "hooks": [
+        "telemetry.json\")",
+        "emit_telemetry()",
+        "emit_telemetry(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\final_system_validator.py": {
+      "module": "final_system_validator",
+      "hooks": [
+        "telemetry.json\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\fixed_monitor_test.py": {
+      "module": "fixed_monitor_test",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"SmartExecutionMonitor started successfully\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\hardlock_recovery_engine.py": {
+      "module": "hardlock_recovery_engine",
+      "hooks": [
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\hardlock_recovery_full_patch.py": {
+      "module": "hardlock_recovery_full_patch",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\kill_switch_integrity_monitor_v2.py": {
+      "module": "kill_switch_integrity_monitor_v2",
+      "hooks": [
+        "emit_telemetry(self, hook: str, value: Any)",
+        "emit_telemetry(\"monitoring_startup\", {\n            \"timestamp\": time.time()",
+        "emit_telemetry(\"kill_switch_uptime_percent\", self.metrics[\"uptime_percent\"])",
+        "emit_telemetry(\"kill_switch_latency_ms\", self.metrics[\"average_latency_ms\"])",
+        "emit_telemetry(\"system_health_score\", self.metrics[\"system_health_score\"])",
+        "emit_telemetry(\"heartbeat_frequency\", len(self.heartbeat_history)",
+        "emit_telemetry(\"watchdog_response_time\", time.time()",
+        "emit_telemetry(\"last_trigger_time\", trigger_time)",
+        "emit_telemetry(\"kill_switch_activation\", trigger_data)",
+        "emit_telemetry(\"alert_response_time_ms\", time.time()",
+        "heartbeat(time_since_last)",
+        "heartbeat(self, data: Dict[str, Any])",
+        "heartbeat(self, time_since_last: float)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\lightweight_validation_hook.py": {
+      "module": "lightweight_validation_hook",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\liquidity_sweep_validator.py": {
+      "module": "liquidity_sweep_validator",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\live_trade_analyzer.py": {
+      "module": "live_trade_analyzer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\live_trade_feedback_injector.py": {
+      "module": "live_trade_feedback_injector",
+      "hooks": [
+        "emit_telemetry(\"execution_snapshot_processed\", {\"execution_id\": execution_id, \"signal_id\": signal_id})"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\macro_sync_guard.py": {
+      "module": "macro_sync_guard",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\market_data_feed_manager.py": {
+      "module": "market_data_feed_manager",
+      "hooks": [
+        "telemetry.json', 'r')",
+        "telemetry.json', 'w')",
+        "log_telemetry({\n                \"event_type\": \"mt5_connection\",\n                \"status\": \"success\",\n                \"symbols_count\": len(self.symbols)",
+        "log_telemetry(self, telemetry_data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\master_recovery_directive.py": {
+      "module": "master_recovery_directive",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\meta_signal_harmonizer.py": {
+      "module": "meta_signal_harmonizer",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\", {\n            \"signal_weights\": self.SIGNAL_WEIGHTS,\n            \"thresholds\": {\n                \"unified\": self.UNIFIED_THRESHOLD,\n                \"audit\": self.AUDIT_THRESHOLD,\n                \"conflict_divergence\": self.CONFLICT_DIVERGENCE_THRESHOLD\n            }\n        })"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\metrics_util.py": {
+      "module": "metrics_util",
+      "hooks": [
+        "telemetry. Just including it here\n        # to help debug.\n        return \"no-machine-id-v4\"\n\n    filepath = file_util.get_streamlit_file_path(\"machine_id_v4\")",
+        "telemetry.\n\n    name : str or None\n    Overwrite the function name with a custom name that is used for telemetry tracking.\n\n    Example\n    -------\n    >>> @st.gather_metrics\n    ... def my_command(url)",
+        "telemetry.name not in ctx.tracked_commands_counter\n                    or ctx.tracked_commands_counter[command_telemetry.name]\n                    < _MAX_TRACKED_PER_COMMAND\n                )",
+        "telemetry.name])",
+        "telemetry.time = to_microseconds(timer()",
+        "telemetry.time = to_microseconds(timer()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ml_model_bootstrap.py": {
+      "module": "ml_model_bootstrap",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ml_retraining_loop_phase57.py": {
+      "module": "ml_retraining_loop_phase57",
+      "hooks": [
+        "emit_telemetry(\"initialization\", {\"status\": \"initialized\"})",
+        "emit_telemetry(\"execution_processed\", {\n                    \"data_points\": len(self.execution_data)",
+        "emit_telemetry(\"prediction_processed\", {\n                    \"model_type\": prediction_data[\"model_type\"],\n                    \"accuracy\": prediction_data[\"accuracy\"]\n                })",
+        "emit_telemetry(\"periodic_evaluation\", performance_log)",
+        "emit_telemetry(self, event_type, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\module_status.py": {
+      "module": "module_status",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\multi_account_splitter.py": {
+      "module": "multi_account_splitter",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\", {\n            \"routing_algorithm\": self.routing_algorithm,\n            \"max_account_utilization\": self.max_account_utilization,\n            \"connected_accounts\": len(self.connected_accounts)",
+        "emit_telemetry(\"TRADE_SPLIT_SUCCESS\", {\n                    \"signal_id\": signal_data.get(\"signal_id\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\multi_agent_coordination_engine.py": {
+      "module": "multi_agent_coordination_engine",
+      "hooks": [
+        "telemetry.copy()",
+        "emit_telemetry(\"coordination_engine_initialized\", {\n            \"timestamp\": self.start_time.isoformat()",
+        "emit_telemetry(\"signal_proposal_received\", {\n                    \"signal_id\": signal_id,\n                    \"source_module\": candidate.source_module,\n                    \"timestamp\": candidate.timestamp\n                })",
+        "emit_telemetry(\"trade_signal_finalized\", decision_data)",
+        "emit_telemetry(\"decision_diagnostics_generated\", diagnostics_data)",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\multi_agent_coordination_engine_fixed.py": {
+      "module": "multi_agent_coordination_engine_fixed",
+      "hooks": [
+        "telemetry.copy()",
+        "emit_telemetry(\"coordination_engine_initialized\", {\n            \"timestamp\": self.start_time.isoformat()",
+        "emit_telemetry(\"signal_proposal_received\", {\n                    \"signal_id\": signal_id,\n                    \"source_module\": candidate.source_module,\n                    \"timestamp\": candidate.timestamp\n                })",
+        "emit_telemetry(\"trade_signal_finalized\", decision_data)",
+        "emit_telemetry(\"decision_diagnostics_generated\", diagnostics_data)",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\multi_agent_coordination_engine_fixed_restored.py": {
+      "module": "multi_agent_coordination_engine_fixed_restored",
+      "hooks": [
+        "telemetry.copy()",
+        "emit_telemetry(\"coordination_engine_initialized\", {\n            \"timestamp\": self.start_time.isoformat()",
+        "emit_telemetry(\"signal_proposal_received\", {\n                    \"signal_id\": signal_id,\n                    \"source_module\": candidate.source_module,\n                    \"timestamp\": candidate.timestamp\n                })",
+        "emit_telemetry(\"trade_signal_finalized\", decision_data)",
+        "emit_telemetry(\"decision_diagnostics_generated\", diagnostics_data)",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\multi_agent_coordination_engine_recovered.py": {
+      "module": "multi_agent_coordination_engine_recovered",
+      "hooks": [
+        "telemetry.copy()",
+        "emit_telemetry(\"coordination_engine_initialized\", {\n            \"timestamp\": self.start_time.isoformat()",
+        "emit_telemetry(\"signal_proposal_received\", {\n                    \"signal_id\": signal_id,\n                    \"source_module\": candidate.source_module,\n                    \"timestamp\": candidate.timestamp\n                })",
+        "emit_telemetry(\"trade_signal_finalized\", decision_data)",
+        "emit_telemetry(\"decision_diagnostics_generated\", diagnostics_data)",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\mutation_decision_visualizer.py": {
+      "module": "mutation_decision_visualizer",
+      "hooks": [
+        "emit_telemetry(\"visualizer_started\", {\"status\": \"active\"})",
+        "emit_telemetry(\"visualizer_stopped\", {\"status\": \"inactive\"})",
+        "emit_telemetry(\"decision_metrics\", self._get_current_metrics()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\mutation_signal_adapter.py": {
+      "module": "mutation_signal_adapter",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\")",
+        "emit_telemetry(\"MUTATION_RECEIVED\")",
+        "emit_telemetry(self, event_type)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\my_script_with_validation.py": {
+      "module": "my_script_with_validation",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\omega_duplicate_resolution_engine.py": {
+      "module": "omega_duplicate_resolution_engine",
+      "hooks": [
+        "emit_telemetry(\",\n            \"log_metric(\",\n            \"subscribe_to_event(\",\n            \"register_route(\",\n            \"UUID\",\n            \"kill_switch\",\n            \"freeze_agent\",\n            \"risk_check\",\n            \"strategy_mutation\",\n        ]\n        \n        # Low value patterns (quarantine candidates)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\omega_system_reconstruction_fixed.py": {
+      "module": "omega_system_reconstruction_fixed",
+      "hooks": [
+        "telemetry.json\n    telemetry_config = {\n        \"telemetry_version\": \"v6.1.0-omega\",\n        \"active_nodes\": [],\n        \"real_time_metrics\": True,\n        \"mt5_data_only\": True\n    }\n    \n    for module_name, module_data in registered_modules.items()",
+        "telemetry.json\", \"w\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_engine.py": {
+      "module": "pattern_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\")",
+        "emit_telemetry(\"pattern_detection\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_learning_engine_phase58.py": {
+      "module": "pattern_learning_engine_phase58",
+      "hooks": [
+        "emit_telemetry(\"initialization\", {\"status\": \"initialized\"})",
+        "emit_telemetry(\"live_trade_processed\", {\n                    \"symbol\": trade_data[\"symbol\"],\n                    \"strategy\": trade_data[\"strategy\"],\n                    \"success\": trade_data[\"success\"],\n                    \"total_trades\": len(self.live_trades)",
+        "emit_telemetry(\"backtest_processed\", {\n                    \"strategy\": backself.event_bus.request('data:live_feed')",
+        "emit_telemetry(\"manual_override_processed\", {\n                    \"override_type\": override_data[\"override_type\"],\n                    \"outcome\": override_data[\"outcome\"],\n                    \"total_overrides\": len(self.manual_overrides)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\pattern_miner.py": {
+      "module": "pattern_miner",
+      "hooks": [
+        "emit_telemetry(\"initialized\", {\"status\": \"active\"})",
+        "emit_telemetry(self, event_type, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\performance_status_check.py": {
+      "module": "performance_status_check",
+      "hooks": [
+        "heartbeat(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_49_performance_loop_hardening.py": {
+      "module": "phase_49_performance_loop_hardening",
+      "hooks": [
+        "telemetry.json\n- event_bus.json\n\nOUTPUT FILES:\n- loop_integrity_report.json\n- mutation_drift_index.json\n- execution_loop_config.json\n\nREQUIRED ACTIONS:\n1. Analyze performance.json for loop frequency, memory spikes, and CPU time drift\n2. Inject performance boundaries for live event-driven modules via event_bus.json\n3. Attach new telemetry metrics: loop_latency_ms, drift_index, event_response_time\n4. Log mutation drift index (MDI)",
+        "telemetry.json, creating new one{TermColors.ENDC}\")",
+        "telemetry.json\")",
+        "telemetry.json\", telemetry_data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_50_optimization.py": {
+      "module": "phase_50_optimization",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json\", telemetry)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_86_87_final_activation.py": {
+      "module": "phase_86_87_final_activation",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_86_strategy_intelligence_activation.py": {
+      "module": "phase_86_strategy_intelligence_activation",
+      "hooks": [
+        "telemetry.json with Phase 86 module hooks\"\"\"\n        \n        try:\n            telemetry_file = self.base_dir / 'telemetry.json'\n            \n            # Load existing telemetry config\n            if telemetry_file.exists()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_88_live_trial_activation.py": {
+      "module": "phase_88_live_trial_activation",
+      "hooks": [
+        "telemetry.json\",\n                \"build_status.json\",\n                self.telemetry_dir / \"connection_status.json\"\n            ]\n            \n            existing_files = sum(1 for f in telemetry_files if Path(f)",
+        "emit_telemetry(self, data)",
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_90_feedback_validation.py": {
+      "module": "phase_90_feedback_validation",
+      "hooks": [
+        "telemetry.json\"\n            assert telemetry_file.exists()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_real_mt5_integration_engine.py": {
+      "module": "phase_92a_real_mt5_integration_engine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_92a_system_repair_engine.py": {
+      "module": "phase_92a_system_repair_engine",
+      "hooks": [
+        "telemetry.start_collection()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_98_system_build_validator.py": {
+      "module": "phase_98_system_build_validator",
+      "hooks": [
+        "telemetry.json\",\n            \"event_bus.json\",\n            \"build_status.json\",\n            \"genesis_config.json\",\n            \"genesis_docs.json\", \n            \"genesis_telemetry.json\",\n            \"genesis_event_bus.json\",\n            \"compliance.json\",\n            \"real_data.json\",\n            \"mock_data.json\"\n        ]\n        \n        self.validation_results = {\n            \"files_validated\": 0,\n            \"files_missing\": [],\n            \"files_corrupted\": [],\n            \"violations_detected\": [],\n            \"repairs_applied\": []\n        }\n        \n        # Emit startup telemetry\n        self._emit_startup_telemetry()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_99_launch_and_link.py": {
+      "module": "phase_99_launch_and_link",
+      "hooks": [
+        "telemetry.json\")",
+        "telemetry.json not found\"}\n            \n            with open(\"telemetry.json\", \"r\", encoding=\"utf-8\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\portfolio_optimizer.py": {
+      "module": "portfolio_optimizer",
+      "hooks": [
+        "telemetry.json, kill_switch_audit.py]\n    \"\"\"\n\n    def __init__(self)",
+        "emit_telemetry(\"portfolio_optimizer_error\", {\"error\": str(e)",
+        "emit_telemetry(\"portfolio_optimizer_mutation_error\", {\"error\": str(e)",
+        "emit_telemetry(\"trade_fill_trigger\", data)",
+        "emit_telemetry(\"stoploss_trigger\", data)",
+        "emit_telemetry(\"takeprofit_trigger\", data)",
+        "emit_telemetry(\"portfolio_imbalance\", data)",
+        "emit_telemetry(\"optimizer.exposure_total\", {\n                \"total_exposure\": sum([v.get(\"value\", 0)",
+        "emit_telemetry(\"optimizer.risk_profile\", {\"risk_profile\": risk_profile})",
+        "emit_telemetry(\"optimizer.correlation_avg\", {\n                \"avg_correlation\": correlation_matrix.get(\"avg_correlation\", 0.0)",
+        "emit_telemetry(\"portfolio_optimizer_mutation_error\", {\n                \"error\": str(e)",
+        "emit_telemetry(\"rebalance_triggered\", {\n                \"trigger\": trigger_event,\n                \"timestamp\": current_time,\n                \"portfolio_weights\": portfolio_weights\n            })",
+        "emit_telemetry(\"rebalance_error\", {\"error\": str(e)",
+        "emit_telemetry(\"strategy_weight_recommendation\", {\"weights\": dict(normalized_weights)",
+        "emit_telemetry(\"portfolio_risk_score\", {\n                \"total_strategies\": len(active_strategies)",
+        "emit_telemetry(\"rebalance_log\", {\n                \"timestamp\": datetime.now(timezone.utc)",
+        "emit_telemetry(\"rebalance_error\", {\"error\": str(e)",
+        "emit_telemetry(\"exposure_throttle_triggered\", {\n                    \"strategy_id\": strategy_id,\n                    \"position_size\": position_size,\n                    \"limit_type\": \"daily\",\n                    \"limit_value\": self.max_daily_exposure\n                })",
+        "emit_telemetry(\"exposure_throttle_triggered\", {\n                    \"strategy_id\": strategy_id,\n                    \"position_size\": position_size,\n                    \"limit_type\": \"trailing\",\n                    \"limit_value\": self.max_trailing_exposure\n                })",
+        "emit_telemetry(self, metric_name: str, data: Dict[str, Any])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\reactive_signal_autopilot.py": {
+      "module": "reactive_signal_autopilot",
+      "hooks": [
+        "telemetry.\n\nARCHITECT MODE COMPLIANCE:\n✅ Real MT5 data only - no real/fallback logic\n✅ EventBus routing enforced\n✅ Telemetry hooks connected\n✅ Error handling with escalation\n✅ System tree registration\n✅ Module registry integration\n\"\"\"\n\nimport json\nimport datetime\nimport os\nimport logging\nimport threading\nimport time\nfrom typing import Dict, List, Optional, Any\nfrom collections import deque, defaultdict\nfrom dataclasses import dataclass, asdict\nimport statistics\n\n# Import event bus for system-wide communication\nfrom hardened_event_bus import get_event_bus, emit_event, subscribe_to_event\n\n@dataclass\nclass BrokerResponseMetrics:\n    \"\"\"Tracks broker response patterns for reactive decisions\"\"\"\n    timestamp: str\n    broker_id: str\n    signal_id: str\n    execution_time_ms: float\n    slippage_pips: float\n    rejection_type: Optional[str]\n    spread_at_execution: float\n    latency_category: str  # \"normal\", \"delayed\", \"critical\"\n    \n@dataclass\nclass ReactiveOverride:\n    \"\"\"Signal execution override decision\"\"\"\n    timestamp: str\n    signal_id: str\n    override_type: str  # \"sl_tp_adjust\", \"retry_execution\", \"broker_reroute\", \"manual_escalation\"\n    original_params: Dict[str, Any]\n    adjusted_params: Dict[str, Any]\n    reason: str\n    confidence_score: float\n\nclass ReactiveSignalAutopilot:\n    \"\"\"\n    Real-time reactive adaptation module that monitors broker feedback \n    and modifies Signal Execution Plans in-flight\n    \"\"\"\n    \n    def __init__(self, config_path: str = \"reactive_autopilot_config.json\")",
+        "emit_telemetry(\"autopilot_monitoring_started\", {\n            \"timestamp\": datetime.datetime.now()",
+        "emit_telemetry(\"autopilot_monitoring_stopped\", {\n            \"timestamp\": datetime.datetime.now()",
+        "emit_telemetry(\"broker_response_processed\", asdict(metrics)",
+        "emit_telemetry(\"reactive_override_applied\", asdict(override)",
+        "emit_telemetry(self, event_type: str, data: Dict[str, Any])",
+        "emit_telemetry(\"periodic_health_report\", telemetry_data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT.py": {
+      "module": "RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT",
+      "hooks": [
+        "telemetry.json\")",
+        "emit_telemetry()",
+        "emit_telemetry(self)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\repair_engine_advanced_patches.py": {
+      "module": "repair_engine_advanced_patches",
+      "hooks": [
+        "telemetry.json\"\n            if telemetry_path.exists()",
+        "emit_telemetry({{\n#     \"module\": \"{Path(violation['file'])"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\risk_engine.py": {
+      "module": "risk_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\")",
+        "emit_telemetry(\"RISK_MONITORING_UPDATE\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\signal_feed.py": {
+      "module": "signal_feed",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\signal_pattern_visualizer.py": {
+      "module": "signal_pattern_visualizer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\signal_quality_amplifier.py": {
+      "module": "signal_quality_amplifier",
+      "hooks": [
+        "emit_telemetry(\"signal_quality_amplifier_initialized\", {\n            \"timestamp\": self.start_time.isoformat()"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_liveloop.py": {
+      "module": "smart_execution_liveloop",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"SmartExecutionLiveLoop service activated successfully\")",
+        "emit_telemetry(self, action, message)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_monitor.py": {
+      "module": "smart_execution_monitor",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"SmartExecutionMonitor started successfully\")",
+        "emit_telemetry(self, action, message)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\strategy_adaptive_context_synthesizer_fixed.py": {
+      "module": "strategy_adaptive_context_synthesizer_fixed",
+      "hooks": [
+        "telemetry.json\"\n            telemetry_config = {}\n            \n            if os.path.exists(telemetry_path)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\strategy_adaptive_context_synthesizer_recovered.py": {
+      "module": "strategy_adaptive_context_synthesizer_recovered",
+      "hooks": [
+        "telemetry.json\"\n            telemetry_config = {}\n            \n            if os.path.exists(telemetry_path)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\strategy_feedback_journal.py": {
+      "module": "strategy_feedback_journal",
+      "hooks": [
+        "emit_telemetry(\"initialization\", \"Module initialized successfully\")",
+        "emit_telemetry(\"new_strategy\", f\"New strategy tracked: {strategy_id}\")",
+        "emit_telemetry(\n                            \"signal_feedback_processed\", \n                            f\"Processed 10 more signal feedbacks for {strategy_id}, win rate: {strategy['win_rate']:.2f}\"\n                        )",
+        "emit_telemetry(self, action, message=None)",
+        "emit_telemetry(\"startup\", \"StrategyFeedbackJournal service started\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\system_monitor_visualizer.py": {
+      "module": "system_monitor_visualizer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\trade_auditor.py": {
+      "module": "trade_auditor",
+      "hooks": [
+        "emit_telemetry(\"initialized\", {\"status\": \"active\"})",
+        "emit_telemetry(self, event_type, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\trade_journal.py": {
+      "module": "trade_journal",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\trade_journal_engine.py": {
+      "module": "trade_journal_engine",
+      "hooks": [
+        "emit_telemetry(\"MODULE_INITIALIZED\")"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\trade_visualizer.py": {
+      "module": "trade_visualizer",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ultimate_system_rebuild_engine.py": {
+      "module": "ultimate_system_rebuild_engine",
+      "hooks": [
+        "telemetry.json\", 'w')",
+        "telemetry.json` - Monitoring setup\n- **Compliance Rules**: ✅ `compliance.json` - Quality standards\n\n**Status**: 🏆 INSTITUTIONAL GRADE SYSTEM READY FOR PRODUCTION\n\"\"\"\n        \n        # Append to build tracker\n        build_tracker_path = self.base_path / \"build_tracker.md\"\n        with open(build_tracker_path, 'a', encoding='utf-8')"
+      ]
+    },
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\universal_mt5_discovery_engine.py": {
+      "module": "universal_mt5_discovery_engine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_advancedsignaloptimizationengine.py": {
+      "module": "ORPHAN_test_advancedsignaloptimizationengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_brokerrulesynctelemetrywidget.py": {
+      "module": "ORPHAN_test_brokerrulesynctelemetrywidget",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboardengine.py": {
+      "module": "ORPHAN_test_dashboardengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboard_validation.py": {
+      "module": "ORPHAN_test_dashboard_validation",
+      "hooks": [
+        "telemetry.json\": \"Telemetry data\",\n        \"execution_log.json\": \"Execution log\",\n        \"event_bus.json\": \"Event bus data\",\n        \"system_tree.json\": \"System tree\",\n        \"build_status.json\": \"Build status\"\n    }\n    \n    results = {}\n    \n    for filename, description in files_to_check.items()"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_executiondispatcher.py": {
+      "module": "ORPHAN_test_executiondispatcher",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_executionflowcontroller.py": {
+      "module": "ORPHAN_test_executionflowcontroller",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_execution_dashboard.py": {
+      "module": "ORPHAN_test_execution_dashboard",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase17_telemetry_dashboard.py": {
+      "module": "ORPHAN_test_phase17_telemetry_dashboard",
+      "hooks": [
+        "telemetry.json\")"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase32_execution_flow_controller.py": {
+      "module": "ORPHAN_test_phase32_execution_flow_controller",
+      "hooks": [
+        "emit_telemetry('test_metric', self.event_bus.request('data:live_feed')"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase34_dashboard_integration.py": {
+      "module": "ORPHAN_test_phase34_dashboard_integration",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase34_dashboard_integration_clean.py": {
+      "module": "ORPHAN_test_phase34_dashboard_integration_clean",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_phase_50_execution_loop_telemetry.py": {
+      "module": "ORPHAN_test_phase_50_execution_loop_telemetry",
+      "hooks": [
+        "telemetry.json\"\n        self.event_bus_path = \"event_bus.json\"\n        \n        # Load files\n        try:\n            with open(self.loop_integrity_report_path, 'r')",
+        "telemetry.get('telemetry_integrity_status')",
+        "telemetry.get('metrics', {})"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signalbiasdashboard.py": {
+      "module": "ORPHAN_test_signalbiasdashboard",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signalfusionmatrix.py": {
+      "module": "ORPHAN_test_signalfusionmatrix",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signalloopreinforcementengine.py": {
+      "module": "ORPHAN_test_signalloopreinforcementengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signalvalidator.py": {
+      "module": "ORPHAN_test_signalvalidator",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signal_fusion_matrix.py": {
+      "module": "ORPHAN_test_signal_fusion_matrix",
+      "hooks": [
+        "emit_telemetry()"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_strategicsignalrefinementengine.py": {
+      "module": "ORPHAN_test_strategicsignalrefinementengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_StrategyMutationLogicEngine.py": {
+      "module": "ORPHAN_test_StrategyMutationLogicEngine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_strategyrecommenderengine.py": {
+      "module": "ORPHAN_test_strategyrecommenderengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_strategysentimentfusionengine.py": {
+      "module": "ORPHAN_test_strategysentimentfusionengine",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_strategy_mutation_phase13.py": {
+      "module": "ORPHAN_test_strategy_mutation_phase13",
+      "hooks": [
+        "telemetry.json\n Validate the mutation event flow\n\nNO MOCK DATA - NO ISOLATED FUNCTIONS - STRICT COMPLIANCE\n\"\"\"\n\nimport os\nimport json\nimport time\nimport logging\nfrom datetime import datetime, timedelta\nfrom pathlib import Path\nimport uuid\n\n# Import system modules\nfrom event_bus import get_event_bus, emit_event\nfrom strategy_mutator import StrategyMutator\nfrom live_feedback_adapter import LiveFeedbackAdapter\nfrom pattern_meta_strategy_engine import PatternMetaStrategyEngine\n\n# Configure logging\nlogging.basicConfig(level=logging.INFO)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_streamlitfrontend.py": {
+      "module": "ORPHAN_test_streamlitfrontend",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_telemetrycollector.py": {
+      "module": "ORPHAN_test_telemetrycollector",
+      "hooks": [
+        "emit_telemetry(self, data)"
+      ]
+    },
+    "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_validate_phase32_execution_flow_controller.py": {
+      "module": "ORPHAN_validate_phase32_execution_flow_controller",
+      "hooks": [
+        "emit_telemetry(\"test_event\", {\"test\": \"data\"})"
+      ]
+    }
+  },
+  "telemetry_categories": {
+    "EXECUTION_TELEMETRY": [
+      "autonomous_order_executor.py",
+      "emergency_triage_orphan_eliminator.py",
+      "execution_flow_controller.py",
+      "genesis_trade_engine.py",
+      "launch_dashboard.py",
+      "pattern_meta_strategy_engine.py",
+      "phase_50_execution_loop_telemetry.py",
+      "self_healing_strategy_engine.py",
+      "validate_phase91b_dashboard_compliance.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_execution_feedback_mutator.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_feedback_injection_phase12.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase_49.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\validate_phase_91c_completion.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\activate_phase_91c_lockdown.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\auto_execution_sync_engine.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\contextual_execution_router.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\emergency_triage_orphan_eliminator.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execute_phase_92a_patch.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_risk_sentinel.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\fixed_monitor_test.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\live_trade_feedback_injector.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ml_retraining_loop_phase57.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_49_performance_loop_hardening.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\reactive_signal_autopilot.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_liveloop.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\smart_execution_monitor.py",
+      "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboard_validation.py"
+    ],
+    "PERFORMANCE_TELEMETRY": [
+      "genesis_architect_agent.py",
+      "genesis_installer_builder.py",
+      "genesis_integrity_auditor.py",
+      "phase61_compliance_validation_engine.py",
+      "strategy_recommender_engine.py",
+      "validate_system_compliance.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase32_validation.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase33_validation.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\phase34_validation.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\activate_phase_91c_lockdown.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\architect_mode_v600_hardlock.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\contextual_execution_router.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\execution_risk_sentinel.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ml_retraining_loop_phase57.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\phase_49_performance_loop_hardening.py"
+    ],
+    "HEARTBEAT_TELEMETRY": [
+      "emergency_architect_compliance_enforcer.py",
+      "genesis_dashboard_ui_live_sync.py",
+      "genesis_dependency_validator.py",
+      "module_recovery_engine.py",
+      "phase_93_telemetry_enforcer.py",
+      "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_emergency_json_repair.py",
+      "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_kill_switch_integrity_monitor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\demo_kill_switch.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\module_template_with_validation.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_kill_switch_integrity_monitor.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_phase74_75.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\example_prompt_with_hook.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\kill_switch_integrity_monitor_v2.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\lightweight_validation_hook.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ml_model_bootstrap.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\my_script_with_validation.py",
+      "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\performance_status_check.py"
+    ]
+  },
+  "heartbeat_modules": [
+    "genesis_dependency_validator.py",
+    "phase_101_institutional_module_registry_clean.py",
+    "QUARANTINE_ARCHITECT_VIOLATIONS\\DUPLICATE_emergency_json_repair.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\demo_kill_switch.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\module_template_with_validation.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_kill_switch_integrity_monitor.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\app_session.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\example_prompt_with_hook.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\lightweight_validation_hook.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\ml_model_bootstrap.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\my_script_with_validation.py",
+    "TRIAGE_ORPHAN_QUARANTINE\\UNKNOWN\\performance_status_check.py"
+  ]
+}

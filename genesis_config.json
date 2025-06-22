@@ -1,0 +1,44 @@
+{
+  "genesis_system": {
+    "version": "v6.4.0-consolidated",
+    "mode": "production",
+    "architecture": "event_driven_institutional",
+    "compliance_level": "FTMO_INSTITUTIONAL",
+    "data_policy": "real_data_only",
+    "last_updated": "2025-06-20T13:00:00Z"
+  },
+  "architect_mode": {
+    "enabled": true,
+    "strict_compliance": true,
+    "violation_tolerance": 0,
+    "auto_repair": true,
+    "lock_broken_on_violation": true
+  },
+  "system_policies": {
+    "no_mock_data": true,
+    "no_isolated_functions": true,
+    "eventbus_mandatory": true,
+    "telemetry_required": true,
+    "real_time_only": true,
+    "mt5_live_only": true
+  },
+  "module_requirements": {
+    "eventbus_connection": "mandatory",
+    "telemetry_emission": "mandatory",
+    "real_data_usage": "mandatory",
+    "registration_required": true,
+    "documentation_required": true
+  },
+  "purge_policies": {
+    "delete_orphans": true,
+    "quarantine_duplicates": true,
+    "remove_test_scaffolds": true,
+    "clean_mock_data": true
+  },
+  "repair_protocols": {
+    "auto_wire_eventbus": true,
+    "inject_telemetry": true,
+    "enforce_real_data": true,
+    "register_modules": true
+  }
+}

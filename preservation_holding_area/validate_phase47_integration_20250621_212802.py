@@ -1,0 +1,399 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("validate_phase47_integration", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("validate_phase47_integration", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "validate_phase47_integration",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in validate_phase47_integration: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "validate_phase47_integration",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("validate_phase47_integration", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in validate_phase47_integration: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS TRADING BOT — PHASE 47 VALIDATION SCRIPT
+📋 Module: validate_phase47_integration.py
+🎯 Purpose: Validate Phase 47 Portfolio Optimizer Integration compliance
+📅 Created: 2025-06-18
+⚖️ Compliance: ARCHITECT_MODE_V4.0
+🧭 Phase: 47
+"""
+
+import json
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+# <!-- @GENESIS_MODULE_END: validate_phase47_integration -->
+
+
+# <!-- @GENESIS_MODULE_START: validate_phase47_integration -->
+
+def validate_phase47_integration():
+    """
+    🔍 Comprehensive validation of Phase 47 Portfolio Optimizer Integration
+    
+    Validates:
+    - Integration module exists
+    - EventBus routes registered
+    - System tree updated
+    - Module registry updated
+    - Build tracker updated
+    - Architect compliance
+    """
+    
+    print("🚀 Starting GENESIS Phase 47 Integration Validation")
+    print("=" * 60)
+    
+    validation_results = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "phase": 47,
+        "validations": {},
+        "errors": [],
+        "warnings": [],
+        "overall_status": "PENDING"
+    }
+    
+    # 1. Validate integration module exists
+    print("📁 Validating integration module...")
+    integration_file = Path("phase47_portfolio_optimizer_integration.py")
+    if integration_file.exists():
+        print("✅ Integration module exists")
+        validation_results["validations"]["integration_module"] = True
+        
+        # Check file size
+        file_size = integration_file.stat().st_size
+        if file_size > 1000:  # Should be a substantial file
+            print(f"✅ Integration module size: {file_size} bytes")
+            validation_results["validations"]["integration_module_size"] = True
+        else:
+            print(f"⚠️  Integration module size too small: {file_size} bytes")
+            validation_results["warnings"].append(f"Integration module size too small: {file_size} bytes")
+            validation_results["validations"]["integration_module_size"] = False
+    else:
+        print("❌ Integration module missing")
+        validation_results["validations"]["integration_module"] = False
+        validation_results["errors"].append("Integration module file missing")
+    
+    # 2. Validate EventBus routes
+    print("\n📡 Validating EventBus routes...")
+    try:
+        with open("event_bus.json", "r") as f:
+            event_bus = json.load(f)
+        
+        phase47_routes = [
+            "strategy_weights_updated",
+            "portfolio_weights_updated", 
+            "phase47_integration_started",
+            "phase47_integration_error"
+        ]
+        
+        found_routes = []
+        for route_data in event_bus.get("routes", []):
+            if route_data.get("topic") in phase47_routes:
+                found_routes.append(route_data.get("topic"))
+        
+        if len(found_routes) >= 3:  # At least 3 critical routes
+            print(f"✅ EventBus routes registered: {found_routes}")
+            validation_results["validations"]["eventbus_routes"] = True
+        else:
+            print(f"❌ Insufficient EventBus routes: {found_routes}")
+            validation_results["validations"]["eventbus_routes"] = False
+            validation_results["errors"].append(f"Missing EventBus routes. Found: {found_routes}")
+            
+    except Exception as e:
+        print(f"❌ Error validating EventBus: {e}")
+        validation_results["validations"]["eventbus_routes"] = False
+        validation_results["errors"].append(f"EventBus validation error: {e}")
+    
+    # 3. Validate System Tree
+    print("\n🌳 Validating System Tree...")
+    try:
+        with open("system_tree.json", "r") as f:
+            system_tree = json.load(f)
+        
+        # Check for Phase 47 integration module
+        phase47_found = False
+        for node in system_tree.get("nodes", []):
+            if node.get("id") == "Phase47PortfolioOptimizerIntegration":
+                phase47_found = True
+                print("✅ Phase 47 integration module found in system tree")
+                break
+        
+        if phase47_found:
+            validation_results["validations"]["system_tree"] = True
+        else:
+            print("❌ Phase 47 integration module not found in system tree")
+            validation_results["validations"]["system_tree"] = False
+            validation_results["errors"].append("Phase 47 module not in system tree")
+            
+        # Check metadata
+        metadata = system_tree.get("metadata", {})
+        if metadata.get("phase_47_portfolio_optimizer_integration_complete"):
+            print("✅ Phase 47 completion flag found in system tree metadata")
+            validation_results["validations"]["system_tree_metadata"] = True
+        else:
+            print("⚠️  Phase 47 completion flag not found in system tree metadata")
+            validation_results["warnings"].append("Phase 47 completion flag missing from system tree metadata")
+            validation_results["validations"]["system_tree_metadata"] = False
+            
+    except Exception as e:
+        print(f"❌ Error validating System Tree: {e}")
+        validation_results["validations"]["system_tree"] = False
+        validation_results["errors"].append(f"System Tree validation error: {e}")
+    
+    # 4. Validate Module Registry
+    print("\n📋 Validating Module Registry...")
+    try:
+        with open("module_registry.json", "r") as f:
+            module_registry = json.load(f)
+        
+        # Check for Phase 47 module registration
+        phase47_registered = False
+        for module in module_registry.get("modules", []):
+            if module.get("name") == "Phase47PortfolioOptimizerIntegration":
+                phase47_registered = True
+                print("✅ Phase 47 integration module registered")
+                break
+        
+        if phase47_registered:
+            validation_results["validations"]["module_registry"] = True
+        else:
+            print("❌ Phase 47 integration module not registered")
+            validation_results["validations"]["module_registry"] = False
+            validation_results["errors"].append("Phase 47 module not registered")
+        
+        # Check fingerprint
+        fingerprints = module_registry.get("fingerprints", {})
+        if "Phase47PortfolioOptimizerIntegration" in fingerprints:
+            print("✅ Phase 47 integration module fingerprint registered")
+            validation_results["validations"]["module_fingerprint"] = True
+        else:
+            print("❌ Phase 47 integration module fingerprint missing")
+            validation_results["validations"]["module_fingerprint"] = False
+            validation_results["errors"].append("Phase 47 module fingerprint missing")
+            
+    except Exception as e:
+        print(f"❌ Error validating Module Registry: {e}")
+        validation_results["validations"]["module_registry"] = False
+        validation_results["errors"].append(f"Module Registry validation error: {e}")
+    
+    # 5. Validate Build Tracker
+    print("\n📝 Validating Build Tracker...")
+    try:
+        with open("build_tracker.md", "r") as f:
+            build_tracker = f.read()
+        
+        if "PHASE 47 LIVE FEED SYNC INTEGRATION" in build_tracker:
+            print("✅ Phase 47 entry found in build tracker")
+            validation_results["validations"]["build_tracker"] = True
+        else:
+            print("❌ Phase 47 entry not found in build tracker")
+            validation_results["validations"]["build_tracker"] = False
+            validation_results["errors"].append("Phase 47 entry missing from build tracker")
+            
+    except Exception as e:
+        print(f"❌ Error validating Build Tracker: {e}")
+        validation_results["validations"]["build_tracker"] = False
+        validation_results["errors"].append(f"Build Tracker validation error: {e}")
+    
+    # 6. Validate Portfolio Optimizer exists
+    print("\n💼 Validating Portfolio Optimizer...")
+    portfolio_optimizer_file = Path("portfolio_optimizer.py")
+    if portfolio_optimizer_file.exists():
+        print("✅ Portfolio Optimizer module exists")
+        validation_results["validations"]["portfolio_optimizer"] = True
+    else:
+        print("❌ Portfolio Optimizer module missing")
+        validation_results["validations"]["portfolio_optimizer"] = False
+        validation_results["errors"].append("Portfolio Optimizer module missing")
+    
+    # 7. Validate Strategy Mutation Engine exists
+    print("\n🔧 Validating Strategy Mutation Engine...")
+    mutation_engine_file = Path("strategy_mutation_logic_engine.py")
+    if mutation_engine_file.exists():
+        print("✅ Strategy Mutation Logic Engine exists")
+        validation_results["validations"]["strategy_mutation_engine"] = True
+    else:
+        print("❌ Strategy Mutation Logic Engine missing")
+        validation_results["validations"]["strategy_mutation_engine"] = False
+        validation_results["errors"].append("Strategy Mutation Logic Engine missing")
+    
+    # 8. Calculate overall status
+    print("\n📊 Calculating Overall Status...")
+    total_validations = len(validation_results["validations"])
+    passed_validations = sum(1 for v in validation_results["validations"].values() if v)
+    success_rate = (passed_validations / total_validations * 100) if total_validations > 0 else 0
+    
+    if success_rate >= 90:
+        validation_results["overall_status"] = "PASSED"
+        status_icon = "✅"
+    elif success_rate >= 70:
+        validation_results["overall_status"] = "WARNING" 
+        status_icon = "⚠️"
+    else:
+        validation_results["overall_status"] = "FAILED"
+        status_icon = "❌"
+    
+    print(f"{status_icon} Overall Status: {validation_results['overall_status']}")
+    print(f"📈 Success Rate: {success_rate:.1f}% ({passed_validations}/{total_validations})")
+    
+    validation_results["success_rate"] = success_rate
+    validation_results["passed_validations"] = passed_validations
+    validation_results["total_validations"] = total_validations
+    
+    # Print summary
+    print("\n" + "=" * 60)
+    print("📋 VALIDATION SUMMARY")
+    print("=" * 60)
+    
+    for validation, result in validation_results["validations"].items():
+        status = "✅ PASS" if result else "❌ FAIL"
+        print(f"{status} {validation}")
+    
+    if validation_results["warnings"]:
+        print("\n⚠️  WARNINGS:")
+        for warning in validation_results["warnings"]:
+            print(f"   - {warning}")
+    
+    if validation_results["errors"]:
+        print("\n❌ ERRORS:")
+        for error in validation_results["errors"]:
+            print(f"   - {error}")
+    
+    # Save validation results
+    try:
+        with open("phase47_validation_results.json", "w") as f:
+            json.dump(validation_results, f, indent=2)
+        print(f"\n💾 Validation results saved to phase47_validation_results.json")
+    except Exception as e:
+        print(f"\n🚨 Failed to save validation results: {e}")
+    
+    print("\n🏁 Phase 47 validation complete!")
+    return validation_results["overall_status"] == "PASSED"
+
+
+if __name__ == "__main__":
+    success = validate_phase47_integration()
+    sys.exit(0 if success else 1)

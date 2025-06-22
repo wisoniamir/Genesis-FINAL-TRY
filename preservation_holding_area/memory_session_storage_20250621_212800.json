@@ -1,0 +1,9 @@
+{
+  "module_id": "memory_session_storage",
+  "original_path": "modules\\restored\\memory_session_storage.py",
+  "preserved_path": "preservation_holding_area\\memory_session_storage_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 14523,
+  "checksum": "ce9c085d0ba2ab5a066558ca270e93ae5c2aca5c391cc54bf9dccf0299dcf8ec"
+}

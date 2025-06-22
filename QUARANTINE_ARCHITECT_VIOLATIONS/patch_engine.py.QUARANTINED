@@ -1,0 +1,47 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\patch_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.817084+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\patch_engine.py",
+      "line_numbers": [
+        55,
+        56,
+        60
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\patch_engine.py",
+      "line_numbers": [
+        47,
+        76
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\patch_engine.py",
+      "line_numbers": [
+        66,
+        92
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\patch_engine.py",
+      "line_numbers": [
+        50
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

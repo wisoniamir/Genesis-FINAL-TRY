@@ -1,0 +1,99 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.500020+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        285,
+        338,
+        365
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        58
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        352,
+        538
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        96,
+        131,
+        149,
+        180,
+        192
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        125,
+        144,
+        174,
+        187,
+        202
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        232,
+        412,
+        422
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        297,
+        360,
+        373,
+        505
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\execution_manager_backup.py",
+      "line_numbers": [
+        120,
+        127,
+        132,
+        167,
+        176
+      ],
+      "violation_count": 14
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

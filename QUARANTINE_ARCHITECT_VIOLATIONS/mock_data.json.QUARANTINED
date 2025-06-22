@@ -1,0 +1,17 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\mock_data.json",
+  "quarantine_timestamp": "2025-06-21T04:33:03.058590+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\mock_data.json",
+      "line_numbers": [
+        6,
+        7
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

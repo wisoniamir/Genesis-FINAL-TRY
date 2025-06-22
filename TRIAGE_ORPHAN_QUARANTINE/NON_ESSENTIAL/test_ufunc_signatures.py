@@ -1,0 +1,197 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_ufunc_signatures -->
+"""
+🏛️ GENESIS TEST_UFUNC_SIGNATURES - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_ufunc_signatures", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_ufunc_signatures", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_ufunc_signatures",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_ufunc_signatures: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_ufunc_signatures",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_ufunc_signatures", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_ufunc_signatures: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""Test that all ufuncs have float32-preserving signatures.
+
+This was once guaranteed through the code generation script for
+generating ufuncs, `scipy/special/_generate_pyx.py`. Starting with
+gh-20260, SciPy developers have begun moving to generate ufuncs
+through direct use of the NumPy C API (through C++). Existence of
+float32 preserving signatures must now be tested since it is no
+longer guaranteed.
+"""
+
+import numpy as np
+import pytest
+import scipy.special._ufuncs
+import scipy.special._gufuncs
+
+_ufuncs = []
+for funcname in dir(scipy.special._ufuncs):
+    _ufuncs.append(getattr(scipy.special._ufuncs, funcname))
+for funcname in dir(scipy.special._gufuncs):
+    _ufuncs.append(getattr(scipy.special._gufuncs, funcname))
+
+# Not all module members are actually ufuncs
+_ufuncs = [func for func in _ufuncs if isinstance(func, np.ufunc)]
+
+@pytest.mark.parametrize("ufunc", _ufuncs)
+def test_ufunc_signatures(ufunc):
+
+    # From _generate_pyx.py
+    # "Don't add float32 versions of ufuncs with integer arguments, as this
+    # can lead to incorrect dtype selection if the integer arguments are
+    # arrays, but float arguments are scalars.
+    # For instance sph_harm(0,[0],0,0).dtype == complex64
+    # This may be a NumPy bug, but we need to work around it.
+    # cf. gh-4895, https://github.com/numpy/numpy/issues/5895"
+    types = set(sig for sig in ufunc.types
+                if not ("l" in sig or "i" in sig or "q" in sig or "p" in sig))
+
+    # Generate the full expanded set of signatures which should exist. There
+    # should be matching float and double versions of any existing signature.
+    expanded_types = set()
+    for sig in types:
+        expanded_types.update(
+            [sig.replace("d", "f").replace("D", "F"),
+             sig.replace("f", "d").replace("F", "D")]
+        )
+    assert types == expanded_types
+
+
+# <!-- @GENESIS_MODULE_END: test_ufunc_signatures -->

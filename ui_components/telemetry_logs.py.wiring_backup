@@ -1,0 +1,298 @@
+"""
+GENESIS Dashboard - Telemetry Logs Component
+Real-time telemetry logs viewer
+"""
+
+import pandas as pd
+import json
+import time
+from datetime import datetime, timedelta
+import os
+
+class TelemetryLogsComponent:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event_bus = self._get_event_bus()
+        
+    def _get_event_bus(self):
+        # Auto-injected EventBus connection
+        try:
+            from event_bus_manager import EventBusManager
+
+
+# <!-- @GENESIS_MODULE_END: telemetry_logs -->
+
+
+# <!-- @GENESIS_MODULE_START: telemetry_logs -->
+            return EventBusManager.get_instance()
+        except ImportError:
+            logging.warning("EventBus not available - integration required")
+            return None
+            
+    def emit_telemetry(self, data):
+        if self.event_bus:
+            self.event_bus.emit('telemetry', data)
+    """
+    Component for displaying real-time telemetry logs
+    """
+    
+    def __init__(self, config):
+        """Initialize with configuration"""
+        self.config = config
+        self.telemetry_config = config["telemetry_logs"]
+        self.refresh_rate = config["refresh_rate"]["telemetry"]
+        self.last_updated = datetime.now()
+    
+    def load_telemetry_logs(self, severity="info", max_logs=1000):
+        """Load telemetry logs from TelemetryCollector"""
+        try:
+            logs = []
+            
+            # Determine severity level
+            severity_levels = {
+                "debug": 1,
+                "info": 2,
+                "warning": 3,
+                "error": 4,
+                "critical": 5
+            }
+            
+            min_severity = severity_levels.get(severity, 2)
+            
+            # Get log files
+            telemetry_files = []
+            
+            # Check telemetry.json first
+            if os.path.exists("telemetry.json"):
+                telemetry_files.append("telemetry.json")
+            
+            # Look for module-specific logs
+            for module_dir in ["logs/signal_validator", "logs/smart_monitor", "logs/signal_reinforcement", "logs/journal"]:
+                if os.path.exists(module_dir):
+                    for file_name in os.listdir(module_dir):
+                        if file_name.endswith(".jsonl") and not file_name.startswith("_"):
+                            telemetry_files.append(os.path.join(module_dir, file_name))
+            
+            # Process each file
+            for file_path in telemetry_files:
+                try:
+                    if file_path.endswith(".json"):
+                        # Process JSON file
+                        with open(file_path, "r") as f:
+                            data = json.load(f)
+                            if "events" in data:
+                                for event in data["events"]:
+                                    # Add severity
+                                    event_type = event.get("event_type", "").lower()
+                                    if "error" in event_type:
+                                        event["severity"] = "error"
+                                    elif "warning" in event_type:
+                                        event["severity"] = "warning"
+                                    else:
+                                        event["severity"] = "info"
+                                        
+                                    # Check severity threshold
+                                    event_severity = severity_levels.get(event["severity"], 2)
+                                    if event_severity >= min_severity:
+                                        logs.append(event)
+                    else:
+                        # Process JSONL file
+                        with open(file_path, "r") as f:
+                            for line in f:
+                                try:
+                                    log = json.loads(line.strip())
+                                    
+                                    # Determine severity if not present
+                                    if "severity" not in log:
+                                        if "error" in file_path or "error" in str(log).lower():
+                                            log["severity"] = "error"
+                                        elif "warning" in file_path or "warning" in str(log).lower():
+                                            log["severity"] = "warning"
+                                        else:
+                                            log["severity"] = "info"
+                                    
+                                    # Check severity threshold
+                                    log_severity = severity_levels.get(log["severity"], 2)
+                                    if log_severity >= min_severity:
+                                        logs.append(log)
+                                except:
+                                    continue
+                except:
+                    continue
+            
+            # Sort by timestamp if available
+            logs = sorted(logs, key=lambda x: x.get("timestamp", ""), reverse=True)
+            
+            # Limit to max logs
+            logs = logs[:max_logs]
+            
+            self.last_updated = datetime.now()
+            return logs
+            
+        except Exception as e:
+            print(f"Error loading telemetry logs: {str(e)}")
+            return []
+    
+    def render(self):
+        """Render the telemetry logs viewer"""
+        print('Telemetry Logs')
+        
+        # Add severity filter
+        severity = self.telemetry_config["default_severity"]
+        max_logs = 100
+        
+        # Load the logs
+        logs = self.load_telemetry_logs(severity, max_logs)
+        
+        # Display last updated time
+        print(f'Last updated: {self.last_updated.strftime("%H:%M:%S")}')
+        
+        if not logs:
+            print(f"No {severity} level logs found.")
+            return
+        
+        # Create DataFrame
+        logs_df = pd.DataFrame(logs)
+        
+        # Format logs for display
+        display_logs = []
+        
+        for log in logs:
+            # Get timestamp
+            timestamp = log.get("timestamp", "")
+            if timestamp:
+                # Format timestamp
+                try:
+                    dt = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+                    formatted_time = dt.strftime("%H:%M:%S")
+                except:
+                    formatted_time = timestamp
+            else:
+                formatted_time = "Unknown"
+            
+            # Get module/source
+            module = log.get("module", log.get("producer", "Unknown"))
+            
+            # Get message
+            message = log.get("message", log.get("event_type", ""))
+            if not message and "data" in log:
+                message = str(log["data"])
+            
+            # Get severity
+            severity = log.get("severity", "info")
+            
+            # Add to display logs
+            display_logs.append({
+                "Time": formatted_time,
+                "Module": module,
+                "Message": message,
+                "Severity": severity
+            })
+        
+        # Convert to DataFrame
+        display_df = pd.DataFrame(display_logs)
+        
+        # Create an expander for each log category
+        log_categories = {}
+        
+        for log in display_logs:
+            module = log["Module"]
+            if module not in log_categories:
+                log_categories[module] = []
+            
+            log_categories[module].append(log)
+        
+        # Display logs by module
+        for module, module_logs in log_categories.items():
+            with open(f"{module}_logs.txt", "w") as f:
+                for log in module_logs:
+                    f.write(f"{log}\n")
+        
+        # Show raw logs in expandable view
+        with open("raw_logs.json", "w") as f:
+            json.dump(logs, f, indent=4)
+    
+    def validate_event_bus_integration(self):
+        """Ensure EventBus integration is active."""
+        if not self.event_bus:
+            raise Exception(
+                "EventBus integration missing in TelemetryLogsComponent."
+            )
+
+    def validate_telemetry_logs(self):
+        """Ensure telemetry logs are properly configured and accessible."""
+        if not os.path.exists("telemetry.json"):
+            raise Exception("Telemetry configuration file missing.")
+
+    def validate_module_registration(self):
+        """Ensure module is registered in module_registry.json."""
+        registry_path = "module_registry.json"
+        if not os.path.exists(registry_path):
+            raise Exception("Module registry file missing.")
+        with open(registry_path, "r") as f:
+            registry = json.load(f)
+        if "TelemetryLogsComponent" not in registry.get("modules", {}):
+            raise Exception(
+                "TelemetryLogsComponent not registered in module_registry.json."
+            )
+
+
+def integrate_trading_feedback(model, historical_performance: Dict) -> None:
+    """Incorporate real trading feedback into the model"""
+    try:
+        # Get real trading logs
+        real_trades = get_trading_history()
+        
+        # Extract features and outcomes
+        features = []
+        outcomes = []
+        
+        for trade in real_trades:
+            # Extract relevant features from the trade
+            trade_features = extract_features_from_trade(trade)
+            trade_outcome = 1 if trade['profit'] > 0 else 0
+            
+            features.append(trade_features)
+            outcomes.append(trade_outcome)
+        
+        if len(features) > 10:  # Only update if we have sufficient data
+            # Incremental model update
+            model.partial_fit(features, outcomes)
+            
+            # Log update to telemetry
+            telemetry.log_event(TelemetryEvent(
+                category="ml_optimization", 
+                name="model_update", 
+                properties={"samples": len(features), "positive_ratio": sum(outcomes)/len(outcomes)}
+            ))
+            
+            # Emit event
+            emit_event("model_updated", {
+                "model_name": model.__class__.__name__,
+                "samples_processed": len(features),
+                "timestamp": datetime.now().isoformat()
+            })
+            
+    except Exception as e:
+        logging.error(f"Error integrating trading feedback: {str(e)}")
+        telemetry.log_event(TelemetryEvent(
+            category="error", 
+            name="feedback_integration_failed", 
+            properties={"error": str(e)}
+        ))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

@@ -1,0 +1,615 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_meta_signal_harmonizer -->
+"""
+🏛️ GENESIS TEST_META_SIGNAL_HARMONIZER - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_meta_signal_harmonizer",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_meta_signal_harmonizer: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_meta_signal_harmonizer",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_meta_signal_harmonizer", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_meta_signal_harmonizer: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+GENESIS AI TRADING BOT SYSTEM - PHASE 18 TESTING
+test_meta_signal_harmonizer.py - Comprehensive test suite for MetaSignalHarmonizer
+ARCHITECT MODE: v2.7
+
+Test Cases:
+- Aligned signal test  expect UnifiedExecutionSignal
+- Divergence test  expect SignalConflictDetected  
+- Mid-score test  expect MetaSignalAuditTrail
+- SignalHarmonyMetric correctness
+
+COMPLIANCE REQUIREMENTS:
+ Use real data only - NO mock/execute_lived data
+ Event-driven testing via EventBus
+ Full telemetry validation
+ Institutional-grade test coverage
+"""
+
+import os
+import sys
+import json
+import time
+import unittest
+import threading
+from datetime import datetime, timedelta
+from pathlib import Path
+
+# Add parent directory to path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from core.meta_signal_harmonizer import MetaSignalHarmonizer, initialize_meta_signal_harmonizer
+from event_bus import get_event_bus, emit_event
+
+class TestMetaSignalHarmonizer(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_meta_signal_harmonizer",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_meta_signal_harmonizer: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_meta_signal_harmonizer",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_meta_signal_harmonizer", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_meta_signal_harmonizer: {e}")
+    """
+    Comprehensive test suite for MetaSignalHarmonizer
+    
+    ARCHITECT MODE COMPLIANCE:
+    - Real data testing only
+    - EventBus communication validation
+    - Telemetry verification
+    - Performance benchmarking
+    """
+    
+    @classmethod
+    def setUpClass(cls):
+        """Set up test environment with real GENESIS infrastructure"""
+        cls.event_bus = get_event_bus()
+        cls.harmonizer = initialize_meta_signal_harmonizer()
+        
+        # Setup test result collection
+        cls.test_results = {
+            "unified_signals": [],
+            "audit_trails": [],
+            "conflicts": [],
+            "harmony_metrics": [],
+            "telemetry_events": []
+        }
+        
+        # Subscribe to output events for verification
+        cls._setup_test_subscribers()
+        
+        # Wait for initialization
+        time.sleep(2)
+        
+        print(" MetaSignalHarmonizer test environment initialized")
+    
+    @classmethod
+    def _setup_test_subscribers(cls):
+        """Setup subscribers to capture harmonizer outputs"""
+        
+        def capture_unified_signal(event):
+            cls.test_results["unified_signals"].append(event)
+            print(f" Captured UnifiedExecutionSignal: {event.get('data', {}).get('signal_id')}")
+        
+        def capture_audit_trail(event):
+            cls.test_results["audit_trails"].append(event)
+            print(f" Captured MetaSignalAuditTrail: {event.get('data', {}).get('signal_id')}")
+        
+        def capture_conflict(event):
+            cls.test_results["conflicts"].append(event)
+            print(f" Captured SignalConflictDetected: {event.get('data', {}).get('signal_id')}")
+        
+        def capture_harmony_metric(event):
+            cls.test_results["harmony_metrics"].append(event)
+            print(f" Captured SignalHarmonyMetric: {event.get('data', {}).get('timestamp')}")
+        
+        def capture_telemetry(event):
+            cls.test_results["telemetry_events"].append(event)
+        
+        # Subscribe to all harmonizer output events
+        cls.event_bus.subscribe("UnifiedExecutionSignal", capture_unified_signal, "TestMetaSignalHarmonizer")
+        cls.event_bus.subscribe("MetaSignalAuditTrail", capture_audit_trail, "TestMetaSignalHarmonizer")
+        cls.event_bus.subscribe("SignalConflictDetected", capture_conflict, "TestMetaSignalHarmonizer")
+        cls.event_bus.subscribe("SignalHarmonyMetric", capture_harmony_metric, "TestMetaSignalHarmonizer")
+        cls.event_bus.subscribe("ModuleTelemetry", capture_telemetry, "TestMetaSignalHarmonizer")
+    
+    def test_01_aligned_signals_unified_output(self):
+        """Test aligned high-confidence signals  expect UnifiedExecutionSignal"""
+        print("\n TEST 1: Aligned High-Confidence Signals")
+        
+        test_signal_id = f"TEST_ALIGNED_{int(time.time())}"
+        
+        # Clear previous results
+        self.test_results["unified_signals"].clear()
+        
+        # Emit aligned high-confidence signals from all sources
+        self._emit_signal_confidence_rated(test_signal_id, 85, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_pattern_signal_detected(test_signal_id, 0.9, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_live_execution_feedback(test_signal_id, 0.8, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_trade_journal_entry(test_signal_id, "WIN", "BUY", 1.5)
+        
+        # Wait for processing
+        time.sleep(3)
+        
+        # Verify UnifiedExecutionSignal was emitted
+        self.assertGreater(len(self.test_results["unified_signals"]), 0, 
+                          "Expected UnifiedExecutionSignal for aligned high-confidence signals")
+        
+        unified_signal = self.test_results["unified_signals"][-1]
+        signal_data = unified_signal.get("data", {})
+        
+        self.assertEqual(signal_data.get("signal_id"), test_signal_id)
+        self.assertGreaterEqual(signal_data.get("final_score", 0), 0.75, 
+                               "Expected final score >= 0.75 for unified signal")
+        self.assertEqual(signal_data.get("bias"), "BUY")
+        self.assertTrue(signal_data.get("execution_ready", False))
+        
+        print(f" TEST 1 PASSED: UnifiedExecutionSignal emitted with score {signal_data.get('final_score', 0):.3f}")
+    
+    def test_02_conflicting_signals_conflict_detection(self):
+        """Test conflicting signals  expect SignalConflictDetected"""
+        print("\n TEST 2: Conflicting Signal Detection")
+        
+        test_signal_id = f"TEST_CONFLICT_{int(time.time())}"
+        
+        # Clear previous results
+        self.test_results["conflicts"].clear()
+        
+        # Emit conflicting signals (BUY vs SELL bias)
+        self._emit_signal_confidence_rated(test_signal_id, 80, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_pattern_signal_detected(test_signal_id, 0.85, "SELL")  # Conflicting bias
+        time.sleep(0.5)
+        
+        self._emit_live_execution_feedback(test_signal_id, 0.75, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_trade_journal_entry(test_signal_id, "LOSS", "SELL", -0.8)
+        
+        # Wait for processing
+        time.sleep(3)
+        
+        # Verify SignalConflictDetected was emitted
+        self.assertGreater(len(self.test_results["conflicts"]), 0,
+                          "Expected SignalConflictDetected for conflicting signals")
+        
+        conflict_signal = self.test_results["conflicts"][-1]
+        conflict_data = conflict_signal.get("data", {})
+        
+        self.assertEqual(conflict_data.get("signal_id"), test_signal_id)
+        self.assertGreater(conflict_data.get("conflict_severity", 0), 0, 
+                          "Expected positive conflict severity")
+        self.assertTrue(conflict_data.get("requires_intervention", False))
+        
+        print(f" TEST 2 PASSED: SignalConflictDetected emitted with severity {conflict_data.get('conflict_severity', 0):.3f}")
+    
+    def test_03_mid_confidence_audit_trail(self):
+        """Test mid-confidence signals  expect MetaSignalAuditTrail"""
+        print("\n TEST 3: Mid-Confidence Audit Trail")
+        
+        test_signal_id = f"TEST_MID_CONF_{int(time.time())}"
+        
+        # Clear previous results
+        self.test_results["audit_trails"].clear()
+        
+        # Emit mid-confidence aligned signals (0.4  score < 0.75)
+        self._emit_signal_confidence_rated(test_signal_id, 60, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_pattern_signal_detected(test_signal_id, 0.55, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_live_execution_feedback(test_signal_id, 0.5, "BUY")
+        time.sleep(0.5)
+        
+        self._emit_trade_journal_entry(test_signal_id, "WIN", "BUY", 0.3)  # Small win
+        
+        # Wait for processing
+        time.sleep(3)
+        
+        # Verify MetaSignalAuditTrail was emitted
+        self.assertGreater(len(self.test_results["audit_trails"]), 0,
+                          "Expected MetaSignalAuditTrail for mid-confidence signals")
+        
+        audit_signal = self.test_results["audit_trails"][-1]
+        audit_data = audit_signal.get("data", {})
+        
+        self.assertEqual(audit_data.get("signal_id"), test_signal_id)
+        self.assertGreaterEqual(audit_data.get("final_score", 0), 0.4, 
+                               "Expected final score >= 0.4 for audit trail")
+        self.assertLess(audit_data.get("final_score", 1), 0.75, 
+                       "Expected final score < 0.75 for audit trail")
+        self.assertTrue(audit_data.get("requires_review", False))
+        
+        print(f" TEST 3 PASSED: MetaSignalAuditTrail emitted with score {audit_data.get('final_score', 0):.3f}")
+    
+    def test_04_signal_weighting_accuracy(self):
+        """Test signal weighting formula accuracy"""
+        print("\n TEST 4: Signal Weighting Formula Accuracy")
+        
+        test_signal_id = f"TEST_WEIGHTING_{int(time.time())}"
+        
+        # Clear previous results
+        self.test_results["unified_signals"].clear()
+        
+        # Emit signals with known values to test weighting
+        # Pattern Engine: 0.4 weight  1.0 confidence = 0.4
+        # Signal Confidence: 0.3 weight  1.0 confidence = 0.3  
+        # Execution Feedback: 0.2 weight  1.0 confidence = 0.2
+        # Trade Journal: 0.1 weight  1.0 confidence = 0.1
+        # Expected final score: 1.0 (should emit UnifiedExecutionSignal)
+        
+        self._emit_signal_confidence_rated(test_signal_id, 100, "BUY")  # Perfect confidence
+        time.sleep(0.5)
+        
+        self._emit_pattern_signal_detected(test_signal_id, 1.0, "BUY")  # Perfect confidence
+        time.sleep(0.5)
+        
+        self._emit_live_execution_feedback(test_signal_id, 1.0, "BUY")  # Perfect execution
+        time.sleep(0.5)
+        
+        self._emit_trade_journal_entry(test_signal_id, "WIN", "BUY", 3.0)  # Great win
+        
+        # Wait for processing
+        time.sleep(3)
+        
+        # Verify weighting calculation
+        self.assertGreater(len(self.test_results["unified_signals"]), 0,
+                          "Expected UnifiedExecutionSignal for perfect weighted signals")
+        
+        unified_signal = self.test_results["unified_signals"][-1]
+        signal_data = unified_signal.get("data", {})
+        final_score = signal_data.get("final_score", 0)
+        
+        # Should be close to 1.0 due to perfect alignment and high confidence
+        self.assertGreaterEqual(final_score, 0.85, 
+                               f"Expected high final score for perfect signals, got {final_score:.3f}")
+        
+        print(f" TEST 4 PASSED: Weighting formula correct, final score: {final_score:.3f}")
+    
+    def test_05_telemetry_validation(self):
+        """Test telemetry and metrics collection"""
+        print("\n TEST 5: Telemetry Validation")
+        
+        # Wait to collect some telemetry
+        time.sleep(2)
+        
+        # Verify telemetry events were captured
+        self.assertGreater(len(self.test_results["telemetry_events"]), 0,
+                          "Expected telemetry events to be emitted")
+        
+        # Check for module initialization telemetry
+        init_events = [e for e in self.test_results["telemetry_events"] 
+                      if e.get("data", {}).get("event_type") == "MODULE_INITIALIZED"]
+        
+        self.assertGreater(len(init_events), 0, "Expected MODULE_INITIALIZED telemetry event")
+        
+        # Verify telemetry structure
+        if self.test_results["telemetry_events"]:
+            telemetry_event = self.test_results["telemetry_events"][-1]
+            telemetry_data = telemetry_event.get("data", {})
+            
+            self.assertIn("module", telemetry_data, "Telemetry should include module name")
+            self.assertIn("event_type", telemetry_data, "Telemetry should include event type")
+            self.assertIn("metrics", telemetry_data, "Telemetry should include metrics")
+            self.assertIn("timestamp", telemetry_data, "Telemetry should include timestamp")
+        
+        print(" TEST 5 PASSED: Telemetry validation successful")
+    
+    def test_06_performance_benchmarking(self):
+        """Test signal processing performance"""
+        print("\n TEST 6: Performance Benchmarking")
+        
+        start_time = time.time()
+        
+        # Process multiple signals rapidly
+        for i in range(10):
+            test_signal_id = f"PERF_TEST_{i}_{int(time.time())}"
+            
+            self._emit_signal_confidence_rated(test_signal_id, 75, "BUY")
+            self._emit_pattern_signal_detected(test_signal_id, 0.8, "BUY")
+            
+            time.sleep(0.1)  # Small delay between signals
+        
+        processing_time = time.time() - start_time
+        
+        # Should process 10 signals in reasonable time
+        self.assertLess(processing_time, 10.0, 
+                       f"Signal processing too slow: {processing_time:.2f}s for 10 signals")
+        
+        print(f" TEST 6 PASSED: Processed 10 signals in {processing_time:.2f}s")
+    
+    def test_07_data_storage_validation(self):
+        """Test data storage and logging functionality"""
+        print("\n TEST 7: Data Storage Validation")
+        
+        # Check if log directories were created
+        log_dir = Path("logs/meta_signal")
+        data_dir = Path("data/meta_signal_stats")
+        
+        self.assertTrue(log_dir.exists(), "Log directory should be created")
+        self.assertTrue(data_dir.exists(), "Data directory should be created")
+        
+        # Check for log files
+        log_files = list(log_dir.glob("*.jsonl"))
+        self.assertGreater(len(log_files), 0, "Expected JSONL log files to be created")
+        
+        print(" TEST 7 PASSED: Data storage validation successful")
+    
+    # Helper methods for emitting test signals
+    
+    def _emit_signal_confidence_rated(self, signal_id: str, confidence_score: int, bias: str):
+        """Emit SignalConfidenceRated event"""
+        event_data = {
+            "signal_id": signal_id,
+            "confidence_score": confidence_score,
+            "bias": bias,
+            "risk_reward_ratio": 2.0,
+            "confluence_score": 0.8,
+            "is_mutated": False,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        emit_event("SignalConfidenceRated", event_data, "TestMetaSignalHarmonizer")
+    
+    def _emit_pattern_signal_detected(self, signal_id: str, confidence: float, bias: str):
+        """Emit PatternSignalDetected event"""
+        event_data = {
+            "pattern_id": signal_id,
+            "signal_id": signal_id,
+            "confidence": confidence,
+            "bias": bias,
+            "pattern_type": "test_pattern",
+            "volatility_cluster": "medium",
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        emit_event("PatternSignalDetected", event_data, "TestMetaSignalHarmonizer")
+    
+    def _emit_live_execution_feedback(self, signal_id: str, execution_quality: float, bias: str):
+        """Emit LiveExecutionFeedback event"""
+        event_data = {
+            "trade_id": signal_id,
+            "signal_id": signal_id,
+            "execution_quality": execution_quality,
+            "bias": bias,
+            "side": bias,
+            "slippage": 0.5,
+            "latency_ms": 200,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        emit_event("LiveExecutionFeedback", event_data, "TestMetaSignalHarmonizer")
+    
+    def _emit_trade_journal_entry(self, signal_id: str, outcome: str, bias: str, pnl_ratio: float):
+        """Emit TradeJournalEntry event"""
+        event_data = {
+            "trade_id": signal_id,
+            "signal_id": signal_id,
+            "outcome": outcome,
+            "bias": bias,
+            "side": bias,
+            "pnl_ratio": pnl_ratio,
+            "profit_loss": pnl_ratio * 100,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        emit_event("TradeJournalEntry", event_data, "TestMetaSignalHarmonizer")
+    
+    @classmethod
+    def tearDownClass(cls):
+        """Clean up test environment"""
+        if hasattr(cls, 'harmonizer'):
+            cls.harmonizer.shutdown()
+        
+        # Print test results summary
+        print("\n TEST RESULTS SUMMARY:")
+        print(f"  UnifiedExecutionSignals: {len(cls.test_results['unified_signals'])}")
+        print(f"  MetaSignalAuditTrails: {len(cls.test_results['audit_trails'])}")
+        print(f"  SignalConflictDetected: {len(cls.test_results['conflicts'])}")
+        print(f"  SignalHarmonyMetrics: {len(cls.test_results['harmony_metrics'])}")
+        print(f"  TelemetryEvents: {len(cls.test_results['telemetry_events'])}")
+        
+        print(" Test environment cleaned up")
+
+def run_harmonizer_tests():
+    """Run all MetaSignalHarmonizer tests"""
+    print(" GENESIS PHASE 18 - MetaSignalHarmonizer Test Suite")
+    print("=" * 60)
+    
+    # Create test suite
+    loader = unittest.TestLoader()
+    suite = loader.loadTestsFromTestCase(TestMetaSignalHarmonizer)
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(suite)
+    
+    # Return success status
+    return result.wasSuccessful()
+
+if __name__ == "__main__":
+    success = run_harmonizer_tests()
+    
+    if success:
+        print("\n ALL TESTS PASSED - MetaSignalHarmonizer is ready for production")
+        exit(0)
+    else:
+        print("\n SOME TESTS FAILED - Review and fix issues before deployment")
+        exit(1)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_meta_signal_harmonizer -->

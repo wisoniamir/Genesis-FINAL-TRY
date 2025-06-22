@@ -1,0 +1,9 @@
+{
+  "module_id": "signal_feed_generator",
+  "original_path": "modules\\signal_processing\\signal_feed_generator.py",
+  "preserved_path": "preservation_holding_area\\signal_feed_generator_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 11653,
+  "checksum": "4eabdb9cfb414c6cb3ece9755bea69935c78589b01ef9ac2fe2d2bb03efaeff5"
+}

@@ -1,0 +1,19 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_compliance_module_repair.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.336693+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\architect_compliance_module_repair.py",
+      "line_numbers": [
+        41,
+        48,
+        55,
+        158
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

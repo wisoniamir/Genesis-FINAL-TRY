@@ -1,0 +1,9 @@
+{
+  "module_id": "diff",
+  "original_path": "modules\\restored\\diff.py",
+  "preserved_path": "preservation_holding_area\\diff_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 53680,
+  "checksum": "e5f16f866a92df66f7148b003ae4760f75fe78cb6d6709e2398fde3b38d669c6"
+}

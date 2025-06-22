@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\calibration_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.295824+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\calibration_recovered_2.py",
+      "line_numbers": [
+        311,
+        473,
+        615,
+        1162,
+        1180
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\calibration_recovered_2.py",
+      "line_numbers": [
+        329,
+        863
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\calibration_recovered_2.py",
+      "line_numbers": [
+        233,
+        236,
+        602,
+        1134,
+        1138
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\calibration_recovered_2.py",
+      "line_numbers": [
+        287,
+        365,
+        377,
+        405,
+        438
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

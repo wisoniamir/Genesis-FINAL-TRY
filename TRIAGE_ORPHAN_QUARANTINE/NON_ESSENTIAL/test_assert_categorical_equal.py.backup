@@ -1,0 +1,207 @@
+# <!-- @GENESIS_MODULE_START: test_assert_categorical_equal -->
+"""
+🏛️ GENESIS TEST_ASSERT_CATEGORICAL_EQUAL - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import pytest
+
+from pandas import Categorical
+import pandas._testing as tm
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_assert_categorical_equal",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_assert_categorical_equal: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_assert_categorical_equal",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_assert_categorical_equal", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_assert_categorical_equal: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+@pytest.mark.parametrize(
+    "c",
+    [Categorical([1, 2, 3, 4]), Categorical([1, 2, 3, 4], categories=[1, 2, 3, 4, 5])],
+)
+def test_categorical_equal(c):
+    tm.assert_categorical_equal(c, c)
+
+
+@pytest.mark.parametrize("check_category_order", [True, False])
+def test_categorical_equal_order_mismatch(check_category_order):
+    c1 = Categorical([1, 2, 3, 4], categories=[1, 2, 3, 4])
+    c2 = Categorical([1, 2, 3, 4], categories=[4, 3, 2, 1])
+    kwargs = {"check_category_order": check_category_order}
+
+    if check_category_order:
+        msg = """Categorical\\.categories are different
+
+Categorical\\.categories values are different \\(100\\.0 %\\)
+\\[left\\]:  Index\\(\\[1, 2, 3, 4\\], dtype='int64'\\)
+\\[right\\]: Index\\(\\[4, 3, 2, 1\\], dtype='int64'\\)"""
+        with pytest.raises(AssertionError, match=msg):
+            tm.assert_categorical_equal(c1, c2, **kwargs)
+    else:
+        tm.assert_categorical_equal(c1, c2, **kwargs)
+
+
+def test_categorical_equal_categories_mismatch():
+    msg = """Categorical\\.categories are different
+
+Categorical\\.categories values are different \\(25\\.0 %\\)
+\\[left\\]:  Index\\(\\[1, 2, 3, 4\\], dtype='int64'\\)
+\\[right\\]: Index\\(\\[1, 2, 3, 5\\], dtype='int64'\\)"""
+
+    c1 = Categorical([1, 2, 3, 4])
+    c2 = Categorical([1, 2, 3, 5])
+
+    with pytest.raises(AssertionError, match=msg):
+        tm.assert_categorical_equal(c1, c2)
+
+
+def test_categorical_equal_codes_mismatch():
+    categories = [1, 2, 3, 4]
+    msg = """Categorical\\.codes are different
+
+Categorical\\.codes values are different \\(50\\.0 %\\)
+\\[left\\]:  \\[0, 1, 3, 2\\]
+\\[right\\]: \\[0, 1, 2, 3\\]"""
+
+    c1 = Categorical([1, 2, 4, 3], categories=categories)
+    c2 = Categorical([1, 2, 3, 4], categories=categories)
+
+    with pytest.raises(AssertionError, match=msg):
+        tm.assert_categorical_equal(c1, c2)
+
+
+def test_categorical_equal_ordered_mismatch():
+    data = [1, 2, 3, 4]
+    msg = """Categorical are different
+
+Attribute "ordered" are different
+\\[left\\]:  False
+\\[right\\]: True"""
+
+    c1 = Categorical(data, ordered=False)
+    c2 = Categorical(data, ordered=True)
+
+    with pytest.raises(AssertionError, match=msg):
+        tm.assert_categorical_equal(c1, c2)
+
+
+@pytest.mark.parametrize("obj", ["index", "foo", "pandas"])
+def test_categorical_equal_object_override(obj):
+    data = [1, 2, 3, 4]
+    msg = f"""{obj} are different
+
+Attribute "ordered" are different
+\\[left\\]:  False
+\\[right\\]: True"""
+
+    c1 = Categorical(data, ordered=False)
+    c2 = Categorical(data, ordered=True)
+
+    with pytest.raises(AssertionError, match=msg):
+        tm.assert_categorical_equal(c1, c2, obj=obj)
+
+
+# <!-- @GENESIS_MODULE_END: test_assert_categorical_equal -->

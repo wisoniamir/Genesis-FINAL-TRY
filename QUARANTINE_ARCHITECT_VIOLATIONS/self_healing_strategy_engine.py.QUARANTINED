@@ -1,0 +1,88 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.895344+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        11,
+        38,
+        132,
+        211,
+        482
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        222,
+        506,
+        535,
+        553,
+        564
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        138,
+        262
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        137,
+        245,
+        297,
+        339,
+        431
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        71,
+        118
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        212,
+        213,
+        214
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\self_healing_strategy_engine.py",
+      "line_numbers": [
+        217,
+        218,
+        219
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

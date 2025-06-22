@@ -1,0 +1,184 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "🔧 Scan and Upgrade All Modules",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"quick_module_scanner.py"
+			],
+			"group": "build",
+			"isBackground": false
+		},
+		{
+			"label": "🐍 Check Python Installation",
+			"type": "shell",
+			"command": "python",
+			"args": ["--version"],
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "📦 Install MetaTrader5",
+			"type": "shell",
+			"command": "pip",
+			"args": [
+				"install",
+				"MetaTrader5==5.0.45",
+				"--force-reinstall"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "🔄 Run Module Restoration",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"urgent_module_restoration_engine.py"
+			],
+			"group": "build",
+			"isBackground": false,
+			"dependsOn": "📦 Install MetaTrader5"
+		},
+		{
+			"label": "🚀 Launch GENESIS Desktop",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"genesis_desktop.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"dependsOn": "🔄 Run Module Restoration"
+		},		{
+			"label": "🛠️ Complete GENESIS Restoration",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"🐍 Check Python Installation",
+				"📦 Install MetaTrader5", 
+				"🔄 Run Module Restoration",
+				"🚀 Launch GENESIS Desktop"
+			]
+		},
+		{
+			"label": "🔄 Setup GitHub Integration",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"github_integration_setup.ps1", 
+				"-Action", 
+				"setup"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "📊 GitHub Status",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"github_integration_setup.ps1", 
+				"-Action", 
+				"status"
+			],
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "🔄 GitHub Sync",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"github_integration_setup.ps1", 
+				"-Action", 
+				"sync"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},		{
+			"label": "🚀 Start CI/CD Workflow",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"github_ci_cd_workflow.py", 
+				"start"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		},		{
+			"label": "🌐 Push GENESIS to GitHub",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"github_integration_setup.ps1",
+				"-Action",
+				"push",
+				"-CommitMessage",
+				"Initial GENESIS Project Complete Push"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},		{
+			"label": "🔨 Initialize and Push All Files to GitHub",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"push_genesis_to_github.ps1"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},		{
+			"label": "🔧 Fix GitHub Repository Issues",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"fix_github_repository.ps1"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "🚨 EMERGENCY: Fix desktop.ini Git Error",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", 
+				"Bypass", 
+				"-File", 
+				"fix_git_desktop_ini_references.ps1"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

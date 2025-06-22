@@ -1,0 +1,63 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_confidence_overlay_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.866214+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_confidence_overlay_recovered_2.py",
+      "line_numbers": [
+        13,
+        38,
+        157,
+        169,
+        186
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_confidence_overlay_recovered_2.py",
+      "line_numbers": [
+        162,
+        181,
+        221,
+        251
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_confidence_overlay_recovered_2.py",
+      "line_numbers": [
+        141,
+        266
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_confidence_overlay_recovered_2.py",
+      "line_numbers": [
+        171,
+        172,
+        173
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pattern_confidence_overlay_recovered_2.py",
+      "line_numbers": [
+        176,
+        177
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

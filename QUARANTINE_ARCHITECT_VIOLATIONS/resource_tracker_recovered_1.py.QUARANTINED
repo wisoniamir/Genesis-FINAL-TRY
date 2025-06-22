@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resource_tracker_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.539529+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resource_tracker_recovered_1.py",
+      "line_numbers": [
+        116,
+        126,
+        128,
+        130,
+        140
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resource_tracker_recovered_1.py",
+      "line_numbers": [
+        108,
+        127,
+        139,
+        151,
+        180
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resource_tracker_recovered_1.py",
+      "line_numbers": [
+        129,
+        209,
+        282,
+        304,
+        314
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resource_tracker_recovered_1.py",
+      "line_numbers": [
+        178
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\resource_tracker_recovered_1.py",
+      "line_numbers": [
+        165,
+        171,
+        249,
+        287,
+        320
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

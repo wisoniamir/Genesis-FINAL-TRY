@@ -1,0 +1,55 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase18_reactive_execution_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.066991+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase18_reactive_execution_recovered_1.py",
+      "line_numbers": [
+        9
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase18_reactive_execution_recovered_1.py",
+      "line_numbers": [
+        1,
+        47,
+        59,
+        60,
+        64
+      ],
+      "violation_count": 35
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase18_reactive_execution_recovered_1.py",
+      "line_numbers": [
+        213,
+        256,
+        298,
+        340,
+        403
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase18_reactive_execution_recovered_1.py",
+      "line_numbers": [
+        241,
+        283,
+        325,
+        379,
+        418
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

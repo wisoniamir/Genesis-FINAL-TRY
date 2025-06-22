@@ -1,0 +1,60 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_pattern_learning_engine_phase58_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.002358+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_pattern_learning_engine_phase58_recovered_1.py",
+      "line_numbers": [
+        31,
+        61,
+        84,
+        106,
+        131
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_pattern_learning_engine_phase58_recovered_1.py",
+      "line_numbers": [
+        1,
+        24,
+        33,
+        35,
+        57
+      ],
+      "violation_count": 41
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_pattern_learning_engine_phase58_recovered_1.py",
+      "line_numbers": [
+        276
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_pattern_learning_engine_phase58_recovered_1.py",
+      "line_numbers": [
+        280
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\test_pattern_learning_engine_phase58_recovered_1.py",
+      "line_numbers": [
+        303
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

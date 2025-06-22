@@ -1,0 +1,65 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\live_feedback_adapter_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.224979+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\live_feedback_adapter_recovered_2.py",
+      "line_numbers": [
+        113,
+        144,
+        192,
+        225,
+        242
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\live_feedback_adapter_recovered_2.py",
+      "line_numbers": [
+        131,
+        181,
+        214,
+        231,
+        270
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\live_feedback_adapter_recovered_2.py",
+      "line_numbers": [
+        410
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\live_feedback_adapter_recovered_2.py",
+      "line_numbers": [
+        105,
+        432
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\live_feedback_adapter_recovered_2.py",
+      "line_numbers": [
+        115,
+        116,
+        117,
+        120,
+        121
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

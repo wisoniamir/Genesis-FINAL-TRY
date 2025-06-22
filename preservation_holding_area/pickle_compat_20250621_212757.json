@@ -1,0 +1,9 @@
+{
+  "module_id": "pickle_compat",
+  "original_path": "modules\\restored\\pickle_compat.py",
+  "preserved_path": "preservation_holding_area\\pickle_compat_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19259,
+  "checksum": "2f730c9f94ee665cbf4851530617143437b9d9fb6208accff4c1123458cf89b2"
+}

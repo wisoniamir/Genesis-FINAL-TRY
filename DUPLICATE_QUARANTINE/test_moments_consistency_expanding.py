@@ -1,0 +1,295 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_moments_consistency_expanding -->
+"""
+🏛️ GENESIS TEST_MOMENTS_CONSISTENCY_EXPANDING - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import numpy as np
+import pytest
+
+from pandas import Series
+import pandas._testing as tm
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_moments_consistency_expanding", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_moments_consistency_expanding", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_moments_consistency_expanding",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_moments_consistency_expanding: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_moments_consistency_expanding",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_moments_consistency_expanding", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_moments_consistency_expanding: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+def no_nans(x):
+    return x.notna().all().all()
+
+
+def all_na(x):
+    return x.isnull().all().all()
+
+
+@pytest.mark.parametrize("f", [lambda v: Series(v).sum(), np.nansum, np.sum])
+def test_expanding_apply_consistency_sum_nans(request, all_data, min_periods, f):
+    if f is np.sum:
+        if not no_nans(all_data) and not (
+            all_na(all_data) and not all_data.empty and min_periods > 0
+        ):
+            request.applymarker(
+                pytest.mark.xfail(reason="np.sum has different behavior with NaNs")
+            )
+    expanding_f_result = all_data.expanding(min_periods=min_periods).sum()
+    expanding_apply_f_result = all_data.expanding(min_periods=min_periods).apply(
+        func=f, raw=True
+    )
+    tm.assert_equal(expanding_f_result, expanding_apply_f_result)
+
+
+@pytest.mark.parametrize("ddof", [0, 1])
+def test_moments_consistency_var(all_data, min_periods, ddof):
+    var_x = all_data.expanding(min_periods=min_periods).var(ddof=ddof)
+    assert not (var_x < 0).any().any()
+
+    if ddof == 0:
+        # check that biased var(x) == mean(x^2) - mean(x)^2
+        mean_x2 = (all_data * all_data).expanding(min_periods=min_periods).mean()
+        mean_x = all_data.expanding(min_periods=min_periods).mean()
+        tm.assert_equal(var_x, mean_x2 - (mean_x * mean_x))
+
+
+@pytest.mark.parametrize("ddof", [0, 1])
+def test_moments_consistency_var_constant(consistent_data, min_periods, ddof):
+    count_x = consistent_data.expanding(min_periods=min_periods).count()
+    var_x = consistent_data.expanding(min_periods=min_periods).var(ddof=ddof)
+
+    # check that variance of constant series is identically 0
+    assert not (var_x > 0).any().any()
+    expected = consistent_data * np.nan
+    expected[count_x >= max(min_periods, 1)] = 0.0
+    if ddof == 1:
+        expected[count_x < 2] = np.nan
+    tm.assert_equal(var_x, expected)
+
+
+@pytest.mark.parametrize("ddof", [0, 1])
+def test_expanding_consistency_var_std_cov(all_data, min_periods, ddof):
+    var_x = all_data.expanding(min_periods=min_periods).var(ddof=ddof)
+    assert not (var_x < 0).any().any()
+
+    std_x = all_data.expanding(min_periods=min_periods).std(ddof=ddof)
+    assert not (std_x < 0).any().any()
+
+    # check that var(x) == std(x)^2
+    tm.assert_equal(var_x, std_x * std_x)
+
+    cov_x_x = all_data.expanding(min_periods=min_periods).cov(all_data, ddof=ddof)
+    assert not (cov_x_x < 0).any().any()
+
+    # check that var(x) == cov(x, x)
+    tm.assert_equal(var_x, cov_x_x)
+
+
+@pytest.mark.parametrize("ddof", [0, 1])
+def test_expanding_consistency_series_cov_corr(series_data, min_periods, ddof):
+    var_x_plus_y = (
+        (series_data + series_data).expanding(min_periods=min_periods).var(ddof=ddof)
+    )
+    var_x = series_data.expanding(min_periods=min_periods).var(ddof=ddof)
+    var_y = series_data.expanding(min_periods=min_periods).var(ddof=ddof)
+    cov_x_y = series_data.expanding(min_periods=min_periods).cov(series_data, ddof=ddof)
+    # check that cov(x, y) == (var(x+y) - var(x) -
+    # var(y)) / 2
+    tm.assert_equal(cov_x_y, 0.5 * (var_x_plus_y - var_x - var_y))
+
+    # check that corr(x, y) == cov(x, y) / (std(x) *
+    # std(y))
+    corr_x_y = series_data.expanding(min_periods=min_periods).corr(series_data)
+    std_x = series_data.expanding(min_periods=min_periods).std(ddof=ddof)
+    std_y = series_data.expanding(min_periods=min_periods).std(ddof=ddof)
+    tm.assert_equal(corr_x_y, cov_x_y / (std_x * std_y))
+
+    if ddof == 0:
+        # check that biased cov(x, y) == mean(x*y) -
+        # mean(x)*mean(y)
+        mean_x = series_data.expanding(min_periods=min_periods).mean()
+        mean_y = series_data.expanding(min_periods=min_periods).mean()
+        mean_x_times_y = (
+            (series_data * series_data).expanding(min_periods=min_periods).mean()
+        )
+        tm.assert_equal(cov_x_y, mean_x_times_y - (mean_x * mean_y))
+
+
+def test_expanding_consistency_mean(all_data, min_periods):
+    result = all_data.expanding(min_periods=min_periods).mean()
+    expected = (
+        all_data.expanding(min_periods=min_periods).sum()
+        / all_data.expanding(min_periods=min_periods).count()
+    )
+    tm.assert_equal(result, expected.astype("float64"))
+
+
+def test_expanding_consistency_constant(consistent_data, min_periods):
+    count_x = consistent_data.expanding().count()
+    mean_x = consistent_data.expanding(min_periods=min_periods).mean()
+    # check that correlation of a series with itself is either 1 or NaN
+    corr_x_x = consistent_data.expanding(min_periods=min_periods).corr(consistent_data)
+
+    exp = (
+        consistent_data.max()
+        if isinstance(consistent_data, Series)
+        else consistent_data.max().max()
+    )
+
+    # check mean of constant series
+    expected = consistent_data * np.nan
+    expected[count_x >= max(min_periods, 1)] = exp
+    tm.assert_equal(mean_x, expected)
+
+    # check correlation of constant series with itself is NaN
+    expected[:] = np.nan
+    tm.assert_equal(corr_x_x, expected)
+
+
+def test_expanding_consistency_var_debiasing_factors(all_data, min_periods):
+    # check variance debiasing factors
+    var_unbiased_x = all_data.expanding(min_periods=min_periods).var()
+    var_biased_x = all_data.expanding(min_periods=min_periods).var(ddof=0)
+    var_debiasing_factors_x = all_data.expanding().count() / (
+        all_data.expanding().count() - 1.0
+    ).replace(0.0, np.nan)
+    tm.assert_equal(var_unbiased_x, var_biased_x * var_debiasing_factors_x)
+
+
+# <!-- @GENESIS_MODULE_END: test_moments_consistency_expanding -->

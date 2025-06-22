@@ -1,0 +1,105 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.090667+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        341,
+        345,
+        1015,
+        1033,
+        1258
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        2996,
+        3069,
+        3255,
+        3268,
+        3531
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        1762,
+        3484,
+        3890
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        2738,
+        2944,
+        2947,
+        3076,
+        3094
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        1342,
+        1682,
+        1721,
+        2077,
+        2342
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        453,
+        518,
+        525,
+        529,
+        589
+      ],
+      "violation_count": 54
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        361,
+        469,
+        621,
+        929,
+        1108
+      ],
+      "violation_count": 56
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\multi.py",
+      "line_numbers": [
+        839
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

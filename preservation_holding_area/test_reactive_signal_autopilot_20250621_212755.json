@@ -1,0 +1,9 @@
+{
+  "module_id": "test_reactive_signal_autopilot",
+  "original_path": "modules\\signal_processing\\test_reactive_signal_autopilot.py",
+  "preserved_path": "preservation_holding_area\\test_reactive_signal_autopilot_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 22327,
+  "checksum": "8356c8ef04e86de8f75d9f114a8c8ce16cf60fd9b72f68f1967a06f1e22039cb"
+}

@@ -1,0 +1,30 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.559100+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_recovered_1.py",
+      "line_numbers": [
+        71,
+        858
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_matfuncs_recovered_1.py",
+      "line_numbers": [
+        124,
+        163,
+        166,
+        446,
+        458
+      ],
+      "violation_count": 13
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

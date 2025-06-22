@@ -1,0 +1,9 @@
+{
+  "module_id": "netutil_test",
+  "original_path": "modules\\restored\\netutil_test.py",
+  "preserved_path": "preservation_holding_area\\netutil_test_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 68113,
+  "checksum": "a9509c08e4eaa5b7a4707002741dc35adea5653a0168c6cc273d669d037eaa24"
+}

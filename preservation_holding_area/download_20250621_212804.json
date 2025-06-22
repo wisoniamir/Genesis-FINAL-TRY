@@ -1,0 +1,9 @@
+{
+  "module_id": "download",
+  "original_path": "modules\\restored\\download.py",
+  "preserved_path": "preservation_holding_area\\download_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 27480,
+  "checksum": "ad5b6910a29a78980b987aa793b486edb995b752950e3338300e9fae49eb1e57"
+}

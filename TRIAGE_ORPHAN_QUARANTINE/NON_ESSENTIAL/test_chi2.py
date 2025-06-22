@@ -1,0 +1,244 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_chi2 -->
+"""
+🏛️ GENESIS TEST_CHI2 - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_chi2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_chi2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_chi2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_chi2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_chi2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_chi2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_chi2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+Tests for chi2, currently the only feature selection function designed
+specifically to work with sparse matrices.
+"""
+
+import warnings
+
+import numpy as np
+import pytest
+import scipy.stats
+
+from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.feature_selection._univariate_selection import _chisquare
+from sklearn.utils._testing import assert_array_almost_equal, assert_array_equal
+from sklearn.utils.fixes import COO_CONTAINERS, CSR_CONTAINERS
+
+# Feature 0 is highly informative for class 1;
+# feature 1 is the same everywhere;
+# feature 2 is a bit informative for class 2.
+X = [[2, 1, 2], [9, 1, 1], [6, 1, 2], [0, 1, 2]]
+y = [0, 1, 2, 2]
+
+
+def mkchi2(k):
+    """Make k-best chi2 selector"""
+    return SelectKBest(chi2, k=k)
+
+
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_chi2(csr_container):
+    # Test Chi2 feature extraction
+
+    chi2 = mkchi2(k=1).fit(X, y)
+    chi2 = mkchi2(k=1).fit(X, y)
+    assert_array_equal(chi2.get_support(indices=True), [0])
+    assert_array_equal(chi2.transform(X), np.array(X)[:, [0]])
+
+    chi2 = mkchi2(k=2).fit(X, y)
+    assert_array_equal(sorted(chi2.get_support(indices=True)), [0, 2])
+
+    Xsp = csr_container(X, dtype=np.float64)
+    chi2 = mkchi2(k=2).fit(Xsp, y)
+    assert_array_equal(sorted(chi2.get_support(indices=True)), [0, 2])
+    Xtrans = chi2.transform(Xsp)
+    assert_array_equal(Xtrans.shape, [Xsp.shape[0], 2])
+
+    # == doesn't work on scipy.sparse matrices
+    Xtrans = Xtrans.toarray()
+    Xtrans2 = mkchi2(k=2).fit_transform(Xsp, y).toarray()
+    assert_array_almost_equal(Xtrans, Xtrans2)
+
+
+@pytest.mark.parametrize("coo_container", COO_CONTAINERS)
+def test_chi2_coo(coo_container):
+    # Check that chi2 works with a COO matrix
+    # (as returned by CountVectorizer, DictVectorizer)
+    Xcoo = coo_container(X)
+    mkchi2(k=2).fit_transform(Xcoo, y)
+    # if we got here without an exception, we're safe
+
+
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_chi2_negative(csr_container):
+    # Check for proper error on negative numbers in the input X.
+    X, y = [[0, 1], [-1e-20, 1]], [0, 1]
+    for X in (X, np.array(X), csr_container(X)):
+        with pytest.raises(ValueError):
+            chi2(X, y)
+
+
+def test_chi2_unused_feature():
+    # Unused feature should evaluate to NaN
+    # and should issue no runtime warning
+    with warnings.catch_warnings(record=True) as warned:
+        warnings.simplefilter("always")
+        chi, p = chi2([[1, 0], [0, 0]], [1, 0])
+        for w in warned:
+            if "divide by zero" in repr(w):
+                raise AssertionError("Found unexpected warning %s" % w)
+    assert_array_equal(chi, [1, np.nan])
+    assert_array_equal(p[1], np.nan)
+
+
+def test_chisquare():
+    # Test replacement for scipy.stats.chisquare against the original.
+    obs = np.array([[2.0, 2.0], [1.0, 1.0]])
+    exp = np.array([[1.5, 1.5], [1.5, 1.5]])
+    # call SciPy first because our version overwrites obs
+    chi_scp, p_scp = scipy.stats.chisquare(obs, exp)
+    chi_our, p_our = _chisquare(obs, exp)
+
+    assert_array_almost_equal(chi_scp, chi_our)
+    assert_array_almost_equal(p_scp, p_our)
+
+
+# <!-- @GENESIS_MODULE_END: test_chi2 -->

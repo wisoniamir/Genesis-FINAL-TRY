@@ -1,0 +1,9 @@
+{
+  "module_id": "message_listener",
+  "original_path": "modules\\restored\\message_listener.py",
+  "preserved_path": "preservation_holding_area\\message_listener_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18025,
+  "checksum": "4736bf13ca2fd4dbdd80ece4953ed043d359883f81717da73a9a50989d9c3525"
+}

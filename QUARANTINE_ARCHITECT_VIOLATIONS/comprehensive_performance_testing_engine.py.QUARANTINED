@@ -1,0 +1,94 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.381305+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        188,
+        806,
+        817,
+        833,
+        846
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        71,
+        90,
+        165,
+        186,
+        299
+      ],
+      "violation_count": 83
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        217,
+        269,
+        314,
+        320,
+        432
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        220,
+        295,
+        333,
+        363,
+        834
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        812,
+        1054
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        816,
+        1022,
+        1032,
+        1099
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\comprehensive_performance_testing_engine.py",
+      "line_numbers": [
+        197,
+        261,
+        471,
+        559,
+        654
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

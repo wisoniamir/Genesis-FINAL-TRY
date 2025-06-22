@@ -1,0 +1,9 @@
+{
+  "module_id": "emergency_eventbus_migration",
+  "original_path": "core\\emergency_eventbus_migration.py",
+  "preserved_path": "preservation_holding_area\\emergency_eventbus_migration_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 12799,
+  "checksum": "949144f9de0a4d4474e20c07fb025914cbddab78ed872f30c256dd8c5034d5b1"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "httputil_test",
+  "original_path": "modules\\restored\\httputil_test.py",
+  "preserved_path": "preservation_holding_area\\httputil_test_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 71484,
+  "checksum": "4efdf21c89dac2fac429a941666137a69792ef85d1279c0cf05d60a643be04b2"
+}

@@ -1,0 +1,74 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.854678+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+      "line_numbers": [
+        103,
+        107,
+        121,
+        135
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+      "line_numbers": [
+        47,
+        166
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+      "line_numbers": [
+        73,
+        78,
+        216,
+        278,
+        302
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+      "line_numbers": [
+        127,
+        262,
+        502
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+      "line_numbers": [
+        109,
+        111
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_101_architecture_resync_agent.py",
+      "line_numbers": [
+        243,
+        363,
+        517
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

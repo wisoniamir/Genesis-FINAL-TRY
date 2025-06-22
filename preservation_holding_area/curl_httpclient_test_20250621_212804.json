@@ -1,0 +1,9 @@
+{
+  "module_id": "curl_httpclient_test",
+  "original_path": "modules\\restored\\curl_httpclient_test.py",
+  "preserved_path": "preservation_holding_area\\curl_httpclient_test_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 35877,
+  "checksum": "1072890547d4b106d975c2011ef6a6feb9c053d0871beff4160323b5fe9553a0"
+}

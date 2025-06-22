@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "schema_version": "2.8",
+    "last_updated": "2025-06-16T12:59:36.652774"
+  },
+  "routes": [
+    {
+      "topic": "KillSwitchTrigger",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.079817",
+      "status": "active"
+    },
+    {
+      "topic": "RecalibrationRequest",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.079817",
+      "status": "active"
+    },
+    {
+      "topic": "SmartLogSync",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.079817",
+      "status": "active"
+    },
+    {
+      "topic": "ExecutionDeviationAlert",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.079817",
+      "status": "active"
+    },
+    {
+      "topic": "TerminateMonitorLoop",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.080823",
+      "status": "active"
+    },
+    {
+      "topic": "ModuleTelemetry",
+      "producer": "TelemetryCollector",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.080823",
+      "status": "active"
+    },
+    {
+      "topic": "ModuleError",
+      "producer": "TelemetryCollector",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.080823",
+      "status": "active"
+    },
+    {
+      "topic": "LiveTradeExecuted",
+      "producer": "ExecutionEngine",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.080823",
+      "status": "active"
+    },
+    {
+      "topic": "LoopHealthMetric",
+      "producer": "SmartExecutionLiveLoop",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.080823",
+      "status": "active"
+    },
+    {
+      "topic": "UnifiedExecutionSignal",
+      "producer": "MetaSignalHarmonizer",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.082181",
+      "status": "active"
+    },
+    {
+      "topic": "SignalConflictDetected",
+      "producer": "MetaSignalHarmonizer",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:51:40.082181",
+      "status": "active"
+    },
+    {
+      "topic": "DashboardAlert",
+      "producer": "SmartTelemetryDashboard",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T12:51:40.082181",
+      "status": "active"
+    },
+    {
+      "topic": "SystemHealthUpdate",
+      "producer": "SmartTelemetryDashboard",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T12:51:40.082181",
+      "status": "active"
+    },
+    {
+      "topic": "TelemetryDashboardStatus",
+      "producer": "SmartTelemetryDashboard",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T12:51:40.082181",
+      "status": "active"
+    },
+    {
+      "topic": "KillSwitchTrigger",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.649141",
+      "status": "active"
+    },
+    {
+      "topic": "RecalibrationRequest",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.649141",
+      "status": "active"
+    },
+    {
+      "topic": "SmartLogSync",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.650141",
+      "status": "active"
+    },
+    {
+      "topic": "ExecutionDeviationAlert",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.650141",
+      "status": "active"
+    },
+    {
+      "topic": "TerminateMonitorLoop",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.650141",
+      "status": "active"
+    },
+    {
+      "topic": "ModuleTelemetry",
+      "producer": "TelemetryCollector",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.650141",
+      "status": "active"
+    },
+    {
+      "topic": "ModuleError",
+      "producer": "TelemetryCollector",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.651283",
+      "status": "active"
+    },
+    {
+      "topic": "LiveTradeExecuted",
+      "producer": "ExecutionEngine",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.651283",
+      "status": "active"
+    },
+    {
+      "topic": "LoopHealthMetric",
+      "producer": "SmartExecutionLiveLoop",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.651283",
+      "status": "active"
+    },
+    {
+      "topic": "UnifiedExecutionSignal",
+      "producer": "MetaSignalHarmonizer",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.651283",
+      "status": "active"
+    },
+    {
+      "topic": "SignalConflictDetected",
+      "producer": "MetaSignalHarmonizer",
+      "consumer": "SmartTelemetryDashboard",
+      "registered_at": "2025-06-16T12:59:36.651283",
+      "status": "active"
+    },
+    {
+      "topic": "DashboardAlert",
+      "producer": "SmartTelemetryDashboard",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T12:59:36.652774",
+      "status": "active"
+    },
+    {
+      "topic": "SystemHealthUpdate",
+      "producer": "SmartTelemetryDashboard",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T12:59:36.652774",
+      "status": "active"
+    },
+    {
+      "topic": "TelemetryDashboardStatus",
+      "producer": "SmartTelemetryDashboard",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T12:59:36.652774",
+      "status": "active"
+    },
+    {
+      "topic": "ExecutionDeviationAlert",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartExecutionReactor",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "RecalibrationRequest",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartExecutionReactor",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "KillSwitchTrigger",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartExecutionReactor",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "TerminateMonitorLoop",
+      "producer": "SmartExecutionMonitor",
+      "consumer": "SmartExecutionReactor",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "TradeAdjustmentInitiated",
+      "producer": "SmartExecutionReactor",
+      "consumer": "ExecutionLoopResponder",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "StrategyFreezeLock",
+      "producer": "SmartExecutionReactor",
+      "consumer": "ExecutionLoopResponder",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "MacroSyncReboot",
+      "producer": "SmartExecutionReactor",
+      "consumer": "ExecutionLoopResponder",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "DashboardAlert",
+      "producer": "LiveAlertBridge",
+      "consumer": "DashboardEngine",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "AlertTelemetry",
+      "producer": "LiveAlertBridge",
+      "consumer": "TelemetryCollector",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    },
+    {
+      "topic": "EmergencyAlert",
+      "producer": "LiveAlertBridge",
+      "consumer": "RiskEngine",
+      "registered_at": "2025-06-16T18:30:00Z",
+      "status": "active"
+    }
+  ],
+  "isolated_functions": [],
+  "bypass_violations": []
+}

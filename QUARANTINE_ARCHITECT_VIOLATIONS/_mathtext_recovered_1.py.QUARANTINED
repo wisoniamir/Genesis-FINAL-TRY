@@ -1,0 +1,72 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_mathtext_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:45.603224+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_mathtext_recovered_1.py",
+      "line_numbers": [
+        66,
+        238,
+        351,
+        967,
+        971
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_mathtext_recovered_1.py",
+      "line_numbers": [
+        255,
+        259,
+        309,
+        316,
+        370
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_mathtext_recovered_1.py",
+      "line_numbers": [
+        63,
+        67,
+        603,
+        799,
+        851
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_mathtext_recovered_1.py",
+      "line_numbers": [
+        638,
+        825,
+        1278,
+        1349,
+        1979
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_mathtext_recovered_1.py",
+      "line_numbers": [
+        38,
+        173,
+        350,
+        476,
+        651
+      ],
+      "violation_count": 40
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

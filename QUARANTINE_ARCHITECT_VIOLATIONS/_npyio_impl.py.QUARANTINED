@@ -1,0 +1,100 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.142736+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        54,
+        105,
+        145,
+        150,
+        152
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        2427
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        554,
+        667
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        756,
+        757,
+        758,
+        760,
+        762
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        86,
+        240,
+        493,
+        793,
+        844
+      ],
+      "violation_count": 27
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        495
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        108,
+        462,
+        488,
+        578,
+        774
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_npyio_impl.py",
+      "line_numbers": [
+        244,
+        263,
+        273,
+        453,
+        482
+      ],
+      "violation_count": 54
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

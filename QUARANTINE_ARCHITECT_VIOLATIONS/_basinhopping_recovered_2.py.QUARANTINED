@@ -1,0 +1,56 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_basinhopping_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.487117+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_basinhopping_recovered_2.py",
+      "line_numbers": [
+        53,
+        365,
+        380,
+        386,
+        424
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_basinhopping_recovered_2.py",
+      "line_numbers": [
+        15,
+        132
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_basinhopping_recovered_2.py",
+      "line_numbers": [
+        79,
+        114,
+        144,
+        662,
+        685
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_basinhopping_recovered_2.py",
+      "line_numbers": [
+        34,
+        134,
+        237,
+        293,
+        672
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

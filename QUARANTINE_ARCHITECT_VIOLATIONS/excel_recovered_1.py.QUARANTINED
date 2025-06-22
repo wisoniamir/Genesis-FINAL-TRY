@@ -1,0 +1,95 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.681201+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        567,
+        925
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        238,
+        254,
+        362
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        617
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        265,
+        269,
+        304,
+        345,
+        395
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        468,
+        951
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        247,
+        553,
+        566,
+        616,
+        622
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        193,
+        334,
+        407,
+        440,
+        485
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# shadow",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\excel_recovered_1.py",
+      "line_numbers": [
+        387
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

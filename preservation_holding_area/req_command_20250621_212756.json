@@ -1,0 +1,9 @@
+{
+  "module_id": "req_command",
+  "original_path": "modules\\restored\\req_command.py",
+  "preserved_path": "preservation_holding_area\\req_command_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24501,
+  "checksum": "f60faddb811896c455439ff87ebb7a1a44be7a73255074230dffc392c2631ac7"
+}

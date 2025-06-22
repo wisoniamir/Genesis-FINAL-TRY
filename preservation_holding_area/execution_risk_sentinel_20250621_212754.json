@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_risk_sentinel",
+  "original_path": "modules\\risk_management\\execution_risk_sentinel.py",
+  "preserved_path": "preservation_holding_area\\execution_risk_sentinel_20250621_212754.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 48131,
+  "checksum": "122c0d91ea15c6788c656c84ecdddcf9fabc5e04a0c15c1146f93d6c2354b3c4"
+}

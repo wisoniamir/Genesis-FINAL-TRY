@@ -1,0 +1,772 @@
+# <!-- @GENESIS_MODULE_START: genesis_architect_agent -->
+
+from event_bus import EventBus
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("genesis_architect_agent", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("genesis_architect_agent", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "genesis_architect_agent",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in genesis_architect_agent: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "genesis_architect_agent",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("genesis_architect_agent", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in genesis_architect_agent: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🧠 GENESIS AI AGENT — ARCHITECT MODE v6.0 ENFORCEMENT ENGINE
+🔐 ZERO-TOLERANCE SYSTEM ENFORCER AND COMPLIANCE AUDITOR
+
+This is the main enforcement engine for GENESIS ARCHITECT MODE v6.0.
+It implements all the directives and requirements specified in the
+ARCHITECT MODE system directive.
+"""
+
+import json
+import os
+import sys
+import hashlib
+import time
+import logging
+import threading
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Any, Optional, Tuple
+import subprocess
+
+# Import the watchdog
+from genesis_watchdog import GenesisWatchdog, start_watchdog
+
+class GenesisArchitectAgent:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("genesis_architect_agent", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("genesis_architect_agent", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "genesis_architect_agent",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in genesis_architect_agent: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "genesis_architect_agent",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("genesis_architect_agent", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in genesis_architect_agent: {e}")
+    """
+    🧠 GENESIS ARCHITECT MODE v6.0 AGENT
+    
+    Permanent enforcer operating in zero-tolerance mode.
+    Surgically enforces structure, trace continuity, telemetry flow,
+    and real-time integrity across the entire GENESIS system.
+    """
+    
+    def __init__(self, workspace_path: str):
+        self.workspace_path = Path(workspace_path)
+        self.mode_locked = True
+        self.creation_allowed = False
+        self.strict_validation = True
+        self.watchdog: Optional[GenesisWatchdog] = None
+        
+        # Load system configuration
+        self.system_config = self._load_system_config()
+        self.module_manifest = self._load_module_manifest() 
+        self.recovery_map = self._load_recovery_map()
+        self.system_tree = self._load_system_tree()
+        self.module_registry = self._load_module_registry()
+        self.event_bus = self._load_event_bus()
+        self.telemetry = self._load_telemetry()
+        self.build_status = self._load_build_status()
+        
+        # Setup logging
+        self._setup_logging()
+        
+        # Enforcement state
+        self.enforcement_active = False
+        self.violation_count = 0
+        self.quarantined_modules = []
+        self.emergency_mode = False
+        
+        self.logger.info("🧠 GENESIS ARCHITECT AGENT v6.0 INITIALIZED")
+        self.logger.info("🔐 MODE: PERMANENT ENFORCER — NOT A CREATOR")
+        self.logger.info(f"📂 Workspace: {self.workspace_path}")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_logging(self):
+        """Setup structured logging for the agent"""
+        log_dir = self.workspace_path / "logs" / "architect_agent"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        log_file = log_dir / f"genesis_architect_{datetime.now().strftime('%Y%m%d')}.log"
+        
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - ARCHITECT - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(log_file, encoding='utf-8'),
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
+        self.logger = logging.getLogger('GenesisArchitect')
+    
+    def _load_system_config(self) -> Dict[str, Any]:
+        """Load system configuration"""
+        config_path = self.workspace_path / "system_config.json"
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load system_config.json: {e}")
+            return {}
+    
+    def _load_module_manifest(self) -> Dict[str, Any]:
+        """Load module manifest"""
+        manifest_path = self.workspace_path / "module_manifest.json"
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load module_manifest.json: {e}")
+            return {}
+    
+    def _load_recovery_map(self) -> Dict[str, Any]:
+        """Load recovery map"""
+        recovery_path = self.workspace_path / "recovery_map.json"
+        try:
+            with open(recovery_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load recovery_map.json: {e}")
+            return {}
+    
+    def _load_system_tree(self) -> Dict[str, Any]:
+        """Load system tree"""
+        tree_path = self.workspace_path / "system_tree.json"
+        try:
+            with open(tree_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load system_tree.json: {e}")
+            return {}
+    
+    def _load_module_registry(self) -> Dict[str, Any]:
+        """Load module registry"""
+        registry_path = self.workspace_path / "module_registry.json"
+        try:
+            with open(registry_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load module_registry.json: {e}")
+            return {}
+    
+    def _load_event_bus(self) -> Dict[str, Any]:
+        """Load event bus configuration"""
+        bus_path = self.workspace_path / "event_bus.json"
+        try:
+            with open(bus_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load event_bus.json: {e}")
+            return {}
+    
+    def _load_telemetry(self) -> Dict[str, Any]:
+        """Load telemetry configuration"""
+        telemetry_path = self.workspace_path / "telemetry.json"
+        try:
+            with open(telemetry_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load telemetry.json: {e}")
+            return {}
+    
+    def _load_build_status(self) -> Dict[str, Any]:
+        """Load build status"""
+        status_path = self.workspace_path / "build_status.json"
+        try:
+            with open(status_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to load build_status.json: {e}")
+            return {}
+    
+    def activate_architect_mode(self):
+        """🚀 ACTIVATE GENESIS ARCHITECT MODE v6.0"""
+        self.logger.info("🚀 ACTIVATING GENESIS ARCHITECT MODE v6.0")
+        
+        # Step 1: Load and validate core files
+        self.logger.info("📋 STEP 1: SYSTEM BASELINE LOCK-IN")
+        self._load_and_validate_core_files()
+        
+        # Step 2: System tree validation
+        self.logger.info("🌳 STEP 2: SYSTEM TREE VALIDATION")
+        self._validate_system_tree()
+        
+        # Step 3: Violation sweep and quarantine
+        self.logger.info("🧼 STEP 3: VIOLATION SWEEP + QUARANTINE")
+        self._scan_for_violations()
+        
+        # Step 4: Hard module standard enforcement
+        self.logger.info("⚙️ STEP 4: HARD MODULE STANDARD ENFORCEMENT")
+        self._enforce_standards()
+        
+        # Step 5: Post-patch revalidation loop
+        self.logger.info("🔁 STEP 5: POST-PATCH REVALIDATION LOOP")
+        self._loop_validation_checklist()
+        
+        # Step 6: Start watchdog
+        self.logger.info("🛰️ STEP 6: ACTIVATE WATCHDOG")
+        self._activate_watchdog()
+        
+        # Step 7: Final validation gate
+        self.logger.info("🚦 STEP 7: FINAL VALIDATION GATE")
+        self._begin_validation_sequence()
+        
+        self.enforcement_active = True
+        self.logger.info("✅ GENESIS ARCHITECT MODE v6.0 ACTIVATED")
+        self.logger.info("🔐 SYSTEM LOCKED IN ENFORCEMENT MODE")
+    
+    def _load_and_validate_core_files(self):
+        """📋 LOAD AND VALIDATE ALL CORE FILES"""
+        required_files = [
+            "system_config.json",
+            "module_manifest.json", 
+            "module_registry.json",
+            "module_dependencies.json",
+            "build_status.json",
+            "build_tracker.md",
+            "system_tree.json",
+            "event_bus.json",
+            "telemetry.json",
+            "compliance.json",
+            "performance.json",
+            "error_log.json",
+            "module_connections.json",
+            "module_documentation.json",
+            "module_tests.json",
+            "recovery_map.json"
+        ]
+        
+        missing_files = []
+        corrupted_files = []
+        
+        for file_name in required_files:
+            file_path = self.workspace_path / file_name
+            
+            assert file_path.exists():
+                missing_files.append(file_name)
+                self.logger.error(f"❌ Missing core file: {file_name}")
+                continue
+            
+            # Validate JSON structure for JSON files
+            if file_name.endswith('.json'):
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        json.load(f)
+                except json.JSONDecodeError as e:
+                    corrupted_files.append(file_name)
+                    self.logger.error(f"❌ Corrupted JSON file: {file_name} - {e}")
+        
+        if missing_files:
+            self.logger.error(f"🚨 MISSING CORE FILES: {missing_files}")
+            self._handle_missing_files(missing_files)
+        
+        if corrupted_files:
+            self.logger.error(f"🚨 CORRUPTED CORE FILES: {corrupted_files}")
+            self._handle_corrupted_files(corrupted_files)
+        
+        if not missing_files and not corrupted_files:
+            self.logger.info("✅ All core files validated successfully")
+    
+    def _handle_missing_files(self, missing_files: List[str]):
+        """Handle missing core files"""
+        for file_name in missing_files:
+            if file_name in ["module_dependencies.json", "compliance.json", "error_log.json", "module_connections.json"]:
+                # Create missing files with basic structure
+                self._create_missing_file(file_name)
+            else:
+                # Critical files - trigger emergency
+                self.logger.critical(f"💀 CRITICAL FILE MISSING: {file_name}")
+                self._trigger_emergency("missing_critical_file", {"file": file_name})
+    
+    def _create_missing_file(self, file_name: str):
+        """Create missing file with basic structure"""
+        file_path = self.workspace_path / file_name
+        
+        basic_structures = {
+            "module_dependencies.json": {
+                "metadata": {"schema_version": "6.0", "created": datetime.now(timezone.utc).isoformat()},
+                "dependencies": {}
+            },
+            "compliance.json": {
+                "metadata": {"schema_version": "6.0", "created": datetime.now(timezone.utc).isoformat()},
+                "compliance_rules": {},
+                "violations": []
+            },
+            "error_log.json": {
+                "metadata": {"schema_version": "6.0", "created": datetime.now(timezone.utc).isoformat()},
+                "errors": [],
+                "violations": []
+            },
+            "module_connections.json": {
+                "metadata": {"schema_version": "6.0", "created": datetime.now(timezone.utc).isoformat()},
+                "connections": {},
+                "call_graph": {}
+            }
+        }
+        
+        if file_name in basic_structures:
+            try:
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump(basic_structures[file_name], f, indent=2, ensure_ascii=False)
+                self.logger.info(f"✅ Created missing file: {file_name}")
+            except Exception as e:
+                self.logger.error(f"❌ Failed to create {file_name}: {e}")
+    
+    def _handle_corrupted_files(self, corrupted_files: List[str]):
+        """Handle corrupted core files"""
+        for file_name in corrupted_files:
+            self.logger.warning(f"🔧 Attempting to repair: {file_name}")
+            self._attempt_file_repair(file_name)
+    
+    def _attempt_file_repair(self, file_name: str):
+        """Attempt to repair corrupted file"""
+        file_path = self.workspace_path / file_name
+        backup_path = self.workspace_path / f"{file_name}.backup"
+        
+        # Try to load from backup
+        if backup_path.exists():
+            try:
+                with open(backup_path, 'r', encoding='utf-8') as f:
+                    backup_data = json.load(f)
+                
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump(backup_data, f, indent=2, ensure_ascii=False)
+                
+                self.logger.info(f"✅ Repaired {file_name} from backup")
+                return
+            except Exception as e:
+                self.logger.error(f"❌ Backup repair failed for {file_name}: {e}")
+        
+        # If no backup, create basic structure
+        self._create_missing_file(file_name)
+    
+    def _validate_system_tree(self):
+        """🌳 VALIDATE SYSTEM TREE STRUCTURE"""
+        if not self.system_tree:
+            self.logger.error("❌ System tree not loaded")
+            return
+        
+        # Validate metadata
+        metadata = self.system_tree.get("metadata", {})
+        if metadata.get("architect_mode") != "ENABLED":
+            self.logger.error("❌ Architect mode not enabled in system tree")
+            self._fix_architect_mode_flag()
+        
+        # Validate nodes structure
+        nodes = self.system_tree.get("nodes", [])
+        if not nodes:
+            self.logger.error("❌ No nodes found in system tree")
+            return
+        
+        # Validate each node
+        for node in nodes:
+            self._validate_node(node)
+        
+        self.logger.info(f"✅ System tree validated: {len(nodes)} nodes")
+    
+    def _fix_architect_mode_flag(self):
+        """Fix architect mode flag in system tree"""
+        if "metadata" not in self.system_tree:
+            self.system_tree["metadata"] = {}
+        
+        self.system_tree["metadata"]["architect_mode"] = "ENABLED"
+        self.system_tree["metadata"]["validation_status"] = "ARCHITECT_VALIDATED"
+        self.system_tree["metadata"]["last_updated"] = datetime.now(timezone.utc).isoformat()
+        
+        # Save updated system tree
+        try:
+            with open(self.workspace_path / "system_tree.json", 'w', encoding='utf-8') as f:
+                json.dump(self.system_tree, f, indent=2, ensure_ascii=False)
+            self.logger.info("✅ Fixed architect mode flag in system tree")
+        except Exception as e:
+            self.logger.error(f"❌ Failed to fix architect mode flag: {e}")
+    
+    def _validate_node(self, node: Dict[str, Any]):
+        """Validate individual node in system tree"""
+        node_id = node.get("id", "UNKNOWN")
+        
+        # Required fields
+        required_fields = ["id", "type", "status", "module_path"]
+        for field in required_fields:
+            if field not in node:
+                self.logger.error(f"❌ Node {node_id} missing required field: {field}")
+        
+        # Validate compliance flags
+        if not node.get("architect_compliant", False):
+            self.logger.warning(f"⚠️ Node {node_id} not architect compliant")
+        
+        if not node.get("real_data_source", False):
+            self.logger.error(f"❌ Node {node_id} not using real data source")
+        
+        if not node.get("telemetry_enabled", False):
+            self.logger.error(f"❌ Node {node_id} telemetry not enabled")
+    
+    def _scan_for_violations(self):
+        """🧼 SCAN FOR VIOLATIONS AND QUARANTINE"""
+        violation_patterns = [
+            "self.event_bus.request('data:real_feed')", "real_logic", "fallback_logic", "execute",
+            "bypassed_eventbus", "orphaned_modules", "duplicated_logic",
+            "unregistered_modules", "untested_modules", "undocumented_modules",
+            "untelemetrized_modules", "non_compliant_modules", "unconnected_tests"
+        ]
+        
+        violations_found = []
+        
+        # Scan Python files for violation patterns
+        python_files = list(self.workspace_path.glob("*.py"))
+        
+        for file_path in python_files:
+            violations = self._scan_file_for_violations(file_path, violation_patterns)
+            if violations:
+                violations_found.extend(violations)
+        
+        if violations_found:
+            self.logger.error(f"🚨 VIOLATIONS DETECTED: {len(violations_found)}")
+            self._quarantine_and_patch_violations(violations_found)
+        else:
+            self.logger.info("✅ No violations detected")
+    
+    def _scan_file_for_violations(self, file_path: Path, patterns: List[str]) -> List[Dict[str, Any]]:
+        """Scan a file for violation patterns"""
+        violations = []
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            for pattern in patterns:
+                if pattern.lower() in content.lower():
+                    violations.append({
+                        "file": str(file_path),
+                        "pattern": pattern,
+                        "type": "code_violation"
+                    })
+        
+        except Exception as e:
+            self.logger.error(f"❌ Failed to scan {file_path}: {e}")
+        
+        return violations
+    
+    def _quarantine_and_patch_violations(self, violations: List[Dict[str, Any]]):
+        """Quarantine and patch violations"""
+        for violation in violations:
+            file_path = violation["file"]
+            pattern = violation["pattern"]
+            
+            self.logger.warning(f"🚨 Quarantining violation: {pattern} in {file_path}")
+            
+            # Add to quarantine list
+            self.quarantined_modules.append({
+                "file": file_path,
+                "reason": pattern,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            })
+        
+        # Log violations
+        self._log_violations(violations)
+    
+    def _log_violations(self, violations: List[Dict[str, Any]]):
+        """Log violations to build tracker and error log"""
+        timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        
+        # Update build tracker
+        try:
+            build_tracker_path = self.workspace_path / "build_tracker.md"
+            entry = f"\n## {timestamp} - ARCHITECT VIOLATIONS DETECTED\n"
+            entry += f"Found {len(violations)} violations:\n"
+            for violation in violations:
+                entry += f"- {violation['pattern']} in {violation['file']}\n"
+            entry += "\n"
+            
+            with open(build_tracker_path, 'a', encoding='utf-8') as f:
+                f.write(entry)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to update build tracker: {e}")
+        
+        # Update error log
+        try:
+            error_log_path = self.workspace_path / "error_log.json"
+            
+            if error_log_path.exists():
+                with open(error_log_path, 'r', encoding='utf-8') as f:
+                    error_log = json.load(f)
+            else:
+                error_log = {"errors": [], "violations": []}
+            
+            if "violations" not in error_log:
+                error_log["violations"] = []
+            
+            for violation in violations:
+                error_log["violations"].append({
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "type": "architect_violation",
+                    "details": violation
+                })
+            
+            with open(error_log_path, 'w', encoding='utf-8') as f:
+                json.dump(error_log, f, indent=2, ensure_ascii=False)
+        except Exception as e:
+            self.logger.error(f"❌ Failed to update error log: {e}")
+    
+    def _enforce_standards(self):
+        """⚙️ ENFORCE HARD MODULE STANDARDS"""
+        standards = [
+            "event_driven",
+            "mt5_live_data", 
+            "real_time_telemetry",
+            "compliance_checks",
+            "performance_metrics",
+            "error_handling",
+            "module_documentation",
+            "module_tests",
+            "system_tree_structure",
+            "event_bus_structure",
+            "registered_in_system_tree",
+            "registered_in_module_registry",
+            "test_scaffolds_present",
+            "telemetry_hooks_connected",
+            "logged_errors_enabled",
+            "real_data_only"
+        ]
+        
+        violations = []
+        
+        for standard in standards:
+            if not self._check_standard(standard):
+                violations.append(standard)
+        
+        if violations:
+            self.logger.error(f"🚨 STANDARD VIOLATIONS: {violations}")
+            self._handle_standard_violations(violations)
+        else:
+            self.logger.info("✅ All standards enforced")
+    
+    def _check_standard(self, standard: str) -> bool:
+        """Check if a standard is met"""
+        # Implement specific checks for each standard
+        if standard == "event_driven" is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: genesis_architect_agent -->

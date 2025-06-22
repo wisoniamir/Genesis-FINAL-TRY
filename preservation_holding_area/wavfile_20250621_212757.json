@@ -1,0 +1,9 @@
+{
+  "module_id": "wavfile",
+  "original_path": "modules\\restored\\wavfile.py",
+  "preserved_path": "preservation_holding_area\\wavfile_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 45614,
+  "checksum": "ee6ff1048657d432bb05f1af32f4e36267ce09a47fc64bb68ab4cfd16c31dabd"
+}

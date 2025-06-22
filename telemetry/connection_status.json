@@ -1,0 +1,38 @@
+{
+  "session_id": "d4a285d877f6cae8",
+  "timestamp": "2025-06-18T18:19:45.758749",
+  "telemetry": {
+    "connection_attempts": 1,
+    "successful_connections": 1,
+    "connection_failures": 0,
+    "sync_operations": 0,
+    "sync_failures": 0,
+    "latency_samples": [
+      {
+        "operation": "connection",
+        "latency_ms": 0.10156631469726562,
+        "timestamp": "2025-06-18T18:19:45.755761"
+      },
+      {
+        "operation": "account_sync",
+        "latency_ms": 0.02765655517578125,
+        "timestamp": "2025-06-18T18:19:45.756660"
+      },
+      {
+        "operation": "orders_sync",
+        "latency_ms": 0.4055500030517578,
+        "timestamp": "2025-06-18T18:19:45.757071"
+      },
+      {
+        "operation": "symbols_sync",
+        "latency_ms": 0.2949237823486328,
+        "timestamp": "2025-06-18T18:19:45.758386"
+      }
+    ],
+    "uptime_seconds": 0,
+    "last_sync_timestamp": null,
+    "symbols_synced": 0,
+    "positions_synced": 0,
+    "orders_synced": 0
+  }
+}

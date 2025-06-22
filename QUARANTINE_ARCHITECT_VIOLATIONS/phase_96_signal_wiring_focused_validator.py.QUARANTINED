@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.718154+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        376
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        107,
+        116
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        189
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        56,
+        102,
+        111,
+        215,
+        305
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        96,
+        105,
+        114,
+        227,
+        352
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        61,
+        202
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        91,
+        361,
+        380,
+        419
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\phase_96_signal_wiring_focused_validator.py",
+      "line_numbers": [
+        221
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

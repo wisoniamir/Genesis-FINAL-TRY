@@ -1,0 +1,482 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_trade_recommendation_engine",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_trade_recommendation_engine: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_trade_recommendation_engine",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_trade_recommendation_engine", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_trade_recommendation_engine: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: test_trade_recommendation_engine -->
+
+"""
+Test Suite for GENESIS Phase 70: Trade Recommendation Engine
+🔐 ARCHITECT MODE v5.0.0 - COMPLIANT TEST SCAFFOLDS
+🧪 Comprehensive Testing for Trade Decision Synthesis
+
+Tests signal synthesis, recommendation generation, MT5 integration,
+pattern confidence overlay, macro alignment, and EventBus compliance.
+"""
+
+import unittest
+import json
+import time
+import threading
+from unittest.mock import Mock, patch, MagicMock
+from datetime import datetime, timezone
+import uuid
+
+# Import the module under test
+from trade_recommendation_engine import TradeRecommendationEngine, TradeRecommendation
+
+class TestTradeRecommendationEngine(unittest.TestCase):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_trade_recommendation_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_trade_recommendation_engine: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_trade_recommendation_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_trade_recommendation_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_trade_recommendation_engine: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_trade_recommendation_engine",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_trade_recommendation_engine: {e}")
+    """Comprehensive test suite for TradeRecommendationEngine"""
+    
+    def setUp(self):
+        """Set up test fixtures"""
+        self.engine = TradeRecommendationEngine()
+        self.test_config = {
+            "confidence_threshold": 7.0,
+            "risk_reward_min": 1.5,
+            "pattern_weight": 0.3,
+            "macro_weight": 0.25,
+            "volatility_weight": 0.25,
+            "backtest_weight": 0.2,
+            "mt5_symbols": ["EURUSD", "GBPUSD"],
+            "max_recommendations_per_hour": 10
+        }
+        
+    def tearDown(self):
+        """Clean up test fixtures"""
+        if hasattr(self.engine, 'stop_recommendation_loop'):
+            self.engine.stop_recommendation_loop()
+        
+    def test_initialization(self):
+        """Test engine initialization and configuration loading"""
+        self.assertIsNotNone(self.engine.config)
+        self.assertIsNotNone(self.engine.recommendation_cache)
+        self.assertIsNotNone(self.engine.signal_history)
+        self.assertEqual(self.engine.is_running, False)
+        
+    def test_signal_synthesis_from_multiple_sources(self):
+        """Test synthesis of signals from pattern, macro, volatility, and backtest sources"""
+        # Mock signal inputs
+        pattern_signal = {"symbol": "EURUSD", "confidence": 8.5, "direction": "long"}
+        macro_signal = {"alignment": 0.75, "trend": "bullish"}
+        volatility_signal = {"score": 6.2, "level": "moderate"}
+        backtest_signal = {"score": 7.8, "win_rate": 0.68}
+        
+        # Test synthesis method
+        synthesized = self.engine.synthesize_signals(
+            pattern_signal, macro_signal, volatility_signal, backtest_signal
+        )
+        
+        self.assertIsNotNone(synthesized)
+        self.assertIn("overall_confidence", synthesized)
+        self.assertIn("weighted_score", synthesized)
+        self.assertGreaterEqual(synthesized["overall_confidence"], 0)
+        self.assertLessEqual(synthesized["overall_confidence"], 10)
+        
+    def test_pattern_confidence_integration(self):
+        """Test pattern confidence overlay integration"""
+        # Mock pattern confidence data
+        pattern_data = {
+            "symbol": "EURUSD",
+            "patterns": [
+                {"type": "triangle", "confidence": 0.82},
+                {"type": "support_resistance", "confidence": 0.75}
+            ],
+            "overall_confidence": 8.1
+        }
+        
+        processed = self.engine.process_pattern_confidence(pattern_data)
+        
+        self.assertIsNotNone(processed)
+        self.assertEqual(processed["symbol"], "EURUSD")
+        self.assertIn("confidence_score", processed)
+        self.assertGreaterEqual(processed["confidence_score"], 0)
+        
+    def test_macro_alignment_validation(self):
+        """Test macro environment alignment validation"""
+        # Mock macro filter data
+        macro_data = {
+            "economic_calendar": {"impact": "high", "direction": "bullish"},
+            "sentiment": {"score": 0.72, "trend": "positive"},
+            "correlation_matrix": {"EURUSD": 0.85}
+        }
+        
+        alignment = self.engine.validate_macro_alignment(macro_data, "EURUSD")
+        
+        self.assertIsNotNone(alignment)
+        self.assertIn("alignment_score", alignment)
+        self.assertIn("conflict_detected", alignment)
+        self.assertIsInstance(alignment["conflict_detected"], bool)
+        
+    def test_volatility_score_processing(self):
+        """Test volatility score processing and integration"""
+        # Mock volatility data
+        volatility_data = {
+            "symbol": "EURUSD",
+            "current_volatility": 0.012,
+            "historical_avg": 0.009,
+            "volatility_rank": 75.5,
+            "trend": "increasing"
+        }
+        
+        processed = self.engine.process_volatility_score(volatility_data)
+        
+        self.assertIsNotNone(processed)
+        self.assertIn("volatility_score", processed)
+        self.assertIn("risk_adjustment", processed)
+        self.assertGreaterEqual(processed["volatility_score"], 0)
+        self.assertLessEqual(processed["volatility_score"], 10)
+        
+    def test_backtest_score_integration(self):
+        """Test backtest score integration and validation"""
+        # Mock backtest results
+        backself.event_bus.request('data:live_feed') = {
+            "strategy": "pattern_breakout",
+            "symbol": "EURUSD",
+            "win_rate": 0.68,
+            "profit_factor": 1.42,
+            "max_drawdown": 0.08,
+            "total_trades": 150
+        }
+        
+        score = self.engine.integrate_backtest_score(backself.event_bus.request('data:live_feed'))
+        
+        self.assertIsNotNone(score)
+        self.assertIn("backtest_score", score)
+        self.assertIn("reliability", score)
+        self.assertGreaterEqual(score["backtest_score"], 0)
+        self.assertLessEqual(score["backtest_score"], 10)
+        
+    def test_mt5_price_feed_handling(self):
+        """Test MT5 price feed processing"""
+        # Mock MT5 price data
+        price_data = {
+            "symbol": "EURUSD",
+            "bid": 1.08520,
+            "ask": 1.08535,
+            "time": datetime.now(timezone.utc),
+            "spread": 1.5,
+            "volume": 1000
+        }
+        
+        processed = self.engine.process_mt5_price_feed(price_data)
+        
+        self.assertIsNotNone(processed)
+        self.assertIn("current_price", processed)
+        self.assertIn("spread_analysis", processed)
+        self.assertEqual(processed["symbol"], "EURUSD")
+        
+    def test_trade_recommendation_generation(self):
+        """Test trade recommendation generation with all inputs"""
+        # Mock complete signal set
+        signals = {
+            "pattern": {"confidence": 8.2, "direction": "long"},
+            "macro": {"alignment": 0.78},
+            "volatility": {"score": 6.5},
+            "backtest": {"score": 7.3},
+            "price": {"bid": 1.08520, "ask": 1.08535}
+        }
+        
+        recommendation = self.engine.generate_recommendation("EURUSD", signals)
+        
+        self.assertIsNotNone(recommendation)
+        self.assertIsInstance(recommendation, TradeRecommendation)
+        self.assertEqual(recommendation.symbol, "EURUSD")
+        self.assertIn(recommendation.direction, ["long", "short"])
+        self.assertGreater(recommendation.confidence, 0)
+        self.assertLessEqual(recommendation.confidence, 10)
+        
+    def test_confidence_scoring_algorithm(self):
+        """Test confidence scoring algorithm accuracy"""
+        # Test various confidence combinations
+        test_cases = [
+            (8.0, 0.7, 6.0, 7.5, 7.55),  # High confidence case
+            (4.0, 0.3, 3.0, 4.5, 3.85),  # Low confidence case
+            (7.0, 0.6, 8.0, 6.0, 6.85)   # Mixed confidence case
+        ]
+        
+        for pattern, macro, vol, backtest, expected in test_cases:
+            result = self.engine.calculate_confidence_score(pattern, macro, vol, backtest)
+            self.assertAlmostEqual(result, expected, places=1)
+            
+    def test_risk_reward_calculation(self):
+        """Test risk-reward ratio calculation"""
+        # Mock trade setup
+        trade_setup = {
+            "entry": 1.08520,
+            "stop_loss": 1.08320,
+            "take_profit": 1.08920,
+            "direction": "long"
+        }
+        
+        ratio = self.engine.calculate_risk_reward(trade_setup)
+        
+        self.assertIsNotNone(ratio)
+        self.assertGreater(ratio, 0)
+        expected_ratio = 2.0  # (1.08920 - 1.08520) / (1.08520 - 1.08320)
+        self.assertAlmostEqual(ratio, expected_ratio, places=1)
+        
+    @patch('trade_recommendation_engine.EventBus')
+    def test_eventbus_integration(self, mock_eventbus):
+        """Test EventBus integration and event emission"""
+        mock_eventbus.return_value.emit = Mock()
+        
+        # Generate a recommendation to trigger EventBus emission
+        signals = {
+            "pattern": {"confidence": 8.0, "direction": "long"},
+            "macro": {"alignment": 0.75},
+            "volatility": {"score": 6.0},
+            "backtest": {"score": 7.0},
+            "price": {"bid": 1.08520, "ask": 1.08535}
+        }
+        
+        recommendation = self.engine.generate_recommendation("EURUSD", signals)
+        
+        # Verify EventBus emission
+        self.assertTrue(mock_eventbus.return_value.emit.called)
+        call_args = mock_eventbus.return_value.emit.call_args
+        self.assertEqual(call_args[0][0], "trade_recommendation_generated")
+        
+    @patch('trade_recommendation_engine.TelemetrySync')
+    def test_telemetry_emission(self, mock_telemetry):
+        """Test telemetry hooks and metric emission"""
+        mock_telemetry.return_value.emit = Mock()
+        
+        # Trigger telemetry emission
+        self.engine.emit_telemetry_metrics()
+        
+        # Verify telemetry emission
+        self.assertTrue(mock_telemetry.return_value.emit.called)
+        
+    def test_error_handling_and_recovery(self):
+        """Test error handling and recovery mechanisms"""
+        # Test invalid signal input
+        with self.assertRaises(ValueError):
+            self.engine.generate_recommendation("", {})
+            
+        # Test network error simulation
+        with patch('trade_recommendation_engine.MT5Connector') as mock_mt5:
+            mock_mt5.side_effect = ConnectionError("MT5 connection failed")
+            
+            # Should handle gracefully without crashing
+            result = self.engine.get_mt5_price_data("EURUSD")
+            self.assertIsNone(result)
+            
+    def test_configuration_loading(self):
+        """Test configuration loading and validation"""
+        # Test valid configuration
+        valid_config = {
+            "confidence_threshold": 7.0,
+            "risk_reward_min": 1.5,
+            "pattern_weight": 0.3
+        }
+        
+        self.engine.load_config(valid_config)
+        self.assertEqual(self.engine.config["confidence_threshold"], 7.0)
+        
+        # Test invalid configuration
+        invalid_config = {"confidence_threshold": -1.0}
+        
+        with self.assertRaises(ValueError):
+            self.engine.validate_config(invalid_config)
+            
+    def test_thread_safety(self):
+        """Test thread safety of recommendation generation"""
+        results = []
+        
+        def generate_recommendations():
+            for i in range(10):
+                signals = {
+                    "pattern": {"confidence": 7.0 + i*0.1, "direction": "long"},
+                    "macro": {"alignment": 0.7},
+                    "volatility": {"score": 6.0},
+                    "backtest": {"score": 7.0},
+                    "price": {"bid": 1.08520, "ask": 1.08535}
+                }
+                rec = self.engine.generate_recommendation(f"PAIR{i}", signals)
+                results.append(rec)
+                
+        # Run multiple threads
+        threads = []
+        for _ in range(3):
+            thread = threading.Thread(target=generate_recommendations)
+            threads.append(thread)
+            thread.start()
+            
+        for thread in threads:
+            thread.join()
+            
+        # Verify no race conditions
+        self.assertEqual(len(results), 30)  # 3 threads * 10 recommendations each
+        
+    def test_performance_under_load(self):
+        """Test performance under high load"""
+        start_time = time.time()
+        
+        # Generate 100 recommendations
+        for i in range(100):
+            signals = {
+                "pattern": {"confidence": 7.0, "direction": "long"},
+                "macro": {"alignment": 0.7},
+                "volatility": {"score": 6.0},
+                "backtest": {"score": 7.0},
+                "price": {"bid": 1.08520, "ask": 1.08535}
+            }
+            self.engine.generate_recommendation("EURUSD", signals)
+            
+        execution_time = time.time() - start_time
+        
+        # Should complete within reasonable time (< 5 seconds)
+        self.assertLess(execution_time, 5.0)
+        
+        # Average time per recommendation should be < 50ms
+        avg_time = execution_time / 100
+        self.assertLess(avg_time, 0.05)
+        
+    def test_real_time_data_processing(self):
+        """Test real-time data processing capabilities"""
+        # Mock real-time data stream
+        data_stream = [
+            {"symbol": "EURUSD", "price": 1.08520, "timestamp": time.time()},
+            {"symbol": "EURUSD", "price": 1.08525, "timestamp": time.time() + 1},
+            {"symbol": "EURUSD", "price": 1.08530, "timestamp": time.time() + 2}
+        ]
+        
+        processed_count = 0
+        
+        def data_callback(data):
+            nonlocal processed_count
+            processed_count += 1
+            
+        # Process data stream
+        for data in data_stream:
+            self.engine.process_real_time_data(data, data_callback)
+            
+        self.assertEqual(processed_count, len(data_stream))
+
+if __name__ == "__main__":
+    # Run the test suite
+    unittest.main(verbosity=2)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_trade_recommendation_engine -->

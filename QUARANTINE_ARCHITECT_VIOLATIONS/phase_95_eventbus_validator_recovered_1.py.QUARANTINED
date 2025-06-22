@@ -1,0 +1,107 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:38.784390+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        297,
+        298,
+        300,
+        323,
+        337
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        124,
+        132,
+        139,
+        142,
+        149
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        64,
+        121,
+        146,
+        319,
+        347
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        115,
+        140,
+        160,
+        340,
+        351
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        67,
+        72,
+        122,
+        130,
+        147
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        109,
+        199,
+        243,
+        291,
+        471
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        200,
+        201,
+        206,
+        332,
+        345
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\phase_95_eventbus_validator_recovered_1.py",
+      "line_numbers": [
+        359
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "cached_message_replay",
+  "original_path": "modules\\restored\\cached_message_replay.py",
+  "preserved_path": "preservation_holding_area\\cached_message_replay_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 43209,
+  "checksum": "892667b5422a6d82f754ad4195a6b3d070cb3586e7ddccb0e7d64ff1ca5d996a"
+}

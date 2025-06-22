@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_function_base_impl.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.753289+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_function_base_impl.py",
+      "line_numbers": [
+        565,
+        633,
+        707,
+        711,
+        933
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_function_base_impl.py",
+      "line_numbers": [
+        866
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_function_base_impl.py",
+      "line_numbers": [
+        397,
+        655,
+        875,
+        3056,
+        4822
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_function_base_impl.py",
+      "line_numbers": [
+        345,
+        789,
+        1857,
+        2192,
+        2213
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_function_base_impl.py",
+      "line_numbers": [
+        258,
+        349,
+        567,
+        574,
+        579
+      ],
+      "violation_count": 74
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

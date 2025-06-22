@@ -1,0 +1,26 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\DOCKER_DEPLOYMENT_SUCCESS_REPORT.md",
+  "quarantine_timestamp": "2025-06-21T04:33:01.634127+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\DOCKER_DEPLOYMENT_SUCCESS_REPORT.md",
+      "line_numbers": [
+        27
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\DOCKER_DEPLOYMENT_SUCCESS_REPORT.md",
+      "line_numbers": [
+        27,
+        42
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

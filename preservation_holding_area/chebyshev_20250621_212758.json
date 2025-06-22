@@ -1,0 +1,9 @@
+{
+  "module_id": "chebyshev",
+  "original_path": "modules\\restored\\chebyshev.py",
+  "preserved_path": "preservation_holding_area\\chebyshev_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 75563,
+  "checksum": "40a5c0212fe7bfe69a1e7f9cc76d7cacfd4735615def2485c52831442027025f"
+}

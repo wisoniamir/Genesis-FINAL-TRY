@@ -1,0 +1,99 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+  "quarantine_timestamp": "2025-06-21T04:33:33.568933+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        271,
+        321,
+        353,
+        387,
+        493
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        905,
+        925,
+        944,
+        1862,
+        1915
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        2550
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        3606
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        141,
+        182,
+        210,
+        229,
+        312
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        648
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        248,
+        389,
+        400,
+        404,
+        549
+      ],
+      "violation_count": 45
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\colors.py",
+      "line_numbers": [
+        233,
+        305,
+        388,
+        451,
+        490
+      ],
+      "violation_count": 32
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

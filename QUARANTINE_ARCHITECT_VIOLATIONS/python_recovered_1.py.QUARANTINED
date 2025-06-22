@@ -1,0 +1,49 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.224967+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_recovered_1.py",
+      "line_numbers": [
+        214,
+        494,
+        884
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_recovered_1.py",
+      "line_numbers": [
+        715
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_recovered_1.py",
+      "line_numbers": [
+        336,
+        593,
+        711,
+        961,
+        1194
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_recovered_1.py",
+      "line_numbers": [
+        1118
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

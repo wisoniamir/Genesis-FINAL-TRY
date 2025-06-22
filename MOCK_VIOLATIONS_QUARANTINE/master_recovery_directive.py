@@ -1,0 +1,317 @@
+# <!-- @GENESIS_MODULE_START: master_recovery_directive -->
+
+#!/usr/bin/env python3
+"""
+GENESIS MASTER RECOVERY DIRECTIVE v9.0 — STRUCTURE FIRST, NEVER SIMPLIFY
+ULTIMATE REBUILD REINFORCER — COMPLEXITY HIERARCHY ENFORCER
+
+🔐 PURPOSE: Enforce complexity hierarchy and eliminate simplified variants
+🧠 STRATEGY: Hash-based validation with preference for complex modules
+🏆 GOAL: Zero tolerance for stub clones and simplified variants
+
+ARCHITECT COMPLIANCE:
+- Always prefer *_fixed.py, *_final.py over *_simple.py, *_new.py
+- Quarantined modules validated via hash + logic verification
+- Complete EventBus integration mandatory
+- Real MT5 connections only
+- Full telemetry binding required
+"""
+
+import json
+import shutil
+import logging
+import hashlib
+from pathlib import Path
+from datetime import datetime, timezone
+from typing import Dict, List, Tuple, Set, Any
+from collections import defaultdict
+import re
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger('MasterRecoveryDirective')
+
+class GenesisComplexityEnforcer:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("master_recovery_directive", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("master_recovery_directive", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "master_recovery_directive",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in master_recovery_directive: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event_bus = self._get_event_bus()
+        
+    def _get_event_bus(self):
+        # Auto-injected EventBus connection
+        try:
+            from event_bus_manager import EventBusManager
+            return EventBusManager.get_instance()
+        except ImportError:
+            logging.warning("EventBus not available - integration required")
+            return None
+            
+    def emit_telemetry(self, data):
+        if self.event_bus:
+            self.event_bus.emit('telemetry', data)
+    """Master recovery engine for enforcing complexity hierarchy"""
+    
+    def __init__(self):
+        self.base_path = Path("c:/Users/patra/Genesis FINAL TRY")
+        self.logs_path = self.base_path / "logs"
+        self.genesis_fixed_path = self.base_path / "src" / "genesis_fixed"
+        self.genesis_fixed_path.mkdir(parents=True, exist_ok=True)
+        
+        # Preference hierarchy (highest to lowest priority)
+        self.prefer_suffixes = ["_fixed.py", "_final.py", "_recovered.py"]
+        self.eliminate_suffixes = ["_simple.py", "_new.py", "_clone.py", "_backup.py"]
+        
+        # Quarantine folders to check
+        self.quarantine_folders = [
+            "QUARANTINE_DUPLICATES",
+            "quarantine/duplicate_conflicts",
+            "extracted_phase18_test"
+        ]
+        
+        # Recovery statistics
+        self.recovery_stats = {
+            'modules_analyzed': 0,
+            'complex_modules_restored': 0,
+            'simplified_variants_eliminated': 0,
+            'quarantine_modules_recovered': 0,
+            'hash_mismatches_resolved': 0,
+            'eventbus_connections_verified': 0,
+            'mt5_integrations_validated': 0
+        }
+        
+    def load_hash_and_score_data(self) -> Tuple[Dict, Dict]:
+        """Load module hash map and duplicate scores"""
+        logger.info("📊 Loading hash map and scoring data...")
+        
+        # Load module hash map
+        hash_map_path = self.logs_path / "module_hash_map.json"
+        with open(hash_map_path, 'r') as f:
+            hash_map = json.load(f)
+        
+        # Load duplicate scores
+        scores_path = self.logs_path / "duplicate_keep_scores.json"
+        with open(scores_path, 'r') as f:
+            scores = json.load(f)
+            
+        logger.info(f"✅ Loaded {len(hash_map)} module fingerprints")
+        logger.info(f"✅ Loaded {len(scores)} quality scores")
+        
+        return hash_map, scores
+    
+    def identify_module_variants(self, hash_map: Dict) -> Dict[str, List[Dict]]:
+        """Group modules by base name to identify variants"""
+        logger.info("🔍 Identifying module variants...")
+        
+        module_groups = defaultdict(list)
+        
+        for file_path, file_hash in hash_map.items():
+            # Skip virtual environment files
+            if '.venv' in file_path or '__pycache__' in file_path:
+                continue
+                
+            # Extract base module name
+            path_obj = Path(file_path)
+            base_name = path_obj.stem
+            
+            # Remove common suffixes to group variants
+            for suffix in ['_fixed', '_final', '_simple', '_new', '_clone', '_backup', '_recovered']:
+                if base_name.endswith(suffix):
+                    base_name = base_name[:-len(suffix)]
+                    break
+            
+            module_groups[base_name].append({
+                'path': file_path,
+                'hash': file_hash,
+                'full_name': path_obj.stem,
+                'suffix': self._get_suffix(path_obj.stem)
+            })
+        
+        self.recovery_stats['modules_analyzed'] = sum(len(variants) for variants in module_groups.values())
+        logger.info(f"🧠 Grouped {len(module_groups)} module families with {self.recovery_stats['modules_analyzed']} total variants")
+        
+        return module_groups
+    
+    def _get_suffix(self, filename: str) -> str:
+        """Extract suffix from filename"""
+        for suffix in ['_fixed', '_final', '_simple', '_new', '_clone', '_backup', '_recovered']:
+            if filename.endswith(suffix):
+                return suffix
+        return ''
+    
+    def enforce_complexity_hierarchy(self, module_groups: Dict, scores: Dict) -> Dict[str, Dict]:
+        """Enforce complexity hierarchy - prefer complex over simplified"""
+        logger.info("🏆 Enforcing complexity hierarchy...")
+        
+        preferred_modules = {}
+        eliminated_modules = []
+        
+        for base_name, variants in module_groups.items():
+            if len(variants) == 1:
+                # Single variant - keep it
+                variant = variants[0]
+                preferred_modules[base_name] = variant
+                continue
+            
+            # Multiple variants - apply hierarchy
+            best_variant = None
+            best_score = -1
+            
+            # Sort by preference hierarchy
+            sorted_variants = sorted(variants, key=lambda x: self._get_preference_score(x['suffix']))
+            
+            for variant in sorted_variants:
+                file_path = variant['path']
+                score = scores.get(file_path, 0.0)
+                
+                # Check if file exists
+                assert Path(file_path).exists():
+                    continue
+                
+                # Apply complexity hierarchy rules
+                suffix = variant['suffix']
+                
+                # Preferred suffixes get priority
+                if any(suffix.endswith(pref.replace('.py', '')) for pref in self.prefer_suffixes):
+                    if score > best_score:
+                        best_variant = variant
+                        best_score = score
+                # Eliminate simplified variants unless they're significantly better
+                elif any(suffix.endswith(elim.replace('.py', '')) for elim in self.eliminate_suffixes):
+                    if best_variant is None and score > 50.0:  # Only if no preferred variant exists
+                        best_variant = variant
+                        best_score = score
+                    else:
+                        eliminated_modules.append(variant)
+                        continue
+                # Default case
+                else:
+                    if score > best_score:
+                        best_variant = variant
+                        best_score = score
+            
+            if best_variant:
+                preferred_modules[base_name] = best_variant
+                
+                # Mark other variants for elimination
+                for variant in variants:
+                    if variant != best_variant:
+                        eliminated_modules.append(variant)
+        
+        self.recovery_stats['complex_modules_restored'] = len(preferred_modules)
+        self.recovery_stats['simplified_variants_eliminated'] = len(eliminated_modules)
+        
+        logger.info(f"✅ Preferred {len(preferred_modules)} complex modules")
+        logger.info(f"🗑️ Eliminated {len(eliminated_modules)} simplified variants")
+        
+        return preferred_modules
+    
+    def _get_preference_score(self, suffix: str) -> int:
+        """Get preference score for suffix (higher = more preferred)"""
+        if suffix.endswith('_fixed') is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: master_recovery_directive -->

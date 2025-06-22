@@ -1,0 +1,80 @@
+{
+  "segment_type": "routes",
+  "category": "monitoring",
+  "routes": {
+    "risk_monitoring": {
+      "topic": "risk.real_time_monitoring",
+      "source": "risk_engine",
+      "destination": [
+        "execution_engine",
+        "dashboard",
+        "alert_system"
+      ],
+      "data_type": "real_risk_data",
+      "mock_forbidden": true
+    },
+    "comprehensive_mt5_integration_telemetry": {
+      "topic": "telemetry.comprehensive_mt5_integration",
+      "source": "comprehensive_mt5_integration",
+      "destination": [
+        "dashboard",
+        "monitoring"
+      ],
+      "data_type": "telemetry_data",
+      "mock_forbidden": true
+    },
+    "mt5_module_discovery_engine_telemetry": {
+      "topic": "telemetry.mt5_module_discovery_engine",
+      "source": "mt5_module_discovery_engine",
+      "destination": [
+        "dashboard",
+        "monitoring"
+      ],
+      "data_type": "telemetry_data",
+      "mock_forbidden": true
+    },
+    "macro_analysis_engine_telemetry": {
+      "producer": "macro_analysis_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "macro_analysis_engine"
+    },
+    "ftmo_limit_guard_telemetry": {
+      "producer": "ftmo_limit_guard",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "ftmo_limit_guard"
+    },
+    "backtesting_engine_telemetry": {
+      "producer": "backtesting_engine",
+      "consumer": "telemetry_collector",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "backtesting_engine"
+    },
+    "collect_telemetry_macro_analysis_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "macro_analysis_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.403947",
+      "module": "macro_analysis_engine"
+    },
+    "collect_telemetry_ftmo_limit_guard": {
+      "producer": "telemetry_collector",
+      "consumer": "ftmo_limit_guard",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.404281",
+      "module": "ftmo_limit_guard"
+    },
+    "collect_telemetry_backtesting_engine": {
+      "producer": "telemetry_collector",
+      "consumer": "backtesting_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.405053",
+      "module": "backtesting_engine"
+    }
+  },
+  "route_count": 3
+}

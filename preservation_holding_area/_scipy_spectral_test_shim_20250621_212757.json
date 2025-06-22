@@ -1,0 +1,9 @@
+{
+  "module_id": "_scipy_spectral_test_shim",
+  "original_path": "modules\\restored\\_scipy_spectral_test_shim.py",
+  "preserved_path": "preservation_holding_area\\_scipy_spectral_test_shim_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 29582,
+  "checksum": "6ecdf8f8f67be00b8518880e31bdce3c756101ad88f7c945f47290003b363302"
+}

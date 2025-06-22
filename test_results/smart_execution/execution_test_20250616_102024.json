@@ -1,0 +1,13 @@
+{
+  "test_id": "exec_mon_test_20250616_102014",
+  "test_start_time": "2025-06-16T10:20:14.095440",
+  "execution_deviation_alerts": [],
+  "killswitch_triggers": [],
+  "recalibration_requests": [],
+  "smart_log_syncs": [],
+  "test_status": "COMPLETED",
+  "tests_passed": 0,
+  "tests_failed": 6,
+  "tests_total": 6,
+  "completion_time": "2025-06-16T10:20:24.585908"
+}

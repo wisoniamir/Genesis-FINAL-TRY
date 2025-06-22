@@ -1,0 +1,9 @@
+{
+  "module_id": "plugin_registry",
+  "original_path": "modules\\restored\\plugin_registry.py",
+  "preserved_path": "preservation_holding_area\\plugin_registry_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 31641,
+  "checksum": "bbc3a120948e8d86c37b67c5d1c22917f823d69f24f0c22c851eeeef57617f7d"
+}

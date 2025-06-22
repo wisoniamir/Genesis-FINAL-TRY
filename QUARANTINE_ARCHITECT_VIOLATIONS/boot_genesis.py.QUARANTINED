@@ -1,0 +1,25 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\boot_genesis.py",
+  "quarantine_timestamp": "2025-06-21T04:33:01.502088+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\boot_genesis.py",
+      "line_numbers": [
+        19
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\boot_genesis.py",
+      "line_numbers": [
+        31
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

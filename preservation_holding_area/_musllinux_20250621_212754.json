@@ -1,0 +1,9 @@
+{
+  "module_id": "_musllinux",
+  "original_path": "modules\\restored\\_musllinux.py",
+  "preserved_path": "preservation_holding_area\\_musllinux_20250621_212754.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13996,
+  "checksum": "c1c7497e3b22f336a7343c4ace7ff2465535b5bbe52925860aa7c8fa08a8b242"
+}

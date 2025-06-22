@@ -1,0 +1,70 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\genesis_institutional_risk_engine_v7.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.189181+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\genesis_institutional_risk_engine_v7.py",
+      "line_numbers": [
+        967,
+        1313,
+        1329
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\genesis_institutional_risk_engine_v7.py",
+      "line_numbers": [
+        278,
+        358,
+        385,
+        420,
+        446
+      ],
+      "violation_count": 38
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\genesis_institutional_risk_engine_v7.py",
+      "line_numbers": [
+        303,
+        379,
+        413,
+        440,
+        459
+      ],
+      "violation_count": 38
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\genesis_institutional_risk_engine_v7.py",
+      "line_numbers": [
+        655,
+        664,
+        1137,
+        1221,
+        1341
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\risk_management\\genesis_institutional_risk_engine_v7.py",
+      "line_numbers": [
+        280,
+        281,
+        282,
+        283,
+        286
+      ],
+      "violation_count": 8
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

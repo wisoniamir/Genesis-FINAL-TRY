@@ -1,0 +1,9 @@
+{
+  "module_id": "orphan_recovery_integration_engine",
+  "original_path": "modules\\restored\\orphan_recovery_integration_engine.py",
+  "preserved_path": "preservation_holding_area\\orphan_recovery_integration_engine_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24224,
+  "checksum": "aa846e285608c7cff645ec81df4201b4b42ae0801b7210f4b93e8aad68f7c200"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "resample",
+  "original_path": "modules\\restored\\resample.py",
+  "preserved_path": "preservation_holding_area\\resample_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 149156,
+  "checksum": "a2ef4b775e962df05c6841cd5a6ef2641aa23d6a2e4f3c07ec8a44a0bdc0d745"
+}

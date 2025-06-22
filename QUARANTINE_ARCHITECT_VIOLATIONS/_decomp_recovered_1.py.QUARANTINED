@@ -1,0 +1,42 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_decomp_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.969865+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_decomp_recovered_1.py",
+      "line_numbers": [
+        630
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_decomp_recovered_1.py",
+      "line_numbers": [
+        91,
+        105,
+        223,
+        268,
+        274
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_decomp_recovered_1.py",
+      "line_numbers": [
+        50,
+        52,
+        55,
+        67,
+        82
+      ],
+      "violation_count": 29
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

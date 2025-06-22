@@ -1,0 +1,9 @@
+{
+  "module_id": "alert",
+  "original_path": "modules\\restored\\alert.py",
+  "preserved_path": "preservation_holding_area\\alert_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23826,
+  "checksum": "6646cedaee584d8b722d4c1ad4ffbff1a3733ed10d54b48fb46a61ba452a1245"
+}

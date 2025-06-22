@@ -1,0 +1,360 @@
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+System Patch Queue Component
+"""
+
+from typing import Dict, Any, List
+import json
+import logging
+from datetime import datetime
+from pathlib import Path
+
+from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
+                           QListWidget, QListWidgetItem, QPushButton,
+                           QTextEdit, QDialog, QMessageBox)
+from PyQt5.QtCore import Qt, QTimer
+
+from core.telemetry import emit_telemetry
+from core.event_bus import event_bus
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: patch_queue -->
+
+
+# <!-- @GENESIS_MODULE_START: patch_queue -->
+
+class PatchDialog(QDialog):
+    """Dialog for submitting new patches"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Submit New Patch")
+        self.setModal(True)
+        
+        # Create layout
+        layout = QVBoxLayout(self)
+        
+        # Add description field
+        self.description = QTextEdit()
+        layout.addWidget(QLabel("Patch Description:"))
+        layout.addWidget(self.description)
+        
+        # Add buttons
+        button_layout = QHBoxLayout()
+        
+        submit_btn = QPushButton("Submit")
+        submit_btn.clicked.connect(self.accept)
+        button_layout.addWidget(submit_btn)
+        
+        cancel_btn = QPushButton("Cancel")
+        cancel_btn.clicked.connect(self.reject)
+        button_layout.addWidget(cancel_btn)
+        
+        layout.addLayout(button_layout)
+        
+    def get_description(self) -> str:
+        """Get patch description"""
+        return self.description.toPlainText()
+
+class PatchQueue(QWidget):
+    """System patch queue manager"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.logger = logging.getLogger(__name__)
+        
+        # Initialize UI
+        layout = QVBoxLayout(self)
+        
+        # Add controls
+        self._add_controls(layout)
+        
+        # Add patch list
+        self._add_patch_list(layout)
+        
+        # Initialize update timer
+        self._init_timer()
+        
+        # Subscribe to events
+        self._subscribe_to_events()
+        
+    def _add_controls(self, layout: QVBoxLayout):
+        """Add control buttons"""
+        control_layout = QHBoxLayout()
+        
+        # Add patch button
+        add_btn = QPushButton("Add Patch")
+        add_btn.clicked.connect(self._handle_add_patch)
+        control_layout.addWidget(add_btn)
+        
+        # Execute button
+        execute_btn = QPushButton("Execute Selected")
+        execute_btn.clicked.connect(self._handle_execute_patch)
+        control_layout.addWidget(execute_btn)
+        
+        # Remove button
+        remove_btn = QPushButton("Remove Selected")
+        remove_btn.clicked.connect(self._handle_remove_patch)
+        control_layout.addWidget(remove_btn)
+        
+        # Add to main layout
+        layout.addLayout(control_layout)
+        
+    def _add_patch_list(self, layout: QVBoxLayout):
+        """Add patch list widget"""
+        self.patch_list = QListWidget()
+        layout.addWidget(self.patch_list)
+        
+    def _init_timer(self):
+        """Initialize update timer"""
+        self.update_timer = QTimer()
+        self.update_timer.timeout.connect(self._refresh_patches)
+        self.update_timer.start(5000)  # Refresh every 5 seconds
+        
+    def _subscribe_to_events(self):
+        """Subscribe to patch events"""
+        event_bus.subscribe("patch_submitted", self._handle_patch_submitted)
+        event_bus.subscribe("patch_executed", self._handle_patch_executed)
+        
+    def _handle_add_patch(self):
+        """Handle add patch request"""
+        try:
+            dialog = PatchDialog(self)
+            if dialog.exec_():
+                description = dialog.get_description()
+                if not description:
+                    return
+                    
+                # Create patch entry
+                patch = {
+                    "description": description,
+                    "status": "pending",
+                    "submitted_at": datetime.now().isoformat(),
+                    "executed_at": None
+                }
+                
+                # Save to patch queue
+                self._save_patch(patch)
+                
+                # Emit telemetry
+                emit_telemetry("patch_queue", "patch_submitted", patch)
+                
+                # Refresh list
+                self._refresh_patches()
+                
+        except Exception as e:
+            self.logger.error(f"Failed to add patch: {e}")
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"Failed to add patch: {str(e)}"
+            )
+            
+    def _handle_execute_patch(self):
+        """Handle execute patch request"""
+        try:
+            # Get selected patch
+            current = self.patch_list.currentItem()
+            if not current:
+                return
+                
+            patch = current.data(Qt.UserRole)
+            if not patch:
+                return
+                
+            # Confirm execution
+            reply = QMessageBox.question(
+                self,
+                "Execute Patch",
+                f"Are you sure you want to execute this patch?\n\n"
+                f"Description: {patch['description']}",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            
+            if reply == QMessageBox.Yes:
+                # Update patch status
+                patch["status"] = "executed"
+                patch["executed_at"] = datetime.now().isoformat()
+                
+                # Save changes
+                self._save_patch(patch)
+                
+                # Emit telemetry
+                emit_telemetry("patch_queue", "patch_executed", patch)
+                
+                # Refresh list
+                self._refresh_patches()
+                
+                # Show confirmation
+                QMessageBox.information(
+                    self,
+                    "Patch Executed",
+                    "The patch has been executed successfully."
+                )
+                
+        except Exception as e:
+            self.logger.error(f"Failed to execute patch: {e}")
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"Failed to execute patch: {str(e)}"
+            )
+            
+    def _handle_remove_patch(self):
+        """Handle remove patch request"""
+        try:
+            # Get selected patch
+            current = self.patch_list.currentItem()
+            if not current:
+                return
+                
+            patch = current.data(Qt.UserRole)
+            if not patch:
+                return
+                
+            # Confirm removal
+            reply = QMessageBox.question(
+                self,
+                "Remove Patch",
+                f"Are you sure you want to remove this patch?\n\n"
+                f"Description: {patch['description']}",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            
+            if reply == QMessageBox.Yes:
+                # Remove from list
+                self.patch_list.takeItem(self.patch_list.row(current))
+                
+                # Remove from storage
+                self._remove_patch(patch)
+                
+                # Emit telemetry
+                emit_telemetry("patch_queue", "patch_removed", patch)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to remove patch: {e}")
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"Failed to remove patch: {str(e)}"
+            )
+            
+    def _refresh_patches(self):
+        """Refresh patch list"""
+        try:
+            # Load patches
+            patches = self._load_patches()
+            
+            # Clear list
+            self.patch_list.clear()
+            
+            # Add patches
+            for patch in patches:
+                item = QListWidgetItem(
+                    f"{patch['description']} ({patch['status']})"
+                )
+                item.setData(Qt.UserRole, patch)
+                self.patch_list.addItem(item)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to refresh patches: {e}")
+            
+    def _load_patches(self) -> List[Dict[str, Any]]:
+        """Load patches from storage"""
+        try:
+            patch_path = Path("patches.json")
+            if not patch_path.exists():
+                return []
+                
+            with open(patch_path, "r") as f:
+                return json.load(f).get("patches", [])
+                
+        except Exception as e:
+            self.logger.error(f"Failed to load patches: {e}")
+            return []
+            
+    def _save_patch(self, patch: Dict[str, Any]):
+        """Save patch to storage"""
+        try:
+            # Load existing patches
+            patches = self._load_patches()
+            
+            # Add or update patch
+            found = False
+            for i, p in enumerate(patches):
+                if p["submitted_at"] == patch["submitted_at"]:
+                    patches[i] = patch
+                    found = True
+                    break
+                    
+            if not found:
+                patches.append(patch)
+                
+            # Save to file
+            patch_path = Path("patches.json")
+            with open(patch_path, "w") as f:
+                json.dump({"patches": patches}, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to save patch: {e}")
+            raise
+            
+    def _remove_patch(self, patch: Dict[str, Any]):
+        """Remove patch from storage"""
+        try:
+            # Load existing patches
+            patches = self._load_patches()
+            
+            # Remove patch
+            patches = [p for p in patches 
+                      if p["submitted_at"] != patch["submitted_at"]]
+                      
+            # Save to file
+            patch_path = Path("patches.json")
+            with open(patch_path, "w") as f:
+                json.dump({"patches": patches}, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to remove patch: {e}")
+            raise
+            
+    def _handle_patch_submitted(self, data: Dict[str, Any]):
+        """Handle patch submitted event"""
+        self._refresh_patches()
+        
+    def _handle_patch_executed(self, data: Dict[str, Any]):
+        """Handle patch executed event"""
+        self._refresh_patches()
+        
+    def closeEvent(self, event):
+        """Handle queue close"""
+        try:
+            # Stop update timer
+            self.update_timer.stop()
+            
+            # Emit telemetry
+            emit_telemetry("patch_queue", "closed", {
+                "timestamp": datetime.now().isoformat()
+            })
+            
+        except Exception as e:
+            self.logger.error(f"Error in close event: {e}")
+            
+        event.accept()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))

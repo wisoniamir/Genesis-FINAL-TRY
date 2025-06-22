@@ -1,0 +1,107 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.362074+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        21,
+        77,
+        325,
+        349
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        397
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        324
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        21,
+        120,
+        170,
+        201,
+        233
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        164,
+        195,
+        228,
+        245,
+        255
+      ],
+      "violation_count": 20
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        152,
+        242,
+        444,
+        453
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        126,
+        186,
+        285
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        112,
+        643
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\autonomous_order_executor.py",
+      "line_numbers": [
+        157,
+        158,
+        159
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pandas_compat_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.777750+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pandas_compat_recovered_2.py",
+      "line_numbers": [
+        540,
+        682,
+        692,
+        884,
+        913
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pandas_compat_recovered_2.py",
+      "line_numbers": [
+        1066
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pandas_compat_recovered_2.py",
+      "line_numbers": [
+        33,
+        78,
+        116,
+        452,
+        456
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pandas_compat_recovered_2.py",
+      "line_numbers": [
+        49,
+        94,
+        226,
+        374,
+        608
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\pandas_compat_recovered_2.py",
+      "line_numbers": [
+        144,
+        276,
+        367,
+        413,
+        545
+      ],
+      "violation_count": 25
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,246 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_relative_risk -->
+"""
+🏛️ GENESIS TEST_RELATIVE_RISK - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import pytest
+import numpy as np
+from numpy.testing import assert_allclose, assert_equal
+from scipy.stats.contingency import relative_risk
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_relative_risk", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_relative_risk", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_relative_risk",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_relative_risk: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_relative_risk",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_relative_risk", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_relative_risk: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+# Test just the calculation of the relative risk, including edge
+# cases that result in a relative risk of 0, inf or nan.
+@pytest.mark.parametrize(
+    'exposed_cases, exposed_total, control_cases, control_total, expected_rr',
+    [(1, 4, 3, 8, 0.25 / 0.375),
+     (0, 10, 5, 20, 0),
+     (0, 10, 0, 20, np.nan),
+     (5, 15, 0, 20, np.inf)]
+)
+def test_relative_risk(exposed_cases, exposed_total,
+                       control_cases, control_total, expected_rr):
+    result = relative_risk(exposed_cases, exposed_total,
+                           control_cases, control_total)
+    assert_allclose(result.relative_risk, expected_rr, rtol=1e-13)
+
+
+def test_relative_risk_confidence_interval():
+    result = relative_risk(exposed_cases=16, exposed_total=128,
+                           control_cases=24, control_total=256)
+    rr = result.relative_risk
+    ci = result.confidence_interval(confidence_level=0.95)
+    # The corresponding calculation in R using the epitools package.
+    #
+    # > library(epitools)
+    # > c <- matrix(c(232, 112, 24, 16), nrow=2)
+    # > result <- riskratio(c)
+    # > result$measure
+    #               risk ratio with 95% C.I.
+    # Predictor  estimate     lower    upper
+    #   Exposed1 1.000000        NA       NA
+    #   Exposed2 1.333333 0.7347317 2.419628
+    #
+    # The last line is the result that we want.
+    assert_allclose(rr, 4/3)
+    assert_allclose((ci.low, ci.high), (0.7347317, 2.419628), rtol=5e-7)
+
+
+def test_relative_risk_ci_conflevel0():
+    result = relative_risk(exposed_cases=4, exposed_total=12,
+                           control_cases=5, control_total=30)
+    rr = result.relative_risk
+    assert_allclose(rr, 2.0, rtol=1e-14)
+    ci = result.confidence_interval(0)
+    assert_allclose((ci.low, ci.high), (2.0, 2.0), rtol=1e-12)
+
+
+def test_relative_risk_ci_conflevel1():
+    result = relative_risk(exposed_cases=4, exposed_total=12,
+                           control_cases=5, control_total=30)
+    ci = result.confidence_interval(1)
+    assert_equal((ci.low, ci.high), (0, np.inf))
+
+
+def test_relative_risk_ci_edge_cases_00():
+    result = relative_risk(exposed_cases=0, exposed_total=12,
+                           control_cases=0, control_total=30)
+    assert_equal(result.relative_risk, np.nan)
+    ci = result.confidence_interval()
+    assert_equal((ci.low, ci.high), (np.nan, np.nan))
+
+
+def test_relative_risk_ci_edge_cases_01():
+    result = relative_risk(exposed_cases=0, exposed_total=12,
+                           control_cases=1, control_total=30)
+    assert_equal(result.relative_risk, 0)
+    ci = result.confidence_interval()
+    assert_equal((ci.low, ci.high), (0.0, np.nan))
+
+
+def test_relative_risk_ci_edge_cases_10():
+    result = relative_risk(exposed_cases=1, exposed_total=12,
+                           control_cases=0, control_total=30)
+    assert_equal(result.relative_risk, np.inf)
+    ci = result.confidence_interval()
+    assert_equal((ci.low, ci.high), (np.nan, np.inf))
+
+
+@pytest.mark.parametrize('ec, et, cc, ct', [(0, 0, 10, 20),
+                                            (-1, 10, 1, 5),
+                                            (1, 10, 0, 0),
+                                            (1, 10, -1, 4)])
+def test_relative_risk_bad_value(ec, et, cc, ct):
+    with pytest.raises(ValueError, match="must be an integer not less than"):
+        relative_risk(ec, et, cc, ct)
+
+
+def test_relative_risk_bad_type():
+    with pytest.raises(TypeError, match="must be an integer"):
+        relative_risk(1, 10, 2.0, 40)
+
+
+# <!-- @GENESIS_MODULE_END: test_relative_risk -->

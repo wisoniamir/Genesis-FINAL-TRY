@@ -1,0 +1,9 @@
+{
+  "module_id": "test_smart_monitor",
+  "original_path": "modules\\unclassified\\test_smart_monitor.py",
+  "preserved_path": "preservation_holding_area\\test_smart_monitor_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 20087,
+  "checksum": "0def513a10e14d2b7ab27950322712192fe0dbba4cbd89fbd78644a191209c84"
+}

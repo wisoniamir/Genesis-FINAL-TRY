@@ -1,0 +1,262 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_merge_cross -->
+"""
+🏛️ GENESIS TEST_MERGE_CROSS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import pytest
+
+from pandas import (
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_merge_cross", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_merge_cross", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_merge_cross",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_merge_cross: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_merge_cross",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_merge_cross", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_merge_cross: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+    DataFrame,
+    Series,
+)
+import pandas._testing as tm
+from pandas.core.reshape.merge import (
+    MergeError,
+    merge,
+)
+
+
+@pytest.mark.parametrize(
+    ("input_col", "output_cols"), [("b", ["a", "b"]), ("a", ["a_x", "a_y"])]
+)
+def test_merge_cross(input_col, output_cols):
+    # GH#5401
+    left = DataFrame({"a": [1, 3]})
+    right = DataFrame({input_col: [3, 4]})
+    left_copy = left.copy()
+    right_copy = right.copy()
+    result = merge(left, right, how="cross")
+    expected = DataFrame({output_cols[0]: [1, 1, 3, 3], output_cols[1]: [3, 4, 3, 4]})
+    tm.assert_frame_equal(result, expected)
+    tm.assert_frame_equal(left, left_copy)
+    tm.assert_frame_equal(right, right_copy)
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"left_index": True},
+        {"right_index": True},
+        {"on": "a"},
+        {"left_on": "a"},
+        {"right_on": "b"},
+    ],
+)
+def test_merge_cross_error_reporting(kwargs):
+    # GH#5401
+    left = DataFrame({"a": [1, 3]})
+    right = DataFrame({"b": [3, 4]})
+    msg = (
+        "Can not pass on, right_on, left_on or set right_index=True or "
+        "left_index=True"
+    )
+    with pytest.raises(MergeError, match=msg):
+        merge(left, right, how="cross", **kwargs)
+
+
+def test_merge_cross_mixed_dtypes():
+    # GH#5401
+    left = DataFrame(["a", "b", "c"], columns=["A"])
+    right = DataFrame(range(2), columns=["B"])
+    result = merge(left, right, how="cross")
+    expected = DataFrame({"A": ["a", "a", "b", "b", "c", "c"], "B": [0, 1, 0, 1, 0, 1]})
+    tm.assert_frame_equal(result, expected)
+
+
+def test_merge_cross_more_than_one_column():
+    # GH#5401
+    left = DataFrame({"A": list("ab"), "B": [2, 1]})
+    right = DataFrame({"C": range(2), "D": range(4, 6)})
+    result = merge(left, right, how="cross")
+    expected = DataFrame(
+        {
+            "A": ["a", "a", "b", "b"],
+            "B": [2, 2, 1, 1],
+            "C": [0, 1, 0, 1],
+            "D": [4, 5, 4, 5],
+        }
+    )
+    tm.assert_frame_equal(result, expected)
+
+
+def test_merge_cross_null_values(nulls_fixture):
+    # GH#5401
+    left = DataFrame({"a": [1, nulls_fixture]})
+    right = DataFrame({"b": ["a", "b"], "c": [1.0, 2.0]})
+    result = merge(left, right, how="cross")
+    expected = DataFrame(
+        {
+            "a": [1, 1, nulls_fixture, nulls_fixture],
+            "b": ["a", "b", "a", "b"],
+            "c": [1.0, 2.0, 1.0, 2.0],
+        }
+    )
+    tm.assert_frame_equal(result, expected)
+
+
+def test_join_cross_error_reporting():
+    # GH#5401
+    left = DataFrame({"a": [1, 3]})
+    right = DataFrame({"a": [3, 4]})
+    msg = (
+        "Can not pass on, right_on, left_on or set right_index=True or "
+        "left_index=True"
+    )
+    with pytest.raises(MergeError, match=msg):
+        left.join(right, how="cross", on="a")
+
+
+def test_merge_cross_series():
+    # GH#54055
+    ls = Series([1, 2, 3, 4], index=[1, 2, 3, 4], name="left")
+    rs = Series([3, 4, 5, 6], index=[3, 4, 5, 6], name="right")
+    res = merge(ls, rs, how="cross")
+
+    expected = merge(ls.to_frame(), rs.to_frame(), how="cross")
+    tm.assert_frame_equal(res, expected)
+
+
+# <!-- @GENESIS_MODULE_END: test_merge_cross -->

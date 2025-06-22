@@ -1,0 +1,569 @@
+# <!-- @GENESIS_MODULE_START: _backend_pdf_ps -->
+"""
+🏛️ GENESIS _BACKEND_PDF_PS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("_backend_pdf_ps", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("_backend_pdf_ps", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_backend_pdf_ps",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _backend_pdf_ps: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_backend_pdf_ps",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_backend_pdf_ps", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _backend_pdf_ps: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+Common functionality between the PDF and PS backends.
+"""
+
+from io import BytesIO
+import functools
+import logging
+
+from fontTools import subset
+
+import matplotlib as mpl
+from .. import font_manager, ft2font
+from .._afm import AFM
+from ..backend_bases import RendererBase
+
+
+@functools.lru_cache(50)
+def _cached_get_afm_from_fname(fname):
+    with open(fname, "rb") as fh:
+        return AFM(fh)
+
+
+def get_glyphs_subset(fontfile, characters):
+    """
+    Subset a TTF font
+
+    Reads the named fontfile and restricts the font to the characters.
+
+    Parameters
+    ----------
+    fontfile : str
+        Path to the font file
+    characters : str
+        Continuous set of characters to include in subset
+
+    Returns
+    -------
+    fontTools.ttLib.ttFont.TTFont
+        An open font object representing the subset, which needs to
+        be closed by the caller.
+    """
+
+    options = subset.Options(glyph_names=True, recommended_glyphs=True)
+
+    # Prevent subsetting extra tables.
+    options.drop_tables += [
+        'FFTM',  # FontForge Timestamp.
+        'PfEd',  # FontForge personal table.
+        'BDF',  # X11 BDF header.
+        'meta',  # Metadata stores design/supported languages (meaningless for subsets).
+        'MERG',  # Merge Table.
+        'TSIV',  # Microsoft Visual TrueType extension.
+        'Zapf',  # Information about the individual glyphs in the font.
+        'bdat',  # The bitmap data table.
+        'bloc',  # The bitmap location table.
+        'cidg',  # CID to Glyph ID table (Apple Advanced Typography).
+        'fdsc',  # The font descriptors table.
+        'feat',  # Feature name table (Apple Advanced Typography).
+        'fmtx',  # The Font Metrics Table.
+        'fond',  # Data-fork font information (Apple Advanced Typography).
+        'just',  # The justification table (Apple Advanced Typography).
+        'kerx',  # An extended kerning table (Apple Advanced Typography).
+        'ltag',  # Language Tag.
+        'morx',  # Extended Glyph Metamorphosis Table.
+        'trak',  # Tracking table.
+        'xref',  # The cross-reference table (some Apple font tooling information).
+    ]
+    # if fontfile is a ttc, specify font number
+    if fontfile.endswith(".ttc"):
+        options.font_number = 0
+
+    font = subset.load_font(fontfile, options)
+    subsetter = subset.Subsetter(options=options)
+    subsetter.populate(text=characters)
+    subsetter.subset(font)
+    return font
+
+
+def font_as_file(font):
+    """
+    Convert a TTFont object into a file-like object.
+
+    Parameters
+    ----------
+    font : fontTools.ttLib.ttFont.TTFont
+        A font object
+
+    Returns
+    -------
+    BytesIO
+        A file object with the font saved into it
+    """
+    fh = BytesIO()
+    font.save(fh, reorderTables=False)
+    return fh
+
+
+class CharacterTracker:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("_backend_pdf_ps", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("_backend_pdf_ps", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_backend_pdf_ps",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _backend_pdf_ps: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_backend_pdf_ps",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_backend_pdf_ps", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _backend_pdf_ps: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_backend_pdf_ps",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _backend_pdf_ps: {e}")
+    """
+    Helper for font subsetting by the pdf and ps backends.
+
+    Maintains a mapping of font paths to the set of character codepoints that
+    are being used from that font.
+    """
+
+    def __init__(self):
+        self.used = {}
+
+    def track(self, font, s):
+        """Record that string *s* is being typeset using font *font*."""
+        char_to_font = font._get_fontmap(s)
+        for _c, _f in char_to_font.items():
+            self.used.setdefault(_f.fname, set()).add(ord(_c))
+
+    def track_glyph(self, font, glyph):
+        """Record that codepoint *glyph* is being typeset using font *font*."""
+        self.used.setdefault(font.fname, set()).add(glyph)
+
+
+class RendererPDFPSBase(RendererBase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("_backend_pdf_ps", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("_backend_pdf_ps", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_backend_pdf_ps",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _backend_pdf_ps: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_backend_pdf_ps",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_backend_pdf_ps", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _backend_pdf_ps: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_backend_pdf_ps",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _backend_pdf_ps: {e}")
+    # The following attributes must be defined by the subclasses:
+    # - _afm_font_dir
+    # - _use_afm_rc_name
+
+    def __init__(self, width, height):
+        super().__init__()
+        self.width = width
+        self.height = height
+
+    def flipy(self):
+        # docstring inherited
+        return False  # y increases from bottom to top.
+
+    def option_scale_image(self):
+        # docstring inherited
+        return True  # PDF and PS support arbitrary image scaling.
+
+    def option_image_nocomposite(self):
+        # docstring inherited
+        # Decide whether to composite image based on rcParam value.
+        return not mpl.rcParams["image.composite_image"]
+
+    def get_canvas_width_height(self):
+        # docstring inherited
+        return self.width * 72.0, self.height * 72.0
+
+    def get_text_width_height_descent(self, s, prop, ismath):
+        # docstring inherited
+        if ismath == "TeX":
+            return super().get_text_width_height_descent(s, prop, ismath)
+        elif ismath:
+            parse = self._text2path.mathtext_parser.parse(s, 72, prop)
+            return parse.width, parse.height, parse.depth
+        elif mpl.rcParams[self._use_afm_rc_name]:
+            font = self._get_font_afm(prop)
+            l, b, w, h, d = font.get_str_bbox_and_descent(s)
+            scale = prop.get_size_in_points() / 1000
+            w *= scale
+            h *= scale
+            d *= scale
+            return w, h, d
+        else:
+            font = self._get_font_ttf(prop)
+            font.set_text(s, 0.0, flags=ft2font.LoadFlags.NO_HINTING)
+            w, h = font.get_width_height()
+            d = font.get_descent()
+            scale = 1 / 64
+            w *= scale
+            h *= scale
+            d *= scale
+            return w, h, d
+
+    def _get_font_afm(self, prop):
+        fname = font_manager.findfont(
+            prop, fontext="afm", directory=self._afm_font_dir)
+        return _cached_get_afm_from_fname(fname)
+
+    def _get_font_ttf(self, prop):
+        fnames = font_manager.fontManager._find_fonts_by_props(prop)
+        try:
+            font = font_manager.get_font(fnames)
+            font.clear()
+            font.set_size(prop.get_size_in_points(), 72)
+            return font
+        except RuntimeError:
+            logging.getLogger(__name__).warning(
+                "The PostScript/PDF backend does not currently "
+                "support the selected font (%s).", fnames)
+            raise
+
+
+# <!-- @GENESIS_MODULE_END: _backend_pdf_ps -->

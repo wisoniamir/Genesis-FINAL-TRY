@@ -1,0 +1,9 @@
+{
+  "module_id": "hardened_event_bus",
+  "original_path": "modules\\hardened_event_bus.py",
+  "preserved_path": "preservation_holding_area\\hardened_event_bus_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23928,
+  "checksum": "8891ac399973f81f994b4568b8988d790e00876df17e2864285615ee01048f4f"
+}

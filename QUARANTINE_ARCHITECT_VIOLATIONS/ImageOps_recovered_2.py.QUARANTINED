@@ -1,0 +1,51 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ImageOps_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.762141+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ImageOps_recovered_2.py",
+      "line_numbers": [
+        56
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ImageOps_recovered_2.py",
+      "line_numbers": [
+        745
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ImageOps_recovered_2.py",
+      "line_numbers": [
+        115,
+        474,
+        556,
+        558,
+        561
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ImageOps_recovered_2.py",
+      "line_numbers": [
+        39,
+        61,
+        100,
+        110,
+        127
+      ],
+      "violation_count": 21
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

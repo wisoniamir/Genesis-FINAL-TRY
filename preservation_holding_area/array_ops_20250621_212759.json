@@ -1,0 +1,9 @@
+{
+  "module_id": "array_ops",
+  "original_path": "modules\\restored\\array_ops.py",
+  "preserved_path": "preservation_holding_area\\array_ops_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26013,
+  "checksum": "0586b188febd70b52d2cc6e46a7cdabe2ef212bb73019bd264f110cd6b285fd8"
+}

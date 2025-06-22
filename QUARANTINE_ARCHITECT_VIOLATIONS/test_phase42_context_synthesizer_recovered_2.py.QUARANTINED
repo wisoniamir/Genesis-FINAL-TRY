@@ -1,0 +1,87 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.217837+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        130,
+        135,
+        136,
+        137,
+        143
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        1,
+        46,
+        48,
+        52,
+        60
+      ],
+      "violation_count": 61
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        34,
+        113,
+        148,
+        175,
+        214
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        119,
+        165,
+        204,
+        241,
+        279
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        520
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        87,
+        536
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase42_context_synthesizer_recovered_2.py",
+      "line_numbers": [
+        432
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

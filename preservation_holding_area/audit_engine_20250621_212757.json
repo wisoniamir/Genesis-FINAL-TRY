@@ -1,0 +1,9 @@
+{
+  "module_id": "audit_engine",
+  "original_path": "modules\\restored\\audit_engine.py",
+  "preserved_path": "preservation_holding_area\\audit_engine_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 33637,
+  "checksum": "2d0cbb0c04fc7c963c40613c1e9bd8afabb55d854cf48d1087600f035a93dba5"
+}

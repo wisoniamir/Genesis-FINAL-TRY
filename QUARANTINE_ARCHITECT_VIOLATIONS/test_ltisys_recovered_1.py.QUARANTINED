@@ -1,0 +1,52 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_ltisys_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.879752+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_ltisys_recovered_1.py",
+      "line_numbers": [
+        747,
+        1056,
+        1070,
+        1082,
+        1093
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_ltisys_recovered_1.py",
+      "line_numbers": [
+        604,
+        676
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_ltisys_recovered_1.py",
+      "line_numbers": [
+        54,
+        76,
+        156,
+        191,
+        266
+      ],
+      "violation_count": 81
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_ltisys_recovered_1.py",
+      "line_numbers": [
+        36
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

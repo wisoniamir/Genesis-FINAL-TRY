@@ -1,0 +1,229 @@
+{
+  "kill_switch_metadata": {
+    "version": "v1.0_phase102",
+    "generation_timestamp": "2025-06-20T17:08:28.062992",
+    "architect_mode": true
+  },
+  "monitored_modules": [
+    {
+      "module_name": "dashboard_linkage_patch",
+      "module_path": "dashboard_linkage_patch.py",
+      "priority": 19,
+      "monitor_functions": [
+        "main",
+        "__init__",
+        "_get_event_bus",
+        "emit_telemetry",
+        "__init__",
+        "_register_button_handlers",
+        "_initialize_status_tracking",
+        "execute_button_action",
+        "_handle_run_backtest",
+        "_handle_analyze_live_trades",
+        "_handle_sync_mt5_data",
+        "_handle_refresh_signals",
+        "_handle_emergency_stop",
+        "_handle_export_results",
+        "_handle_validate_system",
+        "_get_script_name_from_button",
+        "_update_button_status_file",
+        "_update_dashboard_results",
+        "_append_to_execution_log",
+        "_log_button_execution",
+        "log_state",
+        "run_backtest",
+        "run_analysis",
+        "run_sync"
+      ],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "launch_dashboard",
+      "module_path": "launch_dashboard.py",
+      "priority": 19,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "phase34_telemetry_dashboard_panel",
+      "module_path": "phase34_telemetry_dashboard_panel.py",
+      "priority": 19,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "telemetry_dashboard",
+      "module_path": "telemetry_dashboard.py",
+      "priority": 19,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "ORPHAN_test_dashboardengine",
+      "module_path": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboardengine.py",
+      "priority": 19,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "ORPHAN_test_dashboard_validation",
+      "module_path": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboard_validation.py",
+      "priority": 19,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "ORPHAN_test_signalbiasdashboard",
+      "module_path": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signalbiasdashboard.py",
+      "priority": 19,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "execution_engine",
+      "module_path": "execution_engine.py",
+      "priority": 17,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "phase_50_execution_loop_telemetry",
+      "module_path": "phase_50_execution_loop_telemetry.py",
+      "priority": 17,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    },
+    {
+      "module_name": "test_adaptiveexecutionresolver",
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_adaptiveexecutionresolver.py",
+      "priority": 17,
+      "monitor_functions": [],
+      "kill_switch_enabled": true
+    }
+  ],
+  "emergency_procedures": {
+    "dashboard_linkage_patch": {
+      "stop_command": "KILL_DASHBOARD_LINKAGE_PATCH",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "launch_dashboard": {
+      "stop_command": "KILL_LAUNCH_DASHBOARD",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "phase34_telemetry_dashboard_panel": {
+      "stop_command": "KILL_PHASE34_TELEMETRY_DASHBOARD_PANEL",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "telemetry_dashboard": {
+      "stop_command": "KILL_TELEMETRY_DASHBOARD",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "ORPHAN_test_dashboardengine": {
+      "stop_command": "KILL_ORPHAN_TEST_DASHBOARDENGINE",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "ORPHAN_test_dashboard_validation": {
+      "stop_command": "KILL_ORPHAN_TEST_DASHBOARD_VALIDATION",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "ORPHAN_test_signalbiasdashboard": {
+      "stop_command": "KILL_ORPHAN_TEST_SIGNALBIASDASHBOARD",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "execution_engine": {
+      "stop_command": "KILL_EXECUTION_ENGINE",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "phase_50_execution_loop_telemetry": {
+      "stop_command": "KILL_PHASE_50_EXECUTION_LOOP_TELEMETRY",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    },
+    "test_adaptiveexecutionresolver": {
+      "stop_command": "KILL_TEST_ADAPTIVEEXECUTIONRESOLVER",
+      "graceful_shutdown": true,
+      "data_preservation": true,
+      "rollback_enabled": true
+    }
+  },
+  "kill_triggers": {
+    "dashboard_linkage_patch": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "launch_dashboard": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "phase34_telemetry_dashboard_panel": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "telemetry_dashboard": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "ORPHAN_test_dashboardengine": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "ORPHAN_test_dashboard_validation": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "ORPHAN_test_signalbiasdashboard": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "execution_engine": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "phase_50_execution_loop_telemetry": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    },
+    "test_adaptiveexecutionresolver": {
+      "max_execution_time": 300,
+      "error_threshold": 5,
+      "memory_limit_mb": 1024,
+      "cpu_limit_percent": 80
+    }
+  },
+  "recovery_protocols": {}
+}

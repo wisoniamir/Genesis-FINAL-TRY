@@ -1,0 +1,9 @@
+{
+  "module_id": "integer",
+  "original_path": "modules\\restored\\integer.py",
+  "preserved_path": "preservation_holding_area\\integer_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 62146,
+  "checksum": "2db5009e0daef9933b1d34ed245d6aa86ba40c89c9f165a2b3fc3d5d44c95385"
+}

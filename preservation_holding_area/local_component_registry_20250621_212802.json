@@ -1,0 +1,9 @@
+{
+  "module_id": "local_component_registry",
+  "original_path": "modules\\restored\\local_component_registry.py",
+  "preserved_path": "preservation_holding_area\\local_component_registry_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 14583,
+  "checksum": "23e6e5f7c3247817676635467f8a4eaad62855494bc053901c58dd82d1125904"
+}

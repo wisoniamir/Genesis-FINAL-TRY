@@ -1,0 +1,82 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.811009+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+      "line_numbers": [
+        277,
+        286,
+        294,
+        302,
+        309
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+      "line_numbers": [
+        133,
+        198,
+        227,
+        235,
+        245
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+      "line_numbers": [
+        146,
+        222,
+        230,
+        240,
+        248
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+      "line_numbers": [
+        280,
+        288,
+        296,
+        304,
+        313
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+      "line_numbers": [
+        142,
+        283,
+        291,
+        299,
+        307
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router_recovered_1.py",
+      "line_numbers": [
+        51,
+        91
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

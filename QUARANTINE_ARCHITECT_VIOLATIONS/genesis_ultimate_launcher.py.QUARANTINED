@@ -1,0 +1,101 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+  "quarantine_timestamp": "2025-06-21T04:33:02.990168+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        32,
+        1098
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        7,
+        402,
+        1028,
+        1036,
+        1076
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        649,
+        653
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        29,
+        491,
+        611,
+        621,
+        903
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        519,
+        617,
+        624,
+        919,
+        953
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        188,
+        196,
+        214,
+        242,
+        432
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        615,
+        667,
+        702,
+        704,
+        774
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_ultimate_launcher.py",
+      "line_numbers": [
+        201
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

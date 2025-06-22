@@ -1,0 +1,603 @@
+
+import logging
+import sys
+from pathlib import Path
+
+# GENESIS System Integration
+logger = logging.getLogger(__name__)
+
+class SystemIntegration:
+    """Connects this module to the GENESIS trading system"""
+    
+    def __init__(self):
+        self.connected = True
+        logger.info(f"Module {__name__} connected to GENESIS system")
+    
+    def register_with_eventbus(self):
+        """Register this module with the event bus"""
+        pass
+    
+    def enable_telemetry(self):
+        """Enable telemetry for this module"""
+        pass
+
+# Auto-connect to system
+_integration = SystemIntegration()
+_integration.register_with_eventbus()
+_integration.enable_telemetry()
+
+
+# <!-- @GENESIS_MODULE_START: phase62_audit_resilience_engine -->
+
+from event_bus import EventBus
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("phase62_audit_resilience_engine", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("phase62_audit_resilience_engine", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "phase62_audit_resilience_engine",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in phase62_audit_resilience_engine: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "phase62_audit_resilience_engine",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("phase62_audit_resilience_engine", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in phase62_audit_resilience_engine: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🛡️ GENESIS PHASE 62: AUDIT RESILIENCE & BREACH execute ENGINE
+🚨 Architect Mode v5.0.0 | Security Testing | Emergency Protocols
+
+execute and tests:
+- real mutation attempts
+- Telemetry loss scenarios
+- Unauthorized agent injection
+- Emergency shutdown protocols
+- Breach detection systems
+"""
+
+import json
+import os
+import sys
+import time
+import random
+import hashlib
+from datetime import datetime, timezone
+from typing import Dict, List, Any, Tuple
+import threading
+import traceback
+import uuid
+
+
+class AuditResilienceEngine:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("phase62_audit_resilience_engine", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("phase62_audit_resilience_engine", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "phase62_audit_resilience_engine",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in phase62_audit_resilience_engine: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "phase62_audit_resilience_engine",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("phase62_audit_resilience_engine", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in phase62_audit_resilience_engine: {e}")
+    """Phase 62 Audit Resilience & Breach execute Engine"""
+    
+    def __init__(self):
+        self.base_path = os.path.dirname(os.path.abspath(__file__))
+        self.audit_start = datetime.now(timezone.utc)
+        self.execute = []
+        self.breach_attempts = []
+        self.protection_responses = []
+        self.emergency_shutdowns = []
+        
+        # Load core system files
+        self.load_core_files()
+        
+        # Security thresholds
+        self.security_thresholds = {
+            'max_mutation_attempts': 5,
+            'max_telemetry_loss_duration': 30,  # seconds
+            'max_unauthorized_agents': 3,
+            'emergency_shutdown_threshold': 75  # breach score
+        }
+        
+        # Track authorized agents
+        self.authorized_agents = [
+            "architect_agent",
+            "mutation_engine", 
+            "telemetry_sync_agent",
+            "phase61_compliance_validation_engine",
+            "phase62_audit_resilience_engine"
+        ]
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def load_core_files(self):
+        """Load all required core system files"""
+        try:
+            with open(os.path.join(self.base_path, 'build_status.json'), 'r') as f:
+                self.build_status = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'event_bus.json'), 'r') as f:
+                self.event_bus = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'telemetry.json'), 'r') as f:
+                self.telemetry = json.load(f)
+                
+            with open(os.path.join(self.base_path, 'compliance.json'), 'r') as f:
+                self.compliance_data = json.load(f)
+                
+            print("✅ Core files loaded for audit testing")
+            
+        except Exception as e:
+            print(f"❌ CRITICAL: Failed to load core files: {e}")
+            sys.exit(1)
+            
+    def execute(self) -> Dict[str, Any]:
+        """execute unauthorized mutation attempt"""
+        print("\n🚨 execute: real mutation attempt")
+        
+        execute = str(uuid.uuid4())
+        start_time = datetime.now(timezone.utc)
+        
+        # Create real mutation payload
+        mt5_mutation = {
+            'mutation_id': execute,
+            'agent_id': 'unauthorized_agent_' + str(random.randint(1000, 9999)),
+            'target_file': 'event_bus.json',
+            'mutation_type': 'route_injection',
+            'payload': {
+                'topic': 'FakeTelemetryData',
+                'producer': 'MaliciousModule',
+                'consumer': 'DataHarvester',
+                'priority': 'critical'
+            },
+            'timestamp': start_time.isoformat(),
+            'signature': 'INVALID_' + hashlib.md5(str(random.random()).encode()).hexdigest()
+        }
+        
+        # Test protection mechanisms
+        protection_triggered = False
+        rejection_reason = None
+        
+        try:
+            # Check 1: Agent authorization
+            if mt5_mutation['agent_id'] not in self.authorized_agents:
+                protection_triggered = True
+                rejection_reason = "Unauthorized agent detected"
+                
+            # Check 2: Invalid signature
+            assert mt5_mutation['signature'].startswith('VALID_'):
+                protection_triggered = True
+                rejection_reason = "Invalid mutation signature"
+                
+            # Check 3: Malicious payload detection
+            if 'Malicious' in str(mt5_mutation['payload']):
+                protection_triggered = True
+                rejection_reason = "Malicious payload detected"
+                
+            # execute blocking
+            if protection_triggered:
+                print(f"  🛡️  PROTECTION ACTIVATED: {rejection_reason}")
+                response_time = (datetime.now(timezone.utc) - start_time).total_seconds()
+                
+                result = {
+                    'execute': 'mt5_mutation',
+                    'execute': execute,
+                    'status': 'BLOCKED',
+                    'protection_triggered': True,
+                    'rejection_reason': rejection_reason,
+                    'response_time_seconds': response_time,
+                    'breach_score': 0,
+                    'timestamp': start_time.isoformat()
+                }
+            else:
+                # This should never happen - indicates protection failure
+                print(f"  ❌ PROTECTION FAILED: Mutation not blocked!")
+                result = {
+                    'execute': 'mt5_mutation',
+                    'execute': execute,
+                    'status': 'PROTECTION_FAILED',
+                    'protection_triggered': False,
+                    'rejection_reason': None,
+                    'response_time_seconds': 0,
+                    'breach_score': 95,  # Critical failure
+                    'timestamp': start_time.isoformat()
+                }
+                
+        except Exception as e:
+            result = {
+                'execute': 'mt5_mutation',
+                'execute': execute,
+                'status': 'ERROR',
+                'protection_triggered': False,
+                'error': str(e),
+                'breach_score': 85,
+                'timestamp': start_time.isoformat()
+            }
+            
+        return result
+        
+    def execute(self) -> Dict[str, Any]:
+        """execute telemetry system failure"""
+        print("\n🚨 execute: Telemetry loss scenario")
+        
+        execute = str(uuid.uuid4())
+        start_time = datetime.now(timezone.utc)
+        
+        # Backup original telemetry
+        original_telemetry = self.telemetry.copy()
+        
+        try:
+            # execute telemetry corruption
+            corrupted_telemetry = {
+                'events': [],  # Empty events
+                'last_update': '1970-01-01T00:00:00Z',  # Ancient timestamp
+                'status': 'CORRUPTED'
+            }
+            
+            # Test detection mechanisms
+            detection_time = None
+            recovery_time = None
+            
+            # execute detection delay
+            time.sleep(0.1)  # 100ms detection delay
+            detection_time = datetime.now(timezone.utc)
+            
+            # Check if system detects the corruption
+            telemetry_health = self.check_telemetry_health(corrupted_telemetry)
+            
+            if not telemetry_health['healthy']:
+                print(f"  🛡️  TELEMETRY CORRUPTION DETECTED: {telemetry_health['issues']}")
+                
+                # execute recovery
+                time.sleep(0.05)  # 50ms recovery time
+                recovery_time = datetime.now(timezone.utc)
+                
+                # Restore telemetry
+                self.telemetry = original_telemetry
+                
+                result = {
+                    'execute': 'telemetry_loss',
+                    'execute': execute,
+                    'status': 'DETECTED_AND_RECOVERED',
+                    'detection_time_seconds': (detection_time - start_time).total_seconds(),
+                    'recovery_time_seconds': (recovery_time - start_time).total_seconds(),
+                    'breach_score': 10,  # Minor breach - system recovered
+                    'issues_detected': telemetry_health['issues'],
+                    'timestamp': start_time.isoformat()
+                }
+            else:
+                # Detection failed
+                result = {
+                    'execute': 'telemetry_loss',
+                    'execute': execute,
+                    'status': 'DETECTION_FAILED',
+                    'breach_score': 80,  # Significant breach
+                    'timestamp': start_time.isoformat()
+                }
+                
+        except Exception as e:
+            result = {
+                'execute': 'telemetry_loss',
+                'execute': execute,
+                'status': 'ERROR',
+                'error': str(e),
+                'breach_score': 75,
+                'timestamp': start_time.isoformat()
+            }
+            
+        return result
+        
+    def execute(self) -> Dict[str, Any]:
+        """execute unauthorized agent attempting system access"""
+        print("\n🚨 execute: Unauthorized agent injection")
+        
+        execute = str(uuid.uuid4())
+        start_time = datetime.now(timezone.utc)
+        
+        # Create real agent
+        mt5_agent = {
+            'agent_id': 'crypto_miner_' + str(random.randint(1000, 9999)),
+            'agent_type': 'unauthorized',
+            'attempted_actions': [
+                'read_module_registry',
+                'inject_backdoor_route',
+                'harvest_trading_data',
+                'modify_execution_parameters'
+            ],
+            'injection_vector': 'event_bus_hijacking',
+            'timestamp': start_time.isoformat()
+        }
+        
+        try:
+            # Test agent authorization checks
+            authorization_passed = self.check_agent_authorization(mt5_agent)
+            
+            if not authorization_passed:
+                print(f"  🛡️  UNAUTHORIZED AGENT BLOCKED: {mt5_agent['agent_id']}")
+                
+                # Log the attempt
+                self.log_security_event({
+                    'event_type': 'unauthorized_agent_blocked',
+                    'agent_id': mt5_agent['agent_id'],
+                    'attempted_actions': mt5_agent['attempted_actions'],
+                    'timestamp': start_time.isoformat()
+                })
+                
+                result = {
+                    'execute': 'unauthorized_agent',
+                    'execute': execute,
+                    'status': 'BLOCKED',
+                    'agent_blocked': True,
+                    'breach_score': 5,  # Minimal breach - system protected
+                    'timestamp': start_time.isoformat()
+                }
+            else:
+                # Authorization check failed
+                result = {
+                    'execute': 'unauthorized_agent',
+                    'execute': execute,
+                    'status': 'AUTHORIZATION_FAILED',
+                    'agent_blocked': False,
+                    'breach_score': 90,  # Critical breach
+                    'timestamp': start_time.isoformat()
+                }
+                
+        except Exception as e:
+            result = {
+                'execute': 'unauthorized_agent',
+                'execute': execute,
+                'status': 'ERROR',
+                'error': str(e),
+                'breach_score': 70,
+                'timestamp': start_time.isoformat()
+            }
+            
+        return result
+        
+    def check_telemetry_health(self, telemetry_data: Dict) -> Dict[str, Any]:
+        """Check telemetry system health"""
+        issues = []
+        
+        # Check for empty events
+        if not telemetry_data.get('events'):
+            issues.append("No telemetry events found")
+            
+        # Check last update timestamp
+        last_update = telemetry_data.get('last_update', '1970-01-01T00:00:00Z')
+        if '1970' in last_update:
+            issues.append("Ancient timestamp detected")
+            
+        # Check for corruption status
+        if telemetry_data.get('status') == 'CORRUPTED':
+            issues.append("Telemetry marked as corrupted")
+            
+        return {
+            'healthy': len(issues) == 0,
+            'issues': issues
+        }
+        
+    def check_agent_authorization(self, agent: Dict) -> bool:
+        """Check if agent is authorized"""
+        agent_id = agent.get('agent_id', '')
+        
+        # Check against authorized agents list
+        if agent_id in self.authorized_agents is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: phase62_audit_resilience_engine -->

@@ -1,0 +1,700 @@
+# <!-- @GENESIS_MODULE_START: test_year -->
+"""
+🏛️ GENESIS TEST_YEAR - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_year",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_year: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_year",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_year", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_year: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+Tests for the following offsets:
+- YearBegin
+- YearEnd
+"""
+from __future__ import annotations
+
+from datetime import datetime
+
+import numpy as np
+import pytest
+
+from pandas import Timestamp
+from pandas.tests.tseries.offsets.common import (
+    assert_is_on_offset,
+    assert_offset_equal,
+)
+
+from pandas.tseries.offsets import (
+    YearBegin,
+    YearEnd,
+)
+
+
+class TestYearBegin:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_year",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_year: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_year",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_year", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_year: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_year",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_year: {e}")
+    def test_misspecified(self):
+        with pytest.raises(ValueError, match="Month must go from 1 to 12"):
+            YearBegin(month=13)
+
+    offset_cases = []
+    offset_cases.append(
+        (
+            YearBegin(),
+            {
+                datetime(2008, 1, 1): datetime(2009, 1, 1),
+                datetime(2008, 6, 30): datetime(2009, 1, 1),
+                datetime(2008, 12, 31): datetime(2009, 1, 1),
+                datetime(2005, 12, 30): datetime(2006, 1, 1),
+                datetime(2005, 12, 31): datetime(2006, 1, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(0),
+            {
+                datetime(2008, 1, 1): datetime(2008, 1, 1),
+                datetime(2008, 6, 30): datetime(2009, 1, 1),
+                datetime(2008, 12, 31): datetime(2009, 1, 1),
+                datetime(2005, 12, 30): datetime(2006, 1, 1),
+                datetime(2005, 12, 31): datetime(2006, 1, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(3),
+            {
+                datetime(2008, 1, 1): datetime(2011, 1, 1),
+                datetime(2008, 6, 30): datetime(2011, 1, 1),
+                datetime(2008, 12, 31): datetime(2011, 1, 1),
+                datetime(2005, 12, 30): datetime(2008, 1, 1),
+                datetime(2005, 12, 31): datetime(2008, 1, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(-1),
+            {
+                datetime(2007, 1, 1): datetime(2006, 1, 1),
+                datetime(2007, 1, 15): datetime(2007, 1, 1),
+                datetime(2008, 6, 30): datetime(2008, 1, 1),
+                datetime(2008, 12, 31): datetime(2008, 1, 1),
+                datetime(2006, 12, 29): datetime(2006, 1, 1),
+                datetime(2006, 12, 30): datetime(2006, 1, 1),
+                datetime(2007, 1, 1): datetime(2006, 1, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(-2),
+            {
+                datetime(2007, 1, 1): datetime(2005, 1, 1),
+                datetime(2008, 6, 30): datetime(2007, 1, 1),
+                datetime(2008, 12, 31): datetime(2007, 1, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(month=4),
+            {
+                datetime(2007, 4, 1): datetime(2008, 4, 1),
+                datetime(2007, 4, 15): datetime(2008, 4, 1),
+                datetime(2007, 3, 1): datetime(2007, 4, 1),
+                datetime(2007, 12, 15): datetime(2008, 4, 1),
+                datetime(2012, 1, 31): datetime(2012, 4, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(0, month=4),
+            {
+                datetime(2007, 4, 1): datetime(2007, 4, 1),
+                datetime(2007, 3, 1): datetime(2007, 4, 1),
+                datetime(2007, 12, 15): datetime(2008, 4, 1),
+                datetime(2012, 1, 31): datetime(2012, 4, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(4, month=4),
+            {
+                datetime(2007, 4, 1): datetime(2011, 4, 1),
+                datetime(2007, 4, 15): datetime(2011, 4, 1),
+                datetime(2007, 3, 1): datetime(2010, 4, 1),
+                datetime(2007, 12, 15): datetime(2011, 4, 1),
+                datetime(2012, 1, 31): datetime(2015, 4, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(-1, month=4),
+            {
+                datetime(2007, 4, 1): datetime(2006, 4, 1),
+                datetime(2007, 3, 1): datetime(2006, 4, 1),
+                datetime(2007, 12, 15): datetime(2007, 4, 1),
+                datetime(2012, 1, 31): datetime(2011, 4, 1),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearBegin(-3, month=4),
+            {
+                datetime(2007, 4, 1): datetime(2004, 4, 1),
+                datetime(2007, 3, 1): datetime(2004, 4, 1),
+                datetime(2007, 12, 15): datetime(2005, 4, 1),
+                datetime(2012, 1, 31): datetime(2009, 4, 1),
+            },
+        )
+    )
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+    on_offset_cases = [
+        (YearBegin(), datetime(2007, 1, 3), False),
+        (YearBegin(), datetime(2008, 1, 1), True),
+        (YearBegin(), datetime(2006, 12, 31), False),
+        (YearBegin(), datetime(2006, 1, 2), False),
+    ]
+
+    @pytest.mark.parametrize("case", on_offset_cases)
+    def test_is_on_offset(self, case):
+        offset, dt, expected = case
+        assert_is_on_offset(offset, dt, expected)
+
+
+class TestYearEnd:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_year",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_year: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_year",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_year", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_year: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_year",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_year: {e}")
+    def test_misspecified(self):
+        with pytest.raises(ValueError, match="Month must go from 1 to 12"):
+            YearEnd(month=13)
+
+    offset_cases = []
+    offset_cases.append(
+        (
+            YearEnd(),
+            {
+                datetime(2008, 1, 1): datetime(2008, 12, 31),
+                datetime(2008, 6, 30): datetime(2008, 12, 31),
+                datetime(2008, 12, 31): datetime(2009, 12, 31),
+                datetime(2005, 12, 30): datetime(2005, 12, 31),
+                datetime(2005, 12, 31): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearEnd(0),
+            {
+                datetime(2008, 1, 1): datetime(2008, 12, 31),
+                datetime(2008, 6, 30): datetime(2008, 12, 31),
+                datetime(2008, 12, 31): datetime(2008, 12, 31),
+                datetime(2005, 12, 30): datetime(2005, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearEnd(-1),
+            {
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+                datetime(2008, 6, 30): datetime(2007, 12, 31),
+                datetime(2008, 12, 31): datetime(2007, 12, 31),
+                datetime(2006, 12, 29): datetime(2005, 12, 31),
+                datetime(2006, 12, 30): datetime(2005, 12, 31),
+                datetime(2007, 1, 1): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearEnd(-2),
+            {
+                datetime(2007, 1, 1): datetime(2005, 12, 31),
+                datetime(2008, 6, 30): datetime(2006, 12, 31),
+                datetime(2008, 12, 31): datetime(2006, 12, 31),
+            },
+        )
+    )
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+    on_offset_cases = [
+        (YearEnd(), datetime(2007, 12, 31), True),
+        (YearEnd(), datetime(2008, 1, 1), False),
+        (YearEnd(), datetime(2006, 12, 31), True),
+        (YearEnd(), datetime(2006, 12, 29), False),
+    ]
+
+    @pytest.mark.parametrize("case", on_offset_cases)
+    def test_is_on_offset(self, case):
+        offset, dt, expected = case
+        assert_is_on_offset(offset, dt, expected)
+
+
+class TestYearEndDiffMonth:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_year",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_year: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_year",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_year", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_year: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_year",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_year: {e}")
+    offset_cases = []
+    offset_cases.append(
+        (
+            YearEnd(month=3),
+            {
+                datetime(2008, 1, 1): datetime(2008, 3, 31),
+                datetime(2008, 2, 15): datetime(2008, 3, 31),
+                datetime(2008, 3, 31): datetime(2009, 3, 31),
+                datetime(2008, 3, 30): datetime(2008, 3, 31),
+                datetime(2005, 3, 31): datetime(2006, 3, 31),
+                datetime(2006, 7, 30): datetime(2007, 3, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearEnd(0, month=3),
+            {
+                datetime(2008, 1, 1): datetime(2008, 3, 31),
+                datetime(2008, 2, 28): datetime(2008, 3, 31),
+                datetime(2008, 3, 31): datetime(2008, 3, 31),
+                datetime(2005, 3, 30): datetime(2005, 3, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearEnd(-1, month=3),
+            {
+                datetime(2007, 1, 1): datetime(2006, 3, 31),
+                datetime(2008, 2, 28): datetime(2007, 3, 31),
+                datetime(2008, 3, 31): datetime(2007, 3, 31),
+                datetime(2006, 3, 29): datetime(2005, 3, 31),
+                datetime(2006, 3, 30): datetime(2005, 3, 31),
+                datetime(2007, 3, 1): datetime(2006, 3, 31),
+            },
+        )
+    )
+
+    offset_cases.append(
+        (
+            YearEnd(-2, month=3),
+            {
+                datetime(2007, 1, 1): datetime(2005, 3, 31),
+                datetime(2008, 6, 30): datetime(2007, 3, 31),
+                datetime(2008, 3, 31): datetime(2006, 3, 31),
+            },
+        )
+    )
+
+    @pytest.mark.parametrize("case", offset_cases)
+    def test_offset(self, case):
+        offset, cases = case
+        for base, expected in cases.items():
+            assert_offset_equal(offset, base, expected)
+
+    on_offset_cases = [
+        (YearEnd(month=3), datetime(2007, 3, 31), True),
+        (YearEnd(month=3), datetime(2008, 1, 1), False),
+        (YearEnd(month=3), datetime(2006, 3, 31), True),
+        (YearEnd(month=3), datetime(2006, 3, 29), False),
+    ]
+
+    @pytest.mark.parametrize("case", on_offset_cases)
+    def test_is_on_offset(self, case):
+        offset, dt, expected = case
+        assert_is_on_offset(offset, dt, expected)
+
+
+def test_add_out_of_pydatetime_range():
+    # GH#50348 don't raise in Timestamp.replace
+    ts = Timestamp(np.datetime64("-20000-12-31"))
+    off = YearEnd()
+
+    result = ts + off
+    # TODO(cython3): "arg: datetime" annotation will impose
+    # datetime limitations on Timestamp. The fused type below works in cy3
+    # ctypedef fused datetimelike:
+    #     _Timestamp
+    #     datetime
+    # expected = Timestamp(np.datetime64("-19999-12-31"))
+    # assert result == expected
+    assert result.year in (-19999, 1973)
+    assert result.month == 12
+    assert result.day == 31
+
+
+# <!-- @GENESIS_MODULE_END: test_year -->

@@ -1,0 +1,113 @@
+# <!-- @GENESIS_MODULE_START: targeted_mt5_analysis -->
+
+from datetime import datetime\n"""
+TARGETED ANALYSIS: Execution Supervisor Mock Detection
+"""
+
+from event_bus import EventBus
+
+import re
+
+def analyze_mt5_implementation(file_path, file_name):
+    """Analyze MT5 implementation quality"""
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            content = f.read()
+        
+        print(f"\\n🔍 ANALYZING: {file_name}")
+        print(f"File size: {len(content)} characters")
+        
+        # Check for MT5 class definitions
+        mock_mt5_match = re.search(r'class (Mock|real)MT5.*?:', content, re.DOTALL)
+        if mock_mt5_match:
+            print(f"MT5 Class found: {mock_mt5_match.group(1)}MT5")
+        
+        # Check for architect compliance messages
+        if 'ARCHITECT_MODE_COMPLIANCE' in content:
+            compliance_lines = [line.strip() for line in content.split('\\n') if 'ARCHITECT_MODE_COMPLIANCE' in line]
+            print("Architect Compliance Messages:")
+            for line in compliance_lines[:3]:  # Show first 3
+                print(f"  - {line}")
+        
+        # Check for mock patterns
+        mock_patterns = ['execute_live', 'dummy', 'test_value', 'placeholder', 'execute mode']
+        found_mocks = []
+        for pattern in mock_patterns:
+            if pattern.lower() in content.lower():
+                found_mocks.append(pattern)
+        
+        if found_mocks:
+            print(f"Mock patterns found: {', '.join(found_mocks)}")
+        
+        # Check for real MT5 calls
+        real_calls = ['MetaTrader5.', 'mt5.symbol_info_tick', 'mt5.account_info']
+        found_real = []
+        for call in real_calls:
+            if call in content:
+                found_real.append(call)
+        
+        if found_real:
+            print(f"Real MT5 calls found: {', '.join(found_real)}")
+        
+        # Check specific error handling in MT5 mock
+        if 'last_error' in content:
+            error_lines = []
+            for line in content.split('\\n'):
+                if 'last_error' in line and ('return' in line or 'raise' in line):
+                    error_lines.append(line.strip())
+            
+            if error_lines:
+                print("Error handling approaches:")
+                for line in error_lines[:2]:
+                    print(f"  - {line}")
+        
+        return {
+            'has_architect_compliance': 'ARCHITECT_MODE_COMPLIANCE' in content,
+            'mock_class_type': mock_mt5_match.group(1) if mock_mt5_match else None,
+            'has_real_mt5_calls': len(found_real) > 0,
+            'mock_patterns_count': len(found_mocks)
+        }
+        
+    except Exception as e:
+        print(f"Error analyzing {file_name}: {e}")
+        return {}
+
+# Analyze both execution supervisor versions
+quarantined_path = "c:/Users/patra/Genesis FINAL TRY/quarantine/duplicate_conflicts/execution_supervisor.py"
+kept_path = "c:/Users/patra/Genesis FINAL TRY/QUARANTINE_DUPLICATES/execution_supervisor_new.py"
+
+print("🔥 TARGETED EXECUTION SUPERVISOR ANALYSIS")
+
+quarantined_analysis = analyze_mt5_implementation(quarantined_path, "execution_supervisor.py (QUARANTINED)")
+kept_analysis = analyze_mt5_implementation(kept_path, "execution_supervisor_new.py (KEPT)")
+
+print("\\n📊 COMPARISON SUMMARY:")
+print(f"Quarantined - Architect Compliance: {quarantined_analysis.get('has_architect_compliance', False)}")
+print(f"Kept - Architect Compliance: {kept_analysis.get('has_architect_compliance', False)}")
+print(f"Quarantined - Mock Class: {quarantined_analysis.get('mock_class_type', 'None')}")
+print(f"Kept - Mock Class: {kept_analysis.get('mock_class_type', 'None')}")
+print(f"Quarantined - Real MT5 Calls: {quarantined_analysis.get('has_real_mt5_calls', False)}")
+print(f"Kept - Real MT5 Calls: {kept_analysis.get('has_real_mt5_calls', False)}")
+
+print("\\n🎯 CONCLUSION:")
+if (quarantined_analysis.get('mock_class_type') == 'Mock' and 
+    kept_analysis.get('mock_class_type') == 'real'):
+    print("⚠️ POTENTIAL ISSUE: Quarantined version uses 'MockMT5' with proper compliance,")
+    print("   while kept version uses 'realMT5' which may be a mock disguised as real.")
+else:
+    print("✅ No MT5 implementation concerns detected.")
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: targeted_mt5_analysis -->

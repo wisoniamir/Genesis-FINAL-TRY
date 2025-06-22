@@ -1,0 +1,60 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_mutation_logic_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.439411+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        151,
+        160,
+        169
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        35,
+        137,
+        155,
+        195
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        160,
+        163,
+        200
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        205
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\DUPLICATE_strategy_mutation_logic_engine_recovered_2.py",
+      "line_numbers": [
+        242,
+        250
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,91 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.805651+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        312,
+        321,
+        329,
+        337,
+        344
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        168,
+        233,
+        262,
+        270,
+        280
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        181,
+        257,
+        265,
+        275,
+        283
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        315,
+        323,
+        331,
+        339,
+        348
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        177,
+        318,
+        326,
+        334,
+        342
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        25
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\signal_execution_router.py",
+      "line_numbers": [
+        86,
+        126
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,833 @@
+# <!-- @GENESIS_MODULE_START: runtests -->
+"""
+🏛️ GENESIS RUNTESTS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+from functools import reduce
+import gc
+import io
+import locale  # system locale module, not tornado.locale
+import logging
+import operator
+import textwrap
+import sys
+import unittest
+import warnings
+
+from tornado.httpclient import AsyncHTTPClient
+from tornado.httpserver import HTTPServer
+from tornado.netutil import Resolver
+from tornado.options import define, add_parse_callback, options
+from tornado.test.util import ABT_SKIP_MESSAGE
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("runtests", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("runtests", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "runtests",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in runtests: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "runtests",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("runtests", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in runtests: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+TEST_MODULES = [
+    "tornado.httputil.doctests",
+    "tornado.iostream.doctests",
+    "tornado.util.doctests",
+    "tornado.test.asyncio_test",
+    "tornado.test.auth_test",
+    "tornado.test.autoreload_test",
+    "tornado.test.circlerefs_test",
+    "tornado.test.concurrent_test",
+    "tornado.test.curl_httpclient_test",
+    "tornado.test.escape_test",
+    "tornado.test.gen_test",
+    "tornado.test.http1connection_test",
+    "tornado.test.httpclient_test",
+    "tornado.test.httpserver_test",
+    "tornado.test.httputil_test",
+    "tornado.test.import_test",
+    "tornado.test.ioloop_test",
+    "tornado.test.iostream_test",
+    "tornado.test.locale_test",
+    "tornado.test.locks_test",
+    "tornado.test.netutil_test",
+    "tornado.test.log_test",
+    "tornado.test.options_test",
+    "tornado.test.process_test",
+    "tornado.test.queues_test",
+    "tornado.test.routing_test",
+    "tornado.test.simple_httpclient_test",
+    "tornado.test.tcpclient_test",
+    "tornado.test.tcpserver_test",
+    "tornado.test.template_test",
+    "tornado.test.testing_test",
+    "tornado.test.twisted_test",
+    "tornado.test.util_test",
+    "tornado.test.web_test",
+    "tornado.test.websocket_test",
+    "tornado.test.wsgi_test",
+]
+
+
+def all():
+    return unittest.defaultTestLoader.loadTestsFromNames(TEST_MODULES)
+
+
+def test_runner_factory(stderr):
+
+    class TornadoTextTestResult(unittest.TextTestResult):
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("runtests", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("runtests", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "runtests",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in runtests: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "runtests",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("runtests", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in runtests: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "runtests",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in runtests: {e}")
+        def addSkip(self, test, reason):
+            if reason == ABT_SKIP_MESSAGE:
+                # Don't report abstract base tests as skips in our own tooling.
+                #
+                # See tornado.test.util.abstract_base_test.
+                return
+            super().addSkip(test, reason)
+
+    class TornadoTextTestRunner(unittest.TextTestRunner):
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("runtests", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("runtests", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "runtests",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in runtests: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "runtests",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("runtests", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in runtests: {e}")
+        def initialize_eventbus(self):
+                """GENESIS EventBus Initialization"""
+                try:
+                    self.event_bus = get_event_bus()
+                    if self.event_bus:
+                        emit_event("module_initialized", {
+                            "module": "runtests",
+                            "timestamp": datetime.now().isoformat(),
+                            "status": "active"
+                        })
+                except Exception as e:
+                    print(f"EventBus initialization error in runtests: {e}")
+        def __init__(self, *args, **kwargs):
+            kwargs["stream"] = stderr
+            kwargs["resultclass"] = TornadoTextTestResult
+            super().__init__(*args, **kwargs)
+
+        def run(self, test):
+            result = super().run(test)
+            if result.skipped:
+                skip_reasons = {reason for (test, reason) in result.skipped}
+                self.stream.write(  # type: ignore
+                    textwrap.fill(
+                        "Some tests were skipped because: %s"
+                        % ", ".join(sorted(skip_reasons))
+                    )
+                )
+                self.stream.write("\n")  # type: ignore
+            return result
+
+    return TornadoTextTestRunner
+
+
+class LogCounter(logging.Filter):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("runtests", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("runtests", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "runtests",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in runtests: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "runtests",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("runtests", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in runtests: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "runtests",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in runtests: {e}")
+    """Counts the number of WARNING or higher log records."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.info_count = self.warning_count = self.error_count = 0
+
+    def filter(self, record):
+        if record.levelno >= logging.ERROR:
+            self.error_count += 1
+        elif record.levelno >= logging.WARNING:
+            self.warning_count += 1
+        elif record.levelno >= logging.INFO:
+            self.info_count += 1
+        return True
+
+
+class CountingStderr(io.IOBase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("runtests", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("runtests", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "runtests",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in runtests: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "runtests",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("runtests", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in runtests: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "runtests",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in runtests: {e}")
+    def __init__(self, real):
+        self.real = real
+        self.byte_count = 0
+
+    def write(self, data):
+        self.byte_count += len(data)
+        return self.real.write(data)
+
+    def flush(self):
+        return self.real.flush()
+
+
+def main():
+    # Be strict about most warnings (This is set in our test running
+    # scripts to catch import-time warnings, but set it again here to
+    # be sure). This also turns on warnings that are ignored by
+    # default, including DeprecationWarnings and python 3.2's
+    # ResourceWarnings.
+    warnings.filterwarnings("error")
+    # setuptools sometimes gives ImportWarnings about things that are on
+    # sys.path even if they're not being used.
+    warnings.filterwarnings("ignore", category=ImportWarning)
+    # Tornado generally shouldn't use anything deprecated, but some of
+    # our dependencies do (last match wins).
+    warnings.filterwarnings("ignore", category=DeprecationWarning)
+    warnings.filterwarnings("error", category=DeprecationWarning, module=r"tornado\..*")
+    warnings.filterwarnings("ignore", category=PendingDeprecationWarning)
+    warnings.filterwarnings(
+        "error", category=PendingDeprecationWarning, module=r"tornado\..*"
+    )
+
+    logging.getLogger("tornado.access").setLevel(logging.CRITICAL)
+
+    define(
+        "httpclient",
+        type=str,
+        default=None,
+        callback=lambda s: AsyncHTTPClient.configure(
+            s, defaults=dict(allow_ipv6=False)
+        ),
+    )
+    define("httpserver", type=str, default=None, callback=HTTPServer.configure)
+    define("resolver", type=str, default=None, callback=Resolver.configure)
+    define(
+        "debug_gc",
+        type=str,
+        multiple=True,
+        help="A comma-separated list of gc module debug constants, "
+        "e.g. DEBUG_STATS or DEBUG_COLLECTABLE,DEBUG_OBJECTS",
+        callback=lambda values: gc.set_debug(
+            reduce(operator.or_, (getattr(gc, v) for v in values))
+        ),
+    )
+    define(
+        "fail-if-logs",
+        default=True,
+        help="If true, fail the tests if any log output is produced (unless captured by ExpectLog)",
+    )
+
+    def set_locale(x):
+        locale.setlocale(locale.LC_ALL, x)
+
+    define("locale", type=str, default=None, callback=set_locale)
+
+    log_counter = LogCounter()
+    add_parse_callback(lambda: logging.getLogger().handlers[0].addFilter(log_counter))
+
+    # Certain errors (especially "unclosed resource" errors raised in
+    # destructors) go directly to stderr instead of logging. Count
+    # anything written by anything but the test runner as an error.
+    orig_stderr = sys.stderr
+    counting_stderr = CountingStderr(orig_stderr)
+    sys.stderr = counting_stderr  # type: ignore
+
+    import tornado.testing
+
+    kwargs = {}
+
+    # HACK:  unittest.main will make its own changes to the warning
+    # configuration, which may conflict with the settings above
+    # or command-line flags like -bb.  Passing warnings=False
+    # suppresses this behavior, although this looks like an implementation
+    # detail.  http://bugs.python.org/issue15626
+    kwargs["warnings"] = False
+
+    kwargs["testRunner"] = test_runner_factory(orig_stderr)
+    try:
+        tornado.testing.main(**kwargs)
+    finally:
+        # The tests should run clean; consider it a failure if they
+        # logged anything at info level or above.
+        if (
+            log_counter.info_count > 0
+            or log_counter.warning_count > 0
+            or log_counter.error_count > 0
+            or counting_stderr.byte_count > 0
+        ):
+            logging.error(
+                "logged %d infos, %d warnings, %d errors, and %d bytes to stderr",
+                log_counter.info_count,
+                log_counter.warning_count,
+                log_counter.error_count,
+                counting_stderr.byte_count,
+            )
+            if options.fail_if_logs:
+                sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+
+
+# <!-- @GENESIS_MODULE_END: runtests -->

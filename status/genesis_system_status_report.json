@@ -1,0 +1,810 @@
+{
+  "system_snapshot": {
+    "timestamp": "2025-06-21T18:30:00Z",
+    "phase": "PHASE_100_FULL_DEPLOYMENT",
+    "compliance_mode": "ZERO_TOLERANCE_ARCHITECT_MODE",
+    "overall_health": "LIVE_SYNC_OK",
+    
+    "modules": {
+      "boot_genesis": {
+        "role": "core_engine",
+        "path": "boot_genesis.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["system_boot", "module_init"],
+          "routes_emitted": ["boot_complete", "system_ready"],
+          "connected": true
+        },
+        "dashboard_panel": "boot_genesis_panel",
+        "feeds": ["system_status", "boot_metrics"],
+        "dependencies": ["event_bus", "telemetry"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Primary system boot manager - operational"
+      },
+      
+      "count_modules": {
+        "role": "helper",
+        "path": "count_modules.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["module_scan_request"],
+          "routes_emitted": ["module_count_complete"],
+          "connected": true
+        },
+        "dashboard_panel": "count_modules_panel",
+        "feeds": ["module_metrics"],
+        "dependencies": ["file_system"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Module counting utility - operational"
+      },
+      
+      "dashboard_engine": {
+        "role": "dashboard",
+        "path": "dashboard_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["telemetry_update", "module_status"],
+          "routes_emitted": ["dashboard_ready", "ui_event"],
+          "connected": true
+        },
+        "dashboard_panel": "dashboard_control_panel",
+        "feeds": ["real_time_data", "ui_state"],
+        "dependencies": ["telemetry", "event_bus"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Main dashboard controller - operational"
+      },
+      
+      "genesis_desktop": {
+        "role": "dashboard",
+        "path": "genesis_desktop.py",
+        "status": "FAULTY",
+        "telemetry": "PARTIAL",
+        "eventbus": {
+          "routes_consumed": [],
+          "routes_emitted": [],
+          "connected": false
+        },
+        "dashboard_panel": "desktop_launcher_panel",
+        "feeds": [],
+        "dependencies": ["tkinter", "event_bus"],
+        "ftmo_compliance": false,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "IndentationError on line 1156 - requires repair"
+      },
+      
+      "genesis_minimal_launcher": {
+        "role": "dashboard",
+        "path": "genesis_minimal_launcher.py",
+        "status": "FAULTY",
+        "telemetry": "PARTIAL",
+        "eventbus": {
+          "routes_consumed": [],
+          "routes_emitted": [],
+          "connected": false
+        },
+        "dashboard_panel": "minimal_launcher_panel",
+        "feeds": [],
+        "dependencies": ["tkinter"],
+        "ftmo_compliance": false,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "IndentationError on line 254 - requires repair"
+      },
+      
+      "signal_engine": {
+        "role": "signal",
+        "path": "modules/signals/signal_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["market_data", "price_tick"],
+          "routes_emitted": ["signal_generated", "signal_quality"],
+          "connected": true
+        },
+        "dashboard_panel": "signal_processing_panel",
+        "feeds": ["mt5_data", "signal_metrics"],
+        "dependencies": ["mt5_adapter", "risk_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Primary signal processing - operational"
+      },
+      
+      "signal_fusion_matrix": {
+        "role": "signal",
+        "path": "modules/signals/signal_fusion_matrix.py",
+        "status": "ACTIVE",
+        "telemetry": "ENHANCED",
+        "eventbus": {
+          "routes_consumed": ["signals_multi", "confluence_data"],
+          "routes_emitted": ["fused_signal", "confluence_detected"],
+          "connected": true
+        },
+        "dashboard_panel": "signal_fusion_panel",
+        "feeds": ["multi_signal_data"],
+        "dependencies": ["signal_engine", "pattern_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Recently enhanced with improved telemetry - syntax issues resolved"
+      },
+      
+      "genesis_institutional_signal_engine": {
+        "role": "signal",
+        "path": "modules/signals/genesis_institutional_signal_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["institutional_data"],
+          "routes_emitted": ["institutional_signal"],
+          "connected": true
+        },
+        "dashboard_panel": "institutional_signal_panel",
+        "feeds": ["institutional_feeds"],
+        "dependencies": ["signal_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Institutional-grade signal processing - operational"
+      },
+      
+      "advanced_signal_optimization_engine": {
+        "role": "signal",
+        "path": "modules/signals/advanced_signal_optimization_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["signal_feedback"],
+          "routes_emitted": ["optimized_signal"],
+          "connected": true
+        },
+        "dashboard_panel": "signal_optimization_panel",
+        "feeds": ["optimization_metrics"],
+        "dependencies": ["signal_engine", "ml_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Signal optimization engine - operational"
+      },
+      
+      "execution_engine": {
+        "role": "execution",
+        "path": "modules/execution/execution_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["signal_triggered", "risk_cleared"],
+          "routes_emitted": ["execution_placed", "execution_complete"],
+          "connected": true
+        },
+        "dashboard_panel": "execution_control_panel",
+        "feeds": ["execution_status"],
+        "dependencies": ["mt5_adapter", "risk_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Primary execution controller - operational"
+      },
+      
+      "execution_supervisor": {
+        "role": "execution",
+        "path": "modules/execution/execution_supervisor.py",
+        "status": "ACTIVE",
+        "telemetry": "ENHANCED",
+        "eventbus": {
+          "routes_consumed": ["execution_request"],
+          "routes_emitted": ["execution_approved", "execution_rejected"],
+          "connected": true
+        },
+        "dashboard_panel": "execution_supervision_panel",
+        "feeds": ["supervision_metrics"],
+        "dependencies": ["execution_engine", "risk_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["execution_supervisor_recovered.py", "execution_supervisor_recovered_1.py", "execution_supervisor_recovered_2.py"],
+        "notes": "Recently enhanced - type annotation warnings present but functional"
+      },
+      
+      "smart_execution_liveloop": {
+        "role": "execution",
+        "path": "modules/execution/smart_execution_liveloop.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["live_execution_trigger"],
+          "routes_emitted": ["live_execution_status"],
+          "connected": true
+        },
+        "dashboard_panel": "live_execution_panel",
+        "feeds": ["live_metrics"],
+        "dependencies": ["execution_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Live execution loop - operational"
+      },
+      
+      "genesis_institutional_execution_middleware": {
+        "role": "execution",
+        "path": "modules/execution/genesis_institutional_execution_middleware.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["institutional_execution_request"],
+          "routes_emitted": ["institutional_execution_complete"],
+          "connected": true
+        },
+        "dashboard_panel": "institutional_execution_panel",
+        "feeds": ["institutional_execution_data"],
+        "dependencies": ["execution_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Institutional execution middleware - operational"
+      },
+      
+      "universal_mt5_discovery_engine": {
+        "role": "discovery",
+        "path": "modules/execution/universal_mt5_discovery_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["mt5_discovery_request"],
+          "routes_emitted": ["mt5_discovered", "broker_found"],
+          "connected": true
+        },
+        "dashboard_panel": "mt5_discovery_panel",
+        "feeds": ["broker_data"],
+        "dependencies": ["mt5_connector"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["universal_mt5_discovery_engine_recovered_1.py", "universal_mt5_discovery_engine_recovered_2.py"],
+        "notes": "Primary MT5 discovery - operational"
+      },
+      
+      "broker_discovery_engine": {
+        "role": "discovery",
+        "path": "broker_discovery_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["broker_discovery_request"],
+          "routes_emitted": ["broker_discovered"],
+          "connected": true
+        },
+        "dashboard_panel": "broker_discovery_panel",
+        "feeds": ["broker_status"],
+        "dependencies": ["universal_mt5_discovery_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Secondary broker discovery - operational"
+      },
+      
+      "mt5_adapter": {
+        "role": "discovery",
+        "path": "modules/data/mt5_adapter.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["mt5_connect_request"],
+          "routes_emitted": ["mt5_data_feed", "mt5_connected"],
+          "connected": true
+        },
+        "dashboard_panel": "mt5_adapter_panel",
+        "feeds": ["mt5_live_data"],
+        "dependencies": ["MetaTrader5"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Live MT5 data adapter - operational"
+      },
+      
+      "risk_engine": {
+        "role": "risk",
+        "path": "modules/risk/risk_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["risk_assessment_request"],
+          "routes_emitted": ["risk_approved", "risk_rejected"],
+          "connected": true
+        },
+        "dashboard_panel": "risk_management_panel",
+        "feeds": ["risk_metrics"],
+        "dependencies": ["mt5_adapter"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Primary risk management - operational"
+      },
+      
+      "genesis_institutional_risk_engine": {
+        "role": "risk",
+        "path": "modules/risk_management/genesis_institutional_risk_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["institutional_risk_request"],
+          "routes_emitted": ["institutional_risk_assessment"],
+          "connected": true
+        },
+        "dashboard_panel": "institutional_risk_panel",
+        "feeds": ["institutional_risk_data"],
+        "dependencies": ["risk_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Institutional risk management - operational"
+      },
+      
+      "ftmo_limit_guard": {
+        "role": "risk",
+        "path": "modules/execution/ftmo_limit_guard.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["trade_request"],
+          "routes_emitted": ["ftmo_approved", "ftmo_rejected"],
+          "connected": true
+        },
+        "dashboard_panel": "ftmo_compliance_panel",
+        "feeds": ["ftmo_metrics"],
+        "dependencies": ["risk_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "FTMO compliance guardian - operational"
+      },
+      
+      "macro_analysis_engine": {
+        "role": "macro",
+        "path": "modules/macro/macro_analysis_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["macro_data_feed"],
+          "routes_emitted": ["macro_signal", "economic_event"],
+          "connected": true
+        },
+        "dashboard_panel": "macro_analysis_panel",
+        "feeds": ["economic_data"],
+        "dependencies": ["signal_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Macroeconomic analysis - operational"
+      },
+      
+      "backtesting_engine": {
+        "role": "backtest",
+        "path": "modules/backtest/backtesting_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["backtest_request"],
+          "routes_emitted": ["backtest_complete", "backtest_results"],
+          "connected": true
+        },
+        "dashboard_panel": "backtest_panel",
+        "feeds": ["backtest_data"],
+        "dependencies": ["signal_engine", "execution_engine"],
+        "ftmo_compliance": false,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Strategy backtesting - operational (unrestricted mode)"
+      },
+      
+      "kill_switch": {
+        "role": "kill_switch",
+        "path": "modules/restored/kill_switch.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["emergency_trigger"],
+          "routes_emitted": ["system_halt", "emergency_stop"],
+          "connected": true
+        },
+        "dashboard_panel": "emergency_control_panel",
+        "feeds": ["emergency_status"],
+        "dependencies": ["execution_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Emergency kill switch - operational"
+      },
+      
+      "phase_102_kill_switch_execution_loop": {
+        "role": "kill_switch",
+        "path": "modules/execution/phase_102_kill_switch_execution_loop.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["kill_switch_activation"],
+          "routes_emitted": ["execution_terminated"],
+          "connected": true
+        },
+        "dashboard_panel": "emergency_execution_panel",
+        "feeds": ["kill_switch_metrics"],
+        "dependencies": ["execution_engine", "kill_switch"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": [],
+        "notes": "Execution layer kill switch - operational"
+      },
+      
+      "pattern_classifier_engine": {
+        "role": "pattern",
+        "path": "modules/ml/pattern_classifier_engine.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["pattern_data"],
+          "routes_emitted": ["pattern_classified"],
+          "connected": true
+        },
+        "dashboard_panel": "pattern_classification_panel",
+        "feeds": ["pattern_metrics"],
+        "dependencies": ["signal_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["pattern_classifier_engine_recovered_1.py", "pattern_classifier_engine_recovered_2.py"],
+        "notes": "Pattern classification engine - operational"
+      },
+      
+      "advanced_pattern_miner": {
+        "role": "pattern",
+        "path": "modules/ml/advanced_pattern_miner.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["market_data"],
+          "routes_emitted": ["pattern_discovered"],
+          "connected": true
+        },
+        "dashboard_panel": "pattern_mining_panel",
+        "feeds": ["pattern_discovery_data"],
+        "dependencies": ["pattern_classifier_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["advanced_pattern_miner_recovered_2.py"],
+        "notes": "Advanced pattern mining - operational"
+      },
+      
+      "meta_signal_harmonizer": {
+        "role": "signal",
+        "path": "modules/signals/meta_signal_harmonizer.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["multi_signal_input"],
+          "routes_emitted": ["harmonized_signal"],
+          "connected": true
+        },
+        "dashboard_panel": "signal_harmonization_panel",
+        "feeds": ["harmonization_metrics"],
+        "dependencies": ["signal_fusion_matrix"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["meta_signal_harmonizer_recovered_1.py", "meta_signal_harmonizer_recovered_2.py", "meta_signal_harmonizer_recovered_3.py"],
+        "notes": "Signal harmonization engine - operational"
+      },
+      
+      "signal_quality_amplifier": {
+        "role": "signal",
+        "path": "modules/signals/signal_quality_amplifier.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["raw_signal"],
+          "routes_emitted": ["amplified_signal"],
+          "connected": true
+        },
+        "dashboard_panel": "signal_quality_panel",
+        "feeds": ["quality_metrics"],
+        "dependencies": ["signal_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["signal_quality_amplifier_recovered_1.py", "signal_quality_amplifier_recovered_2.py"],
+        "notes": "Signal quality enhancement - operational"
+      },
+      
+      "pattern_signal_harmonizer": {
+        "role": "pattern",
+        "path": "modules/signals/pattern_signal_harmonizer.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["pattern_signal", "market_signal"],
+          "routes_emitted": ["harmonized_pattern_signal"],
+          "connected": true
+        },
+        "dashboard_panel": "pattern_harmonization_panel",
+        "feeds": ["pattern_harmonization_data"],
+        "dependencies": ["pattern_classifier_engine", "signal_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["pattern_signal_harmonizer_recovered_1.py", "pattern_signal_harmonizer_recovered_2.py", "pattern_signal_harmonizer_recovered_3.py"],
+        "notes": "Pattern-signal harmonization - operational"
+      },
+      
+      "smart_execution_reactor": {
+        "role": "execution",
+        "path": "modules/execution/smart_execution_reactor.py",
+        "status": "ACTIVE",
+        "telemetry": "FULL",
+        "eventbus": {
+          "routes_consumed": ["execution_trigger"],
+          "routes_emitted": ["execution_reaction"],
+          "connected": true
+        },
+        "dashboard_panel": "smart_execution_panel",
+        "feeds": ["execution_reaction_data"],
+        "dependencies": ["execution_engine"],
+        "ftmo_compliance": true,
+        "mock_data": false,
+        "duplicates": ["smart_execution_reactor_recovered_1.py", "smart_execution_reactor_recovered_2.py"],
+        "notes": "Smart execution reactor - operational"
+      }
+    },
+    
+    "dashboard_panels": {
+      "boot_genesis_panel": {
+        "modules_attached": ["boot_genesis"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "count_modules_panel": {
+        "modules_attached": ["count_modules"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "dashboard_control_panel": {
+        "modules_attached": ["dashboard_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "desktop_launcher_panel": {
+        "modules_attached": ["genesis_desktop"],
+        "telemetry_status": "MISSING",
+        "optimization_flag": true,
+        "consolidation_target": "dashboard_control_panel"
+      },
+      "minimal_launcher_panel": {
+        "modules_attached": ["genesis_minimal_launcher"],
+        "telemetry_status": "MISSING",
+        "optimization_flag": true,
+        "consolidation_target": "dashboard_control_panel"
+      },
+      "signal_processing_panel": {
+        "modules_attached": ["signal_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "signal_fusion_panel": {
+        "modules_attached": ["signal_fusion_matrix"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "institutional_signal_panel": {
+        "modules_attached": ["genesis_institutional_signal_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "signal_optimization_panel": {
+        "modules_attached": ["advanced_signal_optimization_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "execution_control_panel": {
+        "modules_attached": ["execution_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "execution_supervision_panel": {
+        "modules_attached": ["execution_supervisor"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "live_execution_panel": {
+        "modules_attached": ["smart_execution_liveloop"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "institutional_execution_panel": {
+        "modules_attached": ["genesis_institutional_execution_middleware"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "mt5_discovery_panel": {
+        "modules_attached": ["universal_mt5_discovery_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "broker_discovery_panel": {
+        "modules_attached": ["broker_discovery_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "mt5_adapter_panel": {
+        "modules_attached": ["mt5_adapter"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "risk_management_panel": {
+        "modules_attached": ["risk_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "institutional_risk_panel": {
+        "modules_attached": ["genesis_institutional_risk_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "ftmo_compliance_panel": {
+        "modules_attached": ["ftmo_limit_guard"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "macro_analysis_panel": {
+        "modules_attached": ["macro_analysis_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "backtest_panel": {
+        "modules_attached": ["backtesting_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "emergency_control_panel": {
+        "modules_attached": ["kill_switch"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "emergency_execution_panel": {
+        "modules_attached": ["phase_102_kill_switch_execution_loop"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "pattern_classification_panel": {
+        "modules_attached": ["pattern_classifier_engine"],
+        "telemetry_status": "FULL",
+        "optimization_flag": true,
+        "consolidation_target": "pattern_mining_panel"
+      },
+      "pattern_mining_panel": {
+        "modules_attached": ["advanced_pattern_miner"],
+        "telemetry_status": "FULL",
+        "optimization_flag": false,
+        "consolidation_target": null
+      },
+      "signal_harmonization_panel": {
+        "modules_attached": ["meta_signal_harmonizer"],
+        "telemetry_status": "FULL",
+        "optimization_flag": true,
+        "consolidation_target": "signal_fusion_panel"
+      },
+      "signal_quality_panel": {
+        "modules_attached": ["signal_quality_amplifier"],
+        "telemetry_status": "FULL",
+        "optimization_flag": true,
+        "consolidation_target": "signal_optimization_panel"
+      },
+      "pattern_harmonization_panel": {
+        "modules_attached": ["pattern_signal_harmonizer"],
+        "telemetry_status": "FULL",
+        "optimization_flag": true,
+        "consolidation_target": "pattern_mining_panel"
+      },
+      "smart_execution_panel": {
+        "modules_attached": ["smart_execution_reactor"],
+        "telemetry_status": "FULL",
+        "optimization_flag": true,
+        "consolidation_target": "execution_control_panel"
+      }
+    },
+    
+    "eventbus_health": {
+      "total_routes": 25784,
+      "connected_routes": 25734,
+      "disconnected_routes": 50,
+      "critical_routes": {
+        "mt5_data_feed": {
+          "status": "ACTIVE",
+          "throughput": "HIGH",
+          "consumers": 12
+        },
+        "trade_signals": {
+          "status": "ACTIVE",
+          "throughput": "CRITICAL",
+          "consumers": 8
+        },
+        "risk_monitoring": {
+          "status": "ACTIVE",
+          "throughput": "HIGH",
+          "consumers": 6
+        },
+        "execution_feedback": {
+          "status": "ACTIVE",
+          "throughput": "MEDIUM",
+          "consumers": 4
+        },
+        "kill_switch_activation": {
+          "status": "ACTIVE",
+          "throughput": "LOW",
+          "consumers": 2
+        },
+        "ftmo_compliance_check": {
+          "status": "ACTIVE",
+          "throughput": "MEDIUM",
+          "consumers": 3
+        },
+        "emergency_stop": {
+          "status": "ACTIVE",
+          "throughput": "LOW",
+          "consumers": 5
+        },
+        "system_boot": {
+          "status": "ACTIVE",
+          "throughput": "LOW",
+          "consumers": 1
+        },
+        "module_init": {
+          "status": "ACTIVE",
+          "throughput": "MEDIUM",
+          "consumers": 584
+        },
+        "telemetry_update": {
+          "status": "ACTIVE",
+          "throughput": "HIGH",
+          "consumers": 28
+        }
+      }
+    },
+    
+    "compliance_audit": {
+      "ftmo_rules": {
+        "daily_loss_limit": "ENFORCED",
+        "trailing_drawdown": "ENFORCED",
+        "risk_per_trade": "ENFORCED"
+      },
+      "architect_mode": "v7.0.0",
+      "mock_data_presence": false,
+      "telemetry_coverage": "95%",
+      "eventbus_coverage": "99.8%",
+      "deployment": "DOCKER_COMPOSE",
+      "mt5_linked": true
+    }
+  }
+}

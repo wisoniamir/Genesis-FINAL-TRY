@@ -1,0 +1,103 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.860190+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        165,
+        419,
+        421,
+        437,
+        440
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        378,
+        405,
+        417,
+        423,
+        446
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        398,
+        416,
+        439,
+        467,
+        482
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        498,
+        561,
+        599,
+        983,
+        1046
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        618,
+        1103
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        130,
+        1113,
+        1149
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        135,
+        1173
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine.py",
+      "line_numbers": [
+        179,
+        180,
+        181,
+        182,
+        183
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

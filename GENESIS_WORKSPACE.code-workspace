@@ -1,0 +1,96 @@
+{
+	"folders": [
+		{
+			"name": "🔐 GENESIS TRADING SYSTEM",
+			"path": "."
+		}
+	],
+	"settings": {
+		"task.allowAutomaticTasks": "on",
+		"task.runBackground": true,
+		"tasks.showOutput": "silent",
+		
+		"genesis.autoStart.enabled": true,
+		"genesis.autoStart.components": [
+			"watchdog_system",
+			"audit_engine_validation", 
+			"architect_mode_verification"
+		],
+		
+		"task.autoDetect": "on",
+		
+		"files.associations": {
+			"*.genesis": "json",
+			"audit_*.md": "markdown",
+			"build_*.json": "jsonc"
+		},
+		
+		"files.watcherExclude": {
+			"**/.git/**": true,
+			"**/node_modules/**": true,
+			"**/.venv/**": true,
+			"**/quarantine/**": true,
+			"**/QUARANTINE_VIOLATIONS/**": true,
+			"**/repair_backups/**": true,
+			"**/logs/**": true,
+			"**/__pycache__/**": true,
+			"**/*.pyc": true,
+			"**/telemetry.json": true,
+			"**/*_backup_*": true,
+			"**/*_copy*": true,
+			"**/test_results/**": true
+		},
+		
+		"terminal.integrated.defaultProfile.windows": "PowerShell",
+		"terminal.integrated.profiles.windows": {
+			"GENESIS PowerShell": {
+				"source": "PowerShell",
+				"args": [
+					"-NoExit",
+					"-Command",
+					"Write-Host '🔐 GENESIS SYSTEM TERMINAL' -ForegroundColor Green; Write-Host '🛡️ ARCHITECT MODE v7.0.0 ACTIVE' -ForegroundColor Cyan"
+				]
+			}
+		},
+		
+		"python.defaultInterpreterPath": "${command:python.interpreterPath}",
+		"python.terminal.activateEnvironment": true,
+		
+		"git.enableCommitSigning": false,
+		"git.confirmSync": false,
+		"git.autofetch": true
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "🚀 GENESIS Auto-Startup",
+				"type": "shell",
+				"command": "${command:python.interpreterPath}",
+				"args": ["genesis_auto_startup.py"],
+				"group": "build",
+				"runOptions": {
+					"runOn": "folderOpen"
+				},
+				"presentation": {
+					"echo": true,
+					"reveal": "always",
+					"focus": false,
+					"panel": "new",
+					"showReuseMessage": false,
+					"clear": true
+				},
+				"problemMatcher": []
+			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python",
+			"ms-python.pylint",
+			"ms-python.black-formatter",
+			"github.copilot",
+			"ms-vscode.vscode-json"
+		]
+	}
+}

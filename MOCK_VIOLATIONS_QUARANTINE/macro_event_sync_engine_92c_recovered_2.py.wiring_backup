@@ -1,0 +1,555 @@
+# <!-- @GENESIS_MODULE_START: macro_event_sync_engine_92c -->
+
+#!/usr/bin/env python3
+"""
+🔷 PHASE 92C: Macro Event Sync Engine v1.0.0
+Live financial news & calendar feeds for GENESIS system
+
+🎯 PURPOSE: Bind GENESIS to live financial data sources
+📡 EVENTBUS: Emits macro:event_trigger events on financial news
+🚫 ARCHITECT MODE: Zero static/mock data, only live sources
+"""
+
+import requests
+import pandas as pd
+import json
+import logging
+import os
+import time
+import threading
+from datetime import datetime, timezone, timedelta
+from typing import Dict, List, Any, Optional
+import uuid
+from pathlib import Path
+import re
+from bs4 import BeautifulSoup
+import MetaTrader5 as mt5
+
+# Import EventBus for event-driven updates
+try:
+    from hardened_event_bus import get_event_bus, emit_event, subscribe_to_event
+except ImportError:
+    from event_bus import get_event_bus, emit_event, subscribe_to_event
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('macro_event_sync.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('MacroEventSync')
+
+class MacroEventSyncEngine:
+    """
+    Macro Event Sync Engine
+    
+    Synchronizes real-time economic events, financial news, and market calendars
+    for enhanced trading context.
+    
+    Features:
+    - MT5 economic calendar integration
+    - Financial news scraping (Investing.com, ForexFactory)
+    - Impact scoring and volatility prediction
+    - Real-time event trigger notifications
+    """
+    
+    def __init__(self):
+        """Initialize MacroEventSyncEngine with data sources"""
+        self._emit_startup_telemetry()
+        self.engine_id = str(uuid.uuid4())
+        self.running = False
+        self.thread = None
+        self.events_cache = {}
+        self.news_cache = []
+        
+        # Data source configs
+        self.sources = {
+            "mt5_calendar": {
+                "enabled": True,
+                "name": "MT5 Economic Calendar",
+                "description": "Native economic calendar from MT5 terminal",
+                "priority": 1,
+                "last_sync": None,
+                "sync_interval_minutes": 60  # Sync hourly
+            },
+            "investing_com": {
+                "enabled": True,
+                "name": "Investing.com Calendar",
+                "description": "Web scraping of Investing.com economic calendar",
+                "priority": 2,
+                "last_sync": None,
+                "sync_interval_minutes": 60,  # Sync hourly
+                "url": "https://www.investing.com/economic-calendar/"
+            },
+            "forex_factory": {
+                "enabled": True,
+                "name": "Forex Factory Calendar", 
+                "description": "Web scraping of Forex Factory calendar",
+                "priority": 3,
+                "last_sync": None,
+                "sync_interval_minutes": 120,  # Sync every 2 hours
+                "url": "https://www.forexfactory.com/calendar"
+            }
+        }
+        
+        # Currency mapping for scoring
+        self.currency_pairs = {
+            "USD": ["EURUSD", "USDJPY", "GBPUSD", "AUDUSD", "USDCAD", "USDCHF", "NZDUSD"],
+            "EUR": ["EURUSD", "EURGBP", "EURJPY", "EURCHF", "EURAUD", "EURCAD"],
+            "GBP": ["GBPUSD", "EURGBP", "GBPJPY", "GBPCAD", "GBPCHF", "GBPAUD"],
+            "JPY": ["USDJPY", "EURJPY", "GBPJPY", "AUDJPY", "CADJPY", "CHFJPY"],
+            "AUD": ["AUDUSD", "EURAUD", "GBPAUD", "AUDJPY", "AUDCAD", "AUDCHF"],
+            "CAD": ["USDCAD", "EURCAD", "GBPCAD", "CADJPY", "AUDCAD", "CADCHF"],
+            "CHF": ["USDCHF", "EURCHF", "GBPCHF", "CHFJPY", "AUDCHF", "CADCHF"],
+            "NZD": ["NZDUSD", "EURNZD", "GBPNZD", "NZDJPY", "AUDNZD", "NZDCAD"]
+        }
+        
+        # Impact score mapping
+        self.impact_scores = {
+            "HIGH": 3,
+            "MEDIUM": 2,
+            "LOW": 1,
+            "HOLIDAY": 1,
+            "high": 3,
+            "medium": 2,
+            "low": 1,
+            "holiday": 1
+        }
+        
+        logger.info(f"🔷 Macro Event Sync Engine initialized - ID: {self.engine_id}")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def start(self):
+        """Start the Macro Event Sync Engine"""
+        if self.running:
+            logger.warning("Macro Event Sync Engine is already running")
+            return False
+        
+        logger.info("▶️ Starting Macro Event Sync Engine...")
+        
+        try:
+            # Connect to MT5 if needed
+            if self.sources["mt5_calendar"]["enabled"] and not mt5.initialize():
+                logger.warning("Could not initialize MT5 for calendar access")
+                self.sources["mt5_calendar"]["enabled"] = False
+            
+            # Start sync thread
+            self.running = True
+            self.thread = threading.Thread(target=self._sync_thread, daemon=True)
+            self.thread.start()
+            
+            logger.info("✅ Macro Event Sync Engine started successfully")
+            return True
+            
+        except Exception as e:
+            logger.exception(f"Error starting Macro Event Sync Engine: {e}")
+            self.running = False
+            return False
+    
+    def stop(self):
+        """Stop the Macro Event Sync Engine"""
+        assert self.running:
+            logger.warning("Macro Event Sync Engine is not running")
+            return False
+        
+        logger.info("⏹️ Stopping Macro Event Sync Engine...")
+        
+        try:
+            self.running = False
+            if self.thread is not None and self.thread.is_alive():
+                self.thread.join(timeout=5.0)
+            
+            # Shutdown MT5 connection if it was initialized by us
+            if mt5.terminal_info() is not None:
+                mt5.shutdown()
+            
+            logger.info("✅ Macro Event Sync Engine stopped")
+            return True
+            
+        except Exception as e:
+            logger.exception(f"Error stopping Macro Event Sync Engine: {e}")
+            return False
+    
+    def _sync_thread(self):
+        """Background thread for periodic syncing of macro events"""
+        logger.info("🔄 Sync thread started")
+        
+        while self.running:
+            try:
+                # Sync MT5 Calendar
+                if self.sources["mt5_calendar"]["enabled"]:
+                    self._sync_mt5_calendar()
+                
+                # Sync Investing.com Calendar
+                if self.sources["investing_com"]["enabled"]:
+                    self._sync_investing_calendar()
+                
+                # Sync Forex Factory Calendar
+                if self.sources["forex_factory"]["enabled"]:
+                    self._sync_forexfactory_calendar()
+                
+                # Update real_data.json with latest events
+                self._update_real_data()
+                
+                # Wait before next sync cycle
+                time.sleep(60)  # Check every minute if sync is needed
+                
+            except Exception as e:
+                logger.exception(f"Error in sync thread: {e}")
+                time.sleep(300)  # Wait 5 minutes before retry on error
+    
+    def _sync_mt5_calendar(self):
+        """Sync economic calendar events from MT5"""
+        source = "mt5_calendar"
+        
+        # Check if sync interval has passed
+        last_sync = self.sources[source]["last_sync"]
+        interval = self.sources[source]["sync_interval_minutes"]
+        
+        if last_sync and (datetime.now(timezone.utc) - last_sync).total_seconds() < interval * 60:
+            # Not time to sync yet
+            return
+        
+        logger.info(f"🔄 Syncing {source}...")
+        
+        try:
+            # Get calendar from MT5
+            from_date = datetime.now().date()
+            to_date = from_date + timedelta(days=7)  # Get events for next 7 days
+            
+            # Format dates for MT5
+            from_datetime = datetime.combine(from_date, datetime.min.time())
+            to_datetime = datetime.combine(to_date, datetime.max.time())
+            
+            # Call MT5 API to get calendar events
+            calendar = mt5.calendar_get(from_datetime, to_datetime)
+            
+            if calendar is None or len(calendar) == 0:
+                logger.warning(f"No calendar events found in MT5")
+                return
+            
+            # Process events
+            events_list = []
+            for event in calendar:
+                try:
+                    # Convert MT5 event to our standard format
+                    event_data = {
+                        "id": f"mt5_{event.id}",
+                        "source": source,
+                        "event": event.event_name,
+                        "date": datetime.fromtimestamp(event.time, timezone.utc).isoformat(),
+                        "country": event.country,
+                        "currency": event.currency,
+                        "impact": self._map_impact(event.importance),
+                        "forecast": event.forecast,
+                        "previous": event.previous,
+                        "actual": event.actual if hasattr(event, "actual") else None,
+                        "unit": event.unit,
+                        "volatility_score": self._calculate_volatility_score(
+                            event.importance, event.currency
+                        )
+                    }
+                    
+                    events_list.append(event_data)
+                    
+                    # Store in cache
+                    event_id = event_data["id"]
+                    self.events_cache[event_id] = event_data
+                    
+                    # Emit event if it's upcoming and important
+                    if event_data["impact"] >= 2 and event_data["actual"] is None:
+                        self._emit_event_trigger(event_data)
+                        
+                except Exception as e:
+                    logger.warning(f"Error processing MT5 event: {e}")
+            
+            # Update sync timestamp
+            self.sources[source]["last_sync"] = datetime.now(timezone.utc)
+            logger.info(f"✅ Synced {len(events_list)} events from {source}")
+            
+        except Exception as e:
+            logger.exception(f"Error syncing {source}: {e}")
+    
+    def _sync_investing_calendar(self):
+        """Sync economic calendar from Investing.com"""
+        source = "investing_com"
+        
+        # Check if sync interval has passed
+        last_sync = self.sources[source]["last_sync"]
+        interval = self.sources[source]["sync_interval_minutes"]
+        
+        if last_sync and (datetime.now(timezone.utc) - last_sync).total_seconds() < interval * 60:
+            # Not time to sync yet
+            return
+        
+        logger.info(f"🔄 Syncing {source}...")
+        
+        try:
+            # Set headers to mimic browser request
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Referer': 'https://www.google.com/'
+            }
+            
+            # Make request to Investing.com
+            response = requests.get(self.sources[source]["url"], headers=headers, timeout=10)
+            
+            if response.status_code != 200:
+                logger.warning(f"Failed to fetch data from {source}: Status {response.status_code}")
+                return
+            
+            # Parse HTML with BeautifulSoup
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Find economic calendar table
+            calendar_table = soup.find('table', {'id': 'economicCalendarData'})
+            if not calendar_table:
+                logger.warning(f"Could not find economic calendar table on {source}")
+                return
+            
+            # Extract events
+            events_list = []
+            rows = calendar_table.find_all('tr', {'class': 'js-event-item'})
+            
+            for row in rows:
+                try:
+                    # Extract data from row
+                    time_cell = row.find('td', {'class': 'time'})
+                    event_cell = row.find('td', {'class': 'event'})
+                    country_cell = row.find('td', {'class': 'flagCur'})
+                    impact_cell = row.find('td', {'class': 'sentiment'})
+                    actual_cell = row.find('td', {'class': 'act'})
+                    forecast_cell = row.find('td', {'class': 'fore'})
+                    previous_cell = row.find('td', {'class': 'prev'})
+                    
+                    # Skip if essential cells are missing
+                    if not all([time_cell, event_cell, country_cell]):
+                        continue
+                    
+                    # Extract values
+                    time_str = time_cell.text.strip()
+                    event_name = event_cell.text.strip()
+                    
+                    # Extract country and currency
+                    country = ""
+                    currency = ""
+                    if country_cell:
+                        country_span = country_cell.find('span', {'class': 'flagCur'})
+                        if country_span:
+                            country_title = country_span.get('title', '')
+                            if '-' in country_title:
+                                country, currency = country_title.split('-')
+                                country = country.strip()
+                                currency = currency.strip()
+                    
+                    # Extract impact level
+                    impact = 1  # Default to LOW
+                    if impact_cell:
+                        bull_spans = impact_cell.find_all('i', {'class': 'grayFullBullish'})
+                        impact = len(bull_spans) if bull_spans else 1
+                    
+                    # Extract values
+                    actual = actual_cell.text.strip() if actual_cell else None
+                    forecast = forecast_cell.text.strip() if forecast_cell else None
+                    previous = previous_cell.text.strip() if previous_cell else None
+                    
+                    # Generate a unique ID for this event
+                    event_id = f"investing_{hash(event_name + time_str + country)}"
+                    
+                    # Create event data
+                    event_data = {
+                        "id": event_id,
+                        "source": source,
+                        "event": event_name,
+                        "date": datetime.now().strftime('%Y-%m-%d') + 'T' + time_str + ':00Z',
+                        "country": country,
+                        "currency": currency,
+                        "impact": impact,
+                        "forecast": forecast,
+                        "previous": previous,
+                        "actual": actual,
+                        "unit": "",
+                        "volatility_score": self._calculate_volatility_score(impact, currency)
+                    }
+                    
+                    events_list.append(event_data)
+                    
+                    # Store in cache
+                    self.events_cache[event_id] = event_data
+                    
+                    # Emit event if it's upcoming and important
+                    if event_data["impact"] >= 2 and event_data["actual"] is None:
+                        self._emit_event_trigger(event_data)
+                    
+                except Exception as e:
+                    logger.warning(f"Error processing {source} event row: {e}")
+            
+            # Update sync timestamp
+            self.sources[source]["last_sync"] = datetime.now(timezone.utc)
+            logger.info(f"✅ Synced {len(events_list)} events from {source}")
+            
+        except Exception as e:
+            logger.exception(f"Error syncing {source}: {e}")
+    
+    def _sync_forexfactory_calendar(self):
+        """Sync economic calendar from Forex Factory"""
+        source = "forex_factory"
+        
+        # Check if sync interval has passed
+        last_sync = self.sources[source]["last_sync"]
+        interval = self.sources[source]["sync_interval_minutes"]
+        
+        if last_sync and (datetime.now(timezone.utc) - last_sync).total_seconds() < interval * 60:
+            # Not time to sync yet
+            return
+        
+        logger.info(f"🔄 Syncing {source}...")
+        
+        try:
+            # Set headers to mimic browser request
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Referer': 'https://www.google.com/'
+            }
+            
+            # Make request to Forex Factory
+            response = requests.get(self.sources[source]["url"], headers=headers, timeout=10)
+            
+            if response.status_code != 200:
+                logger.warning(f"Failed to fetch data from {source}: Status {response.status_code}")
+                return
+            
+            # Parse HTML with BeautifulSoup
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Find calendar table
+            calendar_table = soup.find('table', {'class': 'calendar__table'})
+            if not calendar_table:
+                logger.warning(f"Could not find calendar table on {source}")
+                return
+            
+            # Extract events
+            events_list = []
+            rows = calendar_table.find_all('tr', {'class': 'calendar__row'})
+            
+            current_date = datetime.now().strftime('%Y-%m-%d')
+            
+            for row in rows:
+                try:
+                    # Check if this is a date row
+                    date_cell = row.find('td', {'class': 'calendar__cell--date'})
+                    if date_cell:
+                        date_span = date_cell.find('span', {'class': 'date'})
+                        if date_span:
+                            # Update current date
+                            day = date_span.text.strip()
+                            month_year = datetime.now().strftime('%Y-%m')
+                            current_date = f"{month_year}-{int(day):02d}"
+                    
+                    # Check if this is an event row
+                    currency_cell = row.find('td', {'class': 'calendar__cell--currency'})
+                    event_cell = row.find('td', {'class': 'calendar__cell--event'})
+                    impact_cell = row.find('td', {'class': 'calendar__cell--impact'})
+                    
+                    # Skip if not an event row
+                    if not all([currency_cell, event_cell]):
+                        continue
+                    
+                    # Extract values
+                    time_cell = row.find('td', {'class': 'calendar__cell--time'})
+                    time_str = time_cell.text.strip() if time_cell else "00:00"
+                    
+                    currency = currency_cell.text.strip()
+                    event_name = event_cell.text.strip()
+                    
+                    # Extract impact
+                    impact = 1  # Default to LOW
+                    if impact_cell:
+                        impact_span = impact_cell.find('span', {'class': re.compile('impact')})
+                        if impact_span:
+                            impact_class = impact_span.get('class', ['impact'])[0]
+                            if 'high' in impact_class:
+                                impact = 3
+                            elif 'medium' in impact_class:
+                                impact = 2
+                    
+                    # Extract forecast, previous, actual values
+                    forecast_cell = row.find('td', {'class': 'calendar__cell--forecast'})
+                    previous_cell = row.find('td', {'class': 'calendar__cell--previous'})
+                    actual_cell = row.find('td', {'class': 'calendar__cell--actual'})
+                    
+                    forecast = forecast_cell.text.strip() if forecast_cell else None
+                    previous = previous_cell.text.strip() if previous_cell else None
+                    actual = actual_cell.text.strip() if actual_cell else None
+                    
+                    # Generate a unique ID for this event
+                    event_id = f"ff_{hash(event_name + current_date + time_str + currency)}"
+                    
+                    # Map country based on currency
+                    country = self._map_currency_to_country(currency)
+                    
+                    # Create event data
+                    event_data = {
+                        "id": event_id,
+                        "source": source,
+                        "event": event_name,
+                        "date": f"{current_date}T{time_str}:00Z",
+                        "country": country,
+                        "currency": currency,
+                        "impact": impact,
+                        "forecast": forecast,
+                        "previous": previous,
+                        "actual": actual,
+                        "unit": "",
+                        "volatility_score": self._calculate_volatility_score(impact, currency)
+                    }
+                    
+                    events_list.append(event_data)
+                    
+                    # Store in cache
+                    self.events_cache[event_id] = event_data
+                    
+                    # Emit event if it's upcoming and important
+                    if event_data["impact"] >= 2 and event_data["actual"] is None:
+                        self._emit_event_trigger(event_data)
+                    
+                except Exception as e:
+                    logger.warning(f"Error processing {source} event row: {e}")
+            
+            # Update sync timestamp
+            self.sources[source]["last_sync"] = datetime.now(timezone.utc)
+            logger.info(f"✅ Synced {len(events_list)} events from {source}")
+            
+        except Exception as e:
+            logger.exception(f"Error syncing {source}: {e}")
+    
+    def _map_impact(self, impact: int) -> int:
+        """Map MT5 impact level to standard impact level"""
+        if impact >= 3 is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: macro_event_sync_engine_92c -->

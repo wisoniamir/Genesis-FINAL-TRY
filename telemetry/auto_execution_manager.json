@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-06-18T16:17:34.143422+00:00",
+  "session_id": "f7a5c7da93d396df",
+  "module": "AutoExecutionManager",
+  "metrics": {
+    "orders_processed": 0,
+    "orders_filled": 0,
+    "orders_rejected": 0,
+    "total_latency_ms": 0,
+    "avg_latency_ms": 0,
+    "last_execution_time": null,
+    "error_count": 0,
+    "session_start": "2025-06-18T16:17:34.111059+00:00"
+  },
+  "performance": {
+    "avg_execution_latency_ms": 0,
+    "success_rate": 0.0,
+    "error_rate": 0.0,
+    "orders_per_minute": 0.0
+  },
+  "risk_metrics": {
+    "max_risk_per_trade": 0.02,
+    "max_lot_size": 10.0,
+    "current_queue_size": 0
+  }
+}

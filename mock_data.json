@@ -1,0 +1,8 @@
+{
+  "version": "v3.0",
+  "description": "Mock data registry - MUST REMAIN EMPTY in production",
+  "last_updated": "2025-06-20T12:30:00Z",
+  "compliance_note": "This file must remain empty per GENESIS architecture requirements",
+  "mock_data_sources": {},
+  "warning": "Adding any mock data sources will trigger ARCHITECT_LOCK_BROKEN flag"
+}

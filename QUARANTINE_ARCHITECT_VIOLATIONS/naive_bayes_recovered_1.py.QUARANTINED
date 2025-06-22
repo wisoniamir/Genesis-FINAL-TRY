@@ -1,0 +1,42 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\naive_bayes_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.336225+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\naive_bayes_recovered_1.py",
+      "line_numbers": [
+        54
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\naive_bayes_recovered_1.py",
+      "line_numbers": [
+        454,
+        475,
+        609,
+        613,
+        1476
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\naive_bayes_recovered_1.py",
+      "line_numbers": [
+        324,
+        460,
+        463,
+        488,
+        604
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

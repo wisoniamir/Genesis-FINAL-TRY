@@ -1,0 +1,271 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+  "quarantine_timestamp": "2025-06-21T04:33:01.463002+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        87,
+        90
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        87
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        87
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        87
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        88,
+        289,
+        299,
+        300,
+        301
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        88,
+        299
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        88,
+        174,
+        288
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        88
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        88
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "\"sample\"",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        88
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        19,
+        76,
+        89,
+        193,
+        268
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        89,
+        197,
+        251,
+        314,
+        346
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "default =",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        89
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        89
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        89,
+        200,
+        227,
+        276,
+        341
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# shadow",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        90
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# alternative",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        90
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        90
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# bypass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        90
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        91
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "log_metric(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        91
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "track_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        91
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        92,
+        217
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        92
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        92
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        93
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_mode_ultimate_integration.py",
+      "line_numbers": [
+        93
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

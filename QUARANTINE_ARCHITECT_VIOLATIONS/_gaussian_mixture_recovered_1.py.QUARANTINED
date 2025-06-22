@@ -1,0 +1,49 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_gaussian_mixture_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.791190+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_gaussian_mixture_recovered_1.py",
+      "line_numbers": [
+        325
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_gaussian_mixture_recovered_1.py",
+      "line_numbers": [
+        333,
+        342
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_gaussian_mixture_recovered_1.py",
+      "line_numbers": [
+        46,
+        85
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_gaussian_mixture_recovered_1.py",
+      "line_numbers": [
+        349,
+        406,
+        447,
+        785,
+        814
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

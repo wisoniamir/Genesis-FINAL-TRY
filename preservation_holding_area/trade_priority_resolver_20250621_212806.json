@@ -1,0 +1,9 @@
+{
+  "module_id": "trade_priority_resolver",
+  "original_path": "modules\\signal_processing\\trade_priority_resolver.py",
+  "preserved_path": "preservation_holding_area\\trade_priority_resolver_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 34300,
+  "checksum": "9290225f9a5d622dedc0369161a9a5622c53d973b04adebdfdbb2ddc4da38c29"
+}

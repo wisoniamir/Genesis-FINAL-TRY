@@ -1,0 +1,9 @@
+{
+  "module_id": "genesis_launcher",
+  "original_path": "modules\\execution\\genesis_launcher.py",
+  "preserved_path": "preservation_holding_area\\genesis_launcher_20250621_212754.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16343,
+  "checksum": "d12579ae7b131e9687f2c68c3ce65eb31e8ab52e5abb9cba1df6c225e42cf602"
+}

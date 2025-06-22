@@ -1,0 +1,82 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.603875+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        176
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        187
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        37,
+        44,
+        45,
+        46,
+        53
+      ],
+      "violation_count": 43
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        228
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        231
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        157,
+        158,
+        159,
+        160,
+        161
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_trade_execution_flow_recovered_2.py",
+      "line_numbers": [
+        164,
+        165,
+        166,
+        167,
+        168
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

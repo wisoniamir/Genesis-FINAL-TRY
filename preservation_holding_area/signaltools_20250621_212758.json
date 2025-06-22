@@ -1,0 +1,9 @@
+{
+  "module_id": "signaltools",
+  "original_path": "modules\\signal_processing\\signaltools.py",
+  "preserved_path": "preservation_holding_area\\signaltools_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 7157,
+  "checksum": "20e473d27e9b113da76ca78ea56fe97e2ebafafb8cbbb477ffaeafdb554ab037"
+}

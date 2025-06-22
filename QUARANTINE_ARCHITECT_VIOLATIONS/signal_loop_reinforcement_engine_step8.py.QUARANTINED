@@ -1,0 +1,83 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.869191+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+      "line_numbers": [
+        163,
+        400,
+        402,
+        418,
+        421
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+      "line_numbers": [
+        368,
+        386,
+        398,
+        404,
+        427
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+      "line_numbers": [
+        379,
+        397,
+        420,
+        448,
+        463
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+      "line_numbers": [
+        129,
+        466,
+        502
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+      "line_numbers": [
+        134,
+        265,
+        319,
+        348,
+        478
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\signal_loop_reinforcement_engine_step8.py",
+      "line_numbers": [
+        172,
+        173,
+        174,
+        175,
+        176
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

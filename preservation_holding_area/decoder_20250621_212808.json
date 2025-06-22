@@ -1,0 +1,9 @@
+{
+  "module_id": "decoder",
+  "original_path": "modules\\restored\\decoder.py",
+  "preserved_path": "preservation_holding_area\\decoder_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 76538,
+  "checksum": "89e553f329ccb89821a9e2ce303d11b91276fe5eafc01c2a0e98a5ca63ee58a0"
+}

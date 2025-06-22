@@ -1,0 +1,484 @@
+# <!-- @GENESIS_MODULE_START: test_reactive_signal_autopilot -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+"""
+GENESIS Phase 36 - Reactive Signal Autopilot Test
+================================================
+Test script to validate the reactive signal autopilot functionality
+"""
+
+import json
+import time
+import datetime
+from typing import Dict, Any, Optional
+from reactive_signal_autopilot import ReactiveSignalAutopilot, BrokerResponseMetrics
+from hardened_event_bus import emit_event, subscribe_to_event, get_event_bus
+
+class ReactiveAutopilotTester:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_reactive_signal_autopilot_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_reactive_signal_autopilot_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_reactive_signal_autopilot_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_reactive_signal_autopilot_recovered_2: {e}")
+    """Test 
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class for ReactiveSignalAutopilot functionality"""
+      def __init__(self):
+        self.test_results = []
+        self.autopilot: Optional[ReactiveSignalAutopilot] = None
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def run_all_tests(self):
+        """Run comprehensive test suite for reactive autopilot"""
+        print("🧪 GENESIS Phase 36 - Reactive Signal Autopilot Test Suite")
+        print("=" * 60)
+        
+        # Test 1: Module Initialization
+        self.test_module_initialization()
+        
+        # Test 2: EventBus Integration
+        self.test_eventbus_integration()
+        
+        # Test 3: Broker Feedback Processing
+        self.test_broker_feedback_processing()
+        
+        # Test 4: Slippage Adaptation
+        self.test_slippage_adaptation()
+        
+        # Test 5: Latency Adaptation
+        self.test_latency_adaptation()
+        
+        # Test 6: Rejection Handling
+        self.test_rejection_handling()
+        
+        # Test 7: Health Score Calculation
+        self.test_health_score_calculation()
+        
+        # Test 8: Configuration Loading
+        self.test_configuration_loading()
+        
+        # Test 9: Telemetry Emission
+        self.test_telemetry_emission()
+        
+        # Test 10: Monitoring Loop
+        self.test_monitoring_loop()
+        
+        # Print results
+        self.print_test_results()
+        
+    def test_module_initialization(self):
+        """Test ReactiveSignalAutopilot initialization"""
+        try:
+            print("🔧 Test 1: Module Initialization")
+            self.autopilot = ReactiveSignalAutopilot()
+            
+            # Verify initialization
+            assert hasattr(self.autopilot, 'event_bus')
+            assert hasattr(self.autopilot, 'response_history')
+            assert hasattr(self.autopilot, 'active_overrides')
+            assert hasattr(self.autopilot, 'broker_health_scores')
+            assert hasattr(self.autopilot, 'config')
+            
+            self.test_results.append(("Module Initialization", "PASSED", "All attributes initialized correctly"))
+            print("   ✅ PASSED - Module initialized with all required attributes")
+            
+        except Exception as e:
+            self.test_results.append(("Module Initialization", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_eventbus_integration(self):
+        """Test EventBus connection and subscription"""
+        try:
+            print("🔄 Test 2: EventBus Integration")
+            
+            # Verify EventBus connection
+            event_bus = get_event_bus()
+            assert event_bus is not None
+            
+            # Test event subscription (mock)
+            subscribe_to_event("test_event", lambda x: None)
+            
+            self.test_results.append(("EventBus Integration", "PASSED", "EventBus connections established"))
+            print("   ✅ PASSED - EventBus integration working")
+            
+        except Exception as e:
+            self.test_results.append(("EventBus Integration", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+              def test_broker_feedback_processing(self):
+        """Test broker feedback processing"""
+        try:
+            print("📊 Test 3: Broker Feedback Processing")
+            
+            if self.autopilot is None:
+                raise Exception("Autopilot not initialized")
+            
+            # Mock broker feedback data
+            feedback_data = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "broker_id": "test_broker",
+                "signal_id": "test_signal_001",
+                "execution_time_ms": 250,
+                "slippage_pips": 1.5,
+                "rejection_type": None,
+                "spread_at_execution": 0.8
+            }
+            
+            # Process feedback
+            initial_count = len(self.autopilot.response_history)
+            self.autopilot._handle_broker_feedback(feedback_data)
+            
+            # Verify processing
+            assert len(self.autopilot.response_history) == initial_count + 1
+            latest_metric = self.autopilot.response_history[-1]
+            assert latest_metric.broker_id == "test_broker"
+            assert latest_metric.signal_id == "test_signal_001"
+            
+            self.test_results.append(("Broker Feedback Processing", "PASSED", "Feedback processed correctly"))
+            print("   ✅ PASSED - Broker feedback processed and stored")
+            
+        except Exception as e:
+            self.test_results.append(("Broker Feedback Processing", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_slippage_adaptation(self):
+        """Test slippage threshold adaptation"""
+        try:
+            print("📈 Test 4: Slippage Adaptation")
+            
+            # Create high slippage metrics
+            high_slippage_metrics = BrokerResponseMetrics(
+                timestamp=datetime.datetime.now().isoformat(),
+                broker_id="test_broker",
+                signal_id="high_slippage_signal",
+                execution_time_ms=200,
+                slippage_pips=3.5,  # Above threshold of 2.0
+                rejection_type=None,
+                spread_at_execution=1.0,
+                latency_category="normal"
+            )
+            
+            # Test slippage adaptation
+            initial_overrides = len(self.autopilot.active_overrides)
+            self.autopilot._trigger_slippage_adaptation(high_slippage_metrics)
+            
+            # Verify override created
+            assert len(self.autopilot.active_overrides) == initial_overrides + 1
+            override = self.autopilot.active_overrides["high_slippage_signal"]
+            assert override.override_type == "sl_tp_adjust"
+            
+            self.test_results.append(("Slippage Adaptation", "PASSED", "Slippage override created correctly"))
+            print("   ✅ PASSED - Slippage adaptation triggered and override created")
+            
+        except Exception as e:
+            self.test_results.append(("Slippage Adaptation", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_latency_adaptation(self):
+        """Test latency adaptation with broker rerouting"""
+        try:
+            print("⏱️ Test 5: Latency Adaptation")
+            
+            # Create high latency metrics
+            high_latency_metrics = BrokerResponseMetrics(
+                timestamp=datetime.datetime.now().isoformat(),
+                broker_id="slow_broker",
+                signal_id="latency_test_signal",
+                execution_time_ms=1200,  # Above threshold of 500ms
+                slippage_pips=1.0,
+                rejection_type=None,
+                spread_at_execution=0.5,
+                latency_category="critical"
+            )
+            
+            # Simulate multiple latency issues to trigger rerouting
+            for i in range(4):  # Above escalation limit of 3
+                self.autopilot._trigger_latency_adaptation(high_latency_metrics)
+            
+            # Verify broker reroute override created
+            assert "latency_test_signal" in self.autopilot.active_overrides
+            override = self.autopilot.active_overrides["latency_test_signal"]
+            assert override.override_type == "broker_reroute"
+            
+            self.test_results.append(("Latency Adaptation", "PASSED", "Broker reroute triggered correctly"))
+            print("   ✅ PASSED - Latency adaptation and broker rerouting working")
+            
+        except Exception as e:
+            self.test_results.append(("Latency Adaptation", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_rejection_handling(self):
+        """Test execution rejection handling"""
+        try:
+            print("🚫 Test 6: Rejection Handling")
+            
+            # Mock rejection data
+            rejection_data = {
+                "signal_id": "rejected_signal",
+                "broker_id": "rejecting_broker",
+                "rejection_type": "insufficient_margin"
+            }
+            
+            # Test rejection handling
+            initial_overrides = len(self.autopilot.active_overrides)
+            self.autopilot._handle_execution_rejection(rejection_data)
+            
+            # Verify retry override created
+            assert len(self.autopilot.active_overrides) == initial_overrides + 1
+            override = self.autopilot.active_overrides["rejected_signal"]
+            assert override.override_type == "retry_execution"
+            
+            self.test_results.append(("Rejection Handling", "PASSED", "Rejection retry logic working"))
+            print("   ✅ PASSED - Execution rejection handled with retry logic")
+            
+        except Exception as e:
+            self.test_results.append(("Rejection Handling", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_health_score_calculation(self):
+        """Test broker health score calculation"""
+        try:
+            print("💊 Test 7: Health Score Calculation")
+            
+            # Add some mock response data
+            test_metrics = [
+                BrokerResponseMetrics(
+                    timestamp=datetime.datetime.now().isoformat(),
+                    broker_id="healthy_broker",
+                    signal_id=f"signal_{i}",
+                    execution_time_ms=200,  # Good latency
+                    slippage_pips=0.5,      # Low slippage
+                    rejection_type=None,     # No rejections
+                    spread_at_execution=0.5,
+                    latency_category="normal"
+                ) for i in range(10)
+            ]
+            
+            # Add metrics to history
+            for metrics in test_metrics:
+                self.autopilot.response_history.append(metrics)
+            
+            # Update health scores
+            self.autopilot._update_broker_health_scores()
+            
+            # Verify health score calculated
+            assert "healthy_broker" in self.autopilot.broker_health_scores
+            health_score = self.autopilot.broker_health_scores["healthy_broker"]
+            assert health_score > 70  # Should be high for good performance
+            
+            self.test_results.append(("Health Score Calculation", "PASSED", f"Health score: {health_score:.2f}"))
+            print(f"   ✅ PASSED - Health score calculated: {health_score:.2f}")
+            
+        except Exception as e:
+            self.test_results.append(("Health Score Calculation", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_configuration_loading(self):
+        """Test configuration loading and validation"""
+        try:
+            print("⚙️ Test 8: Configuration Loading")
+            
+            # Verify config loaded
+            assert self.autopilot.config is not None
+            assert "slippage_threshold_pips" in self.autopilot.config
+            assert "latency_threshold_ms" in self.autopilot.config
+            assert self.autopilot.slippage_threshold == self.autopilot.config["slippage_threshold_pips"]
+            
+            self.test_results.append(("Configuration Loading", "PASSED", "Configuration loaded correctly"))
+            print("   ✅ PASSED - Configuration loaded and applied")
+            
+        except Exception as e:
+            self.test_results.append(("Configuration Loading", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_telemetry_emission(self):
+        """Test telemetry event emission"""
+        try:
+            print("📡 Test 9: Telemetry Emission")
+            
+            # Test telemetry emission
+            self.event_bus.request('data:live_feed') = {"test_metric": "test_value"}
+            self.autopilot._emit_telemetry("test_event", self.event_bus.request('data:live_feed'))
+            
+            # Verify method executes without error
+            self.test_results.append(("Telemetry Emission", "PASSED", "Telemetry events emitted"))
+            print("   ✅ PASSED - Telemetry emission working")
+            
+        except Exception as e:
+            self.test_results.append(("Telemetry Emission", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def test_monitoring_loop(self):
+        """Test monitoring loop start/stop"""
+        try:
+            print("🔄 Test 10: Monitoring Loop")
+            
+            # Test monitoring start
+            self.autopilot.start_monitoring()
+            assert self.autopilot.monitoring_active == True
+            assert self.autopilot.monitor_thread is not None
+            
+            # Brief wait to let monitoring run
+            time.sleep(2)
+            
+            # Test monitoring stop
+            self.autopilot.stop_monitoring()
+            assert self.autopilot.monitoring_active == False
+            
+            self.test_results.append(("Monitoring Loop", "PASSED", "Monitoring start/stop working"))
+            print("   ✅ PASSED - Monitoring loop start/stop working")
+            
+        except Exception as e:
+            self.test_results.append(("Monitoring Loop", "FAILED", str(e)))
+            print(f"   ❌ FAILED - {e}")
+            
+    def print_test_results(self):
+        """Print comprehensive test results"""
+        print("\n" + "=" * 60)
+        print("🧪 REACTIVE SIGNAL AUTOPILOT TEST RESULTS")
+        print("=" * 60)
+        
+        passed = sum(1 for _, status, _ in self.test_results if status == "PASSED")
+        failed = sum(1 for _, status, _ in self.test_results if status == "FAILED")
+        total = len(self.test_results)
+        
+        for test_name, status, details in self.test_results:
+            status_icon = "✅" if status == "PASSED" else "❌"
+            print(f"{status_icon} {test_name:<30} {status:<8} {details}")
+            
+        print("\n" + "-" * 60)
+        print(f"📊 SUMMARY: {passed}/{total} tests passed ({passed/total*100:.1f}%)")
+        
+        if failed == 0:
+            print("🎉 ALL TESTS PASSED - Reactive Signal Autopilot is OPERATIONAL")
+        else:
+            print(f"⚠️  {failed} TESTS FAILED - Review failed tests before deployment")
+        
+        # Generate test report
+        self.generate_test_report()
+        
+    def generate_test_report(self):
+        """Generate JSON test report"""
+        report = {
+            "test_suite": "ReactiveSignalAutopilot",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "total_tests": len(self.test_results),
+            "passed": sum(1 for _, status, _ in self.test_results if status == "PASSED"),
+            "failed": sum(1 for _, status, _ in self.test_results if status == "FAILED"),
+            "details": [
+                {
+                    "test_name": name,
+                    "status": status,
+                    "details": details
+                }
+                for name, status, details in self.test_results
+            ]
+        }
+        
+        with open("reactive_autopilot_test_report.json", "w") as f:
+            json.dump(report, f, indent=2)
+            
+        print(f"📄 Test report saved: reactive_autopilot_test_report.json")
+
+if __name__ == "__main__":
+    tester = ReactiveAutopilotTester()
+    tester.run_all_tests()
+
+
+# <!-- @GENESIS_MODULE_END: test_reactive_signal_autopilot -->

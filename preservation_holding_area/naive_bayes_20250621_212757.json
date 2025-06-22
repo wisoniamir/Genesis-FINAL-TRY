@@ -1,0 +1,9 @@
+{
+  "module_id": "naive_bayes",
+  "original_path": "modules\\restored\\naive_bayes.py",
+  "preserved_path": "preservation_holding_area\\naive_bayes_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 98393,
+  "checksum": "46243734340f7b06b6681d24fa3a36f6ed43ec33f1797fb0102208c5945d8e34"
+}

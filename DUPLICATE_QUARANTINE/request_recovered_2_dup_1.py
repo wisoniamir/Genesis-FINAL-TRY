@@ -1,0 +1,653 @@
+import logging
+import sys
+from pathlib import Path
+
+from __future__ import annotations
+
+import io
+import typing
+from base64 import b64encode
+from enum import Enum
+
+from ..exceptions import UnrewindableBodyError
+from .util import to_bytes
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("request_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("request_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "request_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in request_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "request_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("request_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in request_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+if typing.TYPE_CHECKING:
+    from typing import Final
+
+# Pass as a value within ``headers`` to skip
+# emitting some HTTP headers that are added automatically.
+# The only headers that are supported are ``Accept-Encoding``,
+# ``Host``, and ``User-Agent``.
+SKIP_HEADER = "@@@SKIP_HEADER@@@"
+SKIPPABLE_HEADERS = frozenset(["accept-encoding", "host", "user-agent"])
+
+ACCEPT_ENCODING = "gzip,deflate"
+try:
+    try:
+        import brotlicffi as _unused_module_brotli  # type: ignore[import-not-found] # noqa: F401
+    except ImportError:
+        import brotli as _unused_module_brotli  # type: ignore[import-not-found] # noqa: F401
+except ImportError:
+    pass
+else:
+    ACCEPT_ENCODING += ",br"
+
+try:
+    from compression import (  # type: ignore[import-not-found] # noqa: F401
+        zstd as _unused_module_zstd,
+    )
+
+    ACCEPT_ENCODING += ",zstd"
+except ImportError:
+    try:
+        import zstandard as _unused_module_zstd  # noqa: F401
+
+        ACCEPT_ENCODING += ",zstd"
+    except ImportError:
+        pass
+
+
+class _TYPE_FAILEDTELL(Enum):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("request_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("request_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "request_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in request_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "request_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("request_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in request_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "request_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in request_recovered_2: {e}")
+    token = 0
+
+
+_FAILEDTELL: Final[_TYPE_FAILEDTELL] = _TYPE_FAILEDTELL.token
+
+_TYPE_BODY_POSITION = typing.Union[int, _TYPE_FAILEDTELL]
+
+# When sending a request with these methods we aren't expecting
+# a body so don't need to set an explicit 'Content-Length: 0'
+# The reason we do this in the negative instead of tracking methods
+# which 'should' have a body is because unknown methods should be
+# treated as if they were 'POST' which *does* expect a body.
+_METHODS_NOT_EXPECTING_BODY = {"GET", "HEAD", "DELETE", "TRACE", "OPTIONS", "CONNECT"}
+
+
+def make_headers(
+    keep_alive: bool | None = None,
+    accept_encoding: bool | list[str] | str | None = None,
+    user_agent: str | None = None,
+    basic_auth: str | None = None,
+    proxy_basic_auth: str | None = None,
+    disable_cache: bool | None = None,
+) -> dict[str, str]:
+    """
+    Shortcuts for generating request headers.
+
+    :param keep_alive:
+        If ``True``, adds 'connection: keep-alive' header.
+
+    :param accept_encoding:
+        Can be a boolean, list, or string.
+        ``True`` translates to 'gzip,deflate'.  If the dependencies for
+        Brotli (either the ``brotli`` or ``brotlicffi`` package) and/or Zstandard
+        (the ``zstandard`` package) algorithms are installed, then their encodings are
+        included in the string ('br' and 'zstd', respectively).
+        List will get joined by comma.
+        String will be used as provided.
+
+    :param user_agent:
+        String representing the user-agent you want, such as
+        "python-urllib3/0.6"
+
+    :param basic_auth:
+        Colon-separated username:password string for 'authorization: basic ...'
+        auth header.
+
+    :param proxy_basic_auth:
+        Colon-separated username:password string for 'proxy-authorization: basic ...'
+        auth header.
+
+    :param disable_cache:
+        If ``True``, adds 'cache-control: no-cache' header.
+
+    Example:
+
+    .. code-block:: python
+
+        import urllib3
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: request_recovered_2 -->
+
+
+# <!-- @GENESIS_MODULE_START: request_recovered_2 -->
+
+        print(urllib3.util.make_headers(keep_alive=True, user_agent="Batman/1.0"))
+        # {'connection': 'keep-alive', 'user-agent': 'Batman/1.0'}
+        print(urllib3.util.make_headers(accept_encoding=True))
+        # {'accept-encoding': 'gzip,deflate'}
+    """
+    headers: dict[str, str] = {}
+    if accept_encoding:
+        if isinstance(accept_encoding, str):
+            pass
+        elif isinstance(accept_encoding, list):
+            accept_encoding = ",".join(accept_encoding)
+        else:
+            accept_encoding = ACCEPT_ENCODING
+        headers["accept-encoding"] = accept_encoding
+
+    if user_agent:
+        headers["user-agent"] = user_agent
+
+    if keep_alive:
+        headers["connection"] = "keep-alive"
+
+    if basic_auth:
+        headers["authorization"] = (
+            f"Basic {b64encode(basic_auth.encode('latin-1')).decode()}"
+        )
+
+    if proxy_basic_auth:
+        headers["proxy-authorization"] = (
+            f"Basic {b64encode(proxy_basic_auth.encode('latin-1')).decode()}"
+        )
+
+    if disable_cache:
+        headers["cache-control"] = "no-cache"
+
+    return headers
+
+
+def set_file_position(
+    body: typing.Any, pos: _TYPE_BODY_POSITION | None
+) -> _TYPE_BODY_POSITION | None:
+    """
+    If a position is provided, move file to that point.
+    Otherwise, we'll attempt to record a position for future use.
+    """
+    if pos is not None:
+        rewind_body(body, pos)
+    elif getattr(body, "tell", None) is not None:
+        try:
+            pos = body.tell()
+        except OSError:
+            # This differentiates from None, allowing us to catch
+            # a failed `tell()` later when trying to rewind the body.
+            pos = _FAILEDTELL
+
+    return pos
+
+
+def rewind_body(body: typing.IO[typing.AnyStr], body_pos: _TYPE_BODY_POSITION) -> None:
+    """
+    Attempt to rewind body to a certain position.
+    Primarily used for request redirects and retries.
+
+    :param body:
+        File-like object that supports seek.
+
+    :param int pos:
+        Position to seek to in file.
+    """
+    body_seek = getattr(body, "seek", None)
+    if body_seek is not None and isinstance(body_pos, int):
+        try:
+            body_seek(body_pos)
+        except OSError as e:
+            raise UnrewindableBodyError(
+                "An error occurred when rewinding request body for redirect/retry."
+            ) from e
+    elif body_pos is _FAILEDTELL:
+        raise UnrewindableBodyError(
+            "Unable to record file position for rewinding "
+            "request body during a redirect/retry."
+        )
+    else:
+        raise ValueError(
+            f"body_pos must be of type integer, instead it was {type(body_pos)}."
+        )
+
+
+class ChunksAndContentLength(typing.NamedTuple):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("request_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("request_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "request_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in request_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "request_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("request_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in request_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "request_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in request_recovered_2: {e}")
+    chunks: typing.Iterable[bytes] | None
+    content_length: int | None
+
+
+def body_to_chunks(
+    body: typing.Any | None, method: str, blocksize: int
+) -> ChunksAndContentLength:
+    """Takes the HTTP request method, body, and blocksize and
+    transforms them into an iterable of chunks to pass to
+    socket.sendall() and an optional 'Content-Length' header.
+
+    A 'Content-Length' of 'None' indicates the length of the body
+    can't be determined so should use 'Transfer-Encoding: chunked'
+    for framing instead.
+    """
+
+    chunks: typing.Iterable[bytes] | None
+    content_length: int | None
+
+    # No body, we need to make a recommendation on 'Content-Length'
+    # based on whether that request method is expected to have
+    # a body or not.
+    if body is None:
+        chunks = None
+        if method.upper() not in _METHODS_NOT_EXPECTING_BODY:
+            content_length = 0
+        else:
+            content_length = None
+
+    # Bytes or strings become bytes
+    elif isinstance(body, (str, bytes)):
+        chunks = (to_bytes(body),)
+        content_length = len(chunks[0])
+
+    # File-like object, IMPLEMENTED: use seek() and tell() for length?
+    elif hasattr(body, "read"):
+
+        def chunk_readable() -> typing.Iterable[bytes]:
+            nonlocal body, blocksize
+            encode = isinstance(body, io.TextIOBase)
+            while True:
+                datablock = body.read(blocksize)
+                if not datablock:
+                    break
+                if encode:
+                    datablock = datablock.encode("utf-8")
+                yield datablock
+
+        chunks = chunk_readable()
+        content_length = None
+
+    # Otherwise we need to start checking via duck-typing.
+    else:
+        try:
+            # Check if the body implements the buffer API.
+            mv = memoryview(body)
+        except TypeError:
+            try:
+                # Check if the body is an iterable
+                chunks = iter(body)
+                content_length = None
+            except TypeError:
+                raise TypeError(
+                    f"'body' must be a bytes-like object, file-like "
+                    f"object, or iterable. Instead was {body!r}"
+                ) from None
+        else:
+            # Since it implements the buffer API can be passed directly to socket.sendall()
+            chunks = (body,)
+            content_length = mv.nbytes
+
+    return ChunksAndContentLength(chunks=chunks, content_length=content_length)
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))

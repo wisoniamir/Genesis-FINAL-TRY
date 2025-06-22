@@ -1,0 +1,81 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:41.309709+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+      "line_numbers": [
+        253,
+        282,
+        293,
+        302,
+        305
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+      "line_numbers": [
+        19,
+        43,
+        88,
+        116,
+        153
+      ],
+      "violation_count": 36
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+      "line_numbers": [
+        47,
+        92,
+        113,
+        120,
+        157
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+      "line_numbers": [
+        84,
+        112,
+        149,
+        171,
+        202
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+      "line_numbers": [
+        33,
+        53,
+        57,
+        128,
+        132
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_phase57_58_integration_recovered_1.py",
+      "line_numbers": [
+        360
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

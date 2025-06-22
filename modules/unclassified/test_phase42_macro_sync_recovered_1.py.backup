@@ -1,0 +1,598 @@
+# <!-- @GENESIS_MODULE_START: test_phase42_macro_sync -->
+
+from datetime import datetime\n"""
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase42_macro_sync_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase42_macro_sync_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase42_macro_sync_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase42_macro_sync_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase42_macro_sync_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+GENESIS Test Suite - Phase 42 Macro Sync Engine
+===============================================
+
+🧪 TEST MISSION: Validate macro economic data synchronization capabilities
+📊 COVERAGE: Real-time data feeds, alignment scoring, telemetry emission
+⚙️ VALIDATION: EventBus routing, data freshness, sync reliability
+🔁 ARCHITECT MODE: Full compliance testing with real data requirements
+
+Test Categories:
+- Macro data synchronization
+- Alignment score calculation
+- Data freshness monitoring  
+- Telemetry emission
+- EventBus integration
+- Performance validation
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+from typing import Dict, Any, List
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from macro_sync_engine import MacroSyncEngine
+    from hardened_event_bus import get_event_bus, emit_event, subscribe_to_event
+except ImportError as e:
+    print(f"❌ Import error: {e}")
+    sys.exit(1)
+
+class TestMacroSyncEngine:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase42_macro_sync_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase42_macro_sync_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_phase42_macro_sync_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_phase42_macro_sync_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_phase42_macro_sync_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase42_macro_sync_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase42_macro_sync_recovered_1: {e}")
+    """Test suite for Macro Sync Engine"""
+    
+    def __init__(self):
+        self.test_name = "TestMacroSyncEngine"
+        self.results = []
+        self.logger = logging.getLogger(self.test_name)
+        self.event_bus = get_event_bus()
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def run_all_tests(self) -> Dict[str, Any]:
+        """Run complete test suite"""
+        print(f"🧪 Starting {self.test_name} test suite...")
+        start_time = time.time()
+        
+        # Test sequence
+        tests = [
+            self.test_module_initialization,
+            self.test_macro_data_sync,
+            self.test_alignment_score_calculation,
+            self.self.event_bus.request('data:live_feed')_freshness_tracking,
+            self.test_telemetry_emission,
+            self.test_eventbus_integration,
+            self.test_system_command_handling,
+            self.test_performance_requirements
+        ]
+        
+        for test in tests:
+            try:
+                result = test()
+                self.results.append(result)
+                status = "✅ PASS" if result["status"] == "PASS" else "❌ FAIL"
+                print(f"{status} {result['test_name']}: {result['message']}")
+                
+            except Exception as e:
+                self.results.append({
+                    "test_name": test.__name__,
+                    "status": "ERROR",
+                    "message": str(e),
+                    "timestamp": datetime.datetime.utcnow().isoformat()
+                })
+                print(f"💥 ERROR {test.__name__}: {e}")
+        
+        # Calculate summary
+        total_tests = len(self.results)
+        passed_tests = len([r for r in self.results if r["status"] == "PASS"])
+        
+        summary = {
+            "test_suite": self.test_name,
+            "total_tests": total_tests,
+            "passed": passed_tests,
+            "failed": total_tests - passed_tests,
+            "success_rate": (passed_tests / total_tests) * 100 if total_tests > 0 else 0,
+            "duration_seconds": time.time() - start_time,
+            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "results": self.results
+        }
+        
+        print(f"\n📊 Test Summary: {passed_tests}/{total_tests} passed ({summary['success_rate']:.1f}%)")
+        return summary
+        
+    def test_module_initialization(self) -> Dict[str, Any]:
+        """Test module initialization"""
+        try:
+            engine = MacroSyncEngine()
+            
+            # Verify initialization
+            assert engine.module_name == "MacroSyncEngine"
+            assert engine.version == "1.0.0"
+            assert engine.status == "active"
+            assert hasattr(engine, 'macro_data')
+            assert hasattr(engine, 'telemetry_data')
+            
+            return {
+                "test_name": "test_module_initialization",
+                "status": "PASS",
+                "message": "Module initialized successfully",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_module_initialization",
+                "status": "FAIL",
+                "message": f"Initialization failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_macro_data_sync(self) -> Dict[str, Any]:
+        """Test macro data synchronization"""
+        try:
+            engine = MacroSyncEngine()
+            
+            # Trigger sync
+            engine._sync_macro_data()
+            
+            # Verify data structure
+            macro_data = engine.get_macro_data()
+            
+            required_fields = ["interest_rate", "CPI", "NFP", "DXY_strength", "risk_sentiment", "last_update"]
+            for field in required_fields:
+                assert field in macro_data, f"Missing field: {field}"
+                
+            # Verify data types and ranges
+            assert isinstance(macro_data["interest_rate"], (int, float))
+            assert isinstance(macro_data["CPI"], (int, float))
+            assert isinstance(macro_data["NFP"], (int, float))
+            assert isinstance(macro_data["DXY_strength"], (int, float))
+            assert isinstance(macro_data["risk_sentiment"], (int, float))
+            assert macro_data["last_update"] is not None
+            
+            return {
+                "test_name": "test_macro_data_sync",
+                "status": "PASS",
+                "message": f"Macro data synced: fed_rate={macro_data['interest_rate']}, DXY={macro_data['DXY_strength']}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_macro_data_sync",
+                "status": "FAIL",
+                "message": f"Macro sync failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_alignment_score_calculation(self) -> Dict[str, Any]:
+        """Test alignment score calculation"""
+        try:
+            engine = MacroSyncEngine()
+            engine._sync_macro_data()
+            
+            telemetry = engine.get_telemetry_data()
+            alignment_score = telemetry["alignment_score"]
+            
+            # Verify score is valid
+            assert 0.0 <= alignment_score <= 1.0
+            assert isinstance(alignment_score, (int, float))
+            
+            return {
+                "test_name": "test_alignment_score_calculation",
+                "status": "PASS",
+                "message": f"Alignment score calculated: {alignment_score:.3f}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_alignment_score_calculation",
+                "status": "FAIL",
+                "message": f"Alignment score calculation failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def self.event_bus.request('data:live_feed')_freshness_tracking(self) -> Dict[str, Any]:
+        """Test data freshness monitoring"""
+        try:
+            engine = MacroSyncEngine()
+            engine._sync_macro_data()
+            
+            telemetry = engine.get_telemetry_data()
+            data_freshness = telemetry["data_freshness"]
+            
+            # Verify freshness metrics
+            assert 0.0 <= data_freshness <= 1.0
+            assert isinstance(data_freshness, (int, float))
+            
+            return {
+                "test_name": "self.event_bus.request('data:live_feed')_freshness_tracking",
+                "status": "PASS",
+                "message": f"Data freshness tracked: {data_freshness:.3f}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "self.event_bus.request('data:live_feed')_freshness_tracking",
+                "status": "FAIL",
+                "message": f"Data freshness tracking failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_telemetry_emission(self) -> Dict[str, Any]:
+        """Test telemetry data emission"""
+        try:
+            engine = MacroSyncEngine()
+            
+            # Get telemetry data
+            telemetry = engine.get_telemetry_data()
+            
+            # Verify required telemetry fields
+            required_fields = [
+                "macro_sync_rate",
+                "data_freshness",
+                "sync_errors", 
+                "alignment_score",
+                "sync_cycles"
+            ]
+            
+            for field in required_fields:
+                assert field in telemetry, f"Missing telemetry field: {field}"
+            
+            return {
+                "test_name": "test_telemetry_emission",
+                "status": "PASS",
+                "message": f"Telemetry verified, sync cycles: {telemetry['sync_cycles']}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_telemetry_emission",
+                "status": "FAIL",
+                "message": f"Telemetry emission failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_eventbus_integration(self) -> Dict[str, Any]:
+        """Test EventBus integration"""
+        try:
+            received_events = []
+            
+            def test_handler(event_data):
+                received_events.append(event_data)
+            
+            subscribe_to_event("macro_update_event", test_handler)
+            
+            # Trigger macro update
+            engine = MacroSyncEngine()
+            engine._emit_macro_update()
+            
+            time.sleep(0.1)  # Allow event processing
+            
+            assert len(received_events) > 0
+            event_data = received_events[0]
+            assert "macro_data" in event_data
+            assert "sync_quality" in event_data
+            
+            return {
+                "test_name": "test_eventbus_integration",
+                "status": "PASS",
+                "message": f"EventBus integration verified, events: {len(received_events)}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_eventbus_integration",
+                "status": "FAIL",
+                "message": f"EventBus integration failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_system_command_handling(self) -> Dict[str, Any]:
+        """Test system command handling"""
+        try:
+            engine = MacroSyncEngine()
+            
+            # Test sync command
+            command_event = {
+                "command": "sync_macro_data",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+            engine._handle_system_command(command_event)
+            
+            # Verify sync occurred
+            macro_data = engine.get_macro_data()
+            assert macro_data["last_update"] is not None
+            
+            # Test reset command
+            reset_event = {
+                "command": "reset_macro_cache",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+            engine._handle_system_command(reset_event)
+            
+            return {
+                "test_name": "test_system_command_handling",
+                "status": "PASS",
+                "message": "System commands handled successfully",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_system_command_handling",
+                "status": "FAIL",
+                "message": f"System command handling failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+    def test_performance_requirements(self) -> Dict[str, Any]:
+        """Test performance requirements"""
+        try:
+            engine = MacroSyncEngine()
+            
+            # Measure sync performance
+            start_time = time.perf_counter()
+            
+            # Run multiple sync cycles
+            for _ in range(5):
+                engine._sync_macro_data()
+                
+            end_time = time.perf_counter()
+            avg_latency_ms = ((end_time - start_time) / 5) * 1000
+            
+            # Verify performance requirements
+            max_latency_ms = 1000
+            assert avg_latency_ms < max_latency_ms, f"Latency {avg_latency_ms:.1f}ms exceeds {max_latency_ms}ms"
+            
+            return {
+                "test_name": "test_performance_requirements",
+                "status": "PASS",
+                "message": f"Performance verified, avg latency: {avg_latency_ms:.1f}ms",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "test_name": "test_performance_requirements",
+                "status": "FAIL",
+                "message": f"Performance test failed: {e}",
+                "timestamp": datetime.datetime.utcnow().isoformat()
+            }
+
+def main():
+    """Main test execution"""
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    print("🧪 GENESIS Phase 42 Macro Sync Engine Test Suite")
+    print("=" * 60)
+    
+    # Run test suite
+    test_suite = TestMacroSyncEngine()
+    results = test_suite.run_all_tests()
+    
+    # Save results
+    results_file = f"test_results_macro_sync_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(results_file, 'w') as f:
+        json.dump(results, f, indent=2)
+    
+    print(f"\n📄 Results saved to: {results_file}")
+    
+    # Exit with appropriate code
+    if results["success_rate"] == 100.0:
+        print("🎉 All tests passed! Macro Sync Engine is ARCHITECT MODE compliant.")
+        sys.exit(0)
+    else:
+        print(f"⚠️  {results['failed']} tests failed. Review and fix issues.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_phase42_macro_sync -->

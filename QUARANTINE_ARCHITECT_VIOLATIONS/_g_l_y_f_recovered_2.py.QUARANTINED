@@ -1,0 +1,76 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.927979+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+      "line_numbers": [
+        369,
+        1121,
+        1198,
+        1640,
+        1755
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+      "line_numbers": [
+        1004
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+      "line_numbers": [
+        420
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+      "line_numbers": [
+        107,
+        1117,
+        1194,
+        1272
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+      "line_numbers": [
+        142,
+        187,
+        201,
+        261,
+        268
+      ],
+      "violation_count": 31
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_g_l_y_f_recovered_2.py",
+      "line_numbers": [
+        236,
+        258,
+        385,
+        434,
+        481
+      ],
+      "violation_count": 62
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

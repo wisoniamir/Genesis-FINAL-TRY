@@ -1,0 +1,9 @@
+{
+  "module_id": "stats",
+  "original_path": "modules\\restored\\stats.py",
+  "preserved_path": "preservation_holding_area\\stats_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24916,
+  "checksum": "6a4d7d7071ad0b62552b05f2b9a924a723e893b2fd42c8e05d946e83879da7a8"
+}

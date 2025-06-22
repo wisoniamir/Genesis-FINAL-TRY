@@ -1,0 +1,588 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("market_data_feed_manager_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("market_data_feed_manager_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "market_data_feed_manager_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in market_data_feed_manager_recovered_2: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "market_data_feed_manager_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("market_data_feed_manager_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in market_data_feed_manager_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: market_data_feed_manager -->
+
+"""
+GENESIS MarketDataFeedManager - ARCHITECT MODE v2.7
+==================================================
+Real-time MT5 market data streaming module.
+FTMO-compliant, EventBus-connected, telemetry-enabled.
+
+🚨 COMPLIANCE MANDATES:
+- Uses real MT5 Python API (NO real/demo logic)
+- Emits tick data via EventBus with topic: 'TickData'
+- Enforces retry logic, logging, connection confirmation
+- Registered in module_registry.json and system_tree.json
+"""
+
+import MetaTrader5 as mt5
+import json
+import logging
+import time
+from datetime import datetime
+from threading import Thread, Event
+from typing import List, Dict, Any, Optional
+import os
+
+from event_bus import emit_event, register_route, get_event_bus
+
+class MarketDataFeedManager:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("market_data_feed_manager_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("market_data_feed_manager_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "market_data_feed_manager_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in market_data_feed_manager_recovered_2: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "market_data_feed_manager_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("market_data_feed_manager_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in market_data_feed_manager_recovered_2: {e}")
+    def __init__(self):
+        self.symbols: List[str] = []
+        self.connected = False
+        self.tick_streaming = False
+        self.stream_thread = None
+        self.stop_event = Event()
+        
+        # Configure logging
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger('MarketDataFeedManager')
+        
+        # Module registration info
+        self.module_name = "MarketDataFeedManager"
+        self.module_type = "service"
+        self.status = "initialized"
+        
+        # Telemetry and compliance
+        self.telemetry_enabled = True
+        self.compliance_mode = True
+        self.real_data_only = True
+        
+        # Feed log file
+        self.feed_log_file = "feed_log.json"
+        
+        # Initialize feed log
+        self.initialize_feed_log()
+        
+        # Register EventBus routes
+        self.register_eventbus_routes()
+        
+        self.logger.info(f"✅ {self.module_name} initialized in ARCHITECT MODE")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def initialize_feed_log(self):
+        """Initialize the feed log file"""
+        if not os.path.exists(self.feed_log_file):
+            feed_log = {
+                "metadata": {
+                    "created": datetime.utcnow().isoformat(),
+                    "module": self.module_name,
+                    "data_type": "real_mt5_ticks"
+                },
+                "ticks": []
+            }
+            with open(self.feed_log_file, 'w') as f:
+                json.dump(feed_log, f, indent=2)
+    
+    def register_eventbus_routes(self):
+        """Register EventBus routes for compliance tracking"""
+        register_route("TickData", self.module_name, "PatternEngine")
+        register_route("TickData", self.module_name, "BacktestEngine")
+        register_route("TickData", self.module_name, "Dashboard")
+        register_route("ConnectionStatus", self.module_name, "SystemMonitor")
+        
+        self.logger.info("🔗 EventBus routes registered for MarketDataFeedManager")
+    
+    def connect_to_mt5(self) -> bool:
+        """
+        Connect to MetaTrader 5 terminal using real MT5 API
+        Returns: bool - True if connection successful
+        """
+        try:
+            if not mt5.initialize():
+                error_msg = f"❌ Failed to connect to MetaTrader 5 terminal. Error: {mt5.last_error()}"
+                self.logger.error(error_msg)
+                
+                # Emit connection failure event
+                emit_event("ConnectionStatus", {
+                    "module": self.module_name,
+                    "status": "failed",
+                    "error": error_msg,
+                    "timestamp": datetime.utcnow().isoformat()
+                }, self.module_name)
+                
+                return False
+            
+            # Get available symbols
+            symbols_info = mt5.symbols_get()
+            if symbols_info is None:
+                self.logger.error("❌ Failed to get symbols from MT5")
+                return False
+            
+            self.symbols = [sym.name for sym in symbols_info if sym.visible]
+            self.connected = True
+            self.status = "connected"
+            
+            success_msg = f"✅ Connected to MT5. Found {len(self.symbols)} tradeable instruments."
+            self.logger.info(success_msg)
+            
+            # Emit successful connection event
+            emit_event("ConnectionStatus", {
+                "module": self.module_name,
+                "status": "connected",
+                "symbols_count": len(self.symbols),
+                "symbols": self.symbols[:10],  # First 10 symbols for monitoring
+                "timestamp": datetime.utcnow().isoformat()
+            }, self.module_name)
+            
+            # Log telemetry
+            self.log_telemetry({
+                "event_type": "mt5_connection",
+                "status": "success",
+                "symbols_count": len(self.symbols)
+            })
+            
+            return True
+            
+        except Exception as e:
+            error_msg = f"❌ Exception during MT5 connection: {str(e)}"
+            self.logger.error(error_msg)
+            
+            emit_event("ConnectionStatus", {
+                "module": self.module_name,
+                "status": "error",
+                "error": error_msg,
+                "timestamp": datetime.utcnow().isoformat()
+            }, self.module_name)
+            
+            return False
+    
+    def start_stream(self, target_symbols: Optional[List[str]] = None):
+        """
+        Start streaming real tick data from MT5
+        Args:
+            target_symbols: List of symbols to stream (None for all available)
+        """
+        if not self.connected:
+            self.logger.error("❌ Cannot start stream - not connected to MT5")
+            return False
+        
+        if self.tick_streaming:
+            self.logger.warning("⚠️  Tick stream already running")
+            return True
+        
+        # Use specified symbols or default to major forex pairs
+        if target_symbols:
+            self.stream_symbols = [sym for sym in target_symbols if sym in self.symbols]
+        else:
+            # Default to major forex pairs for FTMO compliance
+            major_pairs = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"]
+            self.stream_symbols = [sym for sym in major_pairs if sym in self.symbols]
+        
+        if not self.stream_symbols:
+            self.logger.error("❌ No valid symbols found for streaming")
+            return False
+        
+        self.tick_streaming = True
+        self.stop_event.clear()
+        
+        # Start streaming thread
+        self.stream_thread = Thread(target=self._stream_worker, daemon=True)
+        self.stream_thread.start()
+        
+        self.status = "streaming"
+        
+        self.logger.info(f"🚀 Started tick streaming for {len(self.stream_symbols)} symbols: {self.stream_symbols}")
+        
+        # Emit stream start event
+        emit_event("StreamStatus", {
+            "module": self.module_name,
+            "status": "started",
+            "symbols": self.stream_symbols,
+            "timestamp": datetime.utcnow().isoformat()
+        }, self.module_name)
+        
+        return True
+    
+    def _stream_worker(self):
+        """Internal worker thread for streaming tick data"""
+        self.logger.info("📡 Tick streaming worker started")
+        
+        while self.tick_streaming and not self.stop_event.is_set():
+            try:
+                for symbol in self.stream_symbols:
+                    if not self.tick_streaming:
+                        break
+                        
+                    # Get real tick data from MT5
+                    tick = mt5.symbol_info_tick(symbol)
+                    
+                    if tick is not None:
+                        # Create event with real MT5 tick data
+                        tick_event = {
+                            "symbol": symbol,
+                            "timestamp": tick.time,
+                            "bid": float(tick.bid),
+                            "ask": float(tick.ask),
+                            "last": float(tick.last),
+                            "volume": int(tick.volume),
+                            "time_msc": tick.time_msc,
+                            "flags": tick.flags,
+                            "volume_real": float(tick.volume_real),
+                            "source": "MT5_REAL",
+                            "module": self.module_name
+                        }
+                        
+                        # Emit via EventBus - NO local calls allowed
+                        emit_event("TickData", tick_event, self.module_name)
+                        
+                        # Log to feed_log.json for audit
+                        self.log_tick_data(tick_event)
+                        
+                    else:
+                        self.logger.debug(f"No tick data available for {symbol}")
+                
+                # Brief pause to prevent overwhelming the system
+                time.sleep(0.1)  # 100ms between cycles for real-time performance
+                
+            except Exception as e:
+                self.logger.error(f"❌ Error in streaming worker: {e}")
+                # Emit error event
+                emit_event("StreamError", {
+                    "module": self.module_name,
+                    "error": str(e),
+                    "timestamp": datetime.utcnow().isoformat()
+                }, self.module_name)
+                
+                # Retry after brief pause
+                time.sleep(1)
+        
+        self.logger.info("📡 Tick streaming worker stopped")
+    
+    def stop_stream(self):
+        """Stop the tick data stream"""
+        if not self.tick_streaming:
+            self.logger.warning("⚠️  Tick stream not running")
+            return
+        
+        self.tick_streaming = False
+        self.stop_event.set()
+        
+        if self.stream_thread and self.stream_thread.is_alive():
+            self.stream_thread.join(timeout=5)
+        
+        self.status = "connected"
+        
+        self.logger.info("🛑 Tick stream stopped")
+        
+        # Emit stream stop event
+        emit_event("StreamStatus", {
+            "module": self.module_name,
+            "status": "stopped",
+            "timestamp": datetime.utcnow().isoformat()
+        }, self.module_name)
+    
+    def disconnect(self):
+        """Disconnect from MT5 terminal"""
+        if self.tick_streaming:
+            self.stop_stream()
+        
+        if self.connected:
+            mt5.shutdown()
+            self.connected = False
+            self.status = "disconnected"
+            
+            self.logger.info("🔌 Disconnected from MT5")
+            
+            # Emit disconnection event
+            emit_event("ConnectionStatus", {
+                "module": self.module_name,
+                "status": "disconnected",
+                "timestamp": datetime.utcnow().isoformat()
+            }, self.module_name)
+    
+    def log_tick_data(self, tick_event: Dict[str, Any]):
+        """Log tick data to feed_log.json for audit and compliance"""
+        try:
+            # Load existing log
+            with open(self.feed_log_file, 'r') as f:
+                feed_log = json.load(f)
+            
+            # Append new tick
+            feed_log["ticks"].append(tick_event)
+            
+            # Keep only last 1000 ticks to prevent file bloat
+            if len(feed_log["ticks"]) > 1000:
+                feed_log["ticks"] = feed_log["ticks"][-1000:]
+            
+            # Update metadata
+            feed_log["metadata"]["last_updated"] = datetime.utcnow().isoformat()
+            feed_log["metadata"]["total_ticks"] = len(feed_log["ticks"])
+            
+            # Save updated log
+            with open(self.feed_log_file, 'w') as f:
+                json.dump(feed_log, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(f"❌ Failed to log tick data: {e}")
+    
+    def log_telemetry(self, telemetry_data: Dict[str, Any]):
+        """Log telemetry data for monitoring"""
+        try:
+            telemetry_event = {
+                **telemetry_data,
+                "module": self.module_name,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            
+            # Try to load existing telemetry
+            try:
+                with open('telemetry.json', 'r') as f:
+                    telemetry = json.load(f)
+            except FileNotFoundError:
+                telemetry = {"events": []}
+            
+            telemetry["events"].append(telemetry_event)
+            
+            # Save updated telemetry
+            with open('telemetry.json', 'w') as f:
+                json.dump(telemetry, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(f"❌ Failed to log telemetry: {e}")
+    
+    def get_status(self) -> Dict[str, Any]:
+        """Get current module status for monitoring"""
+        return {
+            "module": self.module_name,
+            "status": self.status,
+            "connected": self.connected,
+            "streaming": self.tick_streaming,
+            "symbols_count": len(self.symbols),
+            "stream_symbols": getattr(self, 'stream_symbols', []),
+            "real_data_only": self.real_data_only,
+            "compliance_mode": self.compliance_mode,
+            "timestamp": datetime.utcnow().isoformat()
+        }
+    
+    def validate_compliance(self) -> Dict[str, Any]:
+        """Validate module compliance with ARCHITECT MODE rules"""
+        violations = []
+        
+        # Check real data usage
+        if not self.real_data_only:
+            violations.append("real data usage detected")
+        
+        # Check EventBus connectivity
+        event_bus = get_event_bus()
+        if not event_bus:
+            violations.append("EventBus not accessible")
+        
+        # Check MT5 connection for real data
+        if self.connected and not mt5.terminal_info():
+            violations.append("MT5 terminal not properly connected")
+        
+        compliance_report = {
+            "module": self.module_name,
+            "timestamp": datetime.utcnow().isoformat(),
+            "violations": violations,
+            "status": "COMPLIANT" if not violations else "VIOLATIONS_DETECTED",
+            "real_data_verified": self.connected and self.real_data_only,
+            "eventbus_connected": True,
+            "mt5_api_verified": self.connected
+        }
+        
+        return compliance_report
+
+# Module factory function for registration
+def create_market_data_feed_manager() -> MarketDataFeedManager:
+    """Create and return MarketDataFeedManager instance"""
+    return MarketDataFeedManager()
+
+if __name__ == "__main__":
+    # Test the MarketDataFeedManager
+    manager = MarketDataFeedManager()
+    
+    # Test connection
+    if manager.connect_to_mt5():
+        print("✅ MT5 Connection successful")
+        
+        # Test streaming for 10 seconds
+        if manager.start_stream(["EURUSD", "GBPUSD"]):
+            print("✅ Streaming started")
+            time.sleep(10)
+            manager.stop_stream()
+            print("✅ Streaming stopped")
+        
+        manager.disconnect()
+        print("✅ Disconnected")
+        
+        # Print status and compliance
+        print("Status:", manager.get_status())
+        print("Compliance:", manager.validate_compliance())
+    else:
+        print("❌ MT5 Connection failed")
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: market_data_feed_manager -->

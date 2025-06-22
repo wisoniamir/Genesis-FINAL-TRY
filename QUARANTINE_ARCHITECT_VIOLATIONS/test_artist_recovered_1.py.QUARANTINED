@@ -1,0 +1,32 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_artist_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.634785+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_artist_recovered_1.py",
+      "line_numbers": [
+        284,
+        350,
+        357,
+        375
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\test_artist_recovered_1.py",
+      "line_numbers": [
+        21,
+        63,
+        100,
+        128,
+        146
+      ],
+      "violation_count": 22
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

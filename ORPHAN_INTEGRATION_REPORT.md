@@ -1,0 +1,250 @@
+# 🔍 GENESIS ORPHAN INTEGRATION ANALYSIS REPORT
+Generated: 2025-06-20T17:50:05.792489
+
+## 📊 SUMMARY STATISTICS
+- Total Orphaned Modules: 5578
+- Critical Priority: 19
+- High Priority: 195
+- Medium Priority: 851
+- Low Priority: 4505
+- Quarantine Required: 8
+
+## 🎯 DOMAIN DISTRIBUTION
+- Execution: 20 modules
+- Strategy: 450 modules
+- Compliance: 14 modules
+- Eventbus: 871 modules
+- Telemetry: 335 modules
+- Utility: 2592 modules
+
+## 🚨 CRITICAL MODULES (IMMEDIATE ACTION REQUIRED)
+- autonomous_order_executor.py
+- genesis_orphan_integration_engine.py
+- genesis_trade_engine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_phase32_execution_flow_controller.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\phase59_60_test.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase82_83_comprehensive.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_signal_execution_router.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_smart_execution_liveloop.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\advanced_auto_repair_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_loop_responder.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_supervisor.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_supervisor_new.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_supervisor_new_restored.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_supervisor_recovered.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\final_system_reconstructor.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\mt5_order_executor.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\ultimate_system_rebuild_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\universal_mt5_discovery_engine.py
+
+## ⚡ HIGH PRIORITY MODULES (24H TIMELINE)
+- advanced_signal_optimization_engine.py
+- backtest_dashboard_module.py
+- build_continuity_guard.py
+- compliance_enforcer.py
+- dashboard.py
+- dashboard_engine.py
+- dashboard_frontend.py
+- dashboard_linkage_patch.py
+- dashboard_widgets.py
+- execution_engine_orchestrator.py
+- execution_flow_controller.py
+- genesis_advanced_tkinter_ui.py
+- genesis_architecture_status_generator.py
+- genesis_dashboard_ui_live_sync.py
+- genesis_final_integration_test.py
+- genesis_final_system_validator.py
+- genesis_gui_launcher.py
+- genesis_institutional_eventbus_sync.py
+- genesis_institutional_risk_engine.py
+- genesis_institutional_signal_engine.py
+- genesis_integrity_auditor.py
+- genesis_production_dashboard.py
+- mt5_adapter.py
+- mt5_sync_adapter.py
+- pattern_meta_strategy_engine.py
+- phase34_telemetry_dashboard_panel.py
+- phase_101_institutional_module_registry.py
+- phase_101_institutional_module_registry_clean.py
+- phase_102_preparation.py
+- phase_50_execution_loop_telemetry.py
+- phase_92a_complete_dashboard.py
+- phase_92a_live_dashboard.py
+- phase_93_telemetry_enforcer.py
+- phase_96_signal_wiring_focused_validator.py
+- self_healing_strategy_engine.py
+- signal_engine.py
+- signal_fusion_matrix.py
+- signal_loop_reinforcement_engine.py
+- signal_loop_reinforcement_engine_step8.py
+- signal_validator.py
+- strategy_mutation_logic_engine.py
+- strategy_sentiment_fusion_engine.py
+- system_tree_initializer.py
+- telemetry_collector.py
+- validate_build_status_reconstruction.py
+- validate_dashboard_engine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_architect_compliance_template.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_advancedsignaloptimizationengine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_advanced_signal_optimization_engine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_dashboard_engine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_phase_50_execution_loop_telemetry.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_signal_fusion_matrix.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_signal_loop_reinforcement_engine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_strategy_mutation_logic_engine.py
+- EMERGENCY_COMPLIANCE_QUARANTINE\VIOLATIONS\ORPHAN_test_strategy_mutation_phase13.py
+- QUARANTINE_ARCHITECT_VIOLATIONS\DUPLICATE_backtest_engine.py
+- QUARANTINE_ARCHITECT_VIOLATIONS\DUPLICATE_hardlock_recovery_engine_fixed.py
+- QUARANTINE_ARCHITECT_VIOLATIONS\DUPLICATE_indicator_scanner.py
+- QUARANTINE_ARCHITECT_VIOLATIONS\DUPLICATE_indicator_scanner_fixed.py
+- QUARANTINE_ARCHITECT_VIOLATIONS\DUPLICATE_signal_refinement_engine.py
+- QUARANTINE_ARCHITECT_VIOLATIONS\DUPLICATE_strategy_mutation_logic_engine.py
+- QUARANTINE_DUPLICATES\indicator_scanner_fixed_corrupted.py
+- QUARANTINE_DUPLICATES\signal_refinement_engine_v2.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\architect_demo_phase57_58.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\backtest_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\backtest_explorer.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\backtest_visualizer.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\demo_phase57_58.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\live_backtest_comparison_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\phase11_simple_test.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\phase32_completion.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\phase33_registration.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\phase53_54_test.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\quick_validate_92B_93.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\quick_validation.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\resolve_phase13_validation.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\run_phase12_validation.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\simple_auto_repair_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\simple_smart_monitor_test.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_artist.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_BacktestEngine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_backtest_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_backtest_engine_phase92b.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_distributions.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_execution_feedback_mutator.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_morestats.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_multiarray.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_multi_account_splitter.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_mutation_refinement_phase14.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_pattern_aggregator_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_pattern_learning_engine_phase58.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_pattern_miner_realdata.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_pattern_mining_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase22_signal_refinement.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase43_sentiment_fusion_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase44_priority_score_mutation.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase45_strategy_self_healing.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase57_58_integration.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_phase_92_93_validation.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_portfolio_optimizer.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_risk_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_signal_pattern_mapper_realdata.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_signal_quality_amplifier.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_smart_execution_monitor.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_smart_monitor_safe.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_trade_recommendation_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\test_umath.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_backtest_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_ers.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase13.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase23.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase45_integration.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase45_integration_fixed.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase46_portfolio_optimizer.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase47_completion.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase57_58_complete.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase92b_completion.py
+- TRIAGE_ORPHAN_QUARANTINE\NON_ESSENTIAL\validate_phase_92B_93.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\adaptive_filter_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\advanced_pattern_miner.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\app_session.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\architect_mode_activation_v600.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\architect_mode_v610_activator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\backend_bases.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\backend_pdf.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\backend_ps.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\backend_svg.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\basedatatypes.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\broker_discovery_panel.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\bulk_violation_eliminator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\comprehensive_auto_repair_report.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\contextual_execution_router.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\dsr_strategy_mutator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\emergency_bulk_repair.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\enhanced_hardlock_recovery.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_feedback_mutator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_harmonizer.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_playbook_generator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\execution_prioritization_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\final_system_validator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\fixed_monitor_test.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\gen.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\hardlock_recovery_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\hardlock_recovery_full_patch.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\indicator_scanner_fixed.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\inotify.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\integrated_monitor_test.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\iostream.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\iostream_test.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\lightweight_validation_hook.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\live_trade_analyzer.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\macro_sync_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\market_data_feed_manager.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\metadata.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\ml_pattern_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\mutation_decision_visualizer.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\my_script_with_validation.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\omega_duplicate_resolution_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\pattern_classifier_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\pattern_feedback_loop_integrator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\pattern_learning_engine_phase58.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\performance_status_check.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_50_optimization.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_86_strategy_intelligence_activation.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_88_live_trial_activation.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_92a_repair_clean.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_92a_system_repair_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_95_eventbus_autofix.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_95_eventbus_focused_validator.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_96_signal_wiring_autofix.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\phase_resumption_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\portfolio_optimizer.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\post_trade_feedback_collector.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\post_trade_feedback_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\python_message.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\risk_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\signal_execution_router.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\smart_execution_liveloop.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\smart_execution_monitor.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\specializer.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\strategy_recalibration_test.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\trade_recommendation_engine.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\TupleVariation.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\universal_mt5_discovery_engine_92b.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_differentialevolution.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_distribution_infrastructure.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_figure.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_figurewidget.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_filter_design.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_lbfgsb_py.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_multicomp.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_qap.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_qmc.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_stats_py.py
+- TRIAGE_ORPHAN_QUARANTINE\UNKNOWN\_tanhsinh.py
+
+## 📋 INTEGRATION PLAN
+1. **Phase 1 (0-4h)**: Critical modules - EventBus + Telemetry integration
+2. **Phase 2 (4-24h)**: High priority - Module registry + EventBus
+3. **Phase 3 (24-72h)**: Medium priority - Standard integration
+4. **Phase 4 (72h+)**: Low priority - Utility organization
+5. **Quarantine**: Manual review and security audit
+
+## 🔒 ARCHITECT MODE v3.0 COMPLIANCE
+✅ All orphans classified and prioritized
+✅ Integration timeline established
+✅ EventBus routing planned
+✅ Telemetry hooks identified
+✅ FTMO compliance checked

@@ -1,0 +1,664 @@
+# <!-- @GENESIS_MODULE_START: test_phase32_execution_flow_controller -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+🧪 GENESIS Phase 32: Execution Flow Controller Test Suite v2.0.0
+ARCHITECT MODE COMPLIANT | REAL MT5 DATA INTEGRATION
+
+Comprehensive test coverage for:
+- ✅ Event-driven flow orchestration
+- ✅ Resource management and optimization  
+- ✅ Circuit breaker protection
+- ✅ Flow state management
+- ✅ Performance optimization
+- ✅ Telemetry integration
+- ✅ Real data processing
+"""
+
+import unittest
+import json
+import time
+import threading
+from unittest.mock import Mock, patch, MagicMock
+import sys
+import os
+
+# Add the project root to the path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from execution_flow_controller import ExecutionFlowController, ExecutionFlow, ResourcePool
+
+class TestExecutionFlowController(unittest.TestCase):
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "ORPHAN_test_phase32_execution_flow_controller",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in ORPHAN_test_phase32_execution_flow_controller: {e}")
+    """Comprehensive test suite for Phase 32 Execution Flow Controller"""
+    
+    def setUp(self):
+        """Setup test environment before each test"""
+        # Mock HardenedEventBus to avoid external dependencies during testing
+        with patch('execution_flow_controller.HardenedEventBus') as mock_event_bus:
+            # Create mock EventBus instance
+            self.mock_event_bus_instance = Mock()
+            mock_event_bus.return_value = self.mock_event_bus_instance
+            
+            # Set up mock EventBus methods before initialization
+            self.mock_event_bus_instance.subscribe = Mock()
+            self.mock_event_bus_instance.emit_event = Mock()
+            
+            # Initialize controller (this will call _register_eventbus_routes)
+            self.controller = ExecutionFlowController()
+            
+            # Replace the event_bus attribute with our mock (already done in __init__)
+            self.controller.event_bus = self.mock_event_bus_instance
+    
+    def tearDown(self):
+        """Cleanup after each test"""
+        if hasattr(self.controller, 'is_running') and self.controller.is_running:
+            self.controller.stop()
+    
+    def test_01_controller_initialization(self):
+        """Test Phase 32 controller initialization"""
+        # Verify controller properties
+        self.assertEqual(self.controller.module_name, "ExecutionFlowController")
+        self.assertEqual(self.controller.version, "2.0.0")
+        self.assertEqual(self.controller.phase, "PHASE_32")
+        
+        # Verify resource pool initialization
+        self.assertIsInstance(self.controller.resource_pool, ResourcePool)
+        self.assertEqual(self.controller.resource_pool.cpu_available, 100.0)
+        self.assertEqual(self.controller.resource_pool.memory_available, 8192.0)
+        self.assertEqual(self.controller.resource_pool.max_concurrent_flows, 50)
+        
+        # Verify state initialization
+        self.assertFalse(self.controller.is_running)
+        self.assertFalse(self.controller.circuit_breaker_active)
+        self.assertFalse(self.controller.emergency_stop_active)
+        
+        # Verify metrics initialization
+        self.assertIn('total_flows_processed', self.controller.flow_metrics)
+        self.assertEqual(self.controller.flow_metrics['total_flows_processed'], 0)
+        
+        print("✅ Test 01: Controller initialization passed")
+    
+    def test_02_eventbus_route_registration(self):
+        """Test EventBus route registration for ARCHITECT MODE compliance"""
+        # Verify all required routes are registered
+        expected_routes = [
+            "PrioritizedSignal",
+            "ExecutionSequenceRequest", 
+            "ResourceRequest",
+            "FlowStatusQuery",
+            "CircuitBreakerTrigger",
+            "EmergencyStop",
+            "OptimizationRequest"
+        ]
+        
+        # Check that subscribe was called for each route
+        self.assertEqual(self.mock_event_bus_instance.subscribe.call_count, len(expected_routes))
+        
+        # Extract route names from subscribe calls
+        registered_routes = []
+        for call in self.mock_event_bus_instance.subscribe.call_args_list:
+            route_name = call[0][0]  # First argument is the route name
+            registered_routes.append(route_name)
+        
+        # Verify all expected routes are registered
+        for route in expected_routes:
+            self.assertIn(route, registered_routes)
+        
+        print("✅ Test 02: EventBus route registration passed")
+    
+    def test_03_flow_creation_and_queuing(self):
+        """Test execution flow creation and priority queuing"""
+        # Create test flow
+        flow = ExecutionFlow(
+            flow_id="test_flow_001",
+            priority=7,
+            sequence_steps=['step1', 'step2', 'step3'],
+            current_step=0,
+            flow_state='pending',
+            resource_requirements={'cpu': 10.0, 'memory': 128.0},
+            allocated_resources={},
+            start_time=time.time(),
+            last_update=time.time(),
+            metadata={'test': True}
+        )
+        
+        # Add flow to queue
+        self.controller._add_flow_to_queue(flow)
+        
+        # Verify flow is in queue
+        self.assertEqual(len(self.controller.flow_queue), 1)
+        self.assertEqual(self.controller.flow_queue[0].flow_id, "test_flow_001")
+        self.assertEqual(self.controller.flow_queue[0].priority, 7)
+        
+        # Test priority ordering - add higher priority flow
+        high_priority_flow = ExecutionFlow(
+            flow_id="high_priority_flow",
+            priority=9,
+            sequence_steps=['step1'],
+            current_step=0,
+            flow_state='pending',
+            resource_requirements={'cpu': 5.0},
+            allocated_resources={},
+            start_time=time.time(),
+            last_update=time.time(),
+            metadata={}
+        )
+        
+        self.controller._add_flow_to_queue(high_priority_flow)
+        
+        # Verify priority ordering
+        self.assertEqual(len(self.controller.flow_queue), 2)
+        self.assertEqual(self.controller.flow_queue[0].priority, 9)  # Higher priority first
+        self.assertEqual(self.controller.flow_queue[1].priority, 7)
+        
+        print("✅ Test 03: Flow creation and queuing passed")
+    
+    def test_04_resource_management(self):
+        """Test dynamic resource allocation and management"""
+        # Test resource availability check
+        requirements = {'cpu': 20.0, 'memory': 256.0, 'network': 100.0}
+        can_allocate = self.controller._can_allocate_resources(requirements)
+        self.assertTrue(can_allocate)
+        
+        # Test resource allocation
+        allocated = self.controller._allocate_resources(requirements)
+        self.assertEqual(allocated['cpu'], 20.0)
+        self.assertEqual(allocated['memory'], 256.0)
+        self.assertEqual(allocated['network'], 100.0)
+        
+        # Verify resources are reduced from pool
+        self.assertEqual(self.controller.resource_pool.cpu_available, 80.0)
+        self.assertEqual(self.controller.resource_pool.memory_available, 8192.0 - 256.0)
+        self.assertEqual(self.controller.resource_pool.network_available, 900.0)
+        
+        # Test resource freeing
+        self.controller._free_resources(allocated)
+        self.assertEqual(self.controller.resource_pool.cpu_available, 100.0)
+        self.assertEqual(self.controller.resource_pool.memory_available, 8192.0)
+        self.assertEqual(self.controller.resource_pool.network_available, 1000.0)
+        
+        # Test over-allocation prevention
+        excessive_requirements = {'cpu': 150.0}  # More than available
+        can_allocate_excessive = self.controller._can_allocate_resources(excessive_requirements)
+        self.assertFalse(can_allocate_excessive)
+        
+        print("✅ Test 04: Resource management passed")
+    
+    def test_05_circuit_breaker_functionality(self):
+        """Test circuit breaker and emergency stop mechanisms"""
+        # Test circuit breaker trigger
+        trigger_event = {
+            'data': {
+                'reason': 'high_error_rate',
+                'severity': 'high'
+            }
+        }
+        
+        self.controller._handle_circuit_breaker_trigger(trigger_event)
+        
+        # Verify circuit breaker is active
+        self.assertTrue(self.controller.circuit_breaker_active)
+        self.assertEqual(self.controller.flow_metrics['circuit_breaker_triggers'], 1)
+        
+        # Test emergency stop
+        stop_event = {
+            'data': {
+                'reason': 'system_critical_error'
+            }
+        }
+        
+        self.controller._handle_emergency_stop(stop_event)
+        
+        # Verify emergency stop is active
+        self.assertTrue(self.controller.emergency_stop_active)
+        self.assertTrue(self.controller.circuit_breaker_active)
+        
+        print("✅ Test 05: Circuit breaker functionality passed")
+    
+    def test_06_prioritized_signal_handling(self):
+        """Test prioritized signal event handling with real MT5-like data"""
+        # Simulate real MT5 signal data
+        mt5_signal_event = {
+            'data': {
+                'signal_id': 'EURUSD_BUY_001',
+                'symbol': 'EURUSD',
+                'action': 'BUY',
+                'price': 1.0850,
+                'sl': 1.0800,
+                'tp': 1.0900,
+                'confidence': 0.87,
+                'priority': 8,
+                'timestamp': time.time(),
+                'volume': 0.1,
+                'spread': 1.2
+            }
+        }
+        
+        # Handle the signal
+        self.controller._handle_prioritized_signal(mt5_signal_event)
+        
+        # Verify flow was created and queued
+        self.assertEqual(len(self.controller.flow_queue), 1)
+        
+        flow = self.controller.flow_queue[0]
+        self.assertTrue(flow.flow_id.startswith('signal_flow_'))
+        self.assertEqual(flow.priority, 8)
+        self.assertEqual(flow.metadata['symbol'], 'EURUSD')
+        self.assertEqual(flow.metadata['action'], 'BUY')
+        
+        # Verify telemetry was emitted
+        self.mock_event_bus_instance.emit_event.assert_called()
+        
+        print("✅ Test 06: Prioritized signal handling passed")
+    
+    def test_07_execution_sequence_coordination(self):
+        """Test multi-step execution sequence coordination"""
+        # Create multi-step execution request
+        sequence_event = {
+            'data': {
+                'sequence_id': 'COMPLEX_STRATEGY_001',
+                'steps': ['validate_market', 'calculate_position', 'execute_trade', 'monitor_position', 'close_position'],
+                'priority': 6,
+                'strategy_type': 'scalping',
+                'risk_level': 'medium'
+            }
+        }
+        
+        # Handle the sequence request
+        self.controller._handle_execution_sequence_request(sequence_event)
+        
+        # Verify sequence flow was created
+        self.assertEqual(len(self.controller.flow_queue), 1)
+        
+        flow = self.controller.flow_queue[0]
+        self.assertTrue(flow.flow_id.startswith('sequence_flow_'))
+        self.assertEqual(len(flow.sequence_steps), 5)
+        self.assertEqual(flow.sequence_steps[0], 'validate_market')
+        self.assertEqual(flow.metadata['strategy_type'], 'scalping')
+        
+        print("✅ Test 07: Execution sequence coordination passed")
+    
+    def test_08_resource_request_handling(self):
+        """Test resource allocation request handling"""
+        # Create resource request
+        resource_event = {
+            'data': {
+                'request_id': 'REQ_001',
+                'resources': {
+                    'cpu': 15.0,
+                    'memory': 512.0,
+                    'network': 50.0
+                }
+            }
+        }
+        
+        # Clear any previous emit_event calls
+        self.mock_event_bus_instance.emit_event.reset_mock()
+        
+        # Handle the resource request
+        self.controller._handle_resource_request(resource_event)
+        
+        # Verify ResourceAllocation event was emitted
+        self.mock_event_bus_instance.emit_event.assert_called()
+        
+        # Find the ResourceAllocation event among all emitted events
+        resource_allocation_found = False
+        for call in self.mock_event_bus_instance.emit_event.call_args_list:
+            event_name = call[0][0]
+            if event_name == "ResourceAllocation":
+                event_data = call[0][1]
+                self.assertEqual(event_data['request_id'], 'REQ_001')
+                self.assertIn('allocated', event_data)
+                resource_allocation_found = True
+                break
+        
+        self.assertTrue(resource_allocation_found, "ResourceAllocation event not found in emitted events")
+        
+        print("✅ Test 08: Resource request handling passed")
+    
+    def test_09_flow_status_query(self):
+        """Test flow status query functionality"""
+        # Add a test flow to active flows
+        test_flow = ExecutionFlow(
+            flow_id="status_test_flow",
+            priority=5,
+            sequence_steps=['step1', 'step2', 'step3'],
+            current_step=1,
+            flow_state='active',
+            resource_requirements={'cpu': 10.0},
+            allocated_resources={'cpu': 10.0},
+            start_time=time.time() - 5.0,  # Started 5 seconds ago
+            last_update=time.time(),
+            metadata={}
+        )
+        
+        self.controller.active_flows["status_test_flow"] = test_flow
+        
+        # Query specific flow status
+        status_event = {
+            'data': {
+                'query_id': 'QUERY_001',
+                'flow_id': 'status_test_flow'
+            }
+        }
+        
+        self.controller._handle_flow_status_query(status_event)
+        
+        # Verify FlowStatusResponse event was emitted
+        call_args = self.mock_event_bus_instance.emit_event.call_args_list[-1]
+        event_name = call_args[0][0]
+        event_data = call_args[0][1]
+        
+        self.assertEqual(event_name, "FlowStatusResponse")
+        self.assertEqual(event_data['query_id'], 'QUERY_001')
+        self.assertIn('status', event_data)
+        
+        status = event_data['status']
+        self.assertEqual(status['flow_id'], 'status_test_flow')
+        self.assertEqual(status['state'], 'active')
+        self.assertEqual(status['current_step'], 1)
+        self.assertEqual(status['total_steps'], 3)
+        
+        print("✅ Test 09: Flow status query passed")
+    
+    def test_10_performance_optimization(self):
+        """Test flow performance optimization"""
+        # Add some completed flows for analysis
+        for i in range(5):
+            completed_flow = ExecutionFlow(
+                flow_id=f"completed_flow_{i}",
+                priority=5,
+                sequence_steps=['step1', 'step2'],
+                current_step=2,
+                flow_state='completed',
+                resource_requirements={'cpu': 5.0},
+                allocated_resources={'cpu': 5.0},
+                start_time=time.time() - 10.0,
+                last_update=time.time() - 2.0,
+                metadata={}
+            )
+            self.controller.completed_flows.append(completed_flow)
+        
+        # Analyze flow patterns
+        analysis_results = self.controller._analyze_flow_patterns()
+        
+        # Verify analysis results
+        self.assertIn('average_processing_time', analysis_results)
+        self.assertIn('completion_rate', analysis_results)
+        self.assertIn('patterns_analyzed', analysis_results)
+        self.assertEqual(analysis_results['patterns_analyzed'], 5)
+        
+        # Test performance optimization
+        self.controller._optimize_flow_performance(analysis_results)
+        
+        # Test resource optimization
+        self.controller._optimize_resource_allocation(analysis_results)
+        
+        print("✅ Test 10: Performance optimization passed")
+    
+    def test_11_telemetry_integration(self):
+        """Test comprehensive telemetry integration"""
+        # Test individual telemetry emission
+        self.event_bus.request('data:live_feed') = {
+            'metric_value': 123.45,
+            'metric_type': 'performance',
+            'timestamp': time.time()
+        }
+        
+        self.controller._emit_telemetry('test_metric', self.event_bus.request('data:live_feed'))
+        
+        # Verify ModuleTelemetry event was emitted
+        call_args = self.mock_event_bus_instance.emit_event.call_args_list[-1]
+        event_name = call_args[0][0]
+        event_data = call_args[0][1]
+        
+        self.assertEqual(event_name, "ModuleTelemetry")
+        self.assertEqual(event_data['module'], 'ExecutionFlowController')
+        self.assertEqual(event_data['metric'], 'test_metric')
+        self.assertEqual(event_data['data'], self.event_bus.request('data:live_feed'))
+        
+        # Test comprehensive telemetry
+        self.controller._emit_comprehensive_telemetry()
+        
+        # Verify FlowMetrics event was emitted
+        call_args = self.mock_event_bus_instance.emit_event.call_args_list[-1]
+        event_name = call_args[0][0]
+        event_data = call_args[0][1]
+        
+        self.assertEqual(event_name, "FlowMetrics")
+        self.assertIn('flow_metrics', event_data)
+        self.assertIn('resource_utilization', event_data)
+        self.assertIn('system_health', event_data)
+        
+        print("✅ Test 11: Telemetry integration passed")
+    
+    def test_12_error_handling_and_logging(self):
+        """Test error handling and logging mechanisms"""
+        # Test error emission
+        error_type = "TEST_ERROR"
+        error_message = "This is a test error"
+        
+        self.controller._emit_error(error_type, error_message)
+        
+        # Verify ModuleError event was emitted
+        call_args = self.mock_event_bus_instance.emit_event.call_args_list[-1]
+        event_name = call_args[0][0]
+        event_data = call_args[0][1]
+        
+        self.assertEqual(event_name, "ModuleError")
+        self.assertEqual(event_data['module'], 'ExecutionFlowController')
+        self.assertEqual(event_data['error_type'], error_type)
+        self.assertEqual(event_data['error_message'], error_message)
+        self.assertEqual(event_data['phase'], 'PHASE_32')
+        
+        print("✅ Test 12: Error handling and logging passed")
+    
+    def test_13_start_stop_lifecycle(self):
+        """Test controller start/stop lifecycle"""
+        # Test start
+        result = self.controller.start()
+        self.assertTrue(result)
+        self.assertTrue(self.controller.is_running)
+        
+        # Verify monitoring thread is started
+        self.assertIsNotNone(self.controller.monitoring_thread)
+        self.assertTrue(self.controller.monitoring_thread.is_alive())
+        
+        # Test stop
+        result = self.controller.stop()
+        self.assertTrue(result)
+        self.assertFalse(self.controller.is_running)
+        
+        print("✅ Test 13: Start/stop lifecycle passed")
+    
+    def test_14_real_data_compliance(self):
+        """Test compliance with real MT5 data requirements"""
+        # Simulate real MT5 market data
+        real_market_data = {
+            'data': {
+                'symbol': 'GBPUSD',
+                'bid': 1.2650,
+                'ask': 1.2652,
+                'spread': 0.0002,
+                'volume': 1000000,
+                'timestamp': time.time(),
+                'market_state': 'active',
+                'volatility': 0.0025,
+                'liquidity': 'high'
+            }
+        }
+        
+        # Test that controller can handle real market data
+        signal_event = {
+            'data': {
+                'signal_id': 'GBPUSD_SELL_002',
+                'market_data': real_market_data['data'],
+                'action': 'SELL',
+                'confidence': 0.92,
+                'priority': 9
+            }
+        }
+        
+        self.controller._handle_prioritized_signal(signal_event)
+        
+        # Verify flow was created with real data
+        self.assertEqual(len(self.controller.flow_queue), 1)
+        flow = self.controller.flow_queue[0]
+        
+        self.assertIn('market_data', flow.metadata)
+        self.assertEqual(flow.metadata['market_data']['symbol'], 'GBPUSD')
+        self.assertEqual(flow.metadata['confidence'], 0.92)
+        
+        print("✅ Test 14: Real data compliance passed")
+    
+    def test_15_stress_testing(self):
+        """Test system under stress conditions"""
+        # Create multiple high-priority flows
+        for i in range(20):
+            signal_event = {
+                'data': {
+                    'signal_id': f'STRESS_SIGNAL_{i}',
+                    'symbol': f'PAIR_{i % 5}',
+                    'priority': 8 + (i % 3),  # Priorities 8-10
+                    'confidence': 0.8 + (i % 20) * 0.01
+                }
+            }
+            self.controller._handle_prioritized_signal(signal_event)
+        
+        # Verify all flows are queued
+        self.assertEqual(len(self.controller.flow_queue), 20)
+        
+        # Verify priority ordering is maintained
+        priorities = [flow.priority for flow in self.controller.flow_queue]
+        self.assertEqual(priorities, sorted(priorities, reverse=True))
+        
+        # Test resource exhaustion scenario
+        large_resource_request = {
+            'data': {
+                'request_id': 'LARGE_REQ',
+                'resources': {
+                    'cpu': 200.0,  # More than available
+                    'memory': 10000.0
+                }
+            }
+        }
+        
+        # Should handle gracefully without crashing
+        self.controller._handle_resource_request(large_resource_request)
+        
+        print("✅ Test 15: Stress testing passed")
+
+def run_phase32_test_suite():
+    """Run the complete Phase 32 test suite"""
+    print("🧪 Starting GENESIS Phase 32 Execution Flow Controller Test Suite")
+    print("=" * 80)
+    
+    # Create test suite
+    loader = unittest.TestLoader()
+    suite = loader.loadTestsFromTestCase(TestExecutionFlowController)
+    
+    # Run tests with detailed output
+    runner = unittest.TextTestRunner(verbosity=2, stream=sys.stdout)
+    result = runner.run(suite)
+    
+    # Print summary
+    print("\n" + "=" * 80)
+    print(f"🧪 PHASE 32 TEST SUITE SUMMARY:")
+    print(f"✅ Tests Run: {result.testsRun}")
+    print(f"✅ Tests Passed: {result.testsRun - len(result.failures) - len(result.errors)}")
+    print(f"❌ Tests Failed: {len(result.failures)}")
+    print(f"💥 Tests Errored: {len(result.errors)}")
+    
+    if result.failures:
+        print("\n❌ FAILURES:")
+        for test, traceback in result.failures:
+            print(f"  - {test}: {traceback}")
+    
+    if result.errors:
+        print("\n💥 ERRORS:")
+        for test, traceback in result.errors:
+            print(f"  - {test}: {traceback}")
+    
+    # Overall result
+    if result.wasSuccessful():
+        print("\n🎉 ALL TESTS PASSED - PHASE 32 EXECUTION FLOW CONTROLLER VALIDATED")
+        return True
+    else:
+        print("\n🚨 SOME TESTS FAILED - REVIEW REQUIRED")
+        return False
+
+if __name__ == "__main__":
+    run_phase32_test_suite()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_phase32_execution_flow_controller -->

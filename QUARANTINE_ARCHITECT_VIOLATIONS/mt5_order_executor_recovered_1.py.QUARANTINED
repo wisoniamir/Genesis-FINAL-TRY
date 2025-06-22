@@ -1,0 +1,106 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.072131+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        117,
+        118,
+        121,
+        337
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        346,
+        418,
+        423,
+        425,
+        429
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        23,
+        39,
+        187,
+        219,
+        239
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        213,
+        232,
+        242,
+        278,
+        410
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        118,
+        188,
+        193,
+        263,
+        298
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        273,
+        401,
+        435,
+        499,
+        656
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        221,
+        222,
+        223
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\mt5_order_executor_recovered_1.py",
+      "line_numbers": [
+        226,
+        227,
+        228
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

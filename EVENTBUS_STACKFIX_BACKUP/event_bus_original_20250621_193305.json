@@ -1,0 +1,17 @@
+{
+  "version": "v7.0.0",
+  "architect_mode": true,
+  "real_data_only": true,
+  "mock_data_forbidden": true,
+  "stackfix_applied": true,
+  "segmented_architecture": true,
+  "segments_directory": "EVENTBUS_SEGMENTS",
+  "master_index": "event_bus_index.json",
+  "optimization_timestamp": "2025-06-21T19:31:38.947227",
+  "original_stats": {
+    "original_size_mb": 6.873581886291504,
+    "original_lines": 181089,
+    "segments_created": 7
+  },
+  "load_instruction": "Use EventBusLoader.load_segmented() for runtime assembly"
+}

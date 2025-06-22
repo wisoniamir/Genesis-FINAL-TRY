@@ -1,0 +1,9 @@
+{
+  "module_id": "wheel",
+  "original_path": "modules\\restored\\wheel.py",
+  "preserved_path": "preservation_holding_area\\wheel_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 67439,
+  "checksum": "6fa0214d1630ebdb29fe0e7d337cca82a94a33dd878fc393b9e1b2cca1e375d3"
+}

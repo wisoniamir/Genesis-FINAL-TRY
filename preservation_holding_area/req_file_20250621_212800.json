@@ -1,0 +1,9 @@
+{
+  "module_id": "req_file",
+  "original_path": "modules\\restored\\req_file.py",
+  "preserved_path": "preservation_holding_area\\req_file_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 46809,
+  "checksum": "483e44f504bd70c60534a24a229392f3db2eda83c59ccb01c65ca9c1ad5cab8c"
+}

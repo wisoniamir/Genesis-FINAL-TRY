@@ -1,0 +1,9 @@
+{
+  "module_id": "kernel_ridge",
+  "original_path": "modules\\restored\\kernel_ridge.py",
+  "preserved_path": "preservation_holding_area\\kernel_ridge_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 20706,
+  "checksum": "c93bcf693343623d2212d2a52ea31ded12524b6a48bf422e55381c424441ad57"
+}

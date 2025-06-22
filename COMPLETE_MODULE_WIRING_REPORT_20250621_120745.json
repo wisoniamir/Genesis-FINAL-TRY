@@ -1,0 +1,221 @@
+{
+  "metadata": {
+    "engine_version": "v7.1.0",
+    "timestamp": "2025-06-21T09:04:17.489012+00:00",
+    "focus": "ALL_MODULES_EXCEPT_DASHBOARD",
+    "architect_mode": "COMPLETE_INTELLIGENT_WIRING"
+  },
+  "statistics": {
+    "total_files": 10310,
+    "modules_analyzed": 9739,
+    "modules_enhanced": 17,
+    "eventbus_integrations": 2,
+    "telemetry_injections": 1,
+    "compliance_fixes": 16,
+    "dashboard_modules_skipped": 166
+  },
+  "enhanced_modules": {
+    "genesis_desktop": {
+      "actions_applied": [
+        "EventBus integrated"
+      ],
+      "enhancement_count": 1
+    },
+    "genesis_functionality_test": {
+      "actions_applied": [
+        "EventBus integrated",
+        "Telemetry hooks added",
+        "FTMO compliance added",
+        "Kill switch logic added",
+        "GENESIS tags added"
+      ],
+      "enhancement_count": 5
+    },
+    "ORPHAN_validate_phase32_execution_flow_controller_recovered_1": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "ORPHAN_validate_phase32_execution_flow_controller_recovered_2": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "validate_recovery_recovered_1": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "validate_recovery_recovered_2": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "architect_mode_core_functions": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "launch_genesis": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "ORPHAN_validate_phase32_execution_flow_controller": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    },
+    "validate_recovery": {
+      "actions_applied": [
+        "FTMO compliance added",
+        "Kill switch logic added"
+      ],
+      "enhancement_count": 2
+    }
+  },
+  "skipped_modules": {
+    "dashboard_engine": "Dashboard module - bypassed",
+    "dashboard_panel_configurator": "Dashboard module - bypassed",
+    "emergency_python_rebuilder": "Dashboard module - bypassed",
+    "genesis_dashboard": "Dashboard module - bypassed",
+    "genesis_docker_dashboard": "Dashboard module - bypassed",
+    "genesis_docker_gui_app": "Dashboard module - bypassed",
+    "genesis_institutional_dashboard": "Dashboard module - bypassed",
+    "quick_launch": "Dashboard module - bypassed",
+    "quick_module_scanner": "Dashboard module - bypassed",
+    "DUPLICATE_build_tracker": "Dashboard module - bypassed",
+    "liquidity_sweep_validator_recovered_1": "Dashboard module - bypassed",
+    "liquidity_sweep_validator_recovered_2": "Dashboard module - bypassed",
+    "quick_validation_recovered_1": "Dashboard module - bypassed",
+    "quick_validation_recovered_2": "Dashboard module - bypassed",
+    "quiver_recovered_1": "Dashboard module - bypassed",
+    "quiver_recovered_2": "Dashboard module - bypassed",
+    "uiparser_recovered_1": "Dashboard module - bypassed",
+    "uiparser_recovered_2": "Dashboard module - bypassed",
+    "ultimate_system_rebuild_engine_recovered_1": "Dashboard module - bypassed",
+    "ultimate_system_rebuild_engine_recovered_2": "Dashboard module - bypassed",
+    "quick_startup_validator": "Dashboard module - bypassed",
+    "simple_event_bus_dashboard": "Dashboard module - bypassed",
+    "execution_dashboard": "Dashboard module - bypassed",
+    "genesis_audit_dashboard": "Dashboard module - bypassed",
+    "genesis_audit_dashboard_final": "Dashboard module - bypassed",
+    "genesis_gui_launcher": "Dashboard module - bypassed",
+    "launch_functional_dashboard": "Dashboard module - bypassed",
+    "launch_telemetry_dashboard": "Dashboard module - bypassed",
+    "phase_100_gui_boot": "Dashboard module - bypassed",
+    "quick_launch_genesis": "Dashboard module - bypassed",
+    "start_audit_dashboard": "Dashboard module - bypassed",
+    "validate_dashboard_engine": "Dashboard module - bypassed",
+    "backtest_dashboard_module": "Dashboard module - bypassed",
+    "build_continuity_guard": "Dashboard module - bypassed",
+    "build_status_updater": "Dashboard module - bypassed",
+    "build_tracker_logger": "Dashboard module - bypassed",
+    "dashboard": "Dashboard module - bypassed",
+    "dashboard_frontend": "Dashboard module - bypassed",
+    "fontBuilder": "Dashboard module - bypassed",
+    "fontBuilder_recovered_1": "Dashboard module - bypassed",
+    "fontBuilder_recovered_2": "Dashboard module - bypassed",
+    "genesis_advanced_tkinter_ui": "Dashboard module - bypassed",
+    "genesis_dashboard_ui_live_sync": "Dashboard module - bypassed",
+    "genesis_diagnostic_dashboard": "Dashboard module - bypassed",
+    "genesis_functional_diagnostic_dashboard": "Dashboard module - bypassed",
+    "genesis_installer_builder": "Dashboard module - bypassed",
+    "genesis_production_dashboard": "Dashboard module - bypassed",
+    "genesis_tkinter_VIOLATED": "Dashboard module - bypassed",
+    "genesis_ultimate_dashboard": "Dashboard module - bypassed",
+    "launch_dashboard": "Dashboard module - bypassed",
+    "ORPHAN_test_dashboard_widgets": "Dashboard module - bypassed",
+    "ORPHAN_test_execution_dashboard": "Dashboard module - bypassed",
+    "ORPHAN_test_phase34_dashboard_integration": "Dashboard module - bypassed",
+    "phase34_telemetry_dashboard_panel": "Dashboard module - bypassed",
+    "phase_92a_complete_dashboard": "Dashboard module - bypassed",
+    "phase_92a_live_dashboard": "Dashboard module - bypassed",
+    "phase_98_system_build_validator": "Dashboard module - bypassed",
+    "phase_98_system_build_validator_recovered_1": "Dashboard module - bypassed",
+    "phase_98_system_build_validator_recovered_2": "Dashboard module - bypassed",
+    "quiver": "Dashboard module - bypassed",
+    "signal_bias_dashboard": "Dashboard module - bypassed",
+    "start_dashboard": "Dashboard module - bypassed",
+    "system_tree_rebuild_engine": "Dashboard module - bypassed",
+    "termui": "Dashboard module - bypassed",
+    "termui_recovered_1": "Dashboard module - bypassed",
+    "termui_recovered_2": "Dashboard module - bypassed",
+    "ultimate_system_rebuild_engine": "Dashboard module - bypassed",
+    "validate_build_status_reconstruction": "Dashboard module - bypassed",
+    "validate_phase91b_dashboard_compliance": "Dashboard module - bypassed",
+    "dashboard_styles": "Dashboard module - bypassed",
+    "json_schema_test_suite": "Dashboard module - bypassed",
+    "phase61_62_test_suite": "Dashboard module - bypassed",
+    "quick_phase19_validation": "Dashboard module - bypassed",
+    "quick_test": "Dashboard module - bypassed",
+    "quick_validate_92B_93": "Dashboard module - bypassed",
+    "quick_validation": "Dashboard module - bypassed",
+    "test_build": "Dashboard module - bypassed",
+    "test_builder": "Dashboard module - bypassed",
+    "test_check_build": "Dashboard module - bypassed",
+    "test_convert_builtin": "Dashboard module - bypassed",
+    "test_equivalence": "Dashboard module - bypassed",
+    "test_jsonschema_test_suite": "Dashboard module - bypassed",
+    "test_quiver": "Dashboard module - bypassed",
+    "test_referencing_suite": "Dashboard module - bypassed",
+    "builder": "Dashboard module - bypassed",
+    "build_env": "Dashboard module - bypassed",
+    "built_in_chart_utils": "Dashboard module - bypassed",
+    "extbuild": "Dashboard module - bypassed",
+    "liquidity_sweep_validator": "Dashboard module - bypassed",
+    "proto_builder": "Dashboard module - bypassed",
+    "pyuic": "Dashboard module - bypassed",
+    "qtquickwidgets": "Dashboard module - bypassed",
+    "rebuild": "Dashboard module - bypassed",
+    "requirements": "Dashboard module - bypassed",
+    "setuptools_build": "Dashboard module - bypassed",
+    "table_builder": "Dashboard module - bypassed",
+    "uiparser": "Dashboard module - bypassed",
+    "unbuilder": "Dashboard module - bypassed",
+    "wheel_builder": "Dashboard module - bypassed",
+    "_build_config": "Dashboard module - bypassed",
+    "_built_with_meson": "Dashboard module - bypassed",
+    "_quiver": "Dashboard module - bypassed",
+    "_suite": "Dashboard module - bypassed",
+    "_termui_impl": "Dashboard module - bypassed",
+    "_tkinter_finder": "Dashboard module - bypassed",
+    "_uid": "Dashboard module - bypassed",
+    "_uirevision": "Dashboard module - bypassed",
+    "dashboard_linkage_patch": "Dashboard module - bypassed",
+    "dashboard_widgets": "Dashboard module - bypassed",
+    "telemetry_dashboard": "Dashboard module - bypassed",
+    "ORPHAN_fix_build_status": "Dashboard module - bypassed",
+    "ORPHAN_test_dashboardengine": "Dashboard module - bypassed",
+    "ORPHAN_test_dashboard_engine": "Dashboard module - bypassed",
+    "ORPHAN_test_dashboard_validation": "Dashboard module - bypassed",
+    "ORPHAN_test_genesis_gui_launcher": "Dashboard module - bypassed",
+    "ORPHAN_test_phase17_telemetry_dashboard": "Dashboard module - bypassed",
+    "ORPHAN_test_phase34_dashboard_integration_clean": "Dashboard module - bypassed",
+    "ORPHAN_test_signalbiasdashboard": "Dashboard module - bypassed",
+    "build_tracker": "Dashboard module - bypassed"
+  },
+  "failed_modules": {},
+  "system_status": "MODULE_WIRING_COMPLETE",
+  "recommendations": [
+    "Run system validation to verify enhancements",
+    "Test EventBus communication between modules",
+    "Validate telemetry data collection",
+    "Verify FTMO compliance implementation",
+    "Prepare for dashboard integration phase"
+  ]
+}

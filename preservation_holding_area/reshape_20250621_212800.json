@@ -1,0 +1,9 @@
+{
+  "module_id": "reshape",
+  "original_path": "modules\\restored\\reshape.py",
+  "preserved_path": "preservation_holding_area\\reshape_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 47939,
+  "checksum": "331f7715dfc3c8f2dc5f648a83cdea35e48cdce2d83ed3afd592087fe7f66da3"
+}

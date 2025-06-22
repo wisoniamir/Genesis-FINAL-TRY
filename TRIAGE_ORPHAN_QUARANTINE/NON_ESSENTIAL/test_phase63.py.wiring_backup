@@ -1,0 +1,36 @@
+# <!-- @GENESIS_MODULE_START: test_phase63 -->
+
+from datetime import datetime\nimport sys
+import os
+
+# Test import and basic functionality
+try:
+    print("Starting Phase 63 Deep Auto-Patching Engine test...")
+    
+    # Check if files exist
+    files_to_check = [
+        'compliance_validation_report.json',
+        'module_registry.json',
+        'event_bus.json',
+        'telemetry.json'
+    ]
+    
+    for file in files_to_check:
+        if os.path.exists(file):
+            print(f"✅ {file} exists")
+        else:
+            print(f"❌ {file} missing")
+    
+    # Try importing the engine
+    print("Importing Phase 63 engine...")
+    exec(open('phase63_deep_auto_patching_engine.py').read())
+    
+    print("Engine imported successfully!")
+    
+except Exception as e:
+    print(f"Error: {e}")
+    import traceback
+    traceback.print_exc()
+
+
+# <!-- @GENESIS_MODULE_END: test_phase63 -->

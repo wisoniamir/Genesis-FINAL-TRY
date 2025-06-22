@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\phase_65_compliance_healing.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.545867+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\phase_65_compliance_healing.py",
+      "line_numbers": [
+        174,
+        181,
+        334,
+        359
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\phase_65_compliance_healing.py",
+      "line_numbers": [
+        13,
+        113,
+        116,
+        119,
+        124
+      ],
+      "violation_count": 13
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\phase_65_compliance_healing.py",
+      "line_numbers": [
+        118,
+        129,
+        140,
+        204,
+        249
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\phase_65_compliance_healing.py",
+      "line_numbers": [
+        412
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\phase_65_compliance_healing.py",
+      "line_numbers": [
+        105,
+        422
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

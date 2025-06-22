@@ -1,0 +1,9 @@
+{
+  "module_id": "low_level",
+  "original_path": "modules\\restored\\low_level.py",
+  "preserved_path": "preservation_holding_area\\low_level_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 20583,
+  "checksum": "72116889ba26da2cee5e64afe5cf565616a5f022513ec44c80f5b2965954c2c4"
+}

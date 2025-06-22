@@ -1,0 +1,9 @@
+{
+  "module_id": "auth_util",
+  "original_path": "modules\\restored\\auth_util.py",
+  "preserved_path": "preservation_holding_area\\auth_util_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25401,
+  "checksum": "10201328d46968b709ddf187cdb06b625248d60c0c591fc1b0987e39ff3750b4"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "fetch",
+  "original_path": "modules\\restored\\fetch.py",
+  "preserved_path": "preservation_holding_area\\fetch_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 59824,
+  "checksum": "f6fc5c2d4b307fa3036fd4d81e76b669fca5b6db3c19307618850a203c880fc6"
+}

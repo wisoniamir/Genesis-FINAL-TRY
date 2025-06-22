@@ -1,0 +1,9 @@
+{
+  "module_id": "timeout",
+  "original_path": "modules\\restored\\timeout.py",
+  "preserved_path": "preservation_holding_area\\timeout_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26697,
+  "checksum": "ad346d025fd5e0fc291a736d147edcf0845245c978d1c5c8ad57b7ae645e76cc"
+}

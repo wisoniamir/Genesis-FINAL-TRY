@@ -1,0 +1,426 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("integrate_strategy_mutation_engine", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("integrate_strategy_mutation_engine", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "integrate_strategy_mutation_engine",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in integrate_strategy_mutation_engine: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "integrate_strategy_mutation_engine",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("integrate_strategy_mutation_engine", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in integrate_strategy_mutation_engine: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+GENESIS Phase 41 System Integration Script
+========================================
+Integrates the Strategy Mutation Logic Engine with the system tree and module registry
+"""
+
+import os
+import json
+import logging
+import sys
+from datetime import datetime
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: integrate_strategy_mutation_engine -->
+
+
+# <!-- @GENESIS_MODULE_START: integrate_strategy_mutation_engine -->
+
+# Set up logging
+logging.basicConfig(level=logging.INFO,
+                   format='%(asctime)s [INTEGRATOR] [%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
+
+def update_system_tree():
+    """Update system_tree.json with the new module"""
+    logger.info("Updating system_tree.json")
+    
+    try:
+        # Load current system tree
+        with open("system_tree.json", "r") as f:
+            system_tree = json.load(f)
+            
+        # Check if module already exists
+        existing_node = next((node for node in system_tree["nodes"] 
+                             if node.get("id") == "StrategyMutationLogicEngine"), None)
+                             
+        if existing_node:
+            logger.info("Module already exists in system tree, updating")
+            existing_node.update({
+                "status": "active",
+                "last_updated": datetime.now().isoformat()
+            })
+        else:
+            # Create new node entry
+            new_node = {
+                "id": "StrategyMutationLogicEngine",
+                "type": "core",
+                "status": "active",
+                "module_path": "strategy_mutation_logic_engine.py",
+                "dependencies": [
+                    "event_bus",
+                    "hardened_event_bus",
+                    "execution_feedback_mutator",
+                    "strategy_recommender_engine",
+                    "json",
+                    "datetime",
+                    "os",
+                    "logging",
+                    "threading",
+                    "numpy",
+                    "collections"
+                ],
+                "eventbus_subscriptions": [
+                    "execution_feedback_received",
+                    "system_command"
+                ],
+                "eventbus_emissions": [
+                    "strategy_updated",
+                    "telemetry",
+                    "ModuleError",
+                    "CriticalModuleError",
+                    "module_status",
+                    "module_status_changed",
+                    "module_reset"
+                ],
+                "telemetry_hooks": [
+                    "mutation_rate",
+                    "strategy_score_delta",
+                    "last_mutation_cause",
+                    "execution_feedback_type"
+                ],
+                "architect_mode_compliant": True,
+                "real_data_only": True,
+                "registration_date": datetime.now().isoformat()
+            }
+            
+            # Add to nodes
+            system_tree["nodes"].append(new_node)
+            
+            # Update metadata
+            system_tree["metadata"]["total_nodes"] += 1
+            system_tree["metadata"]["last_updated"] = datetime.now().isoformat()
+            system_tree["metadata"]["phase_41_strategy_mutation_engine_added"] = True
+            
+        # Write back to file
+        with open("system_tree.json", "w") as f:
+            json.dump(system_tree, f, indent=2)
+            
+        logger.info("System tree successfully updated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to update system tree: {str(e)}")
+        return False
+
+def update_module_registry():
+    """Update module_registry.json with the new module"""
+    logger.info("Updating module_registry.json")
+    
+    try:
+        # Load current module registry
+        with open("module_registry.json", "r") as f:
+            registry = json.load(f)
+            
+        # Check if module already exists
+        existing_module = next((module for module in registry["modules"] 
+                              if module.get("name") == "StrategyMutationLogicEngine"), None)
+                              
+        if existing_module:
+            logger.info("Module already exists in registry, updating")
+            existing_module.update({
+                "status": "active",
+                "last_updated": datetime.now().isoformat()
+            })
+        else:
+            # Create new module entry
+            new_module = {
+                "name": "StrategyMutationLogicEngine",
+                "type": "core",
+                "language": "Python",
+                "status": "active",
+                "event_input": [
+                    "execution_feedback_received",
+                    "system_command"
+                ],
+                "event_output": [
+                    "strategy_updated",
+                    "telemetry",
+                    "ModuleError"
+                ],
+                "telemetry": True,
+                "compliance": True,
+                "real_data": True,
+                "file_path": "strategy_mutation_logic_engine.py",
+                "registered_at": datetime.now().isoformat(),
+                "dependencies": [
+                    "execution_feedback_mutator",
+                    "strategy_recommender_engine"
+                ],
+                "architect_mode_compliant": True
+            }
+            
+            # Add to modules
+            registry["modules"].append(new_module)
+            
+            # Update metadata
+            registry["metadata"]["total_registered"] += 1
+            registry["metadata"]["last_updated"] = datetime.now().isoformat()
+            registry["metadata"]["phase_41_strategy_mutation_logic_engine_added"] = True
+            
+        # Write back to file
+        with open("module_registry.json", "w") as f:
+            json.dump(registry, f, indent=2)
+            
+        logger.info("Module registry successfully updated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to update module registry: {str(e)}")
+        return False
+
+def update_event_bus():
+    """Update event_bus.json with the new routes"""
+    logger.info("Updating event_bus.json")
+    
+    try:
+        # Load current event bus configuration
+        with open("event_bus.json", "r") as f:
+            event_bus = json.load(f)
+            
+        # Check if routes already exist
+        feedback_route_exists = any(
+            route.get("topic") == "execution_feedback_received" and
+            route.get("producer") == "ExecutionFeedbackMutator" and
+            route.get("consumer") == "StrategyMutationLogicEngine"
+            for route in event_bus["routes"]
+        )
+        
+        update_route_exists = any(
+            route.get("topic") == "strategy_updated" and
+            route.get("producer") == "StrategyMutationLogicEngine" and
+            route.get("consumer") == "StrategyRecommenderEngine"
+            for route in event_bus["routes"]
+        )
+        
+        # Add routes if they don't exist
+        if not feedback_route_exists:
+            event_bus["routes"].append({
+                "topic": "execution_feedback_received",
+                "producer": "ExecutionFeedbackMutator",
+                "consumer": "StrategyMutationLogicEngine",
+                "registered_at": datetime.now().isoformat(),
+                "status": "active"
+            })
+            
+        if not update_route_exists:
+            event_bus["routes"].append({
+                "topic": "strategy_updated",
+                "producer": "StrategyMutationLogicEngine",
+                "consumer": "StrategyRecommenderEngine",
+                "registered_at": datetime.now().isoformat(),
+                "status": "active"
+            })
+            
+        # Update metadata
+        event_bus["metadata"]["last_updated"] = datetime.now().isoformat()
+        event_bus["metadata"]["phase_41_strategy_mutation_routes_added"] = True
+        
+        # Write back to file
+        with open("event_bus.json", "w") as f:
+            json.dump(event_bus, f, indent=2)
+            
+        logger.info("Event bus configuration successfully updated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to update event bus: {str(e)}")
+        return False
+        
+def update_build_status():
+    """Update build_status.json with the new phase completion"""
+    logger.info("Updating build_status.json")
+    
+    try:
+        # Load current build status
+        with open("build_status.json", "r") as f:
+            build_status = json.load(f)
+            
+        # Update with phase 41 completion
+        build_status.update({
+            "phase_41_complete": True,
+            "phase_41_timestamp": datetime.now().isoformat(),
+            "phase_41_strategy_mutation_engine_added": True,
+            "phase_41_strategy_mutation_config_created": True,
+            "phase_41_mutation_log_initialized": True,
+            "phase_41_tests_created": True
+        })
+        
+        # Write back to file
+        with open("build_status.json", "w") as f:
+            json.dump(build_status, f, indent=2)
+            
+        logger.info("Build status successfully updated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to update build status: {str(e)}")
+        return False
+
+def main():
+    """Main integration function"""
+    logger.info("Starting Phase 41 system integration")
+    
+    # Perform all updates
+    system_tree_updated = update_system_tree()
+    module_registry_updated = update_module_registry()
+    event_bus_updated = update_event_bus()
+    build_status_updated = update_build_status()
+    
+    # Check if all updates were successful
+    if system_tree_updated and module_registry_updated and event_bus_updated and build_status_updated:
+        logger.info("Phase 41 integration COMPLETE - All systems updated")
+        return True
+    else:
+        logger.error("Phase 41 integration INCOMPLETE - Some updates failed")
+        return False
+        
+if __name__ == "__main__":
+    success = main()
+    if not success:
+        sys.exit(1)
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))

@@ -1,0 +1,72 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase55_56_ml_control_integration_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.599725+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        274,
+        277,
+        284,
+        287,
+        290
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        85,
+        95,
+        119,
+        120,
+        121
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        52,
+        137,
+        183,
+        230,
+        349
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        68,
+        169,
+        216,
+        263,
+        389
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\validate_phase55_56_ml_control_integration_recovered_2.py",
+      "line_numbers": [
+        46,
+        64,
+        166,
+        204,
+        213
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

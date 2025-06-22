@@ -1,0 +1,9 @@
+{
+  "module_id": "ioloop",
+  "original_path": "modules\\restored\\ioloop.py",
+  "preserved_path": "preservation_holding_area\\ioloop_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 64376,
+  "checksum": "034d2b0bbd9f14b4c09fa4ccae45e8a5a6d8d37bf1890ca5608f4fa95bfe1a2c"
+}

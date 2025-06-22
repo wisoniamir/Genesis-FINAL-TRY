@@ -1,0 +1,139 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.153502+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        48,
+        62,
+        69,
+        209
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        49
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        448
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        10,
+        11,
+        53,
+        216,
+        217
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        56,
+        154
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        52,
+        217
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        55,
+        217
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        60,
+        124,
+        170,
+        238,
+        276
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        135,
+        189,
+        257,
+        281,
+        330
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        62,
+        132,
+        242,
+        283,
+        297
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        84,
+        207,
+        477
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_v610_activator_recovered_1.py",
+      "line_numbers": [
+        207
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

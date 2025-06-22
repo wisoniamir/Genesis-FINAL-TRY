@@ -1,0 +1,676 @@
+"""
+GENESIS Broker Discovery Engine v1.0 - PHASE 35 Enhancement
+Real-time broker account type detection and rule configuration
+ARCHITECT MODE v2.8 - STRICT COMPLIANCE
+
+PHASE 35 OBJECTIVE:
+Dynamically detect connected MT5 account type and load appropriate trading rules
+- FTMO Challenge: Strict daily/total drawdown, no weekend trading, no news trading
+- FTMO Swing: Can hold overnight/weekend, can trade news, 1:30 leverage
+- FTMO Funded: Production rules with higher limits
+- Regular Broker: Minimal restrictions
+
+INPUTS CONSUMED:
+- ConnectionStatus: MT5 connection established events
+- AccountInfoUpdate: MT5 account information updates
+
+OUTPUTS EMITTED:
+- BrokerRulesDiscovered: Trading rules for connected account type
+- TradingRulesUpdate: Rule changes for existing connections
+- AccountTypeDetected: Account classification results
+
+VALIDATION REQUIREMENTS:
+✅ Real MT5 account info only (no mock/simulation)
+✅ EventBus communication only
+✅ Dynamic rule loading based on account type
+✅ Rule broadcasting to all relevant modules
+✅ Telemetry integration
+"""
+
+import os
+import json
+import logging
+from datetime import datetime, time
+from typing import Dict, Any, List, Optional
+from threading import Lock
+
+try:
+    import MetaTrader5 as mt5
+    MT5_AVAILABLE = True
+except ImportError:
+    mt5 = None
+    MT5_AVAILABLE = False
+
+from event_bus import emit_event, subscribe_to_event, register_route
+
+class BrokerDiscoveryEngine:
+    """
+    GENESIS BrokerDiscoveryEngine v1.0 - Account Type Detection & Rule Loading
+    
+    Architecture Compliance:
+    - ✅ EventBus only communication
+    - ✅ Real MT5 account detection (no mock/dummy data)
+    - ✅ Telemetry hooks enabled
+    - ✅ No isolated functions
+    - ✅ Registered in all system files
+    """
+    
+    def __init__(self):
+        """Initialize BrokerDiscoveryEngine with account detection logic"""
+        
+        # Module identification
+        self.module_name = "BrokerDiscoveryEngine"
+        self.version = "1.0"
+        
+        # Account detection state
+        self.detected_account_type = None
+        self.current_rules = None
+        self.broker_info = {}
+        self.account_verified = False
+        
+        # Thread safety
+        self.lock = Lock()
+        
+        # Telemetry tracking
+        self.telemetry = {
+            "detections_performed": 0,
+            "rule_updates_sent": 0,
+            "account_verifications": 0,
+            "module_errors": 0,
+            "module_start_time": datetime.utcnow().isoformat(),
+            "last_detection_time": None,
+            "account_type_history": []
+        }
+        
+        # Configure logging
+        self.logger = logging.getLogger(self.module_name)
+        log_dir = "logs/broker_discovery"
+        os.makedirs(log_dir, exist_ok=True)
+        
+        file_handler = logging.FileHandler(
+            f"{log_dir}/broker_discovery_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jsonl"
+        )
+        file_handler.setFormatter(logging.Formatter('%(message)s'))
+        self.logger.addHandler(file_handler)
+        self.logger.setLevel(logging.INFO)
+        
+        # Account type detection rules
+        self.account_type_patterns = {
+            "FTMO Challenge": {
+                "broker_patterns": ["FTMO", "ftmo"],
+                "server_patterns": ["Challenge", "Demo"],
+                "balance_ranges": [(100000, 200000)],  # $100k-$200k challenge accounts
+                "leverage_limits": [100, 200],  # 1:100, 1:200 leverage
+                "trading_rules": {
+                    "max_daily_drawdown": 5.0,
+                    "max_total_drawdown": 10.0,
+                    "weekend_trading_allowed": False,
+                    "news_trading_allowed": False,
+                    "max_leverage": 100,
+                    "max_lot_size": 5.0,
+                    "trading_hours": {"start": 8, "end": 22},  # UTC hours
+                    "spread_threshold_pips": 2.0
+                }
+            },
+            "FTMO Swing": {
+                "broker_patterns": ["FTMO", "ftmo"],
+                "server_patterns": ["Swing", "Live", "Real"],
+                "balance_ranges": [(200000, 400000)],  # $200k-$400k swing accounts
+                "leverage_limits": [30],  # 1:30 leverage
+                "trading_rules": {
+                    "max_daily_drawdown": 5.0,
+                    "max_total_drawdown": 10.0,
+                    "weekend_trading_allowed": True,
+                    "news_trading_allowed": True,
+                    "max_leverage": 30,
+                    "max_lot_size": 10.0,
+                    "trading_hours": None,  # No time restrictions
+                    "spread_threshold_pips": 1.5
+                }
+            },
+            "FTMO Funded": {
+                "broker_patterns": ["FTMO", "ftmo"],
+                "server_patterns": ["Live", "Real", "Funded"],
+                "balance_ranges": [(200000, 2000000)],  # $200k-$2M funded accounts
+                "leverage_limits": [30, 100],
+                "trading_rules": {
+                    "max_daily_drawdown": 5.0,
+                    "max_total_drawdown": 10.0,
+                    "weekend_trading_allowed": True,
+                    "news_trading_allowed": True,
+                    "max_leverage": 100,
+                    "max_lot_size": 20.0,
+                    "trading_hours": None,
+                    "spread_threshold_pips": 1.5
+                }
+            },
+            "Regular Broker": {
+                "broker_patterns": ["IC Markets", "Pepperstone", "XM", "IG", "Admiral"],
+                "server_patterns": ["Live", "Real", "Demo"],
+                "balance_ranges": [(1000, 10000000)],  # Wide range for regular brokers
+                "leverage_limits": [30, 50, 100, 200, 400, 500],
+                "trading_rules": {
+                    "max_daily_drawdown": 20.0,  # More relaxed
+                    "max_total_drawdown": 50.0,
+                    "weekend_trading_allowed": True,
+                    "news_trading_allowed": True,
+                    "max_leverage": 500,
+                    "max_lot_size": 100.0,
+                    "trading_hours": None,
+                    "spread_threshold_pips": 3.0
+                }
+            }
+        }
+          # Load rule override configuration
+        self.override_config = self._load_override_config()
+        
+        # Subscribe to MT5 connection events
+        subscribe_to_event("ConnectionStatus", self.on_connection_status, self.module_name)
+        subscribe_to_event("AccountInfoUpdate", self.on_account_info_update, self.module_name)
+        
+        # Register EventBus routes
+        self._register_event_routes()
+        
+        # Emit module initialization
+        self._emit_telemetry("MODULE_INITIALIZED", {
+            "account_type_patterns": len(self.account_type_patterns),
+            "mt5_available": MT5_AVAILABLE,
+            "override_mode_enabled": self.override_config.get("rule_override_mode", {}).get("enabled", False)
+        })
+        
+        self.logger.info(f"✅ {self.module_name} v{self.version} initialized - Broker detection ready")
+        
+        # Log override mode status
+        if self.override_config.get("rule_override_mode", {}).get("enabled", False):
+            override_type = self.override_config["rule_override_mode"]["override_account_type"]
+            self.logger.info(f"🔒 Rule Override Mode ENABLED - Forcing {override_type} rules for all accounts")
+    
+    def on_connection_status(self, event):
+        """
+        Handle MT5 connection status events and trigger account detection
+        
+        Args:
+            event (dict): ConnectionStatus event from MarketDataFeedManager
+        """
+        try:
+            connection_data = event.get("data", event)
+            status = connection_data.get("status")
+            
+            if status == "connected":
+                self.logger.info("🔍 MT5 connection detected - Starting account type discovery")
+                self._detect_account_type()
+            elif status == "disconnected":
+                self.logger.info("🔌 MT5 disconnected - Clearing account detection state")
+                self._clear_detection_state()
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error handling connection status: {e}")
+            self._emit_error("CONNECTION_STATUS_ERROR", str(e))
+    
+    def on_account_info_update(self, event):
+        """
+        Handle account info updates and re-verify account type if needed
+        
+        Args:
+            event (dict): AccountInfoUpdate event
+        """
+        try:
+            account_data = event.get("data", event)
+            
+            # Store updated account info
+            with self.lock:
+                self.broker_info.update(account_data)
+            
+            # Re-detect if significant changes            if self._should_redetect_account_type(account_data):
+                self.logger.info("📊 Account info changed significantly - Re-detecting account type")
+                self._detect_account_type()
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error handling account info update: {e}")
+            self._emit_error("ACCOUNT_UPDATE_ERROR", str(e))
+    
+    def _load_override_config(self) -> Dict[str, Any]:
+        """
+        Load broker rule override configuration from config file
+        
+        Returns:
+            dict: Override configuration settings
+        """
+        config_file = "broker_rule_override_config.json"
+        default_config = {
+            "rule_override_mode": {"enabled": False},
+            "detection_mode": {"enabled": True, "strict_real_data_only": True},
+            "forced_trading_rules": {"account_type": "FTMO Swing", "trading_rules": {}},
+            "rule_customization": {"enabled": False, "modifications": {}}
+        }
+          try:
+            if os.path.exists(config_file):
+                with open(config_file, 'r') as f:
+                    config = json.load(f)
+                self.logger.info(f"BROKER_CONFIG: Loaded override config from {config_file}")
+                return config
+            else:
+                self.logger.info(f"BROKER_CONFIG: No override config found, using dynamic detection mode")
+                return default_config
+                
+        except Exception as e:
+            self.logger.error(f"ERROR: Error loading override config: {e}")
+            return default_config
+
+    def _detect_account_type(self):
+        """
+        Detect account type based on MT5 connection and emit appropriate rules
+        Now supports rule override mode for forcing specific rules
+        """
+        if not MT5_AVAILABLE:
+            self.logger.warning("⚠️ MT5 not available - Cannot detect account type")
+            return
+        
+        try:
+            # Check if rule override mode is enabled
+            override_enabled = self.override_config.get("rule_override_mode", {}).get("enabled", False)
+            
+            if override_enabled:
+                # Force specific account type and rules
+                forced_type = self.override_config["rule_override_mode"]["override_account_type"]
+                forced_rules = self.override_config.get("forced_trading_rules", {}).get("trading_rules", {})
+                
+                # If no forced rules in config, use the pattern rules
+                if not forced_rules:
+                    forced_rules = self.account_type_patterns.get(forced_type, {}).get("trading_rules", {})
+                
+                self.logger.info(f"🔒 Rule Override Mode: Forcing {forced_type} rules")
+                
+                # Apply rule customizations if enabled
+                final_rules = self._apply_rule_customizations(forced_rules.copy())
+                
+                with self.lock:
+                    self.detected_account_type = forced_type
+                    self.current_rules = final_rules
+                    self.account_verified = True
+                    self.telemetry["detections_performed"] += 1
+                    self.telemetry["last_detection_time"] = datetime.utcnow().isoformat()
+                    self.telemetry["account_type_history"].append({
+                        "type": f"{forced_type} (FORCED)",
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "broker": "Override Mode",
+                        "server": "Override Mode",
+                        "balance": 0,
+                        "override_enabled": True
+                    })
+                
+                # Get actual account info for telemetry
+                account_info = self._get_mt5_account_info() or {"broker": "Unknown", "server": "Unknown", "balance": 0}
+                
+                # Emit forced rules
+                self._emit_trading_rules(forced_type, final_rules, override_mode=True)
+                
+                # Emit telemetry
+                self._emit_telemetry("ACCOUNT_TYPE_FORCED", {
+                    "forced_type": forced_type,
+                    "actual_broker": account_info.get("broker"),
+                    "actual_server": account_info.get("server"),
+                    "override_reason": self.override_config["rule_override_mode"].get("reason", "Manual override")
+                })
+                
+                return
+            
+            # Normal dynamic detection mode
+            account_info = self._get_mt5_account_info()
+            if not account_info:
+                self.logger.error("❌ Failed to get MT5 account info")
+                return
+            
+            with self.lock:
+                self.broker_info = account_info
+                self.telemetry["detections_performed"] += 1
+                self.telemetry["last_detection_time"] = datetime.utcnow().isoformat()
+            
+            # Detect account type
+            detected_type = self._classify_account_type(account_info)
+            
+            if detected_type != self.detected_account_type:
+                self.logger.info(f"🎯 Account type detected: {detected_type}")
+                
+                # Get base rules for detected type
+                base_rules = self.account_type_patterns[detected_type]["trading_rules"].copy()
+                
+                # Apply rule customizations if enabled
+                final_rules = self._apply_rule_customizations(base_rules)
+                
+                with self.lock:
+                    self.detected_account_type = detected_type
+                    self.current_rules = final_rules
+                    self.account_verified = True
+                    self.telemetry["account_type_history"].append({
+                        "type": detected_type,
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "broker": account_info.get("broker", "Unknown"),
+                        "server": account_info.get("server", "Unknown"),
+                        "balance": account_info.get("balance", 0),
+                        "override_enabled": False
+                    })
+                
+                # Emit account type detection
+                emit_event("AccountTypeDetected", {
+                    "account_type": detected_type,
+                    "broker_info": account_info,
+                    "detection_timestamp": datetime.utcnow().isoformat(),
+                    "confidence": self._calculate_detection_confidence(account_info, detected_type)
+                }, self.module_name)
+                
+                # Emit trading rules for the detected account type
+                self._emit_trading_rules(detected_type, final_rules, override_mode=False)
+                
+                # Emit telemetry
+                self._emit_telemetry("ACCOUNT_TYPE_DETECTED", {
+                    "account_type": detected_type,
+                    "broker": account_info.get("broker"),
+                    "server": account_info.get("server"),
+                    "balance": account_info.get("balance")
+                })
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error in account type detection: {e}")
+            self._emit_error("DETECTION_ERROR", str(e))
+
+    def _apply_rule_customizations(self, base_rules: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Apply rule customizations from configuration
+        
+        Args:
+            base_rules (dict): Base trading rules
+            
+        Returns:
+            dict: Customized trading rules
+        """
+        if not self.override_config.get("rule_customization", {}).get("enabled", False):
+            return base_rules
+        
+        customizations = self.override_config["rule_customization"]["modifications"]
+        final_rules = base_rules.copy()
+        
+        for rule_name, custom_value in customizations.items():
+            if custom_value is not None and rule_name in final_rules:
+                original_value = final_rules[rule_name]
+                final_rules[rule_name] = custom_value
+                self.logger.info(f"🔧 Rule customization: {rule_name} {original_value} → {custom_value}")
+        
+        return final_rules
+    
+    def _get_mt5_account_info(self) -> Optional[Dict[str, Any]]:
+        """
+        Get account information from MT5
+        
+        Returns:
+            dict: Account information or None if failed
+        """
+        if not MT5_AVAILABLE or not mt5:
+            return None
+        
+        try:
+            # Handle different MT5 library versions
+            account_info_func = getattr(mt5, 'account_info', None)
+            if account_info_func is None:
+                self.logger.error("❌ MT5 account_info function not available")
+                return None
+                
+            account_info = account_info_func()
+            if account_info is None:
+                return None
+            
+            return {
+                "broker": account_info.company,
+                "server": account_info.server,
+                "balance": account_info.balance,
+                "equity": account_info.equity,
+                "margin": account_info.margin,
+                "leverage": account_info.leverage,
+                "currency": account_info.currency,
+                "login": account_info.login,
+                "trade_mode": account_info.trade_mode,
+                "name": account_info.name if hasattr(account_info, 'name') else "N/A"
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error getting MT5 account info: {e}")
+            return None
+    
+    def _classify_account_type(self, account_info: Dict[str, Any]) -> str:
+        """
+        Classify account type based on broker info, server, balance, and leverage
+        
+        Args:
+            account_info (dict): MT5 account information
+            
+        Returns:
+            str: Detected account type
+        """
+        broker = account_info.get("broker", "").lower()
+        server = account_info.get("server", "").lower()
+        balance = account_info.get("balance", 0)
+        leverage = account_info.get("leverage", 0)
+        
+        # Check each account type pattern
+        for account_type, patterns in self.account_type_patterns.items():
+            score = 0
+            
+            # Check broker patterns
+            for broker_pattern in patterns["broker_patterns"]:
+                if broker_pattern.lower() in broker:
+                    score += 3  # High weight for broker match
+                    break
+            
+            # Check server patterns
+            for server_pattern in patterns["server_patterns"]:
+                if server_pattern.lower() in server:
+                    score += 2  # Medium weight for server match
+                    break
+            
+            # Check balance ranges
+            for balance_min, balance_max in patterns["balance_ranges"]:
+                if balance_min <= balance <= balance_max:
+                    score += 2  # Medium weight for balance match
+                    break
+            
+            # Check leverage limits
+            if leverage in patterns["leverage_limits"]:
+                score += 1  # Low weight for leverage match
+            
+            # Store classification score for confidence calculation
+            patterns["_classification_score"] = score
+        
+        # Find the account type with highest score
+        best_match = max(
+            self.account_type_patterns.items(),
+            key=lambda x: x[1].get("_classification_score", 0)
+        )
+        
+        # If no strong match, default to Regular Broker
+        if best_match[1].get("_classification_score", 0) < 3:
+            return "Regular Broker"
+        
+        return best_match[0]
+    
+    def _calculate_detection_confidence(self, account_info: Dict[str, Any], detected_type: str) -> float:
+        """
+        Calculate confidence level of account type detection
+        
+        Args:
+            account_info (dict): MT5 account information
+            detected_type (str): Detected account type
+            
+        Returns:
+            float: Confidence score between 0.0 and 1.0
+        """
+        patterns = self.account_type_patterns[detected_type]
+        max_score = 8  # 3 (broker) + 2 (server) + 2 (balance) + 1 (leverage)
+        actual_score = patterns.get("_classification_score", 0)
+        
+        return min(actual_score / max_score, 1.0)
+    
+    def _emit_trading_rules(self, account_type: str, rules: Dict[str, Any], override_mode: bool = False):
+        """
+        Emit trading rules for the detected account type
+        
+        Args:
+            account_type (str): Detected account type
+            rules (dict): Trading rules for the account type
+            override_mode (bool): If True, indicates this is from rule override mode
+        """
+        try:
+            rules_event = {
+                "account_type": account_type,
+                "trading_rules": rules,
+                "detection_timestamp": datetime.utcnow().isoformat(),
+                "broker_info": self.broker_info.copy(),
+                "rule_version": "1.0",
+                "override_mode": override_mode
+            }
+            
+            # Emit to ExecutionPrioritizationEngine and other rule consumers
+            emit_event("BrokerRulesDiscovered", rules_event, self.module_name)
+            emit_event("TradingRulesUpdate", rules_event, self.module_name)
+            
+            with self.lock:
+                self.telemetry["rule_updates_sent"] += 1
+            
+            self.logger.info(f"📋 Trading rules emitted for {account_type}")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error emitting trading rules: {e}")
+            self._emit_error("RULE_EMISSION_ERROR", str(e))
+    
+    def _should_redetect_account_type(self, new_account_data: Dict[str, Any]) -> bool:
+        """
+        Determine if account type should be re-detected based on significant changes
+        
+        Args:
+            new_account_data (dict): New account information
+            
+        Returns:
+            bool: True if re-detection is needed
+        """
+        if not self.account_verified:
+            return True
+        
+        # Check for significant changes
+        significant_changes = [
+            # Balance changed by more than 50%
+            abs(new_account_data.get("balance", 0) - self.broker_info.get("balance", 0)) > self.broker_info.get("balance", 1) * 0.5,
+            # Leverage changed
+            new_account_data.get("leverage", 0) != self.broker_info.get("leverage", 0),
+            # Server changed
+            new_account_data.get("server", "") != self.broker_info.get("server", ""),
+            # Broker changed
+            new_account_data.get("broker", "") != self.broker_info.get("broker", "")
+        ]
+        
+        return any(significant_changes)
+    
+    def _clear_detection_state(self):
+        """Clear account detection state when MT5 disconnects"""
+        with self.lock:
+            self.detected_account_type = None
+            self.current_rules = None
+            self.broker_info = {}
+            self.account_verified = False
+        
+        # Emit rules clearing event
+        emit_event("TradingRulesUpdate", {
+            "account_type": None,
+            "trading_rules": None,
+            "detection_timestamp": datetime.utcnow().isoformat(),
+            "status": "disconnected"
+        }, self.module_name)
+    
+    def _register_event_routes(self):
+        """Register all event routes with the EventBus"""
+        register_route("BrokerRulesDiscovered", self.module_name, "ExecutionPrioritizationEngine")
+        register_route("BrokerRulesDiscovered", self.module_name, "RiskEngine")
+        register_route("BrokerRulesDiscovered", self.module_name, "ExecutionEngine")
+        register_route("TradingRulesUpdate", self.module_name, "ExecutionPrioritizationEngine")
+        register_route("TradingRulesUpdate", self.module_name, "RiskEngine")
+        register_route("AccountTypeDetected", self.module_name, "TelemetryCollector")
+        register_route("AccountTypeDetected", self.module_name, "DashboardEngine")
+    
+    def _emit_telemetry(self, event_type: str, data: Optional[Dict[str, Any]] = None):
+        """Emit telemetry data to TelemetryCollector"""
+        try:
+            telemetry_data = {
+                "timestamp": datetime.utcnow().isoformat(),
+                "module": self.module_name,
+                "event_type": event_type,
+                "data": data or {},
+                "telemetry_metrics": self.telemetry.copy()
+            }
+            
+            emit_event("ModuleTelemetry", telemetry_data, self.module_name)
+            
+            # Log to file
+            self.logger.info(json.dumps({
+                "event": "telemetry",
+                "type": event_type,
+                "data": telemetry_data
+            }))
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error emitting telemetry: {e}")
+    
+    def _emit_error(self, error_type: str, error_message: str):
+        """Emit error event and update telemetry"""
+        try:
+            with self.lock:
+                self.telemetry["module_errors"] += 1
+            
+            error_data = {
+                "timestamp": datetime.utcnow().isoformat(),
+                "module": self.module_name,
+                "error_type": error_type,
+                "error_message": error_message,
+                "detected_account_type": self.detected_account_type
+            }
+            
+            emit_event("ModuleError", error_data, self.module_name)
+            
+            # Log to file
+            self.logger.error(json.dumps({
+                "event": "error",
+                "type": error_type,
+                "message": error_message
+            }))
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error emitting error event: {e}")
+    
+    def get_status(self) -> Dict[str, Any]:
+        """
+        Get current module status and detected account information
+        
+        Returns:
+            dict: Current module status
+        """
+        with self.lock:
+            return {
+                "module": self.module_name,
+                "version": self.version,
+                "detected_account_type": self.detected_account_type,
+                "account_verified": self.account_verified,
+                "broker_info": self.broker_info.copy(),
+                "current_rules": self.current_rules.copy() if self.current_rules else None,
+                "telemetry": self.telemetry.copy(),
+                "mt5_available": MT5_AVAILABLE,
+                "supported_account_types": list(self.account_type_patterns.keys())
+            }
+
+# Module initialization (EventBus integration)
+if __name__ == "__main__":
+    # Initialize BrokerDiscoveryEngine
+    broker_discovery = BrokerDiscoveryEngine()
+    
+    # Status print (COMPLIANCE: No mock data references)
+    print("✅ BrokerDiscoveryEngine v1.0 initialized — Dynamic broker rule detection active.")
+    print("📋 Supported account types:")
+    for account_type in broker_discovery.account_type_patterns.keys():
+        print(f"   - {account_type}")
+    print("🔍 Waiting for MT5 connection to detect account type...")

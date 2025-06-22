@@ -1,0 +1,9 @@
+{
+  "module_id": "pattern_classifier_engine",
+  "original_path": "modules\\ml\\pattern_classifier_engine.py",
+  "preserved_path": "preservation_holding_area\\pattern_classifier_engine_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 88465,
+  "checksum": "1da6d43143cda7ad173444ebd04c55d4f0b4c779d4416010699de199a7ece971"
+}

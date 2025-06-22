@@ -1,0 +1,9 @@
+{
+  "module_id": "auto_execution_manager_recovered",
+  "original_path": "modules\\execution\\auto_execution_manager_recovered.py",
+  "preserved_path": "preservation_holding_area\\auto_execution_manager_recovered_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 35074,
+  "checksum": "3e97161a3785be10fb0a580672205ff2f8fed0b2c0f8ce4c479964ef2560310e"
+}

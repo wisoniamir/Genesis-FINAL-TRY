@@ -1,0 +1,63 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_quarantine_recovery.py",
+  "quarantine_timestamp": "2025-06-21T04:33:02.945271+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_quarantine_recovery.py",
+      "line_numbers": [
+        144
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_quarantine_recovery.py",
+      "line_numbers": [
+        111,
+        112,
+        143,
+        144,
+        149
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_quarantine_recovery.py",
+      "line_numbers": [
+        130,
+        186,
+        215
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_quarantine_recovery.py",
+      "line_numbers": [
+        154,
+        204,
+        267
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_quarantine_recovery.py",
+      "line_numbers": [
+        101,
+        206,
+        221,
+        347
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "tr_interior_point",
+  "original_path": "modules\\restored\\tr_interior_point.py",
+  "preserved_path": "preservation_holding_area\\tr_interior_point_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 26158,
+  "checksum": "c54a5606d730a7554ab2aabfb1628c2986a92651a38b2e5938b63060aaf56375"
+}

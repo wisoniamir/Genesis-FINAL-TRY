@@ -1,0 +1,9 @@
+{
+  "module_id": "jupyter",
+  "original_path": "modules\\restored\\jupyter.py",
+  "preserved_path": "preservation_holding_area\\jupyter_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19429,
+  "checksum": "d9dbdbbd0d815a4eb96b6167320e492e8da10c9a07cc0da663c44aa9d5b9c0b9"
+}

@@ -1,0 +1,39 @@
+name: GENESIS Trading Bot CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install MetaTrader5==5.0.45
+        
+    - name: Validate Architecture
+      run: |
+        python github_ci_cd_workflow.py run --trigger push
+      
+    - name: Generate System Report
+      run: |
+        python -c "import json; open('system_report.json', 'w').write(json.dumps({'validation_completed': True, 'timestamp': __import__('datetime').datetime.now().isoformat()}))"
+      
+    - name: Upload Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: system-report
+        path: system_report.json

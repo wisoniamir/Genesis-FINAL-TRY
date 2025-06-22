@@ -1,0 +1,64 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_91_telemetry_wiring_enforcer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.875250+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_91_telemetry_wiring_enforcer.py",
+      "line_numbers": [
+        146
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_91_telemetry_wiring_enforcer.py",
+      "line_numbers": [
+        66,
+        109,
+        150,
+        227,
+        263
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_91_telemetry_wiring_enforcer.py",
+      "line_numbers": [
+        70,
+        144,
+        219,
+        258,
+        298
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_91_telemetry_wiring_enforcer.py",
+      "line_numbers": [
+        122,
+        127,
+        138
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\phase_91_telemetry_wiring_enforcer.py",
+      "line_numbers": [
+        42,
+        60,
+        173
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

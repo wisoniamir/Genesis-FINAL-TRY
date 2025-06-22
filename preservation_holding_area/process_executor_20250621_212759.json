@@ -1,0 +1,9 @@
+{
+  "module_id": "process_executor",
+  "original_path": "modules\\restored\\process_executor.py",
+  "preserved_path": "preservation_holding_area\\process_executor_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 130044,
+  "checksum": "4ebb9e951df40d982684d55fb98fa99afa735e852b11b4518f08e78fcf94b125"
+}

@@ -1,0 +1,72 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_signal_fusion_matrix.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.326158+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_signal_fusion_matrix.py",
+      "line_numbers": [
+        169,
+        174,
+        179,
+        187,
+        189
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_signal_fusion_matrix.py",
+      "line_numbers": [
+        21,
+        107,
+        133,
+        168,
+        174
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_signal_fusion_matrix.py",
+      "line_numbers": [
+        43,
+        55,
+        68,
+        81,
+        93
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_signal_fusion_matrix.py",
+      "line_numbers": [
+        51,
+        64,
+        77,
+        89,
+        102
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_signal_fusion_matrix.py",
+      "line_numbers": [
+        38,
+        49,
+        62,
+        75,
+        87
+      ],
+      "violation_count": 7
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

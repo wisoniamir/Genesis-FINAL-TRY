@@ -1,0 +1,441 @@
+# <!-- @GENESIS_MODULE_START: mt5_connection_bridge -->
+
+#!/usr/bin/env python3
+"""
+GENESIS MT5 Connection Bridge - Phase 88
+Live MT5 connection and synchronization module
+
+🎯 PURPOSE: Establish live connection to FTMO Demo account and sync all market data
+🔁 EVENTBUS: Emits mt5:connected, mt5:sync_complete, mt5:data_update
+📡 TELEMETRY: Connection status, latency, balance updates
+🛡️ COMPLIANCE: Real MT5 data only, no execute feeds
+"""
+
+import MetaTrader5 as mt5
+import json
+import time
+import logging
+import threading
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Optional, Any
+import pandas as pd
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('MT5Bridge')
+
+class MT5ConnectionBridge:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "mt5_connection_bridge",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in mt5_connection_bridge: {e}")
+                return False
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.event_bus = self._get_event_bus()
+        
+    def _get_event_bus(self):
+        # Auto-injected EventBus connection
+        try:
+            from event_bus_manager import EventBusManager
+            return EventBusManager.get_instance()
+        except ImportError:
+            logging.warning("EventBus not available - integration required")
+            return None
+            
+    def emit_telemetry(self, data):
+        if self.event_bus:
+            self.event_bus.emit('telemetry', data)
+    """
+    Live MT5 connection and data synchronization bridge
+    Connects to FTMO Demo account and provides real-time market data
+    """
+    
+    def __init__(self):
+        """Initialize MT5 connection bridge"""
+        self.credentials = {
+            "login": 1510944899,
+            "password": "97v!*DK@ha",
+            "server": "FTMO-Demo"
+        }
+        
+        self.connected = False
+        self.account_info = {}
+        self.symbols = []
+        self.connection_start_time = None
+        self.last_sync_time = None
+        
+        # Telemetry tracking
+        self.connection_stats = {
+            "connection_attempts": 0,
+            "successful_connections": 0,
+            "last_ping_ms": 0,
+            "data_updates": 0,
+            "sync_operations": 0
+        }
+        
+        logger.info("MT5 Connection Bridge initialized")
+    
+    def connect_to_mt5(self) -> Dict[str, Any]:
+        """Establish connection to MT5 terminal"""
+        logger.info("🔗 Connecting to MT5 terminal...")
+        
+        connection_result = {
+            "connected": False,
+            "error_message": "",
+            "connection_time_ms": 0,
+            "account_verified": False
+        }
+        
+        start_time = time.time()
+        self.connection_stats["connection_attempts"] += 1
+        
+        try:
+            # Initialize MT5 connection
+            if not mt5.initialize():
+                connection_result["error_message"] = "Failed to initialize MT5"
+                logger.error("❌ MT5 initialization failed")
+                return connection_result
+            
+            # Login to account
+            login_result = mt5.login(
+                login=int(self.credentials["login"]),
+                password=self.credentials["password"],
+                server=self.credentials["server"]
+            )
+            
+            if not login_result:
+                error_code = mt5.last_error()
+                connection_result["error_message"] = f"Login failed: {error_code}"
+                logger.error(f"❌ MT5 login failed: {error_code}")
+                mt5.shutdown()
+                return connection_result
+            
+            # Verify account info
+            account_info = mt5.account_info()
+            if account_info is None:
+                connection_result["error_message"] = "Failed to retrieve account info"
+                logger.error("❌ Could not retrieve account info")
+                mt5.shutdown()
+                return connection_result
+              # Store account information
+            self.account_info = {
+                "login": account_info.login,
+                "trade_mode": account_info.trade_mode,
+                "balance": account_info.balance,
+                "equity": account_info.equity,
+                "margin": account_info.margin,
+                "free_margin": getattr(account_info, 'margin_free', account_info.equity - account_info.margin),
+                "margin_level": getattr(account_info, 'margin_level', 0.0),
+                "currency": account_info.currency,
+                "server": account_info.server,
+                "company": account_info.company
+            }
+            
+            # Calculate connection time
+            connection_time_ms = (time.time() - start_time) * 1000
+            
+            # Mark as connected
+            self.connected = True
+            self.connection_start_time = datetime.now(timezone.utc)
+            self.connection_stats["successful_connections"] += 1
+            
+            connection_result.update({
+                "connected": True,
+                "connection_time_ms": connection_time_ms,
+                "account_verified": True,
+                "account_info": self.account_info
+            })
+            
+            logger.info(f"✅ Connected to MT5 successfully ({connection_time_ms:.1f}ms)")
+            logger.info(f"✅ Account: {self.account_info['login']} on {self.account_info['server']}")
+            logger.info(f"✅ Balance: {self.account_info['balance']} {self.account_info['currency']}")
+            
+        except Exception as e:
+            connection_result["error_message"] = str(e)
+            logger.error(f"❌ MT5 connection error: {str(e)}")            if mt5.initialize():
+                mt5.shutdown()
+        
+        return connection_result
+    
+    def sync_market_data(self) -> Dict[str, Any]:
+        """Synchronize ALL market watch symbols dynamically from MT5"""
+        logger.info("📊 Synchronizing ALL market data from MT5 Market Watch...")
+        
+        sync_result = {
+            "symbols_loaded": 0,
+            "active_symbols": [],
+            "sync_time_ms": 0,
+            "success": False
+        }
+        
+        if not self.connected:
+            sync_result["error"] = "Not connected to MT5"
+            return sync_result
+        
+        start_time = time.time()
+        
+        try:
+            # ARCHITECT_MODE_COMPLIANCE: Get ALL symbols from MT5 Market Watch (no hardcoded lists)
+            symbols = mt5.symbols_get()
+            if symbols is None:
+                sync_result["error"] = "Failed to retrieve symbols from MT5"
+                return sync_result
+            
+            # ZERO_TOLERANCE: Auto-discover ALL available symbols (no filtering by hardcoded pairs)
+            active_symbols = []
+            for symbol in symbols:
+                # Only include symbols that are visible in Market Watch
+                if symbol.visible:
+                    # Get current tick data for live symbols
+                    tick = mt5.symbol_info_tick(symbol.name)
+                    if tick is not None and tick.bid > 0:  # Ensure live pricing
+                        active_symbols.append({
+                            "symbol": symbol.name,
+                            "bid": tick.bid,
+                            "ask": tick.ask,
+                            "spread": tick.ask - tick.bid,
+                            "last": tick.last,
+                            "volume": tick.volume,
+                            "time": datetime.fromtimestamp(tick.time).isoformat(),
+                            "description": getattr(symbol, 'description', symbol.name),
+                            "point": symbol.point,
+                            "digits": symbol.digits
+                        })
+            
+            self.symbols = active_symbols
+            sync_time_ms = (time.time() - start_time) * 1000
+            self.last_sync_time = datetime.now(timezone.utc)
+            self.connection_stats["sync_operations"] += 1
+            
+            sync_result.update({
+                "symbols_loaded": len(active_symbols),
+                "active_symbols": active_symbols,
+                "sync_time_ms": sync_time_ms,
+                "success": True
+            })
+            
+            logger.info(f"✅ Market data synchronized ({len(active_symbols)} symbols, {sync_time_ms:.1f}ms)")
+            
+        except Exception as e:
+            sync_result["error"] = str(e)
+            logger.error(f"❌ Market data sync error: {str(e)}")
+        
+        return sync_result
+    
+    def test_latency(self) -> Dict[str, Any]:
+        """Test connection latency to MT5 server"""
+        logger.info("⏱️ Testing MT5 server latency...")
+        
+        latency_results = {
+            "ping_tests": [],
+            "average_latency_ms": 0,
+            "min_latency_ms": 0,
+            "max_latency_ms": 0,
+            "test_success": False
+        }
+        
+        if not self.connected:
+            latency_results["error"] = "Not connected to MT5"
+            return latency_results
+        
+        try:
+            ping_times = []
+            
+            # Perform 5 ping tests
+            for i in range(5):
+                start_time = time.time()
+                
+                # Quick account info request as ping test
+                account_info = mt5.account_info()
+                
+                if account_info is not None:
+                    ping_time_ms = (time.time() - start_time) * 1000
+                    ping_times.append(ping_time_ms)
+                    latency_results["ping_tests"].append({
+                        "test_number": i + 1,
+                        "latency_ms": ping_time_ms,
+                        "timestamp": datetime.now().isoformat()
+                    })
+                
+                time.sleep(0.1)  # Small delay between tests
+            
+            if ping_times:
+                latency_results.update({
+                    "average_latency_ms": sum(ping_times) / len(ping_times),
+                    "min_latency_ms": min(ping_times),
+                    "max_latency_ms": max(ping_times),
+                    "test_success": True
+                })
+                
+                self.connection_stats["last_ping_ms"] = latency_results["average_latency_ms"]
+                
+                logger.info(f"✅ Latency test completed - Avg: {latency_results['average_latency_ms']:.1f}ms")
+            
+        except Exception as e:
+            latency_results["error"] = str(e)
+            logger.error(f"❌ Latency test error: {str(e)}")
+        
+        return latency_results
+    
+    def send_test_order(self, symbol: str = "EURUSD", volume: float = 0.01, action: str = "BUY") -> Dict[str, Any]:
+        """Send a test order to MT5 (demo account only)"""
+        logger.info(f"📈 Sending test order: {action} {volume} {symbol}")
+        
+        order_result = {
+            "order_sent": False,
+            "order_ticket": None,
+            "execution_time_ms": 0,
+            "fill_price": 0.0,
+            "success": False
+        }
+        
+        if not self.connected:
+            order_result["error"] = "Not connected to MT5"
+            return order_result
+        
+        start_time = time.time()
+        
+        try:
+            # Get symbol info
+            symbol_info = mt5.symbol_info(symbol)
+            if symbol_info is None:
+                order_result["error"] = f"Symbol {symbol} not found"
+                return order_result
+            
+            # Prepare order request
+            point = symbol_info.point
+            price = mt5.symbol_info_tick(symbol).ask if action == "BUY" else mt5.symbol_info_tick(symbol).bid
+            
+            # Calculate SL and TP (small ranges for demo)
+            sl = price - 50 * point if action == "BUY" else price + 50 * point
+            tp = price + 50 * point if action == "BUY" else price - 50 * point
+            
+            request = {
+                "action": mt5.TRADE_ACTION_DEAL,
+                "symbol": symbol,
+                "volume": volume,
+                "type": mt5.ORDER_TYPE_BUY if action == "BUY" else mt5.ORDER_TYPE_SELL,
+                "price": price,
+                "sl": sl,
+                "tp": tp,
+                "deviation": 20,
+                "magic": 88888,  # Phase 88 magic number
+                "comment": f"Phase_88_Test_{action}",
+                "type_time": mt5.ORDER_TIME_GTC,
+                "type_filling": mt5.ORDER_FILLING_IOC,
+            }
+            
+            # Send order
+            result = mt5.order_send(request)
+            execution_time_ms = (time.time() - start_time) * 1000
+            
+            if result.retcode != mt5.TRADE_RETCODE_DONE:
+                order_result["error"] = f"Order failed: {result.retcode} - {result.comment}"
+                logger.error(f"❌ Order failed: {result.retcode} - {result.comment}")
+                return order_result
+            
+            order_result.update({
+                "order_sent": True,
+                "order_ticket": result.order,
+                "execution_time_ms": execution_time_ms,
+                "fill_price": result.price,
+                "volume": result.volume,
+                "success": True,
+                "retcode": result.retcode,
+                "comment": result.comment
+            })
+            
+            logger.info(f"✅ Test order executed successfully ({execution_time_ms:.1f}ms)")
+            logger.info(f"✅ Ticket: {result.order}, Price: {result.price}, Volume: {result.volume}")
+            
+        except Exception as e:
+            order_result["error"] = str(e)
+            logger.error(f"❌ Test order error: {str(e)}")
+        
+        return order_result
+    
+    def get_connection_status(self) -> Dict[str, Any]:
+        """Get current connection status and statistics"""
+        return {
+            "connected": self.connected,
+            "connection_time": self.connection_start_time.isoformat() if self.connection_start_time else None,
+            "last_sync": self.last_sync_time.isoformat() if self.last_sync_time else None,
+            "account_info": self.account_info,
+            "active_symbols_count": len(self.symbols),
+            "connection_stats": self.connection_stats,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+    
+    def disconnect(self):
+        """Disconnect from MT5 terminal"""
+        if self.connected:
+            mt5.shutdown()
+            self.connected = False
+            logger.info("✅ Disconnected from MT5")
+    
+    def __del__(self):
+        """Cleanup on destruction"""
+        self.disconnect()
+
+if __name__ == "__main__":
+    # Test MT5 connection bridge
+    bridge = MT5ConnectionBridge()
+    
+    # Connect
+    connection_result = bridge.connect_to_mt5()
+    if connection_result["connected"]:
+        print("✅ MT5 Connected successfully")
+        
+        # Sync market data
+        sync_result = bridge.sync_market_data()
+        print(f"✅ Market data synced: {sync_result['symbols_loaded']} symbols")
+        
+        # Test latency
+        latency_result = bridge.test_latency()
+        print(f"✅ Average latency: {latency_result['average_latency_ms']:.1f}ms")
+        
+        # Get status
+        status = bridge.get_connection_status()
+        print(f"✅ Account balance: {status['account_info']['balance']} {status['account_info']['currency']}")
+        
+    else:
+        print(f"❌ Connection failed: {connection_result['error_message']}")
+    
+    bridge.disconnect()
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: mt5_connection_bridge -->

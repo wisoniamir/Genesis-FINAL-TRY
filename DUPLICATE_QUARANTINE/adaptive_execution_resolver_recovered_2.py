@@ -1,0 +1,1043 @@
+# <!-- @GENESIS_MODULE_START: adaptive_execution_resolver -->
+
+from datetime import datetime, timezone
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "adaptive_execution_resolver_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in adaptive_execution_resolver_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "adaptive_execution_resolver_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("adaptive_execution_resolver_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in adaptive_execution_resolver_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+<!-- @GENESIS_MODULE_START: adaptive_execution_resolver -->
+🔧 GENESIS AI TRADING SYSTEM - ADAPTIVE EXECUTION RESOLVER v1.0
+🔐 ARCHITECT MODE v3.0 - PHASE 19 ADAPTIVE EXECUTION LAYER
+
+This module receives drift detection and recalibration requests from SmartFeedbackSync,
+analyzes feedback patterns, and triggers adaptive adjustments to signal and execution engines.
+
+STRICT COMPLIANCE RULES:
+- Real MT5 data only - no real/executed inputs
+- EventBus-only communication - no local handlers
+- Full telemetry integration with structured logging
+- Institutional-grade adaptive resolution with learning algorithms
+<!-- @GENESIS_MODULE_END: adaptive_execution_resolver -->
+"""
+
+import json
+import datetime
+import os
+import logging
+import time
+import threading
+import numpy as np
+import pandas as pd
+from collections import defaultdict, deque
+from statistics import mean, stdev
+from hardened_event_bus import get_event_bus, emit_event, subscribe_to_event, register_route
+
+class AdaptiveExecutionResolver:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "adaptive_execution_resolver_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in adaptive_execution_resolver_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "adaptive_execution_resolver_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("adaptive_execution_resolver_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in adaptive_execution_resolver_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "adaptive_execution_resolver_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in adaptive_execution_resolver_recovered_2: {e}")
+    """
+    Adaptive Execution Resolution Engine for GENESIS Trading System
+    
+    Receives inputs from:
+    - SmartFeedbackSync (DriftDetected, RecalibrationNeeded)
+    - TelemetryCollector (SystemMetrics)
+    
+    Triggers adaptive adjustments to:
+    - SignalEngine (StrategyAdjustment)
+    - ExecutionEngine (ExecutionParameterUpdate)
+    - RiskEngine (RiskParameterUpdate)
+    - TelemetryCollector (AdaptiveMetric)
+    """
+    
+    def __init__(self):
+        self.event_bus = get_event_bus()
+        self.module_name = "AdaptiveExecutionResolver"
+        self.adaptive_learning_enabled = True
+        self.auto_adjustment_mode = True
+        
+        # Adaptive resolution parameters
+        self.drift_sensitivity = 0.10
+        self.adjustment_magnitude = 0.05  # Conservative 5% adjustments
+        self.adjustment_cooldown = 600    # 10 minutes between major adjustments
+        self.last_major_adjustment = 0
+        
+        # Resolution tracking
+        self.drift_history = deque(maxlen=50)
+        self.adjustment_history = deque(maxlen=30)
+        self.effectiveness_scores = deque(maxlen=20)
+        
+        # Learning algorithm parameters
+        self.learning_rate = 0.02
+        self.adaptation_weights = {
+            "confidence_drift": 0.4,
+            "execution_drift": 0.3,
+            "signal_loss": 0.2,
+            "system_deviation": 0.1
+        }
+        
+        # Adaptive strategies
+        self.strategy_adjustments = defaultdict(list)
+        self.execution_parameter_cache = {}
+        
+        # Thread safety
+        self.lock = threading.Lock()
+        self.resolution_active = True
+        
+        # Logging and telemetry
+        self._setup_logging()
+        self._setup_telemetry()
+        self._subscribe_to_events()
+        
+        # Start background resolution processor
+        self.resolution_processor = threading.Thread(target=self._process_resolution_loop, daemon=True)
+        self.resolution_processor.start()
+        
+        self._emit_module_ready()
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_logging(self):
+        """Setup structured JSONL logging for institutional compliance"""
+        os.makedirs("logs/adaptive_execution_resolver", exist_ok=True)
+        
+        self.logger = logging.getLogger(f"AdaptiveExecutionResolver")
+        self.logger.setLevel(logging.INFO)
+        
+        # JSONL handler for structured logs
+        jsonl_handler = logging.FileHandler(f"logs/adaptive_execution_resolver/resolver_{datetime.datetime.now().strftime('%Y%m%d')}.jsonl")
+        jsonl_formatter = logging.Formatter('{"timestamp":"%(asctime)s","level":"%(levelname)s","module":"%(name)s","message":%(message)s}')
+        jsonl_handler.setFormatter(jsonl_formatter)
+        self.logger.addHandler(jsonl_handler)
+    
+    def _setup_telemetry(self):
+        """Setup telemetry data storage and metrics collection"""
+        os.makedirs("data/adaptive_execution_resolver", exist_ok=True)
+        
+        self.telemetry_data = {
+            "session_id": f"adaptive_resolver_{int(time.time())}",
+            "start_time": datetime.datetime.now().isoformat(),
+            "drift_events_processed": 0,
+            "recalibrations_processed": 0,
+            "strategy_adjustments_made": 0,
+            "execution_updates_made": 0,
+            "learning_adaptations": 0,
+            "effectiveness_score": 0.0
+        }
+    
+    def _subscribe_to_events(self):
+        """Subscribe to EventBus events for adaptive resolution"""
+        # Subscribe to feedback sync signals
+        subscribe_to_event("DriftDetected", self._on_drift_detected, self.module_name)
+        subscribe_to_event("RecalibrationNeeded", self._on_recalibration_needed, self.module_name)
+        
+        # Subscribe to system telemetry
+        subscribe_to_event("SystemMetrics", self._on_system_metrics, self.module_name)
+        subscribe_to_event("ExecutionMetric", self._on_execution_metric, self.module_name)
+        
+        # Subscribe to adjustment effectiveness feedback
+        subscribe_to_event("AdjustmentEffectiveness", self._on_adjustment_effectiveness, self.module_name)
+        
+        # Register EventBus routes
+        self._register_eventbus_routes()
+    
+    def _register_eventbus_routes(self):
+        """Register all EventBus routes for adaptive execution resolver"""
+        routes = [
+            ("DriftDetected", "SmartFeedbackSync", "AdaptiveExecutionResolver"),
+            ("RecalibrationNeeded", "SmartFeedbackSync", "AdaptiveExecutionResolver"),
+            ("SystemMetrics", "TelemetryCollector", "AdaptiveExecutionResolver"),
+            ("ExecutionMetric", "ExecutionEngine", "AdaptiveExecutionResolver"),
+            ("AdjustmentEffectiveness", "SignalEngine", "AdaptiveExecutionResolver"),
+            ("StrategyAdjustment", "AdaptiveExecutionResolver", "SignalEngine"),
+            ("ExecutionParameterUpdate", "AdaptiveExecutionResolver", "ExecutionEngine"),
+            ("RiskParameterUpdate", "AdaptiveExecutionResolver", "RiskEngine"),
+            ("AdaptiveMetric", "AdaptiveExecutionResolver", "TelemetryCollector"),
+            ("LearningUpdate", "AdaptiveExecutionResolver", "TelemetryCollector")
+        ]
+        
+        for topic, producer, consumer in routes:
+            register_route(topic, producer, consumer)
+    
+    def _on_drift_detected(self, event_data):
+        """Handle drift detection events from smart feedback sync"""
+        with self.lock:
+            try:
+                data = event_data.get("data", {}) if isinstance(event_data, dict) else event_data
+                drift_type = data.get("drift_type", "unknown")
+                drift_data = data.get("drift_data", {})
+                timestamp = data.get("timestamp", datetime.datetime.now().isoformat())
+                
+                # Store drift event
+                drift_event = {
+                    "type": drift_type,
+                    "data": drift_data,
+                    "timestamp": timestamp,
+                    "processed": False
+                }
+                self.drift_history.append(drift_event)
+                
+                self.telemetry_data["drift_events_processed"] += 1
+                
+                self.logger.info(json.dumps({
+                    "event": "drift_detected",
+                    "drift_type": drift_type,
+                    "drift_magnitude": drift_data.get("drift_magnitude", 0.0),
+                    "threshold": drift_data.get("threshold", 0.0)
+                }))
+                
+                # Process drift immediately if significant
+                drift_magnitude = drift_data.get("drift_magnitude", 0.0)
+                if drift_magnitude > self.drift_sensitivity:
+                    self._process_drift_resolution(drift_event)
+                
+            except Exception as e:
+                self._handle_error("drift_detection_processing", str(e))
+    
+    def _on_recalibration_needed(self, event_data):
+        """Handle recalibration requests from smart feedback sync"""
+        with self.lock:
+            try:
+                data = event_data.get("data", {}) if isinstance(event_data, dict) else event_data
+                reason = data.get("reason", "unknown")
+                urgency = data.get("urgency", "medium")
+                response_type = data.get("response_type", "standard")
+                timestamp = data.get("timestamp", datetime.datetime.now().isoformat())
+                
+                self.telemetry_data["recalibrations_processed"] += 1
+                
+                self.logger.info(json.dumps({
+                    "event": "recalibration_needed",
+                    "reason": reason,
+                    "urgency": urgency,
+                    "response_type": response_type
+                }))
+                
+                # Process recalibration based on urgency
+                if urgency in ["high", "critical"]:
+                    self._execute_immediate_recalibration(reason, urgency, data)
+                else:
+                    self._queue_standard_recalibration(reason, urgency, data)
+                
+            except Exception as e:
+                self._handle_error("recalibration_processing", str(e))
+    
+    def _on_system_metrics(self, event_data):
+        """Handle system metrics for adaptive learning"""
+        with self.lock:
+            try:
+                data = event_data.get("data", {}) if isinstance(event_data, dict) else event_data
+                metrics = data.get("metrics", {})
+                
+                # Update learning algorithm with system performance
+                if self.adaptive_learning_enabled:
+                    self._update_learning_weights(metrics)
+                
+                self.logger.info(json.dumps({
+                    "event": "system_metrics_received",
+                    "metric_count": len(metrics)
+                }))
+                
+            except Exception as e:
+                self._handle_error("system_metrics_processing", str(e))
+    
+    def _on_execution_metric(self, event_data):
+        """Handle execution metrics for effectiveness tracking"""
+        with self.lock:
+            try:
+                data = event_data.get("data", {}) if isinstance(event_data, dict) else event_data
+                execution_quality = data.get("execution_quality", 0.0)
+                adjustment_id = data.get("adjustment_id", None)
+                
+                # Track effectiveness of previous adjustments
+                if adjustment_id:
+                    self._track_adjustment_effectiveness(adjustment_id, execution_quality)
+                
+                self.logger.info(json.dumps({
+                    "event": "execution_metric_received",
+                    "execution_quality": execution_quality,
+                    "adjustment_id": adjustment_id
+                }))
+                
+            except Exception as e:
+                self._handle_error("execution_metric_processing", str(e))
+    
+    def _on_adjustment_effectiveness(self, event_data):
+        """Handle adjustment effectiveness feedback"""
+        with self.lock:
+            try:
+                data = event_data.get("data", {}) if isinstance(event_data, dict) else event_data
+                adjustment_id = data.get("adjustment_id", "")
+                effectiveness_score = data.get("effectiveness_score", 0.0)
+                
+                self.effectiveness_scores.append(effectiveness_score)
+                
+                # Update learning algorithm
+                if self.adaptive_learning_enabled:
+                    self._update_learning_from_effectiveness(adjustment_id, effectiveness_score)
+                
+                self.logger.info(json.dumps({
+                    "event": "adjustment_effectiveness",
+                    "adjustment_id": adjustment_id,
+                    "effectiveness_score": effectiveness_score
+                }))
+                
+            except Exception as e:
+                self._handle_error("adjustment_effectiveness_processing", str(e))
+    
+    def _process_drift_resolution(self, drift_event):
+        """Process drift resolution with adaptive algorithms"""
+        try:
+            drift_type = drift_event["type"]
+            drift_data = drift_event["data"]
+            drift_magnitude = drift_data.get("drift_magnitude", 0.0)
+            
+            # Calculate adaptive adjustment based on drift type and magnitude
+            adjustment_factor = self._calculate_adjustment_factor(drift_type, drift_magnitude)
+            
+            # Generate strategy adjustment
+            strategy_adjustment = self._generate_strategy_adjustment(drift_type, adjustment_factor)
+            
+            # Generate execution parameter updates
+            execution_updates = self._generate_execution_updates(drift_type, adjustment_factor)
+            
+            # Apply adjustments
+            if strategy_adjustment:
+                self._apply_strategy_adjustment(strategy_adjustment)
+            
+            if execution_updates:
+                self._apply_execution_updates(execution_updates)
+            
+            # Mark drift as processed
+            drift_event["processed"] = True
+            
+            self.logger.info(json.dumps({
+                "event": "drift_resolution_completed",
+                "drift_type": drift_type,
+                "adjustment_factor": adjustment_factor,
+                "strategy_adjusted": bool(strategy_adjustment),
+                "execution_updated": bool(execution_updates)
+            }))
+            
+        except Exception as e:
+            self._handle_error("drift_resolution", str(e))
+    
+    def _execute_immediate_recalibration(self, reason, urgency, request_data):
+        """Execute immediate recalibration for critical issues"""
+        try:
+            current_time = time.time()
+            
+            # Generate emergency adjustment
+            emergency_adjustment = {
+                "adjustment_id": f"emergency_{int(current_time)}",
+                "reason": reason,
+                "urgency": urgency,
+                "timestamp": datetime.datetime.now().isoformat(),
+                "type": "emergency_recalibration"
+            }
+            
+            # Apply conservative emergency settings
+            if reason == "signal_loss_threshold_exceeded":
+                # Reduce position sizes and increase safety margins
+                emergency_updates = {
+                    "position_size_multiplier": 0.5,
+                    "stop_loss_buffer": 1.5,
+                    "take_profit_buffer": 1.2,
+                    "confidence_threshold": 0.8
+                }
+                self._apply_emergency_execution_updates(emergency_updates, emergency_adjustment["adjustment_id"])
+            
+            elif "execution_deviation" in reason:
+                # Tighten execution parameters
+                emergency_updates = {
+                    "slippage_tolerance": 0.5,
+                    "timing_tolerance": 0.7,
+                    "quality_threshold": 0.9
+                }
+                self._apply_emergency_execution_updates(emergency_updates, emergency_adjustment["adjustment_id"])
+            
+            self.adjustment_history.append(emergency_adjustment)
+            self.last_major_adjustment = current_time
+            
+            self.logger.critical(json.dumps({
+                "event": "emergency_recalibration_executed",
+                "reason": reason,
+                "urgency": urgency,
+                "adjustment_id": emergency_adjustment["adjustment_id"]
+            }))
+            
+        except Exception as e:
+            self._handle_error("emergency_recalibration", str(e))
+    
+    def _queue_standard_recalibration(self, reason, urgency, request_data):
+        """Queue standard recalibration for processing"""
+        try:
+            recalibration_request = {
+                "reason": reason,
+                "urgency": urgency,
+                "request_data": request_data,
+                "timestamp": datetime.datetime.now().isoformat(),
+                "status": "queued"
+            }
+            
+            # Store for background processing
+            self.adjustment_history.append(recalibration_request)
+            
+            self.logger.info(json.dumps({
+                "event": "recalibration_queued",
+                "reason": reason,
+                "urgency": urgency
+            }))
+            
+        except Exception as e:
+            self._handle_error("recalibration_queueing", str(e))
+    
+    def _calculate_adjustment_factor(self, drift_type, drift_magnitude):
+        """Calculate adaptive adjustment factor based on drift characteristics"""
+        try:
+            # Base adjustment factor from magnitude
+            base_factor = min(drift_magnitude / self.drift_sensitivity, 2.0)  # Cap at 2x
+            
+            # Apply drift type weights
+            type_weight = self.adaptation_weights.get(drift_type, 0.1)
+            
+            # Apply learning rate
+            adjustment_factor = base_factor * type_weight * self.learning_rate
+            
+            # Ensure conservative bounds
+            adjustment_factor = max(0.01, min(adjustment_factor, self.adjustment_magnitude))
+            
+            return adjustment_factor
+            
+        except Exception as e:
+            self._handle_error("adjustment_factor_calculation", str(e))
+            return self.adjustment_magnitude / 2  # Safe fallback
+    
+    def _generate_strategy_adjustment(self, drift_type, adjustment_factor):
+        """Generate strategy adjustment based on drift analysis"""
+        try:
+            if drift_type == "confidence_drift":
+                return {
+                    "adjustment_type": "confidence_threshold",
+                    "adjustment_value": 0.7 + adjustment_factor,  # Increase threshold
+                    "reason": f"confidence_drift_{adjustment_factor:.3f}",
+                    "timestamp": datetime.datetime.now().isoformat()
+                }
+            
+            elif drift_type == "execution_drift":
+                return {
+                    "adjustment_type": "signal_strength_multiplier",
+                    "adjustment_value": 1.0 - adjustment_factor,  # Reduce sensitivity
+                    "reason": f"execution_drift_{adjustment_factor:.3f}",
+                    "timestamp": datetime.datetime.now().isoformat()
+                }
+            
+            elif drift_type == "signal_loss":
+                return {
+                    "adjustment_type": "fallback_strategy_enable",
+                    "adjustment_value": True,
+                    "reason": f"signal_loss_{adjustment_factor:.3f}",
+                    "timestamp": datetime.datetime.now().isoformat()
+                }
+            
+            self._emit_error_event("operation_failed", {
+
+            
+                "error": "ARCHITECT_MODE_COMPLIANCE: Operation failed",
+
+            
+                "timestamp": datetime.now(timezone.utc).isoformat()
+
+            
+            })
+
+            
+            raise RuntimeError("ARCHITECT_MODE_COMPLIANCE: Operation failed")
+            
+        except Exception as e:
+            self._handle_error("strategy_adjustment_generation", str(e))
+            self._emit_error_event("operation_failed", {
+
+                "error": "ARCHITECT_MODE_COMPLIANCE: Operation failed",
+
+                "timestamp": datetime.now(timezone.utc).isoformat()
+
+            })
+
+            raise RuntimeError("ARCHITECT_MODE_COMPLIANCE: Operation failed")
+    
+    def _generate_execution_updates(self, drift_type, adjustment_factor):
+        """Generate execution parameter updates based on drift analysis"""
+        try:
+            if drift_type == "execution_drift":
+                return {
+                    "slippage_tolerance": max(0.1, 1.0 - adjustment_factor),
+                    "timing_tolerance": max(0.5, 1.0 - adjustment_factor),
+                    "quality_threshold": min(0.95, 0.8 + adjustment_factor)
+                }
+            
+            elif drift_type == "confidence_drift":
+                return {
+                    "position_size_multiplier": max(0.3, 1.0 - adjustment_factor),
+                    "stop_loss_buffer": 1.0 + adjustment_factor,
+                    "take_profit_buffer": 1.0 + (adjustment_factor * 0.5)
+                }
+            
+            self._emit_error_event("operation_failed", {
+
+            
+                "error": "ARCHITECT_MODE_COMPLIANCE: Operation failed",
+
+            
+                "timestamp": datetime.now(timezone.utc).isoformat()
+
+            
+            })
+
+            
+            raise RuntimeError("ARCHITECT_MODE_COMPLIANCE: Operation failed")
+            
+        except Exception as e:
+            self._handle_error("execution_updates_generation", str(e))
+            self._emit_error_event("operation_failed", {
+
+                "error": "ARCHITECT_MODE_COMPLIANCE: Operation failed",
+
+                "timestamp": datetime.now(timezone.utc).isoformat()
+
+            })
+
+            raise RuntimeError("ARCHITECT_MODE_COMPLIANCE: Operation failed")
+    
+    def _apply_strategy_adjustment(self, strategy_adjustment):
+        """Apply strategy adjustment via EventBus"""
+        try:
+            adjustment_id = f"strategy_adj_{int(time.time())}"
+            
+            adjustment_data = {
+                **strategy_adjustment,
+                "adjustment_id": adjustment_id,
+                "module": self.module_name
+            }
+            
+            emit_event("StrategyAdjustment", adjustment_data, self.module_name)
+            
+            self.strategy_adjustments[adjustment_id].append(strategy_adjustment)
+            self.telemetry_data["strategy_adjustments_made"] += 1
+            
+            self.logger.info(json.dumps({
+                "event": "strategy_adjustment_applied",
+                "adjustment_id": adjustment_id,
+                "adjustment_type": strategy_adjustment.get("adjustment_type"),
+                "adjustment_value": strategy_adjustment.get("adjustment_value")
+            }))
+            
+        except Exception as e:
+            self._handle_error("strategy_adjustment_application", str(e))
+    
+    def _apply_execution_updates(self, execution_updates):
+        """Apply execution parameter updates via EventBus"""
+        try:
+            update_id = f"exec_update_{int(time.time())}"
+            
+            update_data = {
+                "update_id": update_id,
+                "updates": execution_updates,
+                "timestamp": datetime.datetime.now().isoformat(),
+                "module": self.module_name
+            }
+            
+            emit_event("ExecutionParameterUpdate", update_data, self.module_name)
+            
+            self.execution_parameter_cache[update_id] = execution_updates
+            self.telemetry_data["execution_updates_made"] += 1
+            
+            self.logger.info(json.dumps({
+                "event": "execution_updates_applied",
+                "update_id": update_id,
+                "updates": execution_updates
+            }))
+            
+        except Exception as e:
+            self._handle_error("execution_updates_application", str(e))
+    
+    def _apply_emergency_execution_updates(self, emergency_updates, adjustment_id):
+        """Apply emergency execution updates with high priority"""
+        try:
+            update_data = {
+                "update_id": adjustment_id,
+                "updates": emergency_updates,
+                "priority": "emergency",
+                "timestamp": datetime.datetime.now().isoformat(),
+                "module": self.module_name
+            }
+            
+            emit_event("ExecutionParameterUpdate", update_data, self.module_name)
+            
+            # Also emit risk parameter updates for safety
+            risk_updates = {
+                "update_id": f"risk_{adjustment_id}",
+                "risk_multiplier": 0.5,  # Reduce risk exposure
+                "max_position_count": max(1, int(emergency_updates.get("position_size_multiplier", 1) * 5)),
+                "emergency_mode": True,
+                "timestamp": datetime.datetime.now().isoformat()
+            }
+            
+            emit_event("RiskParameterUpdate", risk_updates, self.module_name)
+            
+            self.logger.critical(json.dumps({
+                "event": "emergency_updates_applied",
+                "adjustment_id": adjustment_id,
+                "execution_updates": emergency_updates,
+                "risk_updates": risk_updates
+            }))
+            
+        except Exception as e:
+            self._handle_error("emergency_updates_application", str(e))
+    
+    def _update_learning_weights(self, system_metrics):
+        """Update learning algorithm weights based on system performance"""
+        try:
+            if not self.adaptive_learning_enabled:
+                return
+            
+            # Extract relevant metrics
+            confidence_variance = system_metrics.get("confidence_variance", 0.1)
+            execution_quality = system_metrics.get("execution_quality", 0.8)
+            signal_stability = system_metrics.get("signal_stability", 0.7)
+            
+            # Adjust weights based on system performance
+            if confidence_variance > 0.2:
+                self.adaptation_weights["confidence_drift"] = min(0.6, self.adaptation_weights["confidence_drift"] + 0.05)
+            
+            if execution_quality < 0.7:
+                self.adaptation_weights["execution_drift"] = min(0.5, self.adaptation_weights["execution_drift"] + 0.05)
+            
+            if signal_stability < 0.6:
+                self.adaptation_weights["signal_loss"] = min(0.4, self.adaptation_weights["signal_loss"] + 0.05)
+            
+            # Normalize weights
+            total_weight = sum(self.adaptation_weights.values())
+            if total_weight > 1.0:
+                for key in self.adaptation_weights:
+                    self.adaptation_weights[key] /= total_weight
+            
+            self.telemetry_data["learning_adaptations"] += 1
+            
+            self.logger.info(json.dumps({
+                "event": "learning_weights_updated",
+                "new_weights": self.adaptation_weights,
+                "system_metrics": system_metrics
+            }))
+            
+        except Exception as e:
+            self._handle_error("learning_weights_update", str(e))
+    
+    def _update_learning_from_effectiveness(self, adjustment_id, effectiveness_score):
+        """Update learning algorithm from adjustment effectiveness feedback"""
+        try:
+            if not self.adaptive_learning_enabled:
+                return
+            
+            # Adjust learning rate based on effectiveness
+            if effectiveness_score > 0.8:
+                self.learning_rate = min(0.05, self.learning_rate * 1.1)  # Increase learning rate
+            elif effectiveness_score < 0.4:
+                self.learning_rate = max(0.01, self.learning_rate * 0.9)  # Decrease learning rate
+            
+            # Update effectiveness tracking
+            self.telemetry_data["effectiveness_score"] = mean(list(self.effectiveness_scores)) if self.effectiveness_scores else 0.0
+            
+            self.logger.info(json.dumps({
+                "event": "learning_updated_from_effectiveness",
+                "adjustment_id": adjustment_id,
+                "effectiveness_score": effectiveness_score,
+                "new_learning_rate": self.learning_rate
+            }))
+            
+        except Exception as e:
+            self._handle_error("learning_effectiveness_update", str(e))
+    
+    def _track_adjustment_effectiveness(self, adjustment_id, execution_quality):
+        """Track effectiveness of previous adjustments"""
+        try:
+            # Simple effectiveness tracking based on execution quality improvement
+            baseline_quality = 0.7  # Assumed baseline
+            effectiveness = min(1.0, execution_quality / baseline_quality)
+            
+            self.effectiveness_scores.append(effectiveness)
+            
+            # Emit learning update
+            learning_data = {
+                "adjustment_id": adjustment_id,
+                "effectiveness": effectiveness,
+                "execution_quality": execution_quality,
+                "timestamp": datetime.datetime.now().isoformat()
+            }
+            
+            emit_event("LearningUpdate", learning_data, self.module_name)
+            
+            self.logger.info(json.dumps({
+                "event": "adjustment_effectiveness_tracked",
+                "adjustment_id": adjustment_id,
+                "effectiveness": effectiveness
+            }))
+            
+        except Exception as e:
+            self._handle_error("effectiveness_tracking", str(e))
+    
+    def _process_resolution_loop(self):
+        """Background resolution processing loop"""
+        while self.resolution_active:
+            try:
+                # Process queued adjustments
+                self._process_queued_adjustments()
+                
+                # Emit periodic metrics
+                self._emit_adaptive_metrics()
+                
+                # Save telemetry data
+                self._save_telemetry_data()
+                
+                time.sleep(60)  # Process every minute
+                
+            except Exception as e:
+                self._handle_error("resolution_loop", str(e))
+                time.sleep(120)  # Wait longer on error
+    
+    def _process_queued_adjustments(self):
+        """Process queued standard adjustments"""
+        try:
+            current_time = time.time()
+            
+            # Check if we can make major adjustments
+            if current_time - self.last_major_adjustment < self.adjustment_cooldown:
+                return
+            
+            # Process queued recalibrations
+            for adjustment in list(self.adjustment_history):
+                if adjustment.get("status") == "queued":
+                    self._execute_queued_adjustment(adjustment)
+                    adjustment["status"] = "processed"
+                    self.last_major_adjustment = current_time
+                    break  # Process one at a time
+                    
+        except Exception as e:
+            self._handle_error("queued_adjustments_processing", str(e))
+    
+    def _execute_queued_adjustment(self, adjustment):
+        """Execute a queued adjustment"""
+        try:
+            reason = adjustment.get("reason", "unknown")
+            urgency = adjustment.get("urgency", "medium")
+            
+            # Generate moderate adjustment
+            adjustment_factor = self.adjustment_magnitude * 0.5  # Conservative for queued
+            
+            # Apply based on reason
+            if "confidence" in reason.lower():
+                strategy_adj = self._generate_strategy_adjustment("confidence_drift", adjustment_factor)
+                if strategy_adj:
+                    self._apply_strategy_adjustment(strategy_adj)
+            
+            elif "execution" in reason.lower():
+                exec_updates = self._generate_execution_updates("execution_drift", adjustment_factor)
+                if exec_updates:
+                    self._apply_execution_updates(exec_updates)
+            
+            self.logger.info(json.dumps({
+                "event": "queued_adjustment_executed",
+                "reason": reason,
+                "urgency": urgency,
+                "adjustment_factor": adjustment_factor
+            }))
+            
+        except Exception as e:
+            self._handle_error("queued_adjustment_execution", str(e))
+    
+    def _emit_adaptive_metrics(self):
+        """Emit periodic adaptive resolution metrics"""
+        try:
+            metrics_data = {
+                "drift_events_processed": self.telemetry_data["drift_events_processed"],
+                "recalibrations_processed": self.telemetry_data["recalibrations_processed"],
+                "strategy_adjustments_made": self.telemetry_data["strategy_adjustments_made"],
+                "execution_updates_made": self.telemetry_data["execution_updates_made"],
+                "learning_adaptations": self.telemetry_data["learning_adaptations"],
+                "effectiveness_score": self.telemetry_data["effectiveness_score"],
+                "current_learning_rate": self.learning_rate,
+                "adaptation_weights": self.adaptation_weights,
+                "drift_history_size": len(self.drift_history),
+                "adjustment_history_size": len(self.adjustment_history),
+                "timestamp": datetime.datetime.now().isoformat(),
+                "module": self.module_name
+            }
+            
+            emit_event("AdaptiveMetric", metrics_data, self.module_name)
+            
+            self.logger.info(json.dumps({
+                "event": "adaptive_metrics_emitted",
+                "metrics_summary": {
+                    "total_adjustments": self.telemetry_data["strategy_adjustments_made"] + self.telemetry_data["execution_updates_made"],
+                    "effectiveness_score": self.telemetry_data["effectiveness_score"],
+                    "learning_rate": self.learning_rate
+                }
+            }))
+            
+        except Exception as e:
+            self._handle_error("adaptive_metrics_emission", str(e))
+    
+    def _save_telemetry_data(self):
+        """Save telemetry data to disk"""
+        try:
+            filename = f"data/adaptive_execution_resolver/resolver_telemetry_{datetime.datetime.now().strftime('%Y%m%d')}.json"
+            with open(filename, 'w') as f:
+                json.dump(self.telemetry_data, f, indent=2)
+        except Exception as e:
+            self._handle_error("telemetry_save", str(e))
+    
+    def _emit_module_ready(self):
+        """Emit module ready event"""
+        ready_data = {
+            "module": self.module_name,
+            "status": "ready",
+            "adaptive_learning_enabled": self.adaptive_learning_enabled,
+            "auto_adjustment_mode": self.auto_adjustment_mode,
+            "timestamp": datetime.datetime.now().isoformat(),
+            "version": "1.0"
+        }
+        
+        emit_event("ModuleTelemetry", ready_data, self.module_name)
+        
+        self.logger.info(json.dumps({
+            "event": "module_ready",
+            "ready_data": ready_data
+        }))
+    
+    def _handle_error(self, context, error_message):
+        """Handle and log errors with telemetry"""
+        error_data = {
+            "context": context,
+            "error": error_message,
+            "timestamp": datetime.datetime.now().isoformat(),
+            "module": self.module_name
+        }
+        
+        emit_event("ModuleError", error_data, self.module_name)
+        
+        self.logger.error(json.dumps({
+            "event": "error",
+            "error_data": error_data
+        }))
+
+if __name__ == "__main__":
+    # Initialize Adaptive Execution Resolver for standalone testing
+    adaptive_resolver = AdaptiveExecutionResolver()
+    
+    print("🚀 GENESIS Adaptive Execution Resolver - Phase 19 Initialized")
+    print(f"🧠 Adaptive Learning: {adaptive_resolver.adaptive_learning_enabled}")
+    print(f"🔧 Auto Adjustment: {adaptive_resolver.auto_adjustment_mode}")
+    print("📊 EventBus routes registered for adaptive resolution")
+    
+    try:
+        # Keep the module running for testing
+        while True:
+            time.sleep(60)
+    except KeyboardInterrupt:
+        print("\n🛑 Adaptive Execution Resolver shutting down...")
+        adaptive_resolver.resolution_active = False
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: adaptive_execution_resolver -->

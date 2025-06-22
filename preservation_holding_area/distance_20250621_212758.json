@@ -1,0 +1,9 @@
+{
+  "module_id": "distance",
+  "original_path": "modules\\restored\\distance.py",
+  "preserved_path": "preservation_holding_area\\distance_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 122170,
+  "checksum": "c9bf77411a32bf41018340bb4b8a5c7ecfcf527b3040dc25700323780ce2f886"
+}

@@ -1,0 +1,352 @@
+{
+  "execution_ready_modules": [
+    {
+      "module_path": "dashboard_linkage_patch.py",
+      "module_name": "dashboard_linkage_patch",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [
+        "main",
+        "__init__",
+        "_get_event_bus",
+        "emit_telemetry",
+        "__init__",
+        "_register_button_handlers",
+        "_initialize_status_tracking",
+        "execute_button_action",
+        "_handle_run_backtest",
+        "_handle_analyze_live_trades",
+        "_handle_sync_mt5_data",
+        "_handle_refresh_signals",
+        "_handle_emergency_stop",
+        "_handle_export_results",
+        "_handle_validate_system",
+        "_get_script_name_from_button",
+        "_update_button_status_file",
+        "_update_dashboard_results",
+        "_append_to_execution_log",
+        "_log_button_execution",
+        "log_state",
+        "run_backtest",
+        "run_analysis",
+        "run_sync"
+      ],
+      "classes": [
+        "DashboardLinkagePatch"
+      ],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "launch_dashboard.py",
+      "module_name": "launch_dashboard",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "phase34_telemetry_dashboard_panel.py",
+      "module_name": "phase34_telemetry_dashboard_panel",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "telemetry_dashboard.py",
+      "module_name": "telemetry_dashboard",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboardengine.py",
+      "module_name": "ORPHAN_test_dashboardengine",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_dashboard_validation.py",
+      "module_name": "ORPHAN_test_dashboard_validation",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_signalbiasdashboard.py",
+      "module_name": "ORPHAN_test_signalbiasdashboard",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 19
+    },
+    {
+      "module_path": "execution_engine.py",
+      "module_name": "execution_engine",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "phase_50_execution_loop_telemetry.py",
+      "module_name": "phase_50_execution_loop_telemetry",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_adaptiveexecutionresolver.py",
+      "module_name": "test_adaptiveexecutionresolver",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionengine.py",
+      "module_name": "test_executionengine",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionenvelopeengine.py",
+      "module_name": "test_executionenvelopeengine",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionenvelopeharmonizer.py",
+      "module_name": "test_executionenvelopeharmonizer",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionflowtest.py",
+      "module_name": "test_executionflowtest",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionloopresponder.py",
+      "module_name": "test_executionloopresponder",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_ExecutionPrioritizationEngine.py",
+      "module_name": "test_ExecutionPrioritizationEngine",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionrisksentinel.py",
+      "module_name": "test_executionrisksentinel",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_executionselector.py",
+      "module_name": "test_executionselector",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartexecutionliveloop.py",
+      "module_name": "test_smartexecutionliveloop",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    },
+    {
+      "module_path": "TRIAGE_ORPHAN_QUARANTINE\\NON_ESSENTIAL\\test_smartexecutionmonitor.py",
+      "module_name": "test_smartexecutionmonitor",
+      "category": "CORE.CORE",
+      "readiness_score": 9,
+      "readiness_factors": [
+        "EVENTBUS_INTEGRATED",
+        "TELEMETRY_ENABLED",
+        "MT5_READY",
+        "REAL_DATA_ONLY",
+        "VIOLATION_FREE"
+      ],
+      "functions": [],
+      "classes": [],
+      "execution_priority": 17
+    }
+  ],
+  "total_candidates": 20
+}

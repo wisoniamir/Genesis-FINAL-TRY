@@ -1,0 +1,9 @@
+{
+  "module_id": "synchronize",
+  "original_path": "modules\\restored\\synchronize.py",
+  "preserved_path": "preservation_holding_area\\synchronize_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 53182,
+  "checksum": "2eabd4a9331c0a06f66f2ab6a21d4e68c1f2c5b45447dc3c40a9b7fb4bdbd5c9"
+}

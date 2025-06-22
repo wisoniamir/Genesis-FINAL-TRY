@@ -1,0 +1,57 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_classification_threshold.py",
+  "quarantine_timestamp": "2025-06-21T04:33:43.649738+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_classification_threshold.py",
+      "line_numbers": [
+        117,
+        343,
+        434,
+        451,
+        556
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_classification_threshold.py",
+      "line_numbers": [
+        282,
+        286,
+        631,
+        635,
+        731
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_classification_threshold.py",
+      "line_numbers": [
+        48,
+        323,
+        736
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_classification_threshold.py",
+      "line_numbers": [
+        97,
+        382,
+        470,
+        743,
+        759
+      ],
+      "violation_count": 7
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

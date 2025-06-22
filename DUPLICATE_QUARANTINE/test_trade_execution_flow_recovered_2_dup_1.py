@@ -1,0 +1,322 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_trade_execution_flow_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_trade_execution_flow_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_trade_execution_flow_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_trade_execution_flow_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_trade_execution_flow_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+"""
+GENESIS Test Trade Execution Flow v1.0 - ARCHITECT MODE v2.7
+============================================================
+Validates the complete live trade execution loop using REAL MT5 data.
+This is a system-wide validation module that:
+1. Triggers a test TradeRequest
+2. Verifies RiskEngine validation
+3. Confirms ExecutionEngine submits a LIMIT order
+4. Validates TradeAuditor tracking
+5. Ensures telemetry, compliance, and journaling are active
+
+Dependencies: event_bus.py
+Emits: TradeRequest
+Consumes: OrderStatusUpdate, TradeBlocked, TradeAuditLog, ExecutionLog
+Compliance: ENFORCED
+Real Data: ENABLED (uses real MT5 data only)
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+from datetime import datetime
+from typing import Dict, Any, List
+
+# Import EventBus for real system integration
+from event_bus import emit_event, subscribe_to_event, register_route
+
+
+# <!-- @GENESIS_MODULE_END: test_trade_execution_flow_recovered_2 -->
+
+
+# <!-- @GENESIS_MODULE_START: test_trade_execution_flow_recovered_2 -->
+
+# Configure logging
+log_dir = "logs/execution_tests"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] - %(message)s",
+    handlers=[
+        logging.FileHandler(f"{log_dir}/test_execution_flow_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger("ExecutionFlowTest")
+
+# Test results tracking
+test_results = {
+    "test_id": f"exec_flow_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}",
+    "test_start_time": datetime.utcnow().isoformat(),
+    "risk_engine_response": None,
+    "execution_engine_response": None,
+    "trade_auditor_response": None,
+    "telemetry_received": False,
+    "events_received": [],
+    "total_events_expected": 3,  # OrderStatusUpdate, TradeAuditLog, ExecutionLog
+    "test_result": "PENDING",
+    "test_completion_time": None
+}
+
+# Event callbacks
+def on_order_status_update(event):
+    """Tracks OrderStatusUpdate events from ExecutionEngine"""
+    event_data = event.get("data", event)
+    
+    # Log and track the event
+    logger.info(f"[OK] OrderStatusUpdate Received: {json.dumps(event_data, indent=2)}")
+    test_results["execution_engine_response"] = event_data
+    test_results["events_received"].append({
+        "event_type": "OrderStatusUpdate",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+    
+    # Check test completion
+    check_test_completion()
+
+def on_trade_blocked(event):
+    """Tracks TradeBlocked events from RiskEngine"""
+    event_data = event.get("data", event)
+    
+    # Log and track the event
+    logger.info(f"[BLOCKED] TradeBlocked Received: {json.dumps(event_data, indent=2)}")
+    test_results["risk_engine_response"] = event_data
+    test_results["events_received"].append({
+        "event_type": "TradeBlocked",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+    
+    # Test may still continue if this is expected behavior
+    check_test_completion()
+
+def on_trade_audit_log(event):
+    """Tracks TradeAuditLog events from TradeAuditor"""
+    event_data = event.get("data", event)
+      # Log and track the event
+    logger.info(f"[AUDIT] TradeAuditLog Received: {json.dumps(event_data, indent=2)}")
+    test_results["trade_auditor_response"] = event_data
+    test_results["events_received"].append({
+        "event_type": "TradeAuditLog",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+    
+    # Check test completion
+    check_test_completion()
+
+def on_execution_log(event):
+    """Tracks ExecutionLog events from ExecutionEngine"""
+    event_data = event.get("data", event)
+    
+    # Log and track the event
+    logger.info(f" ExecutionLog Received: {json.dumps(event_data, indent=2)}")
+    test_results["events_received"].append({
+        "event_type": "ExecutionLog",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+    
+    # Check test completion
+    check_test_completion()
+
+def on_telemetry(event):
+    """Tracks Telemetry events from any module"""
+    event_data = event.get("data", event)
+    
+    # Log and track the event
+    logger.info(f" Telemetry Received: {json.dumps(event_data, indent=2)}")
+    test_results["telemetry_received"] = True
+    test_results["events_received"].append({
+        "event_type": "ModuleTelemetry",
+        "timestamp": datetime.utcnow().isoformat(),
+        "data": event_data
+    })
+
+def check_test_completion():
+    """Checks if all expected events have been received"""
+    # Basic completion check
+    received_event_types = set(e["event_type"] for e in test_results["events_received"])
+    
+    # We need at least OrderStatusUpdate (or TradeBlocked) AND one of TradeAuditLog or ExecutionLog
+    order_status = "OrderStatusUpdate" in received_event_types or "TradeBlocked" in received_event_types
+    logging_events = "TradeAuditLog" in received_event_types or "ExecutionLog" in received_event_types
+    
+    if order_status and logging_events:
+        logger.info(" TEST COMPLETED: All required events received")
+        test_results["test_result"] = "PASSED"
+        test_results["test_completion_time"] = datetime.utcnow().isoformat()
+        save_test_results()
+
+def save_test_results():
+    """Saves test results to file"""
+    with open(f"{log_dir}/test_result_{test_results['test_id']}.json", 'w') as f:
+        json.dump(test_results, f, indent=2)
+    logger.info(f" Test results saved to {log_dir}/test_result_{test_results['test_id']}.json")
+
+def run_test():
+    """Run the complete trade execution flow test"""
+    # Register subscribers for expected events
+    subscribe_to_event("OrderStatusUpdate", on_order_status_update, "ExecutionFlowTest")
+    subscribe_to_event("TradeBlocked", on_trade_blocked, "ExecutionFlowTest")
+    subscribe_to_event("TradeAuditLog", on_trade_audit_log, "ExecutionFlowTest")
+    subscribe_to_event("ExecutionLog", on_execution_log, "ExecutionFlowTest")
+    subscribe_to_event("ModuleTelemetry", on_telemetry, "ExecutionFlowTest")
+    
+    # Register routes for compliance
+    register_route("TradeRequest", "ExecutionFlowTest", "RiskEngine")
+    register_route("OrderStatusUpdate", "ExecutionEngine", "ExecutionFlowTest")
+    register_route("TradeBlocked", "RiskEngine", "ExecutionFlowTest")
+    register_route("TradeAuditLog", "TradeAuditor", "ExecutionFlowTest") 
+    register_route("ExecutionLog", "ExecutionEngine", "ExecutionFlowTest")
+    register_route("ModuleTelemetry", "TelemetryCollector", "ExecutionFlowTest")
+    
+    logger.info(" GENESIS TRADE EXECUTION FLOW TEST - STARTING")
+    logger.info(" Event subscribers registered")
+    logger.info(" EventBus routes registered")
+    
+    # Create test trade request using real market data
+    # This emulates a signal that has passed all confluence filters
+    test_trade = {
+        "symbol": "EURUSD",
+        "direction": "buy",
+        "lot_size": 0.5,
+        "entry_price": 1.0840,  # Ensure this is near current market price
+        "stop_loss": 1.0810,    # 30 pip SL
+        "take_profit": 1.0900,  # 60 pip TP (1:2 risk/reward)
+        "risk": 2000,           # $2000 risk (1% of $200k account)
+        "timestamp": datetime.utcnow().isoformat(),
+        "signal_source": "ExecutionFlowTest",
+        "test_mode": False,     # IMPORTANT: False means REAL DATA - no mock/dummy data
+        "request_id": f"test_{int(time.time())}"
+    }
+    
+    # Emit the trade request to the EventBus
+    logger.info(f" Emitting TradeRequest: {json.dumps(test_trade, indent=2)}")
+    emit_event("TradeRequest", test_trade)
+    
+    logger.info(" TEST TRADE REQUEST EMITTED: Awaiting module chain reaction...")
+    logger.info(" Waiting for event responses (timeout: 30 seconds)")
+    
+    # Set timeout for test completion
+    timeout_seconds = 30
+    start_time = time.time()
+    
+    # Wait for events or timeout
+    while time.time() - start_time < timeout_seconds:
+        # If test completed, break
+        if test_results["test_result"] != "PENDING":
+            break
+        time.sleep(0.5)
+    
+    # Handle timeout
+    if test_results["test_result"] == "PENDING":
+        logger.warning(" TEST TIMEOUT: Not all expected events were received")
+        test_results["test_result"] = "TIMEOUT"
+        test_results["test_completion_time"] = datetime.utcnow().isoformat()
+        save_test_results()
+    
+    # Final test summary
+    print("\n" + "="*80)
+    print(f" TEST SUMMARY: {test_results['test_result']}")
+    print(f" Duration: {(datetime.fromisoformat(test_results['test_completion_time']) - datetime.fromisoformat(test_results['test_start_time'])).total_seconds()} seconds")
+    print(f" Events Received: {len(test_results['events_received'])}")
+    for event in test_results["events_received"]:
+        print(f"    - {event['event_type']}")
+    print("="*80 + "\n")
+    
+    return test_results["test_result"] == "PASSED"
+
+if __name__ == "__main__":
+    try:
+        success = run_test()
+        sys.exit(0 if success else 1)
+    except Exception as e:
+        logger.exception(f" TEST FAILED WITH EXCEPTION: {e}")
+        sys.exit(1)

@@ -1,0 +1,292 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+MT5 Login Dialog Component
+"""
+
+from typing import Dict, Any, Optional
+import json
+import logging
+from datetime import datetime
+
+from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel,
+                           QLineEdit, QPushButton, QMessageBox)
+from PyQt5.QtCore import Qt
+
+import MetaTrader5 as mt5
+from core.telemetry import emit_telemetry
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: login_dialog -->
+
+
+# <!-- @GENESIS_MODULE_START: login_dialog -->
+
+class MT5LoginDialog(QDialog):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("login_dialog", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("login_dialog", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "login_dialog",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in login_dialog: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "login_dialog",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in login_dialog: {e}")
+    """Dialog for MT5 login credentials"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.logger = logging.getLogger(__name__)
+        self.session: Optional[Dict[str, Any]] = None
+        
+        self.setWindowTitle("Connect to MetaTrader 5")
+        self.setModal(True)
+        
+        # Create layout
+        layout = QVBoxLayout(self)
+        
+        # Add login fields
+        self._add_login_fields(layout)
+        
+        # Add buttons
+        self._add_buttons(layout)
+        
+    def _add_login_fields(self, layout: QVBoxLayout):
+        """Add login input fields"""
+        # Server field
+        server_layout = QHBoxLayout()
+        server_label = QLabel("Server:")
+        self.server_input = QLineEdit()
+        server_layout.addWidget(server_label)
+        server_layout.addWidget(self.server_input)
+        layout.addLayout(server_layout)
+        
+        # Login field  
+        login_layout = QHBoxLayout()
+        login_label = QLabel("Login:")
+        self.login_input = QLineEdit()
+        login_layout.addWidget(login_label)
+        login_layout.addWidget(self.login_input)
+        layout.addLayout(login_layout)
+        
+        # Password field
+        password_layout = QHBoxLayout()
+        password_label = QLabel("Password:")
+        self.password_input = QLineEdit()
+        self.password_input.setEchoMode(QLineEdit.Password)
+        password_layout.addWidget(password_label)
+        password_layout.addWidget(self.password_input)
+        layout.addLayout(password_layout)
+        
+    def _add_buttons(self, layout: QVBoxLayout):
+        """Add dialog buttons"""
+        button_layout = QHBoxLayout()
+        
+        # Connect button
+        self.connect_btn = QPushButton("Connect")
+        try:
+        self.connect_btn.clicked.connect(self._handle_connect)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        button_layout.addWidget(self.connect_btn)
+        
+        # Cancel button
+        cancel_btn = QPushButton("Cancel")
+        try:
+        cancel_btn.clicked.connect(self.reject)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        button_layout.addWidget(cancel_btn)
+        
+        layout.addLayout(button_layout)
+        
+    def _handle_connect(self):
+        """Handle MT5 connection attempt"""
+        try:
+            # Get credentials
+            server = self.server_input.text().strip()
+            login = int(self.login_input.text().strip())
+            password = self.password_input.text()
+            
+            if not all([server, login, password]):
+                QMessageBox.warning(self, "Error", "All fields are required")
+                return
+                
+            # Initialize MT5
+            if not mt5.initialize():
+                QMessageBox.critical(self, "Error", "Failed to initialize MT5")
+                return
+                
+            # Try to connect
+            if not mt5.login(login=login, password=password, server=server):
+                QMessageBox.critical(self, "Error", "Failed to connect to MT5")
+                return
+                
+            # Get account info
+            account_info = mt5.account_info()
+            if account_info is None:
+                QMessageBox.critical(self, "Error", "Failed to get account info")
+                return
+                
+            # Store session info
+            self.session = {
+                "server": server,
+                "login": login,
+                "connected_at": datetime.now().isoformat(),
+                "account_info": {
+                    "balance": account_info.balance,
+                    "equity": account_info.equity,
+                    "margin": account_info.margin
+                }
+            }
+            
+            # Emit telemetry
+            emit_telemetry("mt5_login", "connected", self.session)
+            
+            # Accept dialog
+            self.accept()
+            
+        except Exception as e:
+            self.logger.error(f"MT5 login failed: {e}")
+            QMessageBox.critical(self, "Error", f"Login failed: {str(e)}")
+            
+    def get_session(self) -> Optional[Dict[str, Any]]:
+        """Get the current MT5 session info"""
+        return self.session
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

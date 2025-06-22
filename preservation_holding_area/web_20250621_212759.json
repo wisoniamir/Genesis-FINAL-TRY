@@ -1,0 +1,9 @@
+{
+  "module_id": "web",
+  "original_path": "modules\\restored\\web.py",
+  "preserved_path": "preservation_holding_area\\web_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 260067,
+  "checksum": "ee31b899936987119eec7fd7b9c717ecbfa535cef3c7e74161ef931e7608ed36"
+}

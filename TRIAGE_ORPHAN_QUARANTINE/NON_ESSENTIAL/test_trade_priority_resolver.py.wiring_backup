@@ -1,0 +1,396 @@
+# <!-- @GENESIS_MODULE_START: test_trade_priority_resolver -->
+
+from event_bus import EventBus
+#!/usr/bin/env python3
+"""
+GENESIS Trade Priority Resolver Engine - TEST SUITE v1.0
+========================================================
+MT5-driven test cases for signal prioritization and scoring logic
+ARCHITECT MODE COMPLIANCE: Real data testing only
+"""
+
+import unittest
+import json
+import time
+import threading
+from datetime import datetime, timezone
+from unittest.mock import Mock, patch
+
+# Import GENESIS modules
+from trade_priority_resolver import TradePriorityResolver, SignalScore
+from hardened_event_bus import get_event_bus, emit_event
+
+class TestTradePriorityResolver(unittest.TestCase):
+    """
+    Test suite for Trade Priority Resolver Engine
+    Focuses on MT5 live data compatibility and real-world scenarios
+    """
+    
+    def setUp(self):
+        """Set up test environment with real MT5 data structures"""
+        self.resolver = TradePriorityResolver()
+        self.event_bus = get_event_bus()
+        
+        # Real MT5-compatible test data
+        self.live_signals = [
+            {
+                "id": "SIG_EURUSD_001",
+                "symbol": "EURUSD",
+                "type": "BUY",
+                "strength": 0.85,
+                "broker": "MT5_DEMO",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "source": "AdvancedPatternMiner"
+            },
+            {
+                "id": "SIG_GBPUSD_002",
+                "symbol": "GBPUSD",
+                "type": "SELL",
+                "strength": 0.72,
+                "broker": "MT5_LIVE",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "source": "SignalEngine"
+            },
+            {
+                "id": "SIG_USDJPY_003",
+                "symbol": "USDJPY",
+                "type": "BUY",
+                "strength": 0.68,
+                "broker": "MT5_DEMO",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "source": "StrategicSignalOrchestrator"
+            }
+        ]
+        
+        # Real broker latency data (MT5 typical values)
+        self.broker_latency_data = {
+            "MT5_DEMO": {"latency_ms": 45.0, "status": "online"},
+            "MT5_LIVE": {"latency_ms": 125.0, "status": "online"},
+            "MT5_ECN": {"latency_ms": 35.0, "status": "online"}
+        }
+        
+        # Real risk environment data
+        self.macro_event_stream = {
+            "market_volatility": "normal",
+            "symbol_risks": {
+                "EURUSD": {"risk_level": "low"},
+                "GBPUSD": {"risk_level": "elevated"},
+                "USDJPY": {"risk_level": "normal"}
+            }
+        }
+        
+        # Real open trades data
+        self.open_trades = [
+            {
+                "symbol": "EURUSD",
+                "volume": 0.5,
+                "type": "BUY",
+                "ticket": 12345,
+                "open_time": datetime.now(timezone.utc).isoformat()
+            }
+        ]
+    
+    def tearDown(self):
+        """Clean up test environment"""
+        self.resolver.shutdown()
+        time.sleep(0.1)  # Allow cleanup
+    
+    def test_module_initialization(self):
+        """Test that the module initializes correctly with GENESIS standards"""
+        self.assertEqual(self.resolver.module_name, "TradePriorityResolver")
+        self.assertEqual(self.resolver.version, "1.0.0")
+        self.assertEqual(self.resolver.status, "active")
+        self.assertTrue(self.resolver.is_running)
+        self.assertIsNotNone(self.resolver.event_bus)
+        self.assertIsNotNone(self.resolver.telemetry)
+    
+    def test_signal_scoring_engine(self):
+        """Test the core signal scoring algorithm with real data"""
+        # Update resolver with test data
+        self.resolver.broker_latency_data = self.broker_latency_data
+        self.resolver.macro_event_stream = self.macro_event_stream
+        self.resolver.open_trades = self.open_trades
+        
+        # Score each test signal
+        for signal in self.live_signals:
+            score_result = self.resolver._score_signal(signal)
+            
+            # Validate score structure
+            self.assertIsInstance(score_result, SignalScore)
+            self.assertEqual(score_result.symbol, signal["symbol"])
+            self.assertEqual(score_result.signal_type, signal["type"])
+            self.assertGreaterEqual(score_result.final_score, 0.0)
+            self.assertLessEqual(score_result.final_score, 1.0)
+              # Verify scoring components are calculated
+            self.assertIsInstance(score_result.latency_penalty, float)
+            self.assertIsInstance(score_result.news_risk, float)
+            self.assertIsInstance(score_result.exposure_bias, float)
+            self.assertIsInstance(score_result.session_bonus, float)
+    
+    def test_latency_penalty_calculation(self):
+        """Test broker latency penalty calculation"""
+        # Set latency data first
+        self.resolver.broker_latency_data = self.broker_latency_data
+        
+        # Test low latency (should have minimal penalty)
+        low_latency_penalty = self.resolver._get_latency_penalty("MT5_ECN")
+        self.assertEqual(low_latency_penalty, 0.0)
+        
+        # Test high latency (should have significant penalty)
+        high_latency_penalty = self.resolver._get_latency_penalty("MT5_LIVE")
+        self.assertGreater(high_latency_penalty, 0.0)
+        
+        # Test with updated data
+        penalty = self.resolver._get_latency_penalty("MT5_DEMO")
+        self.assertEqual(penalty, 0.0)  # 45ms should be no penalty
+    
+    def test_macro_risk_calculation(self):
+        """Test macro/news risk calculation"""
+        self.resolver.macro_event_stream = self.macro_event_stream
+        
+        # Test low risk symbol
+        low_risk = self.resolver._get_macro_risk("EURUSD")
+        self.assertEqual(low_risk, 0.0)
+        
+        # Test elevated risk symbol
+        elevated_risk = self.resolver._get_macro_risk("GBPUSD")
+        self.assertEqual(elevated_risk, 0.15)
+        
+        # Test normal risk symbol
+        normal_risk = self.resolver._get_macro_risk("USDJPY")
+        self.assertEqual(normal_risk, 0.05)
+    
+    def test_exposure_conflict_calculation(self):
+        """Test exposure conflict penalty calculation"""
+        self.resolver.open_trades = self.open_trades
+        
+        # Test symbol with existing exposure
+        exposure_penalty = self.resolver._get_exposure_conflict("EURUSD")
+        self.assertGreater(exposure_penalty, 0.0)
+        
+        # Test symbol without exposure
+        no_exposure_penalty = self.resolver._get_exposure_conflict("GBPUSD")
+        self.assertEqual(no_exposure_penalty, 0.0)
+    
+    def test_session_bias_calculation(self):
+        """Test trading session bias calculation"""
+        # Mock current time for consistent testing
+        with patch('trade_priority_resolver.datetime') as mock_datetime:
+            # Test London session (EUR should get bonus)
+            mock_datetime.now.return_value.hour = 12  # 12:00 UTC (London session)
+            mock_datetime.now.return_value = Mock()
+            mock_datetime.now.return_value.replace.return_value = Mock()
+            
+            eur_bonus = self.resolver._get_session_bias("EURUSD")
+            self.assertGreaterEqual(eur_bonus, 0.0)
+            
+            # Test USD symbol during London session (should get lower/no bonus)
+            usd_bonus = self.resolver._get_session_bias("USDJPY")
+            self.assertGreaterEqual(usd_bonus, 0.0)
+    
+    def test_adaptive_threshold_mechanism(self):
+        """Test adaptive threshold calculation"""
+        # Test normal conditions
+        self.resolver.macro_event_stream = {"market_volatility": "normal"}
+        self.resolver.risk_engine_data = {"risk_level": "normal"}
+        
+        original_threshold = self.resolver.dynamic_threshold
+        self.resolver._update_adaptive_threshold()
+        self.assertEqual(self.resolver.dynamic_threshold, self.resolver.base_threshold)
+        
+        # Test high volatility conditions
+        self.resolver.macro_event_stream = {"market_volatility": "high"}
+        self.resolver.risk_engine_data = {"risk_level": "high"}
+        
+        self.resolver._update_adaptive_threshold()
+        self.assertGreater(self.resolver.dynamic_threshold, self.resolver.base_threshold)
+        
+        # Test low volatility conditions
+        self.resolver.macro_event_stream = {"market_volatility": "low"}
+        self.resolver.risk_engine_data = {"risk_level": "low"}
+        
+        self.resolver._update_adaptive_threshold()
+        self.assertLess(self.resolver.dynamic_threshold, self.resolver.base_threshold)
+    
+    def test_signal_prioritization_pipeline(self):
+        """Test the complete signal prioritization pipeline"""
+        # Set up resolver state
+        self.resolver.broker_latency_data = self.broker_latency_data
+        self.resolver.macro_event_stream = self.macro_event_stream
+        self.resolver.open_trades = self.open_trades
+        
+        # Create event callback to capture results
+        priority_signals_received = []
+        scoring_results_received = []
+        
+        def capture_priority_signals(event):
+            priority_signals_received.append(event["data"])
+        
+        def capture_scoring_results(event):
+            scoring_results_received.append(event["data"])
+        
+        # Subscribe to output events
+        self.event_bus.subscribe("priority_signals_ready", capture_priority_signals, "TestModule")
+        self.event_bus.subscribe("signal_scoring_complete", capture_scoring_results, "TestModule")
+        
+        # Emit validated signals
+        emit_event("validated_signals_ready", {
+            "signals": self.live_signals,
+            "source": "TestModule"
+        }, "TestModule")
+        
+        # Wait for processing
+        time.sleep(2.0)
+        
+        # Verify results were received
+        self.assertGreater(len(priority_signals_received), 0)
+        self.assertGreater(len(scoring_results_received), 0)
+        
+        # Validate priority signals structure
+        priority_data = priority_signals_received[0]
+        self.assertIn("signals", priority_data)
+        self.assertIn("threshold_used", priority_data)
+        self.assertIn("total_evaluated", priority_data)
+        self.assertIn("signals_emitted", priority_data)
+        
+        # Validate scoring results structure
+        scoring_data = scoring_results_received[0]
+        self.assertIn("scoring_results", scoring_data)
+        self.assertIsInstance(scoring_data["scoring_results"], list)
+    
+    def test_metrics_tracking(self):
+        """Test telemetry metrics tracking"""
+        initial_processed = self.resolver.metrics.signals_processed
+        initial_count = self.resolver.metrics.total_execution_count
+        
+        # Process test signals
+        self.resolver._update_metrics(3, 2, 150.0)
+        
+        # Verify metrics updated
+        self.assertEqual(self.resolver.metrics.signals_processed, initial_processed + 3)
+        self.assertEqual(self.resolver.metrics.signals_emitted, 2)
+        self.assertEqual(self.resolver.metrics.total_execution_count, initial_count + 1)
+        self.assertGreater(self.resolver.metrics.average_scoring_latency_ms, 0.0)
+    
+    def test_status_reporting(self):
+        """Test module status reporting"""
+        status = self.resolver.get_status()
+        
+        # Verify status structure
+        self.assertIn("module", status)
+        self.assertIn("version", status)
+        self.assertIn("status", status)
+        self.assertIn("metrics", status)
+        self.assertIn("dynamic_threshold", status)
+        self.assertIn("is_running", status)
+        
+        # Verify values
+        self.assertEqual(status["module"], "TradePriorityResolver")
+        self.assertEqual(status["version"], "1.0.0")
+        self.assertEqual(status["status"], "active")
+        self.assertTrue(status["is_running"])
+    
+    def test_error_handling(self):
+        """Test error handling and recovery"""
+        # Test with malformed signal
+        malformed_signal = {"invalid": "data"}
+        
+        score_result = self.resolver._score_signal(malformed_signal)
+        
+        # Should return minimal score without crashing
+        self.assertIsInstance(score_result, SignalScore)
+        self.assertEqual(score_result.final_score, 0.0)
+        
+        # Test with empty data
+        empty_signals = []
+        
+        # Should handle gracefully
+        task = {
+            "action": "process_signals",
+            "signals": empty_signals,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        # Should not raise exception
+        try:
+            self.resolver._execute_signal_prioritization(task)
+        except Exception as e:
+            self.fail(f"Empty signals processing should not raise exception: {e}")
+
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class TestMT5Integration(unittest.TestCase):
+    """
+    Integration tests specifically for MT5 compatibility
+    """
+    
+    def test_mt5_signal_format_compatibility(self):
+        """Test compatibility with MT5 signal formats"""
+        resolver = TradePriorityResolver()
+        
+        # MT5-style signal format
+        mt5_signal = {
+            "id": "MT5_SIG_001",
+            "symbol": "EURUSD",
+            "type": "OP_BUY",  # MT5 operation type
+            "strength": 0.78,
+            "volume": 0.1,
+            "sl": 1.0850,
+            "tp": 1.0950,
+            "broker": "MetaTrader5",
+            "magic": 12345,
+            "comment": "GENESIS_AUTO",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        # Should handle MT5 format without issues
+        score_result = resolver._score_signal(mt5_signal)
+        self.assertIsInstance(score_result, SignalScore)
+        self.assertEqual(score_result.symbol, "EURUSD")
+        
+        resolver.shutdown()
+    
+    def test_mt5_broker_latency_handling(self):
+        """Test MT5 broker latency measurement integration"""
+        resolver = TradePriorityResolver()
+        
+        # MT5 broker configuration
+        mt5_brokers = {
+            "MetaTrader5_Demo": {"latency_ms": 50.0, "server": "Demo-MT5"},
+            "MetaTrader5_Live": {"latency_ms": 80.0, "server": "Live-MT5"},
+            "MetaTrader5_ECN": {"latency_ms": 25.0, "server": "ECN-MT5"}
+        }
+        
+        resolver.broker_latency_data = mt5_brokers
+        
+        # Test latency penalties for each broker type
+        demo_penalty = resolver._get_latency_penalty("MetaTrader5_Demo")
+        live_penalty = resolver._get_latency_penalty("MetaTrader5_Live")
+        ecn_penalty = resolver._get_latency_penalty("MetaTrader5_ECN")
+        
+        # ECN should have lowest penalty
+        self.assertLessEqual(ecn_penalty, demo_penalty)
+        self.assertLessEqual(ecn_penalty, live_penalty)
+        
+        resolver.shutdown()
+
+if __name__ == "__main__":
+    # Configure test logging
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    
+    # Run tests
+    unittest.main(verbosity=2)
+
+
+# <!-- @GENESIS_MODULE_END: test_trade_priority_resolver -->

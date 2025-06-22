@@ -1,0 +1,9 @@
+{
+  "module_id": "hardlock_recovery_full_patch",
+  "original_path": "modules\\restored\\hardlock_recovery_full_patch.py",
+  "preserved_path": "preservation_holding_area\\hardlock_recovery_full_patch_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 22010,
+  "checksum": "87586037668fa8f77b20a90ff08f9e4f6d4b1dbb55169ddbdf9de7387d5751bf"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "self_outdated_check",
+  "original_path": "modules\\restored\\self_outdated_check.py",
+  "preserved_path": "preservation_holding_area\\self_outdated_check_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24933,
+  "checksum": "b2a4c510d052b93c263a16e2ded6e44afc4bbfd320041cded3feaabf251d3d0b"
+}

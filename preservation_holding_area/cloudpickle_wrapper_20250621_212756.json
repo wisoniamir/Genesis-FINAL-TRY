@@ -1,0 +1,9 @@
+{
+  "module_id": "cloudpickle_wrapper",
+  "original_path": "modules\\restored\\cloudpickle_wrapper.py",
+  "preserved_path": "preservation_holding_area\\cloudpickle_wrapper_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25979,
+  "checksum": "f83dba5ec8f808b4ebed9356bc57b3c114df84ec0e7827d698c4625cc869c08c"
+}

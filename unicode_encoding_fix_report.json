@@ -1,0 +1,670 @@
+{
+  "timestamp": "2025-06-21T07:47:03.820904",
+  "architect_mode_version": "v7.0.0",
+  "encoding_status": "FIXED",
+  "files_fixed": 85,
+  "encoding_issues": 0,
+  "fixed_files_detail": [
+    {
+      "file": "genesis_docker_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_production_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\genesis_gui_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\genesis_watchdog_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\execution\\genesis_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_genesis_production_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_test_genesis_gui_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_docker_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "launch_backend_simple.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "launch_desktop_app.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "launch_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "launch_genesis_audit_mode.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "quick_launch.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": ".cleanup_backup\\launch_phase18_production_recovered_1.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": ".cleanup_backup\\launch_phase18_production_recovered_2.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": ".cleanup_backup\\phase_99_launch_and_link_recovered_1.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": ".cleanup_backup\\phase_99_launch_and_link_recovered_2.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "compliance\\launch_genesis_audit_mode.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_core\\launch_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\genesis_gui_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "interface\\genesis_watchdog_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "interface\\launch_functional_dashboard.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\launch_telemetry_dashboard.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\quick_launch_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\execution\\genesis_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "modules\\unclassified\\launch_phase18_production.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\unclassified\\launch_phase18_production_recovered_1.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\unclassified\\launch_phase18_production_recovered_2.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_genesis_production_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "boot_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_api.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_dashboard.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_desktop.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "genesis_docker_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "genesis_high_architecture_mapper.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "launch_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "start-genesis-local.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "test_enhanced_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "compliance\\genesis_auto_startup.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "compliance\\genesis_dependency_validator.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "compliance\\genesis_final_system_validation.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "compliance\\genesis_final_system_validator.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "compliance\\genesis_orphan_integration_engine.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "compliance\\launch_genesis_audit_mode.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "core\\genesis_cleanup_engine_v3.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "core\\genesis_institutional_eventbus_sync.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "core\\genesis_unicode_encoding_fixer.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_–_to_-",
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "fixed_: \"'\",  # Left single quotation mark\n                _to_'",
+        "fixed_…_to_...",
+        "fixed_©_to_(c)",
+        "fixed_®_to_(R)",
+        "fixed_™_to_(TM)",
+        "fixed_€_to_EUR",
+        "fixed_£_to_GBP",
+        "fixed_¥_to_JPY"
+      ]
+    },
+    {
+      "file": "genesis_core\\launch_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "interface\\genesis_audit_dashboard.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\genesis_audit_dashboard_final.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\genesis_gui_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "interface\\genesis_watchdog_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "interface\\quick_launch_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "modules\\execution\\genesis_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "modules\\execution\\genesis_trade_engine.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "modules\\risk_management\\genesis_compliance_core.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\risk_management\\genesis_institutional_risk_engine.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "EMERGENCY_COMPLIANCE_QUARANTINE\\VIOLATIONS\\ORPHAN_genesis_production_launcher.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "boot_genesis.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": ".cleanup_backup\\ml_model_bootstrap_recovered_1.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": ".cleanup_backup\\ml_model_bootstrap_recovered_2.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\phase_100_gui_boot.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\unclassified\\ml_model_bootstrap.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\unclassified\\ml_model_bootstrap_recovered_1.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "modules\\unclassified\\ml_model_bootstrap_recovered_2.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_—_to_--",
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "start-genesis-local.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "compliance\\genesis_auto_startup.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "compliance\\quick_startup_validator.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\"",
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "interface\\start_audit_dashboard.py",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "added_utf8_declaration"
+      ]
+    },
+    {
+      "file": "launch_genesis_clean.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch_genesis_docker.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch_genesis_dockerized_gui.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch_genesis_docker_gui.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch_genesis_simple.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch_optimized_vscode.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "nuclear_reset.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "run_phase53_54_test.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "run_safe.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "run_safe_test.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "validate_system.bat",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "genesis_auto_startup.ps1",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "launch_docker_genesis_admin.ps1",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "run_safe.ps1",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    },
+    {
+      "file": "start-genesis-docker.sh",
+      "original_encoding": "utf-8",
+      "fixes_applied": [
+        "fixed_\"_to_\""
+      ]
+    }
+  ],
+  "issues_detail": []
+}

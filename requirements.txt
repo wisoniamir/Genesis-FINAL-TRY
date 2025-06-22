@@ -1,0 +1,65 @@
+MetaTrader5>=5.0.45
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+matplotlib>=3.4.0
+streamlit>=1.15.0
+plotly>=5.10.0
+requests>=2.25.0
+
+# 🐳 GENESIS Docker Requirements - Architect Mode v7.0
+# Backend API Dependencies
+
+# Flask Framework
+Flask==2.3.3
+Flask-CORS==4.0.0
+Flask-SocketIO==5.3.6
+
+# WebSocket & Real-time
+python-socketio==5.8.0
+gevent==23.7.0
+gevent-websocket==0.10.1
+
+# Redis & Caching
+redis==4.6.0
+hiredis==2.2.3
+
+# HTTP Server
+gunicorn==21.2.0
+
+# Configuration
+python-dotenv==1.0.0
+PyYAML==6.0.1
+
+# Monitoring & Logging
+psutil==5.9.5
+
+# PyQt5 GUI Dependencies
+PyQt5
+asyncio
+websockets
+
+# PyQt5 for Native Desktop GUI
+PyQt5==5.15.10
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.13.0
+
+# 🔍 GENESIS Discovery Dashboard Requirements
+# PyQt5 GUI Framework
+PyQt5==5.15.9
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.12.2
+
+# Async & Threading for Discovery
+asyncio==3.4.3
+threading-timer==1.0.2
+
+# System Integration for Module Discovery
+psutil==5.9.6
+importlib-util>=0.1.0
+
+# Configuration Management
+pyyaml==6.0.1
+
+# Advanced Logging
+loguru==0.7.2

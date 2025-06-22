@@ -1,0 +1,9 @@
+{
+  "module_id": "sql",
+  "original_path": "modules\\restored\\sql.py",
+  "preserved_path": "preservation_holding_area\\sql_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 153731,
+  "checksum": "d8be4972d4efcee69d0b42d4aa3c1ab9d3a251f3af4875a36df4101cd22d9c65"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "threadpoolctl",
+  "original_path": "modules\\restored\\threadpoolctl.py",
+  "preserved_path": "preservation_holding_area\\threadpoolctl_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 112988,
+  "checksum": "501139f4c39377f7c1bb1814200c0e8ad4a5bd1b8454c73c9f919c7b9520cfa7"
+}

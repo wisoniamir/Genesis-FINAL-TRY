@@ -1,0 +1,9 @@
+{
+  "module_id": "signal_context_enricher",
+  "original_path": "modules\\signals\\signal_context_enricher.py",
+  "preserved_path": "preservation_holding_area\\signal_context_enricher_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 28124,
+  "checksum": "c388fb6d0e3798aae81c80bd093f4bdb9f5df4232d6c9450ce90eb470a54a78f"
+}

@@ -1,0 +1,18 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\test_enhanced_genesis.py",
+  "quarantine_timestamp": "2025-06-21T04:33:04.869376+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\test_enhanced_genesis.py",
+      "line_numbers": [
+        24,
+        30,
+        57
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

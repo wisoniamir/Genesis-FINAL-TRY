@@ -1,0 +1,378 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🌐 GENESIS HIGH ARCHITECTURE — SYSTEM INITIALIZER v1.0.0
+Initialize and wire all core components.
+ARCHITECT MODE v7.0.0 COMPLIANT.
+"""
+
+import json
+import logging
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Any, Optional, List
+
+try:
+    import MetaTrader5 as mt5
+    MT5_AVAILABLE = True
+except ImportError:
+    mt5 = None
+    MT5_AVAILABLE = False
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class SystemInitializer:
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "initialize_system",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in initialize_system: {e}")
+    """Initialize and wire GENESIS core components"""
+    
+    def __init__(self):
+        self.core_files = [
+            "build_status.json",
+            "build_tracker.md",
+            "system_tree.json",
+            "module_registry.json",
+            "event_bus.json",
+            "telemetry.json",
+            "dashboard.json",
+            "signal_manager.json",
+            "test_runners.json",
+            "config.json",
+            "performance.json",
+            "error_log.json",
+            "mock_data.json",
+            "real_data.json",
+            "kill_switch.json",
+            "compliance.json",
+            "macro_sync.json"
+        ]
+    
+    def initialize(self):
+        """Initialize the complete system"""
+        try:
+            logger.info("🚀 Starting GENESIS system initialization")
+            
+            # 1. Create core files
+            self._create_core_files()
+            
+            # 2. Initialize MT5 connection (optional)
+            self._initialize_mt5()
+            
+            # 3. Initialize core components
+            self._initialize_core_components()
+            
+            # 4. Validate system integrity
+            self._validate_system()
+            
+            logger.info("✅ GENESIS system initialization complete")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ System initialization failed: {e}")
+            return False
+    
+    def _create_core_files(self):
+        """Create and initialize core files"""
+        try:
+            for file in self.core_files:
+                file_path = Path(file)
+                
+                if not file_path.exists():
+                    if file.endswith(".json"):
+                        # Create JSON files with basic structure
+                        template = self._get_file_template(file)
+                        with open(file_path, "w") as f:
+                            json.dump(template, f, indent=2)
+                    else:
+                        # Create empty files for markdown and other types
+                        file_path.touch()
+                        
+            logger.info("✅ Core files created")
+            
+        except Exception as e:
+            logger.error(f"Failed to create core files: {e}")
+            raise
+
+    def _initialize_mt5(self) -> bool:
+        """Initialize MT5 connection"""
+        try:
+            if not MT5_AVAILABLE or mt5 is None:
+                logger.warning("MT5 not available - continuing without MT5")
+                return False
+                
+            # Try to initialize MT5 terminal
+            try:
+                # MT5 should have an initialize function
+                if hasattr(mt5, 'initialize') and callable(getattr(mt5, 'initialize')):
+                    result = mt5.initialize()
+                    if not result:
+                        logger.warning("MT5 initialization failed - continuing without MT5")
+                        return False
+                    logger.info("✅ MT5 initialized")
+                    return True
+                else:
+                    logger.warning("MT5 initialize function not available")
+                    return False
+            except Exception as mt5_error:
+                logger.warning(f"MT5 initialization error: {mt5_error} - continuing without MT5")
+                return False
+                
+        except Exception as e:
+            logger.error(f"MT5 initialization error: {e}")
+            return False
+    
+    def _initialize_core_components(self):
+        """Initialize core system components"""
+        try:
+            # Import and initialize core components
+            from core.event_bus import event_bus
+            from core.telemetry import emit_telemetry
+            from core.trade_intelligence import trade_intelligence
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: initialize_system -->
+
+
+# <!-- @GENESIS_MODULE_START: initialize_system -->
+            
+            # Initialize event bus
+            logger.info("✅ Event bus initialized")
+            
+            # Initialize telemetry
+            emit_telemetry("system", "initialization_start", {
+                "timestamp": datetime.now().isoformat()
+            })
+            
+            # Initialize trade intelligence
+            logger.info("✅ Trade intelligence initialized")
+            
+            logger.info("✅ Core components initialized")
+            
+        except Exception as e:
+            logger.error(f"Core component initialization error: {e}")
+            raise
+    
+    def _validate_system(self):
+        """Validate system integrity"""
+        try:
+            # Check if core files exist
+            missing_files = []
+            for file in self.core_files:
+                if not Path(file).exists():
+                    missing_files.append(file)
+                    
+            if missing_files:
+                logger.warning(f"Missing files: {missing_files}")
+                
+            # Check MT5 connection if available
+            if MT5_AVAILABLE and mt5 is not None:
+                try:
+                    if hasattr(mt5, 'terminal_info') and callable(getattr(mt5, 'terminal_info')):
+                        terminal_info = mt5.terminal_info()
+                        if terminal_info:
+                            logger.info("✅ MT5 terminal connection verified")
+                        else:
+                            logger.warning("⚠️ MT5 terminal not connected")
+                except Exception as e:
+                    logger.warning(f"MT5 validation error: {e}")
+                    
+            logger.info("✅ System validation complete")
+            
+        except Exception as e:
+            logger.error(f"System validation error: {e}")
+            raise
+    
+    def _get_file_template(self, filename: str) -> Dict[str, Any]:
+        """Get template for JSON files"""
+        templates = {
+            "build_status.json": {
+                "system_status": "INITIALIZED",
+                "timestamp": datetime.now().isoformat(),
+                "modules_loaded": 0
+            },
+            "telemetry.json": {
+                "active_modules": {},
+                "heartbeats": {},
+                "last_update": datetime.now().isoformat()
+            },
+            "config.json": {
+                "mt5": {
+                    "enabled": MT5_AVAILABLE,
+                    "login": "",
+                    "password": "",
+                    "server": ""
+                },
+                "trading": {
+                    "max_risk": 2.0,
+                    "max_daily_loss": 5.0
+                }
+            },
+            "dashboard.json": {
+                "panels": [],
+                "active": False,
+                "last_update": datetime.now().isoformat()
+            }
+        }
+        
+        return templates.get(filename, {
+            "created": datetime.now().isoformat(),
+            "version": "1.0.0"
+        })
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

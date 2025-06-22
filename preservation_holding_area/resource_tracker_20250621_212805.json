@@ -1,0 +1,9 @@
+{
+  "module_id": "resource_tracker",
+  "original_path": "modules\\restored\\resource_tracker.py",
+  "preserved_path": "preservation_holding_area\\resource_tracker_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25528,
+  "checksum": "55bff03429804dfd4376c06a1699eca133fa4646a1955d99bc17f5a2f46e6d20"
+}

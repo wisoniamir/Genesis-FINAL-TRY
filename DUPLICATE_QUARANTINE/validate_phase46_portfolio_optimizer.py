@@ -1,0 +1,301 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "validate_phase46_portfolio_optimizer",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("validate_phase46_portfolio_optimizer", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in validate_phase46_portfolio_optimizer: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS TRADING BOT — PHASE 46 VALIDATION SCRIPT
+📋 Module: validate_phase46_portfolio_optimizer.py
+🎯 Purpose: Validate Phase 46 Risk-Adjusted Portfolio Optimization Engine compliance
+📅 Created: 2025-06-18
+⚖️ Compliance: ARCHITECT_MODE_V4.0
+🧭 Phase: 46
+"""
+
+import json
+import os
+import sys
+from datetime import datetime, timezone
+
+def validate_phase46_compliance():
+    """
+    🔐 Validate Phase 46 Portfolio Optimizer compliance with architect mode requirements
+    
+    Returns:
+        bool: True if fully compliant, False otherwise
+    """
+    print("🔐 PHASE 46 ARCHITECT MODE COMPLIANCE VALIDATION")
+    print("=" * 60)
+    
+    compliance_results = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "phase": 46,
+        "module": "portfolio_optimizer.py",
+        "compliance_checks": {},
+        "violations": [],
+        "overall_compliance": False
+    }
+    
+    # 1. Check module file exists
+    print("📁 Checking module file existence...")
+    portfolio_optimizer_exists = os.path.exists("portfolio_optimizer.py")
+    compliance_results["compliance_checks"]["module_file_exists"] = portfolio_optimizer_exists
+    
+    if portfolio_optimizer_exists:
+        print("✅ portfolio_optimizer.py exists")
+    else:
+        print("❌ portfolio_optimizer.py missing")
+        compliance_results["violations"].append("MODULE_FILE_MISSING")
+    
+    # 2. Check test file exists
+    print("📁 Checking test file existence...")
+    test_file_exists = os.path.exists("test_portfolio_optimizer.py")
+    compliance_results["compliance_checks"]["test_file_exists"] = test_file_exists
+    
+    if test_file_exists:
+        print("✅ test_portfolio_optimizer.py exists")
+    else:
+        print("❌ test_portfolio_optimizer.py missing")
+        compliance_results["violations"].append("TEST_FILE_MISSING")
+    
+    # 3. Check EventBus integration
+    print("📡 Checking EventBus route registration...")
+    try:
+        with open("event_bus.json", "r") as f:
+            event_bus = json.load(f)
+        
+        phase46_routes = [route for route in event_bus["routes"] if route.get("phase") == 46]
+        expected_routes = [
+            "trade_filled",
+            "stoploss_triggered", 
+            "takeprofit_triggered",
+            "portfolio_imbalance_detected",
+            "portfolio_rebalanced",
+            "telemetry_portfolio_summary",
+            "exposure_control_signal"
+        ]
+        
+        registered_topics = [route["topic"] for route in phase46_routes]
+        missing_routes = [topic for topic in expected_routes if topic not in registered_topics]
+        
+        eventbus_compliant = len(missing_routes) == 0
+        compliance_results["compliance_checks"]["eventbus_routes_registered"] = eventbus_compliant
+        compliance_results["compliance_checks"]["registered_routes_count"] = len(phase46_routes)
+        
+        if eventbus_compliant:
+            print(f"✅ All {len(expected_routes)} EventBus routes registered")
+        else:
+            print(f"❌ Missing EventBus routes: {missing_routes}")
+            compliance_results["violations"].append("EVENTBUS_ROUTES_MISSING")
+        
+    except Exception as e:
+        print(f"❌ EventBus validation failed: {e}")
+        compliance_results["violations"].append("EVENTBUS_VALIDATION_FAILED")
+        compliance_results["compliance_checks"]["eventbus_routes_registered"] = False
+    
+    # 4. Check telemetry registration
+    print("📊 Checking telemetry metric registration...")
+    try:
+        with open("telemetry.json", "r") as f:
+            telemetry = json.load(f)
+        
+        phase46_metrics = [event for event in telemetry["events"] if event.get("phase") == 46]
+        expected_metrics = [
+            "portfolio_risk_score",
+            "strategy_weight_recommendation", 
+            "exposure_throttle_triggered",
+            "rebalance_log"
+        ]
+        
+        registered_metrics = [event["metric"] for event in phase46_metrics if "metric" in event]
+        missing_metrics = [metric for metric in expected_metrics if metric not in registered_metrics]
+        
+        telemetry_compliant = len(missing_metrics) == 0
+        compliance_results["compliance_checks"]["telemetry_metrics_registered"] = telemetry_compliant
+        compliance_results["compliance_checks"]["registered_metrics_count"] = len(phase46_metrics)
+        
+        if telemetry_compliant:
+            print(f"✅ All {len(expected_metrics)} telemetry metrics registered")
+        else:
+            print(f"❌ Missing telemetry metrics: {missing_metrics}")
+            compliance_results["violations"].append("TELEMETRY_METRICS_MISSING")
+            
+    except Exception as e:
+        print(f"❌ Telemetry validation failed: {e}")
+        compliance_results["violations"].append("TELEMETRY_VALIDATION_FAILED")
+        compliance_results["compliance_checks"]["telemetry_metrics_registered"] = False
+    
+    # 5. Check build tracker documentation
+    print("📋 Checking build tracker documentation...")
+    try:
+        with open("build_tracker.md", "r") as f:
+            build_tracker = f.read()
+        
+        phase46_documented = "PHASE 46 RISK-ADJUSTED PORTFOLIO OPTIMIZATION ENGINE" in build_tracker
+        compliance_results["compliance_checks"]["build_tracker_documented"] = phase46_documented
+        
+        if phase46_documented:
+            print("✅ Phase 46 documented in build tracker")
+        else:
+            print("❌ Phase 46 missing from build tracker")
+            compliance_results["violations"].append("BUILD_TRACKER_MISSING")
+            
+    except Exception as e:
+        print(f"❌ Build tracker validation failed: {e}")
+        compliance_results["violations"].append("BUILD_TRACKER_VALIDATION_FAILED")
+        compliance_results["compliance_checks"]["build_tracker_documented"] = False
+    
+    # 6. Check module import capability
+    print("🔧 Checking module import capability...")
+    try:
+        sys.path.append(os.getcwd())
+        from portfolio_optimizer import PortfolioOptimizer
+        
+        # Try to instantiate
+        optimizer = PortfolioOptimizer()
+        import_success = True
+        compliance_results["compliance_checks"]["module_importable"] = True
+        print("✅ Portfolio optimizer imports and initializes successfully")
+        
+    except Exception as e:
+        print(f"❌ Module import failed: {e}")
+        compliance_results["violations"].append("MODULE_IMPORT_FAILED")
+        compliance_results["compliance_checks"]["module_importable"] = False
+        import_success = False
+      # 7. Test core functionality
+    if import_success:
+        print("🧪 Testing core portfolio optimization functionality...")
+        try:
+            if 'optimizer' not in locals():
+                from portfolio_optimizer import PortfolioOptimizer
+
+
+# <!-- @GENESIS_MODULE_END: validate_phase46_portfolio_optimizer -->
+
+
+# <!-- @GENESIS_MODULE_START: validate_phase46_portfolio_optimizer -->
+                optimizer = PortfolioOptimizer()
+            
+            # Test risk score calculation
+            live_strategies = [
+                {
+                    "id": "test_strategy",
+                    "expected_return": 0.15,
+                    "max_drawdown": 0.08,
+                    "volatility": 0.12,
+                    "confluence_score": 0.85,
+                    "kill_switch": False,
+                    "current_weight": 0.5
+                }
+            ]
+            
+            weights = optimizer.rebalance_portfolio(live_strategies)
+            
+            # Validate weight structure
+            weight_validation = (
+                isinstance(weights, list) and 
+                len(weights) > 0 and
+                isinstance(weights[0], tuple) and
+                len(weights[0]) == 2 and
+                isinstance(weights[0][1], float)
+            )
+            
+            compliance_results["compliance_checks"]["core_functionality"] = weight_validation
+            
+            if weight_validation:
+                print("✅ Core portfolio optimization functionality working")
+            else:
+                print("❌ Core functionality validation failed")
+                compliance_results["violations"].append("CORE_FUNCTIONALITY_FAILED")
+                
+        except Exception as e:
+            print(f"❌ Core functionality test failed: {e}")
+            compliance_results["violations"].append("CORE_FUNCTIONALITY_FAILED")
+            compliance_results["compliance_checks"]["core_functionality"] = False
+    
+    # 8. Calculate overall compliance
+    total_checks = len(compliance_results["compliance_checks"])
+    passed_checks = sum(1 for result in compliance_results["compliance_checks"].values() if result)
+    compliance_percentage = (passed_checks / total_checks * 100) if total_checks > 0 else 0
+    
+    compliance_results["total_checks"] = total_checks
+    compliance_results["passed_checks"] = passed_checks
+    compliance_results["compliance_percentage"] = compliance_percentage
+    compliance_results["overall_compliance"] = compliance_percentage >= 90.0
+    
+    # Print final results
+    print("=" * 60)
+    print(f"📊 PHASE 46 COMPLIANCE SUMMARY:")
+    print(f"   Total Checks: {total_checks}")
+    print(f"   Passed: {passed_checks}")
+    print(f"   Failed: {total_checks - passed_checks}")
+    print(f"   Compliance: {compliance_percentage:.1f}%")
+    print(f"   Violations: {len(compliance_results['violations'])}")
+    
+    if compliance_results["overall_compliance"]:
+        print("✅ PHASE 46 FULLY COMPLIANT - Production ready")
+        grade = "A"
+    elif compliance_percentage >= 80:
+        print("⚠️ PHASE 46 MOSTLY COMPLIANT - Minor issues detected")
+        grade = "B"
+    elif compliance_percentage >= 60:
+        print("🔶 PHASE 46 PARTIALLY COMPLIANT - Major issues detected")
+        grade = "C"
+    else:
+        print("❌ PHASE 46 NON-COMPLIANT - Critical issues detected")
+        grade = "F"
+    
+    compliance_results["compliance_grade"] = grade
+    
+    print("=" * 60)
+    
+    # Save compliance report
+    with open("phase46_compliance_report.json", "w") as f:
+        json.dump(compliance_results, f, indent=2)
+    
+    print(f"📄 Compliance report saved to phase46_compliance_report.json")
+    
+    return compliance_results["overall_compliance"]
+
+if __name__ == "__main__":
+    try:
+        is_compliant = validate_phase46_compliance()
+        sys.exit(0 if is_compliant else 1)
+    except Exception as e:
+        print(f"🚨 VALIDATION SCRIPT FAILED: {e}")
+        sys.exit(2)

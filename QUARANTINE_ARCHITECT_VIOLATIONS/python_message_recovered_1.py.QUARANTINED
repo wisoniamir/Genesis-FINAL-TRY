@@ -1,0 +1,91 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.191564+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        1217,
+        1335,
+        1562,
+        1583
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        10,
+        215,
+        230,
+        464,
+        717
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        1432
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        987,
+        995,
+        1417
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        299,
+        334,
+        492,
+        555,
+        578
+      ],
+      "violation_count": 19
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        391,
+        452,
+        679,
+        732,
+        738
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\python_message_recovered_1.py",
+      "line_numbers": [
+        306,
+        349,
+        404,
+        441,
+        530
+      ],
+      "violation_count": 35
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

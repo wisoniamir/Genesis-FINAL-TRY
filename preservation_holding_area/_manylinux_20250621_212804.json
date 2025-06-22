@@ -1,0 +1,9 @@
+{
+  "module_id": "_manylinux",
+  "original_path": "modules\\restored\\_manylinux.py",
+  "preserved_path": "preservation_holding_area\\_manylinux_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21075,
+  "checksum": "e84751633f71ead05c983b3eb4b5e8caf953db1af85e1e9880e3b138faaee16c"
+}

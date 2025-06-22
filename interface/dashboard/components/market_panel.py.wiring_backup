@@ -1,0 +1,227 @@
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+Market Data Panel Component
+"""
+
+from typing import Dict, Any, List
+import json
+import logging
+from datetime import datetime
+
+from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
+                           QTableWidget, QTableWidgetItem, QComboBox)
+from PyQt5.QtCore import Qt, QTimer
+
+import MetaTrader5 as mt5
+from core.telemetry import emit_telemetry
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: market_panel -->
+
+
+# <!-- @GENESIS_MODULE_START: market_panel -->
+
+class MarketPanel(QWidget):
+    """Real-time market data panel"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.logger = logging.getLogger(__name__)
+        
+        # Initialize UI
+        layout = QVBoxLayout(self)
+        
+        # Add symbol selector
+        self._add_symbol_selector(layout)
+        
+        # Add market table
+        self._add_market_table(layout)
+        
+        # Initialize update timer
+        self._init_timer()
+        
+    def _add_symbol_selector(self, layout: QVBoxLayout):
+        """Add symbol selection dropdown"""
+        selector_layout = QHBoxLayout()
+        
+        # Add label
+        label = QLabel("Symbol:")
+        selector_layout.addWidget(label)
+        
+        # Add combo box
+        self.symbol_combo = QComboBox()
+        self.symbol_combo.currentTextChanged.connect(self._handle_symbol_change)
+        selector_layout.addWidget(self.symbol_combo)
+        
+        # Add to main layout
+        layout.addLayout(selector_layout)
+        
+        # Load symbols
+        self._load_symbols()
+        
+    def _add_market_table(self, layout: QVBoxLayout):
+        """Add market data table"""
+        self.market_table = QTableWidget()
+        self.market_table.setColumnCount(6)
+        self.market_table.setHorizontalHeaderLabels([
+            "Time", "Symbol", "Bid", "Ask", "Spread", "Volume"
+        ])
+        
+        # Auto-resize columns
+        self.market_table.horizontalHeader().setStretchLastSection(True)
+        
+        layout.addWidget(self.market_table)
+        
+    def _init_timer(self):
+        """Initialize update timer"""
+        self.update_timer = QTimer()
+        self.update_timer.timeout.connect(self._update_market_data)
+        self.update_timer.start(1000)  # Update every second
+        
+    def _load_symbols(self):
+        """Load available symbols from MT5"""
+        try:
+            # Get symbols
+            symbols = mt5.symbols_get()
+            if symbols is None:
+                self.logger.error("Failed to get MT5 symbols")
+                return
+                
+            # Add to combo box
+            for symbol in symbols:
+                self.symbol_combo.addItem(symbol.name)
+                
+            # Select first symbol
+            if self.symbol_combo.count() > 0:
+                self.symbol_combo.setCurrentIndex(0)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to load symbols: {e}")
+            
+    def _handle_symbol_change(self, symbol: str):
+        """Handle symbol selection change"""
+        try:
+            self._update_market_data()
+            
+        except Exception as e:
+            self.logger.error(f"Failed to handle symbol change: {e}")
+            
+    def _update_market_data(self):
+        """Update market data for current symbol"""
+        try:
+            symbol = self.symbol_combo.currentText()
+            if not symbol:
+                return
+                
+            # Get symbol info
+            symbol_info = mt5.symbol_info(symbol)
+            if symbol_info is None:
+                self.logger.error(f"Failed to get info for {symbol}")
+                return
+                
+            # Calculate spread
+            spread = symbol_info.ask - symbol_info.bid
+            
+            # Add new row
+            row = self.market_table.rowCount()
+            self.market_table.insertRow(row)
+            
+            # Add data
+            self.market_table.setItem(row, 0, 
+                                    QTableWidgetItem(datetime.now().strftime("%H:%M:%S")))
+            self.market_table.setItem(row, 1, QTableWidgetItem(symbol))
+            self.market_table.setItem(row, 2, QTableWidgetItem(f"{symbol_info.bid:.5f}"))
+            self.market_table.setItem(row, 3, QTableWidgetItem(f"{symbol_info.ask:.5f}"))
+            self.market_table.setItem(row, 4, QTableWidgetItem(f"{spread:.5f}"))
+            self.market_table.setItem(row, 5, QTableWidgetItem(f"{symbol_info.volume}"))
+            
+            # Keep only last 100 rows
+            while self.market_table.rowCount() > 100:
+                self.market_table.removeRow(0)
+                
+            # Emit telemetry
+            emit_telemetry("market_panel", "data_updated", {
+                "symbol": symbol,
+                "bid": symbol_info.bid,
+                "ask": symbol_info.ask,
+                "spread": spread,
+                "volume": symbol_info.volume,
+                "timestamp": datetime.now().isoformat()
+            })
+            
+        except Exception as e:
+            self.logger.error(f"Failed to update market data: {e}")
+            
+    def update_data(self, data: Dict[str, Any]):
+        """Update panel with new market data"""
+        try:
+            symbol = data.get("symbol")
+            if not symbol:
+                return
+                
+            # Add new row
+            row = self.market_table.rowCount()
+            self.market_table.insertRow(row)
+            
+            # Add data
+            self.market_table.setItem(row, 0, 
+                                    QTableWidgetItem(data.get("time", "")))
+            self.market_table.setItem(row, 1, QTableWidgetItem(symbol))
+            self.market_table.setItem(row, 2, QTableWidgetItem(str(data.get("bid", ""))))
+            self.market_table.setItem(row, 3, QTableWidgetItem(str(data.get("ask", ""))))
+            self.market_table.setItem(row, 4, QTableWidgetItem(str(data.get("spread", ""))))
+            self.market_table.setItem(row, 5, QTableWidgetItem(str(data.get("volume", ""))))
+            
+            # Keep only last 100 rows
+            while self.market_table.rowCount() > 100:
+                self.market_table.removeRow(0)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to update data: {e}")
+            
+    def closeEvent(self, event):
+        """Handle panel close"""
+        try:
+            # Stop update timer
+            self.update_timer.stop()
+            
+            # Emit telemetry
+            emit_telemetry("market_panel", "closed", {
+                "timestamp": datetime.now().isoformat()
+            })
+            
+        except Exception as e:
+            self.logger.error(f"Error in close event: {e}")
+            
+        event.accept()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

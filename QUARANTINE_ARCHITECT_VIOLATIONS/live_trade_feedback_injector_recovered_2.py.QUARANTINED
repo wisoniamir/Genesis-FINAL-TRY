@@ -1,0 +1,85 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.423418+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        23,
+        116,
+        131,
+        157,
+        213
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        125,
+        145,
+        202,
+        223,
+        244
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        285,
+        360
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        122,
+        303,
+        374
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        200
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        108,
+        514
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\live_trade_feedback_injector_recovered_2.py",
+      "line_numbers": [
+        133,
+        134,
+        135,
+        136
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

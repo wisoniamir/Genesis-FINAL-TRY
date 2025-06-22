@@ -1,0 +1,628 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_kde_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _kde_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_kde_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_kde_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _kde_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+Kernel Density Estimation
+-------------------------
+"""
+
+# Authors: The scikit-learn developers
+# SPDX-License-Identifier: BSD-3-Clause
+
+import itertools
+from numbers import Integral, Real
+
+import numpy as np
+from scipy.special import gammainc
+
+from ..base import BaseEstimator, _fit_context
+from ..neighbors._base import VALID_METRICS
+from ..utils import check_random_state
+from ..utils._param_validation import Interval, StrOptions
+from ..utils.extmath import row_norms
+from ..utils.validation import _check_sample_weight, check_is_fitted, validate_data
+from ._ball_tree import BallTree
+from ._kd_tree import KDTree
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: _kde_recovered_1 -->
+
+
+# <!-- @GENESIS_MODULE_START: _kde_recovered_1 -->
+
+VALID_KERNELS = [
+    "gaussian",
+    "tophat",
+    "epanechnikov",
+    "exponential",
+    "linear",
+    "cosine",
+]
+
+TREE_DICT = {"ball_tree": BallTree, "kd_tree": KDTree}
+
+
+# TODO: implement a brute force version for testing purposes
+# TODO: create a density estimation base class?
+class KernelDensity(BaseEstimator):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_kde_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _kde_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_kde_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_kde_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _kde_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_kde_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _kde_recovered_1: {e}")
+    """Kernel Density Estimation.
+
+    Read more in the :ref:`User Guide <kernel_density>`.
+
+    Parameters
+    ----------
+    bandwidth : float or {"scott", "silverman"}, default=1.0
+        The bandwidth of the kernel. If bandwidth is a float, it defines the
+        bandwidth of the kernel. If bandwidth is a string, one of the estimation
+        methods is implemented.
+
+    algorithm : {'kd_tree', 'ball_tree', 'auto'}, default='auto'
+        The tree algorithm to use.
+
+    kernel : {'gaussian', 'tophat', 'epanechnikov', 'exponential', 'linear', \
+                 'cosine'}, default='gaussian'
+        The kernel to use.
+
+    metric : str, default='euclidean'
+        Metric to use for distance computation. See the
+        documentation of `scipy.spatial.distance
+        <https://docs.scipy.org/doc/scipy/reference/spatial.distance.html>`_ and
+        the metrics listed in
+        :class:`~sklearn.metrics.pairwise.distance_metrics` for valid metric
+        values.
+
+        Not all metrics are valid with all algorithms: refer to the
+        documentation of :class:`BallTree` and :class:`KDTree`. Note that the
+        normalization of the density output is correct only for the Euclidean
+        distance metric.
+
+    atol : float, default=0
+        The desired absolute tolerance of the result.  A larger tolerance will
+        generally lead to faster execution.
+
+    rtol : float, default=0
+        The desired relative tolerance of the result.  A larger tolerance will
+        generally lead to faster execution.
+
+    breadth_first : bool, default=True
+        If true (default), use a breadth-first approach to the problem.
+        Otherwise use a depth-first approach.
+
+    leaf_size : int, default=40
+        Specify the leaf size of the underlying tree.  See :class:`BallTree`
+        or :class:`KDTree` for details.
+
+    metric_params : dict, default=None
+        Additional parameters to be passed to the tree for use with the
+        metric.  For more information, see the documentation of
+        :class:`BallTree` or :class:`KDTree`.
+
+    Attributes
+    ----------
+    n_features_in_ : int
+        Number of features seen during :term:`fit`.
+
+        .. versionadded:: 0.24
+
+    tree_ : ``BinaryTree`` instance
+        The tree algorithm for fast generalized N-point problems.
+
+    feature_names_in_ : ndarray of shape (`n_features_in_`,)
+        Names of features seen during :term:`fit`. Defined only when `X`
+        has feature names that are all strings.
+
+    bandwidth_ : float
+        Value of the bandwidth, given directly by the bandwidth parameter or
+        estimated using the 'scott' or 'silverman' method.
+
+        .. versionadded:: 1.0
+
+    See Also
+    --------
+    sklearn.neighbors.KDTree : K-dimensional tree for fast generalized N-point
+        problems.
+    sklearn.neighbors.BallTree : Ball tree for fast generalized N-point
+        problems.
+
+    Examples
+    --------
+    Compute a gaussian kernel density estimate with a fixed bandwidth.
+
+    >>> from sklearn.neighbors import KernelDensity
+    >>> import numpy as np
+    >>> rng = np.random.RandomState(42)
+    >>> X = rng.random_sample((100, 3))
+    >>> kde = KernelDensity(kernel='gaussian', bandwidth=0.5).fit(X)
+    >>> log_density = kde.score_samples(X[:3])
+    >>> log_density
+    array([-1.52955942, -1.51462041, -1.60244657])
+    """
+
+    _parameter_constraints: dict = {
+        "bandwidth": [
+            Interval(Real, 0, None, closed="neither"),
+            StrOptions({"scott", "silverman"}),
+        ],
+        "algorithm": [StrOptions(set(TREE_DICT.keys()) | {"auto"})],
+        "kernel": [StrOptions(set(VALID_KERNELS))],
+        "metric": [
+            StrOptions(
+                set(itertools.chain(*[VALID_METRICS[alg] for alg in TREE_DICT.keys()]))
+            )
+        ],
+        "atol": [Interval(Real, 0, None, closed="left")],
+        "rtol": [Interval(Real, 0, None, closed="left")],
+        "breadth_first": ["boolean"],
+        "leaf_size": [Interval(Integral, 1, None, closed="left")],
+        "metric_params": [None, dict],
+    }
+
+    def __init__(
+        self,
+        *,
+        bandwidth=1.0,
+        algorithm="auto",
+        kernel="gaussian",
+        metric="euclidean",
+        atol=0,
+        rtol=0,
+        breadth_first=True,
+        leaf_size=40,
+        metric_params=None,
+    ):
+        self.algorithm = algorithm
+        self.bandwidth = bandwidth
+        self.kernel = kernel
+        self.metric = metric
+        self.atol = atol
+        self.rtol = rtol
+        self.breadth_first = breadth_first
+        self.leaf_size = leaf_size
+        self.metric_params = metric_params
+
+    def _choose_algorithm(self, algorithm, metric):
+        # given the algorithm string + metric string, choose the optimal
+        # algorithm to compute the result.
+        if algorithm == "auto":
+            # use KD Tree if possible
+            if metric in KDTree.valid_metrics:
+                return "kd_tree"
+            elif metric in BallTree.valid_metrics:
+                return "ball_tree"
+        else:  # kd_tree or ball_tree
+            if metric not in TREE_DICT[algorithm].valid_metrics:
+                raise ValueError(
+                    "invalid metric for {0}: '{1}'".format(TREE_DICT[algorithm], metric)
+                )
+            return algorithm
+
+    @_fit_context(
+        # KernelDensity.metric is not validated yet
+        prefer_skip_nested_validation=False
+    )
+    def fit(self, X, y=None, sample_weight=None):
+        """Fit the Kernel Density model on the data.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            List of n_features-dimensional data points.  Each row
+            corresponds to a single data point.
+
+        y : None
+            Ignored. This parameter exists only for compatibility with
+            :class:`~sklearn.pipeline.Pipeline`.
+
+        sample_weight : array-like of shape (n_samples,), default=None
+            List of sample weights attached to the data X.
+
+            .. versionadded:: 0.20
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
+        """
+        algorithm = self._choose_algorithm(self.algorithm, self.metric)
+
+        if isinstance(self.bandwidth, str):
+            if self.bandwidth == "scott":
+                self.bandwidth_ = X.shape[0] ** (-1 / (X.shape[1] + 4))
+            elif self.bandwidth == "silverman":
+                self.bandwidth_ = (X.shape[0] * (X.shape[1] + 2) / 4) ** (
+                    -1 / (X.shape[1] + 4)
+                )
+        else:
+            self.bandwidth_ = self.bandwidth
+
+        X = validate_data(self, X, order="C", dtype=np.float64)
+
+        if sample_weight is not None:
+            sample_weight = _check_sample_weight(
+                sample_weight, X, dtype=np.float64, ensure_non_negative=True
+            )
+
+        kwargs = self.metric_params
+        if kwargs is None:
+            kwargs = {}
+        self.tree_ = TREE_DICT[algorithm](
+            X,
+            metric=self.metric,
+            leaf_size=self.leaf_size,
+            sample_weight=sample_weight,
+            **kwargs,
+        )
+        return self
+
+    def score_samples(self, X):
+        """Compute the log-likelihood of each sample under the model.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            An array of points to query.  Last dimension should match dimension
+            of training data (n_features).
+
+        Returns
+        -------
+        density : ndarray of shape (n_samples,)
+            Log-likelihood of each sample in `X`. These are normalized to be
+            probability densities, so values will be low for high-dimensional
+            data.
+        """
+        check_is_fitted(self)
+        # The returned density is normalized to the number of points.
+        # For it to be a probability, we must scale it.  For this reason
+        # we'll also scale atol.
+        X = validate_data(self, X, order="C", dtype=np.float64, reset=False)
+        if self.tree_.sample_weight is None:
+            N = self.tree_.data.shape[0]
+        else:
+            N = self.tree_.sum_weight
+        atol_N = self.atol * N
+        log_density = self.tree_.kernel_density(
+            X,
+            h=self.bandwidth_,
+            kernel=self.kernel,
+            atol=atol_N,
+            rtol=self.rtol,
+            breadth_first=self.breadth_first,
+            return_log=True,
+        )
+        log_density -= np.log(N)
+        return log_density
+
+    def score(self, X, y=None):
+        """Compute the total log-likelihood under the model.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            List of n_features-dimensional data points.  Each row
+            corresponds to a single data point.
+
+        y : None
+            Ignored. This parameter exists only for compatibility with
+            :class:`~sklearn.pipeline.Pipeline`.
+
+        Returns
+        -------
+        logprob : float
+            Total log-likelihood of the data in X. This is normalized to be a
+            probability density, so the value will be low for high-dimensional
+            data.
+        """
+        return np.sum(self.score_samples(X))
+
+    def sample(self, n_samples=1, random_state=None):
+        """Generate random samples from the model.
+
+        Currently, this is implemented only for gaussian and tophat kernels.
+
+        Parameters
+        ----------
+        n_samples : int, default=1
+            Number of samples to generate.
+
+        random_state : int, RandomState instance or None, default=None
+            Determines random number generation used to generate
+            random samples. Pass an int for reproducible results
+            across multiple function calls.
+            See :term:`Glossary <random_state>`.
+
+        Returns
+        -------
+        X : array-like of shape (n_samples, n_features)
+            List of samples.
+        """
+        check_is_fitted(self)
+        # TODO: implement sampling for other valid kernel shapes
+        if self.kernel not in ["gaussian", "tophat"]:
+            raise NotImplementedError()
+
+        data = np.asarray(self.tree_.data)
+
+        rng = check_random_state(random_state)
+        u = rng.uniform(0, 1, size=n_samples)
+        if self.tree_.sample_weight is None:
+            i = (u * data.shape[0]).astype(np.int64)
+        else:
+            cumsum_weight = np.cumsum(np.asarray(self.tree_.sample_weight))
+            sum_weight = cumsum_weight[-1]
+            i = np.searchsorted(cumsum_weight, u * sum_weight)
+        if self.kernel == "gaussian":
+            return np.atleast_2d(rng.normal(data[i], self.bandwidth_))
+
+        elif self.kernel == "tophat":
+            # we first draw points from a d-dimensional normal distribution,
+            # then use an incomplete gamma function to map them to a uniform
+            # d-dimensional tophat distribution.
+            dim = data.shape[1]
+            X = rng.normal(size=(n_samples, dim))
+            s_sq = row_norms(X, squared=True)
+            correction = (
+                gammainc(0.5 * dim, 0.5 * s_sq) ** (1.0 / dim)
+                * self.bandwidth_
+                / np.sqrt(s_sq)
+            )
+            return data[i] + X * correction[:, np.newaxis]
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

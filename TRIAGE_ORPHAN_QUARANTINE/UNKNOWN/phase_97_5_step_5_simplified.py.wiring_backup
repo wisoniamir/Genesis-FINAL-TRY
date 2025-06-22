@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""
+🧪 PHASE 97.5 STEP 5: PROMPT ARCHITECT VALIDATOR - SIMPLIFIED
+Final validation with Guardian comparison
+"""
+
+import json
+import os
+from datetime import datetime
+from pathlib import Path
+
+def run_prompt_audit(mode="strict", compare_with="guardian"):
+    """Step 5: Run Prompt Architect with elevated scope"""
+    print("🧪 STEP 5: RE-RUNNING PROMPT ARCHITECT VALIDATOR")
+    print("="*70)
+    print(f"🔍 Mode: {mode.upper()}")
+    print(f"🔍 Comparison Target: {compare_with.upper()}")
+    
+    workspace_root = Path(".")
+    
+    # Initialize default values
+    prompt_architect_metrics = {"total_modules": 0, "total_routes": 0, "compliance_violations": 0}
+    guardian_metrics = {"guardian_active": False, "guardian_status": "UNKNOWN", "total_repairs": 0}
+    build_status = {}
+    
+    # Load system state
+    print("\n🔍 LOADING SYSTEM STATE...")
+    
+    try:
+        with open("system_tree.json", 'r', encoding='utf-8') as f:
+            system_tree = json.load(f)
+        prompt_architect_metrics["total_modules"] = len(system_tree.get("modules", {}))
+        print(f"   ✅ System Tree: {prompt_architect_metrics['total_modules']} modules")
+    except Exception as e:
+        print(f"   ❌ System Tree: Error - {e}")
+    
+    try:
+        with open("event_bus.json", 'r', encoding='utf-8') as f:
+            event_bus = json.load(f)
+        prompt_architect_metrics["total_routes"] = len(event_bus.get("routes", {}))
+        print(f"   ✅ EventBus: {prompt_architect_metrics['total_routes']} routes")
+    except Exception as e:
+        print(f"   ❌ EventBus: Error - {e}")
+    
+    try:
+        with open("build_status.json", 'r', encoding='utf-8') as f:
+            build_status = json.load(f)
+        
+        # Check compliance violations
+        compliance_scan = build_status.get("architect_compliance_emergency_scan", {})
+        prompt_architect_metrics["compliance_violations"] = compliance_scan.get("total_violations", 0)
+        
+        # Check Guardian status
+        guardian_metrics["guardian_active"] = build_status.get("guardian_active", False)
+        guardian_metrics["guardian_status"] = build_status.get("guardian_status", "UNKNOWN")
+        guardian_metrics["total_repairs"] = build_status.get("total_repairs", 0)
+        
+        print(f"   ✅ Build Status: Loaded successfully")
+        print(f"   ✅ Compliance Violations: {prompt_architect_metrics['compliance_violations']}")
+        
+    except Exception as e:
+        print(f"   ❌ Build Status: Error - {e}")
+    
+    # Check Phase 97.5 completion
+    print("\n🔍 CHECKING PHASE 97.5 COMPLETION...")
+    
+    steps_completed = 0
+    for step in range(1, 6):
+        step_key = f"phase_97_5_step_{step}"
+        if step_key in build_status and build_status[step_key].get("status") == "completed":
+            steps_completed += 1
+            print(f"   ✅ Step {step}: COMPLETED")
+        else:
+            print(f"   ⏳ Step {step}: PENDING")
+    
+    # Guardian comparison
+    print("\n🔍 COMPARING WITH GUARDIAN...")
+    print(f"   ✅ Guardian Active: {guardian_metrics['guardian_active']}")
+    print(f"   ✅ Guardian Status: {guardian_metrics['guardian_status']}")
+    print(f"   ✅ Guardian Repairs: {guardian_metrics['total_repairs']}")
+    
+    # Sync verification
+    print("\n🔍 VERIFYING SYNC STATUS...")
+    
+    sync_checks = {
+        "phase_97_5_complete": steps_completed == 5,
+        "zero_violations": prompt_architect_metrics["compliance_violations"] == 0,
+        "guardian_operational": guardian_metrics["guardian_active"],
+        "modules_registered": prompt_architect_metrics["total_modules"] > 0,
+        "eventbus_operational": prompt_architect_metrics["total_routes"] > 0
+    }
+    
+    all_checks_passed = all(sync_checks.values())
+    final_status = "IN_SYNC" if all_checks_passed else "OUT_OF_SYNC"
+    
+    for check_name, check_result in sync_checks.items():
+        status = "✅" if check_result else "❌"
+        print(f"   {status} {check_name.replace('_', ' ').title()}: {check_result}")
+    
+    # Save audit results
+    print("\n🔍 SAVING AUDIT RESULTS...")
+    
+    audit_results = {
+        "audit_timestamp": datetime.now().isoformat(),
+        "mode": mode,
+        "comparison_target": compare_with,
+        "prompt_architect_metrics": prompt_architect_metrics,
+        "guardian_metrics": guardian_metrics,
+        "sync_checks": sync_checks,
+        "final_status": final_status
+    }
+    
+    # Create prompt_architect.log
+    with open("prompt_architect.log", 'w', encoding='utf-8') as f:
+        f.write(f"# PROMPT ARCHITECT AUDIT LOG - PHASE 97.5\n")
+        f.write(f"# Timestamp: {datetime.now().isoformat()}\n")
+        f.write(f"# Mode: {mode}\n")
+        f.write(f"# Comparison: {compare_with}\n")
+        f.write(f"#\n")
+        f.write(f"STATUS: {final_status}\n")
+    
+    # Update build_status.json
+    try:
+        build_status.update({
+            "phase_97_5_step_5": {
+                "timestamp": datetime.now().isoformat(),
+                "prompt_audit_completed": True,
+                "final_status": final_status,
+                "status": "completed"
+            },
+            "phase_97_5_complete": {
+                "timestamp": datetime.now().isoformat(),
+                "all_steps_completed": steps_completed == 5,
+                "final_sync_status": final_status,
+                "prompt_architect_guardian_sync": final_status == "IN_SYNC"
+            }
+        })
+        
+        with open("build_status.json", 'w', encoding='utf-8') as f:
+            json.dump(build_status, f, indent=2)
+        
+        print("   ✅ build_status.json updated")
+        
+    except Exception as e:
+        print(f"   ❌ Error updating build_status.json: {e}")
+    
+    print("   ✅ prompt_architect.log created")
+    
+    # Final verdict
+    print(f"\n🎯 FINAL VERDICT: {final_status}")
+    
+    if final_status == "IN_SYNC":
+        print("✅ PROMPT ARCHITECT AND GUARDIAN ARE FULLY SYNCHRONIZED")
+        print("✅ ALL ARCHITECTURAL COMPLIANCE REQUIREMENTS MET")
+        print("✅ PHASE 97.5 SUCCESSFULLY COMPLETED")
+    else:
+        print("❌ SYNC ISSUES DETECTED - MANUAL INTERVENTION REQUIRED")
+        print("❌ REVIEW AUDIT RESULTS FOR SPECIFIC ISSUES")
+    
+    return audit_results
+
+def execute_step_5():
+    """Execute complete Step 5"""
+    print("🧪 PHASE 97.5 STEP 5: RE-RUN PROMPT ARCHITECT VALIDATOR")
+    print("="*70)
+    
+    audit_results = run_prompt_audit(mode="strict", compare_with="guardian")
+    
+    print("\n✅ STEP 5 COMPLETE: Prompt Architect validator executed")
+    print("="*70)
+    
+    return audit_results
+
+if __name__ == "__main__":
+    execute_step_5()

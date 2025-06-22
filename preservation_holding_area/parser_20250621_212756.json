@@ -1,0 +1,9 @@
+{
+  "module_id": "parser",
+  "original_path": "modules\\restored\\parser.py",
+  "preserved_path": "preservation_holding_area\\parser_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 36965,
+  "checksum": "89a75e7391d399cb082fa8c555dbcca91746dd06d7826f001609779c1dc91d52"
+}

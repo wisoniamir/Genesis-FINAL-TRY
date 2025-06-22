@@ -1,0 +1,9 @@
+{
+  "module_id": "popen_loky_win32",
+  "original_path": "modules\\restored\\popen_loky_win32.py",
+  "preserved_path": "preservation_holding_area\\popen_loky_win32_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16829,
+  "checksum": "8e3e85caf94d6f48a75d30e02fcae2c57421d23b41b9f7e47481108b036397e1"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "timeseries",
+  "original_path": "modules\\restored\\timeseries.py",
+  "preserved_path": "preservation_holding_area\\timeseries_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18196,
+  "checksum": "94eacc831ac82345bc54acfa8d516da45fe2bccfd5e6eae6b4551a1462197a1d"
+}

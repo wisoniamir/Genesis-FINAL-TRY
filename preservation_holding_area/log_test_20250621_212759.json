@@ -1,0 +1,9 @@
+{
+  "module_id": "log_test",
+  "original_path": "modules\\restored\\log_test.py",
+  "preserved_path": "preservation_holding_area\\log_test_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30158,
+  "checksum": "80ddf0d1d8543c0b223ddc1a14f5611e43b74dc0514580bc2a0847c70f4efb7a"
+}

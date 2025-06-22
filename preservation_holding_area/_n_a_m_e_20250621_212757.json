@@ -1,0 +1,9 @@
+{
+  "module_id": "_n_a_m_e",
+  "original_path": "modules\\restored\\_n_a_m_e.py",
+  "preserved_path": "preservation_holding_area\\_n_a_m_e_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 63324,
+  "checksum": "af5608bbe513fb346a64659ffca8fd82c1d42f4ee1766f0040c05741ed1a9abe"
+}

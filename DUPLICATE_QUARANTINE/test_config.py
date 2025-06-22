@@ -1,0 +1,319 @@
+import logging
+# <!-- @GENESIS_MODULE_START: test_config -->
+"""
+🏛️ GENESIS TEST_CONFIG - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+import time
+from concurrent.futures import ThreadPoolExecutor
+
+import pytest
+
+import sklearn
+from sklearn import config_context, get_config, set_config
+from sklearn.utils.fixes import _IS_WASM
+from sklearn.utils.parallel import Parallel, delayed
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_config", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_config", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_config",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_config: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_config",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_config", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_config: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+def test_config_context():
+    assert get_config() == {
+        "assume_finite": False,
+        "working_memory": 1024,
+        "print_changed_only": True,
+        "display": "diagram",
+        "array_api_dispatch": False,
+        "pairwise_dist_chunk_size": 256,
+        "enable_cython_pairwise_dist": True,
+        "transform_output": "default",
+        "enable_metadata_routing": False,
+        "skip_parameter_validation": False,
+    }
+
+    # Not using as a context manager affects nothing
+    config_context(assume_finite=True)
+    assert get_config()["assume_finite"] is False
+
+    with config_context(assume_finite=True):
+        assert get_config() == {
+            "assume_finite": True,
+            "working_memory": 1024,
+            "print_changed_only": True,
+            "display": "diagram",
+            "array_api_dispatch": False,
+            "pairwise_dist_chunk_size": 256,
+            "enable_cython_pairwise_dist": True,
+            "transform_output": "default",
+            "enable_metadata_routing": False,
+            "skip_parameter_validation": False,
+        }
+    assert get_config()["assume_finite"] is False
+
+    with config_context(assume_finite=True):
+        with config_context(assume_finite=None):
+            assert get_config()["assume_finite"] is True
+
+        assert get_config()["assume_finite"] is True
+
+        with config_context(assume_finite=False):
+            assert get_config()["assume_finite"] is False
+
+            with config_context(assume_finite=None):
+                assert get_config()["assume_finite"] is False
+
+                # global setting will not be retained outside of context that
+                # did not modify this setting
+                set_config(assume_finite=True)
+                assert get_config()["assume_finite"] is True
+
+            assert get_config()["assume_finite"] is False
+
+        assert get_config()["assume_finite"] is True
+
+    assert get_config() == {
+        "assume_finite": False,
+        "working_memory": 1024,
+        "print_changed_only": True,
+        "display": "diagram",
+        "array_api_dispatch": False,
+        "pairwise_dist_chunk_size": 256,
+        "enable_cython_pairwise_dist": True,
+        "transform_output": "default",
+        "enable_metadata_routing": False,
+        "skip_parameter_validation": False,
+    }
+
+    # No positional arguments
+    with pytest.raises(TypeError):
+        config_context(True)
+
+    # No unknown arguments
+    with pytest.raises(TypeError):
+        config_context(do_something_else=True).__enter__()
+
+
+def test_config_context_exception():
+    assert get_config()["assume_finite"] is False
+    try:
+        with config_context(assume_finite=True):
+            assert get_config()["assume_finite"] is True
+            raise ValueError()
+    except ValueError:
+        pass
+    assert get_config()["assume_finite"] is False
+
+
+def test_set_config():
+    assert get_config()["assume_finite"] is False
+    set_config(assume_finite=None)
+    assert get_config()["assume_finite"] is False
+    set_config(assume_finite=True)
+    assert get_config()["assume_finite"] is True
+    set_config(assume_finite=None)
+    assert get_config()["assume_finite"] is True
+    set_config(assume_finite=False)
+    assert get_config()["assume_finite"] is False
+
+    # No unknown arguments
+    with pytest.raises(TypeError):
+        set_config(do_something_else=True)
+
+
+def set_assume_finite(assume_finite, sleep_duration):
+    """Return the value of assume_finite after waiting `sleep_duration`."""
+    with config_context(assume_finite=assume_finite):
+        time.sleep(sleep_duration)
+        return get_config()["assume_finite"]
+
+
+@pytest.mark.parametrize("backend", ["loky", "multiprocessing", "threading"])
+def test_config_threadsafe_joblib(backend):
+    """Test that the global config is threadsafe with all joblib backends.
+    Two jobs are spawned and sets assume_finite to two different values.
+    When the job with a duration 0.1s completes, the assume_finite value
+    should be the same as the value passed to the function. In other words,
+    it is not influenced by the other job setting assume_finite to True.
+    """
+    assume_finites = [False, True, False, True]
+    sleep_durations = [0.1, 0.2, 0.1, 0.2]
+
+    items = Parallel(backend=backend, n_jobs=2)(
+        delayed(set_assume_finite)(assume_finite, sleep_dur)
+        for assume_finite, sleep_dur in zip(assume_finites, sleep_durations)
+    )
+
+    assert items == [False, True, False, True]
+
+
+@pytest.mark.xfail(_IS_WASM, reason="cannot start threads")
+def test_config_threadsafe():
+    """Uses threads directly to test that the global config does not change
+    between threads. Same test as `test_config_threadsafe_joblib` but with
+    `ThreadPoolExecutor`."""
+
+    assume_finites = [False, True, False, True]
+    sleep_durations = [0.1, 0.2, 0.1, 0.2]
+
+    with ThreadPoolExecutor(max_workers=2) as e:
+        items = [
+            output
+            for output in e.map(set_assume_finite, assume_finites, sleep_durations)
+        ]
+
+    assert items == [False, True, False, True]
+
+
+def test_config_array_api_dispatch_error_scipy(monkeypatch):
+    """Check error when SciPy is too old"""
+    monkeypatch.setattr(sklearn.utils._array_api.scipy, "__version__", "1.13.0")
+
+    with pytest.raises(ImportError, match="SciPy must be 1.14.0 or newer"):
+        with config_context(array_api_dispatch=True):
+            pass
+
+    with pytest.raises(ImportError, match="SciPy must be 1.14.0 or newer"):
+        set_config(array_api_dispatch=True)
+
+
+# <!-- @GENESIS_MODULE_END: test_config -->

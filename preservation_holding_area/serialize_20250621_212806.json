@@ -1,0 +1,9 @@
+{
+  "module_id": "serialize",
+  "original_path": "modules\\restored\\serialize.py",
+  "preserved_path": "preservation_holding_area\\serialize_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16507,
+  "checksum": "b53b0f482beeecc1d8b512a52594879f0775bb4fa23966d9070ef94b82715a7a"
+}

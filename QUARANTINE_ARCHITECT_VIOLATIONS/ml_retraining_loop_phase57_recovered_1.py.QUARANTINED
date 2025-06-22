@@ -1,0 +1,102 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:36.971083+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        581
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        26,
+        362,
+        367,
+        374,
+        379
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        11,
+        138,
+        173,
+        197,
+        215
+      ],
+      "violation_count": 25
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        167,
+        191,
+        210,
+        247,
+        280
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        112,
+        162,
+        186,
+        564,
+        585
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        117,
+        646
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        125,
+        126,
+        127,
+        128,
+        129
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ml_retraining_loop_phase57_recovered_1.py",
+      "line_numbers": [
+        132,
+        133,
+        134
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

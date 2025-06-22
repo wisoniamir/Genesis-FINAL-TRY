@@ -1,0 +1,73 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.591598+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+      "line_numbers": [
+        203,
+        335,
+        339,
+        460,
+        755
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+      "line_numbers": [
+        898
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+      "line_numbers": [
+        555
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+      "line_numbers": [
+        245
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+      "line_numbers": [
+        100,
+        223,
+        821,
+        839,
+        848
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\helpers_recovered_2.py",
+      "line_numbers": [
+        75,
+        211,
+        221,
+        239,
+        249
+      ],
+      "violation_count": 20
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

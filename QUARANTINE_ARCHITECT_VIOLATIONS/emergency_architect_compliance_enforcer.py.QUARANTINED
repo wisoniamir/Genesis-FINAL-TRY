@@ -1,0 +1,93 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.371267+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        108,
+        111
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        20,
+        137,
+        138,
+        139,
+        142
+      ],
+      "violation_count": 16
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        142,
+        162
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        163
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        92,
+        114,
+        149,
+        194,
+        261
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        134,
+        179,
+        246,
+        273
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        58
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\emergency_architect_compliance_enforcer.py",
+      "line_numbers": [
+        166,
+        167
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

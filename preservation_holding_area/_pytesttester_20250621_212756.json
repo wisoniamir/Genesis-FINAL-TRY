@@ -1,0 +1,9 @@
+{
+  "module_id": "_pytesttester",
+  "original_path": "modules\\restored\\_pytesttester.py",
+  "preserved_path": "preservation_holding_area\\_pytesttester_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17803,
+  "checksum": "b0ec0d4959ecdc466797069ab6d77288775eb145e9c10313c9a16a27eb61314e"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "file_proxy",
+  "original_path": "modules\\restored\\file_proxy.py",
+  "preserved_path": "preservation_holding_area\\file_proxy_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 12957,
+  "checksum": "3cfd6370a3c4f73baf960753b4878c3d869d18f10fbe029564be527c23c62a3e"
+}

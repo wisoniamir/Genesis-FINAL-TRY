@@ -1,0 +1,292 @@
+# <!-- @GENESIS_MODULE_START: test_paths -->
+"""
+🏛️ GENESIS TEST_PATHS - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_paths",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_paths: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_paths",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_paths", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_paths: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""
+Ensure that we can use pathlib.Path objects in all relevant IO functions.
+"""
+from pathlib import Path
+
+import numpy as np
+
+import scipy.io
+import scipy.io.wavfile
+from scipy._lib._tmpdirs import tempdir
+import scipy.sparse
+
+
+class TestPaths:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_paths",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_paths: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "test_paths",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("test_paths", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in test_paths: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_paths",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_paths: {e}")
+    data = np.arange(5).astype(np.int64)
+
+    def test_savemat(self):
+        with tempdir() as temp_dir:
+            path = Path(temp_dir) / 'data.mat'
+            scipy.io.savemat(path, {'data': self.data})
+            assert path.is_file()
+
+    def test_loadmat(self):
+        # Save data with string path, load with pathlib.Path
+        with tempdir() as temp_dir:
+            path = Path(temp_dir) / 'data.mat'
+            scipy.io.savemat(str(path), {'data': self.data})
+
+            mat_contents = scipy.io.loadmat(path)
+            assert (mat_contents['data'] == self.data).all()
+
+    def test_whosmat(self):
+        # Save data with string path, load with pathlib.Path
+        with tempdir() as temp_dir:
+            path = Path(temp_dir) / 'data.mat'
+            scipy.io.savemat(str(path), {'data': self.data})
+
+            contents = scipy.io.whosmat(path)
+            assert contents[0] == ('data', (1, 5), 'int64')
+
+    def test_readsav(self):
+        path = Path(__file__).parent / 'data/scalar_string.sav'
+        scipy.io.readsav(path)
+
+    def test_hb_read(self):
+        # Save data with string path, load with pathlib.Path
+        with tempdir() as temp_dir:
+            data = scipy.sparse.eye_array(3, format='csr')
+            path = Path(temp_dir) / 'data.hb'
+            scipy.io.hb_write(str(path), data)
+
+            data_new = scipy.io.hb_read(path, spmatrix=False)
+            assert (data_new != data).nnz == 0
+
+    def test_hb_write(self):
+        with tempdir() as temp_dir:
+            data = scipy.sparse.eye_array(3, format='csr')
+            path = Path(temp_dir) / 'data.hb'
+            scipy.io.hb_write(path, data)
+            assert path.is_file()
+
+    def test_mmio_read(self):
+        # Save data with string path, load with pathlib.Path
+        with tempdir() as temp_dir:
+            data = scipy.sparse.eye_array(3, format='csr')
+            path = Path(temp_dir) / 'data.mtx'
+            scipy.io.mmwrite(str(path), data)
+
+            data_new = scipy.io.mmread(path, spmatrix=False)
+            assert (data_new != data).nnz == 0
+
+    def test_mmio_write(self):
+        with tempdir() as temp_dir:
+            data = scipy.sparse.eye_array(3, format='csr')
+            path = Path(temp_dir) / 'data.mtx'
+            scipy.io.mmwrite(path, data)
+
+    def test_netcdf_file(self):
+        path = Path(__file__).parent / 'data/example_1.nc'
+        scipy.io.netcdf_file(path)
+
+    def test_wavfile_read(self):
+        path = Path(__file__).parent / 'data/test-8000Hz-le-2ch-1byteu.wav'
+        scipy.io.wavfile.read(path)
+
+    def test_wavfile_write(self):
+        # Read from str path, write to Path
+        input_path = Path(__file__).parent / 'data/test-8000Hz-le-2ch-1byteu.wav'
+        rate, data = scipy.io.wavfile.read(str(input_path))
+
+        with tempdir() as temp_dir:
+            output_path = Path(temp_dir) / input_path.name
+            scipy.io.wavfile.write(output_path, rate, data)
+
+
+# <!-- @GENESIS_MODULE_END: test_paths -->

@@ -1,0 +1,99 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.573951+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        672
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        8,
+        11,
+        61
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        31,
+        312,
+        360,
+        393,
+        464
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        350,
+        384,
+        438,
+        482,
+        523
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        356,
+        389,
+        443,
+        762
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        347,
+        381,
+        518,
+        565,
+        622
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        118,
+        884
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\genesis_dashboard_ui_live_sync.py",
+      "line_numbers": [
+        637,
+        638,
+        639
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

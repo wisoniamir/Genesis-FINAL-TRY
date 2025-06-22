@@ -1,0 +1,9 @@
+{
+  "module_id": "manifest",
+  "original_path": "modules\\restored\\manifest.py",
+  "preserved_path": "preservation_holding_area\\manifest_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25715,
+  "checksum": "70122153d3a1882ffc1ea631f7d033fde04a334c835501d769a0ecb031329c40"
+}

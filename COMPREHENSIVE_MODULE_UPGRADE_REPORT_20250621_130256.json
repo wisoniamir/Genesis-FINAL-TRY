@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-06-21T10:02:56.576185+00:00",
+  "statistics": {
+    "total_modules": 14028,
+    "modules_scanned": 14028,
+    "modules_upgraded": 1175,
+    "modules_compliant": 12853,
+    "modules_failed": 0,
+    "upgrade_actions_applied": 3595,
+    "compliance_violations_fixed": 0
+  },
+  "compliance_summary": {
+    "total_modules": 14028,
+    "compliant_modules": 12853,
+    "compliance_rate": 91.62389506700885,
+    "modules_upgraded": 1175,
+    "upgrade_rate": 8.37610493299116
+  },
+  "feature_analysis": {
+    "eventbus_coverage": 100.0,
+    "telemetry_coverage": 99.96435700028515,
+    "ftmo_coverage": 99.65782720273738,
+    "risk_management_coverage": 90.94667807242658,
+    "kill_switch_coverage": 91.66666666666666,
+    "pattern_intelligence_coverage": 89.34987168520102,
+    "institutional_logic_coverage": 99.50099800399201
+  },
+  "failed_modules": [],
+  "recommendations": []
+}

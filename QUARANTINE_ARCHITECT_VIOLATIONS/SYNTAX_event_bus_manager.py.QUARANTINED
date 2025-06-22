@@ -1,0 +1,38 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\SYNTAX_event_bus_manager.py",
+  "quarantine_timestamp": "2025-06-21T04:33:40.527496+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\SYNTAX_event_bus_manager.py",
+      "line_numbers": [
+        89,
+        126
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\SYNTAX_event_bus_manager.py",
+      "line_numbers": [
+        93,
+        132
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\SYNTAX_event_bus_manager.py",
+      "line_numbers": [
+        49,
+        69,
+        162
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

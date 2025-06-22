@@ -1,0 +1,9 @@
+{
+  "module_id": "file_util",
+  "original_path": "modules\\restored\\file_util.py",
+  "preserved_path": "preservation_holding_area\\file_util_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 14305,
+  "checksum": "83efef4c1af8a2ac0e1af4c2111e7559caec6a62636f93908e249edb1d19024c"
+}

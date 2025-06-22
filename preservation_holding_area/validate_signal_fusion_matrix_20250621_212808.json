@@ -1,0 +1,9 @@
+{
+  "module_id": "validate_signal_fusion_matrix",
+  "original_path": "modules\\signal_processing\\validate_signal_fusion_matrix.py",
+  "preserved_path": "preservation_holding_area\\validate_signal_fusion_matrix_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 13395,
+  "checksum": "92b31de50078391dc94c39db62f92a5523d51c1bdfcc7894ab04b1a9410bf9ef"
+}

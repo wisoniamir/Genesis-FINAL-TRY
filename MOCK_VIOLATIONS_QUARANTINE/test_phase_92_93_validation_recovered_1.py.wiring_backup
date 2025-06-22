@@ -1,0 +1,194 @@
+# <!-- @GENESIS_MODULE_START: test_phase_92_93_validation -->
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS PHASE 92-93 VALIDATION TEST
+Integration test for enhanced dashboard with backtesting and comparison modules
+
+🎯 PURPOSE:
+Validate that the Phase 92/93 integration is working correctly
+- Test dashboard loading with new tabs
+- Verify module imports and EventBus integration
+- Check error handling and graceful fallbacks
+"""
+
+import sys
+import os
+import logging
+import traceback
+import time
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def test_phase_92_93_integration():
+    """Test the complete Phase 92-93 integration"""
+    
+    test_results = {
+        "dashboard_import": False,
+        "backtest_module_import": False,
+        "comparison_engine_import": False,
+        "phase_92_93_available": False,
+        "dashboard_creation": False,
+        "error_details": []
+    }
+    
+    print("🔍 GENESIS Phase 92-93 Integration Validation")
+    print("=" * 50)
+    
+    # Test 1: Dashboard UI Import
+    try:
+        print("📊 Testing dashboard UI import...")
+        import genesis_dashboard_ui
+        test_results["dashboard_import"] = True
+        print("✅ Dashboard UI imported successfully")
+        
+        # Check if Phase 92/93 modules are available
+        if hasattr(genesis_dashboard_ui, 'PHASES_92_93_AVAILABLE'):
+            test_results["phase_92_93_available"] = genesis_dashboard_ui.PHASES_92_93_AVAILABLE
+            print(f"📡 Phase 92/93 availability: {test_results['phase_92_93_available']}")
+        
+    except Exception as e:
+        test_results["error_details"].append(f"Dashboard import failed: {str(e)}")
+        print(f"❌ Dashboard UI import failed: {str(e)}")
+    
+    # Test 2: Backtest Module Import
+    try:
+        print("📈 Testing backtest module import...")
+        import backtest_dashboard_module
+        test_results["backtest_module_import"] = True
+        print("✅ Backtest module imported successfully")
+        
+        # Test create_backtest_panel function
+        if hasattr(backtest_dashboard_module, 'create_backtest_panel'):
+            print("✅ create_backtest_panel function available")
+        else:
+            print("⚠️ create_backtest_panel function not found")
+            
+    except Exception as e:
+        test_results["error_details"].append(f"Backtest module import failed: {str(e)}")
+        print(f"❌ Backtest module import failed: {str(e)}")
+    
+    # Test 3: Comparison Engine Import
+    try:
+        print("📊 Testing comparison engine import...")
+        import live_backtest_comparison_engine
+        test_results["comparison_engine_import"] = True
+        print("✅ Comparison engine imported successfully")
+        
+        # Test create_comparison_engine function
+        if hasattr(live_backtest_comparison_engine, 'create_comparison_engine'):
+            print("✅ create_comparison_engine function available")
+        else:
+            print("⚠️ create_comparison_engine function not found")
+            
+    except Exception as e:
+        test_results["error_details"].append(f"Comparison engine import failed: {str(e)}")
+        print(f"❌ Comparison engine import failed: {str(e)}")
+    
+    # Test 4: Dashboard Creation (without GUI)
+    try:
+        print("🖥️ Testing dashboard creation (headless)...")
+        if test_results["dashboard_import"]:
+            # This would normally create the GUI, but we'll just check the class exists
+            dashboard_class = genesis_dashboard_ui.GenesisInstitutionalDashboard
+            print("✅ Dashboard 
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        class available for creation")
+            test_results["dashboard_creation"] = True
+        else:
+            print("⚠️ Skipping dashboard creation due to import failure")
+            
+    except Exception as e:
+        test_results["error_details"].append(f"Dashboard creation test failed: {str(e)}")
+        print(f"❌ Dashboard creation test failed: {str(e)}")
+    
+    # Test Summary
+    print("\n" + "=" * 50)
+    print("📋 VALIDATION SUMMARY:")
+    print("=" * 50)
+    
+    total_tests = 4
+    passed_tests = sum([
+        test_results["dashboard_import"],
+        test_results["backtest_module_import"], 
+        test_results["comparison_engine_import"],
+        test_results["dashboard_creation"]
+    ])
+    
+    success_rate = (passed_tests / total_tests) * 100
+    
+    print(f"✅ Tests Passed: {passed_tests}/{total_tests} ({success_rate:.1f}%)")
+    print(f"📡 Phase 92/93 Available: {test_results['phase_92_93_available']}")
+    
+    if test_results["error_details"]:
+        print("\n⚠️ ERRORS DETECTED:")
+        for error in test_results["error_details"]:
+            print(f"  - {error}")
+    
+    if passed_tests == total_tests:
+        print("\n🎉 PHASE 92-93 INTEGRATION: FULLY OPERATIONAL")
+        print("✅ Ready for production use with enhanced dashboard")
+        print("🎯 Launch command: python genesis_dashboard_ui.py")
+        return True
+    else:
+        print(f"\n⚠️ PHASE 92-93 INTEGRATION: PARTIAL SUCCESS ({success_rate:.1f}%)")
+        print("⚠️ Some components may not be fully functional")
+        return False
+
+def test_file_existence():
+    """Test that all required files exist"""
+    print("\n📁 FILE EXISTENCE CHECK:")
+    print("-" * 30)
+    
+    required_files = [
+        "genesis_dashboard_ui.py",
+        "backtest_dashboard_module.py", 
+        "live_backtest_comparison_engine.py",
+        "telemetry.json",
+        "module_registry.json",
+        "build_status.json"
+    ]
+    
+    all_exist = True
+    for file_path in required_files:
+        if os.path.exists(file_path):
+            print(f"✅ {file_path}")
+        else:
+            print(f"❌ {file_path} - MISSING")
+            all_exist = False
+    
+    return all_exist
+
+if __name__ == "__main__":
+    print(f"🕐 Validation started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    # Run file existence check
+    files_ok = test_file_existence()
+    
+    # Run integration tests
+    integration_ok = test_phase_92_93_integration()
+    
+    print(f"\n🕐 Validation completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    if files_ok and integration_ok:
+        print("\n🚀 VALIDATION RESULT: SUCCESS - READY FOR PRODUCTION")
+        sys.exit(0)
+    else:
+        print("\n⚠️ VALIDATION RESULT: ISSUES DETECTED - REVIEW REQUIRED")
+        sys.exit(1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase_92_93_validation -->

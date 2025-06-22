@@ -1,0 +1,9 @@
+{
+  "module_id": "live_alert_bridge",
+  "original_path": "modules\\restored\\live_alert_bridge.py",
+  "preserved_path": "preservation_holding_area\\live_alert_bridge_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 28406,
+  "checksum": "769c8bb59b6c6104c07edb92f1d623970600181df6d4b69bfcce054f7eb497dc"
+}

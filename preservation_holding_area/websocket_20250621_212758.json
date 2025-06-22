@@ -1,0 +1,9 @@
+{
+  "module_id": "websocket",
+  "original_path": "modules\\restored\\websocket.py",
+  "preserved_path": "preservation_holding_area\\websocket_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 142677,
+  "checksum": "ac3cb99e94539059b2c07fb9ebdb4246842ad819a04c5e6a05dc596623f7d936"
+}

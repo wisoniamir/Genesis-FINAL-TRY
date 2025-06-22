@@ -1,0 +1,9 @@
+{
+  "module_id": "dashboard",
+  "original_path": "modules\\restored\\dashboard.py",
+  "preserved_path": "preservation_holding_area\\dashboard_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18021,
+  "checksum": "9eb5f4ffbeca59db11987f1059e732b1517f37d149ac79f9a1d881c8f57ab812"
+}

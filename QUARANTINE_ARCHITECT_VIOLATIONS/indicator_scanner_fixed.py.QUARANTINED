@@ -1,0 +1,75 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.769709+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+      "line_numbers": [
+        6,
+        9,
+        27
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+      "line_numbers": [
+        33,
+        120,
+        134,
+        184
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+      "line_numbers": [
+        161,
+        227
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+      "line_numbers": [
+        153,
+        213,
+        222,
+        224
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+      "line_numbers": [
+        108,
+        125,
+        147,
+        155,
+        163
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "from mt5_adapter",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\indicator_scanner_fixed.py",
+      "line_numbers": [
+        122,
+        187
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

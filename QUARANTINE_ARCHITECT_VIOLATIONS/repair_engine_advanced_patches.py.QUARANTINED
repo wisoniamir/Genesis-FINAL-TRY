@@ -1,0 +1,185 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.406303+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        54,
+        60
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        54,
+        208
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        54
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        54
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        43,
+        44,
+        173,
+        174,
+        176
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        44,
+        56,
+        57,
+        157
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        45,
+        208,
+        267
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        72,
+        88,
+        107,
+        167,
+        447
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        97,
+        115,
+        213,
+        484,
+        524
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        184,
+        194,
+        227,
+        277,
+        308
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        118,
+        368
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# shadow",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        60
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# alternative",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        60
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        60
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# bypass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        60
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        412
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\repair_engine_advanced_patches.py",
+      "line_numbers": [
+        396,
+        570
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

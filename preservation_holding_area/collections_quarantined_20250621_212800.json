@@ -1,0 +1,9 @@
+{
+  "module_id": "collections_quarantined",
+  "original_path": "modules\\restored\\collections_quarantined.py",
+  "preserved_path": "preservation_holding_area\\collections_quarantined_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 191355,
+  "checksum": "7bbf1dc14465c8cd66eb892a2f48918c9a811c0f683ef63f2f3f4d88d2a6fcab"
+}

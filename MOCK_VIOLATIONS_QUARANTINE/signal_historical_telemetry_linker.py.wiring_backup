@@ -1,0 +1,329 @@
+# <!-- @GENESIS_MODULE_START: signal_historical_telemetry_linker -->
+
+from datetime import datetime\n"""
+GENESIS AI TRADING SYSTEM - PHASE 19
+Signal Historical Telemetry Linker - Real-time Historical Context Engine
+ARCHITECT MODE v3.0 - INSTITUTIONAL GRADE COMPLIANCE
+
+PURPOSE:
+- Link signals with historical telemetry and performance data
+- Provide historical context for signal quality assessment
+- Track signal performance patterns and correlation analysis
+- Feed historical insights to adaptive filtering and routing
+
+COMPLIANCE:
+- EventBus-only communication (NO direct calls)
+- Real historical data integration (NO real data)
+- Full telemetry hooks and structured logging
+- Registered in system_tree.json and module_registry.json
+"""
+
+import json
+import datetime
+import os
+import logging
+import time
+import numpy as np
+import pandas as pd
+from statistics import mean, median, stdev
+from collections import deque, defaultdict
+from event_bus import get_event_bus, emit_event, subscribe_to_event
+
+class SignalHistoricalTelemetryLinker:
+    def __init__(self):
+        """Initialize Signal Historical Telemetry Linker with real data connections."""
+        self.module_name = "SignalHistoricalTelemetryLinker"
+        self.event_bus = get_event_bus()
+        self.logger = self._setup_logging()
+        
+        # Historical data storage
+        self.signal_history = defaultdict(lambda: {
+            "executions": [],
+            "outcomes": [],
+            "pnl_history": [],
+            "context_patterns": [],
+            "performance_metrics": {}
+        })
+        
+        # Performance correlation tracking
+        self.correlation_matrix = {}
+        self.pattern_performance = defaultdict(lambda: {
+            "total_trades": 0,
+            "profitable_trades": 0,
+            "total_pnl": 0.0,
+            "avg_pnl": 0.0,
+            "success_rate": 0.0,
+            "last_updated": None
+        })
+        
+        # Real-time telemetry aggregation
+        self.telemetry_buffer = deque(maxlen=10000)
+        self.execution_history = deque(maxlen=5000)
+        
+        # Historical analysis parameters
+        self.analysis_windows = {
+            "short_term": 50,    # Last 50 signals
+            "medium_term": 200,  # Last 200 signals
+            "long_term": 1000    # Last 1000 signals
+        }
+        
+        # Performance tracking
+        self.linker_metrics = {
+            "signals_linked": 0,
+            "historical_matches_found": 0,
+            "correlation_updates": 0,
+            "performance_predictions": 0,
+            "last_analysis_timestamp": None
+        }
+        
+        # Data persistence paths
+        self.data_paths = {
+            "signal_history": "data/signal_history/",
+            "correlation_data": "data/correlations/",
+            "performance_metrics": "data/performance/",
+            "telemetry_archive": "data/telemetry_archive/"
+        }
+        
+        # Ensure data directories exist
+        for path in self.data_paths.values():
+            os.makedirs(path, exist_ok=True)
+            
+        # Connect to EventBus for real-time linking
+        self._subscribe_to_events()
+        
+        # Load existing historical data
+        self._load_historical_data()
+        
+        self.logger.info(f"{self.module_name} initialized with historical data linking")
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_logging(self):
+        """Setup structured logging for institutional compliance."""
+        log_dir = "logs/signal_historical_telemetry_linker"
+        os.makedirs(log_dir, exist_ok=True)
+        
+        logger = logging.getLogger(self.module_name)
+        logger.setLevel(logging.INFO)
+        
+        # JSONL structured logging for compliance
+        handler = logging.FileHandler(f"{log_dir}/linker_{datetime.datetime.now().strftime('%Y%m%d')}.jsonl")
+        formatter = logging.Formatter('{"timestamp": "%(asctime)s", "module": "%(name)s", "level": "%(levelname)s", "message": "%(message)s"}')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        
+        return logger
+        
+    def _subscribe_to_events(self):
+        """Subscribe to EventBus for real-time telemetry linking."""
+        # Listen for signals to enrich with historical context
+        subscribe_to_event("SignalEnrichedEvent", self.on_signal_enriched)
+        subscribe_to_event("SignalFilteredEvent", self.on_signal_filtered)
+        
+        # Listen for execution outcomes to update historical data
+        subscribe_to_event("ExecutionCompleted", self.on_execution_completed)
+        subscribe_to_event("TradeOutcomeFeedback", self.on_trade_outcome)
+        
+        # Listen for telemetry updates
+        subscribe_to_event("ModuleTelemetry", self.on_telemetry_update)
+        
+        # Listen for historical analysis requests
+        subscribe_to_event("HistoricalAnalysisRequest", self.on_analysis_request)
+        
+        self.logger.info("EventBus subscriptions established for historical telemetry linking")
+        
+    def on_signal_enriched(self, event_data):
+        """Process enriched signals for historical context linking."""
+        try:
+            signal_id = event_data.get("signal_id")
+            enriched_data = event_data.get("enriched_data", {})
+            symbol = event_data.get("symbol")
+            
+            # Generate historical context for the signal
+            historical_context = self._generate_historical_context(enriched_data, symbol)
+            
+            # Link signal with historical telemetry
+            linked_signal = self._link_with_telemetry(enriched_data, historical_context)
+            
+            # Emit signal with historical context
+            emit_event("SignalHistoricalLinkedEvent", {
+                "signal_id": signal_id,
+                "symbol": symbol,
+                "linked_data": linked_signal,
+                "historical_context": historical_context,
+                "linker_timestamp": datetime.datetime.now().isoformat(),
+                "linker_module": self.module_name
+            })
+            
+            # Update metrics
+            self._update_linker_metrics(historical_context)
+            
+            self.logger.info(f"Signal {signal_id} linked with historical context")
+            
+        except Exception as e:
+            self.logger.error(f"Error linking signal with historical context: {str(e)}")
+            emit_event("ModuleError", {
+                "module": self.module_name,
+                "error": str(e),
+                "timestamp": datetime.datetime.now().isoformat()
+            })
+            
+    def on_signal_filtered(self, event_data):
+        """Track filtered signals for historical performance analysis."""
+        try:
+            signal_id = event_data.get("signal_id")
+            filtered_data = event_data.get("filtered_data", {})
+            filter_confidence = event_data.get("filter_confidence", 0.0)
+            
+            # Store signal for historical tracking
+            self._store_signal_for_tracking(signal_id, filtered_data, filter_confidence)
+            
+        except Exception as e:
+            self.logger.error(f"Error tracking filtered signal: {str(e)}")
+            
+    def on_execution_completed(self, event_data):
+        """Update historical data with execution results."""
+        try:
+            signal_id = event_data.get("signal_id")
+            execution_result = event_data.get("execution_result", {})
+            execution_time = event_data.get("execution_time", 0)
+            
+            # Update execution history
+            execution_record = {
+                "signal_id": signal_id,
+                "execution_time": execution_time,
+                "execution_result": execution_result,
+                "timestamp": datetime.datetime.now().isoformat()
+            }
+            
+            self.execution_history.append(execution_record)
+            
+            # Update signal history
+            self._update_signal_execution_history(signal_id, execution_record)
+            
+            self.logger.info(f"Updated execution history for signal {signal_id}")
+            
+        except Exception as e:
+            self.logger.error(f"Error updating execution history: {str(e)}")
+            
+    def on_trade_outcome(self, event_data):
+        """Update historical data with trade outcomes."""
+        try:
+            signal_id = event_data.get("signal_id")
+            outcome = event_data.get("outcome")
+            pnl = event_data.get("pnl", 0.0)
+            trade_duration = event_data.get("duration", 0)
+            
+            # Update signal performance history
+            self._update_signal_performance(signal_id, outcome, pnl, trade_duration)
+            
+            # Update pattern performance
+            self._update_pattern_performance(signal_id, outcome, pnl)
+            
+            # Recalculate correlations
+            self._update_correlation_analysis()
+            
+            self.logger.info(f"Updated trade outcome for signal {signal_id}: {outcome}, PnL: {pnl}")
+            
+        except Exception as e:
+            self.logger.error(f"Error updating trade outcome: {str(e)}")
+            
+    def on_telemetry_update(self, event_data):
+        """Process telemetry updates for historical analysis."""
+        try:
+            module = event_data.get("module")
+            stats = event_data.get("stats", {})
+            timestamp = event_data.get("timestamp")
+            
+            # Store telemetry in buffer
+            telemetry_record = {
+                "module": module,
+                "stats": stats,
+                "timestamp": timestamp
+            }
+            
+            self.telemetry_buffer.append(telemetry_record)
+            
+            # Periodically archive telemetry data
+            if len(self.telemetry_buffer) % 1000 == 0:
+                self._archive_telemetry_data()
+                
+        except Exception as e:
+            self.logger.error(f"Error processing telemetry update: {str(e)}")
+            
+    def on_analysis_request(self, event_data):
+        """Process historical analysis requests."""
+        try:
+            analysis_type = event_data.get("analysis_type")
+            parameters = event_data.get("parameters", {})
+            
+            if analysis_type == "signal_performance":
+                result = self._analyze_signal_performance(parameters)
+            elif analysis_type == "pattern_analysis":
+                result = self._analyze_pattern_performance(parameters)
+            elif analysis_type == "correlation_analysis":
+                result = self._analyze_correlations(parameters)
+            else:
+                result = {"error": f"Unknown analysis type: {analysis_type}"}
+                
+            # Emit analysis result
+            emit_event("HistoricalAnalysisResult", {
+                "analysis_type": analysis_type,
+                "result": result,
+                "timestamp": datetime.datetime.now().isoformat(),
+                "analyzer_module": self.module_name
+            })
+            
+        except Exception as e:
+            self.logger.error(f"Error processing analysis request: {str(e)}")
+            
+    def _generate_historical_context(self, signal_data, symbol):
+        """Generate historical context for a signal."""
+        context = signal_data.get("context", {})
+        
+        historical_context = {
+            "symbol_history": self._get_symbol_historical_performance(symbol),
+            "pattern_history": self._get_pattern_historical_performance(context),
+            "similar_signals": self._find_similar_historical_signals(signal_data),
+            "performance_prediction": self._predict_performance_from_history(signal_data),
+            "risk_assessment": self._assess_historical_risk(signal_data)
+        }
+        
+        return historical_context
+        
+    def _get_symbol_historical_performance(self, symbol):
+        """Get historical performance data for a symbol."""
+        if symbol not in self.signal_history:
+            return {
+                "total_signals": 0,
+                "avg_pnl": 0.0,
+                "success_rate": 0.0,
+                "data_available": False
+            }
+            
+        symbol_data = self.signal_history[symbol]
+        outcomes = symbol_data["outcomes"]
+        pnl_history = symbol_data["pnl_history"]
+        
+        assert outcomes is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: signal_historical_telemetry_linker -->

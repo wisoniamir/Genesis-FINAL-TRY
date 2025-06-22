@@ -1,0 +1,9 @@
+{
+  "module_id": "delta_generator",
+  "original_path": "modules\\restored\\delta_generator.py",
+  "preserved_path": "preservation_holding_area\\delta_generator_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 28886,
+  "checksum": "6d7e7d663182185783ef00145543fabc274547337f11e11cd547697ad01aea27"
+}

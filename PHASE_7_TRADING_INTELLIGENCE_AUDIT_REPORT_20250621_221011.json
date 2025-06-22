@@ -1,0 +1,445 @@
+{
+  "metadata": {
+    "phase": "7.95_TRADING_INTELLIGENCE_AUDIT",
+    "timestamp": "2025-06-21T22:10:11.525588",
+    "architect_mode": "v7.0.0_ULTIMATE_ENFORCEMENT",
+    "compliance_level": "ZERO_TOLERANCE_TRADING_FOCUS",
+    "execution_time_seconds": 0.06331157684326172,
+    "completion_status": "SUCCESS"
+  },
+  "critical_modules_analysis": {
+    "execution_engine": {
+      "module_name": "execution_engine",
+      "found_at": "execution_engine.py",
+      "analysis_result": {
+        "status": "INCOMPLETE",
+        "violations": [
+          "stub_patterns: 6 occurrences of 'pass\\s*$'",
+          "stub_patterns: 2 occurrences of 'mock'",
+          "mock_data_patterns: 2 occurrences of 'mock'",
+          "mock_data_patterns: 7 occurrences of 'simulate'",
+          "Empty/stub functions: 26/33"
+        ],
+        "trading_logic_indicators": 380,
+        "source_lines": 750
+      },
+      "eventbus_integration": false,
+      "telemetry_integration": true,
+      "mt5_integration": true
+    },
+    "strategy_mutation_engine": {
+      "module_name": "strategy_mutation_engine",
+      "found_at": "strategy_mutation_engine.py",
+      "analysis_result": {
+        "status": "INCOMPLETE",
+        "violations": [
+          "stub_patterns: 3 occurrences of 'pass\\s*$'",
+          "stub_patterns: 1 occurrences of 'return None\\s*$'",
+          "stub_patterns: 4 occurrences of 'mock'",
+          "mock_data_patterns: 4 occurrences of 'mock'",
+          "mock_data_patterns: 2 occurrences of 'simulate'",
+          "mock_data_patterns: 1 occurrences of 'dummy'",
+          "Syntax error in module: unindent does not match any outer indentation level (<unknown>, line 746)"
+        ],
+        "trading_logic_indicators": 246,
+        "source_lines": 880
+      },
+      "eventbus_integration": true,
+      "telemetry_integration": true,
+      "mt5_integration": true
+    },
+    "pattern_classifier_engine": {
+      "module_name": "pattern_classifier_engine",
+      "found_at": "modules/ml/pattern_classifier_engine.py",
+      "analysis_result": {
+        "status": "INCOMPLETE",
+        "violations": [
+          "stub_patterns: 3 occurrences of 'placeholder'",
+          "stub_patterns: 1 occurrences of 'mock'",
+          "mock_data_patterns: 1 occurrences of 'mock'",
+          "Syntax error in module: invalid character '🗃' (U+1F5C3) (<unknown>, line 1330)"
+        ],
+        "trading_logic_indicators": 393,
+        "source_lines": 2117
+      },
+      "eventbus_integration": true,
+      "telemetry_integration": true,
+      "mt5_integration": true
+    },
+    "macro_sync_engine": {
+      "module_name": "macro_sync_engine",
+      "found_at": "modules/restored/macro_sync_engine.py",
+      "analysis_result": {
+        "status": "INCOMPLETE",
+        "violations": [
+          "stub_patterns: 1 occurrences of 'pass\\s*$'",
+          "Syntax error in module: unexpected character after line continuation character (<unknown>, line 1)"
+        ],
+        "trading_logic_indicators": 75,
+        "source_lines": 522
+      },
+      "eventbus_integration": true,
+      "telemetry_integration": true,
+      "mt5_integration": false
+    },
+    "kill_switch_audit": {
+      "module_name": "kill_switch_audit",
+      "found_at": "kill_switch_audit.py",
+      "analysis_result": {
+        "status": "INCOMPLETE",
+        "violations": [
+          "stub_patterns: 6 occurrences of 'pass\\s*$'",
+          "stub_patterns: 3 occurrences of 'mock'",
+          "mock_data_patterns: 3 occurrences of 'mock'",
+          "mock_data_patterns: 6 occurrences of 'simulate'",
+          "Empty/stub functions: 27/32"
+        ],
+        "trading_logic_indicators": 38,
+        "source_lines": 736
+      },
+      "eventbus_integration": false,
+      "telemetry_integration": true,
+      "mt5_integration": false
+    },
+    "risk_guard": {
+      "module_name": "risk_guard",
+      "found_at": "risk_guard.py",
+      "analysis_result": {
+        "status": "INCOMPLETE",
+        "violations": [
+          "stub_patterns: 4 occurrences of 'pass\\s*$'",
+          "stub_patterns: 3 occurrences of 'mock'",
+          "mock_data_patterns: 3 occurrences of 'mock'",
+          "Empty/stub functions: 27/32"
+        ],
+        "trading_logic_indicators": 170,
+        "source_lines": 689
+      },
+      "eventbus_integration": true,
+      "telemetry_integration": true,
+      "mt5_integration": true
+    },
+    "trade_journal_logger": {
+      "module_name": "trade_journal_logger",
+      "found_at": null,
+      "analysis_result": {
+        "status": "MISSING",
+        "violations": [
+          "Module not found in expected locations"
+        ]
+      },
+      "eventbus_integration": false,
+      "telemetry_integration": false,
+      "mt5_integration": false
+    },
+    "performance_feedback_loop": {
+      "module_name": "performance_feedback_loop",
+      "found_at": null,
+      "analysis_result": {
+        "status": "MISSING",
+        "violations": [
+          "Module not found in expected locations"
+        ]
+      },
+      "eventbus_integration": false,
+      "telemetry_integration": false,
+      "mt5_integration": false
+    }
+  },
+  "trading_flow_validation": {
+    "macro_analysis": {
+      "modules_available": [
+        "macro_sync_engine"
+      ],
+      "modules_missing": [],
+      "signal_producers": [],
+      "signal_consumers": [],
+      "flow_integrity": "PARTIALLY_CONNECTED"
+    },
+    "confluence_analysis": {
+      "modules_available": [
+        "pattern_classifier_engine"
+      ],
+      "modules_missing": [
+        "signal_engine"
+      ],
+      "signal_producers": [
+        "pattern_classified",
+        "pattern_confidence"
+      ],
+      "signal_consumers": [
+        "pattern_data",
+        "market_structure"
+      ],
+      "flow_integrity": "BROKEN"
+    },
+    "decision_logic": {
+      "modules_available": [
+        "strategy_mutation_engine"
+      ],
+      "modules_missing": [
+        "decision_engine"
+      ],
+      "signal_producers": [],
+      "signal_consumers": [],
+      "flow_integrity": "BROKEN"
+    },
+    "risk_assessment": {
+      "modules_available": [
+        "risk_guard"
+      ],
+      "modules_missing": [
+        "risk_engine"
+      ],
+      "signal_producers": [],
+      "signal_consumers": [],
+      "flow_integrity": "BROKEN"
+    },
+    "execution": {
+      "modules_available": [
+        "execution_engine"
+      ],
+      "modules_missing": [],
+      "signal_producers": [
+        "execution_placed",
+        "execution_complete",
+        "order_status"
+      ],
+      "signal_consumers": [
+        "signal_triggered",
+        "risk_cleared",
+        "execution_request"
+      ],
+      "flow_integrity": "CONNECTED"
+    },
+    "audit_monitoring": {
+      "modules_available": [
+        "kill_switch_audit"
+      ],
+      "modules_missing": [
+        "trade_journal_logger"
+      ],
+      "signal_producers": [],
+      "signal_consumers": [],
+      "flow_integrity": "BROKEN"
+    }
+  },
+  "signal_route_trace": {
+    "total_routes_traced": 5,
+    "connected_routes": 0,
+    "broken_routes": 5,
+    "route_map": {},
+    "orphan_signals": [
+      {
+        "producer": "execution_engine",
+        "signal": "execution_placed",
+        "issue": "NO_TRADING_MODULE_CONSUMERS"
+      },
+      {
+        "producer": "execution_engine",
+        "signal": "execution_complete",
+        "issue": "NO_TRADING_MODULE_CONSUMERS"
+      },
+      {
+        "producer": "execution_engine",
+        "signal": "order_status",
+        "issue": "NO_TRADING_MODULE_CONSUMERS"
+      },
+      {
+        "producer": "pattern_classifier_engine",
+        "signal": "pattern_classified",
+        "issue": "NO_TRADING_MODULE_CONSUMERS"
+      },
+      {
+        "producer": "pattern_classifier_engine",
+        "signal": "pattern_confidence",
+        "issue": "NO_TRADING_MODULE_CONSUMERS"
+      }
+    ]
+  },
+  "execution_path_tests": {
+    "intraday_scenario": {
+      "modules_available": 0,
+      "modules_total": 4,
+      "signals_traceable": 0,
+      "signals_total": 5,
+      "execution_path_complete": false,
+      "missing_components": [
+        "Module: macro_sync_engine",
+        "Module: pattern_classifier_engine",
+        "Module: risk_guard",
+        "Module: execution_engine",
+        "Signal: macro_analysis_complete",
+        "Signal: confluence_score",
+        "Signal: entry_signal",
+        "Signal: risk_approved",
+        "Signal: order_placed"
+      ],
+      "completeness_score": 0.0
+    },
+    "swing_scenario": {
+      "modules_available": 0,
+      "modules_total": 4,
+      "signals_traceable": 0,
+      "signals_total": 4,
+      "execution_path_complete": false,
+      "missing_components": [
+        "Module: strategy_mutation_engine",
+        "Module: risk_guard",
+        "Module: execution_engine",
+        "Module: trade_journal_logger",
+        "Signal: pattern_detected",
+        "Signal: strategy_recommendation",
+        "Signal: position_sizing",
+        "Signal: trade_opened"
+      ],
+      "completeness_score": 0.0
+    },
+    "execution_completeness": 0.0
+  },
+  "intelligence_gaps": [],
+  "mock_stub_violations": [],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "MODULE_COMPLETION",
+      "module": "execution_engine",
+      "action": "Complete execution_engine implementation",
+      "details": "Module contains stubs or insufficient trading logic: [\"stub_patterns: 6 occurrences of 'pass\\\\s*$'\", \"stub_patterns: 2 occurrences of 'mock'\", \"mock_data_patterns: 2 occurrences of 'mock'\", \"mock_data_patterns: 7 occurrences of 'simulate'\", 'Empty/stub functions: 26/33']"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "EVENTBUS_INTEGRATION",
+      "module": "execution_engine",
+      "action": "Add EventBus integration to execution_engine",
+      "details": "Module not connected to EventBus architecture"
+    },
+    {
+      "priority": "HIGH",
+      "category": "MODULE_COMPLETION",
+      "module": "strategy_mutation_engine",
+      "action": "Complete strategy_mutation_engine implementation",
+      "details": "Module contains stubs or insufficient trading logic: [\"stub_patterns: 3 occurrences of 'pass\\\\s*$'\", \"stub_patterns: 1 occurrences of 'return None\\\\s*$'\", \"stub_patterns: 4 occurrences of 'mock'\", \"mock_data_patterns: 4 occurrences of 'mock'\", \"mock_data_patterns: 2 occurrences of 'simulate'\", \"mock_data_patterns: 1 occurrences of 'dummy'\", 'Syntax error in module: unindent does not match any outer indentation level (<unknown>, line 746)']"
+    },
+    {
+      "priority": "HIGH",
+      "category": "MODULE_COMPLETION",
+      "module": "pattern_classifier_engine",
+      "action": "Complete pattern_classifier_engine implementation",
+      "details": "Module contains stubs or insufficient trading logic: [\"stub_patterns: 3 occurrences of 'placeholder'\", \"stub_patterns: 1 occurrences of 'mock'\", \"mock_data_patterns: 1 occurrences of 'mock'\", \"Syntax error in module: invalid character '🗃' (U+1F5C3) (<unknown>, line 1330)\"]"
+    },
+    {
+      "priority": "HIGH",
+      "category": "MODULE_COMPLETION",
+      "module": "macro_sync_engine",
+      "action": "Complete macro_sync_engine implementation",
+      "details": "Module contains stubs or insufficient trading logic: [\"stub_patterns: 1 occurrences of 'pass\\\\s*$'\", 'Syntax error in module: unexpected character after line continuation character (<unknown>, line 1)']"
+    },
+    {
+      "priority": "HIGH",
+      "category": "MODULE_COMPLETION",
+      "module": "kill_switch_audit",
+      "action": "Complete kill_switch_audit implementation",
+      "details": "Module contains stubs or insufficient trading logic: [\"stub_patterns: 6 occurrences of 'pass\\\\s*$'\", \"stub_patterns: 3 occurrences of 'mock'\", \"mock_data_patterns: 3 occurrences of 'mock'\", \"mock_data_patterns: 6 occurrences of 'simulate'\", 'Empty/stub functions: 27/32']"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "EVENTBUS_INTEGRATION",
+      "module": "kill_switch_audit",
+      "action": "Add EventBus integration to kill_switch_audit",
+      "details": "Module not connected to EventBus architecture"
+    },
+    {
+      "priority": "HIGH",
+      "category": "MODULE_COMPLETION",
+      "module": "risk_guard",
+      "action": "Complete risk_guard implementation",
+      "details": "Module contains stubs or insufficient trading logic: [\"stub_patterns: 4 occurrences of 'pass\\\\s*$'\", \"stub_patterns: 3 occurrences of 'mock'\", \"mock_data_patterns: 3 occurrences of 'mock'\", 'Empty/stub functions: 27/32']"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "MISSING_MODULE",
+      "module": "trade_journal_logger",
+      "action": "Implement missing trade_journal_logger module",
+      "details": "Core trading module trade_journal_logger not found in expected locations"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "MISSING_MODULE",
+      "module": "performance_feedback_loop",
+      "action": "Implement missing performance_feedback_loop module",
+      "details": "Core trading module performance_feedback_loop not found in expected locations"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "SIGNAL_ROUTING",
+      "module": "execution_engine",
+      "action": "Add consumer for signal 'execution_placed'",
+      "details": "Signal has no consumers in trading module ecosystem"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "SIGNAL_ROUTING",
+      "module": "execution_engine",
+      "action": "Add consumer for signal 'execution_complete'",
+      "details": "Signal has no consumers in trading module ecosystem"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "SIGNAL_ROUTING",
+      "module": "execution_engine",
+      "action": "Add consumer for signal 'order_status'",
+      "details": "Signal has no consumers in trading module ecosystem"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "SIGNAL_ROUTING",
+      "module": "pattern_classifier_engine",
+      "action": "Add consumer for signal 'pattern_classified'",
+      "details": "Signal has no consumers in trading module ecosystem"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "SIGNAL_ROUTING",
+      "module": "pattern_classifier_engine",
+      "action": "Add consumer for signal 'pattern_confidence'",
+      "details": "Signal has no consumers in trading module ecosystem"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "FLOW_REPAIR",
+      "module": "confluence_analysis",
+      "action": "Repair broken trading flow step: confluence_analysis",
+      "details": "Missing modules: ['signal_engine']"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "FLOW_REPAIR",
+      "module": "decision_logic",
+      "action": "Repair broken trading flow step: decision_logic",
+      "details": "Missing modules: ['decision_engine']"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "FLOW_REPAIR",
+      "module": "risk_assessment",
+      "action": "Repair broken trading flow step: risk_assessment",
+      "details": "Missing modules: ['risk_engine']"
+    },
+    {
+      "priority": "CRITICAL",
+      "category": "FLOW_REPAIR",
+      "module": "audit_monitoring",
+      "action": "Repair broken trading flow step: audit_monitoring",
+      "details": "Missing modules: ['trade_journal_logger']"
+    }
+  ],
+  "trading_intelligence_score": 15.0,
+  "scoring_breakdown": {
+    "module_completeness": 0.0,
+    "flow_integrity": 16.666666666666664,
+    "signal_connectivity": 0.0,
+    "execution_readiness": 0.0,
+    "architecture_compliance": 77.77777777777779
+  }
+}

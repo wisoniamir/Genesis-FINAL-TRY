@@ -1,0 +1,9 @@
+{
+  "module_id": "pipeline",
+  "original_path": "modules\\restored\\pipeline.py",
+  "preserved_path": "preservation_holding_area\\pipeline_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 102705,
+  "checksum": "a12635bb698db379bfa9bc48fb505543ad995583d0fff17d303738ef8bfc7776"
+}

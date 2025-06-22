@@ -1,0 +1,57 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\layout_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.780112+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\layout_engine.py",
+      "line_numbers": [
+        71,
+        199,
+        295
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\layout_engine.py",
+      "line_numbers": [
+        110,
+        119,
+        129,
+        143
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\layout_engine.py",
+      "line_numbers": [
+        150
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\layout_engine.py",
+      "line_numbers": [
+        98
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\layout_engine.py",
+      "line_numbers": [
+        23
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

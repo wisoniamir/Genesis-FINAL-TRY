@@ -1,0 +1,9 @@
+{
+  "module_id": "file_cache",
+  "original_path": "modules\\restored\\file_cache.py",
+  "preserved_path": "preservation_holding_area\\file_cache_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25332,
+  "checksum": "8ec25b98b714013f98ffbdeb5dfd05b74f1d296215af775de3445a5c5e57a0f9"
+}

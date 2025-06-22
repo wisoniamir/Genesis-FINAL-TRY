@@ -1,0 +1,125 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.177292+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        83,
+        84,
+        86,
+        114,
+        122
+      ],
+      "violation_count": 46
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        41,
+        316,
+        1201,
+        1202,
+        1203
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        220,
+        224,
+        228,
+        232,
+        471
+      ],
+      "violation_count": 35
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        3036,
+        3044,
+        3052,
+        3101,
+        3110
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        55
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        322,
+        880,
+        1049,
+        1682,
+        1934
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        1938
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        821,
+        879,
+        1259,
+        1559,
+        1632
+      ],
+      "violation_count": 31
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        620,
+        686,
+        1044,
+        1104,
+        1117
+      ],
+      "violation_count": 42
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_distribution_infrastructure_recovered_2.py",
+      "line_numbers": [
+        3590
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

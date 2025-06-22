@@ -1,0 +1,80 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.007460+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+      "line_numbers": [
+        64,
+        66,
+        70,
+        74,
+        76
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+      "line_numbers": [
+        65,
+        229,
+        247
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+      "line_numbers": [
+        36,
+        113,
+        173,
+        257
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+      "line_numbers": [
+        104,
+        164,
+        234
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+      "line_numbers": [
+        61,
+        72,
+        305,
+        310,
+        315
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_demo_phase57_58_recovered_2.py",
+      "line_numbers": [
+        45,
+        52,
+        60,
+        79,
+        89
+      ],
+      "violation_count": 9
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

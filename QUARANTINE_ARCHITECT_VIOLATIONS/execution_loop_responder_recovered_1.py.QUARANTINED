@@ -1,0 +1,57 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_loop_responder_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.722421+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_loop_responder_recovered_1.py",
+      "line_numbers": [
+        60,
+        158,
+        233,
+        235,
+        253
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_loop_responder_recovered_1.py",
+      "line_numbers": [
+        166,
+        245,
+        269,
+        314,
+        355
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_loop_responder_recovered_1.py",
+      "line_numbers": [
+        407,
+        510,
+        533
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_loop_responder_recovered_1.py",
+      "line_numbers": [
+        301,
+        342,
+        379,
+        561,
+        566
+      ],
+      "violation_count": 6
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

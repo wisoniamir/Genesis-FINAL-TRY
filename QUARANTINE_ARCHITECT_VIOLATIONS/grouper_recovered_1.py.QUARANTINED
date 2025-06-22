@@ -1,0 +1,89 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.484385+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        74,
+        75,
+        93,
+        96,
+        98
+      ],
+      "violation_count": 22
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        358,
+        402,
+        443,
+        583,
+        588
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        659,
+        668
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        1017
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        990,
+        1005,
+        1014
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        595,
+        605,
+        669,
+        747,
+        800
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\grouper_recovered_1.py",
+      "line_numbers": [
+        280,
+        376,
+        378,
+        383,
+        394
+      ],
+      "violation_count": 21
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

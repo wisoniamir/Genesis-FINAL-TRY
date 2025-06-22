@@ -1,0 +1,9 @@
+{
+  "module_id": "subversion",
+  "original_path": "modules\\restored\\subversion.py",
+  "preserved_path": "preservation_holding_area\\subversion_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23260,
+  "checksum": "b12f30d1c8ef7234bcd93aa489a5c0a8c488b34530c4b9da452a2474b617148d"
+}

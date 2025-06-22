@@ -1,0 +1,182 @@
+#!/usr/bin/env python3
+"""
+🚀 GENESIS QUICK LAUNCHER
+ARCHITECT MODE v7.0.0 - Direct Launch for Testing
+
+This script provides multiple ways to launch GENESIS:
+1. Native Desktop App (if PyQt5 works)
+2. Comprehensive Fallback Dashboard (Tkinter)
+3. Web Dashboard (Streamlit)
+4. Docker Container
+
+Usage: python open_genesis.py [mode]
+Modes: desktop, web, docker, auto (default)
+"""
+
+import sys
+import os
+import subprocess
+import logging
+from pathlib import Path
+
+# Setup logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+def check_mt5_available():
+    """Check if MetaTrader5 is available"""
+    try:
+        import MetaTrader5 as mt5
+        logger.info("✅ MetaTrader5 module available")
+        return True
+    except ImportError as e:
+        logger.warning(f"⚠️ MetaTrader5 not available: {e}")
+        return False
+
+def check_pyqt5_available():
+    """Check if PyQt5 is available"""
+    try:
+        from PyQt5.QtWidgets import QApplication
+        logger.info("✅ PyQt5 available")
+        return True
+    except ImportError as e:
+        logger.warning(f"⚠️ PyQt5 not available: {e}")
+        return False
+
+def launch_desktop_app():
+    """Launch the native desktop application"""
+    logger.info("🖥️ Launching GENESIS Desktop Application...")
+    try:
+        # Use the virtual environment Python
+        venv_python = Path(".venv/Scripts/python.exe")
+        if venv_python.exists():
+            subprocess.run([str(venv_python), "launch_desktop_app.py"], check=True)
+        else:
+            subprocess.run([sys.executable, "launch_desktop_app.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        logger.error(f"❌ Desktop app launch failed: {e}")
+        return False
+    except FileNotFoundError:
+        logger.error("❌ launch_desktop_app.py not found")
+        return False
+    return True
+
+def launch_web_dashboard():
+    """Launch the web dashboard using Streamlit"""
+    logger.info("🌐 Launching GENESIS Web Dashboard...")
+    try:
+        # Check if we have a dashboard file
+        dashboard_files = ["dashboard.py", "genesis_dashboard.py", "streamlit_dashboard.py"]
+        dashboard_file = None
+        
+        for file in dashboard_files:
+            if Path(file).exists():
+                dashboard_file = file
+                break
+                
+        if not dashboard_file:
+            logger.error("❌ No dashboard file found")
+            return False
+            
+        # Use the virtual environment Python
+        venv_python = Path(".venv/Scripts/python.exe")
+        if venv_python.exists():
+            subprocess.run([str(venv_python), "-m", "streamlit", "run", dashboard_file, "--server.port=8501"], check=True)
+        else:
+            subprocess.run([sys.executable, "-m", "streamlit", "run", dashboard_file, "--server.port=8501"], check=True)
+    except subprocess.CalledProcessError as e:
+        logger.error(f"❌ Web dashboard launch failed: {e}")
+        return False
+    except FileNotFoundError:
+        logger.error("❌ Streamlit not available")
+        return False
+    return True
+
+def launch_docker_container():
+    """Launch GENESIS in Docker container"""
+    logger.info("🐳 Launching GENESIS Docker Container...")
+    try:
+        # Check if Docker image exists
+        result = subprocess.run(["docker", "images", "-q", "genesis_comprehensive_gui"], 
+                              capture_output=True, text=True, check=True)
+        
+        if not result.stdout.strip():
+            logger.error("❌ GENESIS Docker image not found. Build it first with: docker build -t genesis_comprehensive_gui -f Dockerfile.desktop-gui-compatible .")
+            return False
+            
+        # Run the container
+        subprocess.run([
+            "docker", "run", "-it", "--rm", 
+            "-p", "8080:8080", 
+            "-p", "8501:8501",
+            "--name", "genesis_test", 
+            "genesis_comprehensive_gui"
+        ], check=True)
+        
+    except subprocess.CalledProcessError as e:
+        logger.error(f"❌ Docker launch failed: {e}")
+        return False
+    except FileNotFoundError:
+        logger.error("❌ Docker not available")
+        return False
+    return True
+
+def auto_launch():
+    """Automatically choose the best launch method"""
+    logger.info("🔍 Auto-detecting best launch method...")
+    
+    # Check MT5 availability
+    mt5_available = check_mt5_available()
+    pyqt5_available = check_pyqt5_available()
+    
+    logger.info(f"System Status: MT5={mt5_available}, PyQt5={pyqt5_available}")
+    
+    # Try desktop app first (works with Tkinter fallback)
+    if launch_desktop_app():
+        return True
+        
+    # Try web dashboard as fallback
+    logger.info("🔄 Falling back to web dashboard...")
+    if launch_web_dashboard():
+        return True
+        
+    # Try Docker as last resort
+    logger.info("🔄 Falling back to Docker container...")
+    if launch_docker_container():
+        return True
+        
+    logger.error("❌ All launch methods failed")
+    return False
+
+def main():
+    """Main launcher function"""
+    print("🚀 GENESIS LAUNCHER v7.0.0")
+    print("🔐 ARCHITECT MODE ACTIVE")
+    print("=" * 50)
+    
+    mode = "auto"
+    if len(sys.argv) > 1:
+        mode = sys.argv[1].lower()
+    
+    if mode == "desktop":
+        success = launch_desktop_app()
+    elif mode == "web":
+        success = launch_web_dashboard()
+    elif mode == "docker":
+        success = launch_docker_container()
+    elif mode == "auto":
+        success = auto_launch()
+    else:
+        print(f"❌ Unknown mode: {mode}")
+        print("Available modes: desktop, web, docker, auto")
+        return 1
+    
+    if success:
+        print("✅ GENESIS launched successfully!")
+        return 0
+    else:
+        print("❌ GENESIS launch failed!")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())

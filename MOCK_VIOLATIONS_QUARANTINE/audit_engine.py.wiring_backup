@@ -1,0 +1,542 @@
+#!/usr/bin/env python3
+"""
+🛡️ GENESIS AUDIT ENGINE — COMPREHENSIVE SYSTEM VALIDATION
+Pre-Commit Hook Integration for ARCHITECT MODE v7.0.0
+
+PURPOSE:
+Comprehensive audit engine that validates GENESIS system integrity before commits.
+Enforces zero-tolerance policy for violations, mocks, orphans, and unwired modules.
+"""
+
+import json
+import os
+import sys
+import re
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Any, Tuple
+import subprocess
+
+
+# <!-- @GENESIS_MODULE_END: audit_engine -->
+
+
+# <!-- @GENESIS_MODULE_START: audit_engine -->
+
+class GenesisAuditEngine:
+    """🛡️ GENESIS AUDIT ENGINE — Zero Tolerance Enforcement"""
+    
+    def __init__(self):
+        self.workspace_path = Path(".")
+        self.violations = []
+        self.audit_results = {
+            "timestamp": datetime.now().isoformat(),
+            "audit_status": "UNKNOWN",
+            "violations_found": 0,
+            "critical_violations": 0,
+            "architect_lock_status": "CHECKING",
+            "real_data_validation": "CHECKING",
+            "compliance_score": 0.0
+        }
+        
+    def run_comprehensive_audit(self) -> Tuple[bool, Dict[str, Any]]:
+        """🔍 Run comprehensive GENESIS system audit"""
+        print("🛡️ GENESIS AUDIT ENGINE — Starting Comprehensive System Validation")
+        print("=" * 80)
+        
+        # Step 1: Validate Core Files
+        core_files_valid = self._validate_core_files()
+        
+        # Step 2: Check for Orphan Modules
+        orphan_check = self._check_orphan_modules()
+        
+        # Step 3: Validate EventBus Connectivity
+        eventbus_valid = self._validate_eventbus_connectivity()
+        
+        # Step 4: Scan for Mock Data Violations
+        mock_violations = self._scan_mock_data_violations()
+        
+        # Step 5: Validate Telemetry Hooks
+        telemetry_valid = self._validate_telemetry_hooks()
+        
+        # Step 6: Check System Tree Integrity
+        system_tree_valid = self._validate_system_tree_integrity()
+        
+        # Step 7: Verify ARCHITECT MODE Compliance
+        architect_compliance = self._verify_architect_mode_compliance()
+        
+        # Step 8: Real Data Validation
+        real_data_valid = self._validate_real_data_only()
+        
+        # Compile Final Results
+        audit_passed = self._compile_audit_results(
+            core_files_valid, orphan_check, eventbus_valid, 
+            mock_violations, telemetry_valid, system_tree_valid,
+            architect_compliance, real_data_valid
+        )
+        
+        # Generate Report
+        self._generate_audit_report()
+        
+        return audit_passed, self.audit_results
+        
+    def _validate_core_files(self) -> bool:
+        """📁 Validate Core System Files"""
+        print("📁 Validating core system files...")
+        
+        required_files = [
+            "build_status.json", "build_tracker.md", "system_tree.json",
+            "module_registry.json", "event_bus.json", "telemetry.json"
+        ]
+        
+        missing_files = []
+        corrupted_files = []
+        
+        for file_path in required_files:
+            full_path = self.workspace_path / file_path
+            
+            if not full_path.exists():
+                missing_files.append(file_path)
+                self.violations.append({
+                    "type": "CRITICAL",
+                    "category": "MISSING_CORE_FILE",
+                    "file": file_path,
+                    "message": f"Required core file missing: {file_path}"
+                })
+                continue
+                
+            # Validate JSON files
+            if file_path.endswith('.json'):
+                try:
+                    with open(full_path, 'r') as f:
+                        json.load(f)
+                except json.JSONDecodeError as e:
+                    corrupted_files.append(file_path)
+                    self.violations.append({
+                        "type": "CRITICAL",
+                        "category": "CORRUPTED_CORE_FILE",
+                        "file": file_path,
+                        "message": f"JSON corruption in {file_path}: {e}"
+                    })
+                    
+        if missing_files or corrupted_files:
+            print(f"❌ Core files validation failed: {len(missing_files)} missing, {len(corrupted_files)} corrupted")
+            return False
+        else:
+            print("✅ Core files validation passed")
+            return True
+            
+    def _check_orphan_modules(self) -> bool:
+        """👻 Check for Orphan Modules"""
+        print("👻 Checking for orphan modules...")
+        
+        try:
+            # Load system tree
+            with open(self.workspace_path / "system_tree.json", 'r') as f:
+                system_tree = json.load(f)
+                
+            orphan_count = system_tree.get("genesis_system_metadata", {}).get("orphan_modules", 0)
+            
+            if orphan_count > 0:
+                self.violations.append({
+                    "type": "HIGH",
+                    "category": "ORPHAN_MODULES",
+                    "count": orphan_count,
+                    "message": f"Found {orphan_count} orphan modules"
+                })
+                print(f"❌ Orphan modules detected: {orphan_count}")
+                return False
+            else:
+                print("✅ No orphan modules detected")
+                return True
+                
+        except Exception as e:
+            self.violations.append({
+                "type": "CRITICAL",
+                "category": "ORPHAN_CHECK_FAILED",
+                "message": f"Failed to check orphan modules: {e}"
+            })
+            return False
+            
+    def _validate_eventbus_connectivity(self) -> bool:
+        """🔗 Validate EventBus Connectivity"""
+        print("🔗 Validating EventBus connectivity...")
+        
+        try:
+            with open(self.workspace_path / "event_bus.json", 'r') as f:
+                event_bus = json.load(f)
+                
+            active_routes = event_bus.get("active_routes", {})
+            
+            # Check for empty function arrays
+            empty_routes = []
+            for route_name, route_data in active_routes.items():
+                if isinstance(route_data, dict):
+                    functions = route_data.get("functions", [])
+                    if not functions:
+                        empty_routes.append(route_name)
+                        
+            if empty_routes:
+                self.violations.append({
+                    "type": "HIGH",
+                    "category": "EMPTY_EVENTBUS_ROUTES",
+                    "routes": empty_routes,
+                    "message": f"Found {len(empty_routes)} routes with empty function arrays"
+                })
+                print(f"❌ EventBus validation failed: {len(empty_routes)} empty routes")
+                return False
+            else:
+                print(f"✅ EventBus validation passed: {len(active_routes)} routes active")
+                return True
+                
+        except Exception as e:
+            self.violations.append({
+                "type": "CRITICAL",
+                "category": "EVENTBUS_VALIDATION_FAILED",
+                "message": f"Failed to validate EventBus: {e}"
+            })
+            return False
+            
+    def _scan_mock_data_violations(self) -> bool:
+        """🚫 Scan for Mock Data Violations"""
+        print("🚫 Scanning for mock data violations...")
+        
+        violation_patterns = [
+            r"mock[\s_]", r"simulate[\s_]", r"dummy[\s_]", r"test[\s_]data",
+            r"fallback[\s_]", r"stub[\s_]", r"placeholder", r"sample[\s_]data"
+        ]
+        
+        mock_violations = []
+        
+        # Scan all Python files
+        for py_file in self.workspace_path.glob("*.py"):
+            try:
+                with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                    
+                file_violations = []
+                for pattern in violation_patterns:
+                    matches = re.findall(pattern, content, re.IGNORECASE)
+                    if matches:
+                        file_violations.extend(matches)
+                        
+                if file_violations:
+                    mock_violations.append({
+                        "file": py_file.name,
+                        "violations": file_violations,
+                        "count": len(file_violations)
+                    })
+                    
+            except Exception as e:
+                print(f"⚠️ Could not scan {py_file.name}: {e}")
+                
+        if mock_violations:
+            self.violations.append({
+                "type": "CRITICAL",
+                "category": "MOCK_DATA_VIOLATIONS",
+                "files": mock_violations,
+                "message": f"Mock data violations found in {len(mock_violations)} files"
+            })
+            print(f"❌ Mock data violations detected in {len(mock_violations)} files")
+            return False
+        else:
+            print("✅ No mock data violations detected")
+            return True
+            
+    def _validate_telemetry_hooks(self) -> bool:
+        """📊 Validate Telemetry Hooks"""
+        print("📊 Validating telemetry hooks...")
+        
+        try:
+            with open(self.workspace_path / "telemetry.json", 'r') as f:
+                telemetry = json.load(f)
+                
+            active = telemetry.get("active", False)
+            
+            if not active:
+                self.violations.append({
+                    "type": "HIGH",
+                    "category": "TELEMETRY_DISABLED",
+                    "message": "Telemetry system is disabled"
+                })
+                print("❌ Telemetry validation failed: System disabled")
+                return False
+            else:
+                print("✅ Telemetry validation passed")
+                return True
+                
+        except Exception as e:
+            self.violations.append({
+                "type": "CRITICAL",
+                "category": "TELEMETRY_VALIDATION_FAILED",
+                "message": f"Failed to validate telemetry: {e}"
+            })
+            return False
+            
+    def _validate_system_tree_integrity(self) -> bool:
+        """🌳 Validate System Tree Integrity"""
+        print("🌳 Validating system tree integrity...")
+        
+        try:
+            with open(self.workspace_path / "system_tree.json", 'r') as f:
+                system_tree = json.load(f)
+                
+            metadata = system_tree.get("genesis_system_metadata", {})
+            connected_modules = system_tree.get("connected_modules", {})
+            
+            # Check for compliance violations
+            total_violations = 0
+            for category, modules in connected_modules.items():
+                if isinstance(modules, list):
+                    for module in modules:
+                        if isinstance(module, dict):
+                            if (module.get("eventbus_integrated") is False or 
+                                module.get("telemetry_enabled") is False or
+                                module.get("mock_data_violation") is True or
+                                module.get("compliance_status") != "COMPLIANT"):
+                                total_violations += 1
+                                
+            if total_violations > 0:
+                self.violations.append({
+                    "type": "HIGH",
+                    "category": "SYSTEM_TREE_VIOLATIONS",
+                    "count": total_violations,
+                    "message": f"Found {total_violations} compliance violations in system tree"
+                })
+                print(f"❌ System tree validation failed: {total_violations} violations")
+                return False
+            else:
+                print("✅ System tree validation passed")
+                return True
+                
+        except Exception as e:
+            self.violations.append({
+                "type": "CRITICAL",
+                "category": "SYSTEM_TREE_VALIDATION_FAILED",
+                "message": f"Failed to validate system tree: {e}"
+            })
+            return False
+            
+    def _verify_architect_mode_compliance(self) -> bool:
+        """🔐 Verify ARCHITECT MODE Compliance"""
+        print("🔐 Verifying ARCHITECT MODE compliance...")
+        
+        try:
+            with open(self.workspace_path / "build_status.json", 'r') as f:
+                build_status = json.load(f)
+                
+            architect_status = build_status.get("architect_mode_v7_compliance_status", "")
+            system_status = build_status.get("system_status", "")
+            
+            if "ARCHITECT_LOCK_BROKEN" in str(build_status):
+                self.violations.append({
+                    "type": "CRITICAL",
+                    "category": "ARCHITECT_LOCK_BROKEN",
+                    "message": "ARCHITECT_LOCK_BROKEN detected in system"
+                })
+                print("❌ ARCHITECT MODE compliance failed: LOCK BROKEN")
+                return False
+                
+            if system_status != "ARCHITECT_MODE_V7_100_PERCENT_COMPLIANT":
+                self.violations.append({
+                    "type": "HIGH",
+                    "category": "ARCHITECT_MODE_NON_COMPLIANT",
+                    "status": system_status,
+                    "message": f"System status not fully compliant: {system_status}"
+                })
+                print(f"❌ ARCHITECT MODE compliance failed: {system_status}")
+                return False
+                
+            print("✅ ARCHITECT MODE compliance verified")
+            return True
+            
+        except Exception as e:
+            self.violations.append({
+                "type": "CRITICAL",
+                "category": "ARCHITECT_COMPLIANCE_CHECK_FAILED",
+                "message": f"Failed to verify ARCHITECT MODE compliance: {e}"
+            })
+            return False
+            
+    def _validate_real_data_only(self) -> bool:
+        """📡 Validate Real Data Only Usage"""
+        print("📡 Validating real data only usage...")
+        
+        try:
+            with open(self.workspace_path / "build_status.json", 'r') as f:
+                build_status = json.load(f)
+                
+            mock_eliminated = build_status.get("mock_data_eliminated", False)
+            
+            if not mock_eliminated:
+                self.violations.append({
+                    "type": "CRITICAL",
+                    "category": "MOCK_DATA_NOT_ELIMINATED",
+                    "message": "Mock data has not been eliminated from system"
+                })
+                print("❌ Real data validation failed: Mock data still present")
+                return False
+                
+            # Check for real_data_passed flag
+            real_data_passed = True  # Default assumption
+            
+            # Scan for any "real_data_passed = false" patterns
+            for py_file in self.workspace_path.glob("*.py"):
+                try:
+                    with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                        if "real_data_passed = false" in content.lower():
+                            real_data_passed = False
+                            self.violations.append({
+                                "type": "CRITICAL",
+                                "category": "REAL_DATA_VALIDATION_FAILED",
+                                "file": py_file.name,
+                                "message": f"real_data_passed = false found in {py_file.name}"
+                            })
+                            break
+                except:
+                    continue
+                    
+            if not real_data_passed:
+                print("❌ Real data validation failed: real_data_passed = false detected")
+                return False
+            else:
+                print("✅ Real data validation passed")
+                return True
+                
+        except Exception as e:
+            self.violations.append({
+                "type": "CRITICAL", 
+                "category": "REAL_DATA_VALIDATION_FAILED",
+                "message": f"Failed to validate real data usage: {e}"
+            })
+            return False
+            
+    def _compile_audit_results(self, *checks) -> bool:
+        """📊 Compile Final Audit Results"""
+        print("📊 Compiling audit results...")
+        
+        all_passed = all(checks)
+        
+        # Count violations by type
+        critical_violations = len([v for v in self.violations if v.get("type") == "CRITICAL"])
+        high_violations = len([v for v in self.violations if v.get("type") == "HIGH"])
+        
+        self.audit_results.update({
+            "audit_status": "PASSED" if all_passed else "FAILED",
+            "violations_found": len(self.violations),
+            "critical_violations": critical_violations,
+            "high_violations": high_violations,
+            "architect_lock_status": "SECURE" if all_passed else "COMPROMISED",
+            "real_data_validation": "PASSED" if checks[-1] else "FAILED",
+            "compliance_score": 100.0 if all_passed else max(0, 100 - (critical_violations * 25) - (high_violations * 10))
+        })
+        
+        if all_passed:
+            print("✅ Audit PASSED - No violations detected")
+        else:
+            print(f"❌ Audit FAILED - {len(self.violations)} violations detected")
+            print(f"   Critical: {critical_violations}, High: {high_violations}")
+            
+        return all_passed
+        
+    def _generate_audit_report(self):
+        """📝 Generate Audit Report"""
+        print("📝 Generating audit report...")
+        
+        report_content = f"""# GENESIS SYSTEM AUDIT REPORT
+
+## 🛡️ AUDIT SUMMARY - {self.audit_results['timestamp']}
+
+**AUDIT STATUS:** {self.audit_results['audit_status']}
+**COMPLIANCE SCORE:** {self.audit_results['compliance_score']:.1f}%
+**VIOLATIONS FOUND:** {self.audit_results['violations_found']}
+**ARCHITECT LOCK STATUS:** {self.audit_results['architect_lock_status']}
+**REAL DATA VALIDATION:** {self.audit_results['real_data_validation']}
+
+---
+
+## 📊 VIOLATION DETAILS
+
+"""
+
+        if not self.violations:
+            report_content += "✅ **NO VIOLATIONS DETECTED** - System is fully compliant.\n\n"
+        else:
+            report_content += f"🚨 **{len(self.violations)} VIOLATIONS DETECTED:**\n\n"
+            
+            for i, violation in enumerate(self.violations, 1):
+                report_content += f"### {i}. {violation['category']} ({violation['type']})\n"
+                report_content += f"**Message:** {violation['message']}\n"
+                
+                # Add specific details based on violation type
+                if 'file' in violation:
+                    report_content += f"**File:** {violation['file']}\n"
+                if 'count' in violation:
+                    report_content += f"**Count:** {violation['count']}\n"
+                if 'files' in violation:
+                    report_content += f"**Affected Files:** {len(violation['files'])}\n"
+                    
+                report_content += "\n"
+                
+        # Add enforcement decision
+        if self.audit_results['audit_status'] == "FAILED":
+            report_content += """---
+
+## 🚫 ENFORCEMENT DECISION
+
+**COMMIT BLOCKED** - The following issues must be resolved:
+
+"""
+            critical_violations = [v for v in self.violations if v.get("type") == "CRITICAL"]
+            if critical_violations:
+                report_content += "### CRITICAL VIOLATIONS (Must Fix):\n"
+                for violation in critical_violations:
+                    report_content += f"- {violation['category']}: {violation['message']}\n"
+                    
+            report_content += """
+### REQUIRED ACTIONS:
+1. Fix all critical violations
+2. Run emergency repair engine if needed
+3. Verify ARCHITECT MODE compliance
+4. Re-run audit before attempting commit
+
+**REPAIR REQUIRED** - System integrity compromised.
+"""
+        else:
+            report_content += """---
+
+## ✅ ENFORCEMENT DECISION
+
+**COMMIT APPROVED** - All audits passed successfully.
+
+System maintains ARCHITECT MODE v7.0.0 compliance.
+"""
+
+        # Save report
+        with open(self.workspace_path / "audit_snapshot_report.md", 'w', encoding='utf-8') as f:
+            f.write(report_content)
+            
+        print(f"✅ Audit report saved to audit_snapshot_report.md")
+
+def main():
+    """Main entry point for audit engine"""
+    audit_engine = GenesisAuditEngine()
+    
+    try:
+        audit_passed, results = audit_engine.run_comprehensive_audit()
+        
+        # Exit with appropriate code for git pre-commit hook
+        if audit_passed:
+            print("\n🎯 GENESIS AUDIT: SYSTEM READY FOR COMMIT")
+            sys.exit(0)
+        else:
+            print("\n🚫 GENESIS AUDIT: COMMIT BLOCKED - VIOLATIONS DETECTED")
+            sys.exit(1)
+            
+    except Exception as e:
+        print(f"\n❌ GENESIS AUDIT: CRITICAL ERROR - {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

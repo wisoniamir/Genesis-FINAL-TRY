@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""
+🚨 GENESIS EMERGENCY MODULE RESTORATION ENGINE
+ARCHITECT MODE v7.0.0 COMPLIANCE RESTORATION
+"""
+
+import os
+import shutil
+import json
+from pathlib import Path
+
+
+# <!-- @GENESIS_MODULE_END: emergency_module_restoration -->
+
+
+# <!-- @GENESIS_MODULE_START: emergency_module_restoration -->
+
+class EmergencyModuleRestoration:
+    def __init__(self, workspace_path="c:\\Users\\patra\\Genesis FINAL TRY"):
+        self.workspace_path = Path(workspace_path)
+        self.quarantine_zones = [
+            "QUARANTINE_ARCHITECT_VIOLATIONS",
+            "TRIAGE_ORPHAN_QUARANTINE/NON_ESSENTIAL", 
+            "TRIAGE_ORPHAN_QUARANTINE/UNKNOWN",
+            "MOCK_VIOLATIONS_QUARANTINE"
+        ]
+        
+    def analyze_quarantined_modules(self):
+        """Analyze quarantined modules for restoration priority"""
+        critical_modules = []
+        
+        # Priority modules that must be restored
+        priority_patterns = [
+            "architect_mode_", "emergency_", "repair_", "compliance_",
+            "event_bus", "signal_", "execution_", "risk_", "pattern_",
+            "dashboard", "telemetry", "build_status", "system_tree"
+        ]
+        
+        for zone in self.quarantine_zones:
+            zone_path = self.workspace_path / zone
+            if zone_path.exists():
+                for file in zone_path.rglob("*.py"):
+                    for pattern in priority_patterns:
+                        if pattern in file.name.lower():
+                            critical_modules.append({
+                                'file': file,
+                                'zone': zone,
+                                'priority': self._get_priority(file.name)
+                            })
+                            break
+        
+        return sorted(critical_modules, key=lambda x: x['priority'])
+    
+    def _get_priority(self, filename):
+        """Assign priority level (1=highest, 5=lowest)"""
+        if any(p in filename.lower() for p in ["architect_mode", "emergency", "repair"]):
+            return 1
+        elif any(p in filename.lower() for p in ["event_bus", "signal_engine", "execution"]):
+            return 2  
+        elif any(p in filename.lower() for p in ["compliance", "telemetry", "dashboard"]):
+            return 3
+        elif any(p in filename.lower() for p in ["pattern", "risk", "strategy"]):
+            return 4
+        else:
+            return 5
+    
+    def restore_critical_modules(self, max_restore=50):
+        """Restore critical modules from quarantine"""
+        critical_modules = self.analyze_quarantined_modules()
+        restored = []
+        
+        for i, module in enumerate(critical_modules[:max_restore]):
+            try:
+                source = module['file']
+                
+                # Determine target location
+                if 'core' in source.name.lower() or module['priority'] <= 2:
+                    target_dir = self.workspace_path / "core"
+                elif 'modules' in str(source.parent).lower():
+                    target_dir = self.workspace_path / "modules" / "restored"
+                else:
+                    target_dir = self.workspace_path / "restored_modules"
+                
+                target_dir.mkdir(parents=True, exist_ok=True)
+                
+                # Clean filename (remove .QUARANTINED suffix)
+                clean_name = source.name.replace('.QUARANTINED', '').replace('_recovered_1', '').replace('_recovered_2', '')
+                target = target_dir / clean_name
+                
+                # Copy and restore
+                shutil.copy2(source, target)
+                restored.append({
+                    'source': str(source),
+                    'target': str(target),
+                    'priority': module['priority']
+                })
+                
+                print(f"✅ RESTORED [{module['priority']}]: {clean_name}")
+                
+            except Exception as e:
+                print(f"❌ FAILED to restore {source.name}: {e}")
+        
+        return restored
+    
+    def generate_restoration_report(self, restored_modules):
+        """Generate restoration report"""
+        report = {
+            "restoration_timestamp": "2025-06-21T08:00:00Z",
+            "restored_count": len(restored_modules),
+            "restored_modules": restored_modules,
+            "status": "EMERGENCY_RESTORATION_IN_PROGRESS"
+        }
+        
+        with open(self.workspace_path / "module_restoration_report.json", 'w') as f:
+            json.dump(report, f, indent=2)
+        
+        return report
+
+if __name__ == "__main__":
+    print("🚨 INITIATING EMERGENCY MODULE RESTORATION")
+    
+    restorer = EmergencyModuleRestoration()
+    
+    print("🔍 Analyzing quarantined modules...")
+    critical = restorer.analyze_quarantined_modules()
+    print(f"📊 Found {len(critical)} critical modules for restoration")
+    
+    print("🔧 Restoring critical modules...")
+    restored = restorer.restore_critical_modules(50)
+    
+    print("📝 Generating restoration report...")
+    report = restorer.generate_restoration_report(restored)
+    
+    print(f"✅ RESTORATION COMPLETE: {len(restored)} modules restored")
+    print("🔄 Next: Update system_tree.json and rebuild EventBus connections")
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

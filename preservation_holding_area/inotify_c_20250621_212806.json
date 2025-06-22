@@ -1,0 +1,9 @@
+{
+  "module_id": "inotify_c",
+  "original_path": "modules\\restored\\inotify_c.py",
+  "preserved_path": "preservation_holding_area\\inotify_c_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 47785,
+  "checksum": "9023ca22271494ee8286a414bed91acd5148210a5d512c08123453203c559198"
+}

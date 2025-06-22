@@ -1,0 +1,83 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.450593+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+      "line_numbers": [
+        332,
+        338,
+        345,
+        347,
+        358
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+      "line_numbers": [
+        15,
+        284,
+        287
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+      "line_numbers": [
+        31,
+        32,
+        46,
+        67,
+        74
+      ],
+      "violation_count": 52
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+      "line_numbers": [
+        60,
+        104,
+        158,
+        216,
+        252
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+      "line_numbers": [
+        81,
+        134,
+        205,
+        241,
+        276
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_final_integration_test.py",
+      "line_numbers": [
+        73,
+        117,
+        196,
+        198,
+        234
+      ],
+      "violation_count": 10
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "market_data_feed_manager_simple",
+  "original_path": "modules\\data\\market_data_feed_manager_simple.py",
+  "preserved_path": "preservation_holding_area\\market_data_feed_manager_simple_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 5759,
+  "checksum": "2c7afb6738145eb5611fedefaf240b75a7e452862db0f070d6cb83ccd2be07de"
+}

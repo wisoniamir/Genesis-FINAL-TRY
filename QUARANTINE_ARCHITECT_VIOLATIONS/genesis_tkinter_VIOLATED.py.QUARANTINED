@@ -1,0 +1,51 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\quarantine\\genesis_tkinter_VIOLATED.py",
+  "quarantine_timestamp": "2025-06-21T04:33:47.699810+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\quarantine\\genesis_tkinter_VIOLATED.py",
+      "line_numbers": [
+        226,
+        245,
+        285,
+        300,
+        312
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\quarantine\\genesis_tkinter_VIOLATED.py",
+      "line_numbers": [
+        240,
+        274,
+        296,
+        307,
+        326
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\quarantine\\genesis_tkinter_VIOLATED.py",
+      "line_numbers": [
+        279
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\quarantine\\genesis_tkinter_VIOLATED.py",
+      "line_numbers": [
+        281
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

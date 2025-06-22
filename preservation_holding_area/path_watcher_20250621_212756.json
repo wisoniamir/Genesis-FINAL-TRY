@@ -1,0 +1,9 @@
+{
+  "module_id": "path_watcher",
+  "original_path": "modules\\restored\\path_watcher.py",
+  "preserved_path": "preservation_holding_area\\path_watcher_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17076,
+  "checksum": "5bcded98ce267a5aa0108d6df5d2b2b6075ac7094e9d44262efabbeaf1c8497e"
+}

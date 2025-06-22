@@ -1,0 +1,9 @@
+{
+  "module_id": "package_finder",
+  "original_path": "modules\\restored\\package_finder.py",
+  "preserved_path": "preservation_holding_area\\package_finder_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 75668,
+  "checksum": "d36f44b118530daac83ffc2ef5fc6f3b45594a3f917a7d37456acebb79044f86"
+}

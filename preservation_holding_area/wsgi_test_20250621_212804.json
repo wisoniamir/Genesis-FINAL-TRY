@@ -1,0 +1,9 @@
+{
+  "module_id": "wsgi_test",
+  "original_path": "modules\\restored\\wsgi_test.py",
+  "preserved_path": "preservation_holding_area\\wsgi_test_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25157,
+  "checksum": "f51be6e21339cb4541c09b0ef4079f49557beeeee5a88b9be5611033952cb079"
+}

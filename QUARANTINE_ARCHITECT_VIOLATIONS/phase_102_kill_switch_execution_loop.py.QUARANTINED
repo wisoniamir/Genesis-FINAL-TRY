@@ -1,0 +1,100 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.743647+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        162,
+        290,
+        359,
+        366,
+        454
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        355,
+        586
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        46,
+        65,
+        76,
+        117,
+        558
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        78
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        216,
+        236,
+        256,
+        445
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        221,
+        260,
+        289,
+        304,
+        337
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        172,
+        341,
+        463,
+        515,
+        529
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\execution\\phase_102_kill_switch_execution_loop.py",
+      "line_numbers": [
+        73,
+        569
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

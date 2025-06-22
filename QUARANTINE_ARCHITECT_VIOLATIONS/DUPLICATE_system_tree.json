@@ -1,0 +1,300 @@
+{
+  "genesis_final_system": {
+    "version": "v6.3.0-final",
+    "last_build": "2025-06-19T00:44:54.221820+00:00",
+    "total_modules": 35,
+    "architecture": "production_ready_institutional",
+    "data_source": "mt5_live_only",
+    "complexity_hierarchy_enforced": true,
+    "reconstruction_complete": true
+  },
+  "engines": {
+    "backtest_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\backtest_engine.py",
+      "source": "institutional",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "broker_discovery_engine_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\broker_discovery_engine_fixed.py",
+      "source": "institutional",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "multi_agent_coordination_engine_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\multi_agent_coordination_engine_fixed.py",
+      "source": "institutional",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "strategy_mutation_logic_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\strategy_mutation_logic_engine.py",
+      "source": "institutional",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "broker_discovery_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\broker_discovery_engine.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "broker_discovery_engine_fixed_restored": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\broker_discovery_engine_fixed_restored.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "multi_agent_coordination_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\multi_agent_coordination_engine.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "multi_agent_coordination_engine_fixed_restored": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\multi_agent_coordination_engine_fixed_restored.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "phase61_62_orchestrator": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\phase61_62_orchestrator.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "phase63_deep_auto_patching_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\engines\\phase63_deep_auto_patching_engine.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    }
+  },
+  "adapters": {
+    "auto_execution_manager_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+      "source": "institutional",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "execution_supervisor_new": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\execution_supervisor_new.py",
+      "source": "institutional",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "indicator_scanner_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\indicator_scanner_fixed.py",
+      "source": "institutional",
+      "mt5_integration": true,
+      "eventbus_connected": false,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "auto_execution_manager": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "auto_execution_manager_fixed_restored": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed_restored.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "auto_execution_manager_recovered": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "execution_loop_responder": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\execution_loop_responder.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "execution_supervisor": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\execution_supervisor.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "execution_supervisor_new_restored": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\execution_supervisor_new_restored.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "execution_supervisor_recovered": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\execution_supervisor_recovered.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "indicator_scanner": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\indicator_scanner.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": false,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\RECOVERED_execution_supervisor_ARCHITECT_COMPLIANT.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "test_phase34_broker_discovery": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\test_phase34_broker_discovery.py",
+      "source": "recovered",
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    }
+  },
+  "gui": {
+    "test_phase18_reactive_execution_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\gui\\test_phase18_reactive_execution_fixed.py",
+      "source": "institutional",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "test_phase18_reactive_execution": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\gui\\test_phase18_reactive_execution.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "test_phase47_portfolio_optimizer_integration": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\gui\\test_phase47_portfolio_optimizer_integration.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "test_phase80": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\gui\\test_phase80.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    }
+  },
+  "core": {
+    "strategy_adaptive_context_synthesizer_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\strategy_adaptive_context_synthesizer_fixed.py",
+      "source": "institutional",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "validate_phase45_integration_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\validate_phase45_integration_fixed.py",
+      "source": "institutional",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "live_alert_bridge": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\live_alert_bridge.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "smart_execution_reactor": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\smart_execution_reactor.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "strategy_adaptive_context_synthesizer": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\strategy_adaptive_context_synthesizer.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "strategy_adaptive_context_synthesizer_recovered": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\strategy_adaptive_context_synthesizer_recovered.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    },
+    "trace_phase18_chain": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\trace_phase18_chain.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": false,
+      "status": "PRODUCTION_READY"
+    },
+    "validate_phase45_integration": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\core\\validate_phase45_integration.py",
+      "source": "recovered",
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "status": "PRODUCTION_READY"
+    }
+  },
+  "config": {}
+}

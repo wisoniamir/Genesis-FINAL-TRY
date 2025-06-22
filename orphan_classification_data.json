@@ -1,0 +1,2632 @@
+{
+  "timestamp": "2025-06-20T16:45:12.783739",
+  "total_orphans_analyzed": 105,
+  "classifications": {
+    "recoverable": [
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\autonomous_order_executor.py",
+        "file_name": "autonomous_order_executor.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 28982,
+        "modified": "2025-06-20T16:18:54.821271"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance_enforcer.py",
+        "file_name": "compliance_enforcer.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": true,
+          "function_count": 18,
+          "class_count": 1,
+          "imports": [
+            "json",
+            "os",
+            "shutil",
+            "ast",
+            "re",
+            "datetime",
+            "pathlib",
+            "typing"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": [
+            "Mock data usage detected"
+          ]
+        },
+        "size": 26296,
+        "modified": "2025-06-20T16:41:20.568043"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\dashboard_linkage_patch.py",
+        "file_name": "dashboard_linkage_patch.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 24,
+          "class_count": 1,
+          "imports": [
+            "json",
+            "subprocess",
+            "logging",
+            "os",
+            "threading",
+            "datetime",
+            "typing",
+            "time",
+            "event_bus_manager",
+            "signal_feed_generator",
+            "MetaTrader5",
+            "backtest_engine",
+            "live_trade_analyzer",
+            "mt5_sync_adapter"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 25824,
+        "modified": "2025-06-19T19:19:11.562604"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\emergency_triage_orphan_eliminator.py",
+        "file_name": "emergency_triage_orphan_eliminator.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 11,
+          "class_count": 1,
+          "imports": [
+            "json",
+            "os",
+            "shutil",
+            "re",
+            "datetime",
+            "pathlib",
+            "typing"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 15569,
+        "modified": "2025-06-20T16:35:24.764398"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_control_core.py",
+        "file_name": "execution_control_core.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 37660,
+        "modified": "2025-06-19T23:46:22.520242"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_engine.py",
+        "file_name": "execution_engine.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 11437,
+        "modified": "2025-06-19T23:46:22.695825"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_engine_orchestrator.py",
+        "file_name": "execution_engine_orchestrator.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 30666,
+        "modified": "2025-06-19T23:46:22.752034"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system_validation.py",
+        "file_name": "genesis_final_system_validation.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 14,
+          "class_count": 1,
+          "imports": [
+            "json",
+            "time",
+            "logging",
+            "datetime",
+            "pathlib",
+            "typing",
+            "event_bus_manager"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 17448,
+        "modified": "2025-06-19T19:19:11.612518"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_production_dashboard.py",
+        "file_name": "genesis_production_dashboard.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 17,
+          "class_count": 1,
+          "imports": [
+            "tkinter",
+            "tkinter",
+            "threading",
+            "time",
+            "json",
+            "datetime",
+            "pathlib",
+            "logging",
+            "phase_92a_real_mt5_integration_corrected",
+            "event_bus_manager"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 11950,
+        "modified": "2025-06-19T19:19:11.622895"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_trade_engine.py",
+        "file_name": "genesis_trade_engine.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 23556,
+        "modified": "2025-06-20T16:18:54.817173"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\integrate_strategy_mutation_engine.py",
+        "file_name": "integrate_strategy_mutation_engine.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 5,
+          "class_count": 0,
+          "imports": [
+            "os",
+            "json",
+            "logging",
+            "sys",
+            "datetime"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 10288,
+        "modified": "2025-06-17T21:45:46.503833"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\orphan_intent_classifier.py",
+        "file_name": "orphan_intent_classifier.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": true,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": true,
+          "function_count": 10,
+          "class_count": 1,
+          "imports": [
+            "os",
+            "json",
+            "re",
+            "ast",
+            "datetime",
+            "pathlib",
+            "typing"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": [
+            "Mock data usage detected"
+          ]
+        },
+        "size": 23088,
+        "modified": "2025-06-20T16:45:04.435895"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_100_gui_boot.py",
+        "file_name": "phase_100_gui_boot.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 21,
+          "class_count": 2,
+          "imports": [
+            "sys",
+            "json",
+            "logging",
+            "datetime",
+            "pathlib",
+            "hardened_event_bus",
+            "telemetry_collector",
+            "architect_surveillance_daemon",
+            "build_status_updater",
+            "build_tracker_logger",
+            "PyQt5.QtWidgets",
+            "PyQt5.QtCore",
+            "PyQt5.QtGui"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 17928,
+        "modified": "2025-06-20T16:04:47.203872"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_91_telemetry_wiring_enforcer.py",
+        "file_name": "phase_91_telemetry_wiring_enforcer.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 9,
+          "class_count": 1,
+          "imports": [
+            "os",
+            "json",
+            "re",
+            "ast",
+            "datetime",
+            "typing",
+            "pathlib"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 14951,
+        "modified": "2025-06-19T19:22:13.689590"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_92a_live_dashboard.py",
+        "file_name": "phase_92a_live_dashboard.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 16,
+          "class_count": 1,
+          "imports": [
+            "tkinter",
+            "tkinter",
+            "json",
+            "threading",
+            "time",
+            "os",
+            "datetime",
+            "logging",
+            "MetaTrader5",
+            "mt5_connection_bridge",
+            "event_bus_manager"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 13520,
+        "modified": "2025-06-19T19:19:11.945238"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_96_signal_wiring_focused_validator.py",
+        "file_name": "phase_96_signal_wiring_focused_validator.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 15,
+          "class_count": 1,
+          "imports": [
+            "os",
+            "re",
+            "json",
+            "logging",
+            "datetime",
+            "typing",
+            "pathlib"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 20056,
+        "modified": "2025-06-19T21:14:02.568647"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\strategy_mutation_logic_engine.py",
+        "file_name": "strategy_mutation_logic_engine.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 13029,
+        "modified": "2025-06-19T19:19:12.002824"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\system_tree_initializer.py",
+        "file_name": "system_tree_initializer.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": true,
+          "function_count": 10,
+          "class_count": 1,
+          "imports": [
+            "os",
+            "json",
+            "re",
+            "ast",
+            "datetime",
+            "pathlib",
+            "typing",
+            "importlib.util"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": [
+            "Mock data usage detected"
+          ]
+        },
+        "size": 22768,
+        "modified": "2025-06-20T16:31:51.556244"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\telemetry_collector.py",
+        "file_name": "telemetry_collector.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 16,
+          "class_count": 1,
+          "imports": [
+            "time",
+            "json",
+            "threading",
+            "psutil",
+            "logging",
+            "datetime",
+            "typing",
+            "pathlib",
+            "os",
+            "hardened_event_bus",
+            "hardened_event_bus"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 10546,
+        "modified": "2025-06-20T16:04:47.218096"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_dashboard_engine.py",
+        "file_name": "validate_dashboard_engine.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 7,
+          "class_count": 0,
+          "imports": [
+            "os",
+            "sys",
+            "json",
+            "datetime"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 7103,
+        "modified": "2025-06-19T19:19:19.569564"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\ui_components\\telemetry_logs.py",
+        "file_name": "telemetry_logs.py",
+        "classification": "recoverable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 7,
+          "class_count": 1,
+          "imports": [
+            "streamlit",
+            "pandas",
+            "json",
+            "time",
+            "datetime",
+            "os",
+            "event_bus_manager"
+          ],
+          "genesis_category": null,
+          "completion_level": "production_ready",
+          "violations": []
+        },
+        "size": 9564,
+        "modified": "2025-06-19T16:53:03.083935"
+      }
+    ],
+    "enhanceable": [
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\emergency_architect_compliance_enforcer.py",
+        "file_name": "emergency_architect_compliance_enforcer.py",
+        "classification": "enhanceable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": false,
+          "mt5_integration": true,
+          "mock_data_usage": true,
+          "function_count": 10,
+          "class_count": 1,
+          "imports": [
+            "json",
+            "os",
+            "shutil",
+            "ast",
+            "re",
+            "datetime",
+            "pathlib",
+            "typing"
+          ],
+          "genesis_category": null,
+          "completion_level": "partially_complete",
+          "violations": [
+            "Mock data usage detected"
+          ]
+        },
+        "size": 15819,
+        "modified": "2025-06-20T16:31:51.556244"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_dependency_validator.py",
+        "file_name": "genesis_dependency_validator.py",
+        "classification": "enhanceable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": false,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 8,
+          "class_count": 1,
+          "imports": [
+            "json",
+            "hashlib",
+            "subprocess",
+            "os",
+            "typing",
+            "event_bus_manager"
+          ],
+          "genesis_category": null,
+          "completion_level": "partially_complete",
+          "violations": []
+        },
+        "size": 5261,
+        "modified": "2025-06-20T16:29:55.597035"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\.venv\\Lib\\site-packages\\streamlit\\commands\\execution_control.py",
+        "file_name": "execution_control.py",
+        "classification": "enhanceable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": false,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 4,
+          "class_count": 0,
+          "imports": [
+            "__future__",
+            "os",
+            "itertools",
+            "pathlib",
+            "typing",
+            "streamlit",
+            "streamlit.errors",
+            "streamlit.file_util",
+            "streamlit.navigation.page",
+            "streamlit.runtime.metrics_util",
+            "streamlit.runtime.scriptrunner"
+          ],
+          "genesis_category": null,
+          "completion_level": "needs_wiring",
+          "violations": []
+        },
+        "size": 8813,
+        "modified": "2025-06-20T14:01:23.551476"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\styles\\dashboard_styles.py",
+        "file_name": "dashboard_styles.py",
+        "classification": "enhanceable",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 7,
+          "class_count": 0,
+          "imports": [
+            "streamlit",
+            "json",
+            "logging"
+          ],
+          "genesis_category": null,
+          "completion_level": "partially_complete",
+          "violations": []
+        },
+        "size": 10416,
+        "modified": "2025-06-15T18:33:02.831016"
+      }
+    ],
+    "archived_patch": [
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_engine_v3_phase66.py",
+        "file_name": "execution_engine_v3_phase66.py",
+        "classification": "archived_patch",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 11550,
+        "modified": "2025-06-19T19:19:11.583074"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase34_telemetry_dashboard_panel.py",
+        "file_name": "phase34_telemetry_dashboard_panel.py",
+        "classification": "archived_patch",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 16414,
+        "modified": "2025-06-19T23:46:33.342886"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase51_eventbus_compliance_fingerprint_sync.py",
+        "file_name": "phase51_eventbus_compliance_fingerprint_sync.py",
+        "classification": "archived_patch",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 11761,
+        "modified": "2025-06-19T23:46:34.018168"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase61_compliance_validation_engine.py",
+        "file_name": "phase61_compliance_validation_engine.py",
+        "classification": "archived_patch",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 14503,
+        "modified": "2025-06-19T23:46:34.482332"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_loop_reinforcement_engine_step8.py",
+        "file_name": "signal_loop_reinforcement_engine_step8.py",
+        "classification": "archived_patch",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 23674,
+        "modified": "2025-06-19T23:46:42.568006"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\telemetry_validation_engine_phase67.py",
+        "file_name": "telemetry_validation_engine_phase67.py",
+        "classification": "archived_patch",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 37281,
+        "modified": "2025-06-19T19:19:12.191894"
+      }
+    ],
+    "junk": [
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\advanced_signal_optimization_engine.py",
+        "file_name": "advanced_signal_optimization_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 20851,
+        "modified": "2025-06-19T23:46:17.072798"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\architect_compliance_module_repair.py",
+        "file_name": "architect_compliance_module_repair.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 8564,
+        "modified": "2025-06-19T23:46:17.273424"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\auto_execution_manager_quarantined.py",
+        "file_name": "auto_execution_manager_quarantined.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10443,
+        "modified": "2025-06-19T23:46:18.304716"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\backtest_dashboard_module.py",
+        "file_name": "backtest_dashboard_module.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 13159,
+        "modified": "2025-06-19T23:46:18.494011"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\broker_rule_sync_telemetry_widget.py",
+        "file_name": "broker_rule_sync_telemetry_widget.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 15084,
+        "modified": "2025-06-19T23:46:18.912271"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\build_status_updater.py",
+        "file_name": "build_status_updater.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 4713,
+        "modified": "2025-06-19T23:46:19.069369"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\build_tracker_logger.py",
+        "file_name": "build_tracker_logger.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 8477,
+        "modified": "2025-06-19T23:46:19.200974"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\dashboard.py",
+        "file_name": "dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 15556,
+        "modified": "2025-06-19T23:46:19.933817"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\dashboard_engine.py",
+        "file_name": "dashboard_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 35649,
+        "modified": "2025-06-19T23:46:20.107148"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\dashboard_frontend.py",
+        "file_name": "dashboard_frontend.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 15996,
+        "modified": "2025-06-19T23:46:20.172404"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\dashboard_widgets.py",
+        "file_name": "dashboard_widgets.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 35747,
+        "modified": "2025-06-19T23:46:20.436160"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\debug_telemetry_events.py",
+        "file_name": "debug_telemetry_events.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 4994,
+        "modified": "2025-06-19T23:46:20.563453"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\emergency_compliance_scan.py",
+        "file_name": "emergency_compliance_scan.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": false,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 1,
+          "class_count": 0,
+          "imports": [
+            "json",
+            "os",
+            "datetime",
+            "pathlib"
+          ],
+          "genesis_category": null,
+          "completion_level": "partially_complete",
+          "violations": []
+        },
+        "size": 5836,
+        "modified": "2025-06-19T21:47:55.141225"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\eventbus_compliance_fingerprint_sync.py",
+        "file_name": "eventbus_compliance_fingerprint_sync.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 11699,
+        "modified": "2025-06-19T23:46:21.394440"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_dashboard.py",
+        "file_name": "execution_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 22763,
+        "modified": "2025-06-19T19:19:11.579224"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_dispatcher.py",
+        "file_name": "execution_dispatcher.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 19096,
+        "modified": "2025-06-19T23:46:22.628860"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\execution_flow_controller.py",
+        "file_name": "execution_flow_controller.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 29769,
+        "modified": "2025-06-19T23:46:23.004680"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_advanced_tkinter_ui.py",
+        "file_name": "genesis_advanced_tkinter_ui.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 29935,
+        "modified": "2025-06-19T23:46:24.204721"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_architect_agent.py",
+        "file_name": "genesis_architect_agent.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 22571,
+        "modified": "2025-06-19T23:46:24.269701"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_boot_test.py",
+        "file_name": "genesis_boot_test.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 6305,
+        "modified": "2025-06-19T23:46:24.346188"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_cleanup_engine_v3.py",
+        "file_name": "genesis_cleanup_engine_v3.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 17452,
+        "modified": "2025-06-19T19:19:11.602659"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_compliance_core.py",
+        "file_name": "genesis_compliance_core.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 28560,
+        "modified": "2025-06-19T19:19:11.604785"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_dashboard_ui_live_sync.py",
+        "file_name": "genesis_dashboard_ui_live_sync.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 39132,
+        "modified": "2025-06-19T23:46:24.551099"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_gui_launcher.py",
+        "file_name": "genesis_gui_launcher.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 24938,
+        "modified": "2025-06-19T23:46:24.760278"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_installer_builder.py",
+        "file_name": "genesis_installer_builder.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 34526,
+        "modified": "2025-06-19T23:46:24.863758"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_integrity_auditor.py",
+        "file_name": "genesis_integrity_auditor.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 27028,
+        "modified": "2025-06-19T23:46:24.932689"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_launcher.py",
+        "file_name": "genesis_launcher.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 12395,
+        "modified": "2025-06-19T23:46:25.002165"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\hardened_event_bus.py",
+        "file_name": "hardened_event_bus.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 11212,
+        "modified": "2025-06-19T23:46:25.994899"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\institutional_signal_validator.py",
+        "file_name": "institutional_signal_validator.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10469,
+        "modified": "2025-06-19T23:46:26.461576"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\kill_switch_compliance.py",
+        "file_name": "kill_switch_compliance.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 4001,
+        "modified": "2025-06-19T23:46:26.704897"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_dashboard.py",
+        "file_name": "launch_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 13847,
+        "modified": "2025-06-19T23:46:26.914366"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_genesis.py",
+        "file_name": "launch_genesis.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10952,
+        "modified": "2025-06-19T23:46:26.975701"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\launch_telemetry_dashboard.py",
+        "file_name": "launch_telemetry_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 2047,
+        "modified": "2025-06-19T23:46:27.205714"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\mt5_adapter.py",
+        "file_name": "mt5_adapter.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 12234,
+        "modified": "2025-06-19T23:46:29.395594"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\mt5_bridge_test.py",
+        "file_name": "mt5_bridge_test.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 3856,
+        "modified": "2025-06-19T23:46:29.468032"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\mt5_connection_bridge.py",
+        "file_name": "mt5_connection_bridge.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 16438,
+        "modified": "2025-06-19T23:46:29.548773"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\mt5_connector_stub.py",
+        "file_name": "mt5_connector_stub.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 13580,
+        "modified": "2025-06-20T16:29:55.587631"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\mt5_sync_adapter.py",
+        "file_name": "mt5_sync_adapter.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 13778,
+        "modified": "2025-06-19T23:46:29.745083"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\pattern_meta_strategy_engine.py",
+        "file_name": "pattern_meta_strategy_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 42881,
+        "modified": "2025-06-19T23:46:31.425671"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_50_execution_loop_telemetry.py",
+        "file_name": "phase_50_execution_loop_telemetry.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 25628,
+        "modified": "2025-06-19T19:19:11.929168"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_65_compliance_healing.py",
+        "file_name": "phase_65_compliance_healing.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 18997,
+        "modified": "2025-06-19T19:19:11.933510"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_92a_complete_dashboard.py",
+        "file_name": "phase_92a_complete_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 27911,
+        "modified": "2025-06-19T23:46:36.805974"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\phase_93_telemetry_enforcer.py",
+        "file_name": "phase_93_telemetry_enforcer.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 12867,
+        "modified": "2025-06-19T23:46:37.932301"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\quick_launch_genesis.py",
+        "file_name": "quick_launch_genesis.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": false,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 1823,
+        "modified": "2025-06-19T23:46:39.755847"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\run_strategy_mutation_logic_engine.py",
+        "file_name": "run_strategy_mutation_logic_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [
+            "os",
+            "json",
+            "logging",
+            "sys",
+            "time",
+            "datetime",
+            "strategy_mutation_logic_engine"
+          ],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": []
+        },
+        "size": 1284,
+        "modified": "2025-06-17T21:45:46.502540"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\self_healing_strategy_engine.py",
+        "file_name": "self_healing_strategy_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 31748,
+        "modified": "2025-06-19T23:46:41.343194"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_bias_dashboard.py",
+        "file_name": "signal_bias_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 26893,
+        "modified": "2025-06-19T23:46:41.822838"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_confidence_rating_engine.py",
+        "file_name": "signal_confidence_rating_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10559,
+        "modified": "2025-06-19T23:46:41.905410"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_engine.py",
+        "file_name": "signal_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 12600,
+        "modified": "2025-06-19T23:46:42.079079"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_fusion_matrix.py",
+        "file_name": "signal_fusion_matrix.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 37869,
+        "modified": "2025-06-19T23:46:42.328200"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_historical_telemetry_linker.py",
+        "file_name": "signal_historical_telemetry_linker.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 13641,
+        "modified": "2025-06-19T23:46:42.413493"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_loop_reinforcement_engine.py",
+        "file_name": "signal_loop_reinforcement_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 55668,
+        "modified": "2025-06-19T23:46:42.487698"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\signal_validator.py",
+        "file_name": "signal_validator.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10017,
+        "modified": "2025-06-19T23:46:42.982788"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\simple_event_bus.py",
+        "file_name": "simple_event_bus.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 3561,
+        "modified": "2025-06-19T23:46:43.157527"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\simple_event_bus_dashboard.py",
+        "file_name": "simple_event_bus_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 4565,
+        "modified": "2025-06-19T23:46:43.238767"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\start_dashboard.py",
+        "file_name": "start_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 2,
+          "class_count": 0,
+          "imports": [
+            "os",
+            "sys",
+            "subprocess",
+            "logging",
+            "datetime"
+          ],
+          "genesis_category": null,
+          "completion_level": "partially_complete",
+          "violations": []
+        },
+        "size": 995,
+        "modified": "2025-06-19T17:46:22.424935"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\strategy_recalibration_engine.py",
+        "file_name": "strategy_recalibration_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 23417,
+        "modified": "2025-06-19T19:19:12.004824"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\strategy_recommender_engine.py",
+        "file_name": "strategy_recommender_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 18432,
+        "modified": "2025-06-19T23:46:46.150621"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\strategy_sentiment_fusion_engine.py",
+        "file_name": "strategy_sentiment_fusion_engine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 15715,
+        "modified": "2025-06-19T19:19:12.180361"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\telemetry_dashboard.py",
+        "file_name": "telemetry_dashboard.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 52147,
+        "modified": "2025-06-19T23:46:46.973744"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_build_status_reconstruction.py",
+        "file_name": "validate_build_status_reconstruction.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 6222,
+        "modified": "2025-06-19T23:47:03.827812"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_phase41_strategy_mutation.py",
+        "file_name": "validate_phase41_strategy_mutation.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": false,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 5627,
+        "modified": "2025-06-19T23:47:04.979572"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_phase91b_dashboard_compliance.py",
+        "file_name": "validate_phase91b_dashboard_compliance.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 6785,
+        "modified": "2025-06-19T23:47:05.681318"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_signalengine.py",
+        "file_name": "validate_signalengine.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 5760,
+        "modified": "2025-06-19T23:47:06.373461"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_signal_fusion_matrix.py",
+        "file_name": "validate_signal_fusion_matrix.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 8047,
+        "modified": "2025-06-19T23:47:06.472992"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_system_compliance.py",
+        "file_name": "validate_system_compliance.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 9913,
+        "modified": "2025-06-19T23:47:06.619453"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\.venv\\Lib\\site-packages\\pydeck\\frontend_semver.py",
+        "file_name": "frontend_semver.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": false,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": []
+        },
+        "size": 25,
+        "modified": "2025-06-20T14:00:41.797994"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\.venv\\Lib\\site-packages\\pydeck\\widget\\_frontend.py",
+        "file_name": "_frontend.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": false,
+          "telemetry_enabled": false,
+          "mt5_integration": false,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [
+            "frontend_semver"
+          ],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": []
+        },
+        "size": 447,
+        "modified": "2025-06-20T14:00:41.862409"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager.py",
+        "file_name": "auto_execution_manager.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10033,
+        "modified": "2025-06-19T23:57:23.057134"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed.py",
+        "file_name": "auto_execution_manager_fixed.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 9713,
+        "modified": "2025-06-19T23:57:23.352314"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_fixed_restored.py",
+        "file_name": "auto_execution_manager_fixed_restored.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 10063,
+        "modified": "2025-06-19T23:57:23.644786"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_final_system\\adapters\\auto_execution_manager_recovered.py",
+        "file_name": "auto_execution_manager_recovered.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 9849,
+        "modified": "2025-06-19T23:57:23.939400"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\auto_execution_manager.py",
+        "file_name": "auto_execution_manager.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 9802,
+        "modified": "2025-06-20T00:22:45.972848"
+      },
+      {
+        "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\src\\genesis_fixed\\auto_execution_manager_fixed_restored.py",
+        "file_name": "auto_execution_manager_fixed_restored.py",
+        "classification": "junk",
+        "analysis": {
+          "has_genesis_metadata": false,
+          "eventbus_integration": true,
+          "telemetry_enabled": true,
+          "mt5_integration": true,
+          "mock_data_usage": false,
+          "function_count": 0,
+          "class_count": 0,
+          "imports": [],
+          "genesis_category": null,
+          "completion_level": "stub_or_empty",
+          "violations": [
+            "Syntax error in file"
+          ]
+        },
+        "size": 9832,
+        "modified": "2025-06-20T00:22:46.512388"
+      }
+    ]
+  },
+  "recovery_recommendations": [
+    {
+      "file": "autonomous_order_executor.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "compliance_enforcer.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "dashboard_linkage_patch.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "emergency_triage_orphan_eliminator.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "execution_control_core.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "execution_engine.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "execution_engine_orchestrator.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "genesis_final_system_validation.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "genesis_production_dashboard.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "genesis_trade_engine.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "integrate_strategy_mutation_engine.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "orphan_intent_classifier.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "phase_100_gui_boot.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "phase_91_telemetry_wiring_enforcer.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "phase_92a_live_dashboard.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "phase_96_signal_wiring_focused_validator.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "strategy_mutation_logic_engine.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "system_tree_initializer.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "telemetry_collector.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "validate_dashboard_engine.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    },
+    {
+      "file": "telemetry_logs.py",
+      "action": "WIRE_TO_EVENTBUS",
+      "reason": "Production-ready module with GENESIS architecture patterns",
+      "priority": "HIGH"
+    }
+  ],
+  "protection_warnings": [
+    {
+      "file": "emergency_architect_compliance_enforcer.py",
+      "warning": "VALUABLE_CODE_DETECTED",
+      "reason": "Substantial logic that could be enhanced and integrated",
+      "recommendation": "REVIEW_BEFORE_DELETION"
+    },
+    {
+      "file": "genesis_dependency_validator.py",
+      "warning": "VALUABLE_CODE_DETECTED",
+      "reason": "Substantial logic that could be enhanced and integrated",
+      "recommendation": "REVIEW_BEFORE_DELETION"
+    },
+    {
+      "file": "execution_control.py",
+      "warning": "VALUABLE_CODE_DETECTED",
+      "reason": "Substantial logic that could be enhanced and integrated",
+      "recommendation": "REVIEW_BEFORE_DELETION"
+    },
+    {
+      "file": "dashboard_styles.py",
+      "warning": "VALUABLE_CODE_DETECTED",
+      "reason": "Substantial logic that could be enhanced and integrated",
+      "recommendation": "REVIEW_BEFORE_DELETION"
+    }
+  ]
+}

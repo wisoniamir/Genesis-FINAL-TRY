@@ -1,0 +1,9 @@
+{
+  "module_id": "masked",
+  "original_path": "modules\\restored\\masked.py",
+  "preserved_path": "preservation_holding_area\\masked_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 70608,
+  "checksum": "d0455dd5cff5e9399b2ef28e2a4e11017f33cff1b17de5f313ef03757925cd45"
+}

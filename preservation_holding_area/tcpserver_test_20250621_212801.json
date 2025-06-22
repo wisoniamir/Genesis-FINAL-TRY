@@ -1,0 +1,9 @@
+{
+  "module_id": "tcpserver_test",
+  "original_path": "modules\\restored\\tcpserver_test.py",
+  "preserved_path": "preservation_holding_area\\tcpserver_test_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 41646,
+  "checksum": "8087c3b9eab298b8a5aec29352ec00bf3db1bb5cab39b21dbc8ba2aa393de8a6"
+}

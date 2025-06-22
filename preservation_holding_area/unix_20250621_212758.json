@@ -1,0 +1,9 @@
+{
+  "module_id": "unix",
+  "original_path": "modules\\restored\\unix.py",
+  "preserved_path": "preservation_holding_area\\unix_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21833,
+  "checksum": "15e3f21da1e7928c84fa758009c69e3f9ed53f19e1099d77d7db6ce7ca1c63e4"
+}

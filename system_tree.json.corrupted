@@ -1,0 +1,5508 @@
+{
+  "metadata": {
+    "schema_version": "3.0",
+    "last_updated": "2025-06-17T02:45:00Z",
+    "architect_mode": "ENABLED",    "total_nodes": 50,
+    "total_connections": 230,
+    "validation_status": "ARCHITECT_VALIDATED",
+    "permanent_directive_compliance": "FULLY_COMPLIANT",
+    "architect_scan_complete": true,
+    "phase_20_signal_pipeline_validated": true,
+    "phase_22_ssr_engine_added": true,
+    "phase_24_envelope_engine_added": true,
+    "phase_25_ssxle_engine_added": true,    "phase_27_epl_engine_added": true,
+    "phase_30_sqa_engine_added": true,
+    "phase_31_epl_engine_complete": true,
+    "phase_31_epl_enhanced_validation": true,
+    "phase_32_execution_flow_controller_added": true,
+    "latency_stress_testing_complete": true,
+    "eventbus_integrity_verified": true,
+    "phase_33_envelope_harmonizer_added": true,
+    "phase_34_signal_fusion_matrix_added": true,
+    "phase_35_execution_prioritization_enhanced": true,
+    "phase_35_broker_discovery_engine_added": true
+  },
+  "nodes": [
+    {
+      "id": "SmartExecutionLiveLoop",
+      "type": "service",
+      "status": "active",
+      "module_path": "core/smart_execution_liveloop.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "numpy",
+        "pandas",
+        "statistics",
+        "collections"
+      ],
+      "inputs": [
+        "LiveTradeExecuted",
+        "TradeJournalEntry",
+        "ExecutionLog",
+        "BacktestResults",
+        "KillSwitchTrigger"
+      ],
+      "outputs": [
+        "ExecutionDeviationAlert",
+        "RecalibrationRequest",
+        "SmartLogSync",
+        "KillSwitchTrigger",
+        "LoopHealthMetric"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/liveloop/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/liveloop_stats/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "SignalConfidenceRatingEngine",
+      "type": "core",
+      "status": "active",
+      "module_path": "signal_confidence_rating_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time"
+      ],
+      "inputs": [
+        "SignalReadyEvent"
+      ],
+      "outputs": [
+        "SignalScoredEvent",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/confidence_rating/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/confidence_scores/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "TestSignalConfidencePhase15",
+      "type": "test",
+      "status": "active",
+      "module_path": "test_signal_confidence_phase15.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time"
+      ],
+      "inputs": [
+        "SignalScoredEvent"
+      ],
+      "outputs": [
+        "SignalReadyEvent"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/confidence_test/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "test_parameters": {
+        "timeout_seconds": 10,
+        "expected_events": [
+          "SignalScoredEvent"
+        ],
+        "real_mt5_data": true
+      }
+    },
+    {
+      "id": "MutationSignalAdapter",
+      "type": "core",
+      "status": "active",
+      "module_path": "mutation_signal_adapter.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "collections",
+        "threading",
+        "pathlib"
+      ],
+      "inputs": [
+        "StrategyMutationEvent",
+        "SignalCandidate"
+      ],
+      "outputs": [
+        "MutatedSignalRequest",
+        "MutationAdapterTelemetry"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/mutation_adapter/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/signal_mutations/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "StrategyMutator",
+      "type": "core",
+      "status": "active",
+      "module_path": "strategy_mutator.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "sys",
+        "collections",
+        "statistics",
+        "hashlib",
+        "uuid",
+        "pathlib",
+        "threading"
+      ],
+      "inputs": [
+        "TradeOutcomeFeedback",
+        "PnLScoreUpdate",
+        "SignalFeedbackScore",
+        "PatternDetected",
+        "EnrichedTradeOutcome",
+        "TradeClusterAnalysis",
+        "SymbolPerformanceUpdate"
+      ],
+      "outputs": [
+        "StrategyMutationEvent",
+        "AlphaDecayDetected",
+        "MutationLogAppend",
+        "MetaStrategyUpdate"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/strategy_mutation/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/strategy_evolution/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "LiveFeedbackAdapter",
+      "type": "core",
+      "status": "active",
+      "module_path": "live_feedback_adapter.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "sys",
+        "collections",
+        "statistics",
+        "hashlib",
+        "threading"
+      ],
+      "inputs": [
+        "TradeOutcomeFeedback",
+        "ExecutionSnapshot",
+        "PnLScoreUpdate"
+      ],
+      "outputs": [
+        "EnrichedTradeOutcome",
+        "TradeClusterAnalysis",
+        "SymbolPerformanceUpdate"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/live_feedback/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "TestSmartMonitor",
+      "type": "test",
+      "status": "active",
+      "module_path": "test_smart_monitor.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "sys"
+      ],
+      "inputs": [
+        "ExecutionDeviationAlert",
+        "KillSwitchTrigger",
+        "RecalibrationRequest",
+        "SmartLogSync"
+      ],
+      "outputs": [
+        "LiveTradeExecuted",
+        "TradeJournalEntry",
+        "PatternDetected",
+        "ModuleTelemetry"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/smart_monitor/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "test_parameters": {
+        "timeout_seconds": 10,
+        "expected_events": [
+          "ExecutionDeviationAlert",
+          "KillSwitchTrigger",
+          "RecalibrationRequest",
+          "SmartLogSync"
+        ],
+        "real_mt5_data": true
+      }
+    },
+    {
+      "id": "TestSmartExecutionMonitor",
+      "type": "test",
+      "status": "active",
+      "module_path": "test_smart_execution_monitor.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "sys",
+        "random",
+        "pathlib",
+        "collections"
+      ],
+      "inputs": [
+        "ExecutionDeviationAlert",
+        "KillSwitchTrigger",
+        "RecalibrationRequest",
+        "SmartLogSync",
+        "ModuleTelemetry"
+      ],
+      "outputs": [
+        "LiveTradeExecuted",
+        "TradeJournalEntry",
+        "BacktestResults",
+        "ModuleTelemetry",
+        "PatternDetected"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/smart_execution/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "test_parameters": {
+        "timeout_seconds": 15,
+        "expected_events": [
+          "ExecutionDeviationAlert",
+          "KillSwitchTrigger",
+          "RecalibrationRequest",
+          "SmartLogSync"
+        ],
+        "test_scenarios": [
+          "high_slippage_test",
+          "execution_latency_test",
+          "drawdown_trigger_test",
+          "win_rate_deterioration_test",
+          "pattern_edge_decay_test",
+          "multiple_anomalies_test"
+        ],
+        "real_mt5_data": true
+      }
+    },
+    {
+      "id": "ExecutionFlowTest",
+      "type": "test",
+      "status": "active",
+      "module_path": "test_trade_execution_flow.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "sys"
+      ],
+      "inputs": [
+        "OrderStatusUpdate",
+        "TradeBlocked",
+        "TradeAuditLog",
+        "ExecutionLog",
+        "ModuleTelemetry"
+      ],
+      "outputs": [
+        "TradeRequest"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/execution_tests/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "test_parameters": {
+        "timeout_seconds": 30,
+        "expected_events": [
+          "OrderStatusUpdate",
+          "TradeBlocked",
+          "TradeAuditLog",
+          "ExecutionLog"
+        ],
+        "real_mt5_data": true
+      }
+    },
+    {
+      "id": "TestSignalQualityAmplifier",
+      "type": "test",
+      "status": "active",
+      "module_path": "test_signal_quality_amplifier.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "unittest",
+        "threading",
+        "collections",
+        "statistics"
+      ],
+      "inputs": [
+        "signal_quality.amplified",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "outputs": [
+        "TradeSignalFinalized",
+        "MarketConditionSnapshot",
+        "PatternDetected",
+        "ExecutionLatencyReport"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/signal_quality_test/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "test_parameters": {
+        "timeout_seconds": 20,
+        "expected_events": [
+          "signal_quality.amplified",
+          "ModuleTelemetry"
+        ],
+        "test_scenarios": [
+          "signal_quality_assessment_test",
+          "scbf_calculation_test",
+          "historical_alignment_test",
+          "volatility_correction_test",
+          "bias_overlap_detection_test",
+          "market_context_integration_test",
+          "execution_readiness_test",
+          "end_to_end_amplification_test"
+        ],
+        "real_mt5_data": true,
+        "coverage_target": 95
+      }
+    },
+    {
+      "id": "SignalLoopReinforcementEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "signal_loop_reinforcement_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "collections",
+        "numpy",
+        "pandas"
+      ],
+      "inputs": [
+        "ExecutionLog",
+        "TradeJournalEntry",
+        "BacktestResults",
+        "StrategyScore"
+      ],
+      "outputs": [
+        "SignalFeedbackScore",
+        "SignalLoopTelemetry",
+        "SignalLoopError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/signal_reinforcement/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "learning_parameters": {
+        "base_learning_rate": 0.05,
+        "win_multiplier": 1.2,
+        "loss_multiplier": 1.5,
+        "feedback_window": 20
+      }
+    },
+    {
+      "id": "SignalValidator",
+      "type": "service",
+      "status": "active",
+      "module_path": "signal_validator.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "numpy",
+        "pandas"
+      ],
+      "inputs": [
+        "SignalCandidate"
+      ],
+      "outputs": [
+        "ValidatedSignal",
+        "SignalRejected",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/signal_validator/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "validation_thresholds": {
+        "confluence_threshold": 70,
+        "max_signal_age_minutes": 15,
+        "min_risk_reward_ratio": 2.0
+      }
+    },
+    {
+      "id": "SmartExecutionMonitor",
+      "type": "service",
+      "status": "active",
+      "module_path": "smart_execution_monitor.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "statistics",
+        "pandas",
+        "numpy",
+        "collections"
+      ],
+      "inputs": [
+        "LiveTradeExecuted",
+        "BacktestResults",
+        "TradeJournalEntry",
+        "ModuleTelemetry",
+        "PatternDetected"
+      ],
+      "outputs": [
+        "ExecutionDeviationAlert",
+        "KillSwitchTrigger",
+        "RecalibrationRequest",
+        "SmartLogSync",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/smart_monitor/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "thresholds": {
+        "max_allowed_slippage": 0.7,
+        "min_win_rate_threshold": 0.58,
+        "max_dd_threshold_pct": 12.5,
+        "min_rr_threshold": 1.8,
+        "latency_warning_ms": 350,
+        "pattern_edge_decay_window": 7
+      }
+    },
+    {
+      "id": "StreamlitFrontend",
+      "type": "ui",
+      "status": "active",
+      "module_path": "dashboard_frontend.py",
+      "dependencies": [
+        "event_bus",
+        "streamlit",
+        "pandas",
+        "plotly",
+        "matplotlib"
+      ],
+      "inputs": [
+        "WebDashboardUpdate",
+        "TradeVisualization",
+        "BacktestVisualization",
+        "SignalPatternVisualization",
+        "SystemHealthUpdate"
+      ],
+      "outputs": [],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "visualization_modules": [
+        "trade_visualizer.py",
+        "backtest_visualizer.py",
+        "signal_pattern_visualizer.py",
+        "system_monitor_visualizer.py"
+      ],
+      "auto_refresh": {
+        "interval_seconds": 60,
+        "enabled": true
+      }
+    },
+    {
+      "id": "TradeJournalEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "trade_journal_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os"
+      ],
+      "inputs": [
+        "ExecutionLog",
+        "OrderStatusUpdate"
+      ],
+      "outputs": [
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "journal_settings": {
+        "log_path": "logs/journal/",
+        "formats": [
+          "daily",
+          "weekly",
+          "symbol"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "PatternEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "pattern_engine.py",
+      "dependencies": [
+        "event_bus",
+        "numpy"
+      ],
+      "inputs": [
+        "TickData",
+        "SignalCandidate"
+      ],
+      "outputs": [
+        "PatternDetected",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "pattern_detection": {
+        "algorithms": [
+          "momentum_burst",
+          "order_block_sweep",
+          "divergence"
+        ],
+        "min_score": 7.0,
+        "scoring_system": "0-10"
+      }
+    },
+    {
+      "id": "PatternSignalHarmonizer",
+      "type": "core",
+      "status": "active",
+      "module_path": "pattern_signal_harmonizer.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "statistics",
+        "collections"
+      ],
+      "inputs": [
+        "PatternDetected",
+        "SignalGenerated",
+        "StrategyRecommendation",
+        "ExecutionResult",
+        "TradeExecuted",
+        "HistoricalPatternRequest",
+        "SystemStatusCheck",
+        "PerformanceMetricsRequest"
+      ],
+      "outputs": [
+        "SignalHarmonized",
+        "PatternScoreUpdate",
+        "HarmonicFeedback",
+        "ModuleTelemetry",
+        "ModuleError",
+        "HistoricalPatternResponse",
+        "ModuleStatus",
+        "ModuleMetrics"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "phase": 26,
+      "harmonization_settings": {
+        "min_pattern_confidence": 0.7,
+        "min_signal_confidence": 0.75,
+        "min_harmonic_score": 0.8,
+        "adaptive_learning_rate": 0.1,
+        "pattern_buffer_size": 100,
+        "signal_buffer_size": 100,
+        "harmony_queue_size": 50
+      },
+      "performance_targets": {
+        "max_harmonization_latency_ms": 300,
+        "target_harmonization_latency_ms": 150,
+        "min_harmony_queue_efficiency": 0.85
+      },
+      "adaptive_learning": {
+        "enabled": true,
+        "feedback_loop": "execution_results",
+        "pattern_success_tracking": true,
+        "adaptive_weight_adjustment": true
+      },
+      "logging_settings": {
+        "output_path": "logs/pattern_harmonizer/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/pattern_harmonics/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "TelemetryCollector",
+      "type": "service",
+      "status": "active",
+      "module_path": "telemetry_collector.py",
+      "dependencies": [
+        "event_bus"
+      ],
+      "inputs": [
+        "ModuleTelemetry",
+        "ModuleError",
+        "ExecutionLog",
+        "OrderStatusUpdate",
+        "KillSwitchActivated",
+        "TradeBlocked"
+      ],
+      "outputs": [],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": false,
+      "log_path": "logs/telemetry/"
+    },
+    {
+      "id": "MarketDataFeedManager",
+      "type": "service",
+      "status": "active",
+      "module_path": "market_data_feed_manager.py",
+      "dependencies": [
+        "MetaTrader5",
+        "event_bus"
+      ],
+      "outputs": [
+        "TickData",
+        "ConnectionStatus",
+        "StreamStatus"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true
+    },
+    {
+      "id": "ExecutionEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "execution_engine.py",
+      "dependencies": [
+        "MetaTrader5",
+        "event_bus"
+      ],
+      "inputs": [
+        "TradeRequest",
+        "TradeBlocked"
+      ],
+      "outputs": [
+        "OrderStatusUpdate",
+        "ExecutionLog",
+        "OrderError",
+        "ValidateTrade"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "limit_only": true
+    },
+    {
+      "id": "SignalEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "signal_engine.py",
+      "dependencies": [
+        "event_bus"
+      ],
+      "inputs": [
+        "TickData"
+      ],
+      "outputs": [
+        "SignalCandidate",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true
+    },
+    {
+      "id": "RiskEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "risk_engine.py",
+      "dependencies": [
+        "event_bus"
+      ],
+      "inputs": [
+        "TickData",
+        "TradeState",
+        "TradeRequest"
+      ],
+      "outputs": [
+        "KillSwitchActivated",
+        "TradeBlocked",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "ftmo_compliance": {
+        "account_type": "Swing",
+        "daily_limit": 0.05,
+        "trailing_limit": 0.1
+      }
+    },
+    {
+      "id": "StrategyRecommenderEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "strategy_recommender_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "collections",
+        "numpy"
+      ],
+      "inputs": [
+        "ValidatedSniperSignal",
+        "MacroUpdateEvent",
+        "RiskExposureUpdate"
+      ],
+      "outputs": [
+        "StrategyRecommendation",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/strategy_recommender/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "config": {
+        "killzone_hours": [
+          1,
+          8,
+          13,
+          20
+        ],
+        "killzone_window_minutes": 60,
+        "min_confidence_threshold": 7,
+        "min_risk_reward_ratio": 3.0
+      }
+    },
+    {
+      "id": "BacktestEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "backtest_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "numpy",
+        "pandas"
+      ],
+      "inputs": [
+        "TickData",
+        "SignalCandidate",
+        "PatternDetected"
+      ],
+      "outputs": [
+        "BacktestResults",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/backtest_results/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "DashboardEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "dashboard_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "threading",
+        "psutil",
+        "platform"
+      ],
+      "inputs": [
+        "BacktestResults",
+        "SignalCandidate",
+        "PatternDetected",
+        "StrategySuggestion",
+        "TradeJournalEntry",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "outputs": [
+        "DashboardStatusUpdate",
+        "DashboardTelemetry",
+        "DashboardError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/dashboard/feed/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "auto_refresh": {
+        "interval_minutes": 15,
+        "enabled": true
+      }
+    },
+    {
+      "id": "TradeAuditor",
+      "type": "service",
+      "status": "active",
+      "module_path": "trade_auditor.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "threading"
+      ],
+      "inputs": [
+        "OrderStatusUpdate",
+        "TickData",
+        "TradeClosed"
+      ],
+      "outputs": [
+        "TradeAuditLog",
+        "TradeClosed",
+        "TradeFillStatus",
+        "PnLSnapshot"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/trade_auditor/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "PatternMiner",
+      "type": "engine",
+      "status": "active",
+      "module_path": "pattern_miner.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "threading"
+      ],
+      "inputs": [
+        "TradeAuditLog"
+      ],
+      "outputs": [
+        "PatternTag",
+        "StrategyScore",
+        "InvalidPatternLog",
+        "ModuleTelemetry"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/pattern_miner/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "pattern_analysis": {
+        "win_loss_tracking": true,
+        "structure_tagging": true,
+        "setup_classification": true,
+        "score_threshold": 5
+      }
+    },
+    {
+      "id": "SignalBiasDashboard",
+      "type": "service",
+      "status": "active",
+      "module_path": "signal_bias_dashboard.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "collections",
+        "numpy",
+        "pandas",
+        "matplotlib",
+        "streamlit"
+      ],
+      "inputs": [
+        "SignalFeedbackScore",
+        "StrategyScore",
+        "InvalidPatternLog"
+      ],
+      "outputs": [
+        "SignalBiasChartData",
+        "DashboardTelemetry"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/signal_bias_dashboard/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "ui_modes": [
+        "streamlit",
+        "console"
+      ]
+    },
+    {
+      "id": "StrategyFeedbackJournal",
+      "type": "service",
+      "status": "active",
+      "module_path": "strategy_feedback_journal.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "collections",
+        "numpy",
+        "pandas"
+      ],
+      "inputs": [
+        "StrategyScore",
+        "SignalFeedbackScore"
+      ],
+      "outputs": [
+        "StrategyMutationLog",
+        "StrategyHealthReport",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/feedback_journal/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "persistence": {
+        "journal_file": "logs/feedback_journal/feedback.jsonl",
+        "health_reports": "logs/feedback_journal/health_report_{date}.json"
+      }
+    },
+    {
+      "id": "PatternMetaStrategyEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "pattern_meta_strategy_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "collections",
+        "hashlib",
+        "statistics"
+      ],
+      "inputs": [
+        "TradeJournalEntry",
+        "MACD_CrossEvent",
+        "StochRSI_PeakCross",
+        "ExecutionSnapshot",
+        "PriceActionPattern",
+        "SL_HitEvent",
+        "TP_HitEvent",
+        "ValidatedSignal"
+      ],
+      "outputs": [
+        "PatternDetected",
+        "MetaStrategyMap",
+        "BiasOverrideIssued",
+        "PatternDecayWarning",
+        "MetaCalibrationRequest",
+        "ModuleTelemetry"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/pattern_miner/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "phase_11_features": {
+        "meta_bias_override": true,
+        "pattern_clustering": true,
+        "bias_override_threshold": 0.7,
+        "min_pattern_occurrences": 5,
+        "self_calibration": true,
+        "pattern_registry_integration": true
+      },
+      "pattern_analysis": {
+        "hash_algorithm": "MD5",
+        "volatility_clustering": [
+          "HIGH",
+          "MEDIUM",
+          "LOW"
+        ],
+        "performance_tracking": [
+          "win_rate",
+          "tp_ratio",
+          "sl_ratio",
+          "slippage"
+        ],
+        "bias_types": [
+          "BULLISH_OVERRIDE",
+          "BEARISH_OVERRIDE",
+          "NEUTRAL"
+        ]
+      }
+    },
+    {
+      "id": "LiveTradeFeedbackInjector",
+      "type": "service",
+      "status": "active",
+      "module_path": "live_trade_feedback_injector.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "collections",
+        "threading",
+        "pathlib"
+      ],
+      "inputs": [
+        "ExecutionSnapshot",
+        "SL_HitEvent",
+        "TP_HitEvent",
+        "TradeFillEvent"
+      ],
+      "outputs": [
+        "TradeOutcomeFeedback",
+        "ReinforceSignalMemory",
+        "PnLScoreUpdate",
+        "TradeMetaLogEntry",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/live_trade_feedback/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "phase_12_features": {
+        "signal_fingerprint_matching": true,
+        "bias_score_adjustment": true,
+        "real_time_pnl_tracking": true,
+        "trade_outcome_injection": true,
+        "signal_memory_reinforcement": true
+      }
+    },
+    {
+      "id": "MetaSignalHarmonizer",
+      "type": "core_service",
+      "status": "active",
+      "module_path": "core/meta_signal_harmonizer.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "statistics",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "collections",
+        "typing",
+        "dataclasses"
+      ],
+      "inputs": [
+        "SignalConfidenceRated",
+        "PatternSignalDetected",
+        "LiveExecutionFeedback",
+        "TradeJournalEntry"
+      ],
+      "outputs": [
+        "UnifiedExecutionSignal",
+        "MetaSignalAuditTrail",
+        "SignalConflictDetected",
+        "SignalHarmonyMetric"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/meta_signal/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/meta_signal_stats/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "signal_weighting": {
+        "Pattern Engine": 0.4,
+        "Signal Confidence": 0.3,
+        "Execution Feedback": 0.2,
+        "Trade Journal": 0.1
+      },
+      "thresholds": {
+        "unified_signal": 0.75,
+        "audit_trail": 0.4,
+        "conflict_divergence": 2.0
+      }
+    },
+    {
+      "id": "SmartTelemetryDashboard",
+      "type": "dashboard",
+      "status": "active",
+      "module_path": "telemetry_dashboard.py",
+      "dependencies": [
+        "event_bus",
+        "streamlit",
+        "plotly",
+        "pandas",
+        "json",
+        "datetime",
+        "threading",
+        "collections"
+      ],
+      "inputs": [
+        "KillSwitchTrigger",
+        "RecalibrationRequest",
+        "SmartLogSync",
+        "ExecutionDeviationAlert",
+        "TerminateMonitorLoop",
+        "ModuleTelemetry",
+        "ModuleError",
+        "LiveTradeExecuted",
+        "LoopHealthMetric",
+        "UnifiedExecutionSignal",
+        "SignalConflictDetected"
+      ],
+      "outputs": [
+        "DashboardAlert",
+        "SystemHealthUpdate",
+        "TelemetryDashboardStatus"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "phase": "PHASE_17",
+      "auto_start_on_boot": true,
+      "dashboard_config": {
+        "refresh_interval_seconds": 3,
+        "max_events_displayed": 1000,
+        "alert_retention_minutes": 60,
+        "chart_history_minutes": 30,
+        "ui_type": "streamlit",
+        "auto_scroll_logs": true
+      },
+      "monitoring_capabilities": {
+        "kill_switch_tracking": true,
+        "signal_emission_tracking": true,
+        "loop_termination_detection": true,
+        "real_time_alerts": true,
+        "system_health_monitoring": true,
+        "live_charts": true
+      },
+      "logging_settings": {
+        "output_path": "logs/telemetry_dashboard/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/telemetry_dashboard/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "SmartExecutionReactor",
+      "type": "core",
+      "status": "active",
+      "module_path": "modules/reactive/smart_execution_reactor.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "queue",
+        "collections",
+        "pathlib"
+      ],
+      "inputs": [
+        "ExecutionDeviationAlert",
+        "KillSwitchTrigger",
+        "RecalibrationRequest"
+      ],
+      "outputs": [
+        "TradeAdjustmentInitiated",
+        "StrategyFreezeLock",
+        "MacroSyncReboot"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/reactor/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/reactor_stats/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "ExecutionLoopResponder",
+      "type": "service",
+      "status": "active",
+      "module_path": "modules/reactive/execution_loop_responder.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "queue",
+        "collections",
+        "pathlib"
+      ],
+      "inputs": [
+        "TradeAdjustmentInitiated",
+        "StrategyFreezeLock",
+        "MacroSyncReboot"
+      ],
+      "outputs": [
+        "TradeAdjustmentExecuted",
+        "StrategyFreezeConfirmed",
+        "MacroSyncCompleted"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/loop_responder/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/responder_stats/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "LiveAlertBridge",
+      "type": "service",
+      "status": "active",
+      "module_path": "modules/reactive/live_alert_bridge.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "queue",
+        "collections",
+        "pathlib",
+        "hashlib"
+      ],
+      "inputs": [
+        "StrategyFreezeConfirmed",
+        "MacroSyncCompleted",
+        "EmergencyAlert",
+        "KillSwitchTrigger",
+        "ExecutionDeviationAlert"
+      ],
+      "outputs": [],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/alert_bridge/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/emergency_alerts/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "SmartFeedbackSync",
+      "type": "service",
+      "status": "active",
+      "module_path": "smart_feedback_sync.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "numpy",
+        "pandas",
+        "collections",
+        "statistics"
+      ],
+      "inputs": [
+        "SignalConfidenceRated",
+        "FeedbackSync",
+        "TradeCompletionFeedback",
+        "LiveExecutionFeedback",
+        "ExecutionDeviationAlert",
+        "RecalibrationRequest",
+        "TerminateMonitorLoop"
+      ],
+      "outputs": [
+        "DriftDetected",
+        "RecalibrationNeeded",
+        "FeedbackSyncMetric",
+        "LearningAdaptation"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/smart_feedback_sync/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/smart_feedback_sync/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "learning_mode": true,
+      "halt_on_signal_loss": true,
+      "drift_detection": {
+        "confidence_threshold": 0.15,
+        "execution_threshold": 0.2,
+        "signal_loss_max": 5
+      }
+    },
+    {
+      "id": "AdaptiveExecutionResolver",
+      "type": "service",
+      "status": "active",
+      "module_path": "adaptive_execution_resolver.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "numpy",
+        "pandas",
+        "collections",
+        "statistics"
+      ],
+      "inputs": [
+        "DriftDetected",
+        "RecalibrationNeeded",
+        "SystemMetrics",
+        "ExecutionMetric",
+        "AdjustmentEffectiveness"
+      ],
+      "outputs": [
+        "StrategyAdjustment",
+        "ExecutionParameterUpdate",
+        "RiskParameterUpdate",
+        "AdaptiveMetric",
+        "LearningUpdate"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/adaptive_execution_resolver/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/adaptive_execution_resolver/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "adaptive_learning_enabled": true,
+      "auto_adjustment_mode": true,
+      "adjustment_parameters": {
+        "drift_sensitivity": 0.1,
+        "adjustment_magnitude": 0.05,
+        "adjustment_cooldown": 600,
+        "learning_rate": 0.02
+      }
+    },
+    {
+      "id": "AdvancedSignalOptimizationEngine",
+      "type": "ml_core",
+      "status": "active",
+      "module_path": "advanced_signal_optimization_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "collections"
+      ],
+      "inputs": [
+        "SignalConfidenceRated",
+        "LiveTradeExecuted",
+        "TradeJournalEntry",
+        "PatternDetected",
+        "ASIOEvaluateSignal",
+        "ASIOOptimizeStrategy"
+      ],
+      "outputs": [
+        "ASIOSignalConfidence",
+        "ASIOOptimizationAdvice",
+        "ASIOModelTrained",
+        "ModuleTelemetry"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "ml_enabled": true,
+      "phase": "PHASE_21",
+      "ml_models": {
+        "confidence_model": "RandomForestClassifier",
+        "scaler": "StandardScaler",
+        "features_count": 8,
+        "training_threshold": 100
+      },
+      "logging_settings": {
+        "output_path": "logs/asio_engine/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/asio_models/",
+        "formats": [
+          "json",
+          "pkl"
+        ],
+        "structured": true
+      },
+      "connections": [
+        "SignalEngine",
+        "ExecutionEngine",
+        "TradeJournalEngine",
+        "PatternEngine",
+        "StrategyRecommenderEngine",
+        "TelemetryCollector"
+      ]
+    },
+    {
+      "id": "StrategicSignalRefinementEngine",
+      "type": "signal_processor",
+      "status": "active",
+      "module_path": "signal_refinement_engine.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "logging",
+        "datetime",
+        "numpy",
+        "dataclasses",
+        "enum",
+        "threading",
+        "time"
+      ],
+      "inputs": [
+        "RawSignalGenerated",
+        "HTFStructureSynced",
+        "ASIOOptimizationAdvice",
+        "TelemetryRequest"
+      ],
+      "outputs": [
+        "RefinedSignal",
+        "ModuleTelemetry",
+        "HTFStructureRequest",
+        "ASIOAdviceRequest"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "phase": "PHASE_22",
+      "description": "Strategic Signal Refinement Engine - Phase 22 implementation",
+      "features": [
+        "High-timeframe macro structure alignment",
+        "ASIO optimization feedback integration",
+        "Enhanced signal confidence scoring",
+        "Quality assessment categorization",
+        "Execution priority calculation",
+        "Risk-adjusted position sizing"
+      ],
+      "logging_settings": {
+        "output_path": "logs/ssr_engine/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true,
+        "log_file": "ssr_engine.log"
+      },
+      "data_storage": {
+        "htf_cache": "in_memory",
+        "asio_cache": "in_memory",
+        "refinement_history": "rolling_buffer",
+        "performance_stats": "persistent"
+      },
+      "performance_metrics": {
+        "processing_cycle": "100ms",
+        "cache_timeout": "5min",
+        "max_concurrent_refinements": "unlimited",
+        "average_processing_time": "<5ms"
+      },
+      "configuration": {
+        "htf_weight": 0.4,
+        "asio_weight": 0.35,
+        "original_weight": 0.25,
+        "min_confidence_threshold": 0.3,
+        "max_confidence_threshold": 0.95,
+        "refinement_sensitivity": 0.8,
+        "macro_alignment_threshold": 0.6
+      },
+      "connections": [
+        "SignalEngine",
+        "HTFValidator",
+        "AdvancedSignalOptimizationEngine",
+        "StrategyRecommenderEngine",
+        "TelemetryCollector"
+      ]
+    },
+    {
+      "id": "ExecutionEnvelopeEngine",
+      "type": "service",
+      "status": "active",
+      "phase": 24,
+      "description": "Strategic Execution Envelope Engine - Final execution decision wrapper",
+      "module_path": "execution_envelope_engine.py",
+      "config_path": "envelope_config.json",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "numpy",
+        "decimal",
+        "collections",
+        "typing",
+        "dataclasses"
+      ],
+      "inputs": [
+        "StrategyRecommendation",
+        "MT5DataUpdate",
+        "MT5SpreadUpdate",
+        "KillSwitchTrigger",
+        "ComplianceAlert",
+        "RiskLimitUpdate",
+        "DrawdownAlert",
+        "SystemStatusCheck",
+        "PerformanceMetricsRequest"
+      ],
+      "outputs": [
+        "ExecutionOrder",
+        "EnvelopeDecisionBlocked",
+        "ModuleTelemetry",
+        "ModuleError",
+        "ModuleStatus",
+        "ModuleMetrics"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "kill_switch_integration": true,
+      "ftmo_compliance": true,
+      "architect_compliance": "v2.7",
+      "logging_settings": {
+        "output_path": "logs/execution_envelope/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/execution_envelopes/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "performance_metrics": {
+        "max_decision_latency_ms": 450,
+        "target_decision_latency_ms": 250,
+        "processing_cycle": "real-time",
+        "cache_timeout": "1s",
+        "max_concurrent_envelopes": 10,
+        "average_processing_time": "<250ms"
+      },
+      "configuration": {
+        "sniper_timing": {
+          "max_decision_latency_ms": 450,
+          "market_timing_window_seconds": 30,
+          "execution_precision_timeout_ms": 250
+        },
+        "position_sizing": {
+          "risk_percentage_max": 2.5,
+          "kelly_criterion_factor": 0.25,
+          "min_position_size": 0.01,
+          "max_position_size": 5.0
+        },
+        "compliance_checks": {
+          "ftmo_compliance": true,
+          "max_daily_drawdown": 5.0,
+          "max_total_drawdown": 12.0,
+          "spread_threshold_pips": 1.5
+        }
+      },
+      "connections": [
+        "DSRStrategyMutator",
+        "MarketDataFeedManager",
+        "RiskEngine",
+        "ExecutionEngine",
+        "TelemetryCollector",
+        "SystemMonitor"
+      ]
+    },
+    {
+      "id": "SmartSignalExecutionLinker",
+      "type": "service",
+      "status": "active",
+      "phase": 25,
+      "description": "Smart Signal \u2192 Execution Linker Engine (SSXLE) - Bridges DSR output with Execution Envelope",
+      "module_path": "smart_signal_execution_linker.py",
+      "config_path": "linker_config.json",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "queue",
+        "collections",
+        "typing",
+        "dataclasses",
+        "statistics"
+      ],
+      "inputs": [
+        "StrategyRecommendation",
+        "MT5DataUpdate",
+        "MT5SpreadUpdate",
+        "KillSwitchTrigger",
+        "ComplianceAlert",
+        "RiskLimitUpdate",
+        "DrawdownAlert",
+        "SystemStatusCheck",
+        "PerformanceMetricsRequest"
+      ],
+      "outputs": [
+        "ExecutionOrderRequest",
+        "SignalFiltered",
+        "LinkerDecisionBlocked",
+        "ModuleTelemetry",
+        "ModuleError",
+        "ModuleStatus",
+        "ModuleMetrics"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "kill_switch_integration": true,
+      "ftmo_compliance": true,
+      "architect_compliance": "v2.7",
+      "logging_settings": {
+        "output_path": "logs/signal_execution_linker/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/signal_execution_links/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "performance_metrics": {
+        "max_processing_latency_ms": 200,
+        "target_processing_latency_ms": 100,
+        "processing_cycle": "real-time",
+        "cache_timeout": "500ms",
+        "max_queue_size": 50,
+        "average_processing_time": "<150ms"
+      },
+      "configuration": {
+        "signal_filtering": {
+          "confidence_threshold": 75.0,
+          "sl_tp_ratio_min": 1.5,
+          "spread_threshold_pips": 1.5,
+          "max_drawdown_threshold": 5.0
+        },
+        "routing_logic": {
+          "envelope_matching": true,
+          "priority_routing": true,
+          "queue_management": true,
+          "throttling_enabled": true
+        },
+        "compliance_checks": {
+          "ftmo_compliance": true,
+          "kill_switch_integration": true,
+          "risk_validation": true,
+          "confidence_validation": true
+        }
+      },
+      "connections": [
+        "DSRStrategyMutator",
+        "ExecutionEnvelopeEngine",
+        "MarketDataFeedManager",
+        "RiskEngine",
+        "TelemetryCollector",
+        "SystemMonitor"
+      ]
+    },
+    {
+      "id": "ExecutionPrioritizationEngine",
+      "type": "core",
+      "status": "active",
+      "module_path": "execution_prioritization_engine.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "collections",
+        "dataclasses",
+        "typing",
+        "queue",
+        "statistics"
+      ],
+      "inputs": [
+        "SignalHarmonized",
+        "ExecutionResult",
+        "SystemStatusCheck",
+        "PerformanceMetricsRequest"
+      ],
+      "outputs": [
+        "PrioritizedSignal",
+        "ModuleTelemetry",
+        "ModuleStatus",
+        "ModuleMetrics"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/execution_prioritization/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/priority_scores/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "phase": 27,
+      "priority_algorithm": {
+        "confidence_weight": 0.4,
+        "historical_success_weight": 0.3,
+        "signal_age_weight": 0.3
+      },
+      "queue_management": {
+        "high_priority_threshold": 0.8,
+        "medium_priority_threshold": 0.5,
+        "max_queue_depths": {
+          "high": 50,
+          "medium": 100,
+          "low": 200
+        }
+      }
+    },
+    {
+      "id": "TradeMemoryFeedbackEngine",
+      "type": "core",
+      "status": "active",
+      "module_path": "trade_memory_feedback_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "sqlite3",
+        "collections"
+      ],
+      "inputs": [
+        "LiveTradeExecuted",
+        "ExecutionResult",
+        "SignalConfidenceScore",
+        "MarketConditionSnapshot"
+      ],
+      "outputs": [
+        "TradeFeedbackSignal",
+        "TradeMemoryTelemetry",
+        "TradeMemoryError",
+        "ConfidenceAdjustmentSignal"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/trade_memory/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/trade_memory.db",
+        "formats": [
+          "sqlite"
+        ],
+        "structured": true,
+        "persistent": true
+      },
+      "features": {
+        "trade_memory_storage": true,
+        "signal_linkage": true,
+        "feedback_learning": true,
+        "confidence_adjustment": true,
+        "market_context_awareness": true,
+        "performance_tracking": true,
+        "cross_session_memory": true
+      },
+      "phase": "PHASE_28",
+      "architect_mode_compliant": true,
+      "event_driven_only": true
+    },
+    {
+      "id": "MultiAgentCoordinationEngine",
+      "type": "core",
+      "status": "active",
+      "module_path": "multi_agent_coordination_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "collections",
+        "dataclasses",
+        "typing"
+      ],
+      "inputs": [
+        "TradeSignalProposed",
+        "SignalConfidenceScore",
+        "TradeMemoryFeedbackResult",
+        "MacroSyncScore"
+      ],
+      "outputs": [
+        "TradeSignalFinalized",
+        "DecisionDiagnosticsReport",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/coordination_engine/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/coordination_decisions/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "coordination_features": {
+        "weighted_decision_logic": true,
+        "confidence_scoring": true,
+        "memory_feedback_integration": true,
+        "latency_penalty_system": true,
+        "macro_alignment_scoring": true,
+        "risk_level_assessment": true,
+        "real_time_arbitration": true,
+        "decision_diagnostics": true,
+        "performance_tracking": true,
+        "conflict_resolution": true
+      },
+      "decision_weights": {
+        "confidence_score": 0.3,
+        "memory_feedback": 0.25,
+        "latency_penalty": 0.2,
+        "macro_alignment": 0.15,
+        "risk_assessment": 0.1
+      },
+      "phase": "PHASE_29",
+      "architect_mode_compliant": true,
+      "event_driven_only": true
+    },
+    {
+      "id": "ExecutionFlowController",
+      "type": "core",
+      "status": "active",
+      "module_path": "execution_flow_controller.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "collections",
+        "dataclasses",
+        "typing"
+      ],
+      "inputs": [
+        "PrioritizedSignal",
+        "ExecutionSequenceRequest",
+        "ResourceRequest",
+        "FlowStatusQuery",
+        "CircuitBreakerTrigger",
+        "EmergencyStop",
+        "OptimizationRequest"
+      ],
+      "outputs": [
+        "FlowControlSignal",
+        "ResourceAllocation",
+        "FlowMetrics",
+        "FlowStatusReport",
+        "CircuitBreakerActivated",
+        "EmergencyStopConfirmed",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/execution_flow_controller/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/execution_flows/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "flow_orchestration_features": {
+        "multi_sequence_coordination": true,
+        "priority_based_routing": true,
+        "resource_management": true,
+        "circuit_breaker_protection": true,
+        "flow_state_tracking": true,
+        "performance_optimization": true,
+        "emergency_flow_control": true,
+        "real_time_monitoring": true,
+        "resource_allocation": true,
+        "flow_efficiency_analysis": true
+      },
+      "resource_management": {
+        "cpu_allocation": true,
+        "memory_allocation": true,
+        "network_allocation": true,
+        "execution_thread_allocation": true,
+        "dynamic_optimization": true
+      },
+      "circuit_breaker_config": {
+        "failure_threshold": 5,
+        "timeout_ms": 30000,
+        "recovery_time_ms": 60000,
+        "emergency_stop_enabled": true
+      },
+      "phase": "PHASE_32",
+      "architect_mode_compliant": true,
+      "event_driven_only": true
+    },
+    {
+      "id": "SignalQualityAmplifier",
+      "type": "core",
+      "status": "active",
+      "module_path": "signal_quality_amplifier.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "collections",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "statistics"
+      ],
+      "inputs": [
+        "TradeSignalFinalized",
+        "MarketConditionSnapshot",
+        "PatternDetected",
+        "ExecutionLatencyReport"
+      ],
+      "outputs": [
+        "signal_quality.amplified",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/signal_quality_amplifier/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/signal_quality_metrics/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "amplification_features": {
+        "signal_quality_assessment": true,
+        "scbf_boost_factor": true,
+        "historical_alignment_scoring": true,
+        "volatility_correction": true,
+        "market_context_integration": true,
+        "execution_readiness_scoring": true,
+        "bias_overlap_detection": true,
+        "noise_reduction": true,
+        "harmonization_vectors": true,
+        "reliability_rating": true
+      },
+      "enhancement_weights": {
+        "base_quality": 0.25,
+        "historical_alignment": 0.2,
+        "volatility_correction": 0.2,
+        "market_context": 0.15,
+        "execution_readiness": 0.1,
+        "bias_overlap": 0.1
+      },
+      "scbf_config": {
+        "max_boost": 1.5,
+        "quality_threshold": 0.7,
+        "historical_weight": 0.3,
+        "market_alignment_weight": 0.4,
+        "execution_timing_weight": 0.3
+      },
+      "phase": "PHASE_30",
+      "architect_mode_compliant": true,
+      "event_driven_only": true
+    },
+    {
+      "id": "ExecutionEnvelopeHarmonizer",
+      "type": "core",
+      "status": "active",
+      "module_path": "execution_harmonizer.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "statistics",
+        "numpy"
+      ],
+      "inputs": [
+        "SignalWindowGenerated",
+        "ExecutionWindowConflict",
+        "TimingSynchronizationRequest",
+        "EnvelopeHarmonizationRequest",
+        "PrecisionOptimizationRequest"
+      ],
+      "outputs": [
+        "HarmonizedExecutionEnvelope",
+        "TimingSynchronizationComplete",
+        "PrecisionOptimizationComplete",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/harmonizer/",
+        "formats": [
+          "log"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/harmonizer_stats/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      }
+    },
+    {
+      "id": "SignalFusionMatrix",
+      "type": "core",
+      "status": "active",
+      "module_path": "signal_fusion_matrix.py",
+      "dependencies": [
+        "hardened_event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "collections",
+        "dataclasses",
+        "typing",
+        "pathlib",
+        "statistics",
+        "numpy"
+      ],
+      "inputs": [
+        "MultiStrategySignal",
+        "SignalFusionRequest",
+        "WeightRecalculationRequest",
+        "FusionParameterUpdate",
+        "SignalQualityUpdate"
+      ],
+      "outputs": [
+        "FusedSignalGenerated",
+        "SignalConflictDetected",
+        "FusionMatrixTelemetry",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/fusion_matrix/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/fusion_matrix/",
+        "formats": [
+          "json"        ],
+        "structured": true
+      },      "phase": "34",
+      "version": "1.0.0",
+      "description": "PHASE 34: Signal Fusion Matrix - Multi-strategy signal fusion with weight vectors and real-time scoring"
+    },
+    {
+      "id": "MultiAccountSplitter",
+      "type": "core",
+      "status": "active",
+      "module_path": "multi_account_splitter.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "time",
+        "threading",
+        "collections"
+      ],
+      "inputs": [
+        "TradeSignalConfirmed",
+        "AccountStatusUpdate",
+        "AccountRulesUpdate"
+      ],
+      "outputs": [
+        "TradeRouteToAccount",
+        "AccountCapacityWarning",
+        "PositionSizeAdjusted",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "real_data_source": true,
+      "compliance_verified": true,
+      "telemetry_enabled": true,
+      "logging_settings": {
+        "output_path": "logs/multi_account_splitter/",
+        "formats": [
+          "jsonl"
+        ],
+        "structured": true
+      },
+      "data_storage": {
+        "path": "data/multi_account_splitter/",
+        "formats": [
+          "json"
+        ],
+        "structured": true
+      },
+      "phase": "34_multi_account",
+      "version": "1.0.0",
+      "description": "PHASE 34: Multi-Account Trade Splitter - Dynamic trade routing and position sizing across multiple accounts"
+    },
+    {
+      "id": "BrokerDiscoveryEngine",
+      "type": "service",
+      "status": "active",
+      "module_path": "broker_discovery_engine.py",
+      "dependencies": [
+        "event_bus",
+        "json",
+        "datetime",
+        "os",
+        "logging",
+        "threading",
+        "MetaTrader5"
+      ],
+      "inputs": [
+        "ConnectionStatus",
+        "AccountInfoUpdate"
+      ],
+      "outputs": [
+        "BrokerRulesDiscovered",
+        "TradingRulesUpdate",
+        "AccountTypeDetected",
+        "ModuleTelemetry",
+        "ModuleError"
+      ],
+      "telemetry": {
+        "enabled": true,
+        "schema": {
+          "detections_performed": "counter",
+          "rule_updates_sent": "counter",
+          "account_verifications": "counter",
+          "module_errors": "counter",
+          "last_detection_time": "timestamp",
+          "account_type_history": "array"
+        },
+        "collector": "TelemetryCollector",
+        "structured": true
+      },
+      "configuration": {
+        "account_type_patterns": {
+          "FTMO Challenge": {
+            "balance_ranges": [[100000, 200000]],
+            "leverage_limits": [100, 200],
+            "weekend_trading_allowed": false,
+            "news_trading_allowed": false,
+            "max_leverage": 100
+          },
+          "FTMO Swing": {
+            "balance_ranges": [[200000, 400000]],
+            "leverage_limits": [30],
+            "weekend_trading_allowed": true,
+            "news_trading_allowed": true,
+            "max_leverage": 30
+          },
+          "FTMO Funded": {
+            "balance_ranges": [[200000, 2000000]],
+            "leverage_limits": [30, 100],
+            "weekend_trading_allowed": true,
+            "news_trading_allowed": true,
+            "max_leverage": 100
+          },
+          "Regular Broker": {
+            "balance_ranges": [[1000, 10000000]],
+            "leverage_limits": [30, 50, 100, 200, 400, 500],
+            "weekend_trading_allowed": true,
+            "news_trading_allowed": true,
+            "max_leverage": 500
+          }
+        }
+      },
+      "phase": "35",
+      "version": "1.0.0",
+      "description": "PHASE 35: Broker Discovery Engine - Dynamic account type detection and trading rule configuration"
+    }
+  ],
+  "connections": [
+    {
+      "from": "SignalEngine",
+      "to": "SignalValidator",
+      "data_type": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "SignalValidator",
+      "data_type": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "PatternSignalHarmonizer",
+      "data_type": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternSignalHarmonizer",
+      "data_type": "SignalGenerated",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "PatternSignalHarmonizer",
+      "data_type": "StrategyRecommendation",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "PatternSignalHarmonizer",
+      "data_type": "ExecutionResult",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "PatternSignalHarmonizer",
+      "data_type": "TradeExecuted",
+      "status": "active"
+    },
+    {
+      "from": "PatternSignalHarmonizer",
+      "to": "SmartSignalExecutionLinker",
+      "data_type": "SignalHarmonized",
+      "status": "active"
+    },
+    {
+      "from": "PatternSignalHarmonizer",
+      "to": "PatternEngine",
+      "data_type": "HarmonicFeedback",
+      "status": "active"
+    },
+    {
+      "from": "PatternSignalHarmonizer",
+      "to": "TelemetryCollector",
+      "data_type": "PatternScoreUpdate",
+      "status": "active"
+    },
+    {
+      "from": "PatternSignalHarmonizer",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalValidator",
+      "to": "ExecutionEngine",
+      "data_type": "ValidatedSignal",
+      "status": "active"
+    },
+    {
+      "from": "SignalValidator",
+      "to": "StrategyRecommenderEngine",
+      "data_type": "ValidatedSignal",
+      "status": "active"
+    },
+    {
+      "from": "SignalValidator",
+      "to": "TelemetryCollector",
+      "data_type": "SignalRejected",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SmartExecutionMonitor",
+      "data_type": "LiveTradeExecuted",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SmartExecutionMonitor",
+      "data_type": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SmartExecutionMonitor",
+      "data_type": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "SmartExecutionMonitor",
+      "data_type": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "TelemetryCollector",
+      "to": "SmartExecutionMonitor",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "DashboardEngine",
+      "data_type": "ExecutionDeviationAlert",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "RiskEngine",
+      "data_type": "KillSwitchTrigger",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "TelemetryCollector",
+      "data_type": "ExecutionDeviationAlert",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "TelemetryCollector",
+      "data_type": "KillSwitchTrigger",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "TelemetryCollector",
+      "data_type": "SmartLogSync",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "TelemetryCollector",
+      "data_type": "RecalibrationRequest",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "StreamlitFrontend",
+      "data_type": "SmartLogSync",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "DashboardEngine",
+      "data_type": "KillSwitchTrigger",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "DashboardEngine",
+      "data_type": "SmartLogSync",
+      "status": "active"
+    },
+    {
+      "from": "SmartExecutionMonitor",
+      "to": "DashboardEngine",
+      "data_type": "RecalibrationRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TradeJournalEngine",
+      "data_type": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TradeJournalEngine",
+      "data_type": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "data_type": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "data_type": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "ExecutionEngine",
+      "data_type": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "data_type": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "data_type": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "data_type": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "data_type": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "StrategyRecommenderEngine",
+      "data_type": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "StrategyRecommenderEngine",
+      "data_type": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ExecutionLog",
+      "status": "active"
+    },
+    {
+           "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "data_type": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "RiskEngine",
+      "data_type": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "TradeManager",
+      "to": "RiskEngine",
+      "data_type": "TradeState",
+      "status": "planned"
+    },
+    {
+      "from": "TradeManager",
+      "to": "RiskEngine",
+      "data_type": "TradeRequest",
+      "status": "planned"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "RiskEngine",
+      "data_type": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "Dashboard",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "data_type": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "data_type": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "BacktestEngine",
+      "data_type": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "Dashboard",
+      "data_type": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "TelemetryCollector",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "ErrorHandler",
+      "data_type": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "data_type": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "data_type": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "data_type": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "data_type": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "data_type": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "TelemetryCollector",
+      "to": "DashboardEngine",
+      "data_type": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "data_type": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "data_type": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "data_type": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TradeAuditor",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TradeAuditor",
+      "status": "active"
+    },
+    {
+      "from": "TradeAuditor",
+      "to": "ExecutionEngine",
+      "status": "active"
+    },
+    {
+      "from": "TradeAuditor",
+      "to": "TelemetryCollector",
+      "status": "active"
+    },
+    {
+      "from": "TradeAuditor",
+      "to": "DashboardEngine",
+      "status": "active"
+    },
+    {
+      "from": "TradeAuditor",
+      "to": "RiskEngine",
+      "status": "active"
+    },
+    {
+      "from": "TradeAuditor",
+      "to": "PatternMiner",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "TradeJournalEngine",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "TelemetryCollector",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "status": "active"
+    }
+  ],
+  "eventbus_routes": [
+    {
+      "from": "ExecutionEngine",
+      "to": "TradeJournalEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TradeJournalEngine",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "ErrorHandler",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "Dashboard",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "ExecutionEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "ErrorHandler",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "SignalEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "PatternEngine",
+      "topic": "SignalFeedbackScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "TelemetryCollector",
+      "topic": "SignalLoopTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "to": "ErrorHandler",
+      "topic": "SignalLoopError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeRequest",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "Dashboard",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "ErrorHandler",
+      "topic": "OrderError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "ExecutionEngine",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "RiskEngine",
+      "topic": "ValidateTrade",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "TelemetryCollector",
+      "topic": "OrderStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "KillSwitchActivated",
+      "status": "active"
+    },
+    {
+      "from": "RiskEngine",
+      "to": "TelemetryCollector",
+      "topic": "TradeBlocked",
+      "status": "active"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "PatternEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "BacktestEngine",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "Dashboard",
+      "topic": "TickData",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SystemMonitor",
+      "topic": "ConnectionStatus",
+      "status": "registered"
+    },
+    {
+      "from": "MarketDataFeedManager",
+      "to": "SignalEngine",
+      "topic": "TickData",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "PatternEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "BacktestEngine",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "Dashboard",
+      "topic": "SignalCandidate",
+      "status": "registered"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "DashboardEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "SignalEngine",
+      "to": "DashboardEngine",
+      "topic": "SignalCandidate",
+      "status": "active"
+    },
+    {
+      "from": "PatternEngine",
+      "to": "DashboardEngine",
+      "topic": "PatternDetected",
+      "status": "active"
+    },
+    {
+      "from": "StrategyRecommenderEngine",
+      "to": "DashboardEngine",
+      "topic": "StrategySuggestion",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "DashboardEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "*",
+      "to": "DashboardEngine",
+      "topic": "ModuleError",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "UIFrontend",
+      "topic": "DashboardStatusUpdate",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "TelemetryCollector",
+      "topic": "DashboardTelemetry",
+      "status": "active"
+    },
+    {
+      "from": "DashboardEngine",
+      "to": "ErrorHandler",
+      "topic": "DashboardError",
+      "status": "active"
+    },
+    {
+      "from": "ExecutionEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "ExecutionLog",
+      "status": "active"
+    },
+    {
+      "from": "TradeJournalEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "TradeJournalEntry",
+      "status": "active"
+    },
+    {
+      "from": "BacktestEngine",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "BacktestResults",
+      "status": "active"
+    },
+    {
+      "from": "PatternMiner",
+      "to": "SignalLoopReinforcementEngine",
+      "topic": "StrategyScore",
+      "status": "active"
+    },
+    {
+      "from": "SignalLoopReinforcementEngine",
+      "

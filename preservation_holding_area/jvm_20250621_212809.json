@@ -1,0 +1,9 @@
+{
+  "module_id": "jvm",
+  "original_path": "modules\\restored\\jvm.py",
+  "preserved_path": "preservation_holding_area\\jvm_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21089,
+  "checksum": "17d60c1a60c2a6de42a90afba2e998744d6204cb82b0659206e87c0ead1435b8"
+}

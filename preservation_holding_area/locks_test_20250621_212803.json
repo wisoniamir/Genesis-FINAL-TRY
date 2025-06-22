@@ -1,0 +1,9 @@
+{
+  "module_id": "locks_test",
+  "original_path": "modules\\restored\\locks_test.py",
+  "preserved_path": "preservation_holding_area\\locks_test_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 53432,
+  "checksum": "e42930373c1efb791635fa93950dcd87a3fb524840c19183533d097208621c4f"
+}

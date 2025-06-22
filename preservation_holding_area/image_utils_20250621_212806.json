@@ -1,0 +1,9 @@
+{
+  "module_id": "image_utils",
+  "original_path": "modules\\restored\\image_utils.py",
+  "preserved_path": "preservation_holding_area\\image_utils_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 27463,
+  "checksum": "b8c5396f4bd8314ae12fca2c09b1f437a8eb88ba3840aa9cdb7a785b8b70248b"
+}

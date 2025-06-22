@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-06-21T04:33:48.831070+00:00",
+  "reject_duplicate_logic": true,
+  "reject_simplified_logic": true,
+  "reject_fallback_paths": true,
+  "require_eventbus_wiring": true,
+  "require_full_tests_docs": true,
+  "halt_on_schema_violation": true
+}

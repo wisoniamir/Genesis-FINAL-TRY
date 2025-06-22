@@ -1,0 +1,40 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_GIT_PRECOMMIT_HOOK_DOCUMENTATION.md",
+  "quarantine_timestamp": "2025-06-21T04:33:02.895577+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_GIT_PRECOMMIT_HOOK_DOCUMENTATION.md",
+      "line_numbers": [
+        49,
+        55,
+        228
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_GIT_PRECOMMIT_HOOK_DOCUMENTATION.md",
+      "line_numbers": [
+        10,
+        45
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\GENESIS_GIT_PRECOMMIT_HOOK_DOCUMENTATION.md",
+      "line_numbers": [
+        10,
+        25,
+        54,
+        141
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

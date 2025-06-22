@@ -1,0 +1,81 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.448580+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+      "line_numbers": [
+        39,
+        209,
+        223,
+        252,
+        796
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+      "line_numbers": [
+        39
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+      "line_numbers": [
+        53,
+        87,
+        115,
+        132,
+        598
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+      "line_numbers": [
+        108,
+        125,
+        139,
+        617,
+        893
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+      "line_numbers": [
+        223,
+        602,
+        625,
+        649,
+        717
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\compliance\\genesis_diagnostic_dashboard.py",
+      "line_numbers": [
+        119,
+        136,
+        179,
+        643,
+        681
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

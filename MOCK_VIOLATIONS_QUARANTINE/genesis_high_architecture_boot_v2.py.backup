@@ -1,0 +1,369 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🌐 GENESIS FULL SYSTEM REFACTOR + LIVE BOOT — HIGH ARCHITECTURE MODE v1.0.0
+🔐 ARCHITECT MODE v7.0.0 COMPLIANCE ENFORCED
+📡 MT5-ONLY LIVE DATA | 📊 TELEMETRY LOCKED | 🚫 NO MOCKS
+
+This module orchestrates the complete GENESIS system restructuring into institutional-grade
+high architecture pattern with real-time MT5 integration and PyQt5 dashboard.
+"""
+
+import os
+import sys
+import json
+import shutil
+import textwrap
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Any, Optional, Tuple
+import MetaTrader5 as mt5
+import pandas as pd
+import numpy as np
+try:
+    import telegram
+except ImportError:
+    telegram = None
+import logging
+
+# PyQt5 imports (optional)
+try:
+    from PyQt5.QtWidgets import (
+        QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+        QPushButton, QLabel, QLineEdit, QTextEdit, QTabWidget,
+        QGroupBox, QGridLayout, QProgressBar, QComboBox, QDialog
+    )
+    from PyQt5.QtCore import QThread, pyqtSignal, QTimer, Qt
+    from PyQt5.QtGui import QFont, QPixmap, QIcon
+    PYQT_AVAILABLE = True
+except ImportError:
+    PYQT_AVAILABLE = False
+
+# Local imports (to be created)
+try:
+    from core.event_bus import emit_event, subscribe_to_event
+    from core.telemetry import emit_telemetry, check_heartbeat
+    from core.patch_engine import try_autopatch
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: genesis_high_architecture_boot_v2 -->
+
+
+# <!-- @GENESIS_MODULE_START: genesis_high_architecture_boot_v2 -->
+except ImportError:
+    # These will be created later during setup
+    pass
+
+# ARCHITECT MODE ENFORCEMENT
+ARCHITECT_MODE_VERSION = "v7.0.0"
+ZERO_TOLERANCE_ENFORCEMENT = True
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+class GenesisHighArchitectureBooter:
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "genesis_high_architecture_boot_v2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in genesis_high_architecture_boot_v2: {e}")
+    """
+    🏗️ GENESIS High Architecture System Restructurer
+    Enforces institutional-grade folder structure and module connectivity
+    """
+    
+    def __init__(self, workspace_root: str):
+        self.workspace_root = Path(workspace_root)
+        self.logger = logging.getLogger(__name__)
+        self.architecture_map = self._define_high_architecture_structure()
+        self.telemetry_hooks = []
+        self.event_bus_routes = {}
+        self.module_registry = {}
+    
+    def emit_telemetry(self, event_type: str, message: str, data: Optional[Dict[str, Any]] = None) -> None:
+        """Emit telemetry event"""
+        if data is None:
+            data = {}
+            
+        event_data = {
+            "timestamp": datetime.now().isoformat(),
+            "event_type": event_type,
+            "message": message,
+            "data": data
+        }
+        
+        # Log to telemetry file
+        telemetry_file = self.workspace_root / "telemetry.json"
+        try:
+            if telemetry_file.exists():
+                with open(telemetry_file, 'r') as f:
+                    telemetry = json.load(f)
+            else:
+                telemetry = {"events": []}
+                
+            telemetry["events"].append(event_data)
+            
+            with open(telemetry_file, 'w') as f:
+                json.dump(telemetry, f, indent=2)
+                
+        except Exception as e:
+            self.logger.error(f"Failed to emit telemetry: {e}")
+    
+    def _define_high_architecture_structure(self) -> Dict[str, Dict[str, Any]]:
+        """Define the institutional-grade folder architecture"""
+        return {
+            "core": {
+                "purpose": "Essential engines (event bus, telemetry, config, kill switch)",
+                "files": ["event_bus", "telemetry", "config", "kill_switch"],
+                "subfolders": ["engines", "handlers", "telemetry", "config"]
+            },
+            "modules": {
+                "purpose": "Modular logic units (strategy, alerts, scanner, etc.)",
+                "files": ["strategy_", "alert_", "scanner_", "mutation_"],
+                "subfolders": ["strategies", "alerts", "scanners", "mutations"]
+            },
+            "connectors": {
+                "purpose": "External APIs (MT5, Telegram, News, Broker)",
+                "files": ["mt5_", "telegram_", "news_", "broker_"],
+                "subfolders": ["mt5", "telegram", "news", "brokers"]
+            },
+            "interface": {
+                "purpose": "Dashboard GUI + CLI controllers",
+                "files": ["dashboard", "gui_", "cli_", "controller_"],
+                "subfolders": ["dashboard", "gui", "cli", "controllers"]
+            },
+            "data": {
+                "purpose": "Real-time feed cache, snapshots, logs",
+                "files": ["feed_", "cache_", "snapshot_", "log_"],
+                "subfolders": ["feeds", "cache", "snapshots", "logs"]
+            }
+        }
+    
+    def phase_1_restructure_system(self):
+        """Execute Phase 1: System-wide file organization"""
+        self.emit_telemetry("phase_1", "Starting system restructure")
+        self.logger.info("🏗️ PHASE 1: System-wide file organization")
+        
+        try:
+            # Create high-architecture folders
+            for folder_name, folder_info in self.architecture_map.items():
+                folder_path = self.workspace_root / folder_name
+                folder_path.mkdir(exist_ok=True)
+                
+                for subfolder in folder_info["subfolders"]:
+                    subfolder_path = folder_path / subfolder
+                    subfolder_path.mkdir(exist_ok=True)
+                    
+            # Move files to appropriate locations
+            self._reorganize_files()
+            
+            self.emit_telemetry("phase_1", "System restructure complete")
+            self.logger.info("✅ Phase 1 Complete")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Phase 1 failed: {e}")
+            raise
+    
+    def _reorganize_files(self):
+        """Move files to their appropriate architectural locations"""
+        for file_path in self.workspace_root.glob("*.py"):
+            if file_path.name.startswith("__"):
+                continue
+                
+            # Determine target folder
+            target_folder = self._determine_file_category(file_path.name)
+            if target_folder:
+                try:
+                    new_path = self.workspace_root / target_folder / file_path.name
+                    shutil.move(str(file_path), str(new_path))
+                    self.logger.info(f"Moved {file_path.name} → {target_folder}/")
+                except Exception as e:
+                    self.logger.error(f"Failed to move {file_path}: {e}")
+    
+    def _determine_file_category(self, filename: str) -> Optional[str]:
+        """Determine which architectural category a file belongs to"""
+        filename_lower = filename.lower()
+        
+        for category, info in self.architecture_map.items():
+            if any(pattern in filename_lower for pattern in info["files"]):
+                return category
+        
+        return None
+    
+    def boot(self):
+        """Execute the complete boot sequence"""
+        try:
+            self.logger.info("\n=== GENESIS HIGH ARCHITECTURE BOOT SEQUENCE ===\n")
+            
+            # Phase 1: Restructure
+            self.phase_1_restructure_system()
+            
+            # Additional phases will be implemented here
+            
+            self.logger.info("\n✅ Boot sequence complete\n")
+            
+        except Exception as e:
+            self.logger.error(f"\n❌ Boot sequence failed: {e}\n")
+            raise
+
+if __name__ == "__main__":
+    # Get workspace root
+    workspace_root = Path(__file__).parent
+    
+    # Initialize and run boot sequence
+    booter = GenesisHighArchitectureBooter(str(workspace_root))
+    booter.boot()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

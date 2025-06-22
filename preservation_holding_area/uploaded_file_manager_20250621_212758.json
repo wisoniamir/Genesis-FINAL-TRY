@@ -1,0 +1,9 @@
+{
+  "module_id": "uploaded_file_manager",
+  "original_path": "modules\\restored\\uploaded_file_manager.py",
+  "preserved_path": "preservation_holding_area\\uploaded_file_manager_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 36684,
+  "checksum": "4d8c8959f8a79830e35f97d428423d159d195674eaea33e3515737c9bad61e30"
+}

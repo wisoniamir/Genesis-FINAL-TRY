@@ -1,0 +1,9 @@
+{
+  "module_id": "mypy_plugin",
+  "original_path": "modules\\restored\\mypy_plugin.py",
+  "preserved_path": "preservation_holding_area\\mypy_plugin_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18388,
+  "checksum": "ee1a147d78cbf2562b687e9ff607d10e17bc5b9a4faabdf9d11c2661b4b07dfa"
+}

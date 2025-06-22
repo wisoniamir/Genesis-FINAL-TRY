@@ -1,0 +1,81 @@
+import logging
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+⚡ GENESIS STARTUP VALIDATOR
+Quick validation to ensure system is ready for auto-startup
+"""
+
+import json
+import os
+from pathlib import Path
+
+def quick_startup_check():
+    """⚡ Quick pre-startup validation"""
+    workspace = Path(".")
+    
+    print("⚡ GENESIS Quick Startup Check...")
+    
+    # Check critical files
+    critical_files = [
+        "build_status.json",
+        "audit_engine.py",
+        "watchdog_core.py",
+        "genesis_auto_startup.py"
+    ]
+    
+    missing = []
+    for file in critical_files:
+        if not (workspace / file).exists():
+            missing.append(file)
+    
+    if missing:
+        print(f"❌ Missing critical files: {missing}")
+        return False
+        
+    # Check build status
+    try:
+        with open(workspace / "build_status.json", 'r') as f:
+            build_status = json.load(f)
+            
+        if "ARCHITECT_MODE_V7" not in build_status.get("system_status", ""):
+            print("❌ ARCHITECT MODE not properly configured")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Failed to read build status: {e}")
+        return False
+        
+    print("✅ Quick startup check passed")
+    return True
+
+if __name__ == "__main__":
+    if quick_startup_check():
+        # Run auto-startup
+        import subprocess
+        import sys
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: quick_startup_validator -->
+
+
+# <!-- @GENESIS_MODULE_START: quick_startup_validator -->
+        subprocess.run([sys.executable, "genesis_auto_startup.py"])
+    else:
+        print("🚫 Startup check failed - manual intervention required")
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))

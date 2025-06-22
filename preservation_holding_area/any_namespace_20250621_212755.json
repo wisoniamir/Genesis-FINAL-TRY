@@ -1,0 +1,9 @@
+{
+  "module_id": "any_namespace",
+  "original_path": "modules\\restored\\any_namespace.py",
+  "preserved_path": "preservation_holding_area\\any_namespace_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 39493,
+  "checksum": "c6d18351718a725d59bb8061b7658558219d9a706cc88f7ff9893eeb534ccad8"
+}

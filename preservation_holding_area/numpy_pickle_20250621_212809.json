@@ -1,0 +1,9 @@
+{
+  "module_id": "numpy_pickle",
+  "original_path": "modules\\restored\\numpy_pickle.py",
+  "preserved_path": "preservation_holding_area\\numpy_pickle_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 50724,
+  "checksum": "2b2da37f076ab36e4f43fb773ca168213469b274670c7d28184dcbfa02906249"
+}

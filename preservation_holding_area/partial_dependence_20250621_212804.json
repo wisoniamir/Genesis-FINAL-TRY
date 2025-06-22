@@ -1,0 +1,9 @@
+{
+  "module_id": "partial_dependence",
+  "original_path": "modules\\restored\\partial_dependence.py",
+  "preserved_path": "preservation_holding_area\\partial_dependence_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 74290,
+  "checksum": "c31e9d40e292c6e9763bcdcae9651affab2222d818a63bd23480c65617010005"
+}

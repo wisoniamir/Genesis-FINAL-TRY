@@ -1,0 +1,28 @@
+{
+  "version": "v3.0",
+  "description": "Real data sources only - no mock data allowed in GENESIS system",
+  "last_updated": "2025-06-20T12:30:00Z",
+  "data_sources": {
+    "mt5_live_data": {
+      "enabled": true,
+      "connection_required": true,
+      "fallback_allowed": false
+    },
+    "market_data_feed": {
+      "enabled": true,
+      "real_time_only": true,
+      "historical_data_source": "mt5_only"
+    },
+    "execution_data": {
+      "enabled": true,
+      "live_trades_only": true,
+      "simulation_mode": false
+    }
+  },
+  "compliance_rules": {
+    "no_simulated_data": true,
+    "no_test_data_in_production": true,
+    "real_broker_connection_required": true,
+    "live_market_data_only": true
+  }
+}

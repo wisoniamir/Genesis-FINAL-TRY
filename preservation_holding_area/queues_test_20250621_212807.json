@@ -1,0 +1,9 @@
+{
+  "module_id": "queues_test",
+  "original_path": "modules\\restored\\queues_test.py",
+  "preserved_path": "preservation_holding_area\\queues_test_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 55327,
+  "checksum": "c652ba8c5ef061980f2205c07108bb25e508da0b8fb3a5d9f12b257d4f63d46f"
+}

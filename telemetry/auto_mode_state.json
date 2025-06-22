@@ -1,0 +1,33 @@
+{
+  "current_mode": "LIVE",
+  "available_modes": [
+    "LIVE",
+    "STANDBY",
+    "DEMO"
+  ],
+  "last_switch": "2025-06-18T20:55:04.843563",
+  "switch_history": [
+    {
+      "timestamp": "2025-06-18T20:55:04.843552",
+      "from_mode": "LIVE",
+      "to_mode": "LIVE",
+      "trigger": "Phase_86_Test",
+      "success": true
+    },
+    {
+      "timestamp": "2025-06-18T20:55:04.843560",
+      "from_mode": "LIVE",
+      "to_mode": "STANDBY",
+      "trigger": "Phase_86_Test",
+      "success": true
+    },
+    {
+      "timestamp": "2025-06-18T20:55:04.843563",
+      "from_mode": "STANDBY",
+      "to_mode": "LIVE",
+      "trigger": "Phase_86_Test",
+      "success": true
+    }
+  ],
+  "auto_mode_enabled": true
+}

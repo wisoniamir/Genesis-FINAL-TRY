@@ -1,0 +1,35 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\ARCHITECT_MODE_V3_FINAL_COMPLIANCE_REPORT.md",
+  "quarantine_timestamp": "2025-06-21T04:33:01.479718+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\ARCHITECT_MODE_V3_FINAL_COMPLIANCE_REPORT.md",
+      "line_numbers": [
+        80,
+        122
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "simulate",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\ARCHITECT_MODE_V3_FINAL_COMPLIANCE_REPORT.md",
+      "line_numbers": [
+        83
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\ARCHITECT_MODE_V3_FINAL_COMPLIANCE_REPORT.md",
+      "line_numbers": [
+        134
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

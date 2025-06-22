@@ -1,0 +1,86 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.272415+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        98,
+        142,
+        244,
+        426,
+        1020
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        1567
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        1379
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        29,
+        114,
+        416,
+        570,
+        955
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        106,
+        1093,
+        1290,
+        1503,
+        1550
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        99,
+        438,
+        446,
+        524,
+        529
+      ],
+      "violation_count": 32
+    },
+    {
+      "rule_type": "no_shadow_logic",
+      "pattern": "# override",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\arrayprint_recovered_2.py",
+      "line_numbers": [
+        1378
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

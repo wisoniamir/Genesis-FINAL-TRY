@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_graph_lasso_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:44.899646+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_graph_lasso_recovered_2.py",
+      "line_numbers": [
+        660,
+        736,
+        953
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_graph_lasso_recovered_2.py",
+      "line_numbers": [
+        614,
+        672,
+        691,
+        826,
+        831
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_graph_lasso_recovered_2.py",
+      "line_numbers": [
+        115,
+        675
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_graph_lasso_recovered_2.py",
+      "line_numbers": [
+        173,
+        187,
+        697,
+        1076
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_graph_lasso_recovered_2.py",
+      "line_numbers": [
+        94,
+        113,
+        130,
+        152,
+        191
+      ],
+      "violation_count": 13
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,1158 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("genesis_integrity_auditor", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("genesis_integrity_auditor", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "genesis_integrity_auditor",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in genesis_integrity_auditor: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "genesis_integrity_auditor",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("genesis_integrity_auditor", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in genesis_integrity_auditor: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: genesis_integrity_auditor -->
+
+#!/usr/bin/env python3
+"""
+GENESIS IntegrityAuditor - Phase 84
+Final Assembly & Integrity Audit with Permanent System Lockdown
+
+🎯 PURPOSE: Complete system integrity audit and lock all modules for deployment
+🔁 EVENTBUS: system:lock_state_verified, audit:module:fingerprint_match
+📡 TELEMETRY: lock_latency, module_count, integrity_score, audit_duration
+🛡️ LOCKDOWN: Freeze all files, verify fingerprints, complete system validation
+🧪 TESTS: Full system validation, no stubs, complete registration verification
+"""
+
+import json
+import hashlib
+import time
+import logging
+import os
+import stat
+import threading
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Optional, Any, Tuple
+from dataclasses import dataclass, asdict
+import uuid
+import shutil
+import subprocess
+import platform
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/genesis_integrity_auditor.log', encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('GenesisIntegrityAuditor')
+
+@dataclass
+class ModuleFingerprint:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("genesis_integrity_auditor", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("genesis_integrity_auditor", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "genesis_integrity_auditor",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in genesis_integrity_auditor: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "genesis_integrity_auditor",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("genesis_integrity_auditor", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in genesis_integrity_auditor: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "genesis_integrity_auditor",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in genesis_integrity_auditor: {e}")
+    """Module fingerprint data structure"""
+    module_name: str
+    file_path: str
+    fingerprint_sha256: str
+    fingerprint_md5: str
+    file_size: int
+    last_modified: str
+    line_count: int
+    complexity_score: float
+    eventbus_routes: int
+    telemetry_hooks: int
+    locked: bool
+
+@dataclass
+class SystemIntegrityReport:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("genesis_integrity_auditor", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("genesis_integrity_auditor", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "genesis_integrity_auditor",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in genesis_integrity_auditor: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "genesis_integrity_auditor",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("genesis_integrity_auditor", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in genesis_integrity_auditor: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "genesis_integrity_auditor",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in genesis_integrity_auditor: {e}")
+    """System-wide integrity validation report"""
+    audit_id: str
+    timestamp: str
+    total_modules: int
+    locked_modules: int
+    verified_modules: int
+    failed_modules: int
+    duplicate_fingerprints: List[str]
+    missing_files: List[str]
+    integrity_score: float
+    audit_duration_ms: float
+    system_grade: str
+
+class GenesisIntegrityAuditor:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("genesis_integrity_auditor", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("genesis_integrity_auditor", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "genesis_integrity_auditor",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in genesis_integrity_auditor: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "genesis_integrity_auditor",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("genesis_integrity_auditor", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in genesis_integrity_auditor: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "genesis_integrity_auditor",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in genesis_integrity_auditor: {e}")
+    """
+    Final system integrity auditor and module lockdown manager
+    Performs comprehensive validation and permanent system freeze
+    """
+    
+    def __init__(self):
+        """Initialize the GenesisIntegrityAuditor"""
+        self.audit_id = self._generate_audit_id()
+        self.session_start = time.time()
+        self.base_dir = Path.cwd()
+        
+        # Core system files to validate
+        self.core_files = [
+            'system_tree.json',
+            'module_registry.json',
+            'event_bus.json',
+            'telemetry.json',
+            'compliance.json',
+            'build_status.json',
+            'build_tracker.md'
+        ]
+        
+        # Module fingerprint registry
+        self.module_fingerprints: Dict[str, ModuleFingerprint] = {}
+        self.integrity_violations: List[str] = []
+        self.locked_files: List[str] = []
+        
+        # Performance metrics
+        self.metrics = {
+            'audit_start_time': datetime.now(timezone.utc).isoformat(),
+            'modules_processed': 0,
+            'files_locked': 0,
+            'fingerprints_generated': 0,
+            'violations_detected': 0,
+            'integrity_checks_passed': 0,
+            'total_audit_time_ms': 0
+        }
+        
+        # Create required directories
+        self._ensure_directories()
+        
+        logger.info(f"GenesisIntegrityAuditor initialized - Audit ID: {self.audit_id}")
+        self._emit_event('system:integrity_auditor_initialized', {
+            'audit_id': self.audit_id,
+            'session_start': self.metrics['audit_start_time']
+        })
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _generate_audit_id(self) -> str:
+        """Generate unique audit identifier"""
+        return hashlib.md5(f"GENESIS_AUDIT_{datetime.now().isoformat()}_{uuid.uuid4()}".encode()).hexdigest()[:16]
+    
+    def _ensure_directories(self):
+        """Create required directories"""
+        dirs = ['logs', 'audit', 'backup', 'dist', 'build']
+        for dir_name in dirs:
+            (self.base_dir / dir_name).mkdir(exist_ok=True)
+    
+    def _emit_event(self, event_type: str, data: Dict[str, Any]):
+        """Emit event to EventBus"""
+        try:
+            event = {
+                'type': event_type,
+                'timestamp': datetime.now(timezone.utc).isoformat(),
+                'source': 'GenesisIntegrityAuditor',
+                'audit_id': self.audit_id,
+                'data': data
+            }
+            
+            # Write to event bus
+            events_dir = self.base_dir / 'events'
+            events_dir.mkdir(exist_ok=True)
+            
+            event_bus_file = events_dir / 'event_bus.json'
+            try:
+                existing_events = []
+                if event_bus_file.exists():
+                    with open(event_bus_file, 'r', encoding='utf-8') as f:
+                        existing_events = json.load(f)
+                
+                existing_events.append(event)
+                
+                # Keep only last 1000 events
+                if len(existing_events) > 1000:
+                    existing_events = existing_events[-1000:]
+                
+                with open(event_bus_file, 'w', encoding='utf-8') as f:
+                    json.dump(existing_events, f, indent=2, ensure_ascii=False)
+                    
+            except Exception as e:
+                # Fallback to session-specific file
+                session_event_file = self.base_dir / f'event_bus_audit_{self.audit_id}.json'
+                with open(session_event_file, 'w', encoding='utf-8') as f:
+                    json.dump([event], f, indent=2, ensure_ascii=False)
+                
+        except Exception as e:
+            logger.error(f"Failed to emit event: {e}")
+    
+    def _calculate_file_fingerprint(self, file_path: Path) -> Tuple[str, str, int, int]:
+        """Calculate SHA256 and MD5 fingerprints for a file"""
+        try:
+            with open(file_path, 'rb') as f:
+                content = f.read()
+            
+            sha256_hash = hashlib.sha256(content).hexdigest()
+            md5_hash = hashlib.md5(content).hexdigest()
+            file_size = len(content)
+            
+            # Count lines for .py files
+            line_count = 0
+            if file_path.suffix == '.py':
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        line_count = sum(1 for _ in f)
+                except:
+                    line_count = 0
+            
+            return sha256_hash, md5_hash, file_size, line_count
+            
+        except Exception as e:
+            logger.error(f"Error calculating fingerprint for {file_path}: {e}")
+            return "", "", 0, 0
+    
+    def _calculate_complexity_score(self, file_path: Path) -> float:
+        """Calculate code complexity score"""
+        if file_path.suffix != '.py':
+            return 0.0
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Simple complexity metrics
+            complexity_indicators = [
+                'class ', 'def ', 'if ', 'for ', 'while ', 'try:', 'except:',
+                'with ', 'async ', 'await ', 'lambda ', '@', 'yield'
+            ]
+            
+            complexity_score = 0.0
+            for indicator in complexity_indicators:
+                complexity_score += content.count(indicator) * 0.1
+            
+            # Normalize by file size
+            lines = content.count('\n') + 1
+            if lines > 0:
+                complexity_score = complexity_score / lines
+            
+            return min(complexity_score, 1.0)  # Cap at 1.0
+            
+        except Exception as e:
+            logger.error(f"Error calculating complexity for {file_path}: {e}")
+            return 0.0
+    
+    def _count_eventbus_routes(self, file_path: Path) -> int:
+        """Count EventBus routes in a module"""
+        if file_path.suffix != '.py':
+            return 0
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Count event-related patterns
+            route_patterns = [
+                'subscribes_to', 'publishes_to', '_emit_event', 'event_type',
+                'EventBus', 'event_bus', 'signal:', 'execution:', 'risk:', 'system:'
+            ]
+            
+            total_routes = 0
+            for pattern in route_patterns:
+                total_routes += content.count(pattern)
+            
+            return total_routes
+            
+        except Exception as e:
+            logger.error(f"Error counting EventBus routes for {file_path}: {e}")
+            return 0
+    
+    def _count_telemetry_hooks(self, file_path: Path) -> int:
+        """Count telemetry hooks in a module"""
+        if file_path.suffix != '.py':
+            return 0
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Count telemetry patterns
+            telemetry_patterns = [
+                'telemetry', '_emit_event', 'metrics', 'performance',
+                'latency', 'monitoring', 'tracking', 'audit'
+            ]
+            
+            total_hooks = 0
+            for pattern in telemetry_patterns:
+                total_hooks += content.count(pattern)
+            
+            return total_hooks
+            
+        except Exception as e:
+            logger.error(f"Error counting telemetry hooks for {file_path}: {e}")
+            return 0
+    
+    def _lock_file(self, file_path: Path) -> bool:
+        """Set file to read-only (locked)"""
+        try:
+            # Make file read-only
+            current_permissions = file_path.stat().st_mode
+            read_only_permissions = current_permissions & ~stat.S_IWRITE
+            file_path.chmod(read_only_permissions)
+            
+            self.locked_files.append(str(file_path))
+            self.metrics['files_locked'] += 1
+            
+            logger.info(f"Locked file: {file_path}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to lock file {file_path}: {e}")
+            return False
+    
+    def scan_and_fingerprint_modules(self) -> Dict[str, ModuleFingerprint]:
+        """Scan all Python modules and generate fingerprints"""
+        logger.info("Starting module fingerprint scan...")
+        
+        python_files = list(self.base_dir.glob('*.py'))
+        total_files = len(python_files)
+        
+        logger.info(f"Found {total_files} Python modules to fingerprint")
+        
+        for file_path in python_files:
+            try:
+                # Skip test files and temporary files
+                if any(skip in file_path.name for skip in ['test_', 'temp_', '__pycache__']):
+                    continue
+                
+                # Calculate fingerprints
+                sha256_hash, md5_hash, file_size, line_count = self._calculate_file_fingerprint(file_path)
+                
+                if not sha256_hash:  # Skip if fingerprint failed
+                    continue
+                
+                # Calculate additional metrics
+                complexity_score = self._calculate_complexity_score(file_path)
+                eventbus_routes = self._count_eventbus_routes(file_path)
+                telemetry_hooks = self._count_telemetry_hooks(file_path)
+                
+                # Get last modified time
+                last_modified = datetime.fromtimestamp(
+                    file_path.stat().st_mtime, tz=timezone.utc
+                ).isoformat()
+                
+                # Create fingerprint record
+                module_name = file_path.stem
+                fingerprint = ModuleFingerprint(
+                    module_name=module_name,
+                    file_path=str(file_path),
+                    fingerprint_sha256=sha256_hash,
+                    fingerprint_md5=md5_hash,
+                    file_size=file_size,
+                    last_modified=last_modified,
+                    line_count=line_count,
+                    complexity_score=complexity_score,
+                    eventbus_routes=eventbus_routes,
+                    telemetry_hooks=telemetry_hooks,
+                    locked=False
+                )
+                
+                self.module_fingerprints[module_name] = fingerprint
+                self.metrics['fingerprints_generated'] += 1
+                self.metrics['modules_processed'] += 1
+                
+                logger.info(f"Fingerprinted: {module_name} ({line_count} lines, complexity: {complexity_score:.2f})")
+                
+                # Emit fingerprint event
+                self._emit_event('audit:module:fingerprint_generated', {
+                    'module_name': module_name,
+                    'fingerprint': sha256_hash[:16],
+                    'complexity_score': complexity_score,
+                    'line_count': line_count
+                })
+                
+            except Exception as e:
+                logger.error(f"Error processing {file_path}: {e}")
+                self.integrity_violations.append(f"Failed to fingerprint {file_path}: {e}")
+        
+        logger.info(f"Fingerprinting complete: {len(self.module_fingerprints)} modules processed")
+        return self.module_fingerprints
+    
+    def validate_core_files(self) -> List[str]:
+        """Validate all core system files exist and are valid"""
+        logger.info("Validating core system files...")
+        
+        missing_files = []
+        
+        for core_file in self.core_files:
+            file_path = self.base_dir / core_file
+            
+            if not file_path.exists():
+                missing_files.append(core_file)
+                self.integrity_violations.append(f"Missing core file: {core_file}")
+                logger.error(f"Missing core file: {core_file}")
+                continue
+            
+            # Validate JSON files
+            if core_file.endswith('.json'):
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        json.load(f)
+                    logger.info(f"Core file valid: {core_file}")
+                    self.metrics['integrity_checks_passed'] += 1
+                except json.JSONDecodeError as e:
+                    self.integrity_violations.append(f"Invalid JSON in {core_file}: {e}")
+                    logger.error(f"Invalid JSON in {core_file}: {e}")
+            else:
+                logger.info(f"Core file exists: {core_file}")
+                self.metrics['integrity_checks_passed'] += 1
+        
+        return missing_files
+    
+    def detect_duplicate_fingerprints(self) -> List[str]:
+        """Detect duplicate module fingerprints"""
+        logger.info("Scanning for duplicate fingerprints...")
+        
+        fingerprint_map = {}
+        duplicates = []
+        
+        for module_name, fingerprint in self.module_fingerprints.items():
+            sha256 = fingerprint.fingerprint_sha256
+            
+            if sha256 in fingerprint_map:
+                duplicate_msg = f"Duplicate fingerprint: {module_name} matches {fingerprint_map[sha256]}"
+                duplicates.append(duplicate_msg)
+                self.integrity_violations.append(duplicate_msg)
+                logger.warning(duplicate_msg)
+            else:
+                fingerprint_map[sha256] = module_name
+        
+        if duplicates:
+            logger.warning(f"Found {len(duplicates)} duplicate fingerprints")
+        else:
+            logger.info("No duplicate fingerprints detected")
+        
+        return duplicates
+    
+    def lock_all_modules(self) -> int:
+        """Lock all Python modules to read-only"""
+        logger.info("Locking all modules to read-only...")
+        
+        locked_count = 0
+        
+        for module_name, fingerprint in self.module_fingerprints.items():
+            file_path = Path(fingerprint.file_path)
+            
+            if self._lock_file(file_path):
+                fingerprint.locked = True
+                locked_count += 1
+                
+                # Emit lock event
+                self._emit_event('audit:module:locked', {
+                    'module_name': module_name,
+                    'file_path': str(file_path),
+                    'fingerprint': fingerprint.fingerprint_sha256[:16]
+                })
+        
+        logger.info(f"Locked {locked_count} modules")
+        return locked_count
+    
+    def cross_verify_system_files(self) -> Dict[str, bool]:
+        """Cross-verify consistency between system files"""
+        logger.info("Cross-verifying system file consistency...")
+        
+        verification_results = {}
+        
+        try:
+            # Load system files
+            with open('system_tree.json', 'r', encoding='utf-8') as f:
+                system_tree = json.load(f)
+            
+            with open('module_registry.json', 'r', encoding='utf-8') as f:
+                module_registry = json.load(f)
+            
+            with open('build_status.json', 'r', encoding='utf-8') as f:
+                build_status = json.load(f)
+            
+            # Verify system tree nodes match our fingerprints
+            tree_modules = set()
+            for node in system_tree.get('nodes', []):
+                if node.get('module_path', '').endswith('.py'):
+                    module_name = Path(node['module_path']).stem
+                    tree_modules.add(module_name)
+            
+            # Verify registry modules match our fingerprints
+            registry_modules = set()
+            for module in module_registry.get('modules', []):
+                registry_modules.add(module.get('name', ''))
+            
+            fingerprint_modules = set(self.module_fingerprints.keys())
+            
+            # Check consistency
+            verification_results['tree_fingerprint_match'] = tree_modules <= fingerprint_modules
+            verification_results['registry_fingerprint_match'] = registry_modules <= fingerprint_modules
+            verification_results['architect_mode_active'] = build_status.get('architect_mode_status', {}).get('architect_mode_v500_activation', False)
+            
+            # Log results
+            for check, result in verification_results.items():
+                if result:
+                    logger.info(f"Cross-verification passed: {check}")
+                    self.metrics['integrity_checks_passed'] += 1
+                else:
+                    logger.error(f"Cross-verification failed: {check}")
+                    self.integrity_violations.append(f"Cross-verification failed: {check}")
+            
+        except Exception as e:
+            logger.error(f"Cross-verification error: {e}")
+            self.integrity_violations.append(f"Cross-verification error: {e}")
+            verification_results['error'] = str(e)
+        
+        return verification_results
+    
+    def generate_integrity_report(self) -> SystemIntegrityReport:
+        """Generate comprehensive integrity report"""
+        audit_duration = (time.time() - self.session_start) * 1000  # ms
+        
+        total_modules = len(self.module_fingerprints)
+        locked_modules = sum(1 for fp in self.module_fingerprints.values() if fp.locked)
+        verified_modules = total_modules - len(self.integrity_violations)
+        failed_modules = len(self.integrity_violations)
+        
+        # Calculate integrity score
+        integrity_score = 0.0
+        if total_modules > 0:
+            integrity_score = (verified_modules / total_modules) * 100
+        
+        # Determine system grade
+        if integrity_score >= 95:
+            system_grade = "INSTITUTIONAL_GRADE"
+        elif integrity_score >= 85:
+            system_grade = "PRODUCTION_GRADE"
+        elif integrity_score >= 70:
+            system_grade = "DEVELOPMENT_GRADE"
+        else:
+            system_grade = "CRITICAL_ISSUES"
+        
+        report = SystemIntegrityReport(
+            audit_id=self.audit_id,
+            timestamp=datetime.now(timezone.utc).isoformat(),
+            total_modules=total_modules,
+            locked_modules=locked_modules,
+            verified_modules=verified_modules,
+            failed_modules=failed_modules,
+            duplicate_fingerprints=self.detect_duplicate_fingerprints(),
+            missing_files=self.validate_core_files(),
+            integrity_score=integrity_score,
+            audit_duration_ms=audit_duration,
+            system_grade=system_grade
+        )
+        
+        self.metrics['total_audit_time_ms'] = audit_duration
+        
+        return report
+    
+    def export_lock_state(self) -> str:
+        """Export complete system lock state"""
+        logger.info("Exporting system lock state...")
+        
+        lock_state = {
+            'metadata': {
+                'genesis_version': '1.0.0',
+                'audit_id': self.audit_id,
+                'lock_timestamp': datetime.now(timezone.utc).isoformat(),
+                'architect_mode_version': 'v5.0.0',
+                'system_locked': True,
+                'deployment_ready': True
+            },
+            'module_fingerprints': {
+                name: asdict(fingerprint) 
+                for name, fingerprint in self.module_fingerprints.items()
+            },
+            'system_metrics': self.metrics,
+            'integrity_violations': self.integrity_violations,
+            'locked_files': self.locked_files,
+            'core_files_validated': self.core_files
+        }
+        
+        # Export to file
+        lock_state_file = self.base_dir / 'genesis_lock_state.json'
+        with open(lock_state_file, 'w', encoding='utf-8') as f:
+            json.dump(lock_state, f, indent=2, ensure_ascii=False)
+        
+        logger.info(f"Lock state exported to: {lock_state_file}")
+        
+        # Also export fingerprint snapshot
+        fingerprint_snapshot = {
+            'snapshot_metadata': {
+                'audit_id': self.audit_id,
+                'timestamp': datetime.now(timezone.utc).isoformat(),
+                'total_modules': len(self.module_fingerprints)
+            },
+            'fingerprints': {
+                name: {
+                    'sha256': fp.fingerprint_sha256,
+                    'md5': fp.fingerprint_md5,
+                    'complexity_score': fp.complexity_score,
+                    'line_count': fp.line_count,
+                    'locked': fp.locked
+                }
+                for name, fp in self.module_fingerprints.items()
+            }
+        }
+        
+        snapshot_file = self.base_dir / 'module_fingerprints_snapshot.json'
+        with open(snapshot_file, 'w', encoding='utf-8') as f:
+            json.dump(fingerprint_snapshot, f, indent=2, ensure_ascii=False)
+        
+        logger.info(f"Fingerprint snapshot exported to: {snapshot_file}")
+        
+        return str(lock_state_file)
+    
+    def run_complete_audit(self) -> SystemIntegrityReport:
+        """Run complete system integrity audit"""
+        logger.info("Starting complete GENESIS integrity audit...")
+        
+        try:
+            # Step 1: Scan and fingerprint all modules
+            self.scan_and_fingerprint_modules()
+            
+            # Step 2: Validate core files
+            self.validate_core_files()
+            
+            # Step 3: Cross-verify system consistency
+            self.cross_verify_system_files()
+            
+            # Step 4: Lock all modules
+            self.lock_all_modules()
+            
+            # Step 5: Generate integrity report
+            report = self.generate_integrity_report()
+            
+            # Step 6: Export lock state
+            lock_state_file = self.export_lock_state()
+            
+            # Emit completion event
+            self._emit_event('system:lock_state_verified', {
+                'audit_id': self.audit_id,
+                'integrity_score': report.integrity_score,
+                'system_grade': report.system_grade,
+                'modules_locked': report.locked_modules,
+                'lock_state_file': lock_state_file
+            })
+            
+            logger.info(f"Integrity audit complete - Grade: {report.system_grade}")
+            logger.info(f"Modules: {report.total_modules} total, {report.locked_modules} locked")
+            logger.info(f"Integrity Score: {report.integrity_score:.1f}%")
+            
+            return report
+            
+        except Exception as e:
+            logger.error(f"Audit failed: {e}")
+            raise
+
+def main():
+    """Main execution function"""
+    auditor = GenesisIntegrityAuditor()
+    
+    try:
+        report = auditor.run_complete_audit()
+        
+        print(f"\n🔐 GENESIS INTEGRITY AUDIT COMPLETE")
+        print(f"Audit ID: {report.audit_id}")
+        print(f"System Grade: {report.system_grade}")
+        print(f"Integrity Score: {report.integrity_score:.1f}%")
+        print(f"Modules Locked: {report.locked_modules}/{report.total_modules}")
+        print(f"Audit Duration: {report.audit_duration_ms:.1f}ms")
+        
+        if report.integrity_score >= 95:
+            print("✅ GENESIS READY FOR DEPLOYMENT")
+        else:
+            print("❌ INTEGRITY ISSUES DETECTED - REVIEW REQUIRED")
+            
+        return report.integrity_score >= 95
+        
+    except Exception as e:
+        print(f"❌ AUDIT FAILED: {e}")
+        return False
+
+if __name__ == "__main__":
+    success = main()
+    exit(0 if success else 1)
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: genesis_integrity_auditor -->

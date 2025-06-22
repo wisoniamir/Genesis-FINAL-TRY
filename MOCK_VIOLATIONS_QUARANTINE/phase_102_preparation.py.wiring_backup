@@ -1,0 +1,489 @@
+#!/usr/bin/env python3
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+🧠 GENESIS PHASE 102 PREPARATION - KILL-SWITCH EXECUTION LOOP SETUP
+==============================================================================
+
+@GENESIS_CATEGORY: CORE.PHASE.PREPARATION
+@GENESIS_TELEMETRY: ENABLED  
+@GENESIS_EVENTBUS: EMIT+CONSUME
+
+OBJECTIVE: Prepare Phase 102 Kill-Switch Execution Loop based on Phase 101 results
+- Validate Phase 101 architecture files
+- Identify execution-ready modules
+- Setup kill-switch infrastructure
+- Prepare execution loop framework
+
+COMPLIANCE: ARCHITECT MODE v3.0 ENFORCED
+==============================================================================
+"""
+
+import json
+import os
+from pathlib import Path
+from datetime import datetime
+from typing import Dict, List, Any
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: phase_102_preparation -->
+
+
+# <!-- @GENESIS_MODULE_START: phase_102_preparation -->
+
+class GenesisPhase102Preparation:
+    def __init__(self, workspace_path: str):
+        self.workspace_path = Path(workspace_path)
+        self.execution_ready_modules = []
+        self.kill_switch_candidates = []
+        self.institutional_patterns = []
+        
+    def validate_phase_101_completion(self) -> Dict[str, Any]:
+        """Validate all Phase 101 deliverables are present and valid"""
+        print("🔍 Validating Phase 101 Architecture Resync completion...")
+        
+        required_files = [
+            'module_registry.json',
+            'system_tree.json', 
+            'event_bus.json',
+            'triage_report.json'
+        ]
+        
+        validation_results = {
+            'phase_101_complete': True,
+            'missing_files': [],
+            'file_status': {},
+            'architecture_stats': {},
+            'execution_readiness': {}
+        }
+        
+        for file_name in required_files:
+            file_path = self.workspace_path / file_name
+            if file_path.exists():
+                try:
+                    with open(file_path, 'r') as f:
+                        data = json.load(f)
+                    validation_results['file_status'][file_name] = 'VALID'
+                    
+                    # Extract key metrics
+                    if file_name == 'module_registry.json':
+                        stats = data.get('statistics', {})
+                        validation_results['architecture_stats'] = {
+                            'total_modules': stats.get('total_modules_scanned', 0),
+                            'connected_modules': stats.get('connected_modules', 0),
+                            'orphan_modules': stats.get('orphan_modules', 0),
+                            'violations': stats.get('violation_count', 0)
+                        }
+                        
+                except Exception as e:
+                    validation_results['file_status'][file_name] = f'ERROR: {str(e)}'
+                    validation_results['phase_101_complete'] = False
+            else:
+                validation_results['missing_files'].append(file_name)
+                validation_results['file_status'][file_name] = 'MISSING'
+                validation_results['phase_101_complete'] = False
+        
+        return validation_results
+        
+    def identify_execution_modules(self) -> List[Dict[str, Any]]:
+        """Identify modules ready for execution loop integration"""
+        print("🎯 Identifying execution-ready modules...")
+        
+        execution_modules = []
+        
+        try:
+            # Load module registry
+            with open(self.workspace_path / 'module_registry.json', 'r') as f:
+                registry = json.load(f)
+            
+            # Search for execution-related modules
+            for module_path, module_data in registry.get('modules', {}).items():
+                module_name = module_data.get('name', '').lower()
+                category = module_data.get('category', '')
+                
+                # Identify execution candidates
+                if any(keyword in module_name for keyword in [
+                    'execution', 'executor', 'engine', 'signal', 'strategy',
+                    'autonomous', 'order', 'trade', 'dashboard'
+                ]):
+                    # Check readiness criteria
+                    readiness_score = 0
+                    readiness_factors = []
+                    
+                    if module_data.get('event_bus_usage', False):
+                        readiness_score += 2
+                        readiness_factors.append('EVENTBUS_INTEGRATED')
+                    
+                    if module_data.get('telemetry_enabled', False):
+                        readiness_score += 2
+                        readiness_factors.append('TELEMETRY_ENABLED')
+                    
+                    if module_data.get('mt5_integration', False):
+                        readiness_score += 3
+                        readiness_factors.append('MT5_READY')
+                    
+                    if not module_data.get('mock_data_usage', False):
+                        readiness_score += 1
+                        readiness_factors.append('REAL_DATA_ONLY')
+                    
+                    if len(module_data.get('violations', [])) == 0:
+                        readiness_score += 1
+                        readiness_factors.append('VIOLATION_FREE')
+                    
+                    execution_modules.append({
+                        'module_path': module_path,
+                        'module_name': module_data.get('name'),
+                        'category': category,
+                        'readiness_score': readiness_score,
+                        'readiness_factors': readiness_factors,
+                        'functions': module_data.get('functions', []),
+                        'classes': module_data.get('classes', []),
+                        'execution_priority': self.calculate_execution_priority(module_name, readiness_score)
+                    })
+        
+        except Exception as e:
+            print(f"❌ Error identifying execution modules: {e}")
+            
+        # Sort by readiness score and priority
+        execution_modules.sort(key=lambda x: (x['readiness_score'], x['execution_priority']), reverse=True)
+        self.execution_ready_modules = execution_modules[:20]  # Top 20 candidates
+        
+        return self.execution_ready_modules
+    
+    def calculate_execution_priority(self, module_name: str, readiness_score: int) -> int:
+        """Calculate execution priority based on module function"""
+        priority = readiness_score
+        
+        # Core execution modules get highest priority
+        if any(keyword in module_name for keyword in ['dashboard', 'launcher', 'main']):
+            priority += 10
+        elif any(keyword in module_name for keyword in ['execution', 'executor']):
+            priority += 8
+        elif any(keyword in module_name for keyword in ['signal', 'engine']):
+            priority += 6
+        elif any(keyword in module_name for keyword in ['strategy', 'autonomous']):
+            priority += 4
+        
+        return priority
+    
+    def setup_kill_switch_infrastructure(self) -> Dict[str, Any]:
+        """Setup kill-switch infrastructure based on execution modules"""
+        print("🛑 Setting up kill-switch infrastructure...")
+        
+        kill_switch_config = {
+            'kill_switch_metadata': {
+                'version': 'v1.0_phase102',
+                'generation_timestamp': datetime.now().isoformat(),
+                'architect_mode': True
+            },
+            'monitored_modules': [],
+            'emergency_procedures': {},
+            'kill_triggers': {},
+            'recovery_protocols': {}
+        }
+        
+        # Setup monitoring for top execution modules
+        for module in self.execution_ready_modules[:10]:  # Top 10 for kill-switch
+            kill_switch_config['monitored_modules'].append({
+                'module_name': module['module_name'],
+                'module_path': module['module_path'],
+                'priority': module['execution_priority'],
+                'monitor_functions': module.get('functions', []),
+                'kill_switch_enabled': True
+            })
+            
+            # Define emergency procedures
+            kill_switch_config['emergency_procedures'][module['module_name']] = {
+                'stop_command': f"KILL_{module['module_name'].upper()}",
+                'graceful_shutdown': True,
+                'data_preservation': True,
+                'rollback_enabled': True
+            }
+            
+            # Define kill triggers
+            kill_switch_config['kill_triggers'][module['module_name']] = {
+                'max_execution_time': 300,  # 5 minutes
+                'error_threshold': 5,
+                'memory_limit_mb': 1024,
+                'cpu_limit_percent': 80
+            }
+        
+        return kill_switch_config
+    
+    def identify_institutional_patterns(self) -> List[Dict[str, Any]]:
+        """Identify institutional trading pattern modules"""
+        print("🏛️ Identifying institutional pattern modules...")
+        
+        institutional_modules = []
+        
+        try:
+            with open(self.workspace_path / 'module_registry.json', 'r') as f:
+                registry = json.load(f)
+            
+            for module_path, module_data in registry.get('modules', {}).items():
+                module_name = module_data.get('name', '').lower()
+                
+                # Look for institutional pattern indicators
+                if any(keyword in module_name for keyword in [
+                    'institutional', 'pattern', 'strategy', 'signal', 
+                    'sentiment', 'fusion', 'validator', 'optimization'
+                ]):
+                    institutional_modules.append({
+                        'module_name': module_data.get('name'),
+                        'module_path': module_path,
+                        'category': module_data.get('category'),
+                        'functions': module_data.get('functions', []),
+                        'mt5_ready': module_data.get('mt5_integration', False),
+                        'eventbus_ready': module_data.get('event_bus_usage', False)
+                    })
+                    
+        except Exception as e:
+            print(f"❌ Error identifying institutional modules: {e}")
+        
+        self.institutional_patterns = institutional_modules
+        return institutional_modules
+    
+    def generate_phase_102_blueprint(self) -> Dict[str, Any]:
+        """Generate comprehensive Phase 102 execution blueprint"""
+        print("📋 Generating Phase 102 execution blueprint...")
+        
+        blueprint = {
+            'phase_102_metadata': {
+                'version': 'v1.0',
+                'generation_timestamp': datetime.now().isoformat(),
+                'based_on_phase_101': True,
+                'architect_mode': True
+            },
+            'execution_sequence': [],
+            'kill_switch_modules': self.kill_switch_candidates,
+            'institutional_engine_modules': self.institutional_patterns,
+            'execution_dependencies': {},
+            'monitoring_requirements': {},
+            'success_criteria': {}
+        }
+        
+        # Define execution sequence
+        execution_order = [
+            'dashboard_modules',
+            'signal_engines', 
+            'execution_engines',
+            'institutional_patterns',
+            'validation_modules'
+        ]
+        
+        for i, phase in enumerate(execution_order):
+            blueprint['execution_sequence'].append({
+                'phase_number': i + 1,
+                'phase_name': phase,
+                'modules': [m for m in self.execution_ready_modules 
+                           if any(keyword in m['module_name'].lower() 
+                                for keyword in phase.split('_'))],
+                'dependencies': execution_order[:i] if i > 0 else [],
+                'kill_switch_enabled': True
+            })
+        
+        # Define success criteria
+        blueprint['success_criteria'] = {
+            'all_modules_loaded': True,
+            'eventbus_connectivity': True,
+            'telemetry_reporting': True,
+            'kill_switch_responsive': True,
+            'no_violations_detected': True,
+            'institutional_patterns_active': True
+        }
+        
+        return blueprint
+    
+    def update_build_status_phase_102(self):
+        """Update build status for Phase 102 preparation"""
+        try:
+            with open(self.workspace_path / 'build_status.json', 'r') as f:
+                build_status = json.load(f)
+        except:
+            build_status = {}
+        
+        build_status.update({
+            'phase_102_preparation': 'COMPLETED',
+            'phase_102_ready': True,
+            'execution_modules_identified': len(self.execution_ready_modules),
+            'institutional_modules_ready': len(self.institutional_patterns),
+            'kill_switch_infrastructure': 'PREPARED',
+            'last_updated': datetime.now().isoformat()
+        })
+        
+        with open(self.workspace_path / 'build_status.json', 'w') as f:
+            json.dump(build_status, f, indent=2)
+    
+    def execute_preparation(self) -> bool:
+        """Execute complete Phase 102 preparation"""
+        print("🚀 GENESIS PHASE 102 PREPARATION STARTING...")
+        
+        try:
+            # Step 1: Validate Phase 101
+            validation_results = self.validate_phase_101_completion()
+            
+            if not validation_results['phase_101_complete']:
+                print("❌ Phase 101 validation failed!")
+                print(f"Missing files: {validation_results['missing_files']}")
+                return False
+            
+            print("✅ Phase 101 validation successful!")
+            
+            # Step 2: Identify execution modules
+            execution_modules = self.identify_execution_modules()
+            print(f"🎯 Identified {len(execution_modules)} execution-ready modules")
+            
+            # Step 3: Setup kill-switch infrastructure
+            kill_switch_config = self.setup_kill_switch_infrastructure()
+            
+            # Step 4: Identify institutional patterns
+            institutional_modules = self.identify_institutional_patterns()
+            print(f"🏛️ Identified {len(institutional_modules)} institutional pattern modules")
+            
+            # Step 5: Generate Phase 102 blueprint
+            blueprint = self.generate_phase_102_blueprint()
+            
+            # Step 6: Save all configurations
+            output_files = {
+                'phase_102_execution_modules.json': {
+                    'execution_ready_modules': execution_modules,
+                    'total_candidates': len(execution_modules)
+                },
+                'phase_102_kill_switch_config.json': kill_switch_config,
+                'phase_102_institutional_modules.json': {
+                    'institutional_modules': institutional_modules,
+                    'total_institutional': len(institutional_modules)
+                },
+                'phase_102_blueprint.json': blueprint
+            }
+            
+            for filename, data in output_files.items():
+                with open(self.workspace_path / filename, 'w') as f:
+                    json.dump(data, f, indent=2)
+            
+            # Step 7: Update build status
+            self.update_build_status_phase_102()
+            
+            print("✅ PHASE 102 PREPARATION COMPLETED SUCCESSFULLY!")
+            print(f"📊 Ready modules: {len(execution_modules)}")
+            print(f"🏛️ Institutional modules: {len(institutional_modules)}")
+            print(f"🛑 Kill-switch modules: {len(kill_switch_config['monitored_modules'])}")
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ PHASE 102 PREPARATION FAILED: {e}")
+            return False
+
+def main():
+    """Main execution entry point"""
+    workspace_path = r"c:\Users\patra\Genesis FINAL TRY"
+    
+    prep = GenesisPhase102Preparation(workspace_path)
+    success = prep.execute_preparation()
+    
+    if success:
+        print("\n🏁 Phase 102 preparation completed successfully!")
+        print("🎯 Ready for Phase 102: Kill-Switch Execution Loop")
+    else:
+        print("\n❌ Phase 102 preparation failed!")
+
+if __name__ == "__main__":
+    main()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

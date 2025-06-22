@@ -1,0 +1,9 @@
+{
+  "module_id": "kqueue",
+  "original_path": "modules\\restored\\kqueue.py",
+  "preserved_path": "preservation_holding_area\\kqueue_20250621_212808.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 51007,
+  "checksum": "a5d924bc3b9132c2049eecf3c7e00f8aa44c33f880cba8c39ffab9282a2ccc99"
+}

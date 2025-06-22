@@ -1,0 +1,24 @@
+{
+  "repository_url": "",
+  "main_branch": "main",
+  "local_path": "C:/Users/patra/Genesis FINAL TRY/",
+  "polling_interval_minutes": 5,
+  "enable_webhooks": false,
+  "webhook_port": 9000,
+  "webhook_secret": "",
+  "auto_pull": true,
+  "auto_push": false,
+  "push_requires_approval": true,
+  "auto_audit": true,
+  "auto_patch": false,
+  "notify_on_changes": true,
+  "protected_files": [
+    "build_status.json",
+    "system_tree.json",
+    "module_registry.json",
+    "event_bus.json",
+    "signal_manager.json",
+    "compliance.json"
+  ],
+  "github_api_token": ""
+}

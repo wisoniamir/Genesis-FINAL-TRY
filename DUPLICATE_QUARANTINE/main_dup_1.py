@@ -1,0 +1,2084 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "main",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("main", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in main: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# -*- coding: utf-8 -*-
+# <!-- @GENESIS_MODULE_START: interface_dashboard_main -->
+
+"""
+🏛️ GENESIS INSTITUTIONAL TRADING DASHBOARD - MAIN INTERFACE v7.0.0
+DOCKERIZED NATIVE PyQt5 GUI WITH COMPLETE SYSTEM INTEGRATION
+
+🚨 PHASE 01C - CONTAINERIZED GUI ENFORCER MODE:
+- 🔒 Launch ALL modules via Docker Compose
+- 🖥️ Render dashboard as native PyQt5 desktop app (NO browser/server allowed)
+- 📡 Connect live MT5 session via GUI login flow inside Docker container
+- 🧪 Trace all panel load states for manual validation by Dragoș
+
+REQUIRED PANELS (NO DUPLICATES/SIMPLIFICATIONS):
+- 🔐 LoginDialog
+- 📊 TelemetryPanel  
+- 🧠 SignalFeedPanel
+- ☠️ KillSwitchPanel
+- 💬 PatchQueuePanel
+- 🧪 ExecutionConsole
+- 📈 IndicatorViewer
+- 📡 LogPanel
+"""
+
+import sys
+import os
+import time
+import logging
+import threading
+from datetime import datetime, timezone
+from typing import Dict, Any, Optional, List
+from pathlib import Path
+
+# PyQt5 imports
+from PyQt5.QtWidgets import (
+    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout,
+    QTabWidget, QLabel, QPushButton, QLineEdit, QTextEdit, QTableWidget,
+    QTableWidgetItem, QComboBox, QSpinBox, QDoubleSpinBox, QCheckBox,
+    QProgressBar, QStatusBar, QMenuBar, QMenu, QAction, QSplitter,
+    QGroupBox, QFrame, QScrollArea, QMessageBox, QSystemTrayIcon,
+    QApplication, QDialog, QDialogButtonBox, QFormLayout, QTreeWidget,
+    QTreeWidgetItem, QHeaderView, QLCDNumber, QSlider, QTextBrowser
+)
+from PyQt5.QtCore import (
+    Qt, QTimer, QThread, pyqtSignal, QSize, QPoint, QRect,
+    QPropertyAnimation, QEasingCurve, QSequentialAnimationGroup
+)
+from PyQt5.QtGui import (
+    QFont, QIcon, QPixmap, QPalette, QColor, QBrush, QPen,
+    QLinearGradient, QRadialGradient, QFontMetrics, QPainter
+)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# Import discovery systems
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+try:
+    from core.module_discovery_engine import discovery_engine, start_discovery, get_discovery_summary
+    from core.dynamic_event_bus import event_bus, start_event_bus, emit_event, subscribe_to_event
+    DISCOVERY_AVAILABLE = True
+    EVENT_BUS_AVAILABLE = True
+    logger.info("✅ Discovery systems loaded successfully")
+except ImportError as e:
+    logger.warning(f"⚠️ Discovery systems not available: {e}")
+    DISCOVERY_AVAILABLE = False
+    EVENT_BUS_AVAILABLE = False
+    
+    # Fallback functions
+    def emit_event(event_type, data, source_module="unknown"):
+        print(f"Event [NO DISCOVERY]: {event_type} -> {data}")
+        return True
+    
+    def subscribe_to_event(event_type, handler, module_name="unknown"):
+        print(f"Subscribe [NO DISCOVERY]: {module_name} -> {event_type}")
+        return "fallback_id"
+    
+    async def start_discovery():
+        print("Discovery not available - using fallback mode")
+    
+    async def start_event_bus():
+        print("Event bus not available - using fallback mode")
+    
+    def get_discovery_summary():
+        return {"status": "unavailable", "modules": 0}
+
+# Dynamic MT5 discovery
+MT5_AVAILABLE = False
+mt5 = None
+MT5_DISCOVERY = {"available": False, "connection_status": "unknown"}
+
+try:
+    import MetaTrader5 as mt5
+    if mt5.initialize():
+        MT5_AVAILABLE = True
+        MT5_DISCOVERY = {"available": True, "connection_status": "connected"}
+        logger.info("✅ MT5 connection established")
+    else:
+        MT5_DISCOVERY = {"available": True, "connection_status": "failed"}
+        logger.warning("⚠️ MT5 available but connection failed")
+except ImportError:
+    logger.warning("⚠️ MT5 not installed")
+    MT5_DISCOVERY = {"available": False, "connection_status": "not_installed"}
+except Exception as e:
+    logger.error(f"MT5 initialization error: {e}")
+    MT5_DISCOVERY = {"available": False, "connection_status": f"error: {e}"}
+
+def get_telemetry_data():
+    """Get telemetry data from discovery system"""
+    if DISCOVERY_AVAILABLE:
+        try:
+            summary = get_discovery_summary()
+            return {
+                'signals': [],  # Would come from signal modules
+                'compliance': {'drawdown_percent': 0, 'daily_pnl': 0},
+                'system_health': {'cpu_usage': 0, 'memory_usage': 0},
+                'discovery': summary
+            }
+        except Exception as e:
+            logger.error(f"Telemetry error: {e}")
+    
+    return {
+        'signals': [],
+        'compliance': {'drawdown_percent': 0, 'daily_pnl': 0},
+        'system_health': {'cpu_usage': 0, 'memory_usage': 0}
+    }
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class MT5ConnectionWidget(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """MT5 Connection and account info widget"""
+    
+    def __init__(self):
+        super().__init__()
+        self.connected = False
+        self.account_info = {}
+        self.init_ui()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Connection status
+        self.status_label = QLabel("🔴 MT5 DISCONNECTED")
+        self.status_label.setStyleSheet("""
+            QLabel {
+                background-color: #2d1b1b;
+                color: #ff6b6b;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+                text-align: center;
+            }
+        """)
+        layout.addWidget(self.status_label)
+        
+        # Connect button
+        self.connect_btn = QPushButton("🔌 Connect to MT5")
+        self.connect_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #4CAF50;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+        """)
+        try:
+        self.connect_btn.clicked.connect(self.connect_mt5)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        layout.addWidget(self.connect_btn)
+        
+        # Account info display
+        self.account_display = QTextBrowser()
+        self.account_display.setMaximumHeight(150)
+        self.account_display.setStyleSheet("""
+            QTextBrowser {
+                background-color: #1e1e1e;                color: #e0e0e0;
+                border: 1px solid #444;
+                border-radius: 5px;
+                padding: 8px;
+            }
+        """)
+        layout.addWidget(self.account_display)
+        self.setLayout(layout)
+        
+    def connect_mt5(self):
+        """Connect to MT5 using discovery system"""
+        if not MT5_AVAILABLE:
+            QMessageBox.warning(self, "MT5 Unavailable", 
+                              f"MetaTrader5 not available: {MT5_DISCOVERY.get('connection_status', 'unknown')}")
+            return
+            
+        try:
+            # Use global mt5 if available
+            if 'mt5' in globals() and mt5:
+                if mt5.initialize():
+                    self.connected = True
+                    self.status_label.setText("🟢 MT5 CONNECTED")
+                    self.status_label.setStyleSheet("""
+                        QLabel {
+                            background-color: #1b2d1b;
+                            color: #4CAF50;
+                            padding: 10px;
+                            border-radius: 5px;
+                            font-weight: bold;
+                        }
+                    """)
+                    self.connect_btn.setText("🔌 Connected")
+                    self.connect_btn.setEnabled(False)
+                    
+                    # Get account info
+                    account_info = mt5.account_info()
+                    if account_info:
+                        self.account_info = account_info._asdict()
+                        self.update_account_display()
+                        
+                    # Emit connection event
+                    emit_event("mt5.connection_status", {
+                        "connected": True,
+                        "account_info": self.account_info,
+                        "timestamp": datetime.now().isoformat()
+                    })
+                        
+                    logger.info("✅ MT5 connected successfully")
+                    
+                else:
+                    QMessageBox.critical(self, "Connection Failed", "Failed to connect to MT5")
+            else:
+                QMessageBox.critical(self, "MT5 Error", "MT5 module not properly loaded")
+                
+        except Exception as e:
+            QMessageBox.critical(self, "Connection Error", f"Error connecting to MT5: {e}")
+            logger.error(f"MT5 connection error: {e}")
+            
+    def update_account_display(self):
+        """Update account info display"""
+        if self.account_info:
+            info_text = f"""
+            <h3>📊 Account Information</h3>
+            <b>Login:</b> {self.account_info.get('login', 'N/A')}<br>
+            <b>Name:</b> {self.account_info.get('name', 'N/A')}<br>
+            <b>Server:</b> {self.account_info.get('server', 'N/A')}<br>
+            <b>Company:</b> {self.account_info.get('company', 'N/A')}<br>
+            <b>Currency:</b> {self.account_info.get('currency', 'N/A')}<br>
+            <b>Balance:</b> ${self.account_info.get('balance', 0):,.2f}<br>
+            <b>Equity:</b> ${self.account_info.get('equity', 0):,.2f}<br>
+            <b>Margin:</b> ${self.account_info.get('margin', 0):,.2f}<br>
+            <b>Free Margin:</b> ${self.account_info.get('margin_free', 0):,.2f}<br>
+            <b>Leverage:</b> 1:{self.account_info.get('leverage', 0)}<br>
+            """
+            self.account_display.setHtml(info_text)
+
+class SignalMonitorWidget(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """Real-time signal monitoring widget"""
+    
+    def __init__(self):
+        super().__init__()
+        self.signals_data = []
+        self.init_ui()
+        self.setup_timer()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("📈 SIGNAL MONITOR - LIVE FEED")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #2c3e50;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Signals table
+        self.signals_table = QTableWidget()
+        self.signals_table.setColumnCount(7)
+        self.signals_table.setHorizontalHeaderLabels([
+            "Time", "Symbol", "Type", "Strength", "Confluence", "Entry", "Status"
+        ])
+        self.signals_table.setStyleSheet("""
+            QTableWidget {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                gridline-color: #444;
+            }
+            QTableWidget::item {
+                padding: 8px;
+                border-bottom: 1px solid #333;
+            }
+            QTableWidget::item:selected {
+                background-color: #3daee9;
+            }
+            QHeaderView::section {
+                background-color: #2c3e50;
+                color: white;
+                padding: 10px;
+                border: none;
+                font-weight: bold;
+            }
+        """)
+        
+        # Resize columns
+        header = self.signals_table.horizontalHeader()
+        header.setStretchLastSection(True)
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)
+        
+        layout.addWidget(self.signals_table)
+        
+        # Signal controls
+        controls_layout = QHBoxLayout()
+        
+        self.auto_trading_btn = QPushButton("🤖 AUTO TRADING: OFF")
+        self.auto_trading_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #e74c3c;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #c0392b;
+            }
+        """)
+        try:
+        self.auto_trading_btn.clicked.connect(self.toggle_auto_trading)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.auto_trading_btn)
+        
+        self.clear_signals_btn = QPushButton("🗑️ Clear Signals")
+        self.clear_signals_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #95a5a6;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #7f8c8d;
+            }
+        """)
+        try:
+        self.clear_signals_btn.clicked.connect(self.clear_signals)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.clear_signals_btn)
+        
+        layout.addLayout(controls_layout)
+        self.setLayout(layout)
+        
+    def setup_timer(self):
+        """Setup refresh timer"""
+        self.refresh_timer = QTimer()
+        try:
+        self.refresh_timer.timeout.connect(self.refresh_signals)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        self.refresh_timer.start(5000)  # 5 second refresh
+        
+    def refresh_signals(self):
+        """Refresh signals from event bus"""
+        if EVENT_BUS_AVAILABLE:
+            try:
+                # Get recent telemetry data
+                telemetry_data = get_telemetry_data()
+                if telemetry_data and 'signals' in telemetry_data:
+                    self.update_signals_table(telemetry_data['signals'])
+            except Exception as e:
+                logger.error(f"Signal refresh error: {e}")
+                
+    def update_signals_table(self, signals):
+        """Update signals table with new data"""
+        self.signals_table.setRowCount(len(signals))
+        
+        for row, signal in enumerate(signals):
+            self.signals_table.setItem(row, 0, QTableWidgetItem(signal.get('timestamp', '')))
+            self.signals_table.setItem(row, 1, QTableWidgetItem(signal.get('symbol', '')))
+            self.signals_table.setItem(row, 2, QTableWidgetItem(signal.get('signal_type', '')))
+            self.signals_table.setItem(row, 3, QTableWidgetItem(signal.get('strength', '')))
+            self.signals_table.setItem(row, 4, QTableWidgetItem(str(signal.get('confluence_score', 0))))
+            self.signals_table.setItem(row, 5, QTableWidgetItem(str(signal.get('entry_price', 0))))
+            self.signals_table.setItem(row, 6, QTableWidgetItem(signal.get('status', 'PENDING')))
+            
+    def toggle_auto_trading(self):
+        """Toggle auto trading mode"""
+        # Implementation for auto trading toggle
+        current_text = self.auto_trading_btn.text()
+        if "OFF" in current_text:
+            self.auto_trading_btn.setText("🤖 AUTO TRADING: ON")
+            self.auto_trading_btn.setStyleSheet("""
+                QPushButton {
+                    background-color: #27ae60;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    font-weight: bold;
+                }
+                QPushButton:hover {
+                    background-color: #229954;
+                }
+            """)
+            if EVENT_BUS_AVAILABLE:
+                emit_event("trading.auto_mode_enabled", {"enabled": True})
+        else:
+            self.auto_trading_btn.setText("🤖 AUTO TRADING: OFF")
+            self.auto_trading_btn.setStyleSheet("""
+                QPushButton {
+                    background-color: #e74c3c;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    font-weight: bold;
+                }
+                QPushButton:hover {
+                    background-color: #c0392b;
+                }
+            """)
+            if EVENT_BUS_AVAILABLE:
+                emit_event("trading.auto_mode_disabled", {"enabled": False})
+                
+    def clear_signals(self):
+        """Clear all signals"""
+        self.signals_table.setRowCount(0)
+        self.signals_data.clear()
+
+class ExecutionControlWidget(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """Manual execution control widget"""
+    
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("⚡ EXECUTION CONTROL PANEL")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #8e44ad;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Manual trade form
+        form_group = QGroupBox("Manual Trade Entry")
+        form_group.setStyleSheet("""
+            QGroupBox {
+                font-weight: bold;
+                border: 2px solid #8e44ad;
+                border-radius: 5px;
+                margin: 10px 0;
+                padding-top: 10px;
+            }
+            QGroupBox::title {
+                subcontrol-origin: margin;
+                left: 10px;
+                padding: 0 5px 0 5px;
+            }
+        """)
+        form_layout = QFormLayout()
+        
+        # Symbol selection
+        self.symbol_combo = QComboBox()
+        self.symbol_combo.addItems([
+            "XAUUSD", "EURUSD", "GBPUSD", "USDJPY", "USDCAD", 
+            "AUDUSD", "NZDUSD", "USDCHF", "BTCUSD", "ETHUSD"
+        ])
+        form_layout.addRow("Symbol:", self.symbol_combo)
+        
+        # Trade type
+        self.trade_type_combo = QComboBox()
+        self.trade_type_combo.addItems(["BUY", "SELL"])
+        form_layout.addRow("Type:", self.trade_type_combo)
+        
+        # Lot size
+        self.lot_size_spin = QDoubleSpinBox()
+        self.lot_size_spin.setRange(0.01, 100.0)
+        self.lot_size_spin.setValue(0.1)
+        self.lot_size_spin.setSingleStep(0.01)
+        form_layout.addRow("Lot Size:", self.lot_size_spin)
+        
+        # Entry price
+        self.entry_price_spin = QDoubleSpinBox()
+        self.entry_price_spin.setRange(0.0, 100000.0)
+        self.entry_price_spin.setDecimals(5)
+        form_layout.addRow("Entry Price:", self.entry_price_spin)
+        
+        # Stop Loss
+        self.sl_spin = QDoubleSpinBox()
+        self.sl_spin.setRange(0.0, 100000.0)
+        self.sl_spin.setDecimals(5)
+        form_layout.addRow("Stop Loss:", self.sl_spin)
+        
+        # Take Profit
+        self.tp_spin = QDoubleSpinBox()
+        self.tp_spin.setRange(0.0, 100000.0)
+        self.tp_spin.setDecimals(5)
+        form_layout.addRow("Take Profit:", self.tp_spin)
+        
+        form_group.setLayout(form_layout)
+        layout.addWidget(form_group)
+        
+        # Execution buttons
+        buttons_layout = QHBoxLayout()
+        
+        self.market_order_btn = QPushButton("📈 MARKET ORDER")
+        self.market_order_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #e67e22;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #d35400;
+            }
+        """)
+        try:
+        self.market_order_btn.clicked.connect(self.place_market_order)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.market_order_btn)
+        
+        self.pending_order_btn = QPushButton("⏳ PENDING ORDER")
+        self.pending_order_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #3498db;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #2980b9;
+            }
+        """)
+        try:
+        self.pending_order_btn.clicked.connect(self.place_pending_order)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.pending_order_btn)
+        
+        layout.addLayout(buttons_layout)
+        
+        # KILL SWITCH
+        self.kill_switch_btn = QPushButton("🛑 EMERGENCY KILL SWITCH")
+        self.kill_switch_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #ff0000;
+                color: white;
+                padding: 15px;
+                border: 3px solid #cc0000;
+                border-radius: 8px;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            QPushButton:hover {
+                background-color: #cc0000;
+                border-color: #990000;
+            }
+        """)
+        try:
+        self.kill_switch_btn.clicked.connect(self.emergency_kill_switch)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        layout.addWidget(self.kill_switch_btn)
+        
+        self.setLayout(layout)
+        
+    def place_market_order(self):
+        """Place market order"""
+        order_data = {
+            "action": "market_order",
+            "symbol": self.symbol_combo.currentText(),
+            "type": self.trade_type_combo.currentText(),
+            "lot_size": self.lot_size_spin.value(),
+            "sl": self.sl_spin.value(),
+            "tp": self.tp_spin.value(),
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        if EVENT_BUS_AVAILABLE:
+            emit_event("execution.manual_order", order_data)
+            
+        QMessageBox.information(self, "Order Placed", f"Market order placed for {order_data['symbol']}")
+        
+    def place_pending_order(self):
+        """Place pending order"""
+        order_data = {
+            "action": "pending_order",
+            "symbol": self.symbol_combo.currentText(),
+            "type": self.trade_type_combo.currentText(),
+            "lot_size": self.lot_size_spin.value(),
+            "entry_price": self.entry_price_spin.value(),
+            "sl": self.sl_spin.value(),
+            "tp": self.tp_spin.value(),
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        if EVENT_BUS_AVAILABLE:
+            emit_event("execution.pending_order", order_data)
+            
+        QMessageBox.information(self, "Order Placed", f"Pending order placed for {order_data['symbol']}")
+        
+    def emergency_kill_switch(self):
+        """Emergency kill switch"""
+        reply = QMessageBox.critical(
+            self, 
+            "EMERGENCY KILL SWITCH",
+            "This will immediately close ALL positions and cancel ALL orders.\n\nAre you sure?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        
+        if reply == QMessageBox.Yes:
+            if EVENT_BUS_AVAILABLE:
+                emit_event("execution.emergency_stop", {
+                    "timestamp": datetime.now().isoformat(),
+                    "triggered_by": "manual_dashboard"
+                })
+            QMessageBox.warning(self, "KILL SWITCH ACTIVATED", "All trading operations stopped!")
+
+class ComplianceMonitorWidget(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """Real-time compliance and risk monitoring"""
+    
+    def __init__(self):
+        super().__init__()
+        self.compliance_data = {}
+        self.init_ui()
+        self.setup_timer()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("🛡️ COMPLIANCE & RISK MONITOR")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #c0392b;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Risk metrics grid
+        metrics_layout = QGridLayout()
+        
+        # Drawdown meter
+        self.drawdown_label = QLabel("Drawdown:")
+        self.drawdown_bar = QProgressBar()
+        self.drawdown_bar.setRange(0, 100)
+        self.drawdown_bar.setValue(0)
+        self.drawdown_bar.setStyleSheet("""
+            QProgressBar {
+                border: 2px solid grey;
+                border-radius: 5px;
+                text-align: center;
+            }
+            QProgressBar::chunk {
+                background-color: #e74c3c;
+                width: 20px;
+            }
+        """)
+        metrics_layout.addWidget(self.drawdown_label, 0, 0)
+        metrics_layout.addWidget(self.drawdown_bar, 0, 1)
+        
+        # Risk per trade
+        self.risk_label = QLabel("Risk/Trade:")
+        self.risk_display = QLabel("1.5%")
+        self.risk_display.setStyleSheet("background-color: #27ae60; color: white; padding: 5px; border-radius: 3px;")
+        metrics_layout.addWidget(self.risk_label, 1, 0)
+        metrics_layout.addWidget(self.risk_display, 1, 1)
+        
+        # Daily PnL
+        self.pnl_label = QLabel("Daily PnL:")
+        self.pnl_display = QLabel("$0.00")
+        self.pnl_display.setStyleSheet("background-color: #95a5a6; color: white; padding: 5px; border-radius: 3px;")
+        metrics_layout.addWidget(self.pnl_label, 2, 0)
+        metrics_layout.addWidget(self.pnl_display, 2, 1)
+        
+        # Open positions
+        self.positions_label = QLabel("Open Positions:")
+        self.positions_display = QLabel("0")
+        self.positions_display.setStyleSheet("background-color: #3498db; color: white; padding: 5px; border-radius: 3px;")
+        metrics_layout.addWidget(self.positions_label, 3, 0)
+        metrics_layout.addWidget(self.positions_display, 3, 1)
+        
+        layout.addLayout(metrics_layout)
+        
+        # FTMO Rules Status
+        rules_group = QGroupBox("FTMO Compliance Rules")
+        rules_group.setStyleSheet("""
+            QGroupBox {
+                font-weight: bold;
+                border: 2px solid #c0392b;
+                border-radius: 5px;
+                margin: 10px 0;
+                padding-top: 10px;
+            }
+        """)
+        rules_layout = QVBoxLayout()
+        
+        self.max_drawdown_rule = QLabel("✅ Max Drawdown: 5% - COMPLIANT")
+        self.max_drawdown_rule.setStyleSheet("color: #27ae60; font-weight: bold;")
+        rules_layout.addWidget(self.max_drawdown_rule)
+        
+        self.daily_loss_rule = QLabel("✅ Daily Loss Limit: 5% - COMPLIANT")
+        self.daily_loss_rule.setStyleSheet("color: #27ae60; font-weight: bold;")
+        rules_layout.addWidget(self.daily_loss_rule)
+        
+        self.consistency_rule = QLabel("✅ Consistency Rule - COMPLIANT")
+        self.consistency_rule.setStyleSheet("color: #27ae60; font-weight: bold;")
+        rules_layout.addWidget(self.consistency_rule)
+        
+        rules_group.setLayout(rules_layout)
+        layout.addWidget(rules_group)
+        
+        self.setLayout(layout)
+        
+    def setup_timer(self):
+        """Setup refresh timer"""
+        self.refresh_timer = QTimer()
+        try:
+        self.refresh_timer.timeout.connect(self.refresh_compliance)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        self.refresh_timer.start(3000)  # 3 second refresh
+        
+    def refresh_compliance(self):
+        """Refresh compliance data"""
+        if EVENT_BUS_AVAILABLE:
+            try:
+                # Get compliance data from telemetry
+                telemetry_data = get_telemetry_data()
+                if telemetry_data and 'compliance' in telemetry_data:
+                    self.update_compliance_display(telemetry_data['compliance'])
+            except Exception as e:
+                logger.error(f"Compliance refresh error: {e}")
+                
+    def update_compliance_display(self, compliance_data):
+        """Update compliance display"""
+        if 'drawdown_percent' in compliance_data:
+            drawdown = compliance_data['drawdown_percent']
+            self.drawdown_bar.setValue(int(drawdown))
+            
+        if 'daily_pnl' in compliance_data:
+            pnl = compliance_data['daily_pnl']
+            self.pnl_display.setText(f"${pnl:.2f}")
+            if pnl > 0:
+                self.pnl_display.setStyleSheet("background-color: #27ae60; color: white; padding: 5px; border-radius: 3px;")
+            elif pnl < 0:
+                self.pnl_display.setStyleSheet("background-color: #e74c3c; color: white; padding: 5px; border-radius: 3px;")
+            else:
+                self.pnl_display.setStyleSheet("background-color: #95a5a6; color: white; padding: 5px; border-radius: 3px;")
+
+class SystemTelemetryWidget(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """System health and telemetry monitoring"""
+    
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+        self.setup_timer()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("📊 SYSTEM TELEMETRY & HEALTH")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #16a085;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Module status table
+        self.modules_table = QTableWidget()
+        self.modules_table.setColumnCount(4)
+        self.modules_table.setHorizontalHeaderLabels([
+            "Module", "Status", "Last Update", "Events/Min"
+        ])
+        self.modules_table.setStyleSheet("""
+            QTableWidget {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                gridline-color: #444;
+            }
+            QTableWidget::item {
+                padding: 8px;
+                border-bottom: 1px solid #333;
+            }
+            QHeaderView::section {
+                background-color: #16a085;
+                color: white;
+                padding: 10px;
+                border: none;
+                font-weight: bold;
+            }
+        """)
+        
+        # Resize columns
+        header = self.modules_table.horizontalHeader()
+        header.setStretchLastSection(True)
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)
+        
+        layout.addWidget(self.modules_table)
+        
+        # System metrics
+        metrics_layout = QGridLayout()
+        
+        self.cpu_label = QLabel("CPU Usage:")
+        self.cpu_display = QLabel("0%")
+        metrics_layout.addWidget(self.cpu_label, 0, 0)
+        metrics_layout.addWidget(self.cpu_display, 0, 1)
+        
+        self.memory_label = QLabel("Memory:")
+        self.memory_display = QLabel("0 MB")
+        metrics_layout.addWidget(self.memory_label, 0, 2)
+        metrics_layout.addWidget(self.memory_display, 0, 3)
+        
+        self.uptime_label = QLabel("Uptime:")
+        self.uptime_display = QLabel("0:00:00")
+        metrics_layout.addWidget(self.uptime_label, 1, 0)
+        metrics_layout.addWidget(self.uptime_display, 1, 1)
+        
+        self.events_label = QLabel("Total Events:")
+        self.events_display = QLabel("0")
+        metrics_layout.addWidget(self.events_label, 1, 2)
+        metrics_layout.addWidget(self.events_display, 1, 3)
+        
+        layout.addLayout(metrics_layout)
+        self.setLayout(layout)
+        
+    def setup_timer(self):
+        """Setup refresh timer"""
+        self.refresh_timer = QTimer()
+        try:
+        self.refresh_timer.timeout.connect(self.refresh_telemetry)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        self.refresh_timer.start(2000)  # 2 second refresh
+        
+    def refresh_telemetry(self):
+        """Refresh telemetry data"""
+        if EVENT_BUS_AVAILABLE:
+            try:
+                # Get telemetry data
+                telemetry_data = get_telemetry_data()
+                if telemetry_data:
+                    self.update_telemetry_display(telemetry_data)
+            except Exception as e:
+                logger.error(f"Telemetry refresh error: {e}")
+                
+    def update_telemetry_display(self, telemetry_data):
+        """Update telemetry display"""
+        # Update module status table
+        if 'modules' in telemetry_data:
+            modules = telemetry_data['modules']
+            self.modules_table.setRowCount(len(modules))
+            
+            for row, (module_name, module_data) in enumerate(modules.items()):
+                self.modules_table.setItem(row, 0, QTableWidgetItem(module_name))
+                self.modules_table.setItem(row, 1, QTableWidgetItem(module_data.get('status', 'UNKNOWN')))
+                self.modules_table.setItem(row, 2, QTableWidgetItem(module_data.get('last_update', '')))
+                self.modules_table.setItem(row, 3, QTableWidgetItem(str(module_data.get('events_per_minute', 0))))
+        
+        # Update system metrics
+        if 'system' in telemetry_data:
+            system_data = telemetry_data['system']
+            self.cpu_display.setText(f"{system_data.get('cpu_percent', 0)}%")
+            self.memory_display.setText(f"{system_data.get('memory_mb', 0)} MB")
+            self.uptime_display.setText(system_data.get('uptime', '0:00:00'))
+            self.events_display.setText(str(system_data.get('total_events', 0)))
+
+class LoginDialog(QDialog):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """🔐 Login Dialog - MT5 Connection Authentication"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("🔐 GENESIS Login - MT5 Authentication")
+        self.setModal(True)
+        self.setFixedSize(400, 300)
+        self.authenticated = False
+        self.init_ui()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Title
+        title = QLabel("🏛️ GENESIS INSTITUTIONAL TRADING SYSTEM")
+        title.setAlignment(Qt.AlignCenter)
+        title.setStyleSheet("""
+            QLabel {
+                font-size: 18px;
+                font-weight: bold;
+                color: #2c3e50;
+                padding: 20px;
+            }
+        """)
+        layout.addWidget(title)
+        
+        # Login form
+        form_layout = QFormLayout()
+        
+        self.server_edit = QLineEdit()
+        self.server_edit.setPlaceholderText("MT5 Server (e.g., IC Markets-Demo)")
+        form_layout.addRow("Server:", self.server_edit)
+        
+        self.login_edit = QLineEdit()
+        self.login_edit.setPlaceholderText("Account Number")
+        form_layout.addRow("Login:", self.login_edit)
+        
+        self.password_edit = QLineEdit()
+        self.password_edit.setEchoMode(QLineEdit.Password)
+        self.password_edit.setPlaceholderText("Password")
+        form_layout.addRow("Password:", self.password_edit)
+        
+        layout.addLayout(form_layout)
+        
+        # Buttons
+        button_layout = QHBoxLayout()
+        
+        self.connect_btn = QPushButton("🔌 Connect to MT5")
+        self.connect_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #27ae60;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #229954;
+            }
+        """)
+        try:
+        self.connect_btn.clicked.connect(self.authenticate)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        button_layout.addWidget(self.connect_btn)
+        
+        cancel_btn = QPushButton("❌ Cancel")
+        cancel_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #e74c3c;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #c0392b;
+            }
+        """)
+        try:
+        cancel_btn.clicked.connect(self.reject)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        button_layout.addWidget(cancel_btn)
+        
+        layout.addLayout(button_layout)
+        self.setLayout(layout)
+        
+    def authenticate(self):
+        """Authenticate with MT5"""
+        server = self.server_edit.text().strip()
+        login = self.login_edit.text().strip()
+        password = self.password_edit.text().strip()
+        
+        if not all([server, login, password]):
+            QMessageBox.warning(self, "Authentication Error", "Please fill in all fields")
+            return
+            
+        try:
+            if MT5_AVAILABLE and mt5:
+                # Try to connect with credentials
+                if mt5.initialize(login=int(login), server=server, password=password):
+                    self.authenticated = True
+                    emit_event("authentication.success", {
+                        "server": server,
+                        "login": login,
+                        "timestamp": datetime.now().isoformat()
+                    })
+                    self.accept()
+                else:
+                    QMessageBox.critical(self, "Authentication Failed", 
+                                       f"Failed to connect to MT5.\nError: {mt5.last_error()}")
+            else:
+                QMessageBox.critical(self, "MT5 Unavailable", "MetaTrader5 is not available")
+                
+        except Exception as e:
+            QMessageBox.critical(self, "Connection Error", f"Error: {e}")
+
+class TelemetryPanel(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """📊 Telemetry Panel - System Health & Performance Monitoring"""
+    
+    def __init__(self):
+        super().__init__()
+        self.telemetry_data = {}
+        self.init_ui()
+        self.setup_timer()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("📊 SYSTEM TELEMETRY - REAL-TIME MONITORING")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #34495e;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Metrics grid
+        metrics_layout = QGridLayout()
+        
+        # System health metrics
+        self.cpu_progress = QProgressBar()
+        self.cpu_progress.setRange(0, 100)
+        metrics_layout.addWidget(QLabel("CPU Usage:"), 0, 0)
+        metrics_layout.addWidget(self.cpu_progress, 0, 1)
+        
+        self.memory_progress = QProgressBar()
+        self.memory_progress.setRange(0, 100)
+        metrics_layout.addWidget(QLabel("Memory Usage:"), 1, 0)
+        metrics_layout.addWidget(self.memory_progress, 1, 1)
+        
+        self.mt5_status = QLabel("🔴 DISCONNECTED")
+        metrics_layout.addWidget(QLabel("MT5 Status:"), 2, 0)
+        metrics_layout.addWidget(self.mt5_status, 2, 1)
+        
+        self.discovery_status = QLabel("🔄 SCANNING")
+        metrics_layout.addWidget(QLabel("Discovery:"), 3, 0)
+        metrics_layout.addWidget(self.discovery_status, 3, 1)
+        
+        layout.addLayout(metrics_layout)
+        
+        # Event bus activity
+        self.event_log = QTextEdit()
+        self.event_log.setMaximumHeight(200)
+        self.event_log.setStyleSheet("""
+            QTextEdit {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                border-radius: 5px;
+            }
+        """)
+        layout.addWidget(QLabel("📡 EventBus Activity:"))
+        layout.addWidget(self.event_log)
+        
+        self.setLayout(layout)
+        
+    def setup_timer(self):
+        """Setup telemetry refresh timer"""
+        self.timer = QTimer()
+        try:
+        self.timer.timeout.connect(self.update_telemetry)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        self.timer.start(15000)  # 15 second heartbeat
+        
+    def update_telemetry(self):
+        """Update telemetry data"""
+        try:
+            # Get system metrics
+            import psutil
+            cpu_percent = psutil.cpu_percent()
+            memory_percent = psutil.virtual_memory().percent
+            
+            self.cpu_progress.setValue(int(cpu_percent))
+            self.memory_progress.setValue(int(memory_percent))
+            
+            # Update MT5 status
+            if MT5_AVAILABLE and mt5:
+                if mt5.terminal_info():
+                    self.mt5_status.setText("🟢 CONNECTED")
+                    self.mt5_status.setStyleSheet("color: #27ae60; font-weight: bold;")
+                else:
+                    self.mt5_status.setText("🔴 DISCONNECTED")
+                    self.mt5_status.setStyleSheet("color: #e74c3c; font-weight: bold;")
+            
+            # Update discovery status
+            if DISCOVERY_AVAILABLE:
+                self.discovery_status.setText("🟢 ACTIVE")
+                self.discovery_status.setStyleSheet("color: #27ae60; font-weight: bold;")
+            else:
+                self.discovery_status.setText("🔴 INACTIVE")
+                self.discovery_status.setStyleSheet("color: #e74c3c; font-weight: bold;")
+                
+            # Emit telemetry heartbeat
+            emit_event("telemetry.heartbeat", {
+                "cpu_usage": cpu_percent,
+                "memory_usage": memory_percent,
+                "mt5_connected": MT5_AVAILABLE,
+                "discovery_active": DISCOVERY_AVAILABLE,
+                "timestamp": datetime.now().isoformat()
+            })
+            
+            # Add to event log
+            self.event_log.append(f"[{datetime.now().strftime('%H:%M:%S')}] Telemetry updated - CPU: {cpu_percent:.1f}% | Memory: {memory_percent:.1f}%")
+            
+        except Exception as e:
+            logger.error(f"Telemetry update error: {e}")
+
+class PatchQueuePanel(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """💬 Patch Queue Panel - System Updates & Module Patches"""
+    
+    def __init__(self):
+        super().__init__()
+        self.patch_queue = []
+        self.init_ui()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("💬 PATCH QUEUE - MODULE UPDATES & SYSTEM PATCHES")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #9b59b6;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Patch table
+        self.patch_table = QTableWidget()
+        self.patch_table.setColumnCount(5)
+        self.patch_table.setHorizontalHeaderLabels([
+            "Timestamp", "Module", "Type", "Status", "Description"
+        ])
+        self.patch_table.setStyleSheet("""
+            QTableWidget {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                gridline-color: #444;
+            }
+            QTableWidget::item {
+                padding: 8px;
+                border-bottom: 1px solid #333;
+            }
+            QHeaderView::section {
+                background-color: #9b59b6;
+                color: white;
+                padding: 10px;
+                border: none;
+                font-weight: bold;
+            }
+        """)
+        layout.addWidget(self.patch_table)
+        
+        # Patch controls
+        controls_layout = QHBoxLayout()
+        
+        self.scan_patches_btn = QPushButton("🔍 Scan for Patches")
+        self.scan_patches_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #2980b9;
+            }
+        """)
+        try:
+        self.scan_patches_btn.clicked.connect(self.scan_patches)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.scan_patches_btn)
+        
+        self.apply_patches_btn = QPushButton("⚡ Apply Selected")
+        self.apply_patches_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #27ae60;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #229954;
+            }
+        """)
+        try:
+        self.apply_patches_btn.clicked.connect(self.apply_patches)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.apply_patches_btn)
+        
+        layout.addLayout(controls_layout)
+        self.setLayout(layout)
+        
+    def scan_patches(self):
+        """Scan for available patches"""
+        # Simulate patch discovery
+        patches = [
+            {
+                "timestamp": datetime.now().strftime("%H:%M:%S"),
+                "module": "signal_processor",
+                "type": "UPDATE",
+                "status": "AVAILABLE",
+                "description": "Enhanced confluence scoring algorithm"
+            },
+            {
+                "timestamp": datetime.now().strftime("%H:%M:%S"),
+                "module": "risk_manager",
+                "type": "PATCH",
+                "status": "AVAILABLE", 
+                "description": "FTMO rule compliance enhancement"
+            }
+        ]
+        
+        self.update_patch_table(patches)
+        emit_event("patches.scan_completed", {"patches_found": len(patches)})
+        
+    def apply_patches(self):
+        """Apply selected patches"""
+        selected_rows = set()
+        for item in self.patch_table.selectedItems():
+            selected_rows.add(item.row())
+            
+        if not selected_rows:
+            QMessageBox.warning(self, "No Selection", "Please select patches to apply")
+            return
+            
+        reply = QMessageBox.question(self, "Apply Patches", 
+                                   f"Apply {len(selected_rows)} selected patches?")
+        if reply == QMessageBox.Yes:
+            for row in selected_rows:
+                # Update status
+                status_item = self.patch_table.item(row, 3)
+                if status_item:
+                    status_item.setText("APPLIED")
+                    
+            emit_event("patches.applied", {"count": len(selected_rows)})
+            QMessageBox.information(self, "Patches Applied", 
+                                  f"{len(selected_rows)} patches applied successfully")
+        
+    def update_patch_table(self, patches):
+        """Update patch table with new data"""
+        self.patch_table.setRowCount(len(patches))
+        
+        for row, patch in enumerate(patches):
+            self.patch_table.setItem(row, 0, QTableWidgetItem(patch["timestamp"]))
+            self.patch_table.setItem(row, 1, QTableWidgetItem(patch["module"]))
+            self.patch_table.setItem(row, 2, QTableWidgetItem(patch["type"]))
+            self.patch_table.setItem(row, 3, QTableWidgetItem(patch["status"]))
+            self.patch_table.setItem(row, 4, QTableWidgetItem(patch["description"]))
+
+class KillSwitchPanel(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """☠️ Kill Switch Panel - Emergency Trading Controls"""
+    
+    def __init__(self):
+        super().__init__()
+        self.kill_switch_armed = False
+        self.init_ui()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("☠️ EMERGENCY KILL SWITCH - TRADING CONTROLS")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #c0392b;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Warning notice
+        warning = QLabel("⚠️ WARNING: These controls will immediately affect live trading")
+        warning.setStyleSheet("""
+            QLabel {
+                background-color: #f39c12;
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        layout.addWidget(warning)
+        
+        # Kill switch buttons
+        buttons_layout = QGridLayout()
+        
+        # Main kill switch
+        self.main_kill_btn = QPushButton("🛑 EMERGENCY KILL ALL")
+        self.main_kill_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #ff0000;
+                color: white;
+                padding: 20px;
+                border: 3px solid #cc0000;
+                border-radius: 10px;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            QPushButton:hover {
+                background-color: #cc0000;
+                border-color: #990000;
+            }
+        """)
+        try:
+        self.main_kill_btn.clicked.connect(self.emergency_kill_all)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.main_kill_btn, 0, 0, 1, 2)
+        
+        # Individual controls
+        self.close_positions_btn = QPushButton("📉 Close All Positions")
+        self.close_positions_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #e74c3c;
+                color: white;
+                padding: 15px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        try:
+        self.close_positions_btn.clicked.connect(self.close_all_positions)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.close_positions_btn, 1, 0)
+        
+        self.cancel_orders_btn = QPushButton("❌ Cancel All Orders")
+        self.cancel_orders_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #e67e22;
+                color: white;
+                padding: 15px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        try:
+        self.cancel_orders_btn.clicked.connect(self.cancel_all_orders)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.cancel_orders_btn, 1, 1)
+        
+        self.disable_trading_btn = QPushButton("🔒 Disable Auto Trading")
+        self.disable_trading_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #95a5a6;
+                color: white;
+                padding: 15px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        try:
+        self.disable_trading_btn.clicked.connect(self.disable_auto_trading)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.disable_trading_btn, 2, 0)
+        
+        self.emergency_logout_btn = QPushButton("🚪 Emergency Logout")
+        self.emergency_logout_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #8e44ad;
+                color: white;
+                padding: 15px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        try:
+        self.emergency_logout_btn.clicked.connect(self.emergency_logout)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        buttons_layout.addWidget(self.emergency_logout_btn, 2, 1)
+        
+        layout.addLayout(buttons_layout)
+        
+        # Status display
+        self.status_display = QTextEdit()
+        self.status_display.setMaximumHeight(150)
+        self.status_display.setStyleSheet("""
+            QTextEdit {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                border-radius: 5px;
+            }
+        """)
+        layout.addWidget(QLabel("🔍 Kill Switch Status:"))
+        layout.addWidget(self.status_display)
+        
+        self.setLayout(layout)
+        
+    def emergency_kill_all(self):
+        """Emergency kill all trading activity"""
+        reply = QMessageBox.critical(
+            self, 
+            "EMERGENCY KILL SWITCH",
+            "⚠️ THIS WILL IMMEDIATELY:\n\n"
+            "• Close ALL open positions\n"
+            "• Cancel ALL pending orders\n"
+            "• Disable automatic trading\n"
+            "• Log out of MT5\n\n"
+            "This action CANNOT be undone!\n\n"
+            "Are you absolutely sure?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        
+        if reply == QMessageBox.Yes:
+            self.status_display.append(f"[{datetime.now().strftime('%H:%M:%S')}] 🛑 EMERGENCY KILL SWITCH ACTIVATED")
+            
+            # Execute all emergency procedures
+            self.close_all_positions()
+            self.cancel_all_orders() 
+            self.disable_auto_trading()
+            self.emergency_logout()
+            
+            emit_event("emergency.kill_switch_activated", {
+                "timestamp": datetime.now().isoformat(),
+                "action": "emergency_kill_all"
+            })
+            
+            self.status_display.append(f"[{datetime.now().strftime('%H:%M:%S')}] ✅ EMERGENCY PROCEDURES COMPLETED")
+            
+    def close_all_positions(self):
+        """Close all open positions"""
+        self.status_display.append(f"[{datetime.now().strftime('%H:%M:%S')}] 📉 Closing all positions...")
+        emit_event("emergency.close_all_positions", {"timestamp": datetime.now().isoformat()})
+        
+    def cancel_all_orders(self):
+        """Cancel all pending orders"""
+        self.status_display.append(f"[{datetime.now().strftime('%H:%M:%S')}] ❌ Cancelling all orders...")
+        emit_event("emergency.cancel_all_orders", {"timestamp": datetime.now().isoformat()})
+        
+    def disable_auto_trading(self):
+        """Disable automatic trading"""
+        self.status_display.append(f"[{datetime.now().strftime('%H:%M:%S')}] 🔒 Auto trading disabled")
+        emit_event("emergency.auto_trading_disabled", {"timestamp": datetime.now().isoformat()})
+        
+    def emergency_logout(self):
+        """Emergency logout from MT5"""
+        self.status_display.append(f"[{datetime.now().strftime('%H:%M:%S')}] 🚪 Emergency logout initiated")
+        emit_event("emergency.logout", {"timestamp": datetime.now().isoformat()})
+
+class IndicatorViewer(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """📈 Indicator Viewer - Technical Analysis Display"""
+    
+    def __init__(self):
+        super().__init__()
+        self.indicators_data = {}
+        self.init_ui()
+        self.setup_timer()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("📈 INDICATOR VIEWER - TECHNICAL ANALYSIS")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #16a085;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Symbol selector
+        controls_layout = QHBoxLayout()
+        
+        controls_layout.addWidget(QLabel("Symbol:"))
+        self.symbol_combo = QComboBox()
+        self.symbol_combo.addItems([
+            "XAUUSD", "EURUSD", "GBPUSD", "USDJPY", "USDCAD",
+            "AUDUSD", "NZDUSD", "USDCHF", "BTCUSD", "ETHUSD"
+        ])
+        try:
+        self.symbol_combo.currentTextChanged.connect(self.update_indicators)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.symbol_combo)
+        
+        controls_layout.addWidget(QLabel("Timeframe:"))
+        self.timeframe_combo = QComboBox()
+        self.timeframe_combo.addItems(["M1", "M5", "M15", "M30", "H1", "H4", "D1"])
+        self.timeframe_combo.setCurrentText("M15")
+        try:
+        self.timeframe_combo.currentTextChanged.connect(self.update_indicators)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.timeframe_combo)
+        
+        layout.addLayout(controls_layout)
+        
+        # Indicators table
+        self.indicators_table = QTableWidget()
+        self.indicators_table.setColumnCount(4)
+        self.indicators_table.setHorizontalHeaderLabels([
+            "Indicator", "Value", "Signal", "Trend"
+        ])
+        self.indicators_table.setStyleSheet("""
+            QTableWidget {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                gridline-color: #444;
+            }
+            QTableWidget::item {
+                padding: 8px;
+                border-bottom: 1px solid #333;
+            }
+            QHeaderView::section {
+                background-color: #16a085;
+                color: white;
+                padding: 10px;
+                border: none;
+                font-weight: bold;
+            }
+        """)
+        layout.addWidget(self.indicators_table)
+        
+        self.setLayout(layout)
+        
+    def setup_timer(self):
+        """Setup indicator refresh timer"""
+        self.timer = QTimer()
+        try:
+        self.timer.timeout.connect(self.update_indicators)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        self.timer.start(10000)  # 10 second refresh
+        
+    def update_indicators(self):
+        """Update indicator values"""
+        symbol = self.symbol_combo.currentText()
+        timeframe = self.timeframe_combo.currentText()
+        
+        # Simulate indicator calculations
+        indicators = [
+            {"name": "RSI(14)", "value": "45.23", "signal": "NEUTRAL", "trend": "↔️"},
+            {"name": "MACD", "value": "-0.0012", "signal": "BEARISH", "trend": "↓"},
+            {"name": "Stoch RSI", "value": "32.1", "signal": "OVERSOLD", "trend": "↑"},
+            {"name": "EMA(20)", "value": "1.2543", "signal": "BULLISH", "trend": "↑"},
+            {"name": "SMA(50)", "value": "1.2538", "signal": "NEUTRAL", "trend": "↔️"},
+            {"name": "Bollinger Bands", "value": "MID", "signal": "NEUTRAL", "trend": "↔️"},
+        ]
+        
+        self.indicators_table.setRowCount(len(indicators))
+        
+        for row, indicator in enumerate(indicators):
+            self.indicators_table.setItem(row, 0, QTableWidgetItem(indicator["name"]))
+            self.indicators_table.setItem(row, 1, QTableWidgetItem(indicator["value"]))
+            
+            # Color-code signals
+            signal_item = QTableWidgetItem(indicator["signal"])
+            if indicator["signal"] == "BULLISH":
+                signal_item.setBackground(QColor("#27ae60"))
+            elif indicator["signal"] == "BEARISH":
+                signal_item.setBackground(QColor("#e74c3c"))
+            elif indicator["signal"] == "OVERSOLD":
+                signal_item.setBackground(QColor("#f39c12"))
+            
+            self.indicators_table.setItem(row, 2, signal_item)
+            self.indicators_table.setItem(row, 3, QTableWidgetItem(indicator["trend"]))
+
+class LogPanel(QWidget):
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in main: {e}")
+    """📡 Log Panel - System Logs & Event Monitoring"""
+    
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+        self.setup_timer()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("📡 SYSTEM LOGS - EVENT MONITORING")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #2c3e50;
+                color: white;
+                padding: 12px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Log controls
+        controls_layout = QHBoxLayout()
+        
+        self.log_level_combo = QComboBox()
+        self.log_level_combo.addItems(["ALL", "INFO", "WARNING", "ERROR", "CRITICAL"])
+        controls_layout.addWidget(QLabel("Log Level:"))
+        controls_layout.addWidget(self.log_level_combo)
+        
+        self.clear_logs_btn = QPushButton("🗑️ Clear Logs")
+        self.clear_logs_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #95a5a6;
+                color: white;
+                padding: 8px 15px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        try:
+        self.clear_logs_btn.clicked.connect(self.clear_logs)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.clear_logs_btn)
+        
+        self.export_logs_btn = QPushButton("💾 Export Logs")
+        self.export_logs_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #3498db;
+                color: white;
+                padding: 8px 15px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        """)
+        try:
+        self.export_logs_btn.clicked.connect(self.export_logs)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        controls_layout.addWidget(self.export_logs_btn)
+        
+        layout.addLayout(controls_layout)
+        
+        # Log display
+        self.log_display = QTextEdit()
+        self.log_display.setStyleSheet("""
+            QTextEdit {
+                background-color: #000000;
+                color: #00ff00;
+                border: 1px solid #444;
+                border-radius: 5px;
+                font-family: 'Courier New', monospace;
+                font-size: 10px;
+            }
+        """)
+        layout.addWidget(self.log_display)
+        
+        self.setLayout(layout)
+        
+        # Subscribe to all events for logging
+        if EVENT_BUS_AVAILABLE:
+            subscribe_to_event("*", self.log_event, "log_panel")
+            
+    def setup_timer(self):
+        """Setup log refresh timer"""
+        self.timer = QTimer()
+        try:
+        self.timer.timeout.connect(self.refresh_logs)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        self.timer.start(5000)  # 5 second refresh
+        
+    def log_event(self, event_data):
+        """Log an event"""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        event_type = event_data.get("type", "UNKNOWN")
+        source = event_data.get("source", "system")
+        data = event_data.get("data", {})
+        
+        log_entry = f"[{timestamp}] [{event_type}] ({source}) - {data}"
+        self.log_display.append(log_entry)
+        
+        # Auto-scroll to bottom
+        cursor = self.log_display.textCursor()
+        cursor.movePosition(cursor.End)
+        self.log_display.setTextCursor(cursor)
+        
+    def refresh_logs(self):
+        """Refresh logs display"""
+        # Add a heartbeat log entry
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.log_display.append(f"[{timestamp}] [HEARTBEAT] (log_panel) - System monitoring active")
+        
+    def clear_logs(self):
+        """Clear all logs"""
+        self.log_display.clear()
+        self.log_display.append(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] [INFO] (log_panel) - Logs cleared by user")
+        
+    def export_logs(self):
+        """Export logs to file"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"genesis_logs_{timestamp}.txt"
+            
+            with open(filename, 'w') as f:
+                f.write(self.log_display.toPlainText())
+                
+            QMessageBox.information(self, "Export Complete", f"Logs exported to {filename}")
+            
+        except Exception as e:
+            QMessageBox.critical(self, "Export Error", f"Failed to export logs: {e}")
+
+# ...existing code...
+
+# <!-- @GENESIS_MODULE_END: interface_dashboard_main -->

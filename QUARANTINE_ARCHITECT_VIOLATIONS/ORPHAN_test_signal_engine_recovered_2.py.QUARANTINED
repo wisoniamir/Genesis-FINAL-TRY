@@ -1,0 +1,49 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_signal_engine_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:37.644294+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_signal_engine_recovered_2.py",
+      "line_numbers": [
+        18,
+        47,
+        56,
+        59,
+        77
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_signal_engine_recovered_2.py",
+      "line_numbers": [
+        126
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_signal_engine_recovered_2.py",
+      "line_numbers": [
+        143
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ORPHAN_test_signal_engine_recovered_2.py",
+      "line_numbers": [
+        71,
+        93,
+        120
+      ],
+      "violation_count": 3
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "common_tests",
+  "original_path": "modules\\restored\\common_tests.py",
+  "preserved_path": "preservation_holding_area\\common_tests_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19082,
+  "checksum": "fd086b485551d2b83af6ae51d980c06ef0a690649ba94796fdd3313725cdb43e"
+}

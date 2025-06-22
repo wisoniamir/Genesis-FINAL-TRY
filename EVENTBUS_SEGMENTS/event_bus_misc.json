@@ -1,0 +1,117 @@
+{
+  "segment_type": "routes",
+  "category": "misc",
+  "routes": {
+    "macro_analysis_engine_macro_macro_analysis_engine_output": {
+      "topic": "macro.macro_analysis_engine_output",
+      "source": "macro_analysis_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "risk_engine",
+        "genesis_institutional_risk_engine",
+        "ftmo_limit_guard",
+        "dashboard_engine"
+      ],
+      "data_type": "real_macro_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "backtesting_engine_backtest_backtesting_engine_output": {
+      "topic": "backtest.backtesting_engine_output",
+      "source": "backtesting_engine",
+      "destination": [
+        "signal_engine",
+        "signal_fusion_matrix",
+        "genesis_institutional_signal_engine",
+        "advanced_signal_optimization_engine",
+        "execution_engine",
+        "execution_supervisor",
+        "smart_execution_liveloop",
+        "genesis_institutional_execution_middleware",
+        "dashboard_engine"
+      ],
+      "data_type": "real_backtest_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "kill_switch_killswitch_kill_switch_output": {
+      "topic": "killswitch.kill_switch_output",
+      "source": "kill_switch",
+      "destination": [
+        "dashboard_engine"
+      ],
+      "data_type": "real_killswitch_data",
+      "mock_forbidden": true,
+      "real_data_only": true,
+      "telemetry_enabled": true,
+      "created_by": "phase_1_rewiring_engine",
+      "creation_timestamp": "2025-06-21T19:24:06.740208"
+    },
+    "macro_analysis_engine_status": {
+      "producer": "macro_analysis_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "macro_analysis_engine"
+    },
+    "macro_event": {
+      "producer": "macro_analysis_engine",
+      "consumer": "signal_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "macro_analysis_engine"
+    },
+    "macro_alert": {
+      "producer": "macro_analysis_engine",
+      "consumer": "risk_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "macro_analysis_engine"
+    },
+    "ftmo_limit_guard_status": {
+      "producer": "ftmo_limit_guard",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "ftmo_limit_guard"
+    },
+    "backtesting_engine_status": {
+      "producer": "backtesting_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "backtesting_engine"
+    },
+    "backtest_result": {
+      "producer": "backtesting_engine",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "backtesting_engine"
+    },
+    "performance_metric": {
+      "producer": "backtesting_engine",
+      "consumer": "risk_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "backtesting_engine"
+    },
+    "system_halt": {
+      "producer": "phase_102_kill_switch_execution_loop",
+      "consumer": "dashboard_engine",
+      "created_by": "genesis_phase1_rewiring",
+      "timestamp": "2025-06-21T17:12:03.398410",
+      "module": "phase_102_kill_switch_execution_loop"
+    }
+  },
+  "route_count": 3
+}

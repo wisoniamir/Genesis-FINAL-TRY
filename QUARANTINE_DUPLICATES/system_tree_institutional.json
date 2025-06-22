@@ -1,0 +1,149 @@
+{
+  "genesis_system": {
+    "version": "v6.2.0-institutional",
+    "last_rebuild": "2025-06-19T00:35:40.917119+00:00",
+    "total_modules": 10,
+    "architecture": "event_driven_institutional",
+    "data_source": "mt5_live_only",
+    "quality_threshold": 80.0
+  },
+  "core_engines": {
+    "backtest_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\engines\\backtest_engine.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\backtest_engine.py",
+      "hash": "e9f23ed15e01d83b2b18984e7d1953bc1f047ec6cccac9d8447c069d7d58c724",
+      "quality_score": 169.525,
+      "duplicates_eliminated": 0,
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 50774,
+      "integration_score": 169
+    },
+    "broker_discovery_engine_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\engines\\broker_discovery_engine_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\QUARANTINE_DUPLICATES\\broker_discovery_engine_fixed.py",
+      "hash": "bfbd601ca93091fa520418be74571aaaede0153c2956706f60419873490ae964",
+      "quality_score": 219.305,
+      "duplicates_eliminated": 0,
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 30051,
+      "integration_score": 219
+    },
+    "multi_agent_coordination_engine_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\engines\\multi_agent_coordination_engine_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\QUARANTINE_DUPLICATES\\multi_agent_coordination_engine_fixed.py",
+      "hash": "055bcc6051e70657f5024acb223b203e13e99c6957771e12339ae455ff5c4278",
+      "quality_score": 172.473,
+      "duplicates_eliminated": 1,
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 23004,
+      "integration_score": 172
+    },
+    "strategy_mutation_logic_engine": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\engines\\strategy_mutation_logic_engine.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\strategy_mutation_logic_engine.py",
+      "hash": "36578f578098092f8015eab18d7c667cf82890307b8ca854558bfeb22fd7200e",
+      "quality_score": 415.94,
+      "duplicates_eliminated": 0,
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 87875,
+      "integration_score": 415
+    }
+  },
+  "mt5_adapters": {
+    "auto_execution_manager_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\adapters\\auto_execution_manager_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\QUARANTINE_DUPLICATES\\auto_execution_manager_fixed.py",
+      "hash": "4dafadeff2efe567cb0a8a857f22aff20b1427f41a6b15b9f83715f59f9596dd",
+      "quality_score": 91.77199999999999,
+      "duplicates_eliminated": 0,
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 32622,
+      "integration_score": 91
+    },
+    "execution_supervisor_new": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\adapters\\execution_supervisor_new.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\QUARANTINE_DUPLICATES\\execution_supervisor_new.py",
+      "hash": "58343d4b080b04f17570085abe5fb181de0974af35c739b71aa5c99aa9bca290",
+      "quality_score": 121.364,
+      "duplicates_eliminated": 0,
+      "mt5_integration": true,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 27202,
+      "integration_score": 121
+    },
+    "indicator_scanner_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\adapters\\indicator_scanner_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\indicator_scanner_fixed.py",
+      "hash": "7a9c4c40ae26c543424a7ef168cc086dd3d1d8127068ba715d2ff4c668d61403",
+      "quality_score": 94.259,
+      "duplicates_eliminated": 0,
+      "mt5_integration": true,
+      "eventbus_connected": false,
+      "telemetry_enabled": true,
+      "real_data_only": false,
+      "size": 14659,
+      "integration_score": 94
+    }
+  },
+  "gui_components": {
+    "test_phase18_reactive_execution_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\gui\\test_phase18_reactive_execution_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\test_phase18_reactive_execution_fixed.py",
+      "hash": "a47e3551d7db6bd5cd1fd6d345da507d9a51de012c0c587d635d77e2e1ebbd1c",
+      "quality_score": 95.72200000000001,
+      "duplicates_eliminated": 0,
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": false,
+      "size": 16216,
+      "integration_score": 95
+    }
+  },
+  "configuration": {},
+  "utilities": {
+    "strategy_adaptive_context_synthesizer_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\core\\strategy_adaptive_context_synthesizer_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\strategy_adaptive_context_synthesizer_fixed.py",
+      "hash": "a3de01630cbdd9b7f991d4b2fd91dedfc9d938c5c87183e39e4dbb75ce16593b",
+      "quality_score": 104.493,
+      "duplicates_eliminated": 0,
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": true,
+      "size": 55741,
+      "integration_score": 104
+    },
+    "validate_phase45_integration_fixed": {
+      "file_path": "c:\\Users\\patra\\Genesis FINAL TRY\\genesis_institutional_build\\core\\validate_phase45_integration_fixed.py",
+      "original_path": "c:\\Users\\patra\\Genesis FINAL TRY\\validate_phase45_integration_fixed.py",
+      "hash": "82367992295131c35b08f29fb0521e65a05828629fd392a2f6ee2b77112ffd1a",
+      "quality_score": 151.731,
+      "duplicates_eliminated": 0,
+      "mt5_integration": false,
+      "eventbus_connected": true,
+      "telemetry_enabled": true,
+      "real_data_only": false,
+      "size": 17306,
+      "integration_score": 151
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.816221+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        362,
+        652,
+        672
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        623,
+        655,
+        679,
+        680
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        17,
+        38,
+        143,
+        205,
+        226
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        168,
+        220,
+        247,
+        280,
+        363
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        144,
+        151,
+        227,
+        259,
+        264
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        301,
+        337
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\execution_supervisor_new_restored_recovered_1.py",
+      "line_numbers": [
+        215,
+        570
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

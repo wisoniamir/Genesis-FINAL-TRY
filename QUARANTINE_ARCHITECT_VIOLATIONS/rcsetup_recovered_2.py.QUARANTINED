@@ -1,0 +1,89 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:39.332621+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        349,
+        483,
+        487,
+        639,
+        800
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        817
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        194,
+        319,
+        325,
+        377,
+        436
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        101,
+        128,
+        143,
+        164,
+        178
+      ],
+      "violation_count": 26
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        104
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        119,
+        613,
+        733,
+        737
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\rcsetup_recovered_2.py",
+      "line_numbers": [
+        73,
+        109,
+        120,
+        159,
+        242
+      ],
+      "violation_count": 20
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

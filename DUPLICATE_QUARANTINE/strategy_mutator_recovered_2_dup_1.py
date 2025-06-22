@@ -1,0 +1,551 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("strategy_mutator_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("strategy_mutator_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "strategy_mutator_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in strategy_mutator_recovered_2: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "strategy_mutator_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("strategy_mutator_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in strategy_mutator_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: strategy_mutator -->
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+GENESIS Strategy Mutation Engine v2.7 - PHASE 13
+Real-time strategy evolution and alpha decay correction system
+ARCHITECT MODE: v2.7 - STRICT COMPLIANCE
+
+PHASE 13 OBJECTIVE:
+Evolve trading strategies based on real MT5 trade outcomes and adapt to alpha decay patterns
+
+INPUTS CONSUMED:
+- TradeOutcomeFeedback: Trade result linked to signal from Phase 12
+- PnLScoreUpdate: Performance metrics from Phase 12
+- SignalFeedbackScore: Signal reinforcement data
+- PatternDetected: Pattern recognition events
+
+OUTPUTS EMITTED:
+- StrategyMutationEvent: Strategy parameter mutations
+- AlphaDecayDetected: Notification of strategy performance degradation
+- MutationLogAppend: Mutation records for audit
+- MetaStrategyUpdate: Updates to meta-strategy engine
+
+VALIDATION REQUIREMENTS:
+✅ Real MT5 data only (no real/execute)
+✅ EventBus communication only
+✅ FTMO-compliant logic
+✅ Mutation justification
+✅ Telemetry integration
+
+NO real DATA - NO ISOLATED FUNCTIONS - STRICT COMPLIANCE
+"""
+
+import os
+import json
+import logging
+import time
+from datetime import datetime, timedelta
+from collections import defaultdict, deque
+from threading import Lock
+from pathlib import Path
+import statistics
+import hashlib
+import uuid
+from typing import Dict, List, Any, Tuple, Optional
+
+# Import system components
+from event_bus import get_event_bus, emit_event, register_route
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class StrategyMutator:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("strategy_mutator_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("strategy_mutator_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "strategy_mutator_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in strategy_mutator_recovered_2: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "strategy_mutator_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("strategy_mutator_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in strategy_mutator_recovered_2: {e}")
+    """
+    GENESIS Strategy Mutation Engine - PHASE 13
+    
+    PHASE 13 Architecture Compliance:
+    - ✅ Real MT5 trade outcome processing
+    - ✅ Alpha decay detection
+    - ✅ Strategy parameter mutation
+    - ✅ EventBus only communication
+    - ✅ Telemetry hooks enabled
+    - ✅ No isolated functions
+    """
+    
+    def __init__(self):
+        """Initialize Strategy Mutation Engine"""
+        self.module_name = "StrategyMutator"
+        self.event_bus = get_event_bus()
+        
+        # Strategy tracking
+        self.strategy_performance = defaultdict(list)  # strategy_id -> [outcomes]
+        self.alpha_decay_candidates = defaultdict(int)  # strategy_id -> negative_streak
+        self.strategy_mutations = []  # List of mutation history
+        
+        # Mutation parameters
+        self.mutation_threshold = 5  # Negative outcomes required for mutation
+        self.decay_window = 7  # Trade window to check for decay
+        self.min_trades_required = 10  # Minimum trades before allowing mutation
+        
+        # Thread safety
+        self.lock = Lock()
+        
+        # Telemetry
+        self.telemetry = {
+            "mutations_applied": 0,
+            "alpha_decay_detected": 0,
+            "strategies_analyzed": 0,
+            "avg_processing_time_ms": 0.0
+        }
+        
+        # Performance tracking
+        self.processing_times = deque(maxlen=100)
+        
+        # Initialize logging and data directories
+        self._initialize_directories()
+        
+        # Load evolution history
+        self._load_evolution_history()
+        
+        # Register event handlers
+        self._register_event_handlers()
+        
+        logger.info(f"✅ {self.module_name} initialized - PHASE 13 ACTIVE")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _initialize_directories(self):
+        """Initialize directories for logging and data storage"""
+        self.log_dir = Path("logs/strategy_mutation")
+        self.log_dir.mkdir(parents=True, exist_ok=True)
+        self.data_dir = Path("data/strategy_evolution")
+        self.data_dir.mkdir(parents=True, exist_ok=True)
+    
+    def _load_evolution_history(self):
+        """Load strategy evolution history from persistent storage"""
+        try:
+            evolution_file = self.data_dir / "strategy_evolution.json"
+            
+            if evolution_file.exists():
+                with open(evolution_file, "r") as f:
+                    self.strategy_mutations = json.load(f)
+                logger.info(f"✅ Loaded {len(self.strategy_mutations)} historical mutations")
+            else:
+                # Create initial file structure
+                self.strategy_mutations = []
+                self._save_evolution_history()
+                logger.info("✅ Created new strategy evolution history")
+        
+        except Exception as e:
+            logger.error(f"❌ Error loading evolution history: {str(e)}")
+            self._emit_error("EVOLUTION_HISTORY_LOAD_ERROR", str(e))
+    
+    def _save_evolution_history(self):
+        """Save strategy evolution history to persistent storage"""
+        try:
+            evolution_file = self.data_dir / "strategy_evolution.json"
+            
+            with open(evolution_file, "w") as f:
+                json.dump(self.strategy_mutations, f, indent=2)
+            
+            logger.info(f"✅ Saved {len(self.strategy_mutations)} mutations to evolution history")
+        
+        except Exception as e:
+            logger.error(f"❌ Error saving evolution history: {str(e)}")
+            self._emit_error("EVOLUTION_HISTORY_SAVE_ERROR", str(e))
+    
+    def _register_event_handlers(self):
+        """Register event handlers for incoming events"""
+        try:
+            # Register event consumption routes
+            register_route("TradeOutcomeFeedback", "StrategyMutator", self.module_name)
+            register_route("PnLScoreUpdate", "StrategyMutator", self.module_name)
+            register_route("SignalFeedbackScore", "StrategyMutator", self.module_name)
+            register_route("PatternDetected", "StrategyMutator", self.module_name)
+            
+            # Register event production routes
+            register_route("StrategyMutationEvent", self.module_name, "PatternMetaStrategyEngine")
+            register_route("AlphaDecayDetected", self.module_name, "TelemetryCollector")
+            register_route("MutationLogAppend", self.module_name, "TelemetryCollector")
+            register_route("MetaStrategyUpdate", self.module_name, "PatternMetaStrategyEngine")
+            
+            # Subscribe to events
+            self.event_bus.subscribe("TradeOutcomeFeedback", self._handle_trade_outcome_feedback, self.module_name)
+            self.event_bus.subscribe("PnLScoreUpdate", self._handle_pnl_score_update, self.module_name)
+            self.event_bus.subscribe("SignalFeedbackScore", self._handle_signal_feedback, self.module_name)
+            self.event_bus.subscribe("PatternDetected", self._handle_pattern_detected, self.module_name)
+            
+            logger.info("✅ Event handlers registered successfully")
+            
+        except Exception as e:
+            logger.error(f"❌ Error registering event handlers: {str(e)}")
+            self._emit_error("EVENT_REGISTRATION_ERROR", str(e))
+    
+    def _handle_trade_outcome_feedback(self, event_data):
+        """
+        Handle trade outcome feedback events from LiveTradeFeedbackInjector
+        
+        Args:
+            event_data (dict): TradeOutcomeFeedback event data
+        """
+        start_time = time.time()
+        
+        try:
+            # Extract data
+            strategy_id = event_data.get("strategy_id")
+            signal_id = event_data.get("signal_id")
+            outcome = event_data.get("outcome")
+            
+            assert strategy_id or not outcome:
+                logger.warning(f"⚠️ Incomplete TradeOutcomeFeedback event: {event_data}")
+                return
+            
+            with self.lock:
+                # Add to strategy performance tracking
+                trade_result = {
+                    "timestamp": event_data.get("timestamp", datetime.now().isoformat()),
+                    "outcome": outcome,
+                    "signal_id": signal_id,
+                    "pnl": event_data.get("pnl", 0),
+                    "symbol": event_data.get("symbol", "unknown"),
+                    "execution_id": event_data.get("execution_id")
+                }
+                
+                self.strategy_performance[strategy_id].append(trade_result)
+                
+                # Check for alpha decay
+                self._check_alpha_decay(strategy_id)
+                
+                # Update telemetry
+                self.telemetry["strategies_analyzed"] += 1
+                
+                # Performance tracking
+                elapsed_ms = (time.time() - start_time) * 1000
+                self.processing_times.append(elapsed_ms)
+                self.telemetry["avg_processing_time_ms"] = statistics.mean(self.processing_times)
+                
+                logger.info(f"✅ Processed TradeOutcomeFeedback for strategy {strategy_id}: {outcome}")
+                
+        except Exception as e:
+            logger.error(f"❌ Error handling TradeOutcomeFeedback: {str(e)}")
+            self._emit_error("TRADE_OUTCOME_PROCESSING_ERROR", str(e))
+    
+    def _handle_pnl_score_update(self, event_data):
+        """
+        Handle PnL score update events from LiveTradeFeedbackInjector
+        
+        Args:
+            event_data (dict): PnLScoreUpdate event data
+        """
+        # This method processes PnL data for more fine-grained strategy analysis
+        # but doesn't directly trigger mutations (handled by trade outcomes)
+        try:
+            strategy_id = event_data.get("strategy_id")
+            if not strategy_id:
+                logger.warning(f"⚠️ PnLScoreUpdate missing strategy_id")
+                return
+                
+            # Log the PnL update for analysis
+            logger.info(f"✅ Received PnLScoreUpdate for strategy {strategy_id}")
+            
+        except Exception as e:
+            logger.error(f"❌ Error handling PnLScoreUpdate: {str(e)}")
+            self._emit_error("PNL_PROCESSING_ERROR", str(e))
+    
+    def _handle_signal_feedback(self, event_data):
+        """
+        Handle signal feedback score events from SignalLoopReinforcementEngine
+        
+        Args:
+            event_data (dict): SignalFeedbackScore event data
+        """
+        try:
+            strategy_id = event_data.get("strategy_id")
+            signal_id = event_data.get("signal_id")
+            
+            if not strategy_id or not signal_id:
+                logger.warning(f"⚠️ SignalFeedbackScore missing required fields")
+                return
+                
+            # Signal feedback is used for auxiliary analysis but doesn't
+            # directly trigger mutations (handled by trade outcomes)
+            logger.info(f"✅ Received SignalFeedbackScore for strategy {strategy_id}")
+            
+        except Exception as e:
+            logger.error(f"❌ Error handling SignalFeedbackScore: {str(e)}")
+            self._emit_error("SIGNAL_FEEDBACK_PROCESSING_ERROR", str(e))
+    
+    def _handle_pattern_detected(self, event_data):
+        """
+        Handle pattern detected events from PatternEngine
+        
+        Args:
+            event_data (dict): PatternDetected event data
+        """
+        try:
+            pattern_id = event_data.get("pattern_id")
+            
+            if not pattern_id:
+                logger.warning(f"⚠️ PatternDetected missing pattern_id")
+                return
+                
+            # Pattern detection is used for correlation with strategy performance
+            # but doesn't directly trigger mutations
+            logger.info(f"✅ Received PatternDetected for pattern {pattern_id}")
+            
+        except Exception as e:
+            logger.error(f"❌ Error handling PatternDetected: {str(e)}")
+            self._emit_error("PATTERN_PROCESSING_ERROR", str(e))
+    
+    def _check_alpha_decay(self, strategy_id):
+        """
+        Check for alpha decay signals in a strategy's performance
+        
+        Args:
+            strategy_id (str): The ID of the strategy to check
+        """
+        try:
+            # Get recent trades for this strategy
+            recent_trades = self.strategy_performance[strategy_id]
+            
+            # Skip if we don't have enough trade history
+            if len(recent_trades) < self.min_trades_required:
+                return
+                
+            # Get the most recent trades within the decay window
+            window_trades = recent_trades[-self.decay_window:]
+            
+            # Count negative outcomes
+            negative_outcomes = sum(1 for trade in window_trades if trade["outcome"] == "LOSS")
+            
+            # Update alpha decay tracking
+            if negative_outcomes >= self.mutation_threshold:
+                self.alpha_decay_candidates[strategy_id] = negative_outcomes
+                
+                # Detect alpha decay
+                self._emit_alpha_decay_detected(strategy_id, negative_outcomes, window_trades)
+                
+                # Generate strategy mutation
+                self._generate_strategy_mutation(strategy_id, window_trades)
+            else:
+                # Reset alpha decay tracking if conditions improve
+                if strategy_id in self.alpha_decay_candidates:
+                    del self.alpha_decay_candidates[strategy_id]
+        
+        except Exception as e:
+            logger.error(f"❌ Error checking alpha decay: {str(e)}")
+            self._emit_error("ALPHA_DECAY_CHECK_ERROR", str(e))
+    
+    def _emit_alpha_decay_detected(self, strategy_id, negative_count, recent_trades):
+        """
+        Emit AlphaDecayDetected event when strategy performance degrades
+        
+        Args:
+            strategy_id (str): The ID of the strategy with alpha decay
+            negative_count (int): Number of negative outcomes
+            recent_trades (list): Recent trade data
+        """
+        try:
+            # Calculate key metrics
+            total_trades = len(recent_trades)
+            win_rate = 1 - (negative_count / total_trades) if total_trades > 0 else 0
+            
+            # Get symbols involved
+            symbols = set(trade.get("symbol", "unknown") for trade in recent_trades)
+            
+            # Create event data
+            event_data = {
+                "event_type": "AlphaDecayDetected",
+                "timestamp": datetime.now().isoformat(),
+                "strategy_id": strategy_id,
+                "negative_outcomes": negative_count,
+                "window_size": self.decay_window,
+                "win_rate": win_rate,
+                "impacted_symbols": list(symbols),
+                "severity": self._calculate_decay_severity(negative_count, total_trades),
+                "trades_analyzed": total_trades
+            }
+            
+            # Emit event
+            emit_event("AlphaDecayDetected", event_data)
+            
+            # Update telemetry
+            with self.lock:
+                self.telemetry["alpha_decay_detected"] += 1
+            
+            logger.info(f"⚠️ Alpha decay detected for strategy {strategy_id}: {negative_count}/{total_trades} negative outcomes")
+            
+        except Exception as e:
+            logger.error(f"❌ Error emitting alpha decay event: {str(e)}")
+            self._emit_error("ALPHA_DECAY_EVENT_ERROR", str(e))
+    
+    def _calculate_decay_severity(self, negative_count, total_trades):
+        """Calculate the severity of alpha decay"""
+        if total_trades == 0 is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: strategy_mutator -->

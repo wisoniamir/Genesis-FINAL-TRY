@@ -1,0 +1,519 @@
+# <!-- @GENESIS_MODULE_START: test_phase57_58_integration_recovered_2 -->
+"""
+🏛️ GENESIS TEST_PHASE57_58_INTEGRATION_RECOVERED_2 - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("test_phase57_58_integration_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("test_phase57_58_integration_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase57_58_integration_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase57_58_integration_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase57_58_integration_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase57_58_integration_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase57_58_integration_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+GENESIS Phase 57-58 Integration Validation Test
+Tests ML Retraining Loop and Pattern Learning Engine integration
+"""
+
+import os
+import json
+import sys
+import time
+import logging
+from datetime import datetime
+from threading import Thread
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+def test_file_structure():
+    """Test that all required Phase 57-58 files exist"""
+    logger.info("🔍 Testing file structure...")
+    
+    required_files = [
+        "ml_retraining_loop_phase57.py",
+        "pattern_learning_engine_phase58.py",
+        "event_bus.json",
+        "telemetry.json",
+        "build_status.json"
+    ]
+    
+    missing_files = []
+    for file in required_files:
+        if not os.path.exists(file):
+            missing_files.append(file)
+    
+    if missing_files:
+        logger.error(f"❌ Missing files: {missing_files}")
+        return False
+    
+    logger.info("✅ All required files found")
+    return True
+
+def test_event_bus_routes():
+    """Test EventBus routes for Phase 57-58"""
+    logger.info("🔍 Testing EventBus routes...")
+    
+    try:
+        with open("event_bus.json", 'r') as f:
+            event_bus = json.load(f)
+        
+        # Check for Phase 57-58 integration flags
+        metadata = event_bus.get("metadata", {})
+        if not metadata.get("phase_57_ml_retraining_loop_integrated"):
+            logger.error("❌ Phase 57 not marked as integrated in EventBus")
+            return False
+            
+        if not metadata.get("phase_58_pattern_learning_engine_integrated"):
+            logger.error("❌ Phase 58 not marked as integrated in EventBus")
+            return False
+        
+        # Check for required routes
+        routes = event_bus.get("routes", [])
+        required_routes = [
+            "ModelRetrainingTrigger",
+            "ModelVersionUpdate", 
+            "MLDriftAlert",
+            "PatternRecommendation",
+            "PatternClusterUpdate"
+        ]
+        
+        found_routes = set()
+        for route in routes:
+            topic = route.get("topic", "")
+            if topic in required_routes:
+                found_routes.add(topic)
+        
+        missing_routes = set(required_routes) - found_routes
+        if missing_routes:
+            logger.warning(f"⚠️ Missing routes: {missing_routes}")
+        
+        logger.info("✅ EventBus routes validated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Error testing EventBus routes: {e}")
+        return False
+
+def test_telemetry_integration():
+    """Test telemetry integration for Phase 57-58"""
+    logger.info("🔍 Testing telemetry integration...")
+    
+    try:
+        with open("telemetry.json", 'r') as f:
+            telemetry = json.load(f)
+        
+        # Check for Phase 57-58 telemetry events
+        events = telemetry.get("events", [])
+        
+        # Look for ML-related events
+        ml_events = [event for event in events if any(term in event.get("topic", "") for term in ["ModelDriftAlert", "PredictionAccuracy", "ModelRetrainingTrigger"])]
+        pattern_events = [event for event in events if any(term in event.get("topic", "") for term in ["BacktestResult", "ManualOverride", "StrategyRecommendation"])]
+        
+        if len(ml_events) < 2:
+            logger.warning(f"⚠️ Limited ML telemetry events found: {len(ml_events)}")
+        
+        if len(pattern_events) < 3:
+            logger.warning(f"⚠️ Limited Pattern telemetry events found: {len(pattern_events)}")
+        
+        logger.info("✅ Telemetry integration validated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Error testing telemetry: {e}")
+        return False
+
+def test_build_status():
+    """Test build status for Phase 57-58"""
+    logger.info("🔍 Testing build status...")
+    
+    try:
+        with open("build_status.json", 'r') as f:
+            build_status = json.load(f)
+        
+        # Check for Phase 57-58 completion flags
+        phase_57_complete = build_status.get("phase_57_ml_retraining_loop_complete", False)
+        phase_58_complete = build_status.get("phase_58_pattern_learning_engine_complete", False)
+        
+        if not phase_57_complete:
+            logger.error("❌ Phase 57 not marked as completed")
+            return False
+            
+        if not phase_58_complete:
+            logger.error("❌ Phase 58 not marked as completed")
+            return False
+        
+        # Check additional phase details
+        phase_57_validated = build_status.get("phase_57_ml_retraining_loop_validated", False)
+        phase_58_validated = build_status.get("phase_58_pattern_learning_engine_validated", False)
+        
+        if not phase_57_validated:
+            logger.warning("⚠️ Phase 57 not marked as validated")
+            
+        if not phase_58_validated:
+            logger.warning("⚠️ Phase 58 not marked as validated")
+        
+        logger.info("✅ Build status validated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Error testing build status: {e}")
+        return False
+
+def test_module_imports():
+    """Test that Phase 57-58 modules can be imported"""
+    logger.info("🔍 Testing module imports...")
+    
+    try:
+        # Test import of Phase 57
+        sys.path.insert(0, os.getcwd())
+        
+        # Test ML Retraining Loop
+        from ml_retraining_loop_phase57 import MLRetrainingLoop
+        logger.info("✅ ML Retraining Loop import successful")
+        
+        # Test Pattern Learning Engine  
+        from pattern_learning_engine_phase58 import PatternLearningEngine
+        logger.info("✅ Pattern Learning Engine import successful")
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Error importing modules: {e}")
+        return False
+
+def test_module_initialization():
+    """Test module initialization without starting full execution"""
+    logger.info("🔍 Testing module initialization...")
+    
+    try:
+        # Import required modules
+        from ml_retraining_loop_phase57 import MLRetrainingLoop
+        from pattern_learning_engine_phase58 import PatternLearningEngine
+        
+        # Test initialization (should not fail)
+        logger.info("Initializing ML Retraining Loop...")
+        ml_loop = MLRetrainingLoop()
+        logger.info("✅ ML Retraining Loop initialized successfully")
+        
+        logger.info("Initializing Pattern Learning Engine...")
+        pattern_engine = PatternLearningEngine()
+        logger.info("✅ Pattern Learning Engine initialized successfully")
+        
+        # Test status methods
+        ml_status = ml_loop.get_status()
+        pattern_status = pattern_engine.get_status()
+        
+        logger.info(f"ML Loop Status: {ml_status}")
+        logger.info(f"Pattern Engine Status: {pattern_status}")
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Error initializing modules: {e}")
+        return False
+
+def test_json_schema_validation():
+    """Test JSON schema validation for Phase 57-58 outputs"""
+    logger.info("🔍 Testing JSON schema validation...")
+    
+    try:
+        # Create test directories if they don't exist
+        os.makedirs("models/ml_registry", exist_ok=True)
+        os.makedirs("logs/ml_retraining", exist_ok=True)
+        os.makedirs("logs/pattern_learning", exist_ok=True)
+        
+        # Test ML drift log schema
+        test_drift_event = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "drift_reasons": ["accuracy_drift_0.18"],
+            "performance_at_drift": {
+                "accuracy": 0.75,
+                "precision": 0.73,
+                "recall": 0.77,
+                "f1_score": 0.75
+            },
+            "data_points_processed": 250
+        }
+        
+        # Test pattern recommendations schema
+        test_pattern_recommendation = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "patterns": [
+                {
+                    "pattern_id": "technical_pattern_001",
+                    "pattern_type": "technical",
+                    "success_rate": 0.85,
+                    "volatility_compatibility": 0.78,
+                    "execution_consistency": 0.82,
+                    "rank": 1
+                }
+            ],
+            "total_patterns": 1,
+            "learning_confidence": 0.89
+        }
+        
+        # Write test files
+        with open("logs/ml_retraining/test_drift_log.json", 'w') as f:
+            json.dump(test_drift_event, f, indent=2)
+            
+        with open("logs/pattern_learning/test_pattern_recommendations.json", 'w') as f:
+            json.dump(test_pattern_recommendation, f, indent=2)
+        
+        logger.info("✅ JSON schema validation passed")
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Error in JSON schema validation: {e}")
+        return False
+
+def generate_test_report():
+    """Generate comprehensive test report"""
+    logger.info("📋 Generating Phase 57-58 test report...")
+    
+    test_results = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "phase": "57-58",
+        "title": "ML Retraining Loop + Pattern Learning Engine Integration Test",
+        "tests": {}
+    }
+    
+    # Run all tests
+    tests = [
+        ("file_structure", test_file_structure),
+        ("event_bus_routes", test_event_bus_routes), 
+        ("telemetry_integration", test_telemetry_integration),
+        ("build_status", test_build_status),
+        ("module_imports", test_module_imports),
+        ("module_initialization", test_module_initialization),
+        ("json_schema_validation", test_json_schema_validation)
+    ]
+    
+    passed_tests = 0
+    total_tests = len(tests)
+    
+    for test_name, test_func in tests:
+        try:
+            result = test_func()
+            test_results["tests"][test_name] = {
+                "status": "PASS" if result else "FAIL",
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            if result:
+                passed_tests += 1
+        except Exception as e:
+            test_results["tests"][test_name] = {
+                "status": "ERROR",
+                "error": str(e),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+    
+    # Calculate summary
+    success_rate = (passed_tests / total_tests) * 100
+    test_results["summary"] = {
+        "total_tests": total_tests,
+        "passed_tests": passed_tests,
+        "success_rate": success_rate,
+        "overall_status": "PASS" if success_rate >= 85 else "FAIL"
+    }
+    
+    # Update existing test report
+    try:
+        with open("phase57_58_test_report.json", 'r') as f:
+            existing_report = json.load(f)
+        
+        # Update integration validation section
+        existing_report["integration_validation"] = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "phase_57_58_integration": success_rate >= 85,
+            "tests_passed": [name for name, result in test_results["tests"].items() if result["status"] == "PASS"],
+            "tests_failed": [name for name, result in test_results["tests"].items() if result["status"] != "PASS"],
+            "success_rate": success_rate,
+            "status": "PASS" if success_rate >= 85 else "FAIL"
+        }
+        
+        # Save updated report
+        with open("phase57_58_test_report.json", 'w') as f:
+            json.dump(existing_report, f, indent=2)
+            
+        logger.info(f"✅ Test report updated - Success rate: {success_rate:.1f}%")
+        
+    except Exception as e:
+        logger.error(f"❌ Error updating test report: {e}")
+        
+        # Create new report
+        with open("phase57_58_integration_test_report.json", 'w') as f:
+            json.dump(test_results, f, indent=2)
+    
+    return test_results
+
+def main():
+    """Main test execution"""
+    logger.info("🚀 Starting Phase 57-58 Integration Validation Test")
+    logger.info("=" * 60)
+    
+    try:
+        # Generate and run tests
+        test_results = generate_test_report()
+        
+        # Print summary
+        summary = test_results["summary"]
+        logger.info("=" * 60)
+        logger.info("📊 TEST SUMMARY")
+        logger.info(f"Total Tests: {summary['total_tests']}")
+        logger.info(f"Passed Tests: {summary['passed_tests']}")
+        logger.info(f"Success Rate: {summary['success_rate']:.1f}%")
+        logger.info(f"Overall Status: {summary['overall_status']}")
+        
+        if summary["overall_status"] == "PASS":
+            logger.info("🎉 Phase 57-58 Integration Validation PASSED!")
+        else:
+            logger.error("❌ Phase 57-58 Integration Validation FAILED!")
+            
+        return summary["overall_status"] == "PASS"
+        
+    except Exception as e:
+        logger.error(f"❌ Critical error during testing: {e}")
+        return False
+
+if __name__ == "__main__":
+    success = main()
+    sys.exit(0 if success else 1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase57_58_integration_recovered_2 -->

@@ -1,0 +1,76 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.646319+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+      "line_numbers": [
+        136,
+        157,
+        174,
+        200,
+        214
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+      "line_numbers": [
+        151,
+        168,
+        194,
+        208,
+        222
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+      "line_numbers": [
+        100,
+        278,
+        324
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+      "line_numbers": [
+        111,
+        357
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+      "line_numbers": [
+        121,
+        122,
+        123,
+        126,
+        127
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "register_route(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\broker_rule_sync_telemetry_widget.py",
+      "line_numbers": [
+        130
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

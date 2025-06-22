@@ -1,0 +1,9 @@
+{
+  "module_id": "mock_backend",
+  "original_path": "modules\\restored\\mock_backend.py",
+  "preserved_path": "preservation_holding_area\\mock_backend_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15113,
+  "checksum": "3493cf4939799b6eb19dcce7ebec1e47d1e24e551ccfa3bd2fb820f3a90fb512"
+}

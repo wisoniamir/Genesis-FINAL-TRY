@@ -1,0 +1,9 @@
+{
+  "module_id": "cli",
+  "original_path": "modules\\restored\\cli.py",
+  "preserved_path": "preservation_holding_area\\cli_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19870,
+  "checksum": "7321cc7b3827586cad35da5da77b6d1bd23223877556c45d88c5723ae5128526"
+}

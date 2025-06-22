@@ -1,0 +1,9 @@
+{
+  "module_id": "optimizer",
+  "original_path": "modules\\restored\\optimizer.py",
+  "preserved_path": "preservation_holding_area\\optimizer_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 12897,
+  "checksum": "668bb1b4effa1c8e22fd5d147ba2a121e7a325cd9f13a6c291f1d9734f246f36"
+}

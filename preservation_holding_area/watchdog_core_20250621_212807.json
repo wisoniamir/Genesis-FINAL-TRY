@@ -1,0 +1,9 @@
+{
+  "module_id": "watchdog_core",
+  "original_path": "modules\\restored\\watchdog_core.py",
+  "preserved_path": "preservation_holding_area\\watchdog_core_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 35160,
+  "checksum": "b915e8cc09e61aae11a86aa9150f687b2c51f3f46fdf48ef0e002402c2f20d67"
+}

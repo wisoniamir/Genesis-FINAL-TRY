@@ -1,0 +1,77 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.581244+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+      "line_numbers": [
+        696,
+        764,
+        829,
+        925,
+        926
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+      "line_numbers": [
+        453
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+      "line_numbers": [
+        2911
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+      "line_numbers": [
+        1528,
+        2106,
+        2375,
+        2602,
+        2940
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+      "line_numbers": [
+        150,
+        157,
+        165,
+        192,
+        214
+      ],
+      "violation_count": 23
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_qmc_recovered_2.py",
+      "line_numbers": [
+        83,
+        163,
+        331,
+        456,
+        788
+      ],
+      "violation_count": 24
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

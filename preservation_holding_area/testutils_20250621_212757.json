@@ -1,0 +1,9 @@
+{
+  "module_id": "testutils",
+  "original_path": "modules\\restored\\testutils.py",
+  "preserved_path": "preservation_holding_area\\testutils_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16793,
+  "checksum": "31f4a6fc2404e6023fb6dd601d64c6d0589a3121ede51b44900869560fe567d2"
+}

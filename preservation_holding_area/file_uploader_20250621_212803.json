@@ -1,0 +1,9 @@
+{
+  "module_id": "file_uploader",
+  "original_path": "modules\\restored\\file_uploader.py",
+  "preserved_path": "preservation_holding_area\\file_uploader_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 35644,
+  "checksum": "64a7efaf5f37b8aac782eda2b3d12e3df85604f25ea4976967ec94dbad46b8ad"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "mercurial",
+  "original_path": "modules\\restored\\mercurial.py",
+  "preserved_path": "preservation_holding_area\\mercurial_20250621_212803.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 16594,
+  "checksum": "936b0c4f0c2b68516597f57cf557ba9860feaa086b9d15d628a0f8c92262f16d"
+}

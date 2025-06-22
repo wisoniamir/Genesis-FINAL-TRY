@@ -1,0 +1,9 @@
+{
+  "module_id": "prepare",
+  "original_path": "modules\\restored\\prepare.py",
+  "preserved_path": "preservation_holding_area\\prepare_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 45223,
+  "checksum": "b4b5d040f54b224df44523ae20687169a494dc270f5a4616a2a4140a4e46c16a"
+}

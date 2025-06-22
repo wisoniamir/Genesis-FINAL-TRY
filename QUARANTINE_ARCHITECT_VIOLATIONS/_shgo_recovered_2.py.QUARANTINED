@@ -1,0 +1,80 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:46.934963+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+      "line_numbers": [
+        84,
+        92,
+        100,
+        101,
+        184
+      ],
+      "violation_count": 12
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+      "line_numbers": [
+        477,
+        710,
+        1170,
+        1496
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+      "line_numbers": [
+        296
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+      "line_numbers": [
+        500,
+        556,
+        801,
+        1380,
+        1500
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+      "line_numbers": [
+        459,
+        480,
+        646,
+        683,
+        844
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_shgo_recovered_2.py",
+      "line_numbers": [
+        475,
+        507,
+        562,
+        577,
+        596
+      ],
+      "violation_count": 18
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

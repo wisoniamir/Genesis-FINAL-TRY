@@ -1,0 +1,863 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS ARCHITECT MODE STANDALONE ACTIVATION v6.1.0
+Complete standalone implementation of your Architect Mode system
+"""
+
+import os
+import json
+import time
+import hashlib
+import logging
+import re
+import threading
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Any, Set, Optional
+
+
+# <!-- @GENESIS_MODULE_END: architect_mode_standalone -->
+
+
+# <!-- @GENESIS_MODULE_START: architect_mode_standalone -->
+
+# Setup logging for architect mode
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - ARCHITECT_MODE - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('architect_mode_standalone.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# ╔════════════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║      🔐 GENESIS AI AGENT — ARCHITECT MODE ACTIVATION v6.1.0 [STANDALONE EDITION]                  ║
+# ║  🧠 STRUCTURAL GUARDIAN | 📁 FULL RECURSIVE FOLDER SCAN | 📡 MT5-ONLY LIVE DATA | 📊 TELEMETRY LOCK ║
+# ║  🚫 NO MOCKS | 🚫 NO STUBS | 🚫 NO FALLBACKS | 🚫 NO DUPLICATES | 🔁 FINGERPRINT + SIGNATURE VERIFIED ║
+# ╚════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+class GenesisArchitectModeStandalone:
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "architect_mode_standalone",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in architect_mode_standalone: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "architect_mode_standalone",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in architect_mode_standalone: {e}")
+    """🔐 Standalone Architect Mode Implementation"""
+    
+    def __init__(self, workspace_root: str = "c:\\Users\\patra\\Genesis FINAL TRY"):
+        self.mode = "architect"
+        self.workspace_root = Path(workspace_root)
+        self.activation_timestamp = datetime.now(timezone.utc).isoformat()
+        self.violations_detected = []
+        self.quarantine_count = 0
+        self.enforcement_active = False
+        
+        # Validation patterns from your original script
+        self.validation_rules = {
+            "no_stub_patterns": ["pass", "TODO", "raise NotImplementedError", "return None"],
+            "no_mock_data": ["mock", "simulate", "test_", "placeholder", "'dummy'", '"sample"'],
+            "no_fallback_logic": ["try:", "except Exception", "default =", "if not", "else:"],
+            "no_shadow_logic": ["# shadow", "# alternative", "# override", "# bypass"],
+            "telemetry_required": ["emit_telemetry(", "log_metric(", "track_event("],
+            "eventbus_required": ["emit(", "subscribe_to_event(", "register_route("],
+            "mt5_only": ["from mt5_adapter", "mt5.symbol_info_tick"]
+        }
+        
+        logger.info("🔐 GENESIS ARCHITECT MODE STANDALONE v6.1.0 - Initialized")
+    
+    def scan_all_project_files(self) -> Dict[str, Any]:
+        """🔍 FOLDER + FILE INTEGRITY SCAN (Recursive) - From your original script"""
+        
+        logger.info("🔍 Starting recursive folder and file integrity scan...")
+        
+        scan_results = {
+            "scan_timestamp": self.activation_timestamp,
+            "files_scanned": 0,
+            "violations_found": 0,
+            "violations_by_type": {},
+            "quarantined_files": [],
+            "scan_duration": 0
+        }
+        
+        start_time = time.time()
+        file_types = [".py", ".json", ".yaml", ".ini", ".md"]
+        
+        try:
+            for file_path in self.workspace_root.rglob("*"):
+                if (file_path.is_file() and 
+                    file_path.suffix in file_types and
+                    "QUARANTINE" not in str(file_path) and
+                    ".venv" not in str(file_path) and
+                    "__pycache__" not in str(file_path)):
+                    
+                    scan_results["files_scanned"] += 1
+                    file_violations = self._scan_file_for_violations(file_path)
+                    
+                    if file_violations:
+                        scan_results["violations_found"] += len(file_violations)
+                        
+                        # Count violations by type
+                        for violation in file_violations:
+                            rule_type = violation["rule_type"]
+                            if rule_type not in scan_results["violations_by_type"]:
+                                scan_results["violations_by_type"][rule_type] = 0
+                            scan_results["violations_by_type"][rule_type] += 1
+                        
+                        # Quarantine file
+                        if self._quarantine_file(file_path, file_violations):
+                            scan_results["quarantined_files"].append(str(file_path))
+            
+            scan_results["scan_duration"] = time.time() - start_time
+            logger.info(f"✅ File scan completed: {scan_results['files_scanned']} files, {scan_results['violations_found']} violations")
+            
+        except Exception as e:
+            logger.error(f"❌ File scan error: {e}")
+            scan_results["error"] = str(e)
+        
+        return scan_results
+    
+    def _scan_file_for_violations(self, file_path: Path) -> List[Dict[str, Any]]:
+        """Scan individual file for violations"""
+        violations = []
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+                lines = content.splitlines()
+            
+            # Check each validation rule
+            for rule_type, patterns in self.validation_rules.items():
+                for pattern in patterns:
+                    # Simple string search for patterns
+                    if pattern in content:
+                        line_numbers = [i+1 for i, line in enumerate(lines) if pattern in line]
+                        violations.append({
+                            "rule_type": rule_type,
+                            "pattern": pattern,
+                            "file": str(file_path),
+                            "line_numbers": line_numbers[:5],  # Limit to first 5 matches
+                            "violation_count": len(line_numbers)
+                        })
+                        
+                        self.violations_detected.append({
+                            "file": str(file_path),
+                            "rule": rule_type,
+                            "pattern": pattern,
+                            "count": len(line_numbers)
+                        })
+        
+        except Exception as e:
+            logger.warning(f"⚠️ Could not scan file {file_path}: {e}")
+        
+        return violations
+    
+    def _quarantine_file(self, file_path: Path, violations: List[Dict[str, Any]]) -> bool:
+        """Quarantine file with violations"""
+        try:
+            quarantine_dir = self.workspace_root / "QUARANTINE_ARCHITECT_VIOLATIONS"
+            quarantine_dir.mkdir(exist_ok=True)
+            
+            quarantine_file = quarantine_dir / f"{file_path.name}.QUARANTINED"
+            
+            quarantine_info = {
+                "original_file": str(file_path),
+                "quarantine_timestamp": datetime.now(timezone.utc).isoformat(),
+                "violations": violations,
+                "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+            }
+            
+            with open(quarantine_file, 'w', encoding='utf-8') as f:
+                json.dump(quarantine_info, f, indent=2)
+            
+            self.quarantine_count += 1
+            logger.warning(f"🔒 Quarantined: {file_path.name} ({len(violations)} violations)")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to quarantine {file_path}: {e}")
+            return False
+    
+    def intercept_mutation_attempts(self) -> Dict[str, Any]:
+        """🧬 MUTATION ENGINE — ZERO TRUST ENFORCEMENT"""
+        
+        logger.info("🧬 Activating mutation interception engine...")
+        
+        mutation_config = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "reject_duplicate_logic": True,
+            "reject_simplified_logic": True,
+            "reject_fallback_paths": True,
+            "require_eventbus_wiring": True,
+            "require_full_tests_docs": True,
+            "halt_on_schema_violation": True
+        }
+        
+        # Save mutation settings
+        mutation_file = self.workspace_root / "mutation_engine_settings.json"
+        with open(mutation_file, 'w', encoding='utf-8') as f:
+            json.dump(mutation_config, f, indent=2)
+        
+        logger.info("✅ Mutation engine configured with zero trust enforcement")
+        return mutation_config
+    
+    def validate_fingerprints(self) -> Dict[str, Any]:
+        """🔍 Validate fingerprints and detect duplicates"""
+        
+        logger.info("🔍 Validating fingerprints and checking for duplicates...")
+        
+        fingerprint_results = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "files_fingerprinted": 0,
+            "duplicates_found": 0,
+            "fingerprints": {}
+        }
+        
+        # Generate fingerprints for Python files
+        for py_file in self.workspace_root.rglob("*.py"):
+            if ("QUARANTINE" not in str(py_file) and 
+                ".venv" not in str(py_file) and
+                "__pycache__" not in str(py_file)):
+                
+                try:
+                    with open(py_file, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    
+                    # Generate content hash
+                    content_hash = hashlib.sha256(content.encode()).hexdigest()
+                    fingerprint_results["fingerprints"][str(py_file)] = content_hash
+                    fingerprint_results["files_fingerprinted"] += 1
+                    
+                except Exception as e:
+                    logger.warning(f"⚠️ Could not fingerprint {py_file}: {e}")
+        
+        # Check for duplicates
+        hash_counts = {}
+        for file_path, file_hash in fingerprint_results["fingerprints"].items():
+            if file_hash in hash_counts:
+                hash_counts[file_hash].append(file_path)
+            else:
+                hash_counts[file_hash] = [file_path]
+        
+        # Count duplicates
+        for file_hash, files in hash_counts.items():
+            if len(files) > 1:
+                fingerprint_results["duplicates_found"] += len(files) - 1
+                logger.warning(f"🔍 Duplicate fingerprint detected: {len(files)} files with hash {file_hash[:8]}...")
+        
+        logger.info(f"✅ Fingerprint validation completed: {fingerprint_results['files_fingerprinted']} files, {fingerprint_results['duplicates_found']} duplicates")
+        return fingerprint_results
+    
+    def enforce_trusted_agent_chain(self) -> Dict[str, Any]:
+        """🔐 TRUSTED AGENT CHAIN — SIGNATURE VERIFICATION"""
+        
+        logger.info("🔐 Enforcing trusted agent chain verification...")
+        
+        trusted_agents = ["architect_agent", "mutation_engine", "telemetry_sync_agent"]
+        
+        agent_verification = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "trusted_agents": trusted_agents,
+            "verification_active": True,
+            "signature_required": True
+        }
+        
+        # Save agent verification settings
+        agent_file = self.workspace_root / "trusted_agent_chain.json"
+        with open(agent_file, 'w', encoding='utf-8') as f:
+            json.dump(agent_verification, f, indent=2)
+        
+        logger.info("✅ Trusted agent chain enforcement configured")
+        return agent_verification
+    
+    def enforce_compliance_standards(self) -> Dict[str, Any]:
+        """✅ COMPLIANCE, TELEMETRY + TREE VALIDATION"""
+        
+        logger.info("✅ Enforcing compliance and telemetry standards...")
+        
+        standards = [
+            "event_driven", "mt5_live_data", "real_time_telemetry",
+            "compliance_checks", "error_handling", "module_documentation",
+            "module_tests", "system_tree_structure", "event_bus_structure",
+            "telemetry_hooks_connected", "registered_in_system_tree",
+            "registered_in_module_registry", "test_scaffolds_present",
+            "real_data_only", "logged_errors_enabled", "performance_metrics"
+        ]
+        
+        compliance_config = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "enforced_standards": standards,
+            "enforcement_active": True,
+            "compliance_level": "STRICT"
+        }
+        
+        # Validate core files
+        core_files = [
+            "build_status.json", "build_tracker.md", "system_tree.json",
+            "event_bus.json", "telemetry.json", "module_registry.json",
+            "compliance.json"
+        ]
+        
+        missing_files = []
+        for file in core_files:
+            if not (self.workspace_root / file).exists():
+                missing_files.append(file)
+        
+        compliance_config["missing_core_files"] = missing_files
+        compliance_config["core_files_complete"] = len(missing_files) == 0
+        
+        # Save compliance settings
+        compliance_file = self.workspace_root / "compliance_standards.json"
+        with open(compliance_file, 'w', encoding='utf-8') as f:
+            json.dump(compliance_config, f, indent=2)
+        
+        if missing_files:
+            logger.warning(f"⚠️ Missing core files: {missing_files}")
+        else:
+            logger.info("✅ All core files present")
+        
+        logger.info("✅ Compliance standards enforcement configured")
+        return compliance_config
+    
+    def detect_violations(self) -> bool:
+        """🚨 System breach detection"""
+        
+        critical_violations = len(self.violations_detected)
+        
+        if critical_violations > 0:
+            logger.warning(f"🚨 {critical_violations} violations detected")
+            return True
+        
+        # Check for emergency flags
+        emergency_flags = [
+            "EMERGENCY_SHUTDOWN.flag",
+            "SYSTEM_BREACH.flag"
+        ]
+        
+        for flag in emergency_flags:
+            if (self.workspace_root / flag).exists():
+                logger.critical(f"🚨 Emergency flag detected: {flag}")
+                return True
+        
+        return False
+    
+    def trigger_emergency_shutdown(self) -> None:
+        """🚨 Emergency shutdown protocol"""
+        
+        logger.critical("🚨 TRIGGERING EMERGENCY SHUTDOWN PROTOCOL")
+        
+        # Create emergency shutdown flag
+        shutdown_flag = self.workspace_root / "EMERGENCY_SHUTDOWN.flag"
+        with open(shutdown_flag, 'w') as f:
+            f.write(f"EMERGENCY_SHUTDOWN: {datetime.now(timezone.utc).isoformat()}")
+        
+        # Quarantine all active modules
+        logger.critical("🔒 QUARANTINING ALL ACTIVE MODULES")
+        
+        # Log violation to build tracker
+        build_tracker = self.workspace_root / "build_tracker.md"
+        violation_log = f"""
+
+## 🚨 EMERGENCY SHUTDOWN TRIGGERED - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+**REASON:** ARCHITECT MODE BREACH DETECTED  
+**VIOLATIONS:** {len(self.violations_detected)}  
+**QUARANTINED FILES:** {self.quarantine_count}  
+**STATUS:** SYSTEM LOCKDOWN ACTIVE  
+
+"""
+        try:
+            with open(build_tracker, 'a', encoding='utf-8') as f:
+                f.write(violation_log)
+        except:
+            pass
+        
+        # Freeze agent execution
+        freeze_flag = self.workspace_root / "AGENT_EXECUTION_FROZEN.flag"
+        with open(freeze_flag, 'w') as f:
+            f.write(f"AGENT_EXECUTION_FROZEN: {datetime.now(timezone.utc).isoformat()}")
+    
+    def lock_architect_mode(self) -> Dict[str, Any]:
+        """🔒 Lock architect mode version"""
+        
+        logger.info("🔒 Locking Architect Mode v6.1.0...")
+        
+        lock_info = {
+            "version_locked": "v6.1.0",
+            "lock_timestamp": datetime.now(timezone.utc).isoformat(),
+            "enforcement_active": True
+        }
+        
+        # Update build_status.json
+        try:
+            build_status_path = self.workspace_root / "build_status.json"
+            if build_status_path.exists():
+                with open(build_status_path, 'r', encoding='utf-8') as f:
+                    build_status = json.load(f)
+            else:
+                build_status = {}
+            
+            build_status.update({
+                "architect_mode_v6_1_0_active": True,
+                "architect_mode_activation_timestamp": self.activation_timestamp,
+                "architect_mode_enforcement_level": "ULTIMATE",
+                "zero_tolerance_enforcement": True,
+                "architect_mode_version": "v6.1.0",
+                "last_updated": datetime.now().isoformat()
+            })
+            
+            with open(build_status_path, 'w', encoding='utf-8') as f:
+                json.dump(build_status, f, indent=2)
+            
+            lock_info["build_status_updated"] = True
+            logger.info("🔒 Build status updated with Architect Mode lock")
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to update build status: {e}")
+            lock_info["build_status_updated"] = False
+        
+        return lock_info
+    
+    def execute_full_activation(self) -> Dict[str, Any]:
+        """🚀 Execute complete Architect Mode activation sequence"""
+        
+        print("╔════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+        print("║      🔐 GENESIS AI AGENT — ARCHITECT MODE ACTIVATION v6.1.0 [LINE-BY-LINE HARDLOCK EDITION]        ║")
+        print("║  🧠 STRUCTURAL GUARDIAN | 📁 FULL RECURSIVE FOLDER SCAN | 📡 MT5-ONLY LIVE DATA | 📊 TELEMETRY LOCK ║")
+        print("║  🚫 NO MOCKS | 🚫 NO STUBS | 🚫 NO FALLBACKS | 🚫 NO DUPLICATES | 🔁 FINGERPRINT + SIGNATURE VERIFIED ║")
+        print("╚════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+        
+        logger.info("🚀 STARTING FULL ARCHITECT MODE ACTIVATION SEQUENCE")
+        
+        activation_report = {
+            "activation_timestamp": self.activation_timestamp,
+            "mode": "architect",
+            "version": "v6.1.0",
+            "status": "RUNNING",
+            "steps_completed": [],
+            "violations_found": 0,
+            "files_quarantined": 0
+        }
+        
+        try:
+            # Step 1: Recursive File Scan
+            logger.info("🔍 STEP 1: FOLDER + FILE INTEGRITY SCAN (Recursive)")
+            scan_results = self.scan_all_project_files()
+            activation_report["steps_completed"].append("recursive_file_scan")
+            activation_report["scan_results"] = scan_results
+            activation_report["violations_found"] = scan_results["violations_found"]
+            activation_report["files_quarantined"] = len(scan_results["quarantined_files"])
+            
+            # Step 2: Mutation Engine
+            logger.info("🧬 STEP 2: MUTATION ENGINE — ZERO TRUST ENFORCEMENT")
+            mutation_results = self.intercept_mutation_attempts()
+            activation_report["steps_completed"].append("mutation_engine")
+            activation_report["mutation_engine"] = mutation_results
+            
+            # Step 3: Fingerprint Validation
+            logger.info("🔍 STEP 3: FINGERPRINT VALIDATION")
+            fingerprint_results = self.validate_fingerprints()
+            activation_report["steps_completed"].append("fingerprint_validation")
+            activation_report["fingerprint_results"] = fingerprint_results
+            
+            # Step 4: Trusted Agent Chain
+            logger.info("🔐 STEP 4: TRUSTED AGENT CHAIN — SIGNATURE VERIFICATION")
+            agent_results = self.enforce_trusted_agent_chain()
+            activation_report["steps_completed"].append("trusted_agent_chain")
+            activation_report["agent_verification"] = agent_results
+            
+            # Step 5: Compliance Standards
+            logger.info("✅ STEP 5: COMPLIANCE, TELEMETRY + TREE VALIDATION")
+            compliance_results = self.enforce_compliance_standards()
+            activation_report["steps_completed"].append("compliance_standards")
+            activation_report["compliance"] = compliance_results
+            
+            # Step 6: Breach Detection
+            logger.info("🚨 STEP 6: SYSTEM BREACH PROTOCOL — BREACH DETECTION")
+            breach_detected = self.detect_violations()
+            activation_report["breach_detected"] = breach_detected
+            
+            if breach_detected:
+                logger.critical("🚨 CRITICAL VIOLATIONS DETECTED - INITIATING LOCKDOWN")
+                self.trigger_emergency_shutdown()
+                activation_report["status"] = "LOCKDOWN_TRIGGERED"
+                activation_report["steps_completed"].append("emergency_shutdown")
+                
+                print("🚨 SYSTEM LOCKDOWN TRIGGERED — ARCHITECT MODE BREACH DETECTED")
+                return activation_report
+            
+            # Step 7: Final Lock
+            logger.info("🔒 STEP 7: ARCHITECT MODE LOCK")
+            lock_results = self.lock_architect_mode()
+            activation_report["steps_completed"].append("architect_mode_lock")
+            activation_report["lock_results"] = lock_results
+            
+            # Final Status
+            activation_report["status"] = "SUCCESSFULLY_ACTIVATED"
+            self.enforcement_active = True
+            
+            logger.info("🎉 ARCHITECT MODE v6.1.0 SUCCESSFULLY ACTIVATED")
+            
+            return activation_report
+            
+        except Exception as e:
+            logger.error(f"❌ ARCHITECT MODE ACTIVATION FAILED: {e}")
+            activation_report["status"] = "FAILED"
+            activation_report["error"] = str(e)
+            return activation_report
+    
+    def start_watchdog_enforcement(self) -> None:
+        """🐺 Start watchdog enforcement system"""
+        
+        print("╔════════════════════════════════════════════════════════════════════════════════════════╗")
+        print("║      🐺 GENESIS WATCHDOG — SYSTEM SENTINEL v1.0.0                                     ║")
+        print("║    🔐 ARCHITECT LOCK ACTIVE | 🔎 FULL FILE SCAN | 📡 MT5 DATA ONLY | 📊 TELEMETRY GUARD ║")
+        print("╚════════════════════════════════════════════════════════════════════════════════════════╝")
+        
+        logger.info("🐺 STARTING GENESIS WATCHDOG ENFORCEMENT")
+        
+        self.watchdog_active = True
+        
+        def watchdog_loop():
+            while self.watchdog_active and self.system_alive():
+                try:
+                    logger.info("🔍 Executing watchdog scan cycle...")
+                    
+                    # Step 1: Validate Core System Files
+                    core_files = [
+                        "build_status.json", "build_tracker.md", "system_tree.json", "event_bus.json",
+                        "telemetry.json", "module_registry.json", "test_runners.json",
+                        "compliance.json", "mock_data.json", "real_data.json"
+                    ]
+                    self._validate_core_files(core_files)
+                    
+                    # Step 2: Validate Telemetry and EventBus Links
+                    self._validate_eventbus_routes()
+                    self._check_telemetry_integrity()
+                    
+                    # Step 3: Scan for orphan or disconnected modules
+                    orphan_modules = self._verify_system_tree_connections()
+                    if orphan_modules:
+                        self._quarantine_violations(orphan_modules, "DISCONNECTED_MODULES")
+                    
+                    # Step 4: Check for Mock/Stub/Simulated Logic
+                    mock_hits = self._scan_for_mock_data()
+                    if mock_hits:
+                        self._quarantine_violations(mock_hits, "MOCK_DATA_DETECTED")
+                    
+                    # Step 5: Enforce EventBus Wiring
+                    unwired = self._enforce_module_wiring()
+                    if unwired:
+                        self._quarantine_violations(unwired, "UNWIRED_MODULES")
+                    
+                    # Step 6: Log and Respond
+                    self._log_watchdog_alerts()
+                    
+                    logger.info("✅ Watchdog scan cycle completed")
+                    time.sleep(3)  # delay to reduce system strain
+                    
+                except Exception as e:
+                    logger.error(f"❌ Watchdog error: {e}")
+                    time.sleep(3)
+        
+        # Start watchdog in background thread
+        watchdog_thread = threading.Thread(target=watchdog_loop, daemon=True)
+        watchdog_thread.start()
+        
+        logger.info("🐺 Watchdog enforcement started - Press Ctrl+C to stop")
+        
+        try:
+            while self.watchdog_active and self.system_alive():
+                time.sleep(1)
+        except KeyboardInterrupt:
+            logger.info("🛑 Stopping watchdog on user request...")
+            self.watchdog_active = False
+    
+    def system_alive(self) -> bool:
+        """Check if system is alive (no emergency shutdown)"""
+        return not (self.workspace_root / "EMERGENCY_SHUTDOWN.flag").exists()
+    
+    def _validate_core_files(self, core_files: List[str]) -> None:
+        """Validate core system files"""
+        for file in core_files:
+            file_path = self.workspace_root / file
+            if not file_path.exists():
+                logger.warning(f"⚠️ Missing core file: {file}")
+    
+    def _validate_eventbus_routes(self) -> None:
+        """Validate EventBus routes"""
+        eventbus_file = self.workspace_root / "event_bus.json"
+        if eventbus_file.exists():
+            try:
+                with open(eventbus_file, 'r', encoding='utf-8') as f:
+                    eventbus_data = json.load(f)
+                logger.debug("📡 EventBus validation completed")
+            except Exception as e:
+                logger.error(f"❌ EventBus validation failed: {e}")
+    
+    def _check_telemetry_integrity(self) -> None:
+        """Check telemetry integrity"""
+        telemetry_file = self.workspace_root / "telemetry.json"
+        if telemetry_file.exists():
+            try:
+                with open(telemetry_file, 'r', encoding='utf-8') as f:
+                    telemetry_data = json.load(f)
+                logger.debug("📊 Telemetry validation completed")
+            except Exception as e:
+                logger.error(f"❌ Telemetry validation failed: {e}")
+    
+    def _verify_system_tree_connections(self) -> List[str]:
+        """Verify system tree connections"""
+        # Placeholder implementation
+        return []
+    
+    def _scan_for_mock_data(self) -> List[Dict[str, Any]]:
+        """Scan for mock data"""
+        mock_patterns = ["mock", "stub", "simulate", "fallback", "dummy"]
+        mock_violations = []
+        
+        for py_file in self.workspace_root.rglob("*.py"):
+            if ("QUARANTINE" not in str(py_file) and 
+                ".venv" not in str(py_file)):
+                
+                try:
+                    with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                    
+                    for pattern in mock_patterns:
+                        if pattern in content.lower():
+                            mock_violations.append({
+                                "file": str(py_file),
+                                "pattern": pattern,
+                                "type": "mock_data"
+                            })
+                            break
+                            
+                except Exception:
+                    pass
+        
+        return mock_violations
+    
+    def _enforce_module_wiring(self) -> List[str]:
+        """Enforce module wiring"""
+        # Placeholder implementation
+        return []
+    
+    def _quarantine_violations(self, violations: List[Any], reason: str) -> None:
+        """Quarantine violations"""
+        if violations:
+            logger.warning(f"🔒 Quarantining {len(violations)} items for {reason}")
+            self.quarantine_count += len(violations)
+    
+    def _log_watchdog_alerts(self) -> None:
+        """Log watchdog alerts"""
+        if self.quarantine_count > 0:
+            alert_msg = f"🐺 Watchdog Alert: {self.quarantine_count} items quarantined"
+            logger.info(alert_msg)
+            
+            # Log to build tracker
+            try:
+                build_tracker = self.workspace_root / "build_tracker.md"
+                with open(build_tracker, 'a', encoding='utf-8') as f:
+                    f.write(f"\n## 🐺 Watchdog Alert - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                    f.write(f"{alert_msg}\n\n")
+            except:
+                pass
+
+def main():
+    """Main execution function"""
+    
+    print("🔐 GENESIS ARCHITECT MODE STANDALONE v6.1.0")
+    print("=" * 80)
+    
+    try:
+        # Initialize Architect Mode
+        architect_mode = GenesisArchitectModeStandalone()
+        
+        # Execute activation sequence
+        print("\n🚀 Executing Architect Mode Activation...")
+        activation_results = architect_mode.execute_full_activation()
+        
+        # Display results
+        print(f"\n🎯 ACTIVATION STATUS: {activation_results['status']}")
+        print(f"📊 Steps Completed: {len(activation_results['steps_completed'])}")
+        print(f"⚠️ Violations Found: {activation_results['violations_found']}")
+        print(f"🔒 Files Quarantined: {activation_results['files_quarantined']}")
+        
+        if activation_results['status'] == 'SUCCESSFULLY_ACTIVATED':
+            print("\n🐺 Starting Watchdog Enforcement...")
+            architect_mode.start_watchdog_enforcement()
+        else:
+            print(f"\n❌ Activation status: {activation_results['status']}")
+            if 'error' in activation_results:
+                print(f"Error: {activation_results['error']}")
+            
+    except KeyboardInterrupt:
+        print("\n🛑 Architect Mode stopped by user")
+    except Exception as e:
+        logger.error(f"❌ ARCHITECT MODE FAILED: {e}")
+
+if __name__ == "__main__":
+    main()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

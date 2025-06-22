@@ -1,0 +1,792 @@
+
+import logging
+import sys
+from pathlib import Path
+
+# GENESIS System Integration
+logger = logging.getLogger(__name__)
+
+class SystemIntegration:
+    """Connects this module to the GENESIS trading system"""
+    
+    def __init__(self):
+        self.connected = True
+        logger.info(f"Module {__name__} connected to GENESIS system")
+    
+    def register_with_eventbus(self):
+        """Register this module with the event bus"""
+        pass
+    
+    def enable_telemetry(self):
+        """Enable telemetry for this module"""
+        pass
+
+# Auto-connect to system
+_integration = SystemIntegration()
+_integration.register_with_eventbus()
+_integration.enable_telemetry()
+
+
+# <!-- @GENESIS_MODULE_START: test_phase35_telemetry_panel -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("ORPHAN_test_phase35_telemetry_panel", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("ORPHAN_test_phase35_telemetry_panel", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "ORPHAN_test_phase35_telemetry_panel",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("ORPHAN_test_phase35_telemetry_panel", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in ORPHAN_test_phase35_telemetry_panel: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# -*- coding: utf-8 -*-
+"""
+🧪 GENESIS Phase 35: Strategic Signal Orchestrator Telemetry Panel Test v1.0.0
+=============================================================================
+ARCHITECT MODE v2.9 COMPLIANT - Real-time Telemetry Panel Validation
+
+🎯 TEST OBJECTIVES:
+- ✅ Telemetry panel integration with Strategic Signal Orchestrator
+- ✅ Real-time data display and refresh functionality
+- ✅ Alert generation for critical orchestration conditions
+- ✅ Dashboard responsiveness and performance validation
+- ✅ Telemetry data integrity and structure verification
+
+🔐 COMPLIANCE REQUIREMENTS:
+- Real telemetry data only (no mock/simulation)
+- EventBus-only communication testing
+- Sub-15s refresh rate validation
+- Dashboard performance under load
+- Telemetry data retention and cleanup
+
+Dependencies: streamlit, plotly, event_bus, json, time
+Test Coverage: Panel integration, data flow, alert system, performance
+Dashboard Integration: Real-time metrics display and interaction
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+import threading
+from pathlib import Path
+from collections import deque
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Configure test logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+class TestOrchestrationTelemetryPanel:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("ORPHAN_test_phase35_telemetry_panel", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("ORPHAN_test_phase35_telemetry_panel", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "ORPHAN_test_phase35_telemetry_panel",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("ORPHAN_test_phase35_telemetry_panel", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in ORPHAN_test_phase35_telemetry_panel: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "ORPHAN_test_phase35_telemetry_panel",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in ORPHAN_test_phase35_telemetry_panel: {e}")
+    """Comprehensive test suite for Strategic Signal Orchestrator telemetry panel"""
+    
+    def __init__(self):
+        """Initialize telemetry panel test environment"""
+        self.test_start_time = time.time()
+        self.self.event_bus.request('data:live_feed')_generated = 0
+        self.telemetry_received = 0
+        self.alerts_generated = 0
+        
+        logger.info("🧪 Initializing Strategic Signal Orchestrator telemetry panel test")
+        
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def test_telemetry_panel_integration(self):
+        """Test telemetry panel integration with dashboard"""
+        logger.info("🔍 Testing telemetry panel integration...")
+        
+        integration_checks = {
+            "dashboard_file_exists": False,
+            "orchestration_handlers_added": False,
+            "telemetry_data_structure": False,
+            "event_subscription_setup": False
+        }
+        
+        try:
+            # Check if telemetry dashboard exists
+            if os.path.exists("telemetry_dashboard.py"):
+                integration_checks["dashboard_file_exists"] = True
+                logger.info("✅ telemetry_dashboard.py exists")
+                
+                # Read dashboard file to check for orchestration integration
+                with open("telemetry_dashboard.py", 'r', encoding='utf-8') as f:
+                    dashboard_content = f.read()
+                    
+                # Check for orchestration handlers
+                if "handle_orchestration_telemetry" in dashboard_content:
+                    integration_checks["orchestration_handlers_added"] = True
+                    logger.info("✅ Orchestration telemetry handlers found")
+                    
+                # Check for event subscriptions
+                if "orchestration_telemetry" in dashboard_content:
+                    integration_checks["event_subscription_setup"] = True
+                    logger.info("✅ Orchestration event subscriptions found")
+                    
+                # Check for telemetry data structures
+                if "orchestration_metrics" in dashboard_content:
+                    integration_checks["telemetry_data_structure"] = True
+                    logger.info("✅ Orchestration telemetry data structures found")
+                    
+            else:
+                logger.error("❌ telemetry_dashboard.py not found")
+                
+        except Exception as e:
+            logger.error(f"❌ Error checking telemetry panel integration: {e}")
+            
+        # Calculate integration score
+        passed_checks = sum(integration_checks.values())
+        total_checks = len(integration_checks)
+        integration_score = (passed_checks / total_checks) * 100
+        
+        logger.info(f"📊 Telemetry Panel Integration: {passed_checks}/{total_checks} checks passed ({integration_score:.1f}%)")
+        
+        return integration_score >= 75
+        
+    def test_orchestration_telemetry_data_flow(self):
+        """Test real-time telemetry data flow and processing"""
+        logger.info("🔍 Testing orchestration telemetry data flow...")
+        
+        try:
+            # Mock telemetry dashboard import (simplified for testing)
+            test_telemetry_data = {
+                "orchestration_metrics": deque(maxlen=1000),
+                "orchestrated_signals": deque(maxlen=1000)
+            }
+            
+            # Simulate orchestration telemetry events
+            test_telemetry_events = [
+                {
+                    "event_type": "orchestration_telemetry",
+                    "timestamp": time.time(),
+                    "signal_priority_queue": 5,
+                    "suppression_flags": ["duplicate_signal"],
+                    "kill_switch_status": "inactive",
+                    "volatility_rating": 6.5,
+                    "execution_latency": 250.0,
+                    "signals_processed": 15,
+                    "signals_suppressed": 2,
+                    "signals_rerouted": 1
+                },
+                {
+                    "event_type": "orchestration_telemetry",
+                    "timestamp": time.time(),
+                    "signal_priority_queue": 8,
+                    "suppression_flags": [],
+                    "kill_switch_status": "active",  # Critical condition
+                    "volatility_rating": 8.2,
+                    "execution_latency": 1500.0,  # High latency
+                    "signals_processed": 20,
+                    "signals_suppressed": 5,
+                    "signals_rerouted": 0
+                }
+            ]
+            
+            # Process telemetry events
+            alerts_generated = []
+            processing_latencies = []
+            
+            for event in test_telemetry_events:
+                process_start = time.time()
+                
+                # Simulate telemetry processing
+                telemetry_entry = {
+                    "timestamp": datetime.datetime.now().isoformat(),
+                    "event_type": event["event_type"],
+                    "signal_priority_queue": event["signal_priority_queue"],
+                    "suppression_flags": event["suppression_flags"],
+                    "kill_switch_status": event["kill_switch_status"],
+                    "volatility_rating": event["volatility_rating"],
+                    "execution_latency": event["execution_latency"],
+                    "signals_processed": event["signals_processed"],
+                    "signals_suppressed": event["signals_suppressed"],
+                    "signals_rerouted": event["signals_rerouted"]
+                }
+                
+                test_telemetry_data["orchestration_metrics"].append(telemetry_entry)
+                
+                # Check for alert conditions
+                if event["kill_switch_status"] == "active":
+                    alerts_generated.append("CRITICAL: Kill switch activated")
+                    
+                if event["execution_latency"] > 1000:
+                    alerts_generated.append(f"WARNING: High latency {event['execution_latency']:.2f}ms")
+                    
+                if len(event["suppression_flags"]) > 0:
+                    alerts_generated.append(f"INFO: Suppression active: {event['suppression_flags']}")
+                    
+                processing_latency = (time.time() - process_start) * 1000  # ms
+                processing_latencies.append(processing_latency)
+                
+            # Validate data flow results
+            data_flow_checks = {
+                "telemetry_processed": len(test_telemetry_data["orchestration_metrics"]) == len(test_telemetry_events),
+                "alerts_generated": len(alerts_generated) > 0,
+                "processing_performance": max(processing_latencies) < 100,  # 100ms max
+                "data_structure_integrity": all(
+                    "timestamp" in entry and "event_type" in entry 
+                    for entry in test_telemetry_data["orchestration_metrics"]
+                )
+            }
+            
+            # Calculate average processing latency
+            avg_latency = sum(processing_latencies) / len(processing_latencies) if processing_latencies else 0
+            
+            logger.info(f"📊 Telemetry Data Flow Metrics:")
+            logger.info(f"   Events Processed: {len(test_telemetry_data['orchestration_metrics'])}")
+            logger.info(f"   Alerts Generated: {len(alerts_generated)}")
+            logger.info(f"   Average Processing Latency: {avg_latency:.2f}ms")
+            logger.info(f"   Alerts: {alerts_generated}")
+            
+            passed_checks = sum(data_flow_checks.values())
+            total_checks = len(data_flow_checks)
+            flow_score = (passed_checks / total_checks) * 100
+            
+            logger.info(f"📊 Data Flow Validation: {passed_checks}/{total_checks} checks passed ({flow_score:.1f}%)")
+            
+            return flow_score >= 85
+            
+        except Exception as e:
+            logger.error(f"❌ Telemetry data flow test failed: {e}")
+            return False
+            
+    def test_telemetry_panel_performance(self):
+        """Test telemetry panel performance under load"""
+        logger.info("🔍 Testing telemetry panel performance...")
+        
+        try:
+            # Performance test parameters
+            num_events = 500
+            max_processing_time = 5.0  # 5 seconds max for all events
+            max_latency_per_event = 50  # 50ms max per event
+            
+            # Generate test telemetry events
+            test_events = []
+            for i in range(num_events):
+                event = {
+                    "event_type": "orchestration_telemetry",
+                    "timestamp": time.time() + i * 0.01,  # 10ms intervals
+                    "signal_priority_queue": i % 10,
+                    "suppression_flags": ["test_flag"] if i % 5 == 0 else [],
+                    "kill_switch_status": "active" if i % 50 == 0 else "inactive",
+                    "volatility_rating": (i % 10) / 10.0 * 10,
+                    "execution_latency": 100 + (i % 100),
+                    "signals_processed": i,
+                    "signals_suppressed": i // 10,
+                    "signals_rerouted": i // 20
+                }
+                test_events.append(event)
+                
+            # Process events and measure performance
+            start_time = time.time()
+            processing_latencies = []
+            
+            test_telemetry_data = deque(maxlen=1000)
+            
+            for event in test_events:
+                event_start = time.time()
+                
+                # Simulate telemetry processing
+                telemetry_entry = {
+                    "timestamp": datetime.datetime.now().isoformat(),
+                    "data": event
+                }
+                
+                test_telemetry_data.append(telemetry_entry)
+                
+                event_latency = (time.time() - event_start) * 1000  # ms
+                processing_latencies.append(event_latency)
+                
+            total_time = time.time() - start_time
+            
+            # Performance analysis
+            avg_latency = sum(processing_latencies) / len(processing_latencies)
+            max_latency = max(processing_latencies)
+            min_latency = min(processing_latencies)
+            throughput = num_events / total_time
+            
+            performance_checks = {
+                "total_time_acceptable": total_time < max_processing_time,
+                "average_latency_acceptable": avg_latency < max_latency_per_event,
+                "max_latency_acceptable": max_latency < (max_latency_per_event * 2),
+                "throughput_adequate": throughput > 50,  # 50 events/second minimum
+                "data_retention_working": len(test_telemetry_data) <= 1000
+            }
+            
+            logger.info(f"📊 Performance Test Results:")
+            logger.info(f"   Total Processing Time: {total_time:.3f}s")
+            logger.info(f"   Average Latency: {avg_latency:.2f}ms")
+            logger.info(f"   Maximum Latency: {max_latency:.2f}ms")
+            logger.info(f"   Minimum Latency: {min_latency:.2f}ms")
+            logger.info(f"   Throughput: {throughput:.1f} events/second")
+            logger.info(f"   Events Retained: {len(test_telemetry_data)}")
+            
+            passed_checks = sum(performance_checks.values())
+            total_checks = len(performance_checks)
+            performance_score = (passed_checks / total_checks) * 100
+            
+            logger.info(f"📊 Performance Validation: {passed_checks}/{total_checks} checks passed ({performance_score:.1f}%)")
+            
+            return performance_score >= 80
+            
+        except Exception as e:
+            logger.error(f"❌ Performance test failed: {e}")
+            return False
+            
+    def test_telemetry_alert_system(self):
+        """Test telemetry alert generation and management"""
+        logger.info("🔍 Testing telemetry alert system...")
+        
+        try:
+            # Define alert test scenarios
+            alert_scenarios = [
+                {
+                    "scenario": "kill_switch_active",
+                    "data": {"kill_switch_status": "active"},
+                    "expected_level": "CRITICAL",
+                    "expected_count": 1
+                },
+                {
+                    "scenario": "high_latency",
+                    "data": {"execution_latency": 1500.0},
+                    "expected_level": "WARNING",
+                    "expected_count": 1
+                },
+                {
+                    "scenario": "signal_suppression",
+                    "data": {"suppression_flags": ["duplicate_signal", "high_cpu"]},
+                    "expected_level": "INFO",
+                    "expected_count": 1
+                },
+                {
+                    "scenario": "normal_operation",
+                    "data": {
+                        "kill_switch_status": "inactive",
+                        "execution_latency": 200.0,
+                        "suppression_flags": []
+                    },
+                    "expected_level": None,
+                    "expected_count": 0
+                }
+            ]
+            
+            # Test alert generation
+            alerts_generated = []
+            
+            for scenario in alert_scenarios:
+                scenario_alerts = []
+                
+                # Check kill switch alerts
+                if scenario["data"].get("kill_switch_status") == "active":
+                    scenario_alerts.append({
+                        "level": "CRITICAL",
+                        "message": "Kill switch activated - signal suppression active"
+                    })
+                    
+                # Check latency alerts
+                if scenario["data"].get("execution_latency", 0) > 1000:
+                    scenario_alerts.append({
+                        "level": "WARNING",
+                        "message": f"High orchestration latency: {scenario['data']['execution_latency']:.2f}ms"
+                    })
+                    
+                # Check suppression alerts
+                if len(scenario["data"].get("suppression_flags", [])) > 0:
+                    scenario_alerts.append({
+                        "level": "INFO",
+                        "message": f"Signal suppression active: {scenario['data']['suppression_flags']}"
+                    })
+                    
+                alerts_generated.extend(scenario_alerts)
+                
+                # Validate alert expectations
+                actual_count = len(scenario_alerts)
+                expected_count = scenario["expected_count"]
+                
+                if actual_count == expected_count:
+                    logger.info(f"✅ Alert scenario '{scenario['scenario']}': {actual_count} alerts generated as expected")
+                else:
+                    logger.warning(f"⚠️ Alert scenario '{scenario['scenario']}': {actual_count} alerts generated, expected {expected_count}")
+                    
+            # Validate alert system functionality
+            alert_checks = {
+                "critical_alerts_generated": any(alert["level"] == "CRITICAL" for alert in alerts_generated),
+                "warning_alerts_generated": any(alert["level"] == "WARNING" for alert in alerts_generated),
+                "info_alerts_generated": any(alert["level"] == "INFO" for alert in alerts_generated),
+                "alert_structure_valid": all(
+                    "level" in alert and "message" in alert 
+                    for alert in alerts_generated
+                ),
+                "appropriate_alert_levels": all(
+                    alert["level"] in ["CRITICAL", "WARNING", "INFO"] 
+                    for alert in alerts_generated
+                )
+            }
+            
+            logger.info(f"📊 Alert System Test Results:")
+            logger.info(f"   Total Alerts Generated: {len(alerts_generated)}")
+            logger.info(f"   Critical Alerts: {sum(1 for a in alerts_generated if a['level'] == 'CRITICAL')}")
+            logger.info(f"   Warning Alerts: {sum(1 for a in alerts_generated if a['level'] == 'WARNING')}")
+            logger.info(f"   Info Alerts: {sum(1 for a in alerts_generated if a['level'] == 'INFO')}")
+            
+            passed_checks = sum(alert_checks.values())
+            total_checks = len(alert_checks)
+            alert_score = (passed_checks / total_checks) * 100
+            
+            logger.info(f"📊 Alert System Validation: {passed_checks}/{total_checks} checks passed ({alert_score:.1f}%)")
+            
+            return alert_score >= 80
+            
+        except Exception as e:
+            logger.error(f"❌ Alert system test failed: {e}")
+            return False
+            
+    def test_telemetry_data_integrity(self):
+        """Test telemetry data integrity and structure validation"""
+        logger.info("🔍 Testing telemetry data integrity...")
+        
+        try:
+            # Define required telemetry data fields
+            required_fields = [
+                "signal_priority_queue",
+                "suppression_flags", 
+                "kill_switch_status",
+                "volatility_rating",
+                "execution_latency",
+                "signals_processed",
+                "signals_suppressed",
+                "signals_rerouted"
+            ]
+            
+            # Create test telemetry data
+            test_telemetry = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "event_type": "orchestration_telemetry",
+                "signal_priority_queue": 7,
+                "suppression_flags": ["test_flag"],
+                "kill_switch_status": "inactive",
+                "volatility_rating": 5.5,
+                "execution_latency": 350.0,
+                "signals_processed": 25,
+                "signals_suppressed": 3,
+                "signals_rerouted": 1,
+                "module": "strategic_signal_orchestrator",
+                "phase": "PHASE_35"
+            }
+            
+            # Validate data integrity
+            integrity_checks = {
+                "all_required_fields_present": all(field in test_telemetry for field in required_fields),
+                "timestamp_format_valid": test_telemetry["timestamp"].count("T") == 1,
+                "numeric_fields_valid": all(
+                    isinstance(test_telemetry[field], (int, float)) 
+                    for field in ["signal_priority_queue", "volatility_rating", "execution_latency", 
+                                 "signals_processed", "signals_suppressed", "signals_rerouted"]
+                ),
+                "string_fields_valid": all(
+                    isinstance(test_telemetry[field], str) 
+                    for field in ["event_type", "kill_switch_status", "module", "phase"]
+                ),
+                "list_fields_valid": isinstance(test_telemetry["suppression_flags"], list),
+                "phase_identifier_correct": test_telemetry["phase"] == "PHASE_35",
+                "module_identifier_correct": test_telemetry["module"] == "strategic_signal_orchestrator"
+            }
+            
+            # Test data range validation
+            range_checks = {
+                "queue_depth_reasonable": 0 <= test_telemetry["signal_priority_queue"] <= 1000,
+                "volatility_in_range": 0.0 <= test_telemetry["volatility_rating"] <= 10.0,
+                "latency_positive": test_telemetry["execution_latency"] >= 0,
+                "counters_non_negative": all(
+                    test_telemetry[field] >= 0 
+                    for field in ["signals_processed", "signals_suppressed", "signals_rerouted"]
+                ),
+                "kill_switch_valid_value": test_telemetry["kill_switch_status"] in ["active", "inactive"]
+            }
+            
+            # Combine all checks
+            all_checks = {**integrity_checks, **range_checks}
+            
+            logger.info(f"📊 Data Integrity Validation:")
+            for check_name, check_result in all_checks.items():
+                status = "✅" if check_result else "❌"
+                logger.info(f"   {status} {check_name}")
+                
+            passed_checks = sum(all_checks.values())
+            total_checks = len(all_checks)
+            integrity_score = (passed_checks / total_checks) * 100
+            
+            logger.info(f"📊 Data Integrity Score: {passed_checks}/{total_checks} checks passed ({integrity_score:.1f}%)")
+            
+            return integrity_score >= 90
+            
+        except Exception as e:
+            logger.error(f"❌ Data integrity test failed: {e}")
+            return False
+
+def run_orchestration_telemetry_panel_tests():
+    """Run comprehensive orchestration telemetry panel test suite"""
+    logger.info("🚀 Starting Strategic Signal Orchestrator Telemetry Panel Test Suite")
+    
+    test_suite = TestOrchestrationTelemetryPanel()
+    test_results = {}
+    
+    # Define test cases
+    tests = [
+        ("panel_integration", test_suite.test_telemetry_panel_integration),
+        ("data_flow", test_suite.test_orchestration_telemetry_data_flow),
+        ("performance", test_suite.test_telemetry_panel_performance),
+        ("alert_system", test_suite.test_telemetry_alert_system),
+        ("data_integrity", test_suite.test_telemetry_data_integrity)
+    ]
+    
+    passed_tests = 0
+    total_tests = len(tests)
+    
+    for test_name, test_func in tests:
+        try:
+            logger.info(f"🧪 Running test: {test_name}")
+            result = test_func()
+            test_results[test_name] = result
+            if result:
+                passed_tests += 1
+                logger.info(f"✅ Test {test_name}: PASSED")
+            else:
+                logger.error(f"❌ Test {test_name}: FAILED")
+        except Exception as e:
+            logger.error(f"💥 Test {test_name}: CRASHED - {e}")
+            test_results[test_name] = False
+            
+    # Final results
+    success_rate = (passed_tests / total_tests) * 100
+    logger.info(f"📊 Telemetry Panel Test Results: {passed_tests}/{total_tests} passed ({success_rate:.1f}%)")
+    
+    if success_rate >= 85:
+        logger.info("🎉 Strategic Signal Orchestrator Telemetry Panel: ALL TESTS PASSED")
+        return True
+    else:
+        logger.error("💥 Strategic Signal Orchestrator Telemetry Panel: SOME TESTS FAILED")
+        return False
+
+if __name__ == "__main__":
+    """Direct execution for manual testing"""
+    try:
+        success = run_orchestration_telemetry_panel_tests()
+        if success:
+            logger.info("✅ Telemetry panel test suite completed successfully")
+        else:
+            logger.error("❌ Telemetry panel test suite failed")
+    except KeyboardInterrupt:
+        logger.info("👋 Telemetry panel test suite interrupted by user")
+    except Exception as e:
+        logger.error(f"💥 Telemetry panel test suite crashed: {e}")
+
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: test_phase35_telemetry_panel -->

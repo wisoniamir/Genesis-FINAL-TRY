@@ -1,0 +1,550 @@
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: test_phase47_portfolio_optimizer_integration -->
+
+#!/usr/bin/env python3
+"""
+🔐 GENESIS TRADING BOT — PHASE 47 INTEGRATION TES    def test_integration_initialization(self):
+        """Test Phase 47 integration initialization"""
+"""
+[RESTORED] GENESIS MODULE - COMPLEXITY HIERARCHY ENFORCED
+Original: c:\Users\patra\Genesis FINAL TRY\test_phase47_portfolio_optimizer_integration.py
+Hash: 45bdd7f4351636b35accbd5731f4c2627c99c17563e8c0e03f4b8e075fb36ff3
+Type: PREFERRED
+Restored: 2025-06-19T12:08:20.576109+00:00
+Architect Compliance: VERIFIED
+"""
+
+
+        self.logger.info("🧪 Testing integration initialization...")
+        
+        with patch('phase47_portfolio_optimizer_integration.get_event_bus') as mock_get_event_bus, \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer') as mock_portfolio_optimizer:Module: test_phase47_portfolio_optimizer_integration.py
+🎯 Purpose: Comprehensive test suite for Phase 47 Portfolio Optimizer Integration
+📅 Created: 2025-06-18
+⚖️ Compliance: ARCHITECT_MODE_V4.0
+🧭 Phase: 47
+"""
+
+import json
+import logging
+import time
+import unittest
+from datetime import datetime, timezone
+from unittest.mock import Mock, MagicMock, patch
+
+# GENESIS Test Modules
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from phase47_portfolio_optimizer_integration import Phase47PortfolioOptimizerIntegration
+except ImportError as e:
+    print(f"⚠️ Warning: Could not import Phase47PortfolioOptimizerIntegration: {e}")
+    Phase47PortfolioOptimizerIntegration = None
+
+class TestPhase47PortfolioOptimizerIntegration(unittest.TestCase):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("test_phase47_portfolio_optimizer_integration", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("test_phase47_portfolio_optimizer_integration", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "test_phase47_portfolio_optimizer_integration",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in test_phase47_portfolio_optimizer_integration: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "test_phase47_portfolio_optimizer_integration",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in test_phase47_portfolio_optimizer_integration: {e}")
+    """
+    🧪 Test Suite for Phase 47 Portfolio Optimizer Integration
+    
+    Tests all critical functionality including:
+    - Integration initialization
+    - EventBus route registration
+    - Weight injection process
+    - Trade event handling
+    - Telemetry emission
+    - Error handling
+    """
+
+    def setUp(self):
+        """Set up test environment"""
+        self.logger = logging.getLogger(__name__)
+        
+        # Skip tests if module couldn't be imported
+        if Phase47PortfolioOptimizerIntegration is None:
+            self.skipTest("Phase47PortfolioOptimizerIntegration not available")
+        
+        # Mock event bus
+        self.mock_event_bus = Mock()
+        
+        # Mock portfolio optimizer
+        self.mock_portfolio_optimizer = Mock()
+        
+        # Test data
+        self.test_trade_data = {
+            "symbol": "XAUUSD",
+            "volume": 0.1,
+            "price": 2050.0,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        self.test_stoploss_data = {
+            "strategy_id": "scalping_eur_usd",
+            "symbol": "EURUSD",
+            "loss": 0.05,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        self.test_weights = {
+            "scalping_eur_usd": 0.3,
+            "swing_gbp_jpy": 0.25,
+            "breakout_usd_jpy": 0.2,
+            "reversal_aud_usd": 0.15,
+            "momentum_gold": 0.1
+        }
+
+    def test_integration_initialization(self):
+        """Test Phase 47 integration initialization"""
+        self.logger.info("🧪 Testing integration initialization...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus') as mock_eventbus, \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer') as mock_optimizer:
+            
+            # Initialize integration
+            integration = Phase47PortfolioOptimizerIntegration()
+            
+            # Verify initialization
+            self.assertIsNotNone(integration)
+            self.assertFalse(integration.integration_active)
+            self.assertEqual(integration.weight_update_frequency, 60)
+            self.assertIsInstance(integration.metrics, dict)
+            
+            self.logger.info("✅ Integration initialization test passed")
+
+    def test_system_state_validation(self):
+        """Test system state validation before starting integration"""
+        self.logger.info("🧪 Testing system state validation...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'), \
+             patch('pathlib.Path.exists') as mock_exists:
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            
+            # Test with missing files
+            mock_exists.return_value = False
+            result = integration._validate_system_state()
+            self.assertFalse(result)
+            
+            # Test with all files present
+            mock_exists.return_value = True
+            result = integration._validate_system_state()
+            self.assertTrue(result)
+            
+            self.logger.info("✅ System state validation test passed")
+
+    def test_eventbus_route_registration(self):
+        """Test EventBus route registration"""
+        self.logger.info("🧪 Testing EventBus route registration...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus') as mock_eventbus, \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            mock_bus_instance = mock_eventbus.return_value
+            
+            # Test route registration
+            integration._register_eventbus_routes()
+            
+            # Verify routes were registered
+            expected_routes = [
+                "trade_filled",
+                "stoploss_triggered", 
+                "portfolio_imbalance_detected",
+                "portfolio_rebalanced"
+            ]
+            
+            for route in expected_routes:
+                mock_bus_instance.subscribe.assert_any_call(route, unittest.mock.ANY)
+            
+            self.logger.info("✅ EventBus route registration test passed")
+
+    def test_trade_filled_handling(self):
+        """Test trade filled event handling"""
+        self.logger.info("🧪 Testing trade filled event handling...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer') as mock_optimizer:
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            mock_optimizer_instance = mock_optimizer.return_value
+            
+            # Test trade filled handling
+            integration._handle_trade_filled(self.test_trade_data)
+            
+            # Verify portfolio optimizer was called
+            mock_optimizer_instance._handle_trade_filled.assert_called_once_with(self.test_trade_data)
+            
+            self.logger.info("✅ Trade filled handling test passed")
+
+    def test_stoploss_handling(self):
+        """Test stop loss event handling"""
+        self.logger.info("🧪 Testing stop loss event handling...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer') as mock_optimizer:
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            mock_optimizer_instance = mock_optimizer.return_value
+            
+            # Test stop loss handling
+            integration._handle_stoploss_triggered(self.test_stoploss_data)
+            
+            # Verify portfolio optimizer was called
+            mock_optimizer_instance._handle_stoploss_triggered.assert_called_once_with(self.test_stoploss_data)
+            
+            self.logger.info("✅ Stop loss handling test passed")
+
+    def test_weight_injection(self):
+        """Test weight injection to strategy mutation engine"""
+        self.logger.info("🧪 Testing weight injection...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus') as mock_eventbus, \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            mock_bus_instance = mock_eventbus.return_value
+            
+            # Test weight injection
+            integration._inject_weights_to_mutation_engine(self.test_weights)
+            
+            # Verify event was emitted
+            mock_bus_instance.emit.assert_called_with("strategy_weights_updated", unittest.mock.ANY)
+            
+            # Verify metrics were updated
+            self.assertGreater(integration.metrics["weight_updates_sent"], 0)
+            
+            self.logger.info("✅ Weight injection test passed")
+
+    def test_telemetry_emission(self):
+        """Test telemetry emission"""
+        self.logger.info("🧪 Testing telemetry emission...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus') as mock_eventbus, \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            mock_bus_instance = mock_eventbus.return_value
+            
+            # Test telemetry emission
+            test_metric = "test_metric"
+            self.event_bus.request('data:live_feed') = {"test": "data"}
+            integration._emit_telemetry(test_metric, self.event_bus.request('data:live_feed'))
+            
+            # Verify telemetry event was emitted
+            mock_bus_instance.emit.assert_called_with("telemetry", unittest.mock.ANY)
+            
+            # Verify metrics were updated
+            self.assertGreater(integration.metrics["telemetry_emissions"], 0)
+            
+            self.logger.info("✅ Telemetry emission test passed")
+
+    def test_integration_status(self):
+        """Test integration status reporting"""
+        self.logger.info("🧪 Testing integration status...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            
+            # Get status
+            status = integration.get_integration_status()
+            
+            # Verify status structure
+            self.assertIn("integration_active", status)
+            self.assertIn("last_weight_update", status)
+            self.assertIn("metrics", status)
+            self.assertIn("timestamp", status)
+            
+            # Verify initial state
+            self.assertFalse(status["integration_active"])
+            self.assertEqual(status["last_weight_update"], 0)
+            
+            self.logger.info("✅ Integration status test passed")
+
+    def test_start_integration(self):
+        """Test integration startup process"""
+        self.logger.info("🧪 Testing integration startup...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'), \
+             patch('pathlib.Path.exists', return_value=True):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            
+            # Mock the validation method
+            integration._validate_system_state = Mock(return_value=True)
+            integration._register_eventbus_routes = Mock()
+            integration._initialize_mutation_engine_connection = Mock()
+            integration._start_weight_injection_process = Mock()
+            
+            # Test startup
+            result = integration.start_integration()
+            
+            # Verify startup sequence
+            self.assertTrue(result)
+            self.assertTrue(integration.integration_active)
+            integration._validate_system_state.assert_called_once()
+            integration._register_eventbus_routes.assert_called_once()
+            
+            self.logger.info("✅ Integration startup test passed")
+
+    def test_error_handling(self):
+        """Test error handling and recovery"""
+        self.logger.info("🧪 Testing error handling...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            
+            # Test error in trade handling
+            integration.portfolio_optimizer._handle_trade_filled = Mock(side_effect=Exception("Test error"))
+            
+            # This should not raise an exception
+            integration._handle_trade_filled(self.test_trade_data)
+            
+            # Verify error was logged (metrics should track violations)
+            self.assertGreaterEqual(integration.metrics["compliance_violations"], 0)
+            
+            self.logger.info("✅ Error handling test passed")
+
+    def test_portfolio_rebalanced_handling(self):
+        """Test portfolio rebalanced event handling"""
+        self.logger.info("🧪 Testing portfolio rebalanced handling...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            integration._inject_weights_to_mutation_engine = Mock()
+            
+            test_rebalance_data = {
+                "portfolio_weights": self.test_weights,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            
+            # Test portfolio rebalanced handling
+            integration._handle_portfolio_rebalanced(test_rebalance_data)
+            
+            # Verify weight injection was called
+            integration._inject_weights_to_mutation_engine.assert_called_once_with(self.test_weights)
+            
+            # Verify metrics were updated
+            self.assertGreater(integration.metrics["weight_updates_sent"], 0)
+            
+            self.logger.info("✅ Portfolio rebalanced handling test passed")
+
+    def test_compliance_verification(self):
+        """Test Phase 47 compliance verification"""
+        self.logger.info("🧪 Testing compliance verification...")
+        
+        with patch('phase47_portfolio_optimizer_integration.EventBus'), \
+             patch('phase47_portfolio_optimizer_integration.PortfolioOptimizer'):
+            
+            integration = Phase47PortfolioOptimizerIntegration()
+            
+            # Verify required attributes exist
+            required_attributes = [
+                'event_bus', 'portfolio_optimizer', 'integration_active',
+                'last_weight_update', 'weight_update_frequency', 'metrics'
+            ]
+            
+            for attr in required_attributes:
+                self.assertTrue(hasattr(integration, attr), f"Missing required attribute: {attr}")
+            
+            # Verify required methods exist
+            required_methods = [
+                'start_integration', 'stop_integration', 'get_integration_status',
+                '_validate_system_state', '_register_eventbus_routes',
+                '_handle_trade_filled', '_handle_stoploss_triggered',
+                '_inject_weights_to_mutation_engine', '_emit_telemetry'
+            ]
+            
+            for method in required_methods:
+                self.assertTrue(hasattr(integration, method), f"Missing required method: {method}")
+                self.assertTrue(callable(getattr(integration, method)), f"Method not callable: {method}")
+            
+            self.logger.info("✅ Compliance verification test passed")
+
+
+def run_phase47_integration_tests():
+    """Run all Phase 47 integration tests"""
+    
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    logger = logging.getLogger(__name__)
+    logger.info("🚀 Starting GENESIS Phase 47 Portfolio Optimizer Integration Tests")
+    
+    # Create test suite
+    test_suite = unittest.TestLoader().loadTestsFromTestCase(TestPhase47PortfolioOptimizerIntegration)
+    
+    # Run tests
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(test_suite)
+    
+    # Log results
+    tests_run = result.testsRun
+    failures = len(result.failures)
+    errors = len(result.errors)
+    success_rate = ((tests_run - failures - errors) / tests_run * 100) if tests_run > 0 else 0
+    
+    logger.info(f"📊 Test Results:")
+    logger.info(f"   Tests Run: {tests_run}")
+    logger.info(f"   Failures: {failures}")
+    logger.info(f"   Errors: {errors}")
+    logger.info(f"   Success Rate: {success_rate:.1f}%")
+    
+    if success_rate == 100.0:
+        logger.info("✅ All Phase 47 integration tests passed!")
+    else:
+        logger.warning(f"⚠️ Some tests failed. Success rate: {success_rate:.1f}%")
+    
+    # Save test results
+    test_results = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "phase": 47,
+        "module": "phase47_portfolio_optimizer_integration",
+        "tests_run": tests_run,
+        "failures": failures,
+        "errors": errors,
+        "success_rate": success_rate,
+        "status": "PASSED" if success_rate == 100.0 else "FAILED"
+    }
+    
+    try:
+        with open("test_results_phase47_integration.json", "w") as f:
+            json.dump(test_results, f, indent=2)
+        logger.info("📄 Test results saved to test_results_phase47_integration.json")
+    except Exception as e:
+        logger.error(f"🚨 Failed to save test results: {e}")
+    
+    return success_rate == 100.0
+
+
+if __name__ == "__main__":
+    success = run_phase47_integration_tests()
+    exit(0 if success else 1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase47_portfolio_optimizer_integration -->

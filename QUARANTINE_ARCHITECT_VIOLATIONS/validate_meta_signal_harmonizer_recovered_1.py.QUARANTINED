@@ -1,0 +1,67 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.145207+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer_recovered_1.py",
+      "line_numbers": [
+        114,
+        123,
+        125
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer_recovered_1.py",
+      "line_numbers": [
+        119,
+        121
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer_recovered_1.py",
+      "line_numbers": [
+        32,
+        38,
+        48,
+        59,
+        94
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer_recovered_1.py",
+      "line_numbers": [
+        42,
+        53,
+        67,
+        110,
+        135
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer_recovered_1.py",
+      "line_numbers": [
+        64,
+        85,
+        91,
+        130,
+        149
+      ],
+      "violation_count": 5
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "winapi",
+  "original_path": "modules\\restored\\winapi.py",
+  "preserved_path": "preservation_holding_area\\winapi_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 32972,
+  "checksum": "2047d64d9d7420f3352e8771e497735a71ebf5c5b05e7ee481dcc8278ae0b433"
+}

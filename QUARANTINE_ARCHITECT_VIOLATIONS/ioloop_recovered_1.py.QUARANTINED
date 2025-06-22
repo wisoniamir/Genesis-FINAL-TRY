@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.961762+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        62,
+        65,
+        238,
+        243,
+        258
+      ],
+      "violation_count": 21
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "raise NotImplementedError",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        319,
+        390,
+        421,
+        430,
+        439
+      ],
+      "violation_count": 10
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        274
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        96,
+        270,
+        279,
+        501,
+        757
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        507,
+        777,
+        948
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        273,
+        532,
+        729,
+        842,
+        942
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\ioloop_recovered_1.py",
+      "line_numbers": [
+        56,
+        286,
+        511,
+        514,
+        543
+      ],
+      "violation_count": 11
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

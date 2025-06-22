@@ -1,0 +1,121 @@
+# GENESIS Desktop GUI Docker Image - Compatible with Linux
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV DISPLAY=:0
+ENV QT_QPA_PLATFORM=offscreen
+
+# Install system dependencies for GUI support
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    x11-utils \
+    qtbase5-dev \
+    qttools5-dev \
+    libegl1-mesa \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libxext6 \
+    libsm6 \
+    libxrender1 \
+    libfontconfig1 \
+    libice6 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxi6 \
+    libxtst6 \
+    libnss3 \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libdrm2 \
+    libxss1 \
+    libgtk-3-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create working directory
+WORKDIR /genesis
+
+# Install core Python dependencies directly (no MT5)
+RUN pip install --no-cache-dir \
+    streamlit>=1.34.0 \
+    plotly>=5.17.0 \
+    pandas>=2.0.3 \
+    numpy>=1.24.3 \
+    requests>=2.31.0 \
+    websockets>=11.0.3 \
+    aiohttp>=3.8.5 \
+    python-dateutil>=2.8.2 \
+    dash>=2.15.0 \
+    dash-bootstrap-components>=1.5.0 \
+    psutil>=5.9.5 \
+    schedule>=1.2.0 \
+    pydantic>=2.4.2 \
+    fastapi>=0.103.2 \
+    uvicorn>=0.23.2 \
+    python-multipart>=0.0.6 \
+    yfinance>=0.2.25 \
+    ta>=0.10.2 \
+    scikit-learn>=1.3.2 \
+    matplotlib>=3.7.2 \
+    seaborn>=0.12.2 \
+    jupyter>=1.0.0 \
+    pillow>=10.0.1
+
+# Install additional GUI-specific packages
+RUN pip install --no-cache-dir \
+    ttkbootstrap>=1.10.1 \
+    customtkinter>=5.2.0 \
+    PySide6>=6.5.2
+
+# Copy the core application files (avoiding large context)
+COPY core/ ./core/
+COPY *.py ./
+COPY *.json ./
+COPY *.md ./
+
+# Create mock MetaTrader5 module for Linux compatibility
+RUN mkdir -p /usr/local/lib/python3.11/site-packages/MetaTrader5 && \
+    echo "# Mock MetaTrader5 for Linux compatibility" > /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def initialize(): return False" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def shutdown(): pass" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def login(): return False" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def account_info(): return None" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def copy_rates_from(): return []" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def symbol_info(): return None" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def order_send(): return None" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def positions_get(): return []" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py && \
+    echo "def orders_get(): return []" >> /usr/local/lib/python3.11/site-packages/MetaTrader5/__init__.py
+
+# Set up virtual display for GUI applications
+RUN echo '#!/bin/bash\nXvfb :0 -screen 0 1920x1080x24 &\nexport DISPLAY=:0\nexec "$@"' > /usr/local/bin/start-xvfb.sh && \
+    chmod +x /usr/local/bin/start-xvfb.sh
+
+# Create startup script for GENESIS
+RUN echo '#!/bin/bash\n\
+echo "🚀 Starting GENESIS Desktop GUI in Docker..."\n\
+echo "⚡ Setting up virtual display..."\n\
+Xvfb :0 -screen 0 1920x1080x24 &\n\
+export DISPLAY=:0\n\
+sleep 2\n\
+echo "🔧 Initializing GENESIS systems..."\n\
+cd /genesis\n\
+python -c "from lightweight_validation_hook import quick_integrity_check; quick_integrity_check()"\n\
+echo "🖥️ Launching GENESIS Desktop Application..."\n\
+python genesis_desktop.py &\n\
+echo "🌐 Starting GENESIS Dashboard on port 8501..."\n\
+streamlit run dashboard.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true\n\
+' > /genesis/start_genesis.sh && chmod +x /genesis/start_genesis.sh
+
+# Expose ports for web dashboard and any APIs
+EXPOSE 8501 8502 8503
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8501/ || exit 1
+
+# Set entrypoint
+ENTRYPOINT ["/genesis/start_genesis.sh"]
+
+# Default command
+CMD []

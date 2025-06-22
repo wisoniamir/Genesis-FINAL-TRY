@@ -1,0 +1,460 @@
+import numpy as np
+from numpy.linalg import LinAlgError
+from .blas import get_blas_funcs
+from .lapack import get_lapack_funcs
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_misc_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _misc_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_misc_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_misc_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _misc_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: _misc_recovered_2 -->
+
+
+# <!-- @GENESIS_MODULE_START: _misc_recovered_2 -->
+
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+__all__ = ['LinAlgError', 'LinAlgWarning', 'norm']
+
+
+class LinAlgWarning(RuntimeWarning):
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_misc_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _misc_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_misc_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_misc_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _misc_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_misc_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _misc_recovered_2: {e}")
+    """
+    The warning emitted when a linear algebra related operation is close
+    to fail conditions of the algorithm or loss of accuracy is expected.
+    """
+    pass
+
+
+def norm(a, ord=None, axis=None, keepdims=False, check_finite=True):
+    """
+    Matrix or vector norm.
+
+    This function is able to return one of eight different matrix norms,
+    or one of an infinite number of vector norms (described below), depending
+    on the value of the ``ord`` parameter. For tensors with rank different from
+    1 or 2, only `ord=None` is supported.
+
+    Parameters
+    ----------
+    a : array_like
+        Input array. If `axis` is None, `a` must be 1-D or 2-D, unless `ord`
+        is None. If both `axis` and `ord` are None, the 2-norm of
+        ``a.ravel`` will be returned.
+    ord : {int, inf, -inf, 'fro', 'nuc', None}, optional
+        Order of the norm (see table under ``Notes``). inf means NumPy's
+        `inf` object.
+    axis : {int, 2-tuple of ints, None}, optional
+        If `axis` is an integer, it specifies the axis of `a` along which to
+        compute the vector norms. If `axis` is a 2-tuple, it specifies the
+        axes that hold 2-D matrices, and the matrix norms of these matrices
+        are computed. If `axis` is None then either a vector norm (when `a`
+        is 1-D) or a matrix norm (when `a` is 2-D) is returned.
+    keepdims : bool, optional
+        If this is set to True, the axes which are normed over are left in the
+        result as dimensions with size one. With this option the result will
+        broadcast correctly against the original `a`.
+    check_finite : bool, optional
+        Whether to check that the input matrix contains only finite numbers.
+        Disabling may give a performance gain, but may result in problems
+        (crashes, non-termination) if the inputs do contain infinities or NaNs.
+
+    Returns
+    -------
+    n : float or ndarray
+        Norm of the matrix or vector(s).
+
+    Notes
+    -----
+    For values of ``ord <= 0``, the result is, strictly speaking, not a
+    mathematical 'norm', but it may still be useful for various numerical
+    purposes.
+
+    The following norms can be calculated:
+
+    =====  ============================  ==========================
+    ord    norm for matrices             norm for vectors
+    =====  ============================  ==========================
+    None   Frobenius norm                2-norm
+    'fro'  Frobenius norm                --
+    'nuc'  nuclear norm                  --
+    inf    max(sum(abs(a), axis=1))      max(abs(a))
+    -inf   min(sum(abs(a), axis=1))      min(abs(a))
+    0      --                            sum(a != 0)
+    1      max(sum(abs(a), axis=0))      as below
+    -1     min(sum(abs(a), axis=0))      as below
+    2      2-norm (largest sing. value)  as below
+    -2     smallest singular value       as below
+    other  --                            sum(abs(a)**ord)**(1./ord)
+    =====  ============================  ==========================
+
+    The Frobenius norm is given by [1]_:
+
+        :math:`||A||_F = [\\sum_{i,j} abs(a_{i,j})^2]^{1/2}`
+
+    The nuclear norm is the sum of the singular values.
+
+    Both the Frobenius and nuclear norm orders are only defined for
+    matrices.
+
+    References
+    ----------
+    .. [1] G. H. Golub and C. F. Van Loan, *Matrix Computations*,
+           Baltimore, MD, Johns Hopkins University Press, 1985, pg. 15
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from scipy.linalg import norm
+    >>> a = np.arange(9) - 4.0
+    >>> a
+    array([-4., -3., -2., -1.,  0.,  1.,  2.,  3.,  4.])
+    >>> b = a.reshape((3, 3))
+    >>> b
+    array([[-4., -3., -2.],
+           [-1.,  0.,  1.],
+           [ 2.,  3.,  4.]])
+
+    >>> norm(a)
+    7.745966692414834
+    >>> norm(b)
+    7.745966692414834
+    >>> norm(b, 'fro')
+    7.745966692414834
+    >>> norm(a, np.inf)
+    4.0
+    >>> norm(b, np.inf)
+    9.0
+    >>> norm(a, -np.inf)
+    0.0
+    >>> norm(b, -np.inf)
+    2.0
+
+    >>> norm(a, 1)
+    20.0
+    >>> norm(b, 1)
+    7.0
+    >>> norm(a, -1)
+    -4.6566128774142013e-010
+    >>> norm(b, -1)
+    6.0
+    >>> norm(a, 2)
+    7.745966692414834
+    >>> norm(b, 2)
+    7.3484692283495345
+
+    >>> norm(a, -2)
+    0.0
+    >>> norm(b, -2)
+    1.8570331885190563e-016
+    >>> norm(a, 3)
+    5.8480354764257312
+    >>> norm(a, -3)
+    0.0
+
+    """
+    # Differs from numpy only in non-finite handling and the use of blas.
+    if check_finite:
+        a = np.asarray_chkfinite(a)
+    else:
+        a = np.asarray(a)
+
+    if a.size and a.dtype.char in 'fdFD' and axis is None and not keepdims:
+
+        if ord in (None, 2) and (a.ndim == 1):
+            # use blas for fast and stable euclidean norm
+            nrm2 = get_blas_funcs('nrm2', dtype=a.dtype, ilp64='preferred')
+            return nrm2(a)
+
+        if a.ndim == 2:
+            # Use lapack for a couple fast matrix norms.
+            # For some reason the *lange frobenius norm is slow.
+            lange_args = None
+            # Make sure this works if the user uses the axis keywords
+            # to apply the norm to the transpose.
+            if ord == 1:
+                if np.isfortran(a):
+                    lange_args = '1', a
+                elif np.isfortran(a.T):
+                    lange_args = 'i', a.T
+            elif ord == np.inf:
+                if np.isfortran(a):
+                    lange_args = 'i', a
+                elif np.isfortran(a.T):
+                    lange_args = '1', a.T
+            if lange_args:
+                lange = get_lapack_funcs('lange', dtype=a.dtype, ilp64='preferred')
+                return lange(*lange_args)
+
+    # fall back to numpy in every other case
+    return np.linalg.norm(a, ord=ord, axis=axis, keepdims=keepdims)
+
+
+def _datacopied(arr, original):
+    """
+    Strict check for `arr` not sharing any data with `original`,
+    under the assumption that arr = asarray(original)
+
+    """
+    if arr is original:
+        return False
+    if not isinstance(original, np.ndarray) and hasattr(original, '__array__'):
+        return False
+    return arr.base is None
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

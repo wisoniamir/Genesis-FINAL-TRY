@@ -1,0 +1,9 @@
+{
+  "module_id": "gen_test",
+  "original_path": "modules\\restored\\gen_test.py",
+  "preserved_path": "preservation_holding_area\\gen_test_20250621_212801.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 112199,
+  "checksum": "1b14f6c8ac42029d2f981d3882bff3646613c9b7a4c09938682f16fd62a1925f"
+}

@@ -1,0 +1,155 @@
+{
+  "event_additions": {
+    "git_operations": [
+      {
+        "event_type": "GIT_SYNC_REQUESTED",
+        "description": "A request to synchronize with the GitHub repository",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_OPERATION_STARTED",
+        "description": "A Git operation has started",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_OPERATION_COMPLETED",
+        "description": "A Git operation has completed successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_OPERATION_FAILED",
+        "description": "A Git operation has failed",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_COMMIT_DETECTED",
+        "description": "A new Git commit was detected in the remote repository",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_PULL_COMPLETED",
+        "description": "A Git pull operation has completed successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_COMMIT_COMPLETED",
+        "description": "A Git commit operation has completed successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_PUSH_COMPLETED",
+        "description": "A Git push operation has completed successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_MONITORING_STARTED",
+        "description": "Git repository monitoring has started",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "GIT_MONITORING_STOPPED",
+        "description": "Git repository monitoring has stopped",
+        "category": "SYSTEM.INTEGRATION"
+      }
+    ],
+    "workflow_operations": [
+      {
+        "event_type": "WORKFLOW_STARTED",
+        "description": "A CI/CD workflow has started",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "WORKFLOW_COMPLETED",
+        "description": "A CI/CD workflow has completed successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "WORKFLOW_FAILED",
+        "description": "A CI/CD workflow has failed",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "AUDIT_STARTED",
+        "description": "A system audit has started",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "AUDIT_COMPLETED",
+        "description": "A system audit has completed successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "AUDIT_FAILED",
+        "description": "A system audit has failed",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "PATCH_CREATED",
+        "description": "A patch has been created",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "PATCH_APPLIED",
+        "description": "A patch has been applied successfully",
+        "category": "SYSTEM.INTEGRATION"
+      },
+      {
+        "event_type": "PATCH_FAILED",
+        "description": "A patch has failed to apply",
+        "category": "SYSTEM.INTEGRATION"
+      }
+    ]
+  },
+  "route_additions": [
+    {
+      "event_type": "GIT_SYNC_REQUESTED",
+      "producers": ["genesis_desktop", "github_sync_cli", "architect_mode_system_guardian"],
+      "consumers": ["github_integration_sync"]
+    },
+    {
+      "event_type": "GIT_OPERATION_STARTED",
+      "producers": ["github_integration_sync"],
+      "consumers": ["dashboard_engine", "telemetry_engine"]
+    },
+    {
+      "event_type": "GIT_OPERATION_COMPLETED",
+      "producers": ["github_integration_sync"],
+      "consumers": ["dashboard_engine", "telemetry_engine"]
+    },
+    {
+      "event_type": "GIT_OPERATION_FAILED",
+      "producers": ["github_integration_sync"],
+      "consumers": ["dashboard_engine", "telemetry_engine", "notification_manager"]
+    },
+    {
+      "event_type": "GIT_COMMIT_DETECTED",
+      "producers": ["github_integration_sync"],
+      "consumers": ["dashboard_engine", "telemetry_engine", "github_ci_cd_workflow"]
+    },
+    {
+      "event_type": "GIT_PULL_COMPLETED",
+      "producers": ["github_integration_sync"],
+      "consumers": ["dashboard_engine", "telemetry_engine", "github_ci_cd_workflow", "architect_mode_system_guardian"]
+    },
+    {
+      "event_type": "WORKFLOW_STARTED",
+      "producers": ["github_ci_cd_workflow"],
+      "consumers": ["dashboard_engine", "telemetry_engine"]
+    },
+    {
+      "event_type": "WORKFLOW_COMPLETED",
+      "producers": ["github_ci_cd_workflow"],
+      "consumers": ["dashboard_engine", "telemetry_engine", "notification_manager"]
+    },
+    {
+      "event_type": "AUDIT_COMPLETED",
+      "producers": ["github_integration_sync", "github_ci_cd_workflow"],
+      "consumers": ["dashboard_engine", "telemetry_engine", "notification_manager", "architect_mode_system_guardian"]
+    },
+    {
+      "event_type": "PATCH_APPLIED",
+      "producers": ["github_integration_sync"],
+      "consumers": ["dashboard_engine", "telemetry_engine", "notification_manager", "architect_mode_system_guardian"]
+    }
+  ]
+}

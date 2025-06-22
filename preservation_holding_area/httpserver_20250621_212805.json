@@ -1,0 +1,9 @@
+{
+  "module_id": "httpserver",
+  "original_path": "modules\\restored\\httpserver.py",
+  "preserved_path": "preservation_holding_area\\httpserver_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 42641,
+  "checksum": "dca1aa297a01c01745baa74a7b2acc7f5951ae940d80e698e90fb44eead7bcae"
+}

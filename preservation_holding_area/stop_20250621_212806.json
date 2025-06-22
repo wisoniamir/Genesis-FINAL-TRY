@@ -1,0 +1,9 @@
+{
+  "module_id": "stop",
+  "original_path": "modules\\restored\\stop.py",
+  "preserved_path": "preservation_holding_area\\stop_20250621_212806.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 49569,
+  "checksum": "f859fcbf994ad3f3ecc81f757a552de330e9c0aa085aa28a17d57071d3e01c34"
+}

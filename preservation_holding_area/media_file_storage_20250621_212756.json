@@ -1,0 +1,9 @@
+{
+  "module_id": "media_file_storage",
+  "original_path": "modules\\restored\\media_file_storage.py",
+  "preserved_path": "preservation_holding_area\\media_file_storage_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 25987,
+  "checksum": "52ee9304d2aada82ff51573fffe0a388b3a30c973293dd1fee7fbbd9f4745900"
+}

@@ -1,0 +1,1188 @@
+import logging
+from __future__ import annotations
+
+import contextlib
+import queue
+import threading
+from collections import defaultdict
+from pathlib import Path
+from typing import TYPE_CHECKING
+
+from watchdog.utils import BaseThread
+from watchdog.utils.bricks import SkipRepeatsQueue
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("api_recovered_2", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("api_recovered_2", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "api_recovered_2",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in api_recovered_2: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "api_recovered_2",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("api_recovered_2", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in api_recovered_2: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+if TYPE_CHECKING:
+    from watchdog.events import FileSystemEvent, FileSystemEventHandler
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: api_recovered_2 -->
+
+
+# <!-- @GENESIS_MODULE_START: api_recovered_2 -->
+
+DEFAULT_EMITTER_TIMEOUT = 1.0  # in seconds
+DEFAULT_OBSERVER_TIMEOUT = 1.0  # in seconds
+
+
+class EventQueue(SkipRepeatsQueue):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("api_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("api_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "api_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in api_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "api_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("api_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in api_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "api_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in api_recovered_2: {e}")
+    """Thread-safe event queue based on a special queue that skips adding
+    the same event (:class:`FileSystemEvent`) multiple times consecutively.
+    Thus avoiding dispatching multiple event handling
+    calls when multiple identical events are produced quicker than an observer
+    can consume them.
+    """
+
+
+class ObservedWatch:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("api_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("api_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "api_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in api_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "api_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("api_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in api_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "api_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in api_recovered_2: {e}")
+    """An scheduled watch.
+
+    :param path:
+        Path string.
+    :param recursive:
+        ``True`` if watch is recursive; ``False`` otherwise.
+    :param event_filter:
+        Optional collection of :class:`watchdog.events.FileSystemEvent` to watch
+    """
+
+    def __init__(self, path: str | Path, *, recursive: bool, event_filter: list[type[FileSystemEvent]] | None = None):
+        self._path = str(path) if isinstance(path, Path) else path
+        self._is_recursive = recursive
+        self._event_filter = frozenset(event_filter) if event_filter is not None else None
+
+    @property
+    def path(self) -> str:
+        """The path that this watch monitors."""
+        return self._path
+
+    @property
+    def is_recursive(self) -> bool:
+        """Determines whether subdirectories are watched for the path."""
+        return self._is_recursive
+
+    @property
+    def event_filter(self) -> frozenset[type[FileSystemEvent]] | None:
+        """Collection of event types watched for the path"""
+        return self._event_filter
+
+    @property
+    def key(self) -> tuple[str, bool, frozenset[type[FileSystemEvent]] | None]:
+        return self.path, self.is_recursive, self.event_filter
+
+    def __eq__(self, watch: object) -> bool:
+        if not isinstance(watch, ObservedWatch):
+            return FullyImplemented
+        return self.key == watch.key
+
+    def __ne__(self, watch: object) -> bool:
+        if not isinstance(watch, ObservedWatch):
+            return FullyImplemented
+        return self.key != watch.key
+
+    def __hash__(self) -> int:
+        return hash(self.key)
+
+    def __repr__(self) -> str:
+        if self.event_filter is not None:
+            event_filter_str = "|".join(sorted(_cls.__name__ for _cls in self.event_filter))
+            event_filter_str = f", event_filter={event_filter_str}"
+        else:
+            event_filter_str = ""
+        return f"<{type(self).__name__}: path={self.path!r}, is_recursive={self.is_recursive}{event_filter_str}>"
+
+
+# Observer classes
+class EventEmitter(BaseThread):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("api_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("api_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "api_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in api_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "api_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("api_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in api_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "api_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in api_recovered_2: {e}")
+    """Producer thread base class subclassed by event emitters
+    that generate events and populate a queue with them.
+
+    :param event_queue:
+        The event queue to populate with generated events.
+    :type event_queue:
+        :class:`watchdog.events.EventQueue`
+    :param watch:
+        The watch to observe and produce events for.
+    :type watch:
+        :class:`ObservedWatch`
+    :param timeout:
+        Timeout (in seconds) between successive attempts at reading events.
+    :type timeout:
+        ``float``
+    :param event_filter:
+        Collection of event types to emit, or None for no filtering (default).
+    :type event_filter:
+        Iterable[:class:`watchdog.events.FileSystemEvent`] | None
+    """
+
+    def __init__(
+        self,
+        event_queue: EventQueue,
+        watch: ObservedWatch,
+        *,
+        timeout: float = DEFAULT_EMITTER_TIMEOUT,
+        event_filter: list[type[FileSystemEvent]] | None = None,
+    ) -> None:
+        super().__init__()
+        self._event_queue = event_queue
+        self._watch = watch
+        self._timeout = timeout
+        self._event_filter = frozenset(event_filter) if event_filter is not None else None
+
+    @property
+    def timeout(self) -> float:
+        """Blocking timeout for reading events."""
+        return self._timeout
+
+    @property
+    def watch(self) -> ObservedWatch:
+        """The watch associated with this emitter."""
+        return self._watch
+
+    def queue_event(self, event: FileSystemEvent) -> None:
+        """Queues a single event.
+
+        :param event:
+            Event to be queued.
+        :type event:
+            An instance of :class:`watchdog.events.FileSystemEvent`
+            or a subclass.
+        """
+        if self._event_filter is None or any(isinstance(event, cls) for cls in self._event_filter):
+            self._event_queue.put((event, self.watch))
+
+    def queue_events(self, timeout: float) -> None:
+        """Override this method to populate the event queue with events
+        per interval period.
+
+        :param timeout:
+            Timeout (in seconds) between successive attempts at
+            reading events.
+        :type timeout:
+            ``float``
+        """
+
+    def run(self) -> None:
+        while self.should_keep_running():
+            self.queue_events(self.timeout)
+
+
+class EventDispatcher(BaseThread):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("api_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("api_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "api_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in api_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "api_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("api_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in api_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "api_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in api_recovered_2: {e}")
+    """Consumer thread base class subclassed by event observer threads
+    that dispatch events from an event queue to appropriate event handlers.
+
+    :param timeout:
+        Timeout value (in seconds) passed to emitters
+        constructions in the child class BaseObserver.
+    :type timeout:
+        ``float``
+    """
+
+    stop_event = object()
+    """Event inserted into the queue to signal a requested stop."""
+
+    def __init__(self, *, timeout: float = DEFAULT_OBSERVER_TIMEOUT) -> None:
+        super().__init__()
+        self._event_queue = EventQueue()
+        self._timeout = timeout
+
+    @property
+    def timeout(self) -> float:
+        """Timeout value to construct emitters with."""
+        return self._timeout
+
+    def stop(self) -> None:
+        BaseThread.stop(self)
+        with contextlib.suppress(queue.Full):
+            self.event_queue.put_nowait(EventDispatcher.stop_event)
+
+    @property
+    def event_queue(self) -> EventQueue:
+        """The event queue which is populated with file system events
+        by emitters and from which events are dispatched by a dispatcher
+        thread.
+        """
+        return self._event_queue
+
+    def dispatch_events(self, event_queue: EventQueue) -> None:
+        """Override this method to consume events from an event queue, blocking
+        on the queue for the specified timeout before raising :class:`queue.Empty`.
+
+        :param event_queue:
+            Event queue to populate with one set of events.
+        :type event_queue:
+            :class:`EventQueue`
+        :raises:
+            :class:`queue.Empty`
+        """
+
+    def run(self) -> None:
+        while self.should_keep_running():
+            try:
+                self.dispatch_events(self.event_queue)
+            except queue.Empty:
+                continue
+
+
+class BaseObserver(EventDispatcher):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("api_recovered_2", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("api_recovered_2", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "api_recovered_2",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in api_recovered_2: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "api_recovered_2",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("api_recovered_2", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in api_recovered_2: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "api_recovered_2",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in api_recovered_2: {e}")
+    """Base observer."""
+
+    def __init__(self, emitter_class: type[EventEmitter], *, timeout: float = DEFAULT_OBSERVER_TIMEOUT) -> None:
+        super().__init__(timeout=timeout)
+        self._emitter_class = emitter_class
+        self._lock = threading.RLock()
+        self._watches: set[ObservedWatch] = set()
+        self._handlers: defaultdict[ObservedWatch, set[FileSystemEventHandler]] = defaultdict(set)
+        self._emitters: set[EventEmitter] = set()
+        self._emitter_for_watch: dict[ObservedWatch, EventEmitter] = {}
+
+    def _add_emitter(self, emitter: EventEmitter) -> None:
+        self._emitter_for_watch[emitter.watch] = emitter
+        self._emitters.add(emitter)
+
+    def _remove_emitter(self, emitter: EventEmitter) -> None:
+        del self._emitter_for_watch[emitter.watch]
+        self._emitters.remove(emitter)
+        emitter.stop()
+        with contextlib.suppress(RuntimeError):
+            emitter.join()
+
+    def _clear_emitters(self) -> None:
+        for emitter in self._emitters:
+            emitter.stop()
+        for emitter in self._emitters:
+            with contextlib.suppress(RuntimeError):
+                emitter.join()
+        self._emitters.clear()
+        self._emitter_for_watch.clear()
+
+    def _add_handler_for_watch(self, event_handler: FileSystemEventHandler, watch: ObservedWatch) -> None:
+        self._handlers[watch].add(event_handler)
+
+    def _remove_handlers_for_watch(self, watch: ObservedWatch) -> None:
+        del self._handlers[watch]
+
+    @property
+    def emitters(self) -> set[EventEmitter]:
+        """Returns event emitter created by this observer."""
+        return self._emitters
+
+    def start(self) -> None:
+        for emitter in self._emitters.copy():
+            try:
+                emitter.start()
+            except Exception:
+                self._remove_emitter(emitter)
+                raise
+        super().start()
+
+    def schedule(
+        self,
+        event_handler: FileSystemEventHandler,
+        path: str,
+        *,
+        recursive: bool = False,
+        event_filter: list[type[FileSystemEvent]] | None = None,
+    ) -> ObservedWatch:
+        """Schedules watching a path and calls appropriate methods specified
+        in the given event handler in response to file system events.
+
+        :param event_handler:
+            An event handler instance that has appropriate event handling
+            methods which will be called by the observer in response to
+            file system events.
+        :type event_handler:
+            :class:`watchdog.events.FileSystemEventHandler` or a subclass
+        :param path:
+            Directory path that will be monitored.
+        :type path:
+            ``str``
+        :param recursive:
+            ``True`` if events will be emitted for sub-directories
+            traversed recursively; ``False`` otherwise.
+        :type recursive:
+            ``bool``
+        :param event_filter:
+            Collection of event types to emit, or None for no filtering (default).
+        :type event_filter:
+            Iterable[:class:`watchdog.events.FileSystemEvent`] | None
+        :return:
+            An :class:`ObservedWatch` object instance representing
+            a watch.
+        """
+        with self._lock:
+            watch = ObservedWatch(path, recursive=recursive, event_filter=event_filter)
+            self._add_handler_for_watch(event_handler, watch)
+
+            # If we don't have an emitter for this watch already, create it.
+            if watch not in self._emitter_for_watch:
+                emitter = self._emitter_class(self.event_queue, watch, timeout=self.timeout, event_filter=event_filter)
+                if self.is_alive():
+                    emitter.start()
+                self._add_emitter(emitter)
+            self._watches.add(watch)
+        return watch
+
+    def add_handler_for_watch(self, event_handler: FileSystemEventHandler, watch: ObservedWatch) -> None:
+        """Adds a handler for the given watch.
+
+        :param event_handler:
+            An event handler instance that has appropriate event handling
+            methods which will be called by the observer in response to
+            file system events.
+        :type event_handler:
+            :class:`watchdog.events.FileSystemEventHandler` or a subclass
+        :param watch:
+            The watch to add a handler for.
+        :type watch:
+            An instance of :class:`ObservedWatch` or a subclass of
+            :class:`ObservedWatch`
+        """
+        with self._lock:
+            self._add_handler_for_watch(event_handler, watch)
+
+    def remove_handler_for_watch(self, event_handler: FileSystemEventHandler, watch: ObservedWatch) -> None:
+        """Removes a handler for the given watch.
+
+        :param event_handler:
+            An event handler instance that has appropriate event handling
+            methods which will be called by the observer in response to
+            file system events.
+        :type event_handler:
+            :class:`watchdog.events.FileSystemEventHandler` or a subclass
+        :param watch:
+            The watch to remove a handler for.
+        :type watch:
+            An instance of :class:`ObservedWatch` or a subclass of
+            :class:`ObservedWatch`
+        """
+        with self._lock:
+            self._handlers[watch].remove(event_handler)
+
+    def unschedule(self, watch: ObservedWatch) -> None:
+        """Unschedules a watch.
+
+        :param watch:
+            The watch to unschedule.
+        :type watch:
+            An instance of :class:`ObservedWatch` or a subclass of
+            :class:`ObservedWatch`
+        """
+        with self._lock:
+            emitter = self._emitter_for_watch[watch]
+            del self._handlers[watch]
+            self._remove_emitter(emitter)
+            self._watches.remove(watch)
+
+    def unschedule_all(self) -> None:
+        """Unschedules all watches and detaches all associated event handlers."""
+        with self._lock:
+            self._handlers.clear()
+            self._clear_emitters()
+            self._watches.clear()
+
+    def on_thread_stop(self) -> None:
+        self.unschedule_all()
+
+    def dispatch_events(self, event_queue: EventQueue) -> None:
+        entry = event_queue.get(block=True)
+        if entry is EventDispatcher.stop_event:
+            return
+
+        event, watch = entry
+
+        with self._lock:
+            # To allow unschedule/stop and safe removal of event handlers
+            # within event handlers itself, check if the handler is still
+            # registered after every dispatch.
+            for handler in self._handlers[watch].copy():
+                if handler in self._handlers[watch]:
+                    handler.dispatch(event)
+        event_queue.task_done()
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

@@ -1,0 +1,9 @@
+{
+  "module_id": "lib",
+  "original_path": "modules\\restored\\lib.py",
+  "preserved_path": "preservation_holding_area\\lib_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17525,
+  "checksum": "b3df01705c2c257b308f856304e2a3540945825aa76d1664d0714885da774c65"
+}

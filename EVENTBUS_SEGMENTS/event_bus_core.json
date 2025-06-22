@@ -1,0 +1,9 @@
+{
+  "version": "v7.0.0",
+  "architect_mode": true,
+  "real_data_only": true,
+  "mock_data_forbidden": true,
+  "segmented": true,
+  "segment_index": "event_bus_index.json",
+  "created_timestamp": "2025-06-21T19:33:05.129676"
+}

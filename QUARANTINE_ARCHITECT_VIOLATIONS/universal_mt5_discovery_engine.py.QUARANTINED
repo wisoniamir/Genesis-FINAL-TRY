@@ -1,0 +1,83 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:42.184188+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        64,
+        111
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        35
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        30,
+        74,
+        104,
+        131,
+        293
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        96,
+        123,
+        175,
+        332,
+        356
+      ],
+      "violation_count": 9
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        76,
+        105,
+        115,
+        363
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        37
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\universal_mt5_discovery_engine.py",
+      "line_numbers": [
+        39,
+        505
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

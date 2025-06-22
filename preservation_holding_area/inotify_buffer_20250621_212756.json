@@ -1,0 +1,9 @@
+{
+  "module_id": "inotify_buffer",
+  "original_path": "modules\\restored\\inotify_buffer.py",
+  "preserved_path": "preservation_holding_area\\inotify_buffer_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15813,
+  "checksum": "450bfa636017417e6f6c8df4fa9cf21333e4a1be1f11b913de8816d33aab42c8"
+}

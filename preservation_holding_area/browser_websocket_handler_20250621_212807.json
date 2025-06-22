@@ -1,0 +1,9 @@
+{
+  "module_id": "browser_websocket_handler",
+  "original_path": "modules\\restored\\browser_websocket_handler.py",
+  "preserved_path": "preservation_holding_area\\browser_websocket_handler_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 21930,
+  "checksum": "af9194333afd016d9bbf50e720dfd00baf0decc96a640bb714fcf95488284dad"
+}

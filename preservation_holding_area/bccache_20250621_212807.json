@@ -1,0 +1,9 @@
+{
+  "module_id": "bccache",
+  "original_path": "modules\\restored\\bccache.py",
+  "preserved_path": "preservation_holding_area\\bccache_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 51517,
+  "checksum": "0baa8dbbad7619fc4bd876ecf9266e21b27d25368e685f1b0289dc9ab2c10d9a"
+}

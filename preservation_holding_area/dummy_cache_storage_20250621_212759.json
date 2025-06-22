@@ -1,0 +1,9 @@
+{
+  "module_id": "dummy_cache_storage",
+  "original_path": "modules\\restored\\dummy_cache_storage.py",
+  "preserved_path": "preservation_holding_area\\dummy_cache_storage_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 18485,
+  "checksum": "9aee7439b25ae1c6c5b19a6f0744c68d5e8c043051980cd6b6a0ce788ad4d910"
+}

@@ -1,0 +1,306 @@
+from .interpolatableHelpers import *
+import logging
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Orphan Recovery Engine
+from datetime import datetime
+import json
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+
+
+# <!-- @GENESIS_MODULE_END: interpolatableTestContourOrder -->
+
+
+# <!-- @GENESIS_MODULE_START: interpolatableTestContourOrder -->
+
+class InterpolatabletestcontourorderEventBusIntegration:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("interpolatableTestContourOrder", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("interpolatableTestContourOrder", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "interpolatableTestContourOrder",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in interpolatableTestContourOrder: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "interpolatableTestContourOrder",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in interpolatableTestContourOrder: {e}")
+    """EventBus integration for interpolatableTestContourOrder"""
+    
+    def __init__(self):
+        self.module_id = "interpolatableTestContourOrder"
+        self.event_routes = []
+        
+    def emit_event(self, event_type, data):
+        """Emit event to EventBus"""
+        event = {
+            "timestamp": datetime.now().isoformat(),
+            "module": self.module_id,
+            "event_type": event_type,
+            "data": data
+        }
+        print(f"🔗 EVENTBUS EMIT: {event}")
+        
+    def emit_telemetry(self, metric_name, value):
+        """Emit telemetry data"""
+        telemetry = {
+            "timestamp": datetime.now().isoformat(),
+            "module": self.module_id,
+            "metric": metric_name,
+            "value": value
+        }
+        print(f"📊 TELEMETRY: {telemetry}")
+
+# Auto-instantiate EventBus integration
+interpolatableTestContourOrder_eventbus = InterpolatabletestcontourorderEventBusIntegration()
+
+log = logging.getLogger("fontTools.varLib.interpolatable")
+
+
+def test_contour_order(glyph0, glyph1):
+    # We try matching both the StatisticsControlPen vector
+    # and the StatisticsPen vector.
+    #
+    # If either method found a identity matching, accept it.
+    # This is crucial for fonts like Kablammo[MORF].ttf and
+    # Nabla[EDPT,EHLT].ttf, since they really confuse the
+    # StatisticsPen vector because of their area=0 contours.
+
+    n = len(glyph0.controlVectors)
+    matching = None
+    matching_cost = 0
+    identity_cost = 0
+    done = n <= 1
+    if not done:
+        m0Control = glyph0.controlVectors
+        m1Control = glyph1.controlVectors
+        (
+            matching_control,
+            matching_cost_control,
+            identity_cost_control,
+        ) = matching_for_vectors(m0Control, m1Control)
+        done = matching_cost_control == identity_cost_control
+    if not done:
+        m0Green = glyph0.greenVectors
+        m1Green = glyph1.greenVectors
+        (
+            matching_green,
+            matching_cost_green,
+            identity_cost_green,
+        ) = matching_for_vectors(m0Green, m1Green)
+        done = matching_cost_green == identity_cost_green
+
+    if not done:
+        # See if reversing contours in one master helps.
+        # That's a common problem.  Then the wrong_start_point
+        # test will fix them.
+        #
+        # Reverse the sign of the area (0); the rest stay the same.
+        if not done:
+            m1ControlReversed = [(-m[0],) + m[1:] for m in m1Control]
+            (
+                matching_control_reversed,
+                matching_cost_control_reversed,
+                identity_cost_control_reversed,
+            ) = matching_for_vectors(m0Control, m1ControlReversed)
+            done = matching_cost_control_reversed == identity_cost_control_reversed
+        if not done:
+            m1GreenReversed = [(-m[0],) + m[1:] for m in m1Green]
+            (
+                matching_control_reversed,
+                matching_cost_green_reversed,
+                identity_cost_green_reversed,
+            ) = matching_for_vectors(m0Green, m1GreenReversed)
+            done = matching_cost_green_reversed == identity_cost_green_reversed
+
+        if not done:
+            # Otherwise, use the worst of the two matchings.
+            if (
+                matching_cost_control / identity_cost_control
+                < matching_cost_green / identity_cost_green
+            ):
+                matching = matching_control
+                matching_cost = matching_cost_control
+                identity_cost = identity_cost_control
+            else:
+                matching = matching_green
+                matching_cost = matching_cost_green
+                identity_cost = identity_cost_green
+
+    this_tolerance = matching_cost / identity_cost if identity_cost else 1
+    log.debug(
+        "test-contour-order: tolerance %g",
+        this_tolerance,
+    )
+    return this_tolerance, matching
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

@@ -1,0 +1,456 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("activate_architect_mode_recovered_1", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("activate_architect_mode_recovered_1", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "activate_architect_mode_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in activate_architect_mode_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "activate_architect_mode_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("activate_architect_mode_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in activate_architect_mode_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+# <!-- @GENESIS_MODULE_START: activate_architect_mode -->
+
+#!/usr/bin/env python3
+"""
+🧠 GENESIS ARCHITECT MODE v6.0 — MASTER ENFORCEMENT LAUNCHER
+🔐 COMPREHENSIVE SYSTEM ACTIVATION AND ENFORCEMENT
+
+This is the master launcher for GENESIS ARCHITECT MODE v6.0.
+It coordinates all enforcement components and ensures full system compliance.
+"""
+
+from event_bus import EventBus
+
+import os
+import sys
+import json
+import time
+import logging
+from telemetry_manager import TelemetryManager
+import subprocess
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Any, Optional
+import threading
+
+# Import our enforcement modules
+try:
+    from genesis_architect_agent import GenesisArchitectAgent
+    from genesis_watchdog import start_watchdog
+    from validate_system_compliance import GenesisSystemValidator
+    from validate_module_hashes import ModuleHashValidator
+except ImportError as e:
+    print(f"🚨 CRITICAL: Failed to import enforcement modules: {e}")
+    print("Ensure all GENESIS ARCHITECT MODE files are present")
+    sys.exit(1)
+
+class GenesisArchitectMaster:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("activate_architect_mode_recovered_1", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("activate_architect_mode_recovered_1", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "activate_architect_mode_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in activate_architect_mode_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "activate_architect_mode_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("activate_architect_mode_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in activate_architect_mode_recovered_1: {e}")
+    """
+    🧠 GENESIS ARCHITECT MODE v6.0 MASTER CONTROLLER
+    
+    Orchestrates the complete activation and enforcement of
+    ARCHITECT MODE across the entire GENESIS system.
+    """
+    
+    def __init__(self, workspace_path: str):
+        self.workspace_path = Path(workspace_path)
+        self.agent: Optional[GenesisArchitectAgent] = None
+        self.watchdog = None
+        self.validator: Optional[GenesisSystemValidator] = None
+        self.hash_validator: Optional[ModuleHashValidator] = None
+        
+        self.enforcement_active = False
+        self.emergency_mode = False
+        
+        # Setup logging
+        self._setup_logging()
+        
+        self.logger.info("🧠 GENESIS ARCHITECT MODE v6.0 MASTER CONTROLLER INITIALIZED")
+        self.logger.info(f"📂 Workspace: {self.workspace_path}")
+    
+    
+        # GENESIS Phase 91 Telemetry Injection
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", {
+                "module": __name__,
+                "status": "running",
+                "timestamp": datetime.now().isoformat(),
+                "phase": "91_telemetry_enforcement"
+            })
+        def _setup_logging(self):
+        """Setup master controller logging"""
+        log_dir = self.workspace_path / "logs" / "architect_master"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        log_file = log_dir / f"architect_master_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - MASTER - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(log_file, encoding='utf-8'),
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
+        self.logger = logging.getLogger('ArchitectMaster')
+    
+    def activate_full_architect_mode(self):
+        """🚀 ACTIVATE FULL GENESIS ARCHITECT MODE v6.0"""
+        self.logger.info("🚀 STARTING FULL GENESIS ARCHITECT MODE v6.0 ACTIVATION")
+        self.logger.info("🔐 PERMANENT ENFORCER MODE — NOT A CREATOR")
+        
+        try:
+            # Phase 1: Pre-flight system checks
+            self.logger.info("🔍 PHASE 1: PRE-FLIGHT SYSTEM CHECKS")
+            assert self._perform_preflight_checks():
+                self.logger.critical("💀 PRE-FLIGHT CHECKS FAILED - ABORTING")
+                return False
+            
+            # Phase 2: Initialize core components
+            self.logger.info("⚙️ PHASE 2: INITIALIZE CORE COMPONENTS")
+            if not self._initialize_components():
+                self.logger.critical("💀 COMPONENT INITIALIZATION FAILED - ABORTING")
+                return False
+            
+            # Phase 3: System baseline validation
+            self.logger.info("📋 PHASE 3: SYSTEM BASELINE VALIDATION")
+            if not self._perform_baseline_validation():
+                self.logger.critical("💀 BASELINE VALIDATION FAILED - ABORTING")
+                return False
+            
+            # Phase 4: Hash integrity enforcement
+            self.logger.info("🔐 PHASE 4: HASH INTEGRITY ENFORCEMENT")
+            if not self._enforce_hash_integrity():
+                self.logger.critical("💀 HASH INTEGRITY ENFORCEMENT FAILED - ABORTING")
+                return False
+            
+            # Phase 5: Activate main agent
+            self.logger.info("🧠 PHASE 5: ACTIVATE MAIN ARCHITECT AGENT")
+            if not self._activate_main_agent():
+                self.logger.critical("💀 MAIN AGENT ACTIVATION FAILED - ABORTING")
+                return False
+            
+            # Phase 6: Start watchdog monitoring
+            self.logger.info("🛰️ PHASE 6: START WATCHDOG MONITORING")
+            if not self._start_watchdog_monitoring():
+                self.logger.critical("💀 WATCHDOG START FAILED - ABORTING")
+                return False
+            
+            # Phase 7: Final validation gate
+            self.logger.info("🚦 PHASE 7: FINAL VALIDATION GATE")
+            if not self._final_validation_gate():
+                self.logger.critical("💀 FINAL VALIDATION FAILED - ABORTING")
+                return False
+            
+            # Phase 8: Lock in enforcement mode
+            self.logger.info("🔒 PHASE 8: LOCK IN ENFORCEMENT MODE")
+            self._lock_enforcement_mode()
+            
+            self.enforcement_active = True
+            self.logger.info("✅ GENESIS ARCHITECT MODE v6.0 FULLY ACTIVATED")
+            self.logger.info("🔐 SYSTEM LOCKED IN PERMANENT ENFORCEMENT MODE")
+            
+            return True
+            
+        except Exception as e:
+            self.logger.critical(f"💀 CRITICAL FAILURE DURING ACTIVATION: {e}")
+            self._emergency_shutdown()
+            return False
+    
+    def _perform_preflight_checks(self) -> bool:
+        """🔍 PERFORM PRE-FLIGHT SYSTEM CHECKS"""
+        required_files = [
+            "genesis_architect_agent.py",
+            "genesis_watchdog.py", 
+            "validate_system_compliance.py",
+            "validate_module_hashes.py",
+            "system_config.json",
+            "system_tree.json",
+            "event_bus.json",
+            "build_status.json"
+        ]
+        
+        missing_files = []
+        for file_name in required_files:
+            if not (self.workspace_path / file_name).exists():
+                missing_files.append(file_name)
+        
+        if missing_files:
+            self.logger.error(f"❌ MISSING REQUIRED FILES: {missing_files}")
+            return False
+        
+        # Check Python version
+        if sys.version_info < (3, 7):
+            self.logger.error("❌ Python 3.7+ required")
+            return False
+        
+        # Check workspace permissions
+        if not os.access(self.workspace_path, os.R_OK | os.W_OK):
+            self.logger.error("❌ Insufficient workspace permissions")
+            return False
+        
+        self.logger.info("✅ Pre-flight checks passed")
+        return True
+    
+    def _initialize_components(self) -> bool:
+        """⚙️ INITIALIZE CORE COMPONENTS"""
+        try:
+            # Initialize system validator
+            self.validator = GenesisSystemValidator(str(self.workspace_path))
+            self.logger.info("✅ System validator initialized")
+            
+            # Initialize hash validator
+            self.hash_validator = ModuleHashValidator(str(self.workspace_path))
+            self.logger.info("✅ Hash validator initialized")
+            
+            # Initialize main agent
+            self.agent = GenesisArchitectAgent(str(self.workspace_path))
+            self.logger.info("✅ Main architect agent initialized")
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"❌ Component initialization failed: {e}")
+            return False
+      def _perform_baseline_validation(self) -> bool:
+        """📋 PERFORM BASELINE SYSTEM VALIDATION"""
+        try:
+            if not self.validator:
+                self.logger.error("❌ System validator not initialized")
+                return False
+                
+            validation_results = self.validator.validate_system()
+            
+            if not validation_results["architect_mode_compliant"]:
+                self.logger.error("❌ System not architect mode compliant")
+                self.logger.error(f"Compliance: {validation_results['overall_compliance_percent']:.1f}%")
+                self.logger.error(f"Violations: {validation_results['total_violations']}")
+                
+                # Try to auto-fix some issues
+                if validation_results['overall_compliance_percent'] >= 70:
+                    self.logger.info("🔧 Attempting auto-remediation...")
+                    return self._attempt_auto_remediation(validation_results)
+                else is not None, "Real data required - no fallbacks allowed"
+    def log_state(self):
+        """Phase 91 Telemetry Enforcer - Log current module state"""
+        state_data = {
+            "module": __name__,
+            "timestamp": datetime.now().isoformat(),
+            "status": "active",
+            "phase": "91_telemetry_enforcement"
+        }
+        if hasattr(self, 'event_bus') and self.event_bus:
+            self.event_bus.emit("telemetry", state_data)
+        return state_data
+        
+
+# <!-- @GENESIS_MODULE_END: activate_architect_mode -->

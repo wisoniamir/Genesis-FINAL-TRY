@@ -1,0 +1,9 @@
+{
+  "module_id": "test_backtest_engine",
+  "original_path": "modules\\unclassified\\test_backtest_engine.py",
+  "preserved_path": "preservation_holding_area\\test_backtest_engine_20250621_212800.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 11414,
+  "checksum": "98e8fdc42c9bcdc6aab8fb00d8ef2a21026cd2b96348cc7ab66c9e802211f2a7"
+}

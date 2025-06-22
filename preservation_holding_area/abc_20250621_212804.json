@@ -1,0 +1,9 @@
+{
+  "module_id": "abc",
+  "original_path": "modules\\restored\\abc.py",
+  "preserved_path": "preservation_holding_area\\abc_20250621_212804.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17303,
+  "checksum": "a5599777c6c56ebee84e3217a15759414f5931a034b2d76e27cb7b601ea323f8"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "stats_request_handler",
+  "original_path": "modules\\restored\\stats_request_handler.py",
+  "preserved_path": "preservation_holding_area\\stats_request_handler_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15371,
+  "checksum": "f15341c13081f5502bafc02cc6e44ada6a58ec2162f063cee0c17f461c4a5563"
+}

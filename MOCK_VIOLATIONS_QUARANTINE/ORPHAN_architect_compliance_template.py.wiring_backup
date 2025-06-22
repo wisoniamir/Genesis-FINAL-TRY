@@ -1,0 +1,61 @@
+"""
+🛡️ ARCHITECT DIRECTIVE COMPLIANCE TEMPLATE
+Use this at the start of any prompt that follows the Architect directive
+"""
+
+# === ARCHITECT COMPLIANCE HOOK ===
+# Step 1: Load Core Files (as required by directive)
+try:
+    from lightweight_validation_hook import architect_compliance_check, validate_and_patch, get_system_status
+
+
+# <!-- @GENESIS_MODULE_END: ORPHAN_architect_compliance_template -->
+
+
+# <!-- @GENESIS_MODULE_START: ORPHAN_architect_compliance_template -->
+    
+    # Quick compliance check
+    compliance_passed = architect_compliance_check()
+    
+    if not compliance_passed:
+        print("[🚨] ARCHITECT COMPLIANCE FAILED - Review issues above")
+        print("[⚠️] Proceeding with caution - manual review required")
+    
+    # Get current system status
+    status = get_system_status()
+    print(f"[📊] System Status: {status.get('system_status', 'UNKNOWN')}")
+    print(f"[🛡️] Guardian Active: {status.get('guardian_active', 'UNKNOWN')}")
+    print(f"[⚡] Performance Optimization: {status.get('performance_optimization', 'UNKNOWN')}")
+    
+except Exception as e:
+    print(f"[🚨] Architect hook failed: {e}")
+    print("[⚠️] ARCHITECT_LOCK_BROKEN - Manual intervention required")
+
+# === MAIN PROMPT LOGIC CONTINUES BELOW ===
+# (Your normal prompt logic here - following Architect rules)
+
+"""
+ARCHITECT DIRECTIVE COMPLIANCE CHECKLIST:
+
+✅ BEFORE CREATING ANYTHING NEW:
+1. Check if it already exists to avoid duplicates
+2. Verify it connects to EventBus (no isolated functions)
+3. Ensure it uses real data (no mock/dummy data)
+4. Confirm it's registered in system_tree.json
+5. Verify telemetry hooks are connected
+
+✅ DURING EXECUTION:
+1. Load build_status.json, build_tracker.md, system_tree.json
+2. Validate all modules are connected (no orphans)
+3. Check EventBus routes (no isolated functions)
+4. Scan for duplicates and propose deletions
+5. Detect gaps in logic and fix immediately
+6. Update build_status.json after every step
+7. Document progress in build_tracker.md
+
+✅ PERFORMANCE MAINTAINED:
+- No background processes
+- No file watchers
+- Minimal CPU/memory impact
+- Guardian-free environment preserved
+"""

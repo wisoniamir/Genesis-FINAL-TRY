@@ -1,0 +1,9 @@
+{
+  "module_id": "test_linprog",
+  "original_path": "modules\\restored\\test_linprog.py",
+  "preserved_path": "preservation_holding_area\\test_linprog_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 247074,
+  "checksum": "cf4a2dac62091c4c68e6e1ff08bd64d4e57c32fc1484e860f43b6a7a1d09eebc"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "container",
+  "original_path": "modules\\restored\\container.py",
+  "preserved_path": "preservation_holding_area\\container_20250621_212756.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 30706,
+  "checksum": "f5e040ccd8e4febf336bc49e61375bd745a1a6181241d9289ed28896585a87d6"
+}

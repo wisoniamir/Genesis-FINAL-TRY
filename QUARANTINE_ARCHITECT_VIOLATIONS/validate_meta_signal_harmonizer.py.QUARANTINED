@@ -1,0 +1,76 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+  "quarantine_timestamp": "2025-06-21T04:33:31.121322+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+      "line_numbers": [
+        149,
+        158,
+        160
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+      "line_numbers": [
+        154,
+        156
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+      "line_numbers": [
+        67,
+        73,
+        83,
+        94,
+        129
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+      "line_numbers": [
+        77,
+        88,
+        102,
+        145,
+        170
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+      "line_numbers": [
+        99,
+        120,
+        126,
+        165,
+        184
+      ],
+      "violation_count": 5
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\signal_processing\\validate_meta_signal_harmonizer.py",
+      "line_numbers": [
+        25
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

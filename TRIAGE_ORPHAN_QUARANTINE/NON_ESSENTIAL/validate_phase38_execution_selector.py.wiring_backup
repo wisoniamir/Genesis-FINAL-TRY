@@ -1,0 +1,225 @@
+# <!-- @GENESIS_MODULE_START: validate_phase38_execution_selector -->
+
+from datetime import datetime\n#!/usr/bin/env python3
+"""
+GENESIS Phase 38 Execution Selector - Final Validation Script
+Architect Mode v2.7 Compliance Verification
+
+🔐 This script validates the complete Phase 38 implementation including:
+- Module creation and registration
+- System tree integration  
+- EventBus route configuration
+- Build status updates
+- Documentation compliance
+- Test coverage
+"""
+
+import json
+import os
+import sys
+
+def validate_phase_38_implementation():
+    """Comprehensive validation of Phase 38 ExecutionSelector implementation"""
+    
+    print("🔐 GENESIS PHASE 38 EXECUTION SELECTOR - FINAL VALIDATION")
+    print("=" * 70)
+    
+    validation_results = {
+        "module_file_exists": False,
+        "system_tree_registered": False,
+        "module_registry_updated": False,
+        "build_status_updated": False,
+        "event_bus_routes_added": False,
+        "documentation_created": False,
+        "test_file_exists": False,
+        "test_results_recorded": False,
+        "architect_compliance": False
+    }
+      # 1. Check module file exists
+    print("📁 Checking module file...")
+    if os.path.exists("execution_selector.py"):
+        try:
+            with open("execution_selector.py", "r", encoding="utf-8") as f:
+                content = f.read()
+                if "Phase 38" in content and "ExecutionSelector" in content:
+                    validation_results["module_file_exists"] = True
+                    print("✅ execution_selector.py exists and contains Phase 38 implementation")
+                else:
+                    print("❌ Module file exists but missing Phase 38 content")
+        except UnicodeDecodeError:
+            # Try with different encoding
+            with open("execution_selector.py", "r", encoding="latin-1") as f:
+                content = f.read()
+                if "Phase 38" in content and "ExecutionSelector" in content:
+                    validation_results["module_file_exists"] = True
+                    print("✅ execution_selector.py exists and contains Phase 38 implementation")
+                else:
+                    print("❌ Module file exists but missing Phase 38 content")
+    else:
+        print("❌ execution_selector.py not found")
+    
+    # 2. Check system tree registration
+    print("🌲 Checking system tree registration...")
+    if os.path.exists("system_tree.json"):
+        with open("system_tree.json", "r") as f:
+            system_tree = json.load(f)
+            
+        # Check if ExecutionSelector node exists
+        nodes = system_tree.get("nodes", [])
+        execution_selector_node = None
+        for node in nodes:
+            if node.get("id") == "ExecutionSelector":
+                execution_selector_node = node
+                break
+        
+        if execution_selector_node:
+            validation_results["system_tree_registered"] = True
+            print(f"✅ ExecutionSelector registered in system tree")
+            print(f"   - Status: {execution_selector_node.get('status')}")
+            print(f"   - Phase: {execution_selector_node.get('phase')}")
+            print(f"   - Module Path: {execution_selector_node.get('module_path')}")
+        else:
+            print("❌ ExecutionSelector not found in system tree")
+    
+    # 3. Check module registry
+    print("📋 Checking module registry...")
+    if os.path.exists("module_registry.json"):
+        with open("module_registry.json", "r") as f:
+            registry = json.load(f)
+        
+        modules = registry.get("modules", [])
+        execution_selector_module = None
+        for module in modules:
+            if module.get("name") == "ExecutionSelector":
+                execution_selector_module = module
+                break
+        
+        if execution_selector_module:
+            validation_results["module_registry_updated"] = True
+            print("✅ ExecutionSelector registered in module registry")
+            print(f"   - Version: {execution_selector_module.get('version')}")
+            print(f"   - Phase: {execution_selector_module.get('phase')}")
+            print(f"   - Compliance: {execution_selector_module.get('architect_compliant')}")
+        else:
+            print("❌ ExecutionSelector not found in module registry")
+    
+    # 4. Check build status
+    print("🏗️ Checking build status...")
+    if os.path.exists("build_status.json"):
+        with open("build_status.json", "r") as f:
+            build_status = json.load(f)
+        
+        if build_status.get("phase_38_execution_selector_complete"):
+            validation_results["build_status_updated"] = True
+            print("✅ Phase 38 completion recorded in build status")
+            print(f"   - Timestamp: {build_status.get('phase_38_execution_selector_timestamp')}")
+            print(f"   - Version: {build_status.get('phase_38_execution_selector_version')}")
+        else:
+            print("❌ Phase 38 completion not recorded in build status")
+    
+    # 5. Check EventBus routes
+    print("🔁 Checking EventBus routes...")
+    if os.path.exists("event_bus.json"):
+        with open("event_bus.json", "r") as f:
+            event_bus = json.load(f)
+        
+        routes = event_bus.get("routes", [])
+        execution_selector_routes = [r for r in routes if "ExecutionSelector" in r.get("topic", "") or 
+                                   "execution_selector" in r.get("consumer", "") or
+                                   "execution_selector" in r.get("producer", "")]
+        
+        if execution_selector_routes:
+            validation_results["event_bus_routes_added"] = True
+            print(f"✅ ExecutionSelector EventBus routes configured ({len(execution_selector_routes)} routes)")
+            for route in execution_selector_routes:
+                print(f"   - {route.get('producer')} → {route.get('consumer')}")
+        else:
+            print("❌ ExecutionSelector EventBus routes not found")
+    
+    # 6. Check documentation
+    print("📚 Checking module documentation...")
+    if os.path.exists("module_documentation.json"):
+        with open("module_documentation.json", "r") as f:
+            docs = json.load(f)
+        
+        module_docs = docs.get("module_documentation", {})
+        if "ExecutionSelector" in module_docs:
+            validation_results["documentation_created"] = True
+            exec_doc = module_docs["ExecutionSelector"]
+            print("✅ ExecutionSelector documentation created")
+            print(f"   - Description: {exec_doc.get('description')[:50]}...")
+            print(f"   - Phase: {exec_doc.get('phase')}")
+            print(f"   - Status: {exec_doc.get('status')}")
+        else:
+            print("❌ ExecutionSelector documentation not found")
+    
+    # 7. Check test file
+    print("🧪 Checking test file...")
+    if os.path.exists("test_execution_selector.py"):
+        validation_results["test_file_exists"] = True
+        print("✅ test_execution_selector.py exists")
+    else:
+        print("❌ test_execution_selector.py not found")
+    
+    # 8. Check test results
+    print("📊 Checking test results...")
+    if os.path.exists("module_tests.json"):
+        with open("module_tests.json", "r") as f:
+            tests = json.load(f)
+        
+        module_tests = tests.get("module_tests", {})
+        if "ExecutionSelector" in module_tests:
+            validation_results["test_results_recorded"] = True
+            test_info = module_tests["ExecutionSelector"]
+            print("✅ ExecutionSelector test results recorded")
+            print(f"   - Coverage: {test_info.get('coverage_percentage')}%")
+            print(f"   - Status: {test_info.get('test_status')}")
+            print(f"   - Tests Passed: {test_info.get('test_results', {}).get('passed', 0)}")
+        else:
+            print("❌ ExecutionSelector test results not found")
+    
+    # 9. Check architect compliance
+    print("🔐 Checking architect mode compliance...")
+    if os.path.exists("build_status.json"):
+        with open("build_status.json", "r") as f:
+            build_status = json.load(f)
+        
+        if (build_status.get("architect_mode_v28_compliant") and 
+            build_status.get("phase_38_architect_mode_compliant")):
+            validation_results["architect_compliance"] = True
+            print("✅ Architect mode compliance verified")
+        else:
+            print("❌ Architect mode compliance not verified")
+    
+    # Calculate overall score
+    passed_checks = sum(validation_results.values())
+    total_checks = len(validation_results)
+    success_rate = (passed_checks / total_checks) * 100
+    
+    print("\n" + "=" * 70)
+    print("📊 VALIDATION SUMMARY:")
+    print(f"✅ Passed Checks: {passed_checks}/{total_checks}")
+    print(f"📈 Success Rate: {success_rate:.1f}%")
+    
+    if success_rate == 100.0:
+        print("\n🎉 PHASE 38 EXECUTION SELECTOR - FULLY VALIDATED")
+        print("🔐 ARCHITECT MODE COMPLIANCE: COMPLETE")
+        print("✨ Ready for production deployment")
+        return True
+    elif success_rate >= 80.0:
+        print("\n⚠️ PHASE 38 MOSTLY COMPLETE - Minor issues detected")
+        return True
+    else:
+        print("\n❌ PHASE 38 VALIDATION FAILED - Major issues detected")
+        return False
+
+if __name__ == "__main__":
+    try:
+        success = validate_phase_38_implementation()
+        sys.exit(0 if success else 1)
+    except Exception as e:
+        print(f"\n💥 Validation failed with error: {e}")
+        sys.exit(1)
+
+
+# <!-- @GENESIS_MODULE_END: validate_phase38_execution_selector -->

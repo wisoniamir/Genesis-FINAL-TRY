@@ -1,0 +1,9 @@
+{
+  "module_id": "check",
+  "original_path": "modules\\restored\\check.py",
+  "preserved_path": "preservation_holding_area\\check_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17197,
+  "checksum": "9abc844a8e72cd7266e9676247db86ec5423b072d149598f231408d0d9789ba1"
+}

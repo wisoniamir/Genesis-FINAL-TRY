@@ -1,0 +1,9 @@
+{
+  "module_id": "status",
+  "original_path": "modules\\restored\\status.py",
+  "preserved_path": "preservation_holding_area\\status_20250621_212805.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15696,
+  "checksum": "5fc711e81a2c01580b0479baf14aa494cff93f0a80b159d1df4454c9a5107d39"
+}

@@ -1,0 +1,9 @@
+{
+  "module_id": "build_continuity_guard",
+  "original_path": "modules\\restored\\build_continuity_guard.py",
+  "preserved_path": "preservation_holding_area\\build_continuity_guard_20250621_212758.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24484,
+  "checksum": "ffd94603f302430c27f2b42eae873ea4e421808ff88ce6ff0b2276cd687342b2"
+}

@@ -1,0 +1,23 @@
+# <!-- @GENESIS_MODULE_START: fix_json -->
+
+from datetime import datetime\nimport json
+
+# Fix build_status.json
+with open('build_status.json', 'r') as f:
+    data = f.read()
+
+# Remove extra closing brace
+data = data[:14503]
+
+# Validate the JSON
+json.loads(data)
+print("JSON validation successful")
+
+# Write back the fixed file
+with open('build_status.json', 'w') as f:
+    f.write(data)
+
+print("build_status.json fixed!")
+
+
+# <!-- @GENESIS_MODULE_END: fix_json -->

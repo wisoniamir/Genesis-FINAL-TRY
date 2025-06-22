@@ -1,0 +1,66 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\test_portfolio_optimizer_phase47.py",
+  "quarantine_timestamp": "2025-06-21T04:33:30.109279+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\test_portfolio_optimizer_phase47.py",
+      "line_numbers": [
+        199,
+        203,
+        205
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\test_portfolio_optimizer_phase47.py",
+      "line_numbers": [
+        4,
+        22,
+        55,
+        75,
+        83
+      ],
+      "violation_count": 26
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\test_portfolio_optimizer_phase47.py",
+      "line_numbers": [
+        30,
+        59,
+        79,
+        107,
+        135
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\test_portfolio_optimizer_phase47.py",
+      "line_numbers": [
+        50,
+        71,
+        99,
+        127,
+        149
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\ml_optimization\\test_portfolio_optimizer_phase47.py",
+      "line_numbers": [
+        208
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

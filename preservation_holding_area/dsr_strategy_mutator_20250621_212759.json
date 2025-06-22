@@ -1,0 +1,9 @@
+{
+  "module_id": "dsr_strategy_mutator",
+  "original_path": "modules\\signal_processing\\dsr_strategy_mutator.py",
+  "preserved_path": "preservation_holding_area\\dsr_strategy_mutator_20250621_212759.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 39788,
+  "checksum": "eda94fa54b48ad65abb46d96e6232904c0856729f611f0d7fbb646af93e6cb84"
+}

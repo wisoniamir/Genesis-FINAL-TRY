@@ -1,0 +1,9 @@
+{
+  "module_id": "execution_engine",
+  "original_path": "modules\\execution\\execution_engine.py",
+  "preserved_path": "preservation_holding_area\\execution_engine_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 19437,
+  "checksum": "411ec78fc5197454607440a4228561a33c459daff09f1eb01e0917cd5cfb9db4"
+}

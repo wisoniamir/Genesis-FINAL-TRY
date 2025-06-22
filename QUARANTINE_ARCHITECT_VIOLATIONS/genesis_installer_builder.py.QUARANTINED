@@ -1,0 +1,95 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+  "quarantine_timestamp": "2025-06-21T04:33:29.202127+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        89,
+        667,
+        690,
+        708,
+        722
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        332,
+        334,
+        654,
+        664,
+        666
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        122,
+        135,
+        288,
+        298,
+        321
+      ],
+      "violation_count": 17
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        150,
+        156,
+        315,
+        325,
+        352
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        371,
+        391,
+        453,
+        537,
+        660
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        293,
+        305,
+        308,
+        344,
+        348
+      ],
+      "violation_count": 15
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\interface\\genesis_installer_builder.py",
+      "line_numbers": [
+        105,
+        187
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

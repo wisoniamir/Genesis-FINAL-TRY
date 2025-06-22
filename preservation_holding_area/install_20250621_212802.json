@@ -1,0 +1,9 @@
+{
+  "module_id": "install",
+  "original_path": "modules\\restored\\install.py",
+  "preserved_path": "preservation_holding_area\\install_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 41710,
+  "checksum": "d54d5739933570d3e976ed2106a5997bc37d8d5ee5add144dd7c503e46774822"
+}

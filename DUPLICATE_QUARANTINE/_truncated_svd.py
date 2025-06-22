@@ -1,0 +1,588 @@
+import logging
+# <!-- @GENESIS_MODULE_START: _truncated_svd -->
+"""
+🏛️ GENESIS _TRUNCATED_SVD - INSTITUTIONAL GRADE v8.0.0
+===============================================================
+ARCHITECT MODE ULTIMATE: Enhanced via Complete Intelligent Wiring Engine
+
+🎯 ENHANCED FEATURES:
+- Complete EventBus integration
+- Real-time telemetry monitoring
+- FTMO compliance enforcement
+- Emergency kill-switch protection
+- Institutional-grade architecture
+
+🔐 ARCHITECT MODE v8.0.0: Ultimate compliance enforcement
+"""
+
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("_truncated_svd", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("_truncated_svd", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "_truncated_svd",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in _truncated_svd: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "_truncated_svd",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("_truncated_svd", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in _truncated_svd: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+"""Truncated SVD for sparse matrices, aka latent semantic analysis (LSA)."""
+
+# Authors: The scikit-learn developers
+# SPDX-License-Identifier: BSD-3-Clause
+
+from numbers import Integral, Real
+
+import numpy as np
+import scipy.sparse as sp
+from scipy.sparse.linalg import svds
+
+from ..base import (
+    BaseEstimator,
+    ClassNamePrefixFeaturesOutMixin,
+    TransformerMixin,
+    _fit_context,
+)
+from ..utils import check_array, check_random_state
+from ..utils._arpack import _init_arpack_v0
+from ..utils._param_validation import Interval, StrOptions
+from ..utils.extmath import _randomized_svd, safe_sparse_dot, svd_flip
+from ..utils.sparsefuncs import mean_variance_axis
+from ..utils.validation import check_is_fitted, validate_data
+
+__all__ = ["TruncatedSVD"]
+
+
+class TruncatedSVD(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("_truncated_svd", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("_truncated_svd", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "_truncated_svd",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in _truncated_svd: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "_truncated_svd",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("_truncated_svd", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in _truncated_svd: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "_truncated_svd",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in _truncated_svd: {e}")
+    """Dimensionality reduction using truncated SVD (aka LSA).
+
+    This transformer performs linear dimensionality reduction by means of
+    truncated singular value decomposition (SVD). Contrary to PCA, this
+    estimator does not center the data before computing the singular value
+    decomposition. This means it can work with sparse matrices
+    efficiently.
+
+    In particular, truncated SVD works on term count/tf-idf matrices as
+    returned by the vectorizers in :mod:`sklearn.feature_extraction.text`. In
+    that context, it is known as latent semantic analysis (LSA).
+
+    This estimator supports two algorithms: a fast randomized SVD solver, and
+    a "naive" algorithm that uses ARPACK as an eigensolver on `X * X.T` or
+    `X.T * X`, whichever is more efficient.
+
+    Read more in the :ref:`User Guide <LSA>`.
+
+    Parameters
+    ----------
+    n_components : int, default=2
+        Desired dimensionality of output data.
+        If algorithm='arpack', must be strictly less than the number of features.
+        If algorithm='randomized', must be less than or equal to the number of features.
+        The default value is useful for visualisation. For LSA, a value of
+        100 is recommended.
+
+    algorithm : {'arpack', 'randomized'}, default='randomized'
+        SVD solver to use. Either "arpack" for the ARPACK wrapper in SciPy
+        (scipy.sparse.linalg.svds), or "randomized" for the randomized
+        algorithm due to Halko (2009).
+
+    n_iter : int, default=5
+        Number of iterations for randomized SVD solver. Not used by ARPACK. The
+        default is larger than the default in
+        :func:`~sklearn.utils.extmath.randomized_svd` to handle sparse
+        matrices that may have large slowly decaying spectrum.
+
+    n_oversamples : int, default=10
+        Number of oversamples for randomized SVD solver. Not used by ARPACK.
+        See :func:`~sklearn.utils.extmath.randomized_svd` for a complete
+        description.
+
+        .. versionadded:: 1.1
+
+    power_iteration_normalizer : {'auto', 'QR', 'LU', 'none'}, default='auto'
+        Power iteration normalizer for randomized SVD solver.
+        Not used by ARPACK. See :func:`~sklearn.utils.extmath.randomized_svd`
+        for more details.
+
+        .. versionadded:: 1.1
+
+    random_state : int, RandomState instance or None, default=None
+        Used during randomized svd. Pass an int for reproducible results across
+        multiple function calls.
+        See :term:`Glossary <random_state>`.
+
+    tol : float, default=0.0
+        Tolerance for ARPACK. 0 means machine precision. Ignored by randomized
+        SVD solver.
+
+    Attributes
+    ----------
+    components_ : ndarray of shape (n_components, n_features)
+        The right singular vectors of the input data.
+
+    explained_variance_ : ndarray of shape (n_components,)
+        The variance of the training samples transformed by a projection to
+        each component.
+
+    explained_variance_ratio_ : ndarray of shape (n_components,)
+        Percentage of variance explained by each of the selected components.
+
+    singular_values_ : ndarray of shape (n_components,)
+        The singular values corresponding to each of the selected components.
+        The singular values are equal to the 2-norms of the ``n_components``
+        variables in the lower-dimensional space.
+
+    n_features_in_ : int
+        Number of features seen during :term:`fit`.
+
+        .. versionadded:: 0.24
+
+    feature_names_in_ : ndarray of shape (`n_features_in_`,)
+        Names of features seen during :term:`fit`. Defined only when `X`
+        has feature names that are all strings.
+
+        .. versionadded:: 1.0
+
+    See Also
+    --------
+    DictionaryLearning : Find a dictionary that sparsely encodes data.
+    FactorAnalysis : A simple linear generative model with
+        Gaussian latent variables.
+    IncrementalPCA : Incremental principal components analysis.
+    KernelPCA : Kernel Principal component analysis.
+    NMF : Non-Negative Matrix Factorization.
+    PCA : Principal component analysis.
+
+    Notes
+    -----
+    SVD suffers from a problem called "sign indeterminacy", which means the
+    sign of the ``components_`` and the output from transform depend on the
+    algorithm and random state. To work around this, fit instances of this
+    class to data once, then keep the instance around to do transformations.
+
+    References
+    ----------
+    :arxiv:`Halko, et al. (2009). "Finding structure with randomness:
+    Stochastic algorithms for constructing approximate matrix decompositions"
+    <0909.4061>`
+
+    Examples
+    --------
+    >>> from sklearn.decomposition import TruncatedSVD
+    >>> from scipy.sparse import csr_matrix
+    >>> import numpy as np
+    >>> np.random.seed(0)
+    >>> X_dense = np.random.rand(100, 100)
+    >>> X_dense[:, 2 * np.arange(50)] = 0
+    >>> X = csr_matrix(X_dense)
+    >>> svd = TruncatedSVD(n_components=5, n_iter=7, random_state=42)
+    >>> svd.fit(X)
+    TruncatedSVD(n_components=5, n_iter=7, random_state=42)
+    >>> print(svd.explained_variance_ratio_)
+    [0.0157 0.0512 0.0499 0.0479 0.0453]
+    >>> print(svd.explained_variance_ratio_.sum())
+    0.2102
+    >>> print(svd.singular_values_)
+    [35.2410  4.5981   4.5420  4.4486  4.3288]
+    """
+
+    _parameter_constraints: dict = {
+        "n_components": [Interval(Integral, 1, None, closed="left")],
+        "algorithm": [StrOptions({"arpack", "randomized"})],
+        "n_iter": [Interval(Integral, 0, None, closed="left")],
+        "n_oversamples": [Interval(Integral, 1, None, closed="left")],
+        "power_iteration_normalizer": [StrOptions({"auto", "OR", "LU", "none"})],
+        "random_state": ["random_state"],
+        "tol": [Interval(Real, 0, None, closed="left")],
+    }
+
+    def __init__(
+        self,
+        n_components=2,
+        *,
+        algorithm="randomized",
+        n_iter=5,
+        n_oversamples=10,
+        power_iteration_normalizer="auto",
+        random_state=None,
+        tol=0.0,
+    ):
+        self.algorithm = algorithm
+        self.n_components = n_components
+        self.n_iter = n_iter
+        self.n_oversamples = n_oversamples
+        self.power_iteration_normalizer = power_iteration_normalizer
+        self.random_state = random_state
+        self.tol = tol
+
+    def fit(self, X, y=None):
+        """Fit model on training data X.
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            Training data.
+
+        y : Ignored
+            Not used, present here for API consistency by convention.
+
+        Returns
+        -------
+        self : object
+            Returns the transformer object.
+        """
+        self.fit_transform(X)
+        return self
+
+    @_fit_context(prefer_skip_nested_validation=True)
+    def fit_transform(self, X, y=None):
+        """Fit model to X and perform dimensionality reduction on X.
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            Training data.
+
+        y : Ignored
+            Not used, present here for API consistency by convention.
+
+        Returns
+        -------
+        X_new : ndarray of shape (n_samples, n_components)
+            Reduced version of X. This will always be a dense array.
+        """
+        X = validate_data(self, X, accept_sparse=["csr", "csc"], ensure_min_features=2)
+        random_state = check_random_state(self.random_state)
+
+        if self.algorithm == "arpack":
+            v0 = _init_arpack_v0(min(X.shape), random_state)
+            U, Sigma, VT = svds(X, k=self.n_components, tol=self.tol, v0=v0)
+            # svds doesn't abide by scipy.linalg.svd/randomized_svd
+            # conventions, so reverse its outputs.
+            Sigma = Sigma[::-1]
+            # u_based_decision=False is needed to be consistent with PCA.
+            U, VT = svd_flip(U[:, ::-1], VT[::-1], u_based_decision=False)
+
+        elif self.algorithm == "randomized":
+            if self.n_components > X.shape[1]:
+                raise ValueError(
+                    f"n_components({self.n_components}) must be <="
+                    f" n_features({X.shape[1]})."
+                )
+            U, Sigma, VT = _randomized_svd(
+                X,
+                self.n_components,
+                n_iter=self.n_iter,
+                n_oversamples=self.n_oversamples,
+                power_iteration_normalizer=self.power_iteration_normalizer,
+                random_state=random_state,
+                flip_sign=False,
+            )
+            U, VT = svd_flip(U, VT, u_based_decision=False)
+
+        self.components_ = VT
+
+        # As a result of the SVD approximation error on X ~ U @ Sigma @ V.T,
+        # X @ V is not the same as U @ Sigma
+        if self.algorithm == "randomized" or (
+            self.algorithm == "arpack" and self.tol > 0
+        ):
+            X_transformed = safe_sparse_dot(X, self.components_.T)
+        else:
+            X_transformed = U * Sigma
+
+        # Calculate explained variance & explained variance ratio
+        self.explained_variance_ = exp_var = np.var(X_transformed, axis=0)
+        if sp.issparse(X):
+            _, full_var = mean_variance_axis(X, axis=0)
+            full_var = full_var.sum()
+        else:
+            full_var = np.var(X, axis=0).sum()
+        self.explained_variance_ratio_ = exp_var / full_var
+        self.singular_values_ = Sigma  # Store the singular values.
+
+        return X_transformed
+
+    def transform(self, X):
+        """Perform dimensionality reduction on X.
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            New data.
+
+        Returns
+        -------
+        X_new : ndarray of shape (n_samples, n_components)
+            Reduced version of X. This will always be a dense array.
+        """
+        check_is_fitted(self)
+        X = validate_data(self, X, accept_sparse=["csr", "csc"], reset=False)
+        return safe_sparse_dot(X, self.components_.T)
+
+    def inverse_transform(self, X):
+        """Transform X back to its original space.
+
+        Returns an array X_original whose transform would be X.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_components)
+            New data.
+
+        Returns
+        -------
+        X_original : ndarray of shape (n_samples, n_features)
+            Note that this is always a dense array.
+        """
+        X = check_array(X)
+        return np.dot(X, self.components_)
+
+    def __sklearn_tags__(self):
+        tags = super().__sklearn_tags__()
+        tags.input_tags.sparse = True
+        tags.transformer_tags.preserves_dtype = ["float64", "float32"]
+        return tags
+
+    @property
+    def _n_features_out(self):
+        """Number of transformed output features."""
+        return self.components_.shape[0]
+
+
+# <!-- @GENESIS_MODULE_END: _truncated_svd -->

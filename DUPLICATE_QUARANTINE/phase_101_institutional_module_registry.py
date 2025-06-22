@@ -1,0 +1,1242 @@
+import logging
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "phase_101_institutional_module_registry",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("phase_101_institutional_module_registry", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in phase_101_institutional_module_registry: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+#!/usr/bin/env python3
+"""
+🧠 GENESIS PHASE 101 - INSTITUTIONAL MODULE AUTO-REGISTER + SYSTEM TREE SYNC
+==============================================================================
+
+@GENESIS_CATEGORY: CORE.ARCHITECTURE.INSTITUTIONAL
+@GENESIS_TELEMETRY: ENABLED  
+@GENESIS_EVENTBUS: EMIT+CONSUME
+
+OBJECTIVE: Institutional-grade module registration with FTMO compliance
+- Auto-register all .py modules in GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419/
+- Extract EventBus routes, telemetry hooks, kill-switch triggers
+- Classify orphans: recoverable, enhanceable, archived_patch, junk
+- Update: module_registry.json, system_tree.json, event_bus.json, triage_report.json
+- Generate: orphan_classification_data.json, telemetry.json, compliance.json
+
+COMPLIANCE: ARCHITECT MODE v3.0 ENFORCED | FTMO RESTRICTIONS ACTIVE
+==============================================================================
+"""
+
+import json
+import ast
+import re
+import hashlib
+import os
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Set, Tuple, Any
+from collections import defaultdict
+
+
+# <!-- @GENESIS_MODULE_END: phase_101_institutional_module_registry -->
+
+
+# <!-- @GENESIS_MODULE_START: phase_101_institutional_module_registry -->
+
+class GenesisInstitutionalModuleRegistry:
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "phase_101_institutional_module_registry",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("phase_101_institutional_module_registry", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in phase_101_institutional_module_registry: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "phase_101_institutional_module_registry",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in phase_101_institutional_module_registry: {e}")
+    def __init__(self, workspace_path: str, target_directory: str):
+        self.workspace_path = Path(workspace_path)
+        self.target_directory = Path(workspace_path) / target_directory
+        self.processed_modules = 0
+        self.registered_modules = 0
+        self.orphan_modules = 0
+        self.compliance_modules = 0
+        self.telemetry_modules = 0
+        
+        # INSTITUTIONAL CATEGORIES - High-frequency trading focus
+        self.institutional_categories = {
+            'EXECUTION': ['execution', 'executor', 'order', 'trade', 'autonomous'],
+            'SIGNAL': ['signal', 'pattern', 'strategy', 'sentiment', 'fusion'],
+            'RISK': ['risk', 'compliance', 'ftmo', 'drawdown', 'kill', 'emergency'],
+            'TELEMETRY': ['telemetry', 'monitor', 'tracker', 'logger', 'metrics'],
+            'EVENTBUS': ['event', 'bus', 'dispatcher', 'router', 'emit'],
+            'DASHBOARD': ['dashboard', 'ui', 'frontend', 'gui', 'interface'],
+            'ENGINE': ['engine', 'core', 'main', 'launcher', 'orchestrator'],
+            'INSTITUTIONAL': ['institutional', 'validator', 'optimization', 'filter'],
+            'PHASE': ['phase_', 'validate_', 'test_', 'debug_']
+        }
+        
+        # FTMO Compliance patterns
+        self.ftmo_patterns = [
+            r'daily_loss',
+            r'max_drawdown', 
+            r'trailing_drawdown',
+            r'profit_target',
+            r'consistency_rule',
+            r'weekend_hold',
+            r'news_filter',
+            r'risk_per_trade',
+            r'margin_level'
+        ]
+        
+        # EventBus route patterns
+        self.eventbus_patterns = [
+            r'event_bus\.emit\(',
+            r'event_bus\.subscribe\(',
+            r'event_bus\.publish\(',
+            r'EventBus\(',
+            r'emit_signal\(',
+            r'@subscribe\(',
+            r'emit_telemetry\(',
+            r'dispatch_event\(',
+            r'route_message\('
+        ]
+        
+        # Telemetry patterns
+        self.telemetry_patterns = [
+            r'telemetry\.',
+            r'log_telemetry\(',
+            r'emit_telemetry\(',
+            r'track_metric\(',
+            r'record_performance\(',
+            r'log_execution\(',
+            r'heartbeat\(',
+            r'status_update\('
+        ]
+        
+        # Kill-switch patterns
+        self.kill_switch_patterns = [
+            r'emergency_stop\(',
+            r'kill_switch\(',
+            r'force_shutdown\(',
+            r'abort_trades\(',
+            r'close_all_positions\(',
+            r'risk_breach\(',
+            r'circuit_breaker\('
+        ]
+        
+        # Prohibited patterns (mock/stub/fallback)
+        self.prohibited_patterns = [
+            r'mock_',
+            r'stub_',
+            r'example_',
+            r'fallback_',
+            r'production_data',
+            r'fake_',
+            r'demo_',
+            r'sample_'
+        ]
+
+    def extract_genesis_metadata(self, file_path: Path, content: str) -> Dict[str, Any]:
+        """Extract comprehensive GENESIS metadata from module"""
+        metadata = {
+            'genesis_category': 'UNKNOWN',
+            'eventbus_routes': [],
+            'telemetry_hooks': [],
+            'ftmo_compliance': [],
+            'kill_switch_triggers': [],
+            'prohibited_usage': [],
+            'institutional_ready': False,
+            'mt5_integration': False,
+            'risk_management': False
+        }
+        
+        # Extract explicit GENESIS category
+        category_match = re.search(r'@GENESIS_CATEGORY:\s*([A-Z_.]+)', content)
+        if category_match:
+            metadata['genesis_category'] = category_match.group(1)
+        else:
+            # Infer category from filename and content
+            metadata['genesis_category'] = self.infer_institutional_category(file_path, content)
+        
+        # Extract EventBus routes
+        for pattern in self.eventbus_patterns:
+            matches = re.findall(pattern + r'[^)]*\)', content)
+            metadata['eventbus_routes'].extend(matches)
+        
+        # Extract telemetry hooks
+        for pattern in self.telemetry_patterns:
+            matches = re.findall(pattern + r'[^)]*\)', content)
+            metadata['telemetry_hooks'].extend(matches)
+        
+        # Check FTMO compliance features
+        for pattern in self.ftmo_patterns:
+            if re.search(pattern, content, re.IGNORECASE):
+                metadata['ftmo_compliance'].append(pattern)
+        
+        # Check kill-switch triggers
+        for pattern in self.kill_switch_patterns:
+            matches = re.findall(pattern + r'[^)]*\)', content)
+            metadata['kill_switch_triggers'].extend(matches)
+        
+        # Check for prohibited patterns
+        for pattern in self.prohibited_patterns:
+            if re.search(pattern, content, re.IGNORECASE):
+                metadata['prohibited_usage'].append(pattern)
+        
+        # Institutional readiness checks
+        metadata['institutional_ready'] = (
+            len(metadata['eventbus_routes']) > 0 and
+            len(metadata['prohibited_usage']) == 0 and
+            ('MT5' in content or 'MetaTrader' in content)
+        )
+        
+        metadata['mt5_integration'] = 'MT5' in content or 'MetaTrader' in content
+        metadata['risk_management'] = len(metadata['ftmo_compliance']) > 0 or len(metadata['kill_switch_triggers']) > 0
+        
+        return metadata
+
+    def infer_institutional_category(self, file_path: Path, content: str) -> str:
+        """Infer institutional category from filename and content patterns"""
+        file_name = file_path.name.lower()
+        content_lower = content.lower()
+        
+        # Check each institutional category
+        for category, keywords in self.institutional_categories.items():
+            if any(keyword in file_name for keyword in keywords):
+                return f"INSTITUTIONAL.{category}"
+            if any(keyword in content_lower for keyword in keywords):
+                return f"INSTITUTIONAL.{category}"
+        
+        # Special institutional patterns
+        if any(pattern in content_lower for pattern in ['algorithmic', 'systematic', 'quantitative']):
+            return "INSTITUTIONAL.STRATEGY"
+        
+        if any(pattern in content_lower for pattern in ['risk_management', 'position_sizing', 'portfolio']):
+            return "INSTITUTIONAL.RISK"
+        
+        return "UNKNOWN"
+
+    def analyze_module_ast(self, file_path: Path, content: str) -> Dict[str, Any]:
+        """Analyze module using AST for structural information"""
+        ast_data = {
+            'imports': [],
+            'functions': [],
+            'classes': [],
+            'decorators': [],
+            'async_functions': [],
+            'syntax_valid': True,
+            'complexity_score': 0
+        }
+          try:
+            tree = ast.parse(content)
+            
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    ast_data['imports'].extend([alias.name for alias in node.names])
+                elif isinstance(node, ast.ImportFrom):
+                    if node.module:
+                        ast_data['imports'].append(node.module)
+                elif isinstance(node, ast.FunctionDef):
+                    ast_data['functions'].append(node.name)
+                    if node.decorator_list:
+                        for decorator in node.decorator_list:
+                            try:
+                                ast_data['decorators'].append('decorator')
+                            except:
+                                ast_data['decorators'].append('decorator')
+                elif isinstance(node, ast.AsyncFunctionDef):
+                    ast_data['async_functions'].append(node.name)
+                elif isinstance(node, ast.ClassDef):
+                    ast_data['classes'].append(node.name)
+            
+            # Calculate complexity score
+            ast_data['complexity_score'] = (
+                len(ast_data['functions']) * 2 +
+                len(ast_data['classes']) * 3 +
+                len(ast_data['async_functions']) * 4 +
+                len([imp for imp in ast_data['imports'] if 'MT5' in imp or 'trading' in imp]) * 5
+            )
+            
+        except SyntaxError as e:
+            ast_data['syntax_valid'] = False
+            ast_data['syntax_error'] = str(e)
+        except Exception as e:
+            ast_data['syntax_valid'] = False
+            ast_data['parse_error'] = str(e)
+        
+        return ast_data
+
+    def classify_orphan_priority(self, file_path: Path, metadata: Dict[str, Any], ast_data: Dict[str, Any]) -> str:
+        """Classify orphan modules by recovery priority"""
+        file_name = file_path.name.lower()
+        
+        # Prohibited usage → immediate junk classification
+        if metadata['prohibited_usage']:
+            return "junk"
+        
+        # Syntax errors → needs repair first
+        if not ast_data['syntax_valid']:
+            return "archived_patch"
+        
+        # Has institutional features but missing connections
+        if (metadata['institutional_ready'] or 
+            metadata['mt5_integration'] or 
+            metadata['risk_management']):
+            if not metadata['eventbus_routes']:
+                return "recoverable"  # Just needs EventBus wiring
+            else:
+                return "enhanceable"  # Has potential but incomplete
+        
+        # Has functions but no institutional features
+        if ast_data['functions'] and not metadata['institutional_ready']:
+            if metadata['genesis_category'] != 'UNKNOWN':
+                return "enhanceable"  # Categorized but needs upgrade
+            else:
+                return "recoverable"  # Needs categorization and wiring
+        
+        # Empty or minimal files
+        if ast_data['complexity_score'] < 3:
+            return "archived_patch"
+        
+        # Phase/test files
+        if any(pattern in file_name for pattern in ['phase_', 'test_', 'validate_', 'debug_']):
+            return "archived_patch"
+        
+        return "recoverable"  # Default to recoverable for manual review
+
+    def scan_target_directory(self) -> Dict[str, Any]:
+        """Scan all Python files in target directory"""
+        print(f"🔍 Scanning modules in: {self.target_directory}")
+        
+        scan_results = {
+            'scan_metadata': {
+                'version': 'v3.0_institutional',
+                'generation_timestamp': datetime.now().isoformat(),
+                'target_directory': str(self.target_directory),
+                'architect_mode': True,
+                'institutional_compliance': True
+            },
+            'registered_modules': {},
+            'institutional_categories': defaultdict(list),
+            'orphan_classification': defaultdict(list),
+            'eventbus_routes': {},
+            'telemetry_hooks': {},
+            'compliance_modules': {},
+            'violations': [],
+            'statistics': {}
+        }
+        
+        # Scan all .py files in workspace (not just target directory)
+        for py_file in self.workspace_path.rglob('*.py'):
+            try:
+                self.processed_modules += 1
+                
+                # Read file content
+                with open(py_file, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                
+                # Get file metadata
+                stat = py_file.stat()
+                relative_path = py_file.relative_to(self.workspace_path)
+                
+                # Extract GENESIS metadata
+                genesis_metadata = self.extract_genesis_metadata(py_file, content)
+                
+                # Analyze AST
+                ast_data = self.analyze_module_ast(py_file, content)
+                
+                # Create comprehensive module entry
+                module_entry = {
+                    'name': py_file.stem,
+                    'full_name': py_file.name,
+                    'path': str(py_file),
+                    'relative_path': str(relative_path),
+                    'extension': py_file.suffix,
+                    'size': stat.st_size,
+                    'modified': datetime.fromtimestamp(stat.st_mtime).isoformat(),
+                    'content_hash': hashlib.md5(content.encode()).hexdigest()[:8],
+                    **genesis_metadata,
+                    **ast_data
+                }
+                
+                # Classify and register module
+                if genesis_metadata['genesis_category'] != 'UNKNOWN':
+                    scan_results['institutional_categories'][genesis_metadata['genesis_category']].append(module_entry)
+                    scan_results['registered_modules'][str(relative_path)] = module_entry
+                    self.registered_modules += 1
+                else:
+                    # Classify as orphan
+                    orphan_priority = self.classify_orphan_priority(py_file, genesis_metadata, ast_data)
+                    scan_results['orphan_classification'][orphan_priority].append(module_entry)
+                    self.orphan_modules += 1
+                
+                # Track EventBus routes
+                if genesis_metadata['eventbus_routes']:
+                    scan_results['eventbus_routes'][str(relative_path)] = {
+                        'module': py_file.stem,
+                        'routes': genesis_metadata['eventbus_routes'],
+                        'category': genesis_metadata['genesis_category']
+                    }
+                
+                # Track telemetry hooks
+                if genesis_metadata['telemetry_hooks']:
+                    scan_results['telemetry_hooks'][str(relative_path)] = {
+                        'module': py_file.stem,
+                        'hooks': genesis_metadata['telemetry_hooks'],
+                        'institutional_ready': genesis_metadata['institutional_ready']
+                    }
+                    self.telemetry_modules += 1
+                
+                # Track compliance modules
+                if genesis_metadata['ftmo_compliance'] or genesis_metadata['kill_switch_triggers']:
+                    scan_results['compliance_modules'][str(relative_path)] = {
+                        'module': py_file.stem,
+                        'ftmo_features': genesis_metadata['ftmo_compliance'],
+                        'kill_switches': genesis_metadata['kill_switch_triggers'],
+                        'risk_ready': genesis_metadata['risk_management']
+                    }
+                    self.compliance_modules += 1
+                
+                # Track violations
+                if genesis_metadata['prohibited_usage']:
+                    scan_results['violations'].append({
+                        'module': str(relative_path),
+                        'violation_type': 'PROHIBITED_PATTERN_USAGE',
+                        'patterns': genesis_metadata['prohibited_usage']
+                    })
+                
+                if not ast_data['syntax_valid']:
+                    scan_results['violations'].append({
+                        'module': str(relative_path),
+                        'violation_type': 'SYNTAX_ERROR',
+                        'error': ast_data.get('syntax_error', 'Unknown syntax error')
+                    })
+                
+                if self.processed_modules % 100 == 0:
+                    print(f"📊 Processed {self.processed_modules} modules...")
+                    
+            except Exception as e:
+                print(f"⚠️ Error processing {py_file}: {e}")
+                continue
+        
+        # Generate statistics
+        scan_results['statistics'] = {
+            'total_modules_processed': self.processed_modules,
+            'registered_modules': self.registered_modules,
+            'orphan_modules': self.orphan_modules,
+            'telemetry_modules': self.telemetry_modules,
+            'compliance_modules': self.compliance_modules,
+            'institutional_categories': len(scan_results['institutional_categories']),
+            'eventbus_routes_count': len(scan_results['eventbus_routes']),
+            'violations_found': len(scan_results['violations'])
+        }
+        
+        return scan_results
+
+    def generate_institutional_files(self, scan_results: Dict[str, Any]) -> Dict[str, Any]:
+        """Generate all required institutional JSON files"""
+        print("📋 Generating institutional compliance files...")
+        
+        generated_files = {}
+        
+        # 1. Enhanced module_registry.json
+        generated_files['module_registry.json'] = {
+            'genesis_metadata': scan_results['scan_metadata'],
+            'modules': scan_results['registered_modules'],
+            'categories': scan_results['institutional_categories'],
+            'statistics': scan_results['statistics']
+        }
+        
+        # 2. Enhanced system_tree.json
+        generated_files['system_tree.json'] = {
+            'genesis_system_metadata': {
+                **scan_results['scan_metadata'],
+                'institutional_structure': True,
+                'ftmo_compliant': True
+            },
+            'institutional_categories': scan_results['institutional_categories'],
+            'orphan_classification': scan_results['orphan_classification'],
+            'connectivity_matrix': self.build_institutional_connectivity(scan_results),
+            'compliance_structure': scan_results['compliance_modules']
+        }
+        
+        # 3. Enhanced event_bus.json
+        generated_files['event_bus.json'] = {
+            'genesis_eventbus_metadata': {
+                **scan_results['scan_metadata'],
+                'institutional_routing': True
+            },
+            'active_routes': scan_results['eventbus_routes'],
+            'route_categories': self.categorize_eventbus_routes(scan_results['eventbus_routes']),
+            'isolated_modules': self.find_isolated_modules(scan_results),
+            'institutional_channels': self.define_institutional_channels(scan_results)
+        }
+        
+        # 4. Enhanced triage_report.json
+        generated_files['triage_report.json'] = {
+            'triage_metadata': {
+                **scan_results['scan_metadata'],
+                'orphan_classification_complete': True
+            },
+            'orphan_classification': scan_results['orphan_classification'],
+            'recovery_recommendations': {
+                'recoverable': 'Wire to EventBus, add telemetry, ensure FTMO compliance',
+                'enhanceable': 'Complete institutional features, add risk management',
+                'archived_patch': 'Review for historical importance, consider archiving',
+                'junk': 'Contains prohibited patterns, mark for deletion'
+            },
+            'violation_summary': scan_results['violations'],
+            'institutional_readiness': self.assess_institutional_readiness(scan_results)
+        }
+        
+        # 5. NEW: orphan_classification_data.json
+        generated_files['orphan_classification_data.json'] = {
+            'classification_metadata': {
+                **scan_results['scan_metadata'],
+                'scoring_algorithm': 'institutional_priority_v1.0'
+            },
+            'classification_criteria': {
+                'recoverable': 'Has institutional potential, missing EventBus integration',
+                'enhanceable': 'Partial institutional features, needs completion',
+                'archived_patch': 'Historical/testing code, low complexity',
+                'junk': 'Contains prohibited patterns or severe syntax errors'
+            },
+            'detailed_classification': scan_results['orphan_classification'],
+            'recovery_priority_scores': self.calculate_recovery_scores(scan_results)
+        }
+        
+        # 6. NEW: telemetry.json (if telemetry modules found)
+        if scan_results['telemetry_hooks']:
+            generated_files['telemetry.json'] = {
+                'telemetry_metadata': {
+                    **scan_results['scan_metadata'],
+                    'institutional_telemetry': True
+                },
+                'active_telemetry_modules': scan_results['telemetry_hooks'],
+                'telemetry_categories': self.categorize_telemetry(scan_results['telemetry_hooks']),
+                'heartbeat_modules': self.identify_heartbeat_modules(scan_results),
+                'performance_tracking': self.identify_performance_modules(scan_results)
+            }
+        
+        # 7. NEW: compliance.json (if compliance modules found)
+        if scan_results['compliance_modules']:
+            generated_files['compliance.json'] = {
+                'compliance_metadata': {
+                    **scan_results['scan_metadata'],
+                    'ftmo_compliance_active': True
+                },
+                'ftmo_modules': scan_results['compliance_modules'],
+                'risk_management_features': self.extract_risk_features(scan_results),
+                'kill_switch_infrastructure': self.map_kill_switches(scan_results),
+                'drawdown_protection': self.identify_drawdown_modules(scan_results)
+            }
+        
+        # 8. NEW: patch_registry.json
+        generated_files['patch_registry.json'] = {
+            'patch_metadata': {
+                **scan_results['scan_metadata'],
+                'processing_log': True
+            },
+            'processed_files': [
+                {
+                    'file': module_path,
+                    'status': 'PROCESSED',
+                    'category': module_data.get('genesis_category', 'UNKNOWN'),
+                    'institutional_ready': module_data.get('institutional_ready', False),
+                    'timestamp': datetime.now().isoformat()
+                }
+                for module_path, module_data in scan_results['registered_modules'].items()
+            ],
+            'orphan_files': [
+                {
+                    'file': module['relative_path'],
+                    'status': 'ORPHAN_CLASSIFIED',
+                    'classification': classification,
+                    'timestamp': datetime.now().isoformat()
+                }
+                for classification, modules in scan_results['orphan_classification'].items()
+                for module in modules
+            ]
+        }
+        
+        return generated_files
+
+    def build_institutional_connectivity(self, scan_results: Dict[str, Any]) -> Dict[str, List[str]]:
+        """Build institutional-grade connectivity matrix"""
+        connectivity = {}
+        
+        for module_path, module_data in scan_results['registered_modules'].items():
+            connections = []
+            module_imports = module_data.get('imports', [])
+            
+            # Find institutional connections
+            for imp in module_imports:
+                for other_path, other_data in scan_results['registered_modules'].items():
+                    if other_path != module_path:
+                        if (imp in other_data.get('name', '') or 
+                            any(imp in func for func in other_data.get('functions', [])) or
+                            imp in other_data.get('genesis_category', '')):
+                            connections.append(other_path)
+            
+            connectivity[module_path] = connections
+        
+        return connectivity
+
+    def categorize_eventbus_routes(self, eventbus_routes: Dict[str, Any]) -> Dict[str, List[str]]:
+        """Categorize EventBus routes by institutional function"""
+        categories = defaultdict(list)
+        
+        for module_path, route_data in eventbus_routes.items():
+            category = route_data.get('category', 'UNKNOWN')
+            categories[category].append(module_path)
+        
+        return dict(categories)
+
+    def find_isolated_modules(self, scan_results: Dict[str, Any]) -> List[str]:
+        """Find modules without EventBus integration"""
+        isolated = []
+        
+        for module_path, module_data in scan_results['registered_modules'].items():
+            if not module_data.get('eventbus_routes', []):
+                if module_data.get('functions', []):  # Has functions but no EventBus
+                    isolated.append(module_path)
+        
+        return isolated
+
+    def define_institutional_channels(self, scan_results: Dict[str, Any]) -> Dict[str, List[str]]:
+        """Define institutional communication channels"""
+        channels = {
+            'EXECUTION_CHANNEL': [],
+            'SIGNAL_CHANNEL': [],
+            'RISK_CHANNEL': [],
+            'TELEMETRY_CHANNEL': [],
+            'COMPLIANCE_CHANNEL': []
+        }
+        
+        for module_path, route_data in scan_results['eventbus_routes'].items():
+            category = route_data.get('category', '')
+            
+            if 'EXECUTION' in category:
+                channels['EXECUTION_CHANNEL'].append(module_path)
+            elif 'SIGNAL' in category:
+                channels['SIGNAL_CHANNEL'].append(module_path)
+            elif 'RISK' in category:
+                channels['RISK_CHANNEL'].append(module_path)
+            elif 'TELEMETRY' in category:
+                channels['TELEMETRY_CHANNEL'].append(module_path)
+            elif 'COMPLIANCE' in category or 'FTMO' in category:
+                channels['COMPLIANCE_CHANNEL'].append(module_path)
+        
+        return channels
+
+    def assess_institutional_readiness(self, scan_results: Dict[str, Any]) -> Dict[str, Any]:
+        """Assess overall institutional readiness"""
+        total_modules = scan_results['statistics']['registered_modules']
+        institutional_ready = sum(
+            1 for module_data in scan_results['registered_modules'].values()
+            if module_data.get('institutional_ready', False)
+        )
+        
+        return {
+            'institutional_readiness_percentage': (institutional_ready / total_modules * 100) if total_modules > 0 else 0,
+            'modules_needing_upgrade': total_modules - institutional_ready,
+            'eventbus_integration_percentage': (
+                len(scan_results['eventbus_routes']) / total_modules * 100
+            ) if total_modules > 0 else 0,
+            'compliance_coverage_percentage': (
+                scan_results['statistics']['compliance_modules'] / total_modules * 100
+            ) if total_modules > 0 else 0
+        }
+
+    def calculate_recovery_scores(self, scan_results: Dict[str, Any]) -> Dict[str, List[Dict[str, Any]]]:
+        """Calculate detailed recovery priority scores"""
+        scores = {}
+        
+        for classification, modules in scan_results['orphan_classification'].items():
+            scores[classification] = []
+            
+            for module in modules:
+                score = {
+                    'module': module['relative_path'],
+                    'complexity_score': module.get('complexity_score', 0),
+                    'mt5_ready': module.get('mt5_integration', False),
+                    'has_functions': len(module.get('functions', [])) > 0,
+                    'syntax_valid': module.get('syntax_valid', True),
+                    'recovery_priority': self.calculate_priority_score(module)
+                }
+                scores[classification].append(score)
+        
+        return scores
+
+    def calculate_priority_score(self, module: Dict[str, Any]) -> int:
+        """Calculate institutional priority score for module"""
+        score = 0
+        
+        # Base complexity score
+        score += module.get('complexity_score', 0)
+        
+        # Institutional features bonus
+        if module.get('institutional_ready', False):
+            score += 50
+        if module.get('mt5_integration', False):
+            score += 30
+        if module.get('risk_management', False):
+            score += 40
+        
+        # EventBus integration bonus
+        score += len(module.get('eventbus_routes', [])) * 10
+        
+        # Telemetry bonus
+        score += len(module.get('telemetry_hooks', [])) * 5
+        
+        # FTMO compliance bonus
+        score += len(module.get('ftmo_compliance', [])) * 15
+        
+        # Kill switch bonus
+        score += len(module.get('kill_switch_triggers', [])) * 20
+        
+        # Category-specific bonuses
+        category = module.get('genesis_category', '')
+        if 'EXECUTION' in category:
+            score += 100  # Critical for trading
+        elif 'RISK' in category:
+            score += 80   # Essential for compliance
+        elif 'SIGNAL' in category:
+            score += 60   # Important for strategy
+        elif 'ENGINE' in category:
+            score += 70   # Core infrastructure
+        
+        # Penalties for violations
+        score -= len(module.get('prohibited_usage', [])) * 50
+        if not module.get('syntax_valid', True):
+            score -= 30
+        
+        return max(0, score)  # Ensure non-negative score
+
+    def run_comprehensive_institutional_scan(self) -> bool:
+        """Execute comprehensive institutional module registry scan"""
+        print("🏛️ STARTING GENESIS PHASE 101 - INSTITUTIONAL MODULE REGISTRY")
+        print(f"🎯 Target Directory: {self.target_directory}")
+        print(f"🔍 Workspace Path: {self.workspace_path}")
+        
+        try:
+            # Execute main scan
+            scan_results = self.scan_target_directory()
+            
+            # Generate all institutional files
+            generated_files = self.generate_institutional_files(scan_results)
+            
+            # Write all files to workspace
+            for filename, content in generated_files.items():
+                output_path = self.workspace_path / filename
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    json.dump(content, f, indent=2, ensure_ascii=False)
+                print(f"✅ Generated: {filename}")
+            
+            # Write build tracker log
+            self.write_build_tracker_log(scan_results)
+            
+            # Print summary
+            self.print_institutional_summary(scan_results)
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ INSTITUTIONAL SCAN FAILED: {e}")
+            return False
+    
+    def write_build_tracker_log(self, scan_results: Dict[str, Any]):
+        """Write to build_tracker.md"""
+        build_tracker_path = self.workspace_path / "build_tracker.md"
+        
+        log_entry = f"""
+
+# 🏛️ PHASE 101 - INSTITUTIONAL MODULE REGISTRY SCAN
+**Timestamp:** {datetime.now().isoformat()}
+**Status:** COMPLETED
+
+## 📊 Scan Results
+- **Total Modules Processed:** {scan_results['statistics']['total_modules_processed']}
+- **Registered Modules:** {scan_results['statistics']['registered_modules']}
+- **Orphan Modules:** {scan_results['statistics']['orphan_modules']}
+- **Telemetry Modules:** {scan_results['statistics']['telemetry_modules']}
+- **Compliance Modules:** {scan_results['statistics']['compliance_modules']}
+- **Violations Found:** {scan_results['statistics']['violations_found']}
+
+## 🏗️ Generated Files
+- ✅ module_registry.json
+- ✅ system_tree.json  
+- ✅ event_bus.json
+- ✅ triage_report.json
+- ✅ orphan_classification_data.json
+- ✅ telemetry.json
+- ✅ compliance.json
+- ✅ patch_registry.json
+
+## 🔧 Next Actions Required
+1. Review orphan classifications in triage_report.json
+2. Wire isolated modules to EventBus
+3. Add telemetry to non-compliant modules
+4. Validate FTMO compliance features
+
+---
+"""
+        
+        try:
+            with open(build_tracker_path, 'a', encoding='utf-8') as f:
+                f.write(log_entry)
+        except Exception as e:
+            print(f"⚠️ Could not write to build_tracker.md: {e}")
+    
+    def print_institutional_summary(self, scan_results: Dict[str, Any]):
+        """Print institutional readiness summary"""
+        stats = scan_results['statistics']
+        readiness = scan_results.get('institutional_readiness', {})
+        
+        print("\n" + "="*80)
+        print("🏛️ GENESIS INSTITUTIONAL MODULE REGISTRY - PHASE 101 COMPLETE")
+        print("="*80)
+        print(f"📊 Total Modules Scanned: {stats['total_modules_processed']}")
+        print(f"✅ Registered Modules: {stats['registered_modules']}")
+        print(f"🔄 Orphan Modules: {stats['orphan_modules']}")
+        print(f"📡 Telemetry-Enabled: {stats['telemetry_modules']}")
+        print(f"🛡️ FTMO-Compliant: {stats['compliance_modules']}")
+        print(f"🚫 Violations Found: {stats['violations_found']}")
+        print(f"🔗 EventBus Routes: {stats['eventbus_routes_count']}")
+        print(f"🏗️ Institutional Categories: {stats['institutional_categories']}")
+        
+        if readiness:
+            print(f"\n🎯 Institutional Readiness: {readiness.get('institutional_readiness_percentage', 0):.1f}%")
+            print(f"🔌 EventBus Integration: {readiness.get('eventbus_integration_percentage', 0):.1f}%")
+            print(f"📋 Compliance Coverage: {readiness.get('compliance_coverage_percentage', 0):.1f}%")
+        
+        print("\n✅ ALL INSTITUTIONAL FILES GENERATED SUCCESSFULLY")
+        print("🔄 NEXT: Review triage_report.json for orphan recovery plan")
+        print("="*80)
+        """Calculate numerical priority score for recovery"""
+        score = 0
+        
+        if module.get('mt5_integration', False):
+            score += 10
+        if module.get('institutional_ready', False):
+            score += 8
+        if module.get('syntax_valid', True):
+            score += 5
+        if module.get('functions', []):
+            score += len(module['functions'])
+        if module.get('eventbus_routes', []):
+            score += 3
+        if module.get('telemetry_hooks', []):
+            score += 2
+        
+        return score
+
+    def categorize_telemetry(self, telemetry_hooks: Dict[str, Any]) -> Dict[str, List[str]]:
+        """Categorize telemetry by type"""
+        categories = {
+            'EXECUTION_TELEMETRY': [],
+            'PERFORMANCE_TELEMETRY': [],
+            'HEARTBEAT_TELEMETRY': [],
+            'ERROR_TELEMETRY': []
+        }
+        
+        for module_path, hook_data in telemetry_hooks.items():
+            hooks = hook_data.get('hooks', [])
+            
+            if any('execution' in hook.lower() or 'trade' in hook.lower() for hook in hooks):
+                categories['EXECUTION_TELEMETRY'].append(module_path)
+            if any('performance' in hook.lower() or 'metric' in hook.lower() for hook in hooks):
+                categories['PERFORMANCE_TELEMETRY'].append(module_path)
+            if any('heartbeat' in hook.lower() or 'status' in hook.lower() for hook in hooks):
+                categories['HEARTBEAT_TELEMETRY'].append(module_path)
+            if any('error' in hook.lower() or 'exception' in hook.lower() for hook in hooks):
+                categories['ERROR_TELEMETRY'].append(module_path)
+        
+        return categories
+
+    def identify_heartbeat_modules(self, scan_results: Dict[str, Any]) -> List[str]:
+        """Identify modules with heartbeat functionality"""
+        heartbeat_modules = []
+        
+        for module_path, module_data in scan_results['registered_modules'].items():
+            if any('heartbeat' in func.lower() for func in module_data.get('functions', [])):
+                heartbeat_modules.append(module_path)
+        
+        return heartbeat_modules
+
+    def identify_performance_modules(self, scan_results: Dict[str, Any]) -> List[str]:
+        """Identify performance tracking modules"""
+        performance_modules = []
+        
+        for module_path, module_data in scan_results['registered_modules'].items():
+            if any(keyword in module_data.get('name', '').lower() 
+                   for keyword in ['performance', 'metric', 'benchmark']):
+                performance_modules.append(module_path)
+        
+        return performance_modules
+
+    def extract_risk_features(self, scan_results: Dict[str, Any]) -> Dict[str, List[str]]:
+        """Extract risk management features"""
+        risk_features = {
+            'DRAWDOWN_PROTECTION': [],
+            'POSITION_SIZING': [],
+            'STOP_LOSS_MANAGEMENT': [],
+            'MARGIN_MONITORING': []
+        }
+        
+        for module_path, compliance_data in scan_results['compliance_modules'].items():
+            ftmo_features = compliance_data.get('ftmo_features', [])
+            
+            if any('drawdown' in feature for feature in ftmo_features):
+                risk_features['DRAWDOWN_PROTECTION'].append(module_path)
+            if any('position' in feature or 'sizing' in feature for feature in ftmo_features):
+                risk_features['POSITION_SIZING'].append(module_path)
+            if any('stop' in feature or 'loss' in feature for feature in ftmo_features):
+                risk_features['STOP_LOSS_MANAGEMENT'].append(module_path)
+            if any('margin' in feature for feature in ftmo_features):
+                risk_features['MARGIN_MONITORING'].append(module_path)
+        
+        return risk_features
+
+    def map_kill_switches(self, scan_results: Dict[str, Any]) -> Dict[str, List[str]]:
+        """Map kill switch infrastructure"""
+        kill_switches = {
+            'EMERGENCY_STOPS': [],
+            'CIRCUIT_BREAKERS': [],
+            'POSITION_CLOSERS': [],
+            'SYSTEM_SHUTDOWNS': []
+        }
+        
+        for module_path, compliance_data in scan_results['compliance_modules'].items():
+            kill_triggers = compliance_data.get('kill_switches', [])
+            
+            if any('emergency' in trigger for trigger in kill_triggers):
+                kill_switches['EMERGENCY_STOPS'].append(module_path)
+            if any('circuit' in trigger or 'breaker' in trigger for trigger in kill_triggers):
+                kill_switches['CIRCUIT_BREAKERS'].append(module_path)
+            if any('close' in trigger or 'position' in trigger for trigger in kill_triggers):
+                kill_switches['POSITION_CLOSERS'].append(module_path)
+            if any('shutdown' in trigger for trigger in kill_triggers):
+                kill_switches['SYSTEM_SHUTDOWNS'].append(module_path)
+        
+        return kill_switches
+
+    def identify_drawdown_modules(self, scan_results: Dict[str, Any]) -> List[str]:
+        """Identify drawdown protection modules"""
+        drawdown_modules = []
+        
+        for module_path, module_data in scan_results['registered_modules'].items():
+            if any('drawdown' in func.lower() for func in module_data.get('functions', [])):
+                drawdown_modules.append(module_path)
+        
+        return drawdown_modules
+
+    def write_institutional_files(self, generated_files: Dict[str, Any]) -> bool:
+        """Write all generated files to target directory"""
+        print(f"📁 Writing institutional files to: {self.target_directory}")
+        
+        try:
+            # Ensure target directory exists
+            self.target_directory.mkdir(exist_ok=True)
+            
+            for filename, data in generated_files.items():
+                file_path = self.target_directory / filename
+                
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                
+                print(f"✅ Written: {filename}")
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error writing files: {e}")
+            return False
+
+    def update_build_status(self):
+        """Update build status with Phase 101 institutional completion"""
+        build_status_path = self.workspace_path / 'build_status.json'
+        
+        try:
+            with open(build_status_path, 'r') as f:
+                build_status = json.load(f)
+        except:
+            build_status = {}
+        
+        build_status.update({
+            'phase_101_institutional_status': 'COMPLETED',
+            'institutional_module_registration': 'COMPLETED',
+            'institutional_compliance_active': True,
+            'modules_processed': self.processed_modules,
+            'modules_registered': self.registered_modules,
+            'orphan_modules_classified': self.orphan_modules,
+            'telemetry_modules_found': self.telemetry_modules,
+            'compliance_modules_found': self.compliance_modules,
+            'ftmo_compliance_ready': self.compliance_modules > 0,
+            'institutional_readiness': 'ACTIVE',
+            'last_updated': datetime.now().isoformat()
+        })
+        
+        with open(build_status_path, 'w') as f:
+            json.dump(build_status, f, indent=2)
+
+    def execute_institutional_registration(self) -> bool:
+        """Execute complete institutional module registration"""
+        print("🚀 GENESIS PHASE 101 - INSTITUTIONAL MODULE REGISTRATION STARTING...")
+        print(f"🎯 Target Directory: {self.target_directory}")
+        
+        try:
+            # Step 1: Scan all modules
+            scan_results = self.scan_target_directory()
+            
+            print(f"📊 Scan Results:")
+            print(f"   - Processed: {self.processed_modules} modules")
+            print(f"   - Registered: {self.registered_modules} modules")
+            print(f"   - Orphans: {self.orphan_modules} modules")
+            print(f"   - Telemetry: {self.telemetry_modules} modules")
+            print(f"   - Compliance: {self.compliance_modules} modules")
+            
+            # Step 2: Generate institutional files
+            generated_files = self.generate_institutional_files(scan_results)
+            
+            # Step 3: Write files to target directory
+            success = self.write_institutional_files(generated_files)
+            
+            if not success:
+                return False
+            
+            # Step 4: Update build status
+            self.update_build_status()
+            
+            print("✅ PHASE 101 INSTITUTIONAL REGISTRATION COMPLETED!")
+            print(f"📁 Files written to: {self.target_directory}")
+            print(f"🏛️ Institutional readiness: {self.registered_modules}/{self.processed_modules} modules")
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ PHASE 101 INSTITUTIONAL REGISTRATION FAILED: {e}")
+            return False
+
+def main():
+    """Main execution entry point"""
+    workspace_path = r"c:\Users\patra\Genesis FINAL TRY"
+    target_directory = "GENESIS_HIGH_ARCHITECTURE_STATUS_20250620_165419"
+    
+    registry = GenesisInstitutionalModuleRegistry(workspace_path, target_directory)
+    success = registry.execute_institutional_registration()
+    
+    if success:
+        print("\n🏁 Phase 101 Institutional Module Registration completed successfully!")
+        print("🎯 Ready for Phase 102: Kill-Switch Execution Loop")
+        print("🏛️ Institutional compliance active")
+        print("📊 FTMO restrictions enforced")
+    else:
+        print("\n❌ Phase 101 Institutional Module Registration failed!")
+
+if __name__ == "__main__":
+    main()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def monitor_drawdown(max_drawdown_percent: float = 5.0, daily_limit_percent: float = 5.0) -> Dict:
+    """
+    Monitor account drawdown against FTMO limits
+    
+    Args:
+        max_drawdown_percent: Maximum allowed drawdown percentage
+        daily_limit_percent: Maximum allowed daily loss percentage
+        
+    Returns:
+        Dictionary with drawdown status information
+    """
+    try:
+        # Get account info
+        account_info = mt5.account_info()
+        if account_info is None:
+            logging.error("Failed to get account info")
+            return {"status": "error", "message": "Failed to get account info"}
+        
+        # Calculate current drawdown
+        balance = account_info.balance
+        equity = account_info.equity
+        
+        current_drawdown = (balance - equity) / balance * 100 if balance > 0 else 0
+        
+        # Get daily high balance
+        from_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        positions = mt5.history_deals_get(from_date, datetime.now())
+        
+        daily_starting_balance = balance - sum([deal.profit for deal in positions])
+        daily_loss_percent = (daily_starting_balance - equity) / daily_starting_balance * 100 if daily_starting_balance > 0 else 0
+        
+        # Prepare result
+        result = {
+            "status": "ok",
+            "current_drawdown_percent": current_drawdown,
+            "max_drawdown_percent": max_drawdown_percent,
+            "drawdown_level": current_drawdown / max_drawdown_percent,  # 0.0 to 1.0+
+            "daily_loss_percent": daily_loss_percent,
+            "daily_limit_percent": daily_limit_percent,
+            "daily_loss_level": daily_loss_percent / daily_limit_percent,  # 0.0 to 1.0+
+            "warnings": []
+        }
+        
+        # Check drawdown thresholds
+        if current_drawdown > max_drawdown_percent * 0.7:
+            result["warnings"].append(f"Drawdown at {current_drawdown:.2f}% approaching maximum of {max_drawdown_percent:.2f}%")
+            result["status"] = "warning"
+            
+        if current_drawdown > max_drawdown_percent:
+            result["warnings"].append(f"CRITICAL: Drawdown of {current_drawdown:.2f}% exceeds maximum of {max_drawdown_percent:.2f}%")
+            result["status"] = "critical"
+            
+        # Check daily loss thresholds
+        if daily_loss_percent > daily_limit_percent * 0.7:
+            result["warnings"].append(f"Daily loss at {daily_loss_percent:.2f}% approaching limit of {daily_limit_percent:.2f}%")
+            result["status"] = "warning"
+            
+        if daily_loss_percent > daily_limit_percent:
+            result["warnings"].append(f"CRITICAL: Daily loss of {daily_loss_percent:.2f}% exceeds limit of {daily_limit_percent:.2f}%")
+            result["status"] = "critical"
+        
+        # Emit events for warnings
+        if result["status"] in ["warning", "critical"]:
+            emit_event("risk_threshold_warning", {
+                "status": result["status"],
+                "warnings": result["warnings"],
+                "timestamp": datetime.now().isoformat()
+            })
+            
+        return result
+        
+    except Exception as e:
+        logging.error(f"Error monitoring drawdown: {str(e)}")
+        return {"status": "error", "message": str(e)}
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

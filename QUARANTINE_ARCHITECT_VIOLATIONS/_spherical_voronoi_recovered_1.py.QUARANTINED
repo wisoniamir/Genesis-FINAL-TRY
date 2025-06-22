@@ -1,0 +1,17 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_spherical_voronoi_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:47.131648+00:00",
+  "violations": [
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\_spherical_voronoi_recovered_1.py",
+      "line_numbers": [
+        179,
+        340
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

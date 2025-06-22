@@ -1,0 +1,9 @@
+{
+  "module_id": "signal_execution_router",
+  "original_path": "modules\\execution\\router\\signal_execution_router.py",
+  "preserved_path": "preservation_holding_area\\signal_execution_router_20250621_212807.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 24818,
+  "checksum": "ce84843d4e57e902bd12915a7789e221f6f7c7a8da8b9724a7a37a63cdab1641"
+}

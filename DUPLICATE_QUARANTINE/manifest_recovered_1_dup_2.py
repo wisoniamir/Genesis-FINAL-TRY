@@ -1,0 +1,719 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("manifest_recovered_1", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("manifest_recovered_1", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "manifest_recovered_1",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in manifest_recovered_1: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "manifest_recovered_1",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("manifest_recovered_1", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in manifest_recovered_1: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+from datetime import datetime
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2012-2023 Python Software Foundation.
+# See LICENSE.txt and CONTRIBUTORS.txt.
+#
+"""
+
+
+# Initialize EventBus connection
+event_bus = EventBus.get_instance()
+telemetry = TelemetryManager.get_instance()
+
+Class representing the list of files in a distribution.
+
+Equivalent to distutils.filelist, but fixes some problems.
+"""
+import fnmatch
+import logging
+import os
+import re
+import sys
+
+from . import DistlibException
+from .compat import fsdecode
+from .util import convert_path
+
+
+__all__ = ['Manifest']
+
+logger = logging.getLogger(__name__)
+
+# a \ followed by some spaces + EOL
+_COLLAPSE_PATTERN = re.compile('\\\\w*\n', re.M)
+_COMMENTED_LINE = re.compile('#.*?(?=\n)|\n(?=$)', re.M | re.S)
+
+#
+# Due to the different results returned by fnmatch.translate, we need
+# to do slightly different processing for Python 2.7 and 3.2 ... this needed
+# to be brought in for Python 3.6 onwards.
+#
+_PYTHON_VERSION = sys.version_info[:2]
+
+
+class Manifest(object):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("manifest_recovered_1", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("manifest_recovered_1", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "manifest_recovered_1",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in manifest_recovered_1: {e}")
+                return False
+    def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+            """GENESIS FTMO Compliance Validator"""
+            # Daily drawdown check (5%)
+            daily_loss = trade_data.get('daily_loss_pct', 0)
+            if daily_loss > 5.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "daily_drawdown", 
+                    "value": daily_loss,
+                    "threshold": 5.0
+                })
+                return False
+
+            # Maximum drawdown check (10%)
+            max_drawdown = trade_data.get('max_drawdown_pct', 0)
+            if max_drawdown > 10.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "max_drawdown", 
+                    "value": max_drawdown,
+                    "threshold": 10.0
+                })
+                return False
+
+            # Risk per trade check (2%)
+            risk_pct = trade_data.get('risk_percent', 0)
+            if risk_pct > 2.0:
+                self.emit_module_telemetry("ftmo_violation", {
+                    "type": "risk_exceeded", 
+                    "value": risk_pct,
+                    "threshold": 2.0
+                })
+                return False
+
+            return True
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "manifest_recovered_1",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("manifest_recovered_1", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in manifest_recovered_1: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "manifest_recovered_1",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in manifest_recovered_1: {e}")
+    """
+    A list of files built by exploring the filesystem and filtered by applying various
+    patterns to what we find there.
+    """
+
+    def __init__(self, base=None):
+        """
+        Initialise an instance.
+
+        :param base: The base directory to explore under.
+        """
+        self.base = os.path.abspath(os.path.normpath(base or os.getcwd()))
+        self.prefix = self.base + os.sep
+        self.allfiles = None
+        self.files = set()
+
+    #
+    # Public API
+    #
+
+    def findall(self):
+        """Find all files under the base and set ``allfiles`` to the absolute
+        pathnames of files found.
+        """
+        from stat import S_ISREG, S_ISDIR, S_ISLNK
+
+from hardened_event_bus import EventBus, Event
+
+
+# <!-- @GENESIS_MODULE_END: manifest_recovered_1 -->
+
+
+# <!-- @GENESIS_MODULE_START: manifest_recovered_1 -->
+
+        self.allfiles = allfiles = []
+        root = self.base
+        stack = [root]
+        pop = stack.pop
+        push = stack.append
+
+        while stack:
+            root = pop()
+            names = os.listdir(root)
+
+            for name in names:
+                fullname = os.path.join(root, name)
+
+                # Avoid excess stat calls -- just one will do, thank you!
+                stat = os.stat(fullname)
+                mode = stat.st_mode
+                if S_ISREG(mode):
+                    allfiles.append(fsdecode(fullname))
+                elif S_ISDIR(mode) and not S_ISLNK(mode):
+                    push(fullname)
+
+    def add(self, item):
+        """
+        Add a file to the manifest.
+
+        :param item: The pathname to add. This can be relative to the base.
+        """
+        if not item.startswith(self.prefix):
+            item = os.path.join(self.base, item)
+        self.files.add(os.path.normpath(item))
+
+    def add_many(self, items):
+        """
+        Add a list of files to the manifest.
+
+        :param items: The pathnames to add. These can be relative to the base.
+        """
+        for item in items:
+            self.add(item)
+
+    def sorted(self, wantdirs=False):
+        """
+        Return sorted files in directory order
+        """
+
+        def add_dir(dirs, d):
+            dirs.add(d)
+            logger.debug('add_dir added %s', d)
+            if d != self.base:
+                parent, _ = os.path.split(d)
+                assert parent not in ('', '/')
+                add_dir(dirs, parent)
+
+        result = set(self.files)    # make a copy!
+        if wantdirs:
+            dirs = set()
+            for f in result:
+                add_dir(dirs, os.path.dirname(f))
+            result |= dirs
+        return [os.path.join(*path_tuple) for path_tuple in
+                sorted(os.path.split(path) for path in result)]
+
+    def clear(self):
+        """Clear all collected files."""
+        self.files = set()
+        self.allfiles = []
+
+    def process_directive(self, directive):
+        """
+        Process a directive which either adds some files from ``allfiles`` to
+        ``files``, or removes some files from ``files``.
+
+        :param directive: The directive to process. This should be in a format
+                     compatible with distutils ``MANIFEST.in`` files:
+
+                     http://docs.python.org/distutils/sourcedist.html#commands
+        """
+        # Parse the line: split it up, make sure the right number of words
+        # is there, and return the relevant words.  'action' is always
+        # defined: it's the first word of the line.  Which of the other
+        # three are defined depends on the action; it'll be either
+        # patterns, (dir and patterns), or (dirpattern).
+        action, patterns, thedir, dirpattern = self._parse_directive(directive)
+
+        # OK, now we know that the action is valid and we have the
+        # right number of words on the line for that action -- so we
+        # can proceed with minimal error-checking.
+        if action == 'include':
+            for pattern in patterns:
+                if not self._include_pattern(pattern, anchor=True):
+                    logger.warning('no files found matching %r', pattern)
+
+        elif action == 'exclude':
+            for pattern in patterns:
+                self._exclude_pattern(pattern, anchor=True)
+
+        elif action == 'global-include':
+            for pattern in patterns:
+                if not self._include_pattern(pattern, anchor=False):
+                    logger.warning('no files found matching %r '
+                                   'anywhere in distribution', pattern)
+
+        elif action == 'global-exclude':
+            for pattern in patterns:
+                self._exclude_pattern(pattern, anchor=False)
+
+        elif action == 'recursive-include':
+            for pattern in patterns:
+                if not self._include_pattern(pattern, prefix=thedir):
+                    logger.warning('no files found matching %r '
+                                   'under directory %r', pattern, thedir)
+
+        elif action == 'recursive-exclude':
+            for pattern in patterns:
+                self._exclude_pattern(pattern, prefix=thedir)
+
+        elif action == 'graft':
+            if not self._include_pattern(None, prefix=dirpattern):
+                logger.warning('no directories found matching %r',
+                               dirpattern)
+
+        elif action == 'prune':
+            if not self._exclude_pattern(None, prefix=dirpattern):
+                logger.warning('no previously-included directories found '
+                               'matching %r', dirpattern)
+        else:   # pragma: no cover
+            # This should never happen, as it should be caught in
+            # _parse_template_line
+            raise DistlibException(
+                'invalid action %r' % action)
+
+    #
+    # Private API
+    #
+
+    def _parse_directive(self, directive):
+        """
+        Validate a directive.
+        :param directive: The directive to validate.
+        :return: A tuple of action, patterns, thedir, dir_patterns
+        """
+        words = directive.split()
+        if len(words) == 1 and words[0] not in ('include', 'exclude',
+                                                'global-include',
+                                                'global-exclude',
+                                                'recursive-include',
+                                                'recursive-exclude',
+                                                'graft', 'prune'):
+            # no action given, let's use the default 'include'
+            words.insert(0, 'include')
+
+        action = words[0]
+        patterns = thedir = dir_pattern = None
+
+        if action in ('include', 'exclude',
+                      'global-include', 'global-exclude'):
+            if len(words) < 2:
+                raise DistlibException(
+                    '%r expects <pattern1> <pattern2> ...' % action)
+
+            patterns = [convert_path(word) for word in words[1:]]
+
+        elif action in ('recursive-include', 'recursive-exclude'):
+            if len(words) < 3:
+                raise DistlibException(
+                    '%r expects <dir> <pattern1> <pattern2> ...' % action)
+
+            thedir = convert_path(words[1])
+            patterns = [convert_path(word) for word in words[2:]]
+
+        elif action in ('graft', 'prune'):
+            if len(words) != 2:
+                raise DistlibException(
+                    '%r expects a single <dir_pattern>' % action)
+
+            dir_pattern = convert_path(words[1])
+
+        else:
+            raise DistlibException('unknown action %r' % action)
+
+        return action, patterns, thedir, dir_pattern
+
+    def _include_pattern(self, pattern, anchor=True, prefix=None,
+                         is_regex=False):
+        """Select strings (presumably filenames) from 'self.files' that
+        match 'pattern', a Unix-style wildcard (glob) pattern.
+
+        Patterns are not quite the same as implemented by the 'fnmatch'
+        module: '*' and '?'  match non-special characters, where "special"
+        is platform-dependent: slash on Unix; colon, slash, and backslash on
+        DOS/Windows; and colon on Mac OS.
+
+        If 'anchor' is true (the default), then the pattern match is more
+        stringent: "*.py" will match "foo.py" but not "foo/bar.py".  If
+        'anchor' is false, both of these will match.
+
+        If 'prefix' is supplied, then only filenames starting with 'prefix'
+        (itself a pattern) and ending with 'pattern', with anything in between
+        them, will match.  'anchor' is ignored in this case.
+
+        If 'is_regex' is true, 'anchor' and 'prefix' are ignored, and
+        'pattern' is assumed to be either a string containing a regex or a
+        regex object -- no translation is done, the regex is just compiled
+        and used as-is.
+
+        Selected strings will be added to self.files.
+
+        Return True if files are found.
+        """
+        # XXX docstring lying about what the special chars are?
+        found = False
+        pattern_re = self._translate_pattern(pattern, anchor, prefix, is_regex)
+
+        # delayed loading of allfiles list
+        if self.allfiles is None:
+            self.findall()
+
+        for name in self.allfiles:
+            if pattern_re.search(name):
+                self.files.add(name)
+                found = True
+        return found
+
+    def _exclude_pattern(self, pattern, anchor=True, prefix=None,
+                         is_regex=False):
+        """Remove strings (presumably filenames) from 'files' that match
+        'pattern'.
+
+        Other parameters are the same as for 'include_pattern()', above.
+        The list 'self.files' is modified in place. Return True if files are
+        found.
+
+        This API is public to allow e.g. exclusion of SCM subdirs, e.g. when
+        packaging source distributions
+        """
+        found = False
+        pattern_re = self._translate_pattern(pattern, anchor, prefix, is_regex)
+        for f in list(self.files):
+            if pattern_re.search(f):
+                self.files.remove(f)
+                found = True
+        return found
+
+    def _translate_pattern(self, pattern, anchor=True, prefix=None,
+                           is_regex=False):
+        """Translate a shell-like wildcard pattern to a compiled regular
+        expression.
+
+        Return the compiled regex.  If 'is_regex' true,
+        then 'pattern' is directly compiled to a regex (if it's a string)
+        or just returned as-is (assumes it's a regex object).
+        """
+        if is_regex:
+            if isinstance(pattern, str):
+                return re.compile(pattern)
+            else:
+                return pattern
+
+        if _PYTHON_VERSION > (3, 2):
+            # ditch start and end characters
+            start, _, end = self._glob_to_re('_').partition('_')
+
+        if pattern:
+            pattern_re = self._glob_to_re(pattern)
+            if _PYTHON_VERSION > (3, 2):
+                assert pattern_re.startswith(start) and pattern_re.endswith(end)
+        else:
+            pattern_re = ''
+
+        base = re.escape(os.path.join(self.base, ''))
+        if prefix is not None:
+            # ditch end of pattern character
+            if _PYTHON_VERSION <= (3, 2):
+                empty_pattern = self._glob_to_re('')
+                prefix_re = self._glob_to_re(prefix)[:-len(empty_pattern)]
+            else:
+                prefix_re = self._glob_to_re(prefix)
+                assert prefix_re.startswith(start) and prefix_re.endswith(end)
+                prefix_re = prefix_re[len(start): len(prefix_re) - len(end)]
+            sep = os.sep
+            if os.sep == '\\':
+                sep = r'\\'
+            if _PYTHON_VERSION <= (3, 2):
+                pattern_re = '^' + base + sep.join((prefix_re,
+                                                    '.*' + pattern_re))
+            else:
+                pattern_re = pattern_re[len(start): len(pattern_re) - len(end)]
+                pattern_re = r'%s%s%s%s.*%s%s' % (start, base, prefix_re, sep,
+                                                  pattern_re, end)
+        else:  # no prefix -- respect anchor flag
+            if anchor:
+                if _PYTHON_VERSION <= (3, 2):
+                    pattern_re = '^' + base + pattern_re
+                else:
+                    pattern_re = r'%s%s%s' % (start, base, pattern_re[len(start):])
+
+        return re.compile(pattern_re)
+
+    def _glob_to_re(self, pattern):
+        """Translate a shell-like glob pattern to a regular expression.
+
+        Return a string containing the regex.  Differs from
+        'fnmatch.translate()' in that '*' does not match "special characters"
+        (which are platform-specific).
+        """
+        pattern_re = fnmatch.translate(pattern)
+
+        # '?' and '*' in the glob pattern become '.' and '.*' in the RE, which
+        # IMHO is wrong -- '?' and '*' aren't supposed to match slash in Unix,
+        # and by extension they shouldn't match such "special characters" under
+        # any OS.  So change all non-escaped dots in the RE to match any
+        # character except the special characters (currently: just os.sep).
+        sep = os.sep
+        if os.sep == '\\':
+            # we're using a regex to manipulate a regex, so we need
+            # to escape the backslash twice
+            sep = r'\\\\'
+        escaped = r'\1[^%s]' % sep
+        pattern_re = re.sub(r'((?<!\\)(\\\\)*)\.', escaped, pattern_re)
+        return pattern_re
+
+
+
+def emit_event(event_type: str, data: dict) -> None:
+    """Emit event to the EventBus"""
+    event = Event(event_type=event_type, source=__name__, data=data)
+    event_bus.emit(event)
+    telemetry.log_event(TelemetryEvent(category="module_event", name=event_type, properties=data))
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result

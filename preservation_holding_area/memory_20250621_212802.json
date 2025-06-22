@@ -1,0 +1,9 @@
+{
+  "module_id": "memory",
+  "original_path": "modules\\restored\\memory.py",
+  "preserved_path": "preservation_holding_area\\memory_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 92101,
+  "checksum": "97a73331f8e1e9393fe4ad40d9a3a3545686a24db1421eb8bed4a44db4f4f778"
+}

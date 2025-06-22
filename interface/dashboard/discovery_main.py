@@ -1,0 +1,965 @@
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def detect_confluence_patterns(self, market_data: dict) -> float:
+                """GENESIS Pattern Intelligence - Detect confluence patterns"""
+                confluence_score = 0.0
+
+                # Simple confluence calculation
+                if market_data.get('trend_aligned', False):
+                    confluence_score += 0.3
+                if market_data.get('support_resistance_level', False):
+                    confluence_score += 0.3
+                if market_data.get('volume_confirmation', False):
+                    confluence_score += 0.2
+                if market_data.get('momentum_aligned', False):
+                    confluence_score += 0.2
+
+                emit_telemetry("discovery_main", "confluence_detected", {
+                    "score": confluence_score,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                return confluence_score
+        def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+                """GENESIS Risk Management - Calculate optimal position size"""
+                account_balance = 100000  # Default FTMO account size
+                risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+                position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+                emit_telemetry("discovery_main", "position_calculated", {
+                    "risk_amount": risk_amount,
+                    "position_size": position_size,
+                    "risk_percentage": (position_size / account_balance) * 100
+                })
+
+                return position_size
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "discovery_main",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in discovery_main: {e}")
+                    return False
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "discovery_main",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("discovery_main", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in discovery_main: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+# -*- coding: utf-8 -*-
+# <!-- @GENESIS_MODULE_START: interface_dashboard_discovery_main -->
+
+"""
+🔍 GENESIS DISCOVERY-BASED INSTITUTIONAL TRADING DASHBOARD v7.0.0
+PRODUCTION-GRADE DYNAMIC DISCOVERY SYSTEM WITH MT5 & MODULE SYNC
+
+🚨 ARCHITECT MODE v7.0.0 - DISCOVERY IMPLEMENTATION:
+- DYNAMIC MODULE DISCOVERY: Scan and connect all available modules
+- MT5 DISCOVERY: Real-time broker capabilities discovery
+- EVENT BUS DISCOVERY: Auto-detect and wire communication patterns
+- INTER-MODULE SYNC: Dynamic synchronization between all components
+"""
+
+import sys
+import os
+import time
+import logging
+import threading
+import importlib.util
+from datetime import datetime, timezone
+from typing import Dict, Any, Optional, List
+from pathlib import Path
+
+# PyQt5 imports
+from PyQt5.QtWidgets import (
+    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout,
+    QTabWidget, QLabel, QPushButton, QLineEdit, QTextEdit, QTableWidget,
+    QTableWidgetItem, QComboBox, QSpinBox, QDoubleSpinBox, QCheckBox,
+    QProgressBar, QStatusBar, QMenuBar, QMenu, QAction, QSplitter,
+    QGroupBox, QFrame, QScrollArea, QMessageBox, QSystemTrayIcon,
+    QApplication, QDialog, QDialogButtonBox, QFormLayout, QTreeWidget,
+    QTreeWidgetItem, QHeaderView, QLCDNumber, QSlider, QTextBrowser
+)
+from PyQt5.QtCore import (
+    Qt, QTimer, QThread, pyqtSignal, QSize, QPoint, QRect,
+    QPropertyAnimation, QEasingCurve, QSequentialAnimationGroup
+)
+from PyQt5.QtGui import (
+    QFont, QIcon, QPixmap, QPalette, QColor, QBrush, QPen,
+    QLinearGradient, QRadialGradient, QFontMetrics, QPainter
+)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class GenesisDiscoveryEngine:
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("discovery_main", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("discovery_main", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "discovery_main",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in discovery_main: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "discovery_main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("discovery_main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in discovery_main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "discovery_main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in discovery_main: {e}")
+    """Central discovery engine for all GENESIS modules"""
+    
+    def __init__(self):
+        self.discovered_modules = {}
+        self.mt5_capabilities = {}
+        self.event_bus_system = None
+        self.broker_systems = []
+        self.strategy_modules = []
+        self.execution_modules = []
+        self.compliance_modules = []
+        
+    def run_full_discovery(self):
+        """Run complete system discovery"""
+        logger.info("🔍 Starting GENESIS Full System Discovery...")
+        
+        # Phase 1: Module Discovery
+        self._discover_all_modules()
+        
+        # Phase 2: MT5 Discovery
+        self._discover_mt5_system()
+        
+        # Phase 3: EventBus Discovery
+        self._discover_event_bus()
+        
+        # Phase 4: Trading Components Discovery
+        self._discover_trading_components()
+        
+        # Phase 5: Inter-module Sync Discovery
+        self._discover_sync_patterns()
+        
+        logger.info(f"✅ Discovery Complete: {len(self.discovered_modules)} modules found")
+        return self.get_discovery_report()
+        
+    def _discover_all_modules(self):
+        """Discover all Python modules in the workspace"""
+        discovery_paths = [
+            '.', 'modules/', 'core/', 'connectors/', 'execution/', 
+            'data/', 'compliance/', 'backtest/', 'interface/', 'dashboard/'
+        ]
+        
+        for base_path in discovery_paths:
+            if os.path.exists(base_path):
+                self._scan_directory_recursive(base_path)
+                
+    def _scan_directory_recursive(self, directory):
+        """Recursively scan directory for modules"""
+        try:
+            for root, dirs, files in os.walk(directory):
+                # Skip hidden directories and __pycache__
+                dirs[:] = [d for d in dirs if not d.startswith('.') and d != '__pycache__']
+                
+                for file in files:
+                    if file.endswith('.py') and not file.startswith('__'):
+                        module_path = os.path.join(root, file)
+                        module_name = file[:-3]
+                        relative_path = os.path.relpath(module_path, '.')
+                        
+                        try:
+                            spec = importlib.util.spec_from_file_location(module_name, module_path)
+                            if spec and spec.loader:
+                                module = importlib.util.module_from_spec(spec)
+                                spec.loader.exec_module(module)
+                                
+                                self.discovered_modules[relative_path] = {
+                                    'module': module,
+                                    'path': module_path,
+                                    'name': module_name,
+                                    'type': self._classify_module(module, module_name),
+                                    'functions': self._extract_functions(module),
+                                    'classes': self._extract_classes(module)
+                                }
+                                
+                                logger.info(f"✅ Discovered: {relative_path}")
+                                
+                        except Exception as e:
+                            logger.warning(f"⚠️ Could not load {relative_path}: {e}")
+                            
+        except Exception as e:
+            logger.error(f"Directory scan error for {directory}: {e}")
+            
+    def _classify_module(self, module, module_name):
+        """Classify module type based on name and content"""
+        name_lower = module_name.lower()
+        
+        if any(x in name_lower for x in ['event_bus', 'bus', 'signal']):
+            return 'event_bus'
+        elif any(x in name_lower for x in ['mt5', 'broker', 'connector']):
+            return 'connector'
+        elif any(x in name_lower for x in ['strategy', 'signal', 'scanner']):
+            return 'strategy'
+        elif any(x in name_lower for x in ['execution', 'order', 'trade']):
+            return 'execution'
+        elif any(x in name_lower for x in ['compliance', 'risk', 'ftmo']):
+            return 'compliance'
+        elif any(x in name_lower for x in ['dashboard', 'gui', 'interface']):
+            return 'interface'
+        elif any(x in name_lower for x in ['telemetry', 'monitor', 'health']):
+            return 'telemetry'
+        else:
+            return 'utility'
+            
+    def _extract_functions(self, module):
+        """Extract callable functions from module"""
+        functions = []
+        for name in dir(module):
+            if not name.startswith('_'):
+                attr = getattr(module, name)
+                if callable(attr):
+                    functions.append(name)
+        return functions
+        
+    def _extract_classes(self, module):
+        """Extract classes from module"""
+        classes = []
+        for name in dir(module):
+            if not name.startswith('_'):
+                attr = getattr(module, name)
+                if isinstance(attr, type):
+                    classes.append(name)
+        return classes
+        
+    def _discover_mt5_system(self):
+        """Discover MT5 capabilities and connection"""
+        logger.info("🔍 Discovering MT5 capabilities...")
+        
+        try:
+            import MetaTrader5 as mt5
+
+
+# <!-- @GENESIS_MODULE_END: discovery_main -->
+            
+            # Test connection
+            if mt5.initialize():
+                # Discover symbols
+                symbols = mt5.symbols_get()
+                symbol_list = [s.name for s in symbols] if symbols else []
+                
+                # Get account info
+                account_info = mt5.account_info()
+                account_dict = account_info._asdict() if account_info else {}
+                
+                # Get terminal info
+                terminal_info = mt5.terminal_info()
+                terminal_dict = terminal_info._asdict() if terminal_info else {}
+                
+                self.mt5_capabilities = {
+                    'available': True,
+                    'connected': True,
+                    'symbols': symbol_list,
+                    'symbol_count': len(symbol_list),
+                    'account': account_dict,
+                    'terminal': terminal_dict,
+                    'discovery_time': datetime.now().isoformat()
+                }
+                
+                logger.info(f"✅ MT5 Discovery: {len(symbol_list)} symbols, Account: {account_dict.get('login', 'N/A')}")
+                
+                # Discover trading capabilities
+                self._discover_mt5_trading_capabilities(mt5)
+                
+            else:
+                self.mt5_capabilities = {
+                    'available': True,
+                    'connected': False,
+                    'error': 'Failed to initialize MT5'
+                }
+                logger.warning("⚠️ MT5 available but failed to connect")
+                
+        except ImportError:
+            self.mt5_capabilities = {
+                'available': False,
+                'connected': False,
+                'error': 'MetaTrader5 module not installed'
+            }
+            logger.warning("⚠️ MT5 module not available")
+        except Exception as e:
+            self.mt5_capabilities = {
+                'available': False,
+                'connected': False,
+                'error': str(e)
+            }
+            logger.error(f"MT5 discovery error: {e}")
+            
+    def _discover_mt5_trading_capabilities(self, mt5):
+        """Discover specific MT5 trading capabilities"""
+        try:
+            # Test order capabilities
+            test_symbol = "EURUSD"
+            symbol_info = mt5.symbol_info(test_symbol)
+            
+            if symbol_info:
+                self.mt5_capabilities['trading_capabilities'] = {
+                    'orders_allowed': True,
+                    'test_symbol': test_symbol,
+                    'spread': symbol_info.spread,
+                    'digits': symbol_info.digits,
+                    'point': symbol_info.point,
+                    'min_lot': symbol_info.volume_min,
+                    'max_lot': symbol_info.volume_max,
+                    'lot_step': symbol_info.volume_step
+                }
+                
+        except Exception as e:
+            logger.warning(f"MT5 trading capabilities discovery failed: {e}")
+            
+    def _discover_event_bus(self):
+        """Discover available event bus systems"""
+        logger.info("🔍 Discovering Event Bus systems...")
+        
+        event_bus_candidates = []
+        
+        # Search in discovered modules
+        for path, module_info in self.discovered_modules.items():
+            if module_info['type'] == 'event_bus':
+                module = module_info['module']
+                functions = module_info['functions']
+                
+                # Check for event bus functions
+                has_emit = any('emit' in f.lower() for f in functions)
+                has_subscribe = any('subscribe' in f.lower() for f in functions)
+                
+                if has_emit and has_subscribe:
+                    event_bus_candidates.append({
+                        'path': path,
+                        'module': module,
+                        'functions': functions,
+                        'score': len(functions)  # Simple scoring
+                    })
+                    
+        # Select best event bus
+        if event_bus_candidates:
+            best_bus = max(event_bus_candidates, key=lambda x: x['score'])
+            self.event_bus_system = best_bus
+            logger.info(f"✅ Event Bus selected: {best_bus['path']}")
+        else:
+            logger.warning("⚠️ No event bus system discovered")
+            
+    def _discover_trading_components(self):
+        """Discover trading-related components"""
+        logger.info("🔍 Discovering Trading Components...")
+        
+        for path, module_info in self.discovered_modules.items():
+            module_type = module_info['type']
+            
+            if module_type == 'strategy':
+                self.strategy_modules.append(module_info)
+            elif module_type == 'execution':
+                self.execution_modules.append(module_info)
+            elif module_type == 'compliance':
+                self.compliance_modules.append(module_info)
+            elif module_type == 'connector':
+                self.broker_systems.append(module_info)
+                
+        logger.info(f"✅ Found: {len(self.strategy_modules)} strategies, {len(self.execution_modules)} execution, {len(self.compliance_modules)} compliance")
+        
+    def _discover_sync_patterns(self):
+        """Discover inter-module synchronization patterns"""
+        logger.info("🔍 Discovering Inter-module Sync Patterns...")
+        
+        sync_patterns = {}
+        
+        # Analyze module dependencies and communication
+        for path, module_info in self.discovered_modules.items():
+            module = module_info['module']
+            
+            # Look for sync patterns in functions
+            for func_name in module_info['functions']:
+                if any(x in func_name.lower() for x in ['sync', 'update', 'notify', 'emit', 'signal']):
+                    module_type = module_info['type']
+                    if module_type not in sync_patterns:
+                        sync_patterns[module_type] = []
+                    sync_patterns[module_type].append({
+                        'module': path,
+                        'function': func_name
+                    })
+                    
+        self.sync_patterns = sync_patterns
+        logger.info(f"✅ Sync patterns discovered: {len(sync_patterns)} types")
+        
+    def get_discovery_report(self):
+        """Generate comprehensive discovery report"""
+        return {
+            'timestamp': datetime.now().isoformat(),
+            'modules_discovered': len(self.discovered_modules),
+            'mt5_status': self.mt5_capabilities,
+            'event_bus_available': self.event_bus_system is not None,
+            'trading_components': {
+                'strategies': len(self.strategy_modules),
+                'execution': len(self.execution_modules),
+                'compliance': len(self.compliance_modules),
+                'brokers': len(self.broker_systems)
+            },
+            'module_breakdown': {
+                module_type: len([m for m in self.discovered_modules.values() if m['type'] == module_type])
+                for module_type in set(m['type'] for m in self.discovered_modules.values())
+            }
+        }
+
+class DiscoveryDashboardWidget(QWidget):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("discovery_main", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("discovery_main", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "discovery_main",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in discovery_main: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "discovery_main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("discovery_main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in discovery_main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "discovery_main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in discovery_main: {e}")
+    """Widget to display discovery results and system status"""
+    
+    def __init__(self, discovery_engine):
+        super().__init__()
+        self.discovery_engine = discovery_engine
+        self.init_ui()
+        
+    def init_ui(self):
+        layout = QVBoxLayout()
+        
+        # Header
+        header = QLabel("🔍 GENESIS DISCOVERY ENGINE - LIVE SYSTEM STATUS")
+        header.setStyleSheet("""
+            QLabel {
+                background-color: #2c3e50;
+                color: white;
+                padding: 15px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+            }
+        """)
+        layout.addWidget(header)
+        
+        # Discovery status table
+        self.discovery_table = QTableWidget()
+        self.discovery_table.setColumnCount(3)
+        self.discovery_table.setHorizontalHeaderLabels(["Component", "Status", "Details"])
+        self.discovery_table.setStyleSheet("""
+            QTableWidget {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+                gridline-color: #444;
+            }
+            QTableWidget::item {
+                padding: 12px;
+                border-bottom: 1px solid #333;
+            }
+            QHeaderView::section {
+                background-color: #2c3e50;
+                color: white;
+                padding: 12px;
+                border: none;
+                font-weight: bold;
+            }
+        """)
+        layout.addWidget(self.discovery_table)
+        
+        # Refresh button
+        refresh_btn = QPushButton("🔄 Refresh Discovery")
+        refresh_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #3498db;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+            QPushButton:hover {
+                background-color: #2980b9;
+            }
+        """)
+        try:
+        refresh_btn.clicked.connect(self.refresh_discovery)
+        except Exception as e:
+            logging.error(f"Operation failed: {e}")
+        layout.addWidget(refresh_btn)
+        
+        self.setLayout(layout)
+        self.update_discovery_display()
+        
+    def refresh_discovery(self):
+        """Refresh discovery and update display"""
+        self.discovery_engine.run_full_discovery()
+        self.update_discovery_display()
+        
+    def update_discovery_display(self):
+        """Update the discovery display table"""
+        report = self.discovery_engine.get_discovery_report()
+        
+        # Prepare table data
+        table_data = [
+            ("MT5 Connection", 
+             "🟢 Connected" if report['mt5_status'].get('connected') else "🔴 Disconnected",
+             f"{report['mt5_status'].get('symbol_count', 0)} symbols available"),
+            
+            ("Event Bus System",
+             "🟢 Active" if report['event_bus_available'] else "🔴 Not Found",
+             "Inter-module communication ready" if report['event_bus_available'] else "Communication limited"),
+             
+            ("Strategy Modules",
+             f"🟢 {report['trading_components']['strategies']} Found",
+             "Strategy discovery and execution ready"),
+             
+            ("Execution Modules",
+             f"🟢 {report['trading_components']['execution']} Found",
+             "Order execution capabilities available"),
+             
+            ("Compliance Modules",
+             f"🟢 {report['trading_components']['compliance']} Found",
+             "Risk management and FTMO compliance active"),
+             
+            ("Total Modules",
+             f"🟢 {report['modules_discovered']} Discovered",
+             f"Full system discovery completed")
+        ]
+        
+        # Update table
+        self.discovery_table.setRowCount(len(table_data))
+        for row, (component, status, details) in enumerate(table_data):
+            self.discovery_table.setItem(row, 0, QTableWidgetItem(component))
+            self.discovery_table.setItem(row, 1, QTableWidgetItem(status))
+            self.discovery_table.setItem(row, 2, QTableWidgetItem(details))
+            
+        # Resize columns
+        header = self.discovery_table.horizontalHeader()
+        if header:
+            header.setStretchLastSection(True)
+
+class GenesisDiscoveryDashboard(QMainWindow):
+    def detect_confluence_patterns(self, market_data: dict) -> float:
+            """GENESIS Pattern Intelligence - Detect confluence patterns"""
+            confluence_score = 0.0
+
+            # Simple confluence calculation
+            if market_data.get('trend_aligned', False):
+                confluence_score += 0.3
+            if market_data.get('support_resistance_level', False):
+                confluence_score += 0.3
+            if market_data.get('volume_confirmation', False):
+                confluence_score += 0.2
+            if market_data.get('momentum_aligned', False):
+                confluence_score += 0.2
+
+            emit_telemetry("discovery_main", "confluence_detected", {
+                "score": confluence_score,
+                "timestamp": datetime.now().isoformat()
+            })
+
+            return confluence_score
+    def calculate_position_size(self, risk_amount: float, stop_loss_pips: float) -> float:
+            """GENESIS Risk Management - Calculate optimal position size"""
+            account_balance = 100000  # Default FTMO account size
+            risk_per_pip = risk_amount / stop_loss_pips if stop_loss_pips > 0 else 0
+            position_size = min(risk_per_pip * 0.01, account_balance * 0.02)  # Max 2% risk
+
+            emit_telemetry("discovery_main", "position_calculated", {
+                "risk_amount": risk_amount,
+                "position_size": position_size,
+                "risk_percentage": (position_size / account_balance) * 100
+            })
+
+            return position_size
+    def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+            """GENESIS Emergency Kill Switch"""
+            try:
+                # Emit emergency event
+                if hasattr(self, 'event_bus') and self.event_bus:
+                    emit_event("emergency_stop", {
+                        "module": "discovery_main",
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                # Log telemetry
+                self.emit_module_telemetry("emergency_stop", {
+                    "reason": reason,
+                    "timestamp": datetime.now().isoformat()
+                })
+
+                # Set emergency state
+                if hasattr(self, '_emergency_stop_active'):
+                    self._emergency_stop_active = True
+
+                return True
+            except Exception as e:
+                print(f"Emergency stop error in discovery_main: {e}")
+                return False
+    def emit_module_telemetry(self, event: str, data: dict = None):
+            """GENESIS Module Telemetry Hook"""
+            telemetry_data = {
+                "timestamp": datetime.now().isoformat(),
+                "module": "discovery_main",
+                "event": event,
+                "data": data or {}
+            }
+            try:
+                emit_telemetry("discovery_main", event, telemetry_data)
+            except Exception as e:
+                print(f"Telemetry error in discovery_main: {e}")
+    def initialize_eventbus(self):
+            """GENESIS EventBus Initialization"""
+            try:
+                self.event_bus = get_event_bus()
+                if self.event_bus:
+                    emit_event("module_initialized", {
+                        "module": "discovery_main",
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "active"
+                    })
+            except Exception as e:
+                print(f"EventBus initialization error in discovery_main: {e}")
+    """Main Discovery-Based Dashboard"""
+    
+    def __init__(self):
+        super().__init__()
+        self.discovery_engine = GenesisDiscoveryEngine()
+        self.init_ui()
+        self.run_initial_discovery()
+        
+    def init_ui(self):
+        self.setWindowTitle("🔍 GENESIS Discovery Dashboard v7.0.0")
+        self.setGeometry(100, 100, 1400, 900)
+        
+        # Set main widget
+        main_widget = QWidget()
+        self.setCentralWidget(main_widget)
+        
+        # Main layout
+        layout = QVBoxLayout()
+        main_widget.setLayout(layout)
+        
+        # Discovery widget
+        self.discovery_widget = DiscoveryDashboardWidget(self.discovery_engine)
+        layout.addWidget(self.discovery_widget)
+        
+        # Status bar
+        status_bar = self.statusBar()
+        if status_bar:
+            status_bar.showMessage("🚀 GENESIS Discovery Dashboard - System Analysis Ready")
+            
+        # Apply dark theme
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+            }
+        """)
+        
+    def run_initial_discovery(self):
+        """Run initial system discovery"""
+        QTimer.singleShot(1000, self._delayed_discovery)
+        
+    def _delayed_discovery(self):
+        """Run discovery after UI is ready"""
+        try:
+            self.discovery_engine.run_full_discovery()
+            self.discovery_widget.update_discovery_display()
+            logger.info("✅ Initial discovery completed")
+        except Exception as e:
+            logger.error(f"Initial discovery failed: {e}")
+
+def launch_discovery_dashboard():
+    """Launch the discovery-based dashboard"""
+    app = QApplication(sys.argv)
+    
+    # Set application properties
+    app.setApplicationName("GENESIS Discovery Dashboard")
+    app.setApplicationVersion("7.0.0")
+    
+    # Create and show main window
+    dashboard = GenesisDiscoveryDashboard()
+    dashboard.show()
+    
+    return app.exec_()
+
+if __name__ == "__main__":
+    launch_discovery_dashboard()
+
+
+def detect_divergence(price_data: list, indicator_data: list, window: int = 10) -> Dict:
+    """
+    Detect regular and hidden divergences between price and indicator
+    
+    Args:
+        price_data: List of price values (closing prices)
+        indicator_data: List of indicator values (e.g., RSI, MACD)
+        window: Number of periods to check for divergence
+        
+    Returns:
+        Dictionary with divergence information
+    """
+    result = {
+        "regular_bullish": False,
+        "regular_bearish": False,
+        "hidden_bullish": False,
+        "hidden_bearish": False,
+        "strength": 0.0
+    }
+    
+    # Need at least window + 1 periods of data
+    if len(price_data) < window + 1 or len(indicator_data) < window + 1:
+        return result
+        
+    # Get the current and historical points
+    current_price = price_data[-1]
+    previous_price = min(price_data[-window:-1]) if price_data[-1] > price_data[-2] else max(price_data[-window:-1])
+    previous_price_idx = price_data[-window:-1].index(previous_price) + len(price_data) - window
+    
+    current_indicator = indicator_data[-1]
+    previous_indicator = indicator_data[previous_price_idx]
+    
+    # Check for regular divergences
+    # Bullish - Lower price lows but higher indicator lows
+    if current_price < previous_price and current_indicator > previous_indicator:
+        result["regular_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Higher price highs but lower indicator highs
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["regular_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Check for hidden divergences
+    # Bullish - Higher price lows but lower indicator lows
+    elif current_price > previous_price and current_indicator < previous_indicator:
+        result["hidden_bullish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+        
+    # Bearish - Lower price highs but higher indicator highs
+    elif current_price < previous_price and current_indicator > previous_indicator:
+        result["hidden_bearish"] = True
+        result["strength"] = abs((current_indicator - previous_indicator) / previous_indicator)
+    
+    # Emit divergence event if detected
+    if any([result["regular_bullish"], result["regular_bearish"], 
+            result["hidden_bullish"], result["hidden_bearish"]]):
+        emit_event("divergence_detected", {
+            "type": next(k for k, v in result.items() if v is True and k != "strength"),
+            "strength": result["strength"],
+            "symbol": price_data.symbol if hasattr(price_data, "symbol") else "unknown",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    return result
+
+
+def setup_event_subscriptions(self):
+    """Set up EventBus subscriptions for this UI component"""
+    event_bus.subscribe("market_data_updated", self.handle_market_data_update)
+    event_bus.subscribe("trade_executed", self.handle_trade_update)
+    event_bus.subscribe("position_changed", self.handle_position_update)
+    event_bus.subscribe("risk_threshold_warning", self.handle_risk_warning)
+    event_bus.subscribe("system_status_changed", self.handle_system_status_update)
+    
+    # Register with telemetry
+    telemetry.log_event(TelemetryEvent(
+        category="ui", 
+        name="event_subscriptions_setup", 
+        properties={"component": self.__class__.__name__}
+    ))

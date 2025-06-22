@@ -1,0 +1,9 @@
+{
+  "module_id": "genesis_trade_engine",
+  "original_path": "modules\\execution\\genesis_trade_engine.py",
+  "preserved_path": "preservation_holding_area\\genesis_trade_engine_20250621_212755.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 23188,
+  "checksum": "d7efd13da61512493697b2d86034cb90ce1f5b702470a513b23c69e119767159"
+}

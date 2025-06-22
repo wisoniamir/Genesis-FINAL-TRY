@@ -1,0 +1,9 @@
+{
+  "module_id": "winterm_test",
+  "original_path": "modules\\restored\\winterm_test.py",
+  "preserved_path": "preservation_holding_area\\winterm_test_20250621_212757.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 15095,
+  "checksum": "92b99752ced574103794edb84040a046c3a85fb8652eeb38386dc2ef614a8ee3"
+}

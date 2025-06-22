@@ -1,0 +1,9 @@
+{
+  "module_id": "pyplot",
+  "original_path": "modules\\restored\\pyplot.py",
+  "preserved_path": "preservation_holding_area\\pyplot_20250621_212802.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 17810,
+  "checksum": "4ac84e52551e538f31c6623999d7728dee86212382edd4b039ccdb4c24b8cf46"
+}

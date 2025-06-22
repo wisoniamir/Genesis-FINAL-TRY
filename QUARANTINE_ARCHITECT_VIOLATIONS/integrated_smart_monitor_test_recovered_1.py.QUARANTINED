@@ -1,0 +1,52 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\integrated_smart_monitor_test_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:35.916455+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\integrated_smart_monitor_test_recovered_1.py",
+      "line_numbers": [
+        39,
+        46,
+        47,
+        48,
+        55
+      ],
+      "violation_count": 52
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\integrated_smart_monitor_test_recovered_1.py",
+      "line_numbers": [
+        66,
+        307
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\integrated_smart_monitor_test_recovered_1.py",
+      "line_numbers": [
+        76,
+        310
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "subscribe_to_event(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\integrated_smart_monitor_test_recovered_1.py",
+      "line_numbers": [
+        183,
+        184,
+        185,
+        186
+      ],
+      "violation_count": 4
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

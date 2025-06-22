@@ -1,0 +1,103 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.412954+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        44,
+        69,
+        95,
+        126,
+        162
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        39,
+        64,
+        90,
+        121,
+        157
+      ],
+      "violation_count": 18
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        309,
+        344,
+        410,
+        481,
+        514
+      ],
+      "violation_count": 11
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        391,
+        396,
+        424,
+        492,
+        530
+      ],
+      "violation_count": 8
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        405
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        46,
+        71,
+        97,
+        128,
+        164
+      ],
+      "violation_count": 6
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        48,
+        73,
+        99,
+        130,
+        166
+      ],
+      "violation_count": 7
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\auto_execution_sync_engine.py",
+      "line_numbers": [
+        501
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

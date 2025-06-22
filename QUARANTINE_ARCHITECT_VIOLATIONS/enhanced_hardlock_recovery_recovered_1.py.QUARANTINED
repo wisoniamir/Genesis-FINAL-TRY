@@ -1,0 +1,92 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+  "quarantine_timestamp": "2025-06-21T04:33:34.542839+00:00",
+  "violations": [
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        42,
+        51,
+        57,
+        59,
+        63
+      ],
+      "violation_count": 14
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "test_",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        58,
+        97
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        59,
+        97
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "'dummy'",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        58,
+        97
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        16,
+        92,
+        113,
+        221
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "except Exception",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        47,
+        243
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        92,
+        209
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "mt5_only",
+      "pattern": "mt5.symbol_info_tick",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\enhanced_hardlock_recovery_recovered_1.py",
+      "line_numbers": [
+        53,
+        102
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

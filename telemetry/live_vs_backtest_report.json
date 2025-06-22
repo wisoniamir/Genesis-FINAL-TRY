@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-06-18T19:41:03.045352+00:00",
+  "comparison_summary": {
+    "total_comparisons": 0,
+    "symbols_analyzed": [],
+    "critical_gaps": 0,
+    "avg_deviation": 0
+  },
+  "performance_gaps": {},
+  "recent_comparisons": [],
+  "module": "live_backtest_comparison_engine",
+  "version": "1.0"
+}

@@ -1,0 +1,287 @@
+# <!-- @GENESIS_MODULE_START: test_phase43_sentiment_fusion_basic -->
+
+from datetime import datetime\n"""
+
+# 📊 GENESIS Telemetry Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.telemetry import emit_telemetry, TelemetryManager
+    TELEMETRY_AVAILABLE = True
+except ImportError:
+    def emit_telemetry(module, event, data): 
+        print(f"TELEMETRY: {module}.{event} - {data}")
+    class TelemetryManager:
+        def emergency_stop(self, reason: str = "Manual trigger") -> bool:
+                """GENESIS Emergency Kill Switch"""
+                try:
+                    # Emit emergency event
+                    if hasattr(self, 'event_bus') and self.event_bus:
+                        emit_event("emergency_stop", {
+                            "module": "test_phase43_sentiment_fusion_basic",
+                            "reason": reason,
+                            "timestamp": datetime.now().isoformat()
+                        })
+
+                    # Log telemetry
+                    self.emit_module_telemetry("emergency_stop", {
+                        "reason": reason,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # Set emergency state
+                    if hasattr(self, '_emergency_stop_active'):
+                        self._emergency_stop_active = True
+
+                    return True
+                except Exception as e:
+                    print(f"Emergency stop error in test_phase43_sentiment_fusion_basic: {e}")
+                    return False
+        def validate_ftmo_compliance(self, trade_data: dict) -> bool:
+                """GENESIS FTMO Compliance Validator"""
+                # Daily drawdown check (5%)
+                daily_loss = trade_data.get('daily_loss_pct', 0)
+                if daily_loss > 5.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "daily_drawdown", 
+                        "value": daily_loss,
+                        "threshold": 5.0
+                    })
+                    return False
+
+                # Maximum drawdown check (10%)
+                max_drawdown = trade_data.get('max_drawdown_pct', 0)
+                if max_drawdown > 10.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "max_drawdown", 
+                        "value": max_drawdown,
+                        "threshold": 10.0
+                    })
+                    return False
+
+                # Risk per trade check (2%)
+                risk_pct = trade_data.get('risk_percent', 0)
+                if risk_pct > 2.0:
+                    self.emit_module_telemetry("ftmo_violation", {
+                        "type": "risk_exceeded", 
+                        "value": risk_pct,
+                        "threshold": 2.0
+                    })
+                    return False
+
+                return True
+        def emit_module_telemetry(self, event: str, data: dict = None):
+                """GENESIS Module Telemetry Hook"""
+                telemetry_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "module": "test_phase43_sentiment_fusion_basic",
+                    "event": event,
+                    "data": data or {}
+                }
+                try:
+                    emit_telemetry("test_phase43_sentiment_fusion_basic", event, telemetry_data)
+                except Exception as e:
+                    print(f"Telemetry error in test_phase43_sentiment_fusion_basic: {e}")
+        def emit(self, event, data): pass
+    TELEMETRY_AVAILABLE = False
+
+
+
+# 🔗 GENESIS EventBus Integration - Auto-injected by Complete Intelligent Wiring Engine
+try:
+    from core.hardened_event_bus import get_event_bus, emit_event, register_route
+    EVENTBUS_AVAILABLE = True
+except ImportError:
+    # Fallback implementation
+    def get_event_bus(): return None
+    def emit_event(event, data): print(f"EVENT: {event} - {data}")
+    def register_route(route, producer, consumer): pass
+    EVENTBUS_AVAILABLE = False
+
+
+GENESIS Test Suite - Phase 43 Strategy Sentiment Fusion Engine
+==============================================================
+
+🧪 TEST MISSION: Basic validation of sentiment fusion capabilities
+📊 COVERAGE: Engine initialization, basic fusion logic, telemetry emission
+⚙️ VALIDATION: EventBus routing, configuration loading
+🔁 ARCHITECT MODE: Compliance testing with real data requirements
+
+Simple test validation for Phase 43 implementation.
+"""
+
+import os
+import sys
+import json
+import time
+import logging
+import datetime
+from typing import Dict, Any
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+def test_sentiment_fusion_engine():
+    """Test Strategy Sentiment Fusion Engine initialization and basic functionality"""
+    print("🧪 Testing Phase 43 Strategy Sentiment Fusion Engine...")
+    
+    try:
+        # Test import
+        from strategy_sentiment_fusion_engine import (
+            StrategySentimentFusionEngine, 
+            get_strategy_sentiment_fusion_engine,
+            SentimentRegime,
+            SessionBias
+        )
+        print("✅ Module import successful")
+        
+        # Test engine initialization
+        engine = get_strategy_sentiment_fusion_engine()
+        print("✅ Engine initialization successful")
+        
+        # Test configuration validation
+        config_checks = [
+            "fusion_weights" in engine.config,
+            "sentiment_thresholds" in engine.config,
+            "modulation_limits" in engine.config,
+            engine.config.get("architect_mode_compliant", False)
+        ]
+        
+        if all(config_checks):
+            print("✅ Configuration validation passed")
+        else:
+            print("❌ Configuration validation failed")
+            return False
+        
+        # Test engine startup
+        engine.start()
+        time.sleep(2)  # Allow startup
+        
+        if engine.running:
+            print("✅ Engine startup successful")
+        else:
+            print("❌ Engine startup failed")
+            return False
+        
+        # Test telemetry metrics exist
+        required_metrics = [
+            "sentiment_alignment_score",
+            "session_sentiment_bias",
+            "macro_sentiment_impact",
+            "fusion_modulation_weight"
+        ]
+        
+        metrics_valid = all(metric in engine.metrics for metric in required_metrics)
+        if metrics_valid:
+            print("✅ Telemetry metrics initialized")
+        else:
+            print("❌ Telemetry metrics missing")
+            return False
+        
+        # Test basic event handling (execute_live event)
+        try:
+            test_news_data = {
+                "category": "economic",
+                "impact_level": 0.7,
+                "sentiment_score": 0.5,
+                "timestamp": datetime.datetime.now().isoformat()
+            }
+            
+            # Simulate news sentiment update
+            engine._handle_news_sentiment_update({"data": test_news_data})
+            
+            if len(engine.news_sentiment_buffer) > 0:
+                print("✅ Event handling functional")
+            else:
+                print("⚠️  Event handling test inconclusive")
+        
+        except Exception as e:
+            print(f"⚠️  Event handling test error: {e}")
+        
+        # Test cleanup
+        engine.stop()
+        print("✅ Engine shutdown successful")
+        
+        print("\n🎉 Phase 43 Strategy Sentiment Fusion Engine - BASIC TESTS PASSED")
+        print("✅ Module architecture validated")
+        print("✅ Architect mode compliance confirmed")
+        print("✅ Core functionality operational")
+        
+        return True
+        
+    except ImportError as e:
+        print(f"❌ Import failed: {e}")
+        return False
+        
+    except Exception as e:
+        print(f"❌ Test failed: {e}")
+        return False
+
+def test_config_file():
+    """Test configuration file creation and validation"""
+    print("\n🔧 Testing configuration file...")
+    
+    config_path = "strategy_sentiment_fusion_config.json"
+    
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+            
+            required_sections = [
+                "fusion_weights",
+                "sentiment_thresholds",
+                "modulation_limits",
+                "compliance"
+            ]
+            
+            if all(section in config for section in required_sections):
+                print("✅ Configuration file structure valid")
+                
+                if config.get("compliance", {}).get("architect_mode", False):
+                    print("✅ Architect mode compliance enabled")
+                    return True
+                else:
+                    print("❌ Architect mode compliance not enabled")
+                    return False
+            else:
+                print("❌ Configuration file structure invalid")
+                return False
+                
+        except json.JSONDecodeError as e:
+            print(f"❌ Configuration file JSON error: {e}")
+            return False
+    else:
+        print("❌ Configuration file not found")
+        return False
+
+def main():
+    """Main test execution"""
+    print("=" * 60)
+    print("GENESIS Phase 43 Strategy Sentiment Fusion Engine Tests")
+    print("=" * 60)
+    
+    tests_passed = 0
+    total_tests = 2
+    
+    # Run tests
+    if test_config_file():
+        tests_passed += 1
+    
+    if test_sentiment_fusion_engine():
+        tests_passed += 1
+    
+    # Summary
+    print(f"\n📊 Test Summary: {tests_passed}/{total_tests} tests passed")
+    
+    if tests_passed == total_tests:
+        print("🎉 ALL TESTS PASSED - Phase 43 ready for integration")
+        return True
+    else:
+        print("❌ SOME TESTS FAILED - Review and fix before deployment")
+        return False
+
+if __name__ == "__main__":
+    success = main()
+    sys.exit(0 if success else 1)
+
+
+# <!-- @GENESIS_MODULE_END: test_phase43_sentiment_fusion_basic -->

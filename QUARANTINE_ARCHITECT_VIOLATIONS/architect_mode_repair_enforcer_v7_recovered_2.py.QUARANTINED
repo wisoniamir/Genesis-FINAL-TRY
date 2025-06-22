@@ -1,0 +1,68 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+  "quarantine_timestamp": "2025-06-21T04:33:32.053585+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "pass",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line_numbers": [
+        49,
+        70,
+        71
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "TODO",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line_numbers": [
+        50,
+        55
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "mock",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line_numbers": [
+        17,
+        59,
+        65
+      ],
+      "violation_count": 3
+    },
+    {
+      "rule_type": "no_mock_data",
+      "pattern": "placeholder",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line_numbers": [
+        54
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line_numbers": [
+        70,
+        153
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "eventbus_required",
+      "pattern": "emit(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\modules\\unclassified\\architect_mode_repair_enforcer_v7_recovered_2.py",
+      "line_numbers": [
+        116,
+        168
+      ],
+      "violation_count": 2
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}

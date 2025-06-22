@@ -1,0 +1,9 @@
+{
+  "module_id": "core",
+  "original_path": "modules\\restored\\core.py",
+  "preserved_path": "preservation_holding_area\\core_20250621_212809.py",
+  "preservation_reason": "audit_preservation",
+  "preservation_timestamp": "2025-06-21T18:27:27.190664+00:00",
+  "file_size": 554037,
+  "checksum": "f6dad0888d660a36902e8c01d72672541246a0fc179a19711ba06dfbc1147cf3"
+}

@@ -1,0 +1,59 @@
+{
+  "original_file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\options_selector_utils.py",
+  "quarantine_timestamp": "2025-06-21T04:33:23.808486+00:00",
+  "violations": [
+    {
+      "rule_type": "no_stub_patterns",
+      "pattern": "return None",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\options_selector_utils.py",
+      "line_numbers": [
+        106,
+        195,
+        201,
+        204
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "try:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\options_selector_utils.py",
+      "line_numbers": [
+        197
+      ],
+      "violation_count": 1
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "if not",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\options_selector_utils.py",
+      "line_numbers": [
+        146,
+        150,
+        234,
+        280
+      ],
+      "violation_count": 4
+    },
+    {
+      "rule_type": "no_fallback_logic",
+      "pattern": "else:",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\options_selector_utils.py",
+      "line_numbers": [
+        240,
+        287
+      ],
+      "violation_count": 2
+    },
+    {
+      "rule_type": "telemetry_required",
+      "pattern": "emit_telemetry(",
+      "file": "c:\\Users\\patra\\Genesis FINAL TRY\\core\\options_selector_utils.py",
+      "line_numbers": [
+        47
+      ],
+      "violation_count": 1
+    }
+  ],
+  "quarantine_reason": "ARCHITECT_MODE_VIOLATION"
+}
